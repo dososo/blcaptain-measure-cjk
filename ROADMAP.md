@@ -25,6 +25,7 @@
 
 ## 发布和工程
 
+- **Claude Code 装插件时会读仓库根目录的 package-lock.json**：`claude plugin list` 提示「node_modules/measure-cjk 是文件夹链接，没有安装它列出的包」。插件只用到 `skills/`，不影响使用；拆出精简的发布目录后这条提示会消失。
 - **发布体积**：Claude Code、Codex 插件的 `source` 是整个仓库，会带上实验数据（`bench/runs` 约 32 MB，仓库已跟踪文件共约 37 MB）和截图；计划拆出精简的发布目录。
 - 展示页截图：字体核对改成白名单（目前是黑名单，展示页审计 SA-05）；红框标签不遮挡被标的文字（SA-09）。
 - 北极星实验的下一轮：`SKILL.md` 改版后重跑 Claude Code 实验组；每次运行用独立的 `CODEX_HOME`，`TMPDIR` 分开（北极星审计 NA-06）。

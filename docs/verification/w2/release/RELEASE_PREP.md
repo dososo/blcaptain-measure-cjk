@@ -42,6 +42,8 @@
    **已完成（2026-10-26）**：`blteam2026` 发布 `measure-cjk@0.1.0`；线上 integrity、`gitHead`（e71ee8e）、维护者都核对一致。推送前发现 e71ee8e 等未推送的提交里有一句用户原话带着私人邮箱前缀，于是把它们合成 4143f4b 后才推送：e71ee8e 只留在本机（`private-main-before-redact`），公开仓库里查不到；`packages/cli`、`skills/` 的内容和 e71ee8e 逐字节一致（`git diff e71ee8e 4143f4b -- packages/cli skills` 为空），从 npm 实装能运行（`evidence/npm-published.log`）。第一次用旧账号发布被 403 拒绝；npm 先建了 `0.0.0-stage` 占位版本（分阶段发布），约 2 分钟后出现 0.1.0。
 3. **建 GitHub 仓库** `dososo/blcaptain-measure-cjk`（公开），**只推 `main`**：`git push -u origin main`。不要用 `git push --all`，`private-history` 不能推。推送前再问用户一次。
 4. **开 GitHub Pages**：main 分支、根目录；展示页地址 `https://dososo.github.io/blcaptain-measure-cjk/site/`。
+   **3、4 已完成（2026-10-26，用户原话「同意：建公开仓库 dososo/blcaptain-measure-cjk，只推 main，然后开 GitHub Pages（main 分支、根目录）。」）**：公开仓库只有 `main` 一个分支、3 个提交，作者和提交者都是公开身份；每个提交里搜个人邮箱、用户名、临时目录都是 0 处；没有 `README_PACKAGE.md`。Pages 状态 built，展示页、主题页、截图都返回 200。
 5. **发布后复验**：从 GitHub 装一遍三种方式，`npx measure-cjk@0.1.0 --version`；在 GitHub 上看提交作者是公开身份，仓库里没有 `README_PACKAGE.md`。
+   **已完成（2026-10-26）**：Claude Code 插件、Codex 插件、`npx skills` 三种方式从 GitHub 安装都成功，`npx skills` 装上的文件和仓库 `skills/measure/` 一致（`evidence/github-install.log`）；`npx measure-cjk@0.1.0` 见 `evidence/npm-published.log`。
 
 公开范围（D-1，已拍板）：`docs/verification/`、`bench/runs/` 随仓库公开；插件安装时会带上约 32 MB 实验数据（仓库已跟踪文件共约 37 MB，ROADMAP「发布体积」）。

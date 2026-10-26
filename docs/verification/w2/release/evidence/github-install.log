@@ -1,0 +1,36 @@
+# 从 GitHub 复验三种安装方式（都在临时目录里，不碰用户自己的配置）
+$ claude plugin marketplace add dososo/blcaptain-measure-cjk   # CLAUDE_CONFIG_DIR=<tmp>/claude
+Cleaning up old marketplace cache…
+✔ Successfully added marketplace: blcaptain-measure-cjk (declared in user settings)
+# 退出码：0
+$ claude plugin install measure@blcaptain-measure-cjk
+Installing plugin "measure@blcaptain-measure-cjk"...✔ Successfully installed plugin: measure@blcaptain-measure-cjk (scope: user)
+# 退出码：0
+$ claude plugin list
+Installed plugins:
+
+  ❯ measure@blcaptain-measure-cjk
+    Version: 0.1.0
+    Scope: user
+    Status: ✔ enabled
+    Note: The packages it lists were not installed, because its package-lock.json entry ”node_modules/measure-cjk” is a folder link or a bundled copy
+
+
+$ codex plugin marketplace add dososo/blcaptain-measure-cjk   # CODEX_HOME=<tmp>/codex
+Added marketplace `blcaptain-measure-cjk` from https://github.com/dososo/blcaptain-measure-cjk.git.
+Installed marketplace root: <tmp>/codex/.tmp/marketplaces/blcaptain-measure-cjk
+# 退出码：0
+$ codex plugin add measure@blcaptain-measure-cjk
+Added plugin `measure` from marketplace `blcaptain-measure-cjk`.
+Installed plugin root: <tmp>/codex/plugins/cache/blcaptain-measure-cjk/measure/0.1.0
+# 退出码：0
+SKILL.md：<tmp>/codex/.tmp/marketplaces/blcaptain-measure-cjk/skills/measure/SKILL.md
+
+$ npx -y skills@1.7.4 add dososo/blcaptain-measure-cjk -s measure -a claude-code -a codex -y   # 在 <tmp>/proj 里
+npm notice New minor version of npm available! 11.8.0 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice
+# 退出码：0
+装上的文件和仓库 skills/measure 比较：一致
+# 时间：2026-10-26T10:26:45Z
