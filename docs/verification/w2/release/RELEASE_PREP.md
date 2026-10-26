@@ -47,3 +47,16 @@
    **已完成（2026-10-26）**：Claude Code 插件、Codex 插件、`npx skills` 三种方式从 GitHub 安装都成功，`npx skills` 装上的文件和仓库 `skills/measure/` 一致（`evidence/github-install.log`）；`npx measure-cjk@0.1.0` 见 `evidence/npm-published.log`。
 
 公开范围（D-1，已拍板）：`docs/verification/`、`bench/runs/` 随仓库公开；插件安装时会带上约 32 MB 实验数据（仓库已跟踪文件共约 37 MB，ROADMAP「发布体积」）。
+
+## 5. 提交说明改写（2026-10-26）
+
+用户要求仓库目录里不再显示「准备发布」（原话：「我是说仓库目录这个信息不要显示 准备发布」）。只改了提交说明，文件内容、作者、时间都没变（`git diff` 改写前后为空），然后强制推送 `main`，`v0.1.0` 标签移到新的提交上。文档和证据里出现的旧提交号对应关系如下：
+
+| 旧提交 | 新提交 | 说明 |
+|---|---|---|
+| `da21fe7` | `dcfa722` | 「分寸 · Measure v0.1.0（准备发布）」→「分寸 · Measure v0.1.0」；`results.json` 的 `git_head` 记的是旧号 |
+| `8540003` | `3d30ec2` | 去掉说明里过时的提交号 |
+| `907f05e` | `5158da6` | 说明不变 |
+| `aa7ee75` | `bdf4e1e` | 说明不变；`v0.1.0` 标签原来指向它 |
+
+npm 包的 `gitHead`（`e71ee8e`）只在本机，见 §4 第 2 步。
