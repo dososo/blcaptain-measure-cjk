@@ -34,11 +34,12 @@
 
 0. **历史和本机信息**（D-8，已做）：旧历史改名 `private-history`，只留在本机、永不推送；公开的 `main` 分支从当前文件新建，没有旧提交。文档里引用的提交号（如 `63c55e9`）在 `private-history` 里，公开仓库里查不到；回归测试的锁定改按 SHA-256 核对（`release-tests.sha256`）。已跟踪文件里没有本机路径（`node scripts/scrub-local-paths.mjs` 命中 0）。
 1. **发布前检查**：在 `main` 分支、工作树干净；`node scripts/verify-release.mjs` 结论达标；`npm audit --omit=dev`（在 `packages/cli` 里）没有 high 及以上的漏洞。
-2. **npm publish**（用户自己执行：需要 npm 账号登录；账号邮箱已确认是 blteam2026@outlook.com，D-7）。必须在 `main` 上执行，写进包里的 `gitHead` 才能在公开仓库里对上：
+2. **npm publish**（用户自己执行：用 blteam2026@outlook.com 新建的 npm 账号，用户名不含个人邮箱前缀，开启两步验证，D-9；2026-10-26 第一次用旧账号发布时被 npm 以 403 拒绝，没有发出去）。必须在 `main` 上执行，写进包里的 `gitHead` 才能在公开仓库里对上：
    ```bash
    cd packages/cli && npm login && npm publish --access public
    ```
    发布后核对：`npm view measure-cjk@0.1.0 dist.integrity` 要和 `results.json` 里的 `package.integrity` 一致，`npm view measure-cjk@0.1.0 gitHead` 是 `main` 上的提交，一致才进入下一步。
+   **已完成（2026-10-26）**：`blteam2026` 发布 `measure-cjk@0.1.0`；线上 integrity、`gitHead`（e71ee8e）、维护者都核对一致。推送前发现 e71ee8e 等未推送的提交里有一句用户原话带着私人邮箱前缀，于是把它们合成 4143f4b 后才推送：e71ee8e 只留在本机（`private-main-before-redact`），公开仓库里查不到；`packages/cli`、`skills/` 的内容和 e71ee8e 逐字节一致（`git diff e71ee8e 4143f4b -- packages/cli skills` 为空），从 npm 实装能运行（`evidence/npm-published.log`）。第一次用旧账号发布被 403 拒绝；npm 先建了 `0.0.0-stage` 占位版本（分阶段发布），约 2 分钟后出现 0.1.0。
 3. **建 GitHub 仓库** `dososo/blcaptain-measure-cjk`（公开），**只推 `main`**：`git push -u origin main`。不要用 `git push --all`，`private-history` 不能推。推送前再问用户一次。
 4. **开 GitHub Pages**：main 分支、根目录；展示页地址 `https://dososo.github.io/blcaptain-measure-cjk/site/`。
 5. **发布后复验**：从 GitHub 装一遍三种方式，`npx measure-cjk@0.1.0 --version`；在 GitHub 上看提交作者是公开身份，仓库里没有 `README_PACKAGE.md`。

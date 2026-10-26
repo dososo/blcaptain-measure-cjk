@@ -1,0 +1,28 @@
+$ npx --yes measure-cjk@0.1.0 --version   # 临时 npm 缓存，从 registry 下载
+0.1.0
+npm notice
+npm notice New minor version of npm available! 11.8.0 -> 11.21.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.21.1
+npm notice To update run: npm install -g npm@11.21.1
+npm notice
+# 退出码：0
+
+$ npx --yes measure-cjk@0.1.0 lint page.html
+✗ T02  page.html:1  p
+    有 1 个中文元素没有开启 text-autospace。三大浏览器实现里它的初始值是 no-autospace，必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: "text"，在文案里打空格。
+    修法：见 skills/measure/references/typesetting.md#t02
+✗ T04  page.html:1  p
+    有 1 个中文元素没有 line-break: strict，标点可能出现在行首。
+    修法：见 skills/measure/references/typesetting.md#t04
+△ T06  page.html:1  p
+    这段中文没有设置行高（浏览器默认约 1.2）。如果它会折行，请设为 1.6–1.9。
+
+$ npm view measure-cjk@0.1.0 dist.integrity gitHead maintainers _npmUser.name
+dist.integrity = 'sha512-uRih0V6vDedwEuabipETfWNwanGf4zDK9PefRTSeDYkxLS0Is81DmoWAmhgoZdrrkfBGqTN03YfQ+01eFOpQ7A=='
+gitHead = 'e71ee8e280521c009ef1034ece62c0162dd36ba1'
+maintainers = 'blteam2026 <blteam2026@outlook.com>'
+_npmUser.name = 'blteam2026'
+
+本地 results.json 的 integrity：sha512-uRih0V6vDedwEuabipETfWNwanGf4zDK9PefRTSeDYkxLS0Is81DmoWAmhgoZdrrkfBGqTN03YfQ+01eFOpQ7A==
+main 的提交：e71ee8e280521c009ef1034ece62c0162dd36ba1
+# 时间：2026-10-26T09:53:51Z

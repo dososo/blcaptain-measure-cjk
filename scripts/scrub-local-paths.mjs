@@ -1,5 +1,5 @@
-// 把仓库里的本机绝对路径和用户名换成占位符，免得公开仓库时暴露本机信息。
-// 路径都在运行时从本机取（家目录、用户名、系统临时目录、本仓库位置），脚本里不写死任何人的路径。
+// 把仓库里的本机绝对路径、用户名和私人邮箱换成占位符，免得公开仓库时暴露本机信息。
+// 都在运行时从本机取（家目录、用户名、系统临时目录、本仓库位置、全局 git 配置里的邮箱），脚本里不写死任何人的信息。
 // 用法：node scripts/scrub-local-paths.mjs          只列出命中的文件和次数，不改动
 //       node scripts/scrub-local-paths.mjs --write  原地替换（每个文件先写临时文件再改名）
 // 也可以 import { scrubText, localPatterns } 给验证脚本在写证据前调用。
@@ -30,6 +30,22 @@ export function localPatterns() {
     [varBase.replace(/^\/private/, ""), "<var-folders>"],
     [home, "~"]
   ];
+  // 全局 git 配置里的邮箱不公开（用户 2026-10-26：「不能公开我的这个邮箱」）；邮箱前缀、去掉数字的前缀也一并隐去
+  // 没配置时 git config 退出码为 1，按「没有」处理
+  const gitConfig = (args) => {
+    try {
+      return execFileSync("git", ["config", ...args], { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] }).trim();
+    } catch {
+      return "";
+    }
+  };
+  const email = gitConfig(["--global", "user.email"]);
+  const publicEmail = gitConfig(["user.email"]);
+  if (email && email !== publicEmail) {
+    const local = email.split("@")[0];
+    pairs.unshift([email, "〔已隐去〕"]);
+    for (const term of [local, local.replace(/\d+$/, "")]) if (term.length >= 5) pairs.push([term, "〔已隐去〕"]);
+  }
   const seen = new Set();
   const list = pairs.filter(([from]) => from && from.length > 1 && !seen.has(from) && seen.add(from)).sort((a, b) => b[0].length - a[0].length);
   // 用户名单独按整词替换（ls -l 的属主列、编码过的目录名里都有）
