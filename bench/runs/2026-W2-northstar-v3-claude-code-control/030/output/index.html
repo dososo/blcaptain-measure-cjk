@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>租房检查清单</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 16px;
+    background: #e9e4dc;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: #2b2621;
+  }
+  /* 3:4 竖版卡片，按视口等比缩放 */
+  .card {
+    --u: min(calc((100vw - 32px) / 90), calc((100vh - 32px) / 120));
+    width: calc(var(--u) * 90);
+    aspect-ratio: 3 / 4;
+    font-size: calc(var(--u) * 2.4);
+    background: #fffaf2;
+    border-radius: calc(var(--u) * 3);
+    box-shadow: 0 1.2em 3em rgba(80, 60, 30, .18);
+    padding: 2.6em 2.4em 2em;
+    display: flex; flex-direction: column;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; right: -6em; top: -6em;
+    width: 18em; height: 18em; border-radius: 50%;
+    background: #ffd9a8; opacity: .55;
+  }
+  header { position: relative; }
+  .tag {
+    display: inline-block; font-size: .78em; font-weight: 600;
+    background: #2b2621; color: #fffaf2;
+    padding: .3em .9em; border-radius: 99em; letter-spacing: .08em;
+  }
+  h1 {
+    margin-top: .5em; font-size: 2.6em; line-height: 1.2; font-weight: 900;
+    letter-spacing: .02em;
+  }
+  h1 em {
+    font-style: normal; color: #e85d2a;
+    background: linear-gradient(transparent 62%, #ffd9a8 62%);
+  }
+  .sub { margin-top: .6em; font-size: .95em; color: #7a6f63; }
+
+  .grid {
+    margin-top: 1.4em; flex: 1;
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, 1fr);
+    gap: .8em; position: relative;
+  }
+  .item {
+    background: #fff; border: .1em solid #f0e6d6; border-radius: 1em;
+    padding: .9em 1em; display: flex; flex-direction: column; gap: .35em;
+  }
+  .item .top { display: flex; align-items: center; gap: .5em; }
+  .num {
+    flex: none; width: 1.7em; height: 1.7em; border-radius: .5em;
+    display: grid; place-items: center;
+    font-weight: 800; font-size: .9em; color: #fff; background: #e85d2a;
+  }
+  .item:nth-child(2n) .num { background: #3a8f7a; }
+  .item h2 { font-size: 1.15em; font-weight: 800; }
+  .item .icon { margin-left: auto; font-size: 1.3em; }
+  .item p { font-size: .8em; line-height: 1.55; color: #5f564c; }
+  .item b { color: #e85d2a; font-weight: 700; }
+
+  footer {
+    margin-top: 1.1em; position: relative;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .8em; color: #7a6f63;
+  }
+  footer .tip {
+    background: #fff1de; color: #a5481f; padding: .45em .9em; border-radius: .6em; font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <article class="card">
+    <header>
+      <span class="tag">🏠 租房避坑指南</span>
+      <h1>租房前一定要检查的<br><em>6 个地方</em></h1>
+      <p class="sub">看房 10 分钟，少踩一年的坑 · 建议收藏</p>
+    </header>
+
+    <section class="grid">
+      <div class="item">
+        <div class="top"><span class="num">1</span><h2>水龙头 & 下水</h2><span class="icon">🚿</span></div>
+        <p>开水看<b>水压</b>和水色；洗手池、地漏放水试试<b>排水速度</b>，闻有没有反味。</p>
+      </div>
+      <div class="item">
+        <div class="top"><span class="num">2</span><h2>墙角 & 天花板</h2><span class="icon">🧱</span></div>
+        <p>重点看卫生间、窗边，有<b>霉斑、水渍、起皮</b>多半是渗水或潮湿。</p>
+      </div>
+      <div class="item">
+        <div class="top"><span class="num">3</span><h2>插座 & 电路</h2><span class="icon">🔌</span></div>
+        <p>带个充电器逐个试插座；问清<b>电表类型和电价</b>，大功率电器能否同开。</p>
+      </div>
+      <div class="item">
+        <div class="top"><span class="num">4</span><h2>门锁 & 门窗</h2><span class="icon">🔐</span></div>
+        <p>要求<b>换锁芯</b>；窗户开合顺滑、密封条完好，低楼层看有无防护。</p>
+      </div>
+      <div class="item">
+        <div class="top"><span class="num">5</span><h2>热水器 & 燃气</h2><span class="icon">🔥</span></div>
+        <p>现场<b>烧一次热水</b>，看出热快慢；燃气管是否老化，有无报警器。</p>
+      </div>
+      <div class="item">
+        <div class="top"><span class="num">6</span><h2>家电 & 家具</h2><span class="icon">❄️</span></div>
+        <p>空调、冰箱、洗衣机都<b>开机试用</b>；已有损坏<b>拍照留证</b>写进合同。</p>
+      </div>
+    </section>
+
+    <footer>
+      <span class="tip">📸 入住前全屋拍视频，退租不扯皮</span>
+      <span>@租房小百科</span>
+    </footer>
+  </article>
+</body>
+</html>

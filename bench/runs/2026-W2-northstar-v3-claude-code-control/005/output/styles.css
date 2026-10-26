@@ -1,0 +1,406 @@
+:root {
+  --bg: #fbf8f3;
+  --surface: #ffffff;
+  --fg: #2b2a28;
+  --muted: #6b6760;
+  --line: #ece6dc;
+  --accent: #2f8f7a;
+  --accent-soft: #e3f2ee;
+  --warm: #f2a65a;
+  --warm-soft: #fdf0e1;
+  --radius: 16px;
+  --shadow: 0 6px 24px rgba(60, 45, 20, 0.07);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1d1c;
+    --surface: #242726;
+    --fg: #ecebe7;
+    --muted: #a7a49d;
+    --line: #353937;
+    --accent: #5cc3a9;
+    --accent-soft: #23362f;
+    --warm: #f2b273;
+    --warm-soft: #3a2f22;
+    --shadow: none;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans SC", sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+a { color: inherit; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+/* 顶部导航 */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  text-decoration: none;
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.nav {
+  display: flex;
+  gap: 24px;
+  font-size: 0.95rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--muted);
+}
+
+.nav a:hover { color: var(--accent); }
+
+.header-call {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+/* 首屏 */
+.hero { padding-block: 72px 56px; }
+
+.hero .wrap {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: var(--warm-soft);
+  color: var(--warm);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  margin: 16px 0 12px;
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.25;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero p {
+  margin: 0 0 28px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 34em;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-ghost { border: 1.5px solid var(--line); background: var(--surface); }
+
+.hero-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.hero-card h2 { margin: 0 0 16px; font-size: 1.1rem; }
+
+.hours { list-style: none; margin: 0; padding: 0; }
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 10px;
+  border-bottom: 1px dashed var(--line);
+}
+
+.hours li:last-child { border-bottom: 0; }
+.hours span:last-child { font-weight: 600; }
+
+.badge-emergency {
+  margin-top: 16px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: var(--warm-soft);
+  font-size: 0.92rem;
+}
+
+/* 通用区块 */
+section { scroll-margin-top: 80px; }
+
+.section { padding-block: 64px; }
+.section.alt { background: var(--surface); border-block: 1px solid var(--line); }
+
+.section-head { margin-bottom: 32px; }
+.section-head h2 { margin: 0 0 6px; font-size: 1.8rem; }
+.section-head p { margin: 0; color: var(--muted); }
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+/* 科室 */
+.dept {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+}
+
+.section.alt .dept { background: var(--bg); }
+
+.dept-icon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--accent-soft);
+  font-size: 1.5rem;
+  margin-bottom: 14px;
+}
+
+.dept h3 { margin: 0 0 6px; font-size: 1.15rem; }
+.dept p { margin: 0 0 12px; color: var(--muted); font-size: 0.95rem; }
+
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.tags span {
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.8rem;
+}
+
+/* 医生 */
+.doctor {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.doctor:nth-child(even) .avatar { background: var(--warm-soft); color: var(--warm); }
+
+.doctor h3 { margin: 0; font-size: 1.1rem; }
+.doctor .role { margin: 2px 0 10px; color: var(--accent); font-size: 0.9rem; font-weight: 600; }
+.doctor .bio { margin: 0 0 12px; color: var(--muted); font-size: 0.9rem; }
+.doctor .time { font-size: 0.85rem; color: var(--muted); }
+
+/* 预约 */
+.booking {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.phone-card {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 24px;
+  padding: 36px;
+}
+
+.phone-card h2 { margin: 0 0 8px; font-size: 1.6rem; }
+.phone-card p { margin: 0 0 24px; opacity: 0.9; }
+
+.phone-number {
+  display: block;
+  font-size: clamp(1.8rem, 6vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 8px;
+}
+
+.phone-card .sub { font-size: 0.95rem; opacity: 0.9; margin: 0; }
+
+.copy-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: transparent;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.copy-btn:hover { background: rgba(255, 255, 255, 0.12); }
+
+.steps {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow);
+}
+
+.steps h3 { margin: 0 0 16px; }
+
+.steps ol { margin: 0; padding-left: 1.2em; }
+.steps li { margin-bottom: 10px; color: var(--muted); }
+.steps li strong { color: var(--fg); }
+
+.address {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+
+/* 页脚 */
+.site-footer {
+  padding-block: 28px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+.site-footer .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* 移动端底部拨号条 */
+.mobile-call {
+  display: none;
+}
+
+@media (max-width: 960px) {
+  .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 760px) {
+  .nav { display: none; }
+  .hero { padding-block: 40px 32px; }
+  .hero .wrap,
+  .booking { grid-template-columns: 1fr; gap: 28px; }
+  .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .section { padding-block: 48px; }
+  .phone-card, .steps { padding: 26px; }
+
+  body { padding-bottom: 72px; }
+
+  .mobile-call {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom, 0px));
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+  }
+
+  .mobile-call a {
+    display: block;
+    text-align: center;
+    padding: 12px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,203 @@
+@layer measure;
+
+:root {
+  --bg: #f7f3ec;
+  --surface: #fffdf9;
+  --fg: #2b241d;
+  --muted: #7a6d60;
+  --line: #e4dbcd;
+  --accent: #a4472a;
+  --accent-fg: #fffdf9;
+  --accent-soft: #f3e2d9;
+  --disabled: #c9bfb2;
+  --error: #b3261e;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1814; --surface: #26211b; --fg: #efe7dc; --muted: #a89a8a;
+    --line: #3b342c; --accent: #e08a68; --accent-fg: #1c1814; --accent-soft: #3d2a22;
+    --disabled: #5a5046; --error: #f2867c; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c1814; --surface: #26211b; --fg: #efe7dc; --muted: #a89a8a;
+  --line: #3b342c; --accent: #e08a68; --accent-fg: #1c1814; --accent-soft: #3d2a22;
+  --disabled: #5a5046; --error: #f2867c; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+}
+
+.page {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-inline: 16px;
+  padding-block: 40px 64px;
+}
+
+header { margin-bottom: 28px; }
+header h1 { font-size: 30px; font-weight: 700; letter-spacing: 0.02em; margin: 0 0 8px; line-height: 1.3; }
+header p { margin: 0; color: var(--muted); line-height: 1.75; }
+
+form, .confirm {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px 20px;
+}
+
+fieldset { border: 0; padding: 0; margin: 0 0 28px; min-width: 0; }
+legend, .label {
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  padding: 0;
+}
+.hint { font-size: 14px; color: var(--muted); font-weight: 400; margin-left: 8px; }
+
+/* 日期 */
+.dates {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scrollbar-width: thin;
+}
+.date-btn {
+  flex: 0 0 auto;
+  width: 64px;
+  padding: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+  text-align: center;
+  line-height: 1.4;
+}
+.date-btn .wd { display: block; font-size: 13px; color: var(--muted); }
+.date-btn .d { display: block; font-size: 18px; font-weight: 600; }
+.date-btn .m { display: block; font-size: 12px; color: var(--muted); }
+.date-btn[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.date-btn[aria-pressed="true"] .wd,
+.date-btn[aria-pressed="true"] .m { color: var(--accent-fg); }
+.date-btn:disabled { color: var(--disabled); cursor: not-allowed; }
+.date-btn:disabled .wd, .date-btn:disabled .m { color: var(--disabled); }
+
+/* 时间 */
+.slot-group + .slot-group { margin-top: 14px; }
+.slot-group h3 { font-size: 14px; font-weight: 500; color: var(--muted); margin: 0 0 8px; }
+.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; }
+.slot {
+  padding: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+.slot[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.slot:disabled { color: var(--disabled); cursor: not-allowed; text-decoration: line-through; }
+
+/* 人数 */
+.party { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.stepper { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 6px; }
+.stepper button {
+  width: 44px; height: 44px;
+  border: 0; background: transparent; color: var(--fg);
+  font: inherit; font-size: 20px; cursor: pointer;
+}
+.stepper button:disabled { color: var(--disabled); cursor: not-allowed; }
+.stepper output { min-width: 56px; text-align: center; font-size: 18px; font-weight: 600; }
+.party-note { font-size: 14px; color: var(--muted); line-height: 1.75; margin: 0; }
+
+/* 文本输入 */
+.fields { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; min-width: 0; }
+.field label { font-size: 15px; margin-bottom: 6px; }
+input[type="text"], input[type="tel"], textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--fg);
+  font: inherit;
+  line-height: 1.6;
+}
+textarea { resize: vertical; min-height: 100px; }
+input:focus, textarea:focus, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.counter { font-size: 13px; color: var(--muted); text-align: right; margin-top: 4px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.tag {
+  padding: 4px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.tag:hover { color: var(--fg); border-color: var(--muted); }
+
+.error { color: var(--error); font-size: 14px; margin: 8px 0 0; min-height: 0; }
+
+/* 汇总与提交 */
+.summary {
+  border-top: 1px solid var(--line);
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.summary p { margin: 0; line-height: 1.75; min-width: 0; }
+.summary strong { font-weight: 600; }
+.submit {
+  padding: 12px 28px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 确认 */
+.confirm h2 { font-size: 22px; margin: 0 0 12px; }
+.confirm dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 20px; margin: 0 0 20px; }
+.confirm dt { color: var(--muted); }
+.confirm dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+.confirm p { line-height: 1.75; color: var(--muted); margin: 0 0 20px; }
+.ghost {
+  padding: 10px 20px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg);
+  font: inherit;
+  cursor: pointer;
+}
+
+footer { margin-top: 28px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+footer p { margin: 0; }
+
+@media (max-width: 520px) {
+  header h1 { font-size: 26px; }
+  .fields { grid-template-columns: 1fr; }
+  .summary { flex-direction: column; align-items: stretch; }
+  .submit { width: 100%; }
+}

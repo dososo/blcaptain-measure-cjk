@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>睡前书单</title>
+<style>
+  :root {
+    --paper: #F4E9DC;
+    --ink: #2B2622;
+    --ink-soft: #6B625A;
+    --line: #D9CBB8;
+    --accent: #9E4B3B;
+    --stage: #E8DDCF;
+    --serif: "Noto Serif SC", "Source Han Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--stage); }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    font-family: var(--serif);
+    color: var(--ink);
+  }
+
+  /* 卡片:竖版 3:4,内部尺寸全部用 cqw,按 1080 宽设计稿等比缩放 */
+  .card {
+    width: min(100%, 540px);
+    aspect-ratio: 3 / 4;
+    container-type: inline-size;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+  .inner {
+    position: absolute;
+    inset: 0;
+    padding: 9.5cqw 9cqw 7.5cqw;   /* ≈ 103 / 97 / 81 px @1080 */
+    display: flex;
+    flex-direction: column;
+  }
+
+  header { margin-bottom: 6cqw; }
+  .kicker {
+    font-size: 2.6cqw;
+    letter-spacing: 0.5em;
+    color: var(--ink-soft);
+    font-weight: 400;
+  }
+  h1 {
+    margin-top: 2.4cqw;
+    font-size: 9.6cqw;
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+  }
+  .seal {
+    position: absolute;
+    top: 9.5cqw;
+    right: 9cqw;
+    width: 8.4cqw;
+    height: 8.4cqw;
+    border: 0.3cqw solid var(--accent);
+    color: var(--accent);
+    font-size: 3.2cqw;
+    line-height: 1.05;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    writing-mode: vertical-rl;
+    letter-spacing: 0.1em;
+  }
+
+  ol { list-style: none; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  li {
+    display: grid;
+    grid-template-columns: 7cqw 1fr;
+    align-items: baseline;
+    padding: 2.6cqw 0;
+    border-top: 0.1cqw solid var(--line);
+  }
+  li:last-child { border-bottom: 0.1cqw solid var(--line); }
+  .no {
+    font-size: 2.8cqw;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+  .title {
+    font-size: 4.6cqw;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+  .author {
+    font-size: 2.6cqw;
+    color: var(--ink-soft);
+    margin-left: 1.6cqw;
+    font-weight: 400;
+  }
+  .why {
+    grid-column: 2;
+    margin-top: 1.2cqw;
+    font-size: 2.9cqw;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  footer {
+    margin-top: 5cqw;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.4cqw;
+    color: var(--ink-soft);
+    letter-spacing: 0.2em;
+  }
+</style>
+</head>
+<body>
+  <main class="card" aria-label="睡前书单卡片">
+    <div class="seal" aria-hidden="true">晚安</div>
+    <div class="inner">
+      <header>
+        <p class="kicker">枕边 · 五本</p>
+        <h1>睡前慢慢读</h1>
+      </header>
+
+      <ol>
+        <li>
+          <span class="no">壹</span>
+          <div><span class="title">浮生六记</span><span class="author">沈复</span></div>
+          <p class="why">柴米油盐里的小情趣，读两页，心就静了。</p>
+        </li>
+        <li>
+          <span class="no">贰</span>
+          <div><span class="title">人间草木</span><span class="author">汪曾祺</span></div>
+          <p class="why">写花写果写吃食，短篇随翻随停，不怕中断。</p>
+        </li>
+        <li>
+          <span class="no">叁</span>
+          <div><span class="title">枕草子</span><span class="author">清少纳言</span></div>
+          <p class="why">本就是放在枕边的随笔，一则一景，适合入梦。</p>
+        </li>
+        <li>
+          <span class="no">肆</span>
+          <div><span class="title">小王子</span><span class="author">圣埃克苏佩里</span></div>
+          <p class="why">篇幅不长，语气温柔，每次重读都有新的安慰。</p>
+        </li>
+        <li>
+          <span class="no">伍</span>
+          <div><span class="title">瓦尔登湖</span><span class="author">梭罗</span></div>
+          <p class="why">节奏缓慢的湖畔日子，读着读着呼吸也慢下来。</p>
+        </li>
+      </ol>
+
+      <footer>
+        <span>关灯前 · 二十分钟</span>
+        <span>不求读完</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

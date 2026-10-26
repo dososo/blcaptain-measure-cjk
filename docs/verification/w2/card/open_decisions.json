@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "note": "card 命令需要用户拍板的事项。blocks_verdict 为 true 的事项，只有在 resolved 为 true 且附上 user_quote（用户原话）和 resolved_on（日期）时才算已拍板。执行方不得自行填写 user_quote。D-C1 至 D-C7、R-C1、R-C2、R-C3 已由用户在对话中拍板（2026-10-26），user_quote 为用户原话摘录，user_message_verbatim 按条记录整条原话。",
+  "items": [
+    {
+      "id": "D-C1",
+      "question": "F06 按什么判断「用到的字体」？",
+      "recommendation": "按浏览器实际渲染用到的字体，包括缺字时回退的系统字体",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "F06 按实际渲染的字体判断",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "D-C2",
+      "question": "有 error 时还导出 PNG 吗？",
+      "recommendation": "不导出，退出码 1",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "有 error 不导出 PNG",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "D-C3",
+      "question": "font_dir 里单个字体文件的大小上限",
+      "recommendation": "64 MB，最多 50 个文件",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "字体文件上限 64 MB、最多 50 个",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "D-C4",
+      "question": "3 种模板放哪、做哪 3 种",
+      "recommendation": "skills/measure/assets/cards/：图文封面、清单卡、引语卡",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "模板放 skills/measure/assets/cards/，做图文封面、清单卡、引语卡",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "D-C5",
+      "question": "测试用代码生成的方框字体（名字写成真实字体名）",
+      "recommendation": "同意，只在测试临时目录生成，用完删除",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "测试用代码生成的方框字体",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "D-C6",
+      "question": "AC-9 真实字体验收用哪款字体、怎么获取",
+      "recommendation": "从官方 GitHub 下载 LXGWWenKai-Regular.ttf（v1.530）到仓库外的 deliverables/fonts-for-test/",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "同意你从官方 GitHub 下载 LXGWWenKai-Regular.ttf（v1.530，约 24.7 MB）到 deliverables/fonts-for-test/",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "D-C7",
+      "question": "PRD 变更的时机",
+      "recommendation": "实现完成后写提案交用户确认，确认后再写进 PRD 附录 C",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "PRD 变更实现后写提案给我确认",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "R-C1",
+      "question": "是否按 docs/verification/w2/card/PRD_CARD_PROPOSAL.md 的改动 1–3（F06 判定口径、命令和 CardResult、模板和仓库结构）修改 PRD，并新增附录 C27–C29？",
+      "recommendation": "同意",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "R-C1 同意：按 PRD_CARD_PROPOSAL 的改动 1–3 修改 PRD，新增附录 C27–C29。",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "R-C2",
+      "question": "是否按 docs/verification/w2/card/PRD_CARD_PROPOSAL_R2.md 的改动 4–6（AUDIT_CARD 整改后的判定口径：同一次渲染、检查范围、查不到字体的内容判没检查完、页面自带字体、动画、不看文件名、平台差异；--evidence；CardResult.fonts[].source 新增 page、css）修改 PRD，并新增附录 C30–C32？",
+      "recommendation": "同意；查不到字体的内容判没检查完（退出码 2）",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "R-C2 同意，查不到字体的内容判没检查完",
+      "resolved_on": "2026-10-26"
+    },
+    {
+      "id": "R-C3",
+      "question": "是否按 docs/verification/w2/card/PRD_CARD_PROPOSAL_R3.md 把 PRD §5.4「动画和脚本」一条的变化检测口径改成「lint 测量前、查字体前、查字体后三张截图一致，期间 DOM（含 shadow DOM）、样式表没有改动」，并新增附录 C33？",
+      "recommendation": "同意（只是让 PRD 和实现一致，不改变行为）",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "我认为按这个顺序，主题做6个",
+      "resolved_on": "2026-10-26",
+      "context": "用户回复执行方建议的下一步顺序，其中第 1 步是「R-C3 同意，card 收尾、打交付包」，并建议终审前不再做对抗复核"
+    }
+  ],
+  "user_message_verbatim": [
+    {
+      "decisions": "D-C1–D-C7",
+      "date": "2026-10-26",
+      "text": "D-C1 到 D-C7 都按推荐：F06 按实际渲染的字体判断；有 error 不导出 PNG；字体文件上限 64 MB、最多 50 个；模板放 skills/measure/assets/cards/，做图文封面、清单卡、引语卡；测试用代码生成的方框字体；同意你从官方 GitHub 下载 LXGWWenKai-Regular.ttf（v1.530，约 24.7 MB）到 deliverables/fonts-for-test/；PRD 变更实现后写提案给我确认。"
+    },
+    {
+      "decisions": "R-C1",
+      "date": "2026-10-26",
+      "text": "R-C1 同意：按 PRD_CARD_PROPOSAL 的改动 1–3 修改 PRD，新增附录 C27–C29。"
+    },
+    {
+      "decisions": "R-C2",
+      "date": "2026-10-26",
+      "text": "R-C2 同意，查不到字体的内容判没检查完"
+    },
+    {
+      "decisions": "R-C3",
+      "date": "2026-10-26",
+      "text": "我认为按这个顺序，主题做6个",
+      "context": "用户回复执行方建议的下一步顺序，其中第 1 步是「R-C3 同意，card 收尾、打交付包」，并建议终审前不再做对抗复核"
+    }
+  ]
+}

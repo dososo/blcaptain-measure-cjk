@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>每日通勤调查</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>每日通勤调查</h1>
+      <p>共 6 道题，约需 1 分钟。问卷匿名填写，结果仅用于统计分析。</p>
+      <div class="progress"><span id="bar"></span></div>
+      <div class="progress-text" id="progressText">已完成 0 / 6</div>
+    </header>
+
+    <form id="survey" novalidate>
+      <fieldset data-q="time" data-required>
+        <legend><span class="num">1.</span>您每天单程通勤大约需要多长时间？<span class="req">*</span></legend>
+        <div class="options two">
+          <label class="opt"><input type="radio" name="time" value="15 分钟以内">15 分钟以内</label>
+          <label class="opt"><input type="radio" name="time" value="15–30 分钟">15–30 分钟</label>
+          <label class="opt"><input type="radio" name="time" value="30–45 分钟">30–45 分钟</label>
+          <label class="opt"><input type="radio" name="time" value="45–60 分钟">45–60 分钟</label>
+          <label class="opt"><input type="radio" name="time" value="60–90 分钟">60–90 分钟</label>
+          <label class="opt"><input type="radio" name="time" value="90 分钟以上">90 分钟以上</label>
+        </div>
+        <div class="error-msg">请选择一个选项</div>
+      </fieldset>
+
+      <fieldset data-q="mode" data-required>
+        <legend><span class="num">2.</span>您最主要的通勤交通方式是？<span class="req">*</span></legend>
+        <div class="options two">
+          <label class="opt"><input type="radio" name="mode" value="步行">步行</label>
+          <label class="opt"><input type="radio" name="mode" value="自行车 / 共享单车">自行车 / 共享单车</label>
+          <label class="opt"><input type="radio" name="mode" value="电动车 / 摩托车">电动车 / 摩托车</label>
+          <label class="opt"><input type="radio" name="mode" value="公交车">公交车</label>
+          <label class="opt"><input type="radio" name="mode" value="地铁 / 轻轨">地铁 / 轻轨</label>
+          <label class="opt"><input type="radio" name="mode" value="私家车（自驾）">私家车（自驾）</label>
+          <label class="opt"><input type="radio" name="mode" value="网约车 / 出租车">网约车 / 出租车</label>
+          <label class="opt"><input type="radio" name="mode" value="班车 / 拼车">班车 / 拼车</label>
+        </div>
+        <div class="error-msg">请选择一个选项</div>
+      </fieldset>
+
+      <fieldset data-q="combo">
+        <legend><span class="num">3.</span>除主要方式外，您还会搭配哪些交通方式？<span class="hint">（可多选）</span></legend>
+        <div class="options two">
+          <label class="opt"><input type="checkbox" name="combo" value="步行">步行</label>
+          <label class="opt"><input type="checkbox" name="combo" value="共享单车">共享单车</label>
+          <label class="opt"><input type="checkbox" name="combo" value="公交车">公交车</label>
+          <label class="opt"><input type="checkbox" name="combo" value="地铁">地铁</label>
+          <label class="opt"><input type="checkbox" name="combo" value="网约车 / 出租车">网约车 / 出租车</label>
+          <label class="opt"><input type="checkbox" name="combo" value="无，仅一种方式">无，仅一种方式</label>
+        </div>
+      </fieldset>
+
+      <fieldset data-q="cost" data-required>
+        <legend><span class="num">4.</span>您每月在通勤上的花费大约是？<span class="req">*</span></legend>
+        <div class="options two">
+          <label class="opt"><input type="radio" name="cost" value="几乎为 0">几乎为 0</label>
+          <label class="opt"><input type="radio" name="cost" value="100 元以下">100 元以下</label>
+          <label class="opt"><input type="radio" name="cost" value="100–300 元">100–300 元</label>
+          <label class="opt"><input type="radio" name="cost" value="300–600 元">300–600 元</label>
+          <label class="opt"><input type="radio" name="cost" value="600–1000 元">600–1000 元</label>
+          <label class="opt"><input type="radio" name="cost" value="1000 元以上">1000 元以上</label>
+        </div>
+        <div class="error-msg">请选择一个选项</div>
+      </fieldset>
+
+      <fieldset data-q="satisfaction" data-required>
+        <legend><span class="num">5.</span>您对目前的通勤体验满意吗？<span class="req">*</span></legend>
+        <div class="scale">
+          <label class="opt"><input type="radio" name="satisfaction" value="1">1</label>
+          <label class="opt"><input type="radio" name="satisfaction" value="2">2</label>
+          <label class="opt"><input type="radio" name="satisfaction" value="3">3</label>
+          <label class="opt"><input type="radio" name="satisfaction" value="4">4</label>
+          <label class="opt"><input type="radio" name="satisfaction" value="5">5</label>
+        </div>
+        <div class="scale-labels"><span>非常不满意</span><span>非常满意</span></div>
+        <div class="error-msg">请打分</div>
+      </fieldset>
+
+      <fieldset data-q="suggestion">
+        <legend><span class="num">6.</span>您希望通勤在哪些方面得到改善？<span class="hint">（选填）</span></legend>
+        <textarea name="suggestion" maxlength="300" placeholder="例如：增加公交班次、地铁不那么挤、自行车道更安全……"></textarea>
+        <div class="counter"><span id="count">0</span> / 300</div>
+      </fieldset>
+
+      <button type="submit">提交问卷</button>
+    </form>
+
+    <section class="result" id="result" hidden>
+      <div class="icon">✅</div>
+      <h2>感谢您的参与！</h2>
+      <p>您的回答已记录，以下是您的填写内容：</p>
+      <dl id="summary"></dl>
+      <button type="button" class="secondary" id="again">重新填写</button>
+    </section>
+  </div>
+
+  <script>
+    const form = document.getElementById('survey');
+    const fieldsets = [...form.querySelectorAll('fieldset')];
+    const bar = document.getElementById('bar');
+    const progressText = document.getElementById('progressText');
+    const textarea = form.querySelector('textarea');
+    const count = document.getElementById('count');
+
+    const titles = {
+      time: '单程通勤时间',
+      mode: '主要交通方式',
+      combo: '搭配的交通方式',
+      cost: '每月通勤花费',
+      satisfaction: '通勤满意度（1–5）',
+      suggestion: '改善建议'
+    };
+
+    function valueOf(name) {
+      const fd = new FormData(form);
+      const all = fd.getAll(name).map(v => String(v).trim()).filter(Boolean);
+      return all.join('、');
+    }
+
+    function isAnswered(fs) {
+      return valueOf(fs.dataset.q) !== '';
+    }
+
+    function updateProgress() {
+      const done = fieldsets.filter(isAnswered).length;
+      bar.style.width = (done / fieldsets.length * 100) + '%';
+      progressText.textContent = `已完成 ${done} / ${fieldsets.length}`;
+    }
+
+    // “无，仅一种方式”与其他选项互斥
+    form.addEventListener('change', e => {
+      if (e.target.name === 'combo') {
+        const boxes = [...form.querySelectorAll('input[name="combo"]')];
+        const none = boxes.find(b => b.value === '无，仅一种方式');
+        if (e.target === none && none.checked) {
+          boxes.forEach(b => { if (b !== none) b.checked = false; });
+        } else if (e.target !== none && e.target.checked) {
+          none.checked = false;
+        }
+      }
+      const fs = e.target.closest('fieldset');
+      if (fs && isAnswered(fs)) fs.classList.remove('invalid');
+      updateProgress();
+    });
+
+    textarea.addEventListener('input', () => {
+      count.textContent = textarea.value.length;
+      updateProgress();
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const missing = fieldsets.filter(fs => fs.hasAttribute('data-required') && !isAnswered(fs));
+      fieldsets.forEach(fs => fs.classList.toggle('invalid', missing.includes(fs)));
+      if (missing.length) {
+        missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+
+      const answer = { submittedAt: new Date().toISOString() };
+      Object.keys(titles).forEach(k => { answer[k] = valueOf(k); });
+
+      try {
+        const list = JSON.parse(localStorage.getItem('commute-survey') || '[]');
+        list.push(answer);
+        localStorage.setItem('commute-survey', JSON.stringify(list));
+      } catch (err) { /* 存储不可用时忽略 */ }
+
+      const summary = document.getElementById('summary');
+      summary.innerHTML = '';
+      Object.entries(titles).forEach(([k, label]) => {
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = label;
+        dd.textContent = answer[k] || '（未填写）';
+        summary.append(dt, dd);
+      });
+
+      form.hidden = true;
+      document.getElementById('result').hidden = false;
+      bar.style.width = '100%';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.getElementById('again').addEventListener('click', () => {
+      form.reset();
+      count.textContent = '0';
+      fieldsets.forEach(fs => fs.classList.remove('invalid'));
+      form.hidden = false;
+      document.getElementById('result').hidden = true;
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+</body>
+</html>

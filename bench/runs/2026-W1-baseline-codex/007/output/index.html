@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="从读取、清洗、汇总到排版与批处理，用 5 个 Python 技巧，把重复的 Excel 报表工作交给代码。">
+  <title>用 Python 处理 Excel 报表的 5 个技巧 · 字节手记</title>
+  <style>
+    :root{--paper:#f8f9f5;--ink:#202e29;--muted:#768078;--green:#267258;--line:#e1e5dc;--light:#edf2e9;--code:#1f2b27;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #76b79a;outline-offset:5px}::selection{background:#d0e4ce}.wrap{max-width:1160px;padding:0 32px;margin:auto}
+    .topbar{border-bottom:1px solid var(--line);height:83px}.topbar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;gap:11px;align-items:center;font-size:21px;font-weight:750;letter-spacing:1px}.brand-icon{background:var(--green);color:white;width:33px;height:33px;display:grid;place-items:center;border-radius:7px;font:700 19px var(--mono);letter-spacing:-5px;padding-right:5px}.brand small{font:10px var(--mono);letter-spacing:1.5px;color:var(--muted);border-left:1px solid #d5dbd0;margin-left:6px;padding-left:17px;font-weight:400}nav{display:flex;gap:33px;align-items:center;font-size:13px;color:#727b73}nav a{padding:32px 0;position:relative}nav a:hover,nav a.active{color:var(--green)}nav a.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--green)}.nav-end{font-family:var(--mono);font-size:12px;color:var(--green);display:flex;align-items:center;gap:9px}.dot{height:6px;width:6px;border-radius:50%;background:#599774;display:inline-block}
+    .breadcrumb{display:flex;gap:11px;align-items:center;color:#92988e;font-size:12px;padding-top:31px}.breadcrumb a:hover{color:var(--green)}.breadcrumb span:last-child{color:#546454}.hero{display:grid;grid-template-columns:1fr 330px;gap:50px;padding:42px 0 42px;border-bottom:1px solid var(--line)}.eyebrow{display:flex;align-items:center;gap:13px;font:11px var(--mono);letter-spacing:1.6px;color:var(--muted)}.tag{font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:11px;letter-spacing:1px;background:#e8f0e3;color:var(--green);padding:6px 10px;border-radius:3px}h1{font-size:46px;line-height:1.42;letter-spacing:-1.8px;font-weight:760;margin:18px 0 16px}h1 em{font-family:Georgia,serif;font-size:54px;font-style:normal;font-weight:500;color:var(--green)}.dek{font-size:15px;color:#7a8379;line-height:1.95;margin:0 0 24px}.metadata{display:flex;gap:16px;align-items:center;color:#899085;font-size:11px}.author{display:flex;align-items:center;gap:9px;color:#3e5143;font-size:12px}.avatar{width:27px;height:27px;border:1px solid #d8dfd0;border-radius:50%;background:#e2e9d9;display:grid;place-items:center;font-family:Georgia,serif;color:var(--green);font-style:italic}.metadata .sep{height:10px;width:1px;background:#d9dfd3}.hero-art{height:244px;align-self:center;position:relative;display:flex;justify-content:center;align-items:center;background-image:radial-gradient(#cdd8c5 1px,transparent 1px);background-size:14px 14px;border-radius:50%;isolation:isolate}.art-glow{position:absolute;inset:20px;background:#eaf0e1;border-radius:50%;filter:blur(22px);z-index:-1}.sheet{position:relative;width:230px;background:#fffef8;border:1px solid #ced8c8;border-radius:8px;box-shadow:10px 13px 0 #dfe7d8,16px 22px 30px #74896716;transform:rotate(-7deg);overflow:hidden}.sheet-head{background:#337559;height:33px;color:#f6f9ed;padding:10px 12px;font:9px var(--mono);display:flex;align-items:center;gap:8px}.sheet-head i{border:1px solid #c2d6b9;width:11px;height:12px;display:inline-block}.sheet table{border-collapse:collapse;width:100%;table-layout:fixed;font:10px var(--mono);text-align:center;color:#9ba894}.sheet td,.sheet th{height:26px;border:1px solid #e5eadd;font-weight:400}.sheet th{background:#f0f4e8}.sheet th:first-child{width:27px}.sheet .selected{background:#e5efdb;color:#4a7657}.cell-bar{display:inline-block;height:5px;background:#b7caa5;border-radius:1px}.py-badge{position:absolute;right:1px;top:9px;background:#e8edbe;color:#52633b;border:1px solid #d5ddaa;border-radius:9px;padding:12px 14px;transform:rotate(9deg);box-shadow:0 6px 13px #66783b0c;font:bold 22px var(--mono)}.art-label{position:absolute;bottom:-4px;left:34px;font:10px var(--mono);letter-spacing:1px;color:#74856b;display:flex;gap:9px;align-items:center}.art-check{position:absolute;right:4px;bottom:25px;border:5px solid var(--paper);background:#2d7759;color:white;width:39px;height:39px;border-radius:50%;display:grid;place-items:center;font-size:20px}
+    .content-layout{display:grid;grid-template-columns:minmax(0,735px) 255px;gap:70px;padding-top:34px;padding-bottom:70px}.article{min-width:0}.intro{font-size:15px;line-height:2.05;color:#5e6a5e;margin:0 0 23px}.intro strong{font-weight:600;color:#344c3c}.lead-note{border-left:3px solid #7ba273;background:#eef2e7;padding:15px 19px;color:#5b6e54;line-height:1.8;font-size:13px;display:flex;gap:12px}.lead-note svg{flex-shrink:0;margin-top:3px}.lead-note strong{font-weight:600;color:#3c5636}.section{padding-top:38px;scroll-margin-top:24px}h2{font-size:23px;letter-spacing:-.5px;display:flex;gap:14px;align-items:center;margin:0 0 14px;font-weight:650}.number{font:12px var(--mono);color:var(--green);border:1px solid #d6e2cf;width:30px;height:30px;border-radius:5px;display:grid;place-items:center;letter-spacing:0}.section p{font-size:14px;line-height:1.95;color:#657161;margin:0 0 19px}p code,li code,.setup code{font-family:var(--mono);color:#357551;background:#edf0e6;border-radius:3px;padding:2px 5px;font-size:.9em}.code-block{border:1px solid #26372e;background:var(--code);border-radius:8px;overflow:hidden;margin:19px 0 16px}.code-head{height:39px;background:#26342e;display:flex;align-items:center;justify-content:space-between;padding:0 17px;color:#97a89b;font:10px var(--mono);border-bottom:1px solid #354137}.code-title{display:flex;gap:9px;align-items:center}.code-title i{width:6px;height:6px;background:#8aa47b;border-radius:50%}.copy{color:#aab8aa;display:flex;gap:6px;align-items:center;border:0;background:transparent;padding:6px 0;font-size:10px}.copy:hover{color:white}.copy svg{width:12px;height:12px}pre{font:12px/1.95 var(--mono);margin:0;padding:20px;overflow-x:auto;tab-size:4;color:#d8e1d5}pre code{display:block;min-width:max-content}.kw{color:#b4c7ee}.str{color:#b8cd93}.comment{color:#899a8b}.fn{color:#e2d6a3}.num{color:#e1b585}.tip-line{display:flex;gap:9px;font-size:12px;line-height:1.8;color:#7b8875}.tip-line b{color:#5c8252;font-weight:500;white-space:nowrap}.setup{margin-top:23px;font-size:12px;color:#76826f;border:1px solid var(--line);padding:12px 15px;border-radius:5px;line-height:1.9}.setup summary{cursor:pointer;color:#5c6e54;list-style-position:outside;margin-left:13px}.setup p{margin:12px 0 4px;line-height:1.9}.setup pre{margin-top:10px;background:#eaf0e4;color:#42543b;padding:13px;font-size:11px}.result{border:1px solid var(--line);border-radius:6px;margin:18px 0;overflow:auto}.result table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}.result caption{background:#eef2e8;padding:11px 15px;text-align:left;color:#5f7358;font-size:11px}.result th,.result td{padding:10px 15px;border-top:1px solid var(--line);text-align:right}.result th:first-child,.result td:first-child{text-align:left}.result th{font-weight:500;color:#75806e}.result tbody tr:last-child{background:#f0f4eb}.ending{border-top:1px solid var(--line);margin-top:36px;padding-top:27px}.ending h2{font-size:21px}.ending p{font-size:14px;color:#6a7764;line-height:2}.article-tags{display:flex;gap:7px;margin-top:24px}.article-tags span{font:10px var(--mono);border:1px solid #dce3d5;padding:6px 10px;border-radius:4px;color:#6d7b64}.back-top{font-size:12px;color:var(--green);display:inline-block;margin-top:25px}
+    aside{min-width:0}.sidebar-sticky{position:sticky;top:28px}.toc-label{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:600;padding:2px 0 16px}.toc-label span{font:9px var(--mono);color:#91998a;letter-spacing:1px}.toc{display:flex;flex-direction:column;border-left:1px solid #dce3d4;gap:0;margin-bottom:22px}.toc a{display:flex;align-items:center;gap:12px;padding:12px 0 12px 16px;font-size:12px;color:#7b8575;border-left:2px solid transparent;margin-left:-1px;line-height:1.5}.toc a span{font:10px var(--mono);color:#9ca591}.toc a.current{color:var(--green);background:linear-gradient(90deg,#ecf1e5,transparent);border-left-color:var(--green)}.toc a.current span{color:var(--green)}.toc a:hover{color:var(--green)}.reading{font-size:10px;color:#97a08e;display:flex;justify-content:space-between;margin-top:16px}.progress-track{height:3px;background:#e6ebdf;margin-top:10px;margin-bottom:30px;border-radius:3px;overflow:hidden}.progress{height:100%;background:#7d9e69;width:0%;transition:width .15s}.tool-card{border:1px solid #dce4d2;background:#f0f3e9;border-radius:7px;padding:20px}.tiny-label{color:#76896a;font:9px var(--mono);letter-spacing:1.5px;display:flex;gap:7px;align-items:center}.tool-card h3{font-size:15px;line-height:1.6;margin:12px 0 8px;font-weight:600}.tool-card p{font-size:11px;color:#859077;line-height:1.9;margin:0 0 15px}.chips{display:flex;gap:6px;flex-wrap:wrap}.chips span{background:#fafbf6;border:1px solid #dce4d2;border-radius:4px;font:10px var(--mono);padding:5px 7px;color:#667c56}.save{width:100%;background:transparent;border:1px solid #d9e1d0;padding:11px;border-radius:5px;margin-top:19px;display:flex;align-items:center;justify-content:center;gap:8px;color:#65775a;font-size:12px}.save:hover,.save.saved{background:#e8eedf;border-color:#a5bc96}.side-footer{text-align:center;font-size:10px;color:#a3aa99;letter-spacing:.5px;line-height:1.8;margin-top:17px}.footer{border-top:1px solid var(--line);padding:25px 0;font-size:11px;color:#939c8b}.footer .wrap{display:flex;justify-content:space-between;gap:15px}.footer strong{font-weight:500;color:#65765b}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,15px);background:#284c3b;color:#fff;padding:11px 20px;border-radius:6px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:10}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(min-width:1450px){.wrap{max-width:1224px}.hero{grid-template-columns:1fr 360px}.content-layout{grid-template-columns:minmax(0,775px) 275px;gap:90px}h1{font-size:50px}}
+    @media(max-width:1000px){.content-layout{gap:35px;grid-template-columns:minmax(0,1fr) 220px}.hero{grid-template-columns:1fr 260px;gap:20px}h1{font-size:38px}.brand small{display:none}.hero-art{transform:scale(.9)}nav{gap:23px}.nav-end{display:none}}
+    @media(max-width:740px){.wrap{padding:0 22px}.topbar{height:69px}.brand{font-size:18px}.brand-icon{width:28px;height:28px;font-size:17px}nav{gap:19px;font-size:12px}nav a{padding:25px 0}nav a:nth-child(3){display:none}.breadcrumb{padding-top:23px;font-size:11px}.hero{grid-template-columns:1fr;padding:29px 0 28px;gap:8px}.hero-art{display:none}h1{font-size:36px;line-height:1.45;letter-spacing:-1.2px}h1 em{font-size:43px}.dek{font-size:13px;margin-bottom:21px}.metadata{gap:10px;flex-wrap:wrap}.content-layout{display:flex;flex-direction:column;padding-top:25px;gap:25px}.article{order:2}aside{order:1}.sidebar-sticky{position:static}.toc-label{padding-bottom:10px}.toc{border:0;display:grid;grid-template-columns:1fr 1fr;margin:0;gap:4px}.toc a{font-size:11px;padding:8px 10px;border-radius:3px;border-left:0;margin:0;background:#f0f3e9}.toc a.current{background:#e6eedf}.tool-card,.save,.side-footer,.reading,.progress-track{display:none}.intro{font-size:14px}.lead-note{font-size:12px;padding:13px}.section{padding-top:32px}h2{font-size:20px;gap:10px}pre{font-size:11px;padding:16px}.footer .wrap{flex-direction:column;gap:9px}.tip-line{font-size:11px}.eyebrow{font-size:10px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+    @media print{nav,.hero-art,aside,.copy,.save,.toast,.back-top{display:none}.hero,.content-layout{display:block}.wrap{max-width:none;padding:0}.code-block{break-inside:avoid}pre{white-space:pre-wrap}pre code{min-width:0}.section{break-inside:avoid}.topbar{height:60px}}
+  </style>
+</head>
+<body id="top">
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top" aria-label="字节手记，返回顶部"><span class="brand-icon">/›</span>字节手记<small>把技术写进日常</small></a>
+      <nav aria-label="主导航"><a class="active" href="#article">文章</a><a href="#toolkit">工具箱</a><a href="#examples">代码示例</a><a href="#about">关于</a></nav>
+      <span class="nav-end"><i class="dot"></i> 保持好奇，持续构建 ↗</span>
+    </div>
+  </header>
+  <main class="wrap" id="article">
+    <div class="breadcrumb"><a href="#top">首页</a><span>/</span><a href="#toolkit">Python 实践</a><span>/</span><span>数据处理</span></div>
+    <header class="hero">
+      <div>
+        <div class="eyebrow"><span class="tag">效率工具</span><span>PYTHON · EXCEL · AUTOMATION</span></div>
+        <h1>用 Python 处理 Excel<br>报表的 <em>5</em> 个技巧</h1>
+        <p class="dek">从杂乱数据到清晰报表，把重复的工作交给代码。<br>五个实用技巧，让你的下一份月报准时下班。</p>
+        <div class="metadata"><span class="author"><span class="avatar">b.</span>字节编辑部</span><span class="sep"></span><time datetime="2026-10-25">2026 年 10 月 25 日</time><span>·</span><span>约 8 分钟阅读</span></div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Python 自动整理 Excel 电子表格的插图">
+        <div class="art-glow"></div><div class="sheet"><div class="sheet-head"><i></i> monthly_report.xlsx <span style="margin-left:auto">···</span></div><table aria-hidden="true"><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th></tr><tr><th>1</th><td class="selected">月份</td><td class="selected">地区</td><td class="selected">销售额</td><td class="selected">趋势</td></tr><tr><th>2</th><td>01</td><td>华东</td><td>8,600</td><td><i class="cell-bar" style="width:25px"></i></td></tr><tr><th>3</th><td>02</td><td>华南</td><td>9,200</td><td><i class="cell-bar" style="width:29px"></i></td></tr><tr><th>4</th><td>03</td><td>华北</td><td>7,800</td><td><i class="cell-bar" style="width:21px"></i></td></tr><tr><th>5</th><td>04</td><td>华东</td><td>12,400</td><td><i class="cell-bar" style="width:36px;background:#709660"></i></td></tr><tr><th>6</th><td></td><td></td><td></td><td></td></tr></table></div><span class="py-badge">.py</span><span class="art-check">✓</span><span class="art-label"><i class="dot"></i> LESS REPEAT. MORE CREATE.</span>
+      </div>
+    </header>
+    <div class="content-layout">
+      <article class="article" aria-label="文章正文">
+        <p class="intro">每到月底，复制粘贴、核对数据、调整格式……这些熟悉的操作，总会悄悄占掉一个下午。其实，用 <strong>Python + pandas + openpyxl</strong>，就能把这套流程变成可重复执行的脚本。</p>
+        <div class="lead-note"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M9 18h6m-5 3h4M8 14a6 6 0 1 1 8 0c-1 1-1 2-1 3H9c0-1 0-2-1-3Z"/></svg><div><strong>这篇文章适合你，如果你……</strong><br>已经了解 Python 基础，希望少一点手工操作，多一点自动化。</div></div>
+        <details class="setup" id="examples"><summary>开始之前：准备依赖和一份示例数据</summary><p>以下代码用于你自己的 Python 环境；本网页无需依赖。示例 1—4 按顺序执行，第 5 节独立运行。先在终端安装：</p><pre><code>python -m pip install pandas openpyxl</code></pre><p>没有现成文件？先运行这段代码，生成本文使用的「销售明细.xlsx」。这会在脚本当前工作目录写入同名文件。</p><pre><code>import pandas as pd
+
+pd.DataFrame({
+    "订单编号": ["001", "002", "003", "004"],
+    "日期": ["2026-09-01", "2026-09-02", "2026-09-03", "2026-09-04"],
+    "地区": ["华东", " 华南 ", "华东", "华北"],
+    "销售额": ["8,600", "9,200", "12,400", "7,800"],
+}).to_excel("销售明细.xlsx", sheet_name="销售明细", index=False)</code></pre></details>
+
+        <section class="section" id="tip-1"><h2><span class="number">01</span>精准读取，只拿需要的数据</h2><p>不用把整份工作簿搬进来。用 <code>sheet_name</code> 指定工作表、<code>usecols</code> 选择列，再把订单编号读取为文本，保留前导零。</p>
+          <div class="code-block"><div class="code-head"><span class="code-title"><i></i>01_read_excel.py</span><button class="copy" type="button" aria-label="复制精准读取代码">复制代码</button></div><pre><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+df = pd.<span class="fn">read_excel</span>(
+    <span class="str">"销售明细.xlsx"</span>,
+    sheet_name=<span class="str">"销售明细"</span>,
+    usecols=[<span class="str">"订单编号"</span>, <span class="str">"日期"</span>, <span class="str">"地区"</span>, <span class="str">"销售额"</span>],
+    dtype={<span class="str">"订单编号"</span>: <span class="str">"string"</span>},
+)
+
+<span class="fn">print</span>(df.head())  <span class="comment"># 先检查前 5 行，再开始处理</span></code></pre></div><div class="tip-line"><b>↳ 小提醒</b><span>编号须在源文件中存为文本。若 Excel 仅用格式显示「001」，读取类型无法还原它。</span></div>
+        </section>
+
+        <section class="section" id="tip-2"><h2><span class="number">02</span>统一清洗，让数据先变可靠</h2><p>空格、千位分隔符和无效日期都会干扰统计。先规范字段，再把异常记录单独保存，避免把缺失的金额当作零。</p>
+          <div class="code-block"><div class="code-head"><span class="code-title"><i></i>02_clean_data.py</span><button class="copy" type="button" aria-label="复制数据清洗代码">复制代码</button></div><pre><code><span class="comment"># 接着使用第 1 节读取的 df</span>
+df[<span class="str">"地区"</span>] = df[<span class="str">"地区"</span>].astype(<span class="str">"string"</span>).str.strip()
+df[<span class="str">"地区"</span>] = df[<span class="str">"地区"</span>].replace(<span class="str">""</span>, pd.NA)
+df[<span class="str">"销售额"</span>] = pd.<span class="fn">to_numeric</span>(
+    df[<span class="str">"销售额"</span>].astype(<span class="str">"string"</span>).str.replace(<span class="str">","</span>, <span class="str">""</span>, regex=<span class="kw">False</span>),
+    errors=<span class="str">"coerce"</span>,
+)
+df[<span class="str">"日期"</span>] = pd.<span class="fn">to_datetime</span>(df[<span class="str">"日期"</span>], errors=<span class="str">"coerce"</span>)
+
+invalid = df[[<span class="str">"日期"</span>, <span class="str">"地区"</span>, <span class="str">"销售额"</span>]].isna().any(axis=<span class="num">1</span>)
+rejected = df.loc[invalid].copy()
+clean = df.loc[~invalid].copy()
+<span class="fn">print</span>(<span class="str">f"有效 {len(clean)} 行，待核对 {len(rejected)} 行"</span>)</code></pre></div><div class="tip-line"><b>↳ 小提醒</b><span>相同的订单编号可能对应多条商品明细；去重前，先确认业务上的唯一键。</span></div>
+        </section>
+
+        <section class="section" id="tip-3"><h2><span class="number">03</span>一张透视表，自动汇总月报</h2><p>将日期转成月份，用 <code>pivot_table()</code> 按地区汇总销售额。一行一个地区、一列一个月份，让明细变成一眼看懂的结果。</p>
+          <div class="code-block"><div class="code-head"><span class="code-title"><i></i>03_build_summary.py</span><button class="copy" type="button" aria-label="复制月报汇总代码">复制代码</button></div><pre><code>clean[<span class="str">"月份"</span>] = clean[<span class="str">"日期"</span>].dt.to_period(<span class="str">"M"</span>).astype(str)
+
+summary = clean.<span class="fn">pivot_table</span>(
+    index=<span class="str">"地区"</span>, columns=<span class="str">"月份"</span>, values=<span class="str">"销售额"</span>,
+    aggfunc=<span class="str">"sum"</span>, fill_value=<span class="num">0</span>,
+    margins=<span class="kw">True</span>, margins_name=<span class="str">"合计"</span>,
+)
+<span class="fn">print</span>(summary)</code></pre></div>
+          <div class="result"><table><caption>运行结果 · 使用上方示例数据，金额单位：元</caption><thead><tr><th scope="col">地区</th><th scope="col">2026-09</th><th scope="col">合计</th></tr></thead><tbody><tr><td>华东</td><td>21,000</td><td>21,000</td></tr><tr><td>华北</td><td>7,800</td><td>7,800</td></tr><tr><td>华南</td><td>9,200</td><td>9,200</td></tr><tr><td>合计</td><td>38,000</td><td>38,000</td></tr></tbody></table></div><div class="tip-line"><b>↳ 小提醒</b><span>这里的 0 表示该地区在对应月份没有有效记录；异常数据已在上一步分离。</span></div>
+        </section>
+
+        <section class="section" id="tip-4"><h2><span class="number">04</span>一次导出，顺手把格式做好</h2><p>把汇总、明细和异常记录放进同一份工作簿，再用 <code>openpyxl</code> 冻结表头、设置列宽和金额格式。交付出去的报表，也可以清晰好读。</p>
+          <div class="code-block"><div class="code-head"><span class="code-title"><i></i>04_export_report.py</span><button class="copy" type="button" aria-label="复制导出格式代码">复制代码</button></div><pre><code><span class="kw">from</span> openpyxl.styles <span class="kw">import</span> Font, PatternFill
+<span class="kw">from</span> openpyxl.utils <span class="kw">import</span> get_column_letter
+
+<span class="kw">with</span> pd.<span class="fn">ExcelWriter</span>(<span class="str">"销售月报.xlsx"</span>, engine=<span class="str">"openpyxl"</span>) <span class="kw">as</span> writer:
+    summary.to_excel(writer, sheet_name=<span class="str">"月度汇总"</span>)
+    clean.to_excel(writer, sheet_name=<span class="str">"有效明细"</span>, index=<span class="kw">False</span>)
+    rejected.to_excel(writer, sheet_name=<span class="str">"待核对"</span>, index=<span class="kw">False</span>)
+
+    <span class="kw">for</span> ws <span class="kw">in</span> writer.book.worksheets:
+        ws.freeze_panes = <span class="str">"B2"</span>
+        <span class="kw">for</span> cell <span class="kw">in</span> ws[<span class="num">1</span>]:
+            cell.font = Font(bold=<span class="kw">True</span>, color=<span class="str">"FFFFFF"</span>)
+            cell.fill = PatternFill(<span class="str">"solid"</span>, fgColor=<span class="str">"267258"</span>)
+        <span class="kw">for</span> col <span class="kw">in</span> range(<span class="num">1</span>, ws.max_column + <span class="num">1</span>):
+            ws.column_dimensions[get_column_letter(col)].width = <span class="num">18</span>
+
+    ws = writer.sheets[<span class="str">"月度汇总"</span>]
+    <span class="kw">for</span> row <span class="kw">in</span> ws.iter_rows(min_row=<span class="num">2</span>, min_col=<span class="num">2</span>):
+        <span class="kw">for</span> cell <span class="kw">in</span> row:
+            cell.number_format = <span class="str">'#,##0.00'</span></code></pre></div><div class="tip-line"><b>↳ 小提醒</b><span>离开 with 语句时才完成保存。同名输出文件会被覆盖，请使用独立的输出文件名。</span></div>
+        </section>
+
+        <section class="section" id="tip-5"><h2><span class="number">05</span>批量合并，告别逐个打开文件</h2><p>每个部门交来一份相同结构的表格？用 <code>pathlib</code> 找到文件，批量读取后合并，并加上来源文件名，方便回溯每一行数据。</p>
+          <div class="code-block"><div class="code-head"><span class="code-title"><i></i>05_merge_files.py</span><button class="copy" type="button" aria-label="复制批量合并代码">复制代码</button></div><pre><code><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+<span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+<span class="comment"># 将待合并的文件放进「部门报表」目录</span>
+files = sorted(
+    p <span class="kw">for</span> p <span class="kw">in</span> Path(<span class="str">"部门报表"</span>).glob(<span class="str">"*.xlsx"</span>)
+    <span class="kw">if not</span> p.name.startswith(<span class="str">"~$"</span>)
+)
+<span class="kw">if not</span> files:
+    <span class="kw">raise</span> FileNotFoundError(<span class="str">"部门报表目录中没有可合并的文件"</span>)
+
+frames = []
+<span class="kw">for</span> path <span class="kw">in</span> files:
+    part = pd.read_excel(
+        path, sheet_name=<span class="str">"销售明细"</span>,
+        usecols=[<span class="str">"订单编号"</span>, <span class="str">"日期"</span>, <span class="str">"地区"</span>, <span class="str">"销售额"</span>],
+        dtype={<span class="str">"订单编号"</span>: <span class="str">"string"</span>},
+    )
+    frames.append(part.assign(来源文件=path.name))
+
+merged = pd.concat(frames, ignore_index=<span class="kw">True</span>)
+merged.to_excel(<span class="str">"部门合并.xlsx"</span>, index=<span class="kw">False</span>)</code></pre></div><div class="tip-line"><b>↳ 小提醒</b><span>输出放在输入目录外，避免下次重复合并。批处理只做拼接，清洗和去重仍需按业务规则处理。</span></div>
+        </section>
+        <section class="ending" id="wrap-up"><h2>把时间留给分析，而不是整理</h2><p>精准读取 → 统一清洗 → 透视汇总 → 格式化导出 → 批量处理。先用一份小样本跑通这条流程，再接入真实报表。每次运行后核对记录数、异常数与金额合计，让自动化的结果也经得起检查。</p><div class="article-tags"><span># Python</span><span># Excel</span><span># pandas</span><span># 办公自动化</span></div><a href="#top" class="back-top">↑ 回到文章顶部</a></section>
+      </article>
+      <aside aria-label="文章辅助导航"><div class="sidebar-sticky">
+        <div class="toc-label">本文目录<span>CONTENTS</span></div>
+        <div class="toc"><a class="current" href="#tip-1"><span>01</span>精准读取，只拿需要的数据</a><a href="#tip-2"><span>02</span>统一清洗，让数据先变可靠</a><a href="#tip-3"><span>03</span>一张透视表，自动汇总月报</a><a href="#tip-4"><span>04</span>一次导出，顺手把格式做好</a><a href="#tip-5"><span>05</span>批量合并，告别逐个打开文件</a></div>
+        <div class="reading"><span>阅读进度</span><span id="progress-text">0%</span></div><div class="progress-track" role="progressbar" aria-label="阅读进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress"></div></div>
+        <div class="tool-card" id="toolkit"><div class="tiny-label"><span>⌘</span> 本文工具箱</div><h3>小工具，大效率。</h3><p>让数据处理更轻松的三个伙伴，<br>也是本文全部代码的基础。</p><div class="chips"><span>Python 3</span><span>pandas</span><span>openpyxl</span></div></div>
+        <button class="save" type="button" aria-pressed="false"><svg width="14" height="16" viewBox="0 0 16 19" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><path d="M3 2h10v15l-5-3-5 3Z"/></svg><span>收藏文章，留待实践</span></button><p class="side-footer">好的代码，值得反复阅读。</p>
+      </div></aside>
+    </div>
+  </main>
+  <footer class="footer" id="about"><div class="wrap"><span><strong>字节手记</strong> &nbsp; / &nbsp; 记录技术，也记录成长。</span><span>© 2026 字节手记 · 用代码，让日常轻一点。</span></div></footer>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script>
+    const toast = document.querySelector('.toast');
+    let toastTimer;
+    function notify(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+    }
+    document.querySelectorAll('.copy').forEach(button => {
+      button.addEventListener('click', async () => {
+        const code = button.closest('.code-block').querySelector('code');
+        try {
+          if (!navigator.clipboard) throw new Error('剪贴板不可用');
+          await navigator.clipboard.writeText(code.textContent);
+          button.textContent = '已复制 ✓';
+          setTimeout(() => button.textContent = '复制代码', 1800);
+        } catch {
+          const range = document.createRange();
+          range.selectNodeContents(code);
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          notify('代码已选中，请按 ⌘C 或 Ctrl+C 复制');
+        }
+      });
+    });
+    const saveButton = document.querySelector('.save');
+    const storageKey = 'byte-notes-excel-saved';
+    function setSaved(saved) {
+      saveButton.classList.toggle('saved', saved);
+      saveButton.setAttribute('aria-pressed', String(saved));
+      saveButton.querySelector('span').textContent = saved ? '已收藏 · 点击取消' : '收藏文章，留待实践';
+    }
+    try { setSaved(localStorage.getItem(storageKey) === 'true'); } catch {}
+    saveButton.addEventListener('click', () => {
+      const saved = saveButton.getAttribute('aria-pressed') !== 'true';
+      try {
+        localStorage.setItem(storageKey, String(saved));
+        setSaved(saved);
+        notify(saved ? '已收藏到此浏览器' : '已取消收藏');
+      } catch { notify('此浏览器无法保存收藏，请使用浏览器书签'); }
+    });
+    const sections = [...document.querySelectorAll('.section')];
+    const links = [...document.querySelectorAll('.toc a')];
+    const article = document.querySelector('.article');
+    function updateReading() {
+      const start = article.getBoundingClientRect().top + window.scrollY;
+      const end = start + article.offsetHeight - window.innerHeight;
+      const percent = Math.round(Math.max(0, Math.min(1, (window.scrollY - start) / Math.max(1, end - start))) * 100);
+      document.querySelector('.progress').style.width = percent + '%';
+      document.querySelector('#progress-text').textContent = percent + '%';
+      document.querySelector('.progress-track').setAttribute('aria-valuenow', percent);
+      let current = sections[0].id;
+      sections.forEach(section => { if (section.getBoundingClientRect().top <= 170) current = section.id; });
+      links.forEach(link => {
+        const active = link.hash === '#' + current;
+        link.classList.toggle('current', active);
+        if (active) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    let scheduled = false;
+    window.addEventListener('scroll', () => {
+      if (!scheduled) {
+        scheduled = true;
+        requestAnimationFrame(() => { updateReading(); scheduled = false; });
+      }
+    }, {passive:true});
+    window.addEventListener('resize', updateReading);
+    document.querySelector('.setup').addEventListener('toggle', updateReading);
+    updateReading();
+  </script>
+</body>
+</html>

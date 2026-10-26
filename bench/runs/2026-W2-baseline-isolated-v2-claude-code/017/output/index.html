@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>团队 Git 使用规范</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+
+  <header class="hero">
+    <div class="eyebrow">Engineering Handbook</div>
+    <h1>团队 Git 使用规范</h1>
+    <p>统一分支命名、提交信息与代码评审流程，让历史可读、变更可追溯、合并有把握。新成员入职请完整阅读一遍；有疑问或改进建议，直接对本文档提 PR。</p>
+    <div class="meta">
+      <span>适用范围：所有代码仓库</span>
+      <span>版本：v1.0</span>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="目录">
+    <div class="label">目录</div>
+    <ol>
+      <li><a href="#principles">0. 基本原则</a></li>
+      <li><a href="#branches">1. 分支命名</a></li>
+      <li class="sub"><a href="#branch-model">分支模型</a></li>
+      <li class="sub"><a href="#branch-format">命名格式</a></li>
+      <li><a href="#commits">2. 提交信息</a></li>
+      <li class="sub"><a href="#commit-format">格式</a></li>
+      <li class="sub"><a href="#commit-types">类型</a></li>
+      <li class="sub"><a href="#commit-rules">书写规则</a></li>
+      <li><a href="#review">3. 代码评审</a></li>
+      <li class="sub"><a href="#review-flow">流程</a></li>
+      <li class="sub"><a href="#review-author">作者职责</a></li>
+      <li class="sub"><a href="#review-reviewer">评审者职责</a></li>
+      <li class="sub"><a href="#review-merge">合并规则</a></li>
+      <li><a href="#cheatsheet">4. 常用命令速查</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+    <section id="principles">
+      <h2><span class="num">0</span>基本原则</h2>
+      <ul>
+        <li><strong><code>main</code> 永远可发布。</strong>禁止直接推送，所有变更通过 Pull Request（PR）合入。</li>
+        <li><strong>小步提交，小步合并。</strong>一个分支只做一件事，一个 PR 尽量控制在 400 行有效改动以内。</li>
+        <li><strong>历史是写给人看的。</strong>分支名、提交信息、PR 描述都应让半年后的同事看懂“改了什么、为什么改”。</li>
+        <li><strong>自动化优先。</strong>能由 CI、lint、钩子检查的，不依赖人工记忆。</li>
+      </ul>
+    </section>
+
+    <section id="branches">
+      <h2><span class="num">1</span>分支命名</h2>
+      <p class="lead">我们采用基于主干的轻量分支模型：短生命周期的功能分支从 <code>main</code> 拉出，完成后通过 PR 合回。</p>
+
+      <h3 id="branch-model">分支模型</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>分支</th><th>用途</th><th>来源 → 去向</th><th>生命周期</th></tr></thead>
+          <tbody>
+            <tr><td><code>main</code></td><td>主干，始终保持可发布状态</td><td>—</td><td>永久</td></tr>
+            <tr><td><code>feature/*</code></td><td>新功能开发</td><td><code>main</code> → <code>main</code></td><td>建议 ≤ 5 个工作日</td></tr>
+            <tr><td><code>fix/*</code></td><td>常规缺陷修复</td><td><code>main</code> → <code>main</code></td><td>短期</td></tr>
+            <tr><td><code>hotfix/*</code></td><td>线上紧急修复</td><td><code>release/*</code> 或 tag → 发布分支 + <code>main</code></td><td>当天</td></tr>
+            <tr><td><code>release/*</code></td><td>版本发布准备、冻结后只接收修复</td><td><code>main</code> → 打 tag</td><td>到版本结束</td></tr>
+            <tr><td><code>refactor/*</code> <code>docs/*</code> <code>chore/*</code></td><td>重构、文档、构建与杂项</td><td><code>main</code> → <code>main</code></td><td>短期</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 id="branch-format">命名格式</h3>
+<pre><code>&lt;类型&gt;/&lt;工单号&gt;-&lt;简短描述&gt;
+
+feature/PROJ-123-user-login
+fix/PROJ-456-null-avatar-crash
+hotfix/PROJ-789-payment-timeout
+release/2.4.0</code></pre>
+      <ul>
+        <li>全部使用<strong>小写字母</strong>、数字和连字符 <code>-</code>，不使用空格、下划线、中文或大写字母。</li>
+        <li>有工单的必须带上工单号，便于和任务系统自动关联；无工单可省略。</li>
+        <li>描述部分 2～5 个英文单词，说明“做什么”，而不是“谁在做”。</li>
+        <li><code>release/</code> 后直接跟语义化版本号，如 <code>release/2.4.0</code>。</li>
+        <li>分支合并后立即删除（远端开启“合并后自动删除分支”）。</li>
+      </ul>
+
+      <div class="compare">
+        <div class="good">
+          <div class="tag">✓ 推荐</div>
+          <ul>
+            <li><code>feature/PROJ-123-export-csv</code></li>
+            <li><code>fix/PROJ-88-date-timezone</code></li>
+            <li><code>docs/update-onboarding</code></li>
+          </ul>
+        </div>
+        <div class="bad">
+          <div class="tag">✗ 避免</div>
+          <ul>
+            <li><code>zhangsan-dev</code>（以人命名）</li>
+            <li><code>Feature/ExportCSV</code>（大小写混用）</li>
+            <li><code>fix_bug</code>、<code>test2</code>（无意义）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="commits">
+      <h2><span class="num">2</span>提交信息</h2>
+      <p class="lead">提交信息遵循 <a href="https://www.conventionalcommits.org/zh-hans/" target="_blank" rel="noopener">Conventional Commits</a> 约定，可直接用于生成 CHANGELOG 和判断版本号。</p>
+
+      <h3 id="commit-format">格式</h3>
+<pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+                                  ← 空一行
+&lt;body：说明为什么改、怎么改，每行 ≤ 72 字符&gt;
+                                  ← 空一行
+&lt;footer：关联工单、不兼容变更说明&gt;</code></pre>
+      <p>示例：</p>
+<pre><code>feat(auth): 支持手机号验证码登录
+
+原有登录仅支持账号密码，移动端用户转化率偏低。
+新增短信验证码通道，验证码 5 分钟有效，同一号码
+60 秒内限发一次。
+
+Refs: PROJ-123</code></pre>
+<pre><code>fix(order)!: 订单金额统一使用分为单位
+
+BREAKING CHANGE: /api/orders 返回的 amount 字段由元（浮点）
+改为分（整数），调用方需同步调整。
+
+Closes: PROJ-456</code></pre>
+
+      <h3 id="commit-types">类型（type）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>type</th><th>含义</th><th>是否进入 CHANGELOG</th></tr></thead>
+          <tbody>
+            <tr><td><code>feat</code></td><td>新功能</td><td>是（次版本号 +1）</td></tr>
+            <tr><td><code>fix</code></td><td>缺陷修复</td><td>是（修订号 +1）</td></tr>
+            <tr><td><code>perf</code></td><td>性能优化</td><td>是</td></tr>
+            <tr><td><code>refactor</code></td><td>重构，不改变外部行为</td><td>否</td></tr>
+            <tr><td><code>docs</code></td><td>仅文档变更</td><td>否</td></tr>
+            <tr><td><code>test</code></td><td>新增或修改测试</td><td>否</td></tr>
+            <tr><td><code>style</code></td><td>格式调整（空格、分号等），不影响逻辑</td><td>否</td></tr>
+            <tr><td><code>build</code> / <code>ci</code></td><td>构建系统、依赖、CI 配置</td><td>否</td></tr>
+            <tr><td><code>chore</code></td><td>其他杂项</td><td>否</td></tr>
+            <tr><td><code>revert</code></td><td>回滚某次提交</td><td>视情况</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>在 type 后加 <code>!</code> 或在 footer 写 <code>BREAKING CHANGE:</code> 表示不兼容变更（主版本号 +1）。<code>scope</code> 为可选的模块名，如 <code>auth</code>、<code>order</code>、<code>ui</code>，团队在各仓库 README 中维护可用列表。</p>
+
+      <h3 id="commit-rules">书写规则</h3>
+      <ul>
+        <li><strong>subject</strong> 不超过 50 个字符（中文约 25 字），用祈使语气描述“做了什么”，结尾不加句号。</li>
+        <li><strong>body</strong> 解释动机和取舍，而不是复述 diff；简单变更可省略。</li>
+        <li><strong>一次提交只做一件事。</strong>格式化与逻辑修改分开提交；不要把无关改动顺手塞进来。</li>
+        <li>每次提交都应能通过编译和测试，便于 <code>git bisect</code> 定位问题。</li>
+        <li>推送前用 <code>git rebase -i</code> 整理本地的 “wip”“fix typo” 类提交；<strong>已推送且他人基于其开发的分支禁止强推</strong>，自己的功能分支可用 <code>--force-with-lease</code>。</li>
+        <li>不要提交密钥、账号、本地配置和构建产物；善用 <code>.gitignore</code>。</li>
+      </ul>
+
+      <div class="compare">
+        <div class="good">
+          <div class="tag">✓ 推荐</div>
+          <ul>
+            <li><code>fix(cart): 修复数量为 0 时仍可下单的问题</code></li>
+            <li><code>refactor(user): 拆分 UserService 中的鉴权逻辑</code></li>
+          </ul>
+        </div>
+        <div class="bad">
+          <div class="tag">✗ 避免</div>
+          <ul>
+            <li><code>update</code>、<code>修改</code>、<code>fix bug</code></li>
+            <li><code>feat: 改了好多东西，顺便修了几个 bug。</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout"><strong>自动校验：</strong>仓库通过 commitlint + Git hooks（如 husky / lefthook）在本地校验提交信息格式，CI 中也会对 PR 标题做同样检查。</div>
+    </section>
+
+    <section id="review">
+      <h2><span class="num">3</span>代码评审流程</h2>
+      <p class="lead">代码评审的目标是提升代码质量、分享知识、减少风险，而不是挑人毛病。所有合入 <code>main</code> 的代码都必须经过评审。</p>
+
+      <h3 id="review-flow">流程</h3>
+      <ol class="flow">
+        <li><strong>开分支、开发、自测</strong>从最新的 <code>main</code> 拉出分支；本地运行 lint 与测试，确保通过。</li>
+        <li><strong>创建 PR</strong>PR 标题遵循提交信息格式（合并时作为 squash 提交信息）；按模板填写描述。尚未完成的工作请标记为 Draft。</li>
+        <li><strong>CI 检查</strong>构建、单元测试、lint、安全扫描全部通过后，才请求评审。</li>
+        <li><strong>指派评审者</strong>至少 1 名评审者；涉及核心模块、数据库变更、安全相关的改动需 CODEOWNERS 中的负责人批准。</li>
+        <li><strong>评审与修改</strong>评审者在 1 个工作日内给出首次反馈；作者逐条回复或修改，修改以新提交追加，便于复查。</li>
+        <li><strong>批准与合并</strong>获得批准、所有讨论已解决、CI 通过后，由<strong>作者本人</strong>合并并删除分支。</li>
+        <li><strong>上线验证</strong>合并后关注部署和监控，确认无异常后关闭工单。</li>
+      </ol>
+
+      <h3 id="review-author">作者职责</h3>
+      <p>PR 描述模板：</p>
+<pre><code>## 背景
+为什么要做这个改动？关联工单：PROJ-123
+
+## 改动内容
+- 主要改了什么
+- 有哪些设计取舍
+
+## 测试方式
+如何验证？覆盖了哪些场景？（附截图/录屏，如涉及 UI）
+
+## 风险与回滚
+是否涉及数据迁移、配置变更、不兼容改动？如何回滚？</code></pre>
+      <ul class="checklist">
+        <li>PR 聚焦单一目的，改动量尽量 ≤ 400 行；超大改动提前拆分或先发设计讨论。</li>
+        <li>提交前自己先完整看一遍 diff，删除调试代码和无关改动。</li>
+        <li>为新逻辑补充测试，为不直观的代码写注释。</li>
+        <li>对评审意见逐条回应：已修改、给出理由，或另开工单跟进。</li>
+        <li>不要在评审进行中强推改写历史，以免评审者丢失上下文。</li>
+      </ul>
+
+      <h3 id="review-reviewer">评审者职责</h3>
+      <p>评审时重点关注：</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>维度</th><th>关注点</th></tr></thead>
+          <tbody>
+            <tr><td>正确性</td><td>逻辑是否符合需求，边界条件、异常和并发是否处理</td></tr>
+            <tr><td>设计</td><td>职责划分是否合理，是否过度设计或引入不必要的依赖</td></tr>
+            <tr><td>可读性</td><td>命名清晰、结构易懂，后来者能否快速理解</td></tr>
+            <tr><td>测试</td><td>关键路径是否有测试，测试是否真正验证了行为</td></tr>
+            <tr><td>安全与性能</td><td>输入校验、权限、敏感信息、N+1 查询、资源泄漏等</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>评论时使用前缀标明意图，让作者清楚哪些必须改：</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>前缀</th><th>含义</th><th>是否阻塞合并</th></tr></thead>
+          <tbody>
+            <tr><td><code>[必须]</code></td><td>缺陷、安全问题或违反规范，必须修改</td><td>是</td></tr>
+            <tr><td><code>[建议]</code></td><td>更好的写法，作者可自行判断</td><td>否</td></tr>
+            <tr><td><code>[疑问]</code></td><td>需要作者解释的地方</td><td>视回答而定</td></tr>
+            <tr><td><code>[小问题]</code></td><td>命名、拼写等细节</td><td>否</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout"><strong>评审礼仪：</strong>对事不对人；多提问题少下结论（“这里如果传入空列表会怎样？”优于“这里写错了”）；看到好的写法也请点赞。风格类争议以 lint 规则为准，不在评审中反复争论。</div>
+
+      <h3 id="review-merge">合并规则</h3>
+      <ul>
+        <li><code>main</code> 开启分支保护：禁止直接推送与强推，要求 CI 通过、至少 1 个批准、所有讨论已解决。</li>
+        <li>默认使用 <strong>Squash and merge</strong>，合并后的提交信息即 PR 标题 + 关键描述；需要保留多个有意义提交时可用 Rebase and merge。</li>
+        <li>合并前分支需与 <code>main</code> 同步（rebase 或合并最新 <code>main</code>）并重新通过 CI。</li>
+        <li>hotfix 可在 1 名评审者口头确认后先合并，但须在 24 小时内补全评审记录。</li>
+        <li>PR 超过 3 个工作日无进展，作者需在团队频道同步状态或关闭。</li>
+      </ul>
+    </section>
+
+    <section id="cheatsheet">
+      <h2><span class="num">4</span>常用命令速查</h2>
+<pre><code># 开始新任务
+git switch main &amp;&amp; git pull --rebase
+git switch -c feature/PROJ-123-user-login
+
+# 提交
+git add -p                          # 按块挑选要提交的改动
+git commit                          # 在编辑器中书写完整提交信息
+
+# 推送前整理本地提交
+git fetch origin
+git rebase -i origin/main
+
+# 推送（首次）/ 整理后更新自己的分支
+git push -u origin HEAD
+git push --force-with-lease
+
+# 合并后清理
+git switch main &amp;&amp; git pull --rebase
+git branch -d feature/PROJ-123-user-login
+git fetch --prune</code></pre>
+      <div class="callout"><strong>推荐全局配置：</strong><code>git config --global pull.rebase true</code>、<code>git config --global fetch.prune true</code>、<code>git config --global init.defaultBranch main</code>。</div>
+
+      <footer>本规范由团队共同维护。如需修改，请提交 PR 至文档仓库并在周会上同步。</footer>
+    </section>
+
+  </main>
+</div>
+</body>
+</html>

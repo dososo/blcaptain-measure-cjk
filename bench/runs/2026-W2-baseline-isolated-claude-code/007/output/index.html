@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python 处理 Excel 报表的 5 个技巧</title>
+  <meta name="description" content="用 pandas 和 openpyxl 批量合并、清洗、透视、多 Sheet 导出和自动格式化 Excel 报表的 5 个实用技巧，附完整代码示例。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <a class="logo" href="#">代码<span>札记</span></a>
+    <nav>
+      <a href="#">文章</a>
+      <a href="#">专题</a>
+      <a href="#">关于</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <article>
+    <div class="tags">
+      <span class="tag">Python</span>
+      <span class="tag">pandas</span>
+      <span class="tag">openpyxl</span>
+      <span class="tag">办公自动化</span>
+    </div>
+    <h1>告别手工复制粘贴：用 Python 处理 Excel 报表的 5 个技巧</h1>
+    <div class="meta">
+      <span>2026 年 10 月 25 日</span>
+      <span>阅读约 12 分钟</span>
+      <span>适用：pandas 2.x · openpyxl 3.1+</span>
+    </div>
+
+    <p class="lead">
+      每到月底，总有人要把几十个部门交上来的表格合并、核对、汇总，再调好格式发给领导。
+      这些工作重复、易错，而且完全可以交给 Python。本文整理了我在实际项目中最常用的 5 个技巧，
+      从读取、清洗、汇总到导出和美化，覆盖一份报表的完整生命周期。
+    </p>
+
+    <p>开始之前，确保环境里有这两个库（<code>xlsx</code> 读写都依赖 openpyxl 引擎）：</p>
+
+    <div class="code">
+      <div class="code-head"><span>shell</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="plain">pip install pandas openpyxl</code></pre>
+    </div>
+
+    <!-- 技巧 1 -->
+    <h2 id="tip-1"><span class="num">01</span>批量合并多个文件，并保留来源</h2>
+    <p>
+      最常见的需求：一个文件夹里有 <code>销售_北京.xlsx</code>、<code>销售_上海.xlsx</code>……结构相同，需要合成一张总表。
+      关键是<strong>别忘了记录每行数据来自哪个文件</strong>，否则后面核对时无从查起。
+    </p>
+
+    <div class="code">
+      <div class="code-head"><span>merge_files.py</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">from pathlib import Path
+import pandas as pd
+
+src_dir = Path("./data/monthly")
+frames = []
+
+for file in sorted(src_dir.glob("销售_*.xlsx")):
+    # 跳过 Excel 打开时生成的临时锁文件 ~$xxx.xlsx
+    if file.name.startswith("~$"):
+        continue
+    df = pd.read_excel(file)
+    df["来源文件"] = file.stem               # 记录来源
+    df["区域"] = file.stem.split("_")[1]     # 从文件名提取区域
+    frames.append(df)
+
+total = pd.concat(frames, ignore_index=True)
+print(f"共合并 {len(frames)} 个文件，{len(total)} 行数据")</code></pre>
+    </div>
+
+    <p>如果一个工作簿里有多个结构相同的 Sheet（比如 1 月到 12 月），用 <code>sheet_name=None</code> 一次读出全部，返回的是一个 <code>{表名: DataFrame}</code> 字典：</p>
+
+    <div class="code">
+      <div class="code-head"><span>python</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">sheets = pd.read_excel("2026年销售.xlsx", sheet_name=None)
+
+total = pd.concat(
+    [df.assign(月份=name) for name, df in sheets.items()],
+    ignore_index=True,
+)</code></pre>
+    </div>
+
+    <div class="note">
+      <strong>💡 小提示</strong>
+      <code>pd.concat</code> 要在循环外调用一次，而不是在循环里反复拼接。后者每次都会复制全部数据，文件一多速度会明显变慢。
+    </div>
+
+    <!-- 技巧 2 -->
+    <h2 id="tip-2"><span class="num">02</span>读取时就把类型和脏数据处理好</h2>
+    <p>
+      Excel 是"所见非所得"的重灾区：员工编号 <code>00123</code> 被读成整数 <code>123</code>，
+      金额列混进了 <code>"—"</code> 或 <code>"待定"</code>，表头上面还有两行标题。与其读完再修，不如在 <code>read_excel</code> 时一步到位。
+    </p>
+
+    <div class="code">
+      <div class="code-head"><span>clean.py</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">df = pd.read_excel(
+    "员工绩效.xlsx",
+    skiprows=2,                          # 跳过顶部的大标题行
+    usecols="A:F",                       # 只读需要的列，速度更快
+    dtype={"员工编号": str, "手机号": str},  # 保留前导零
+    na_values=["—", "-", "待定", "N/A"],  # 这些都视为缺失值
+    parse_dates=["入职日期"],
+)
+
+# 清理列名中的空格和换行（合并单元格表头的常见问题）
+df.columns = df.columns.str.strip().str.replace("\n", "", regex=False)
+
+# 金额列：去掉千分位逗号和货币符号，再转数字
+df["奖金"] = pd.to_numeric(
+    df["奖金"].astype(str).str.replace(r"[¥,\s]", "", regex=True),
+    errors="coerce",                     # 转换失败的变成 NaN，而不是报错
+)
+
+# 去掉整行为空的记录，按员工编号去重
+df = df.dropna(how="all").drop_duplicates(subset="员工编号", keep="last")</code></pre>
+    </div>
+
+    <p>清洗完以后建议顺手做个检查，把问题行单独导出给业务方确认，而不是悄悄丢掉：</p>
+
+    <div class="code">
+      <div class="code-head"><span>python</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">bad_rows = df[df["奖金"].isna()]
+if not bad_rows.empty:
+    bad_rows.to_excel("待确认数据.xlsx", index=False)
+    print(f"⚠️ 有 {len(bad_rows)} 行奖金无法识别，已导出待确认")</code></pre>
+    </div>
+
+    <!-- 技巧 3 -->
+    <h2 id="tip-3"><span class="num">03</span>用 pivot_table 代替 Excel 数据透视表</h2>
+    <p>
+      汇总报表的核心就是"按什么维度、对什么指标、做什么计算"。<code>pivot_table</code> 一行就能复现 Excel 透视表，
+      而且可以加总计行、处理缺失组合，下个月换份数据重跑即可。
+    </p>
+
+    <div class="code">
+      <div class="code-head"><span>pivot.py</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">summary = pd.pivot_table(
+    total,
+    index="区域",
+    columns="产品线",
+    values="销售额",
+    aggfunc="sum",
+    fill_value=0,          # 某区域没有某产品时填 0 而不是 NaN
+    margins=True,          # 添加"总计"行和列
+    margins_name="总计",
+)
+
+# 按总计从高到低排序（总计行保持在最后）
+body = summary.drop(index="总计").sort_values("总计", ascending=False)
+summary = pd.concat([body, summary.loc[["总计"]]])</code></pre>
+    </div>
+
+    <p>如果需要同时计算多个指标（比如销售额求和、订单数计数、客单价求平均），用 <code>groupby</code> + 具名聚合可读性更好：</p>
+
+    <div class="code">
+      <div class="code-head"><span>python</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">kpi = (
+    total.groupby("区域")
+    .agg(
+        销售额=("销售额", "sum"),
+        订单数=("订单号", "nunique"),
+        客单价=("销售额", "mean"),
+    )
+    .assign(占比=lambda d: d["销售额"] / d["销售额"].sum())
+    .sort_values("销售额", ascending=False)
+    .round(2)
+)</code></pre>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Excel 操作</th><th>pandas 写法</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>数据透视表</td><td><code>pd.pivot_table(...)</code></td></tr>
+          <tr><td>分类汇总</td><td><code>df.groupby(...).agg(...)</code></td></tr>
+          <tr><td>VLOOKUP</td><td><code>df.merge(other, on="键", how="left")</code></td></tr>
+          <tr><td>筛选</td><td><code>df.query("销售额 &gt; 10000")</code></td></tr>
+          <tr><td>删除重复项</td><td><code>df.drop_duplicates(...)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 技巧 4 -->
+    <h2 id="tip-4"><span class="num">04</span>一次写出多个 Sheet 的工作簿</h2>
+    <p>
+      直接调用 <code>df.to_excel("a.xlsx")</code> 每次都会覆盖整个文件。要把明细、汇总、KPI 放进同一个工作簿的不同 Sheet，
+      需要用 <code>ExcelWriter</code> 作为上下文管理器：
+    </p>
+
+    <div class="code">
+      <div class="code-head"><span>export.py</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">output = "2026年10月销售报表.xlsx"
+
+with pd.ExcelWriter(output, engine="openpyxl") as writer:
+    kpi.to_excel(writer, sheet_name="KPI概览")
+    summary.to_excel(writer, sheet_name="区域x产品线")
+    total.to_excel(writer, sheet_name="明细数据", index=False)
+
+    # 同一个 Sheet 里放多张表：用 startrow / startcol 指定位置
+    top10 = total.nlargest(10, "销售额")
+    top10.to_excel(writer, sheet_name="KPI概览", startrow=len(kpi) + 3, index=False)</code></pre>
+    </div>
+
+    <p>如果要往<strong>已有</strong>的工作簿里追加或替换某个 Sheet（比如模板文件里已有封面页），使用追加模式：</p>
+
+    <div class="code">
+      <div class="code-head"><span>python</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">with pd.ExcelWriter(
+    "报表模板.xlsx",
+    engine="openpyxl",
+    mode="a",                    # 追加模式
+    if_sheet_exists="replace",   # 同名 Sheet 直接替换
+) as writer:
+    summary.to_excel(writer, sheet_name="本月汇总")</code></pre>
+    </div>
+
+    <div class="note">
+      <strong>⚠️ 注意</strong>
+      运行脚本前要先关闭 Excel 里打开的同名文件，否则在 Windows 上会抛出 <code>PermissionError</code>。
+    </div>
+
+    <!-- 技巧 5 -->
+    <h2 id="tip-5"><span class="num">05</span>用 openpyxl 自动美化：列宽、格式、条件高亮</h2>
+    <p>
+      pandas 导出的表格是"裸"的：列宽挤在一起、金额没有千分位、表头也不醒目。领导打开第一眼看到的就是格式，
+      这一步值得自动化。下面这个函数可以复用在任何导出的 Sheet 上：
+    </p>
+
+    <div class="code">
+      <div class="code-head"><span>beautify.py</span><button class="copy-btn" type="button">复制</button></div>
+      <pre><code class="python">from openpyxl import load_workbook
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.formatting.rule import ColorScaleRule, CellIsRule
+from openpyxl.utils import get_column_letter
+
+
+def beautify_sheet(ws, money_cols=(), pct_cols=()):
+    header_fill = PatternFill("solid", fgColor="1D7A55")
+    thin = Side(style="thin", color="D0D7DE")
+
+    # 1. 表头：加粗、白字、绿底、居中
+    for cell in ws[1]:
+        cell.font = Font(bold=True, color="FFFFFF")
+        cell.fill = header_fill
+        cell.alignment = Alignment(horizontal="center", vertical="center")
+
+    # 2. 冻结首行 + 开启筛选
+    ws.freeze_panes = "A2"
+    ws.auto_filter.ref = ws.dimensions
+
+    # 3. 根据内容自动调整列宽（中文字符按 2 个宽度计算）
+    for col_idx, column in enumerate(ws.columns, start=1):
+        max_len = max(
+            sum(2 if ord(ch) &gt; 127 else 1 for ch in str(c.value or ""))
+            for c in column
+        )
+        ws.column_dimensions[get_column_letter(col_idx)].width = min(max_len + 4, 50)
+
+    # 4. 数字格式 + 细边框
+    headers = {c.value: c.column_letter for c in ws[1]}
+    for row in ws.iter_rows(min_row=2):
+        for cell in row:
+            cell.border = Border(top=thin, bottom=thin, left=thin, right=thin)
+    for name in money_cols:
+        for cell in ws[headers[name]][1:]:
+            cell.number_format = "#,##0.00"
+    for name in pct_cols:
+        for cell in ws[headers[name]][1:]:
+            cell.number_format = "0.0%"
+
+
+wb = load_workbook("2026年10月销售报表.xlsx")
+ws = wb["KPI概览"]
+beautify_sheet(ws, money_cols=["销售额", "客单价"], pct_cols=["占比"])
+
+# 5. 条件格式：销售额做三色色阶，占比低于 5% 标红
+last = ws.max_row
+col = {c.value: c.column_letter for c in ws[1]}
+ws.conditional_formatting.add(
+    f"{col['销售额']}2:{col['销售额']}{last}",
+    ColorScaleRule(start_type="min", start_color="F8696B",
+                   mid_type="percentile", mid_value=50, mid_color="FFEB84",
+                   end_type="max", end_color="63BE7B"),
+)
+ws.conditional_formatting.add(
+    f"{col['占比']}2:{col['占比']}{last}",
+    CellIsRule(operator="lessThan", formula=["0.05"],
+               font=Font(color="C00000", bold=True)),
+)
+
+wb.save("2026年10月销售报表.xlsx")</code></pre>
+    </div>
+
+    <p>
+      条件格式是以 Excel 规则的形式写入的，而不是把颜色"刷死"在单元格上。也就是说，业务同事之后手动修改了数值，
+      颜色会跟着自动更新——这和在 Excel 里手动设置的效果完全一样。
+    </p>
+
+    <div class="note">
+      <strong>💡 进阶</strong>
+      数据量很大（几十万行）且只需写不需读时，可以换用 <code>xlsxwriter</code> 引擎，写入速度更快，格式和图表 API 也更丰富；
+      代价是它不能读取或修改已有文件。
+    </div>
+
+    <section class="summary">
+      <h2>小结：把它们串成一条流水线</h2>
+      <p>这 5 个技巧恰好对应报表处理的 5 个阶段，组合起来就是一个可以每月一键重跑的脚本：</p>
+      <ul>
+        <li><strong>合并</strong>：<code>glob</code> + <code>concat</code>，记得保留来源列；</li>
+        <li><strong>清洗</strong>：在 <code>read_excel</code> 里指定 <code>dtype</code>、<code>na_values</code>，问题行导出确认；</li>
+        <li><strong>汇总</strong>：<code>pivot_table</code> 与具名聚合 <code>agg</code>；</li>
+        <li><strong>导出</strong>：<code>ExcelWriter</code> 写多 Sheet，<code>mode="a"</code> 追加到模板；</li>
+        <li><strong>美化</strong>：openpyxl 设置表头、列宽、数字格式和条件格式。</li>
+      </ul>
+      <p>下一步，你可以把脚本挂到定时任务上，或者再加几行代码用邮件自动发送——从此月底不再加班。</p>
+    </section>
+  </article>
+
+  <aside class="toc" aria-label="目录">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#tip-1">01 批量合并多个文件</a></li>
+      <li><a href="#tip-2">02 读取时处理类型与脏数据</a></li>
+      <li><a href="#tip-3">03 pivot_table 汇总</a></li>
+      <li><a href="#tip-4">04 写出多个 Sheet</a></li>
+      <li><a href="#tip-5">05 openpyxl 自动美化</a></li>
+    </ol>
+  </aside>
+</div>
+
+<footer class="site-footer">
+  © 2026 代码札记 · 文中代码可自由使用
+</footer>
+
+<script>
+  // 轻量 Python 语法高亮（无外部依赖）
+  (function () {
+    var KW = "False|None|True|and|as|assert|break|class|continue|def|elif|else|except|finally|for|from|if|import|in|is|lambda|not|or|pass|raise|return|try|while|with|yield";
+    var re = new RegExp(
+      "(#[^\\n]*)" +                                                  // 注释
+      "|([rRfFbB]{0,2}(?:\"(?:\\\\.|[^\"\\\\\\n])*\"|'(?:\\\\.|[^'\\\\\\n])*'))" + // 字符串
+      "|\\b(" + KW + ")\\b" +                                          // 关键字
+      "|\\b(\\d+(?:\\.\\d+)?)\\b" +                                    // 数字
+      "|\\b([A-Za-z_]\\w*)(?=\\()",                                   // 函数调用
+      "g"
+    );
+    function esc(s) {
+      return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    }
+    document.querySelectorAll("code.python").forEach(function (el) {
+      var src = el.textContent, out = "", last = 0, m;
+      while ((m = re.exec(src))) {
+        out += esc(src.slice(last, m.index));
+        var cls = m[1] ? "com" : m[2] ? "str" : m[3] ? "kw" : m[4] ? "num" : "fn";
+        out += '<span class="tok-' + cls + '">' + esc(m[0]) + "</span>";
+        last = re.lastIndex;
+      }
+      el.innerHTML = out + esc(src.slice(last));
+    });
+  })();
+
+  // 复制按钮
+  document.querySelectorAll(".copy-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var text = btn.closest(".code").querySelector("pre").textContent;
+      var done = function () {
+        btn.textContent = "已复制";
+        btn.classList.add("done");
+        setTimeout(function () { btn.textContent = "复制"; btn.classList.remove("done"); }, 1500);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(done, function () {});
+      }
+    });
+  });
+
+  // 目录高亮当前章节
+  (function () {
+    var links = document.querySelectorAll(".toc a");
+    if (!("IntersectionObserver" in window) || !links.length) return;
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle("active", a.getAttribute("href") === "#" + e.target.id);
+        });
+      });
+    }, { rootMargin: "0px 0px -70% 0px" });
+    document.querySelectorAll("article h2[id]").forEach(function (h) { obs.observe(h); });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+# CA-12 / K-04：高负载下（与真实字体卡片导出并行）跑全量测试，看「单页超时」测试的耗时（测试要求 < 30 秒；整改前 K-04 那次是 33.4 秒）
+
+## 第一组：3 次（<tmp>/claude/-Users-user-Documents-Codex-social-media-skill/9cb4651e-681e-4796-afaa-b10396316319/scratchpad/stress.sh，只保留了超时相关的行和汇总）
+# HEAD fe5d794；开始 2026-10-26T00:47:35Z
+## 第 1 次全量测试（并行导出真实字体卡片）
+✔ A-34：单页超时 → status 为 incomplete，CLI 退出码 2，不判通过 (151.869666ms)
+✔ A-34：耗时上限只能调低，不能调高（防止用来关掉超时保护） (140.381167ms)
+✔ 完整档单页超时：页面脚本死循环 → status incomplete，退出码 2（MEASURE_RENDER_BUDGET_MS 只能调低） (4252.53025ms)
+ℹ tests 277
+ℹ pass 277
+ℹ fail 0
+ℹ duration_ms 120067.712542
+## 第 2 次全量测试（并行导出真实字体卡片）
+✔ A-34：单页超时 → status 为 incomplete，CLI 退出码 2，不判通过 (273.626667ms)
+✔ A-34：耗时上限只能调低，不能调高（防止用来关掉超时保护） (124.208916ms)
+✔ 完整档单页超时：页面脚本死循环 → status incomplete，退出码 2（MEASURE_RENDER_BUDGET_MS 只能调低） (4663.459458ms)
+ℹ tests 277
+ℹ pass 277
+ℹ fail 0
+ℹ duration_ms 181579.745083
+## 第 3 次全量测试（并行导出真实字体卡片）
+✔ A-34：单页超时 → status 为 incomplete，CLI 退出码 2，不判通过 (214.995917ms)
+✔ A-34：耗时上限只能调低，不能调高（防止用来关掉超时保护） (161.08875ms)
+✖ 第 3 轮复核夹具 C-RC01-responsive (23.304709ms)
+✔ 完整档单页超时：页面脚本死循环 → status incomplete，退出码 2（MEASURE_RENDER_BUDGET_MS 只能调低） (4807.859542ms)
+ℹ tests 277
+ℹ pass 276
+ℹ fail 1
+ℹ duration_ms 165892.209084
+✖ 第 3 轮复核夹具 C-RC01-responsive (23.304709ms)
+# 结束 2026-10-26T00:55:26Z
+
+## 第一组第 3 次的「第 3 轮复核夹具 C-RC01-responsive」失败（K-07）
+# 只用了 23 ms，还没启动浏览器就失败了。这组脚本用 grep 过滤了输出，失败原因没有保留下来。
+
+## 第二组：同样的负载，再跑 3 次全量测试（保留完整日志）
+第 1 次：ℹ tests 277 ℹ fail 0 ℹ duration_ms 219992.293917 
+  ✔ A-34：单页超时 → status 为 incomplete，CLI 退出码 2，不判通过 (299.394917ms)
+  ✔ 完整档单页超时：页面脚本死循环 → status incomplete，退出码 2（MEASURE_RENDER_BUDGET_MS 只能调低） (9110.65125ms)
+第 2 次：ℹ tests 277 ℹ fail 0 ℹ duration_ms 214916.786667 
+  ✔ A-34：单页超时 → status 为 incomplete，CLI 退出码 2，不判通过 (373.355542ms)
+  ✔ 完整档单页超时：页面脚本死循环 → status incomplete，退出码 2（MEASURE_RENDER_BUDGET_MS 只能调低） (5061.48025ms)
+第 3 次：ℹ tests 277 ℹ fail 0 ℹ duration_ms 187295.232042 
+  ✔ A-34：单页超时 → status 为 incomplete，CLI 退出码 2，不判通过 (196.195292ms)
+  ✔ 完整档单页超时：页面脚本死循环 → status incomplete，退出码 2（MEASURE_RENDER_BUDGET_MS 只能调低） (5395.6435ms)
+
+## 第三组：test/w2-render-audit-r3.test.js 16 个进程同时跑
+ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 ℹ fail 0 
+
+# 结论：带负载的 6 次全量测试里，「完整档单页超时」测试耗时 4.3、4.7、4.8、9.1、5.1、5.4 秒，都远低于 30 秒的要求（整改前那次是 33.4 秒）；C-RC01-responsive 的那次失败没能复现（单独跑 6 次、带负载全量 3 次、16 路并发都通过），磁盘空间和文件句柄上限正常。

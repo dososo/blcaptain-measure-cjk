@@ -1,0 +1,178 @@
+:root {
+  --paper: #f4f1ea;        /* 白族粉墙 */
+  --ink: #2b2b2a;          /* 墨 */
+  --ink-soft: #5d5a54;
+  --indigo: #2f4a6b;       /* 扎染靛蓝 */
+  --lake: #6f8fa3;         /* 洱海 */
+  --tile: #8a8a84;         /* 青瓦 */
+  --seal: #a2402f;         /* 印泥 */
+  --rule: #d9d3c6;
+  --measure: 34rem;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", "STSong", serif;
+  font-size: 1.0625rem;
+  line-height: 1.95;
+  letter-spacing: 0.02em;
+}
+
+.page {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 0 16px 6rem;
+}
+
+/* 页首 */
+.masthead {
+  padding: 7rem 0 4rem;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 3.5rem;
+}
+
+.masthead .kicker {
+  margin: 0 0 1.5rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.3em;
+  color: var(--lake);
+}
+
+.masthead h1 {
+  margin: 0;
+  font-size: 2.75rem;
+  font-weight: 400;          /* 大字轻 */
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+}
+
+.masthead .sub {
+  margin: 1.25rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.9375rem;
+}
+
+.seal {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: 0.35rem 0.5rem;
+  border: 1.5px solid var(--seal);
+  color: var(--seal);
+  font-size: 0.75rem;
+  line-height: 1.3;
+  letter-spacing: 0.15em;
+  writing-mode: vertical-rl;
+}
+
+/* 目录 */
+.toc {
+  margin: 0 0 4.5rem;
+  font-size: 0.875rem;
+  color: var(--ink-soft);
+}
+
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.5rem;
+}
+
+.toc a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.toc a:hover { border-bottom-color: var(--indigo); color: var(--indigo); }
+
+/* 正文 */
+section { margin-bottom: 4.5rem; scroll-margin-top: 2rem; }
+
+h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  margin: 0 0 1.5rem;
+  font-size: 1.375rem;
+  font-weight: 700;          /* 小字重 */
+  letter-spacing: 0.1em;
+  color: var(--indigo);
+}
+
+h2 .num {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--tile);
+  letter-spacing: 0.2em;
+}
+
+p { margin: 0 0 1.4rem; }
+
+.days {
+  display: block;
+  margin: -0.75rem 0 1.5rem;
+  font-size: 0.8125rem;
+  color: var(--tile);
+  letter-spacing: 0.15em;
+}
+
+blockquote {
+  margin: 2.25rem 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 2px solid var(--lake);
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
+blockquote p { margin: 0; }
+
+.note {
+  margin: 2rem 0 0;
+  padding: 1.25rem 1.25rem 0.25rem;
+  background: #ebe6db;
+  font-size: 0.9375rem;
+  line-height: 1.85;
+}
+
+.note h3 {
+  margin: 0 0 0.6rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--indigo);
+}
+
+.note ul { margin: 0 0 1rem; padding-left: 1.1rem; }
+.note li { margin-bottom: 0.3rem; }
+
+/* 段间分隔:一道瓦线 */
+.divider {
+  height: 6px;
+  margin: 0 0 4.5rem;
+  background:
+    radial-gradient(circle at 6px -2px, transparent 5px, var(--tile) 5.5px, var(--tile) 6.5px, transparent 7px) 0 0 / 12px 6px repeat-x;
+  opacity: 0.45;
+}
+
+footer {
+  padding-top: 2rem;
+  border-top: 1px solid var(--rule);
+  font-size: 0.8125rem;
+  color: var(--tile);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 480px) {
+  body { font-size: 1rem; }
+  .masthead { padding: 4.5rem 0 3rem; }
+  .masthead h1 { font-size: 2.125rem; }
+}

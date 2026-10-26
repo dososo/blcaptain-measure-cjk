@@ -1,0 +1,55 @@
+<!doctype html>
+<!--
+  分寸 · Measure 小红书 3:4 卡片模板：图文封面（1080×1440）
+  - 字体：霞鹜文楷（LXGW WenKai，OFL-1.1，🟢 可以商用出图）。把字体文件放进 font_dir，然后运行：
+      measure-cjk card cover.html --out card.png --font-dir <你的字体目录>
+    card 命令只用 font_dir 里、授权表允许商用出图的字体；缺字时回退到的系统字体也要过授权表（F06）。
+  - 只改文字，保持留白：标题不超过两行，正文每行不超过 26 个字。
+  - 引号用 “”（measure.config.json 默认 quotes: curly），标点用全角。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>图文封面</title>
+<style>
+:where(:lang(zh)) { line-break: strict; font-synthesis-style: none; text-autospace: normal; }
+:root {
+  --paper: #f4e9dc;   /* 米纸暖底 */
+  --ink: #1f1b16;     /* 墨 */
+  --ink-soft: #5a5148;
+  --celadon: #7e8c6b; /* 青瓷 */
+  --cinnabar: #9e4b3b; /* 朱砂 */
+}
+html, body { margin: 0; }
+body {
+  width: 1080px; height: 1440px; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  font-family: "LXGW WenKai", "霞鹜文楷", serif;
+  font-weight: 400;
+}
+.card { box-sizing: border-box; width: 1080px; height: 1440px; padding: 120px 96px 96px; display: flex; flex-direction: column; }
+.series { font-size: 28px; line-height: 1.6; letter-spacing: 0.08em; color: var(--celadon); margin: 0 0 56px; }
+h1 { font-size: 92px; line-height: 1.25; font-weight: 400; margin: 0 0 40px; }
+.rule { width: 96px; height: 4px; background: var(--cinnabar); margin: 0 0 48px; }
+.lead { font-size: 40px; line-height: 1.7; color: var(--ink-soft); margin: 0 0 64px; }
+ol { list-style: none; margin: 0; padding: 0; }
+li { font-size: 36px; line-height: 1.75; margin: 0 0 28px; padding-left: 64px; position: relative; }
+.no { position: absolute; left: 0; top: 0; color: var(--celadon); }
+.foot { margin-top: auto; font-size: 28px; line-height: 1.6; color: var(--ink-soft); }
+</style>
+</head>
+<body>
+<div class="card">
+<p class="series">排版笔记 · 第 3 期</p>
+<h1>中文排版的三条底线</h1>
+<div class="rule"></div>
+<p class="lead">好看之前，先做到不出错。</p>
+<ol>
+<li><span class="no">1</span>中英文之间留出间距，交给 CSS 处理。</li>
+<li><span class="no">2</span>标点不出现在行首，打开严格断行。</li>
+<li><span class="no">3</span>正文行高一点七五，每行二十多个字。</li>
+</ol>
+<p class="foot">分寸 · Measure</p>
+</div>
+</body>
+</html>

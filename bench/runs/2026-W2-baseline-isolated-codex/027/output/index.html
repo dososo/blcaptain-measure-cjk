@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3e9">
+  <title>周末两天一夜杭州路线 · 周末出逃计划</title>
+  <style>
+    * { box-sizing: border-box; }
+    :root { color-scheme: light; }
+    body { margin: 0; background: #e2e6df; color: #254b40; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; -webkit-font-smoothing: antialiased; }
+    .canvas { width: min(900px, 100%); margin: 32px auto; container-type: inline-size; box-shadow: 0 18px 65px #24483817; }
+    .card { font-size: 1.6cqw; line-height: 1.4; aspect-ratio: 3 / 4; padding: 4.8cqw 5.2cqw 3.6cqw; position: relative; overflow: hidden; background: #f7f4ea; display: flex; flex-direction: column; }
+    .card::before { content: ""; position: absolute; inset: 0; opacity: .19; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239a947f' filter='url(%23n)' opacity='.24' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+    .hero { position: relative; height: 38.4cqw; flex-shrink: 0; }
+    .eyebrow { display: flex; align-items: center; justify-content: space-between; font-size: 1.25cqw; letter-spacing: .2cqw; font-weight: 600; }
+    .series { display: flex; align-items: center; gap: 1cqw; }
+    .spark { font-size: 2.1cqw; color: #bd6146; }
+    .issue { font-family: Georgia, serif; font-size: 1.45cqw; letter-spacing: .1cqw; }
+    h1 { position: relative; z-index: 2; margin: 2.6cqw 0 0; font-size: 9.1cqw; line-height: 1.12; font-weight: 800; letter-spacing: -.45cqw; }
+    h1 .place { position: relative; }
+    h1 .place::after { content: ""; position: absolute; bottom: -.3cqw; left: .3cqw; right: -.5cqw; border-bottom: .45cqw solid #bd6146; transform: rotate(-3deg); border-radius: 50%; }
+    .subtitle { position: relative; z-index: 2; margin: 2cqw 0 0; font-size: 2.05cqw; letter-spacing: .15cqw; }
+    .subtitle b { font-weight: 500; color: #b45f45; }
+    .landscape { position: absolute; left: -5.2cqw; bottom: .1cqw; width: 100cqw; height: 25.3cqw; }
+    .stamp { position: absolute; z-index: 2; top: 15.9cqw; right: 1.2cqw; width: 8.2cqw; height: 8.2cqw; border: 1px solid #b86048; border-radius: 50%; color: #b86048; transform: rotate(12deg); display: grid; place-content: center; text-align: center; font-size: 1.6cqw; line-height: 1.55; letter-spacing: .25cqw; background: #f7f4ea85; }
+    .stamp::after { content: ""; position: absolute; inset: .55cqw; border: 1px dashed #b860487a; border-radius: 50%; }
+    .day { position: relative; border-top: 1px solid #61786655; padding: 2.25cqw 0 2.5cqw; }
+    .day-heading { display: flex; align-items: center; gap: 1.45cqw; margin-bottom: 2cqw; }
+    .day-number { color: #fbf8ed; background: #32594b; padding: .65cqw 1.3cqw .7cqw; font-family: Georgia, serif; font-size: 2cqw; letter-spacing: .07cqw; border-radius: .2cqw; }
+    h2 { margin: 0; font-size: 3cqw; font-weight: 650; letter-spacing: .07cqw; }
+    .day-note { margin-left: auto; font-size: 1.45cqw; color: #6b7b6b; }
+    .stops { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.4cqw; }
+    .stop { position: relative; padding-left: 1.6cqw; border-left: 1px solid #b8c3ad; }
+    .time { font-size: 1.35cqw; color: #a05a43; letter-spacing: .05cqw; font-weight: 600; }
+    h3 { margin: .8cqw 0 .7cqw; font-size: 2.3cqw; font-weight: 650; white-space: nowrap; }
+    .stop p { margin: 0; font-size: 1.7cqw; line-height: 1.8; color: #607064; }
+    .route { display: flex; align-items: center; gap: 1.1cqw; margin-top: 2.1cqw; padding: 1.1cqw 1.5cqw; border-radius: .5cqw; background: #e8ecdf; font-size: 1.6cqw; letter-spacing: .025cqw; white-space: nowrap; }
+    .route-label { font-size: 1.25cqw; font-weight: 600; letter-spacing: .1cqw; margin-right: .4cqw; color: #71826b; }
+    .arrow { color: #88977c; font-size: 1.6cqw; }
+    .second .day-number { background: #b96b50; }
+    .second .route { background: #eee9db; }
+    .practical { display: grid; grid-template-columns: 1fr 1.08fr 1.05fr; gap: 2.6cqw; background: #2d5144; color: #f7f4e8; padding: 2.3cqw 2.5cqw; border-radius: .7cqw; position: relative; margin-top: .1cqw; }
+    .tip + .tip { border-left: 1px solid #dde5cb35; padding-left: 2.3cqw; }
+    .tip-title { font-size: 1.65cqw; letter-spacing: .06cqw; display: flex; align-items: center; gap: .8cqw; margin-bottom: 1cqw; }
+    .tip-title svg { width: 2cqw; height: 2cqw; stroke: #d2daba; fill: none; stroke-width: 1.4; }
+    .tip p { margin: 0; font-size: 1.55cqw; line-height: 1.85; color: #e0e5d6; }
+    .footer { margin-top: auto; padding-top: 1.7cqw; display: flex; justify-content: space-between; align-items: flex-end; }
+    .footer-tag { font-size: 1.45cqw; color: #6e7b69; letter-spacing: .04cqw; }
+    .save { font-size: 1.8cqw; color: #ac6049; font-weight: 600; }
+    .source { display: block; width: fit-content; margin-top: .65cqw; font-size: 1.05cqw; color: #829080; text-decoration: none; }
+    a:focus-visible { outline: 2px solid #b96b50; outline-offset: 3px; }
+    @media (max-width: 600px) { .canvas { margin: 0 auto; box-shadow: none; } }
+    @media print { @page { size: 180mm 240mm; margin: 0; } body { background: none; } .canvas { width: 180mm; margin: 0; box-shadow: none; } .card { print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+  </style>
+</head>
+<body>
+  <main class="canvas">
+    <article class="card" aria-label="周末两天一夜杭州旅行路线">
+      <header class="hero">
+        <div class="eyebrow"><span class="series"><span class="spark">✳</span> 周末出逃计划 / WEEKEND ESCAPE</span><span class="issue">VOL. 01 · HANGZHOU</span></div>
+        <h1>周末，去<span class="place">杭州</span>。</h1>
+        <p class="subtitle"><b>两天一夜</b> &nbsp; / &nbsp; 一半湖光，一半茶香</p>
+        <div class="stamp" aria-label="慢慢逛，刚刚好">慢慢逛<br>刚刚好</div>
+        <svg class="landscape" viewBox="0 0 900 228" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="西湖山水插画：远山、石桥、游船与垂柳">
+          <defs><linearGradient id="water" x1="450" y1="116" x2="450" y2="228" gradientUnits="userSpaceOnUse"><stop stop-color="#dce7dd"/><stop offset="1" stop-color="#f7f4ea"/></linearGradient></defs>
+          <circle cx="657" cy="53" r="22" fill="#d9a374" opacity=".65"/>
+          <path d="M0 126C38 109 79 122 120 102C158 83 182 88 222 99C268 112 287 66 337 77C376 86 386 53 424 61C463 69 472 97 505 93C552 88 569 59 608 69C649 80 683 113 725 99C780 80 835 100 900 68V171H0Z" fill="#dce3d1"/>
+          <path d="M0 144C62 125 86 137 138 119C194 99 235 139 281 120C335 98 360 96 402 114C444 134 457 114 495 106C539 97 559 132 608 122C662 110 688 127 735 120C795 110 847 133 900 117V178H0Z" fill="#b9cbb8"/>
+          <path d="M0 153C148 142 263 166 405 148C534 134 692 147 900 139V228H0Z" fill="url(#water)"/>
+          <g stroke="#9db5a4" stroke-linecap="round" opacity=".7"><path d="M75 176h103m32 13h110m231-22h67m60 27h121M399 205h95m-395 5h59m569-45h45M335 167h35"/><path d="M253 215h45m322-1h55"/></g>
+          <g fill="#738d75"><path d="M378 110h22l-3 5h-16zm3-5h16l-8-5zm3-9h10l-5-5zm1 0h8v7h-8zm-1 13h10v12h-10z"/><path d="M388 88h2v7h-2z"/></g>
+          <path d="M0 166C50 158 84 157 120 162C148 167 156 173 178 175C112 181 51 180 0 186Z" fill="#6e8b71"/>
+          <g stroke="#668165" stroke-linecap="round"><path d="M25 4C48 19 46 82 39 159" stroke-width="5"/><path d="M29 12C76 15 99 37 115 48M35 28C63 43 76 62 84 81M34 12C14 31 10 51 10 71" stroke-width="2"/><path d="M54 21q-3 39-12 62m28-55q4 40-6 68m25-57q9 34 4 63m10-57q13 23 12 54M56 47q5 29-4 61m20-42q8 24 4 53M20 29q-8 28-6 53" stroke-width="1.3"/></g>
+          <g fill="#7f9a75"><ellipse cx="44" cy="67" rx="3" ry="8" transform="rotate(22 44 67)"/><ellipse cx="67" cy="76" rx="3" ry="8" transform="rotate(12 67 76)"/><ellipse cx="93" cy="84" rx="3" ry="8"/><ellipse cx="113" cy="78" rx="3" ry="8" transform="rotate(-15 113 78)"/><ellipse cx="55" cy="95" rx="3" ry="8"/><ellipse cx="76" cy="104" rx="3" ry="8"/><ellipse cx="15" cy="67" rx="3" ry="8"/></g>
+          <g transform="translate(685 130)"><path d="M0 20Q62-39 124 20H107Q62-17 17 20Z" fill="#f2eedf" stroke="#81937c" stroke-width="1.7"/><path d="M-5 14Q62-49 129 14" stroke="#81937c" stroke-width="3"/><path d="M7 3v9m14-19v9M36-16v10m16-15v10m17-10v10m16-7v10m16-2v9m15 1v9" stroke="#81937c" stroke-width="2"/><path d="M-10 21h145" stroke="#81937c" stroke-width="2"/></g>
+          <g transform="translate(478 170)"><path d="M-21 8h78l-12 9H-7Z" fill="#8d6f4e"/><path d="M1 7V-9h29V7" stroke="#896d4d" stroke-width="2"/><path d="M-5-9q20-19 40 0Z" fill="#c7a16e"/><path d="M40-3l21 20" stroke="#896d4d" stroke-width="2"/><circle cx="39" cy="-5" r="3" fill="#54654d"/><path d="M38-1l-3 8h9" stroke="#54654d" stroke-width="3"/><path d="M-13 22h63" stroke="#a9b6a4"/></g>
+          <path d="M571 44q6-6 12 0q6-6 12 0m-72-8q4-5 9 0q4-5 9 0" stroke="#7f927b" stroke-width="1.6" stroke-linecap="round"/>
+          <text x="176" y="153" fill="#69846e" font-family="Georgia, serif" font-size="11" letter-spacing="3" transform="rotate(-5 176 153)">WEST LAKE</text>
+        </svg>
+      </header>
+
+      <section class="day" aria-labelledby="day1">
+        <div class="day-heading"><span class="day-number">DAY 01</span><h2 id="day1">把时间交给西湖</h2><span class="day-note">湖边散步 · 老街寻味</span></div>
+        <div class="stops">
+          <div class="stop"><span class="time">09:30 — 12:00</span><h3>断桥 → 白堤 → 孤山</h3><p>沿湖慢走，收集湖光山色<br>在北山街附近吃个午饭</p></div>
+          <div class="stop"><span class="time">14:00 — 17:00</span><h3>曲院风荷 → 苏堤</h3><p>逛逛园林，再走一段苏堤<br>坐在湖边，等风吹过来</p></div>
+          <div class="stop"><span class="time">18:00 — 20:00</span><h3>河坊街 → 南宋御街</h3><p>乘车去老街，边走边吃<br>片儿川、定胜糕安排上</p></div>
+        </div>
+        <div class="route"><span class="route-label">路线速记</span><span>断桥</span><span class="arrow">→</span><span>白堤 · 孤山</span><span class="arrow">→</span><span>曲院风荷 · 苏堤</span><span class="arrow">→</span><span>河坊街</span></div>
+      </section>
+
+      <section class="day second" aria-labelledby="day2">
+        <div class="day-heading"><span class="day-number">DAY 02</span><h2 id="day2">去茶山里放个空</h2><span class="day-note">茶香入山 · 从容返程</span></div>
+        <div class="stops">
+          <div class="stop"><span class="time">09:00 — 11:30</span><h3>龙井村，喝杯茶</h3><p>早一点出门，去山里透气<br>沿村道看茶田，找店坐坐</p></div>
+          <div class="stop"><span class="time">12:00 — 14:30</span><h3>满觉陇，慢慢逛</h3><p>乘车去吃午饭、喝咖啡<br>留一点时间给山间小路</p></div>
+          <div class="stop"><span class="time">15:00 起</span><h3>取行李，准备返程</h3><p>回住处取寄存的行李<br>按车次预留进站时间</p></div>
+        </div>
+        <div class="route"><span class="route-label">路线速记</span><span>住处出发</span><span class="arrow">→</span><span>龙井村</span><span class="arrow">→</span><span>满觉陇</span><span class="arrow">→</span><span>取行李 · 返程</span></div>
+      </section>
+
+      <aside class="practical" aria-label="出行小贴士">
+        <div class="tip"><div class="tip-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4h16v16M2 20h20M8 8h2m4 0h2M8 12h2m4 0h2M10 20v-4h4v4"/></svg>住哪里</div><p>龙翔桥 / 定安路附近<br>一晚就好，靠近地铁站<br>出门逛湖、吃饭都方便</p></div>
+        <div class="tip"><div class="tip-title"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="15" rx="3"/><path d="M5 11h14M8 21l2-3m4 0 2 3M9 7h6"/><circle cx="9" cy="14.5" r=".7"/><circle cx="15" cy="14.5" r=".7"/></svg>怎么走</div><p>市区地铁，湖边步行<br>茶村之间公交或打车<br>周末山路留足通勤时间</p></div>
+        <div class="tip"><div class="tip-title"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m-7 7H2m20 0h-3M5 5l2 2m12-2-2 2M8 17a6 6 0 1 1 8 0l-1 2H9Z M9 22h6"/></svg>出发前记住</div><p>穿好走的鞋，带伞和水<br>喝茶先看价，慢逛不赶场<br>时间为建议，可随心调整</p></div>
+      </aside>
+
+      <footer class="footer"><div><span class="footer-tag">#杭州旅行 &nbsp; #两天一夜 &nbsp; #周末去哪儿</span><a class="source" href="https://z.hangzhou.com.cn/2021/syjy/content/content_8115764.html" target="_blank" rel="noopener noreferrer">景点参考：杭州网·西湖十景 ↗</a></div><span class="save">收藏这张，下个周末出发 ↗</span></footer>
+    </article>
+  </main>
+</body>
+</html>

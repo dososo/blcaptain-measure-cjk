@@ -1,0 +1,7 @@
+# CA-07 变异测试：逐条把 dist/card.js 的安全检查 throw 换成 void，只跑新的安全测试（test/card-audit.test.js 的 CA-07），HEAD fe5d794
+去掉第 47 行「输出路径在工作区之外，已拒绝」 → ℹ fail 1｜  AssertionError [ERR_ASSERTION]: --out <tmp>/measure-card-audit-6LwBIA/x.png --font-dir fonts 的原因不对：错�
+去掉第 50 行「--out 只能是 .png 文件，已拒绝」 → ℹ fail 1｜  AssertionError [ERR_ASSERTION]: --out x.jpg --font-dir fonts：
+去掉第 67 行「--out 指向的文件已存在，而且不是 PNG，已拒绝覆盖」 → ℹ fail 1｜  AssertionError [ERR_ASSERTION]: --out notes.png --font-dir fonts：
+去掉第 105 行「font_dir 是符号链接，已拒绝」 → ℹ fail 1｜  AssertionError [ERR_ASSERTION]: --out x.png --font-dir linked-out 的原因不对：错误：font_dir 不是目录：linked-out
+去掉第 110 行「font_dir 必须在工作区之内，已拒绝」 → ℹ fail 1｜  AssertionError [ERR_ASSERTION]: --out x.png --font-dir <tmp>/measure-card-audit-nmNGHy/outside-fonts：
+对照：不改代码 → ℹ fail 0

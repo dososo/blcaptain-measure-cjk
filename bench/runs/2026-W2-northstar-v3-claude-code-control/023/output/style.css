@@ -1,0 +1,145 @@
+:root {
+  --bg: #f4f6fb;
+  --card: #ffffff;
+  --fg: #1f2733;
+  --muted: #6b7686;
+  --border: #dde2ea;
+  --accent: #2f6fed;
+  --accent-soft: #e8f0ff;
+  --error: #d93838;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12161d;
+    --card: #1b212b;
+    --fg: #e6eaf0;
+    --muted: #9aa4b2;
+    --border: #2d3542;
+    --accent: #5b8ff9;
+    --accent-soft: #1f2c47;
+    --error: #ff6b6b;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 16px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+  padding: 32px 16px;
+}
+
+.wrap { max-width: 680px; margin: 0 auto; }
+
+header { margin-bottom: 24px; }
+header h1 { margin: 0 0 8px; font-size: 1.75rem; }
+header p { margin: 0; color: var(--muted); }
+
+.progress {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--accent);
+  transition: width .3s;
+}
+.progress-text { font-size: .85rem; color: var(--muted); margin-top: 6px; }
+
+.question {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 0 0 16px;
+}
+.question.invalid { border-color: var(--error); }
+.question legend {
+  font-weight: 600;
+  padding: 0;
+  margin-bottom: 12px;
+  float: left;
+  width: 100%;
+}
+.question legend + * { clear: both; }
+.num { color: var(--accent); margin-right: 6px; }
+.req { color: var(--error); margin-left: 4px; }
+.hint { font-weight: 400; color: var(--muted); font-size: .85rem; margin-left: 6px; }
+.err { color: var(--error); font-size: .85rem; margin: 8px 0 0; }
+
+.options { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 8px; }
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color .15s, background .15s;
+}
+.option:hover { border-color: var(--accent); }
+.option:has(input:checked) { border-color: var(--accent); background: var(--accent-soft); }
+.option input { accent-color: var(--accent); margin: 0; }
+
+.scale { display: flex; gap: 8px; flex-wrap: wrap; }
+.scale .option { flex: 1 1 0; min-width: 56px; justify-content: center; flex-direction: column; gap: 4px; text-align: center; }
+.scale-labels { display: flex; justify-content: space-between; color: var(--muted); font-size: .85rem; margin-top: 6px; }
+
+textarea {
+  width: 100%;
+  min-height: 100px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--fg);
+  font: inherit;
+  resize: vertical;
+}
+textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: transparent; }
+.counter { text-align: right; font-size: .8rem; color: var(--muted); margin-top: 4px; }
+
+.actions { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; }
+
+button {
+  font: inherit;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: 1px solid var(--accent);
+  cursor: pointer;
+}
+.primary { background: var(--accent); color: #fff; }
+.primary:hover { filter: brightness(1.08); }
+.secondary { background: transparent; color: var(--accent); }
+
+.thanks {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px 20px;
+  text-align: center;
+}
+.thanks h2 { margin-top: 0; }
+.summary { text-align: left; margin: 20px 0; padding: 0; list-style: none; }
+.summary li { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.summary li:last-child { border-bottom: 0; }
+.summary b { display: block; font-size: .85rem; color: var(--muted); font-weight: 500; }
+
+[hidden] { display: none !important; }
+
+@media (max-width: 480px) {
+  body { padding-block: 20px; }
+  header h1 { font-size: 1.4rem; }
+  .options { grid-template-columns: 1fr; }
+  .actions button { flex: 1; }
+}

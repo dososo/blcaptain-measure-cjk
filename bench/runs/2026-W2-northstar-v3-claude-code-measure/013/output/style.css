@@ -1,0 +1,324 @@
+@layer measure;
+
+:root {
+  --bg: #f7f6f2;
+  --surface: #ffffff;
+  --fg: #1d1f1c;
+  --muted: #5c615a;
+  --line: #e2e0d8;
+  --accent: #1f6b52;
+  --accent-ink: #ffffff;
+  --accent-soft: #e6f0eb;
+  --radius: 8px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #161816;
+    --surface: #1f221f;
+    --fg: #ecebe6;
+    --muted: #a3a89f;
+    --line: #333832;
+    --accent: #5fb592;
+    --accent-ink: #0f1a15;
+    --accent-soft: #223129;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", "Helvetica Neue", Arial, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+/* 顶栏 */
+.site-header {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+}
+.logo {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fg);
+  text-decoration: none;
+}
+.nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 15px; }
+.nav a:hover, .nav a[aria-current] { color: var(--fg); }
+
+/* 页首 */
+.intro {
+  padding-block: 64px 32px;
+  text-align: center;
+}
+.intro h1 {
+  font-size: clamp(28px, 4.5vw, 40px);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  margin: 0 0 16px;
+}
+.intro p {
+  margin: 0 auto;
+  max-width: 32em;
+  color: var(--muted);
+  font-size: 17px;
+}
+
+/* 月付 / 年付切换 */
+.billing {
+  display: inline-flex;
+  margin-top: 28px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.billing button {
+  font: inherit;
+  font-size: 15px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.billing button[aria-pressed="true"] {
+  background: var(--fg);
+  color: var(--bg);
+}
+.billing .save { font-size: 13px; margin-left: 4px; color: inherit; opacity: 0.8; }
+
+/* 价格档位 */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding-block: 24px 16px;
+}
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 28px 24px 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.plan.featured {
+  border: 2px solid var(--accent);
+  padding: 27px 23px 23px;
+}
+.badge {
+  position: absolute;
+  top: -12px;
+  left: 22px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 13px;
+  line-height: 1.6;
+  padding: 0 10px;
+  border-radius: 4px;
+}
+.plan h2 {
+  font-size: 18px;
+  margin: 0 0 4px;
+}
+.capacity {
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 8px 0 4px;
+  font-variant-numeric: tabular-nums;
+}
+.plan .who {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 0 0 20px;
+  min-height: 3.5em;
+}
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin: 0;
+}
+.price .amount {
+  font-size: 30px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.price .unit { color: var(--muted); font-size: 14px; }
+.price-note {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 4px 0 20px;
+  min-height: 1.75em;
+}
+.cta {
+  display: block;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  color: var(--fg);
+  background: var(--surface);
+}
+.cta:hover { border-color: var(--fg); }
+.featured .cta {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.featured .cta:hover { filter: brightness(1.08); }
+
+.features {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 20px 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+}
+.features li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 6px;
+}
+.features li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.62em;
+  width: 8px;
+  height: 4px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+.features li.off { color: var(--muted); }
+.features li.off::before {
+  border: 0;
+  height: 2px;
+  top: 0.8em;
+  background: var(--muted);
+  transform: none;
+}
+
+.footnote {
+  color: var(--muted);
+  font-size: 14px;
+  text-align: center;
+  margin: 8px auto 0;
+}
+
+/* 企业 */
+.team {
+  margin-block: 48px 0;
+  padding: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+  background: var(--accent-soft);
+  border-radius: var(--radius);
+}
+.team > div { min-width: 0; flex: 1 1 22em; }
+.team h2 { font-size: 20px; margin: 0 0 6px; }
+.team p { margin: 0; color: var(--muted); font-size: 15px; }
+.team .cta { flex: 0 0 auto; }
+
+/* 常见问题 */
+.faq {
+  padding-block: 72px 80px;
+}
+.faq h2 {
+  font-size: 26px;
+  margin: 0 0 8px;
+  text-align: center;
+}
+.faq .lead {
+  text-align: center;
+  color: var(--muted);
+  margin: 0 0 32px;
+}
+.faq-list {
+  margin: 0 auto;
+  max-width: 44em;
+  border-top: 1px solid var(--line);
+}
+.faq details {
+  border-bottom: 1px solid var(--line);
+}
+.faq summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding-block: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--muted);
+}
+.faq details[open] summary::after { content: "−"; }
+.faq summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.faq .answer {
+  padding-bottom: 20px;
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 36em;
+}
+.faq .answer p { margin: 0 0 10px; }
+.faq .answer p:last-child { margin-bottom: 0; }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 14px;
+}
+.site-footer .wrap { padding-block: 24px; }
+.site-footer p { margin: 0; }
+
+@media (max-width: 1000px) {
+  .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
+}
+@media (max-width: 560px) {
+  .plans { grid-template-columns: minmax(0, 1fr); }
+  .intro { padding-block: 44px 24px; }
+  .plan .who, .price-note { min-height: 0; }
+  .nav { display: none; }
+}

@@ -1,0 +1,672 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w1-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-25T12:06:41.935Z",
+    "mode": "static",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [
+      "index.html：button:focus-visible",
+      "index.html：a:focus-visible",
+      "index.html：summary:focus-visible"
+    ],
+    "threshold_overrides": {}
+  },
+  "summary": {
+    "files": 1,
+    "cjk_files": 1,
+    "errors": 44,
+    "warns": 24,
+    "status": "fail"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "pingfang sc",
+      "tier": "system-only",
+      "usage": "system"
+    },
+    {
+      "family": "microsoft yahei",
+      "tier": "system-only",
+      "usage": "system"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "T02",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.topbar > div.wrap > a.brand",
+      "line": 25,
+      "message": "有 125 个中文元素没有开启 text-autospace。三大浏览器实现里它的初始值是 no-autospace，必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: \"text\"，在文案里打空格。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t02"
+    },
+    {
+      "rule": "T03",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > details#examples > p:nth-of-type(2)",
+      "line": 47,
+      "message": "配置的引号风格是 “”（curly），这里用了「」：「，生成本文使用的「销售明细.xls」。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t03"
+    },
+    {
+      "rule": "T03",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-1:nth-of-type(1) > div.tip-line:nth-of-type(2)",
+      "line": 66,
+      "message": "配置的引号风格是 “”（curly），这里用了「」：「l 仅用格式显示「001」，读取类」。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t03"
+    },
+    {
+      "rule": "T04",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.topbar > div.wrap > a.brand",
+      "line": 25,
+      "message": "有 125 个中文元素没有 line-break: strict，标点可能出现在行首。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t04"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.topbar > div.wrap > a.brand > small",
+      "line": 25,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.hero > div:nth-of-type(1) > div.eyebrow:nth-of-type(1) > span.tag:nth-of-type(1)",
+      "line": 34,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main#article > header.hero > div:nth-of-type(1) > h1",
+      "line": 35,
+      "message": "中文字距为负（-1.80px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#article > header.hero > div:nth-of-type(1) > p.dek",
+      "line": 36,
+      "message": "正文每行约 77 个汉字（容器 1160px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#article > header.hero > div:nth-of-type(1) > p.dek",
+      "line": 36,
+      "message": "正文行高 1.95，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.hero > div:nth-of-type(1) > div.metadata:nth-of-type(2) > time",
+      "line": 37,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.hero > div:nth-of-type(1) > div.metadata:nth-of-type(2) > span:nth-of-type(4)",
+      "line": 37,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(2) > td.selected:nth-of-type(1)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(2) > td.selected:nth-of-type(2)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(2) > td.selected:nth-of-type(3)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(2) > td.selected:nth-of-type(4)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(3) > td:nth-of-type(2)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(4) > td:nth-of-type(2)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(5) > td:nth-of-type(2)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.sheet:nth-of-type(2) > table > tr:nth-of-type(6) > td:nth-of-type(2)",
+      "line": 40,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#article > div.content-layout:nth-of-type(2) > article.article > p.intro",
+      "line": 45,
+      "message": "正文每行约 77 个汉字（容器 1160px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#article > div.content-layout:nth-of-type(2) > article.article > p.intro",
+      "line": 45,
+      "message": "正文行高 2.05，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > details#examples > p:nth-of-type(1)",
+      "line": 47,
+      "message": "正文每行约 97 个汉字（容器 1160px ÷ 字号 12px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > details#examples > p:nth-of-type(1)",
+      "line": 47,
+      "message": "正文字号 12.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > details#examples > p:nth-of-type(2)",
+      "line": 47,
+      "message": "正文每行约 97 个汉字（容器 1160px ÷ 字号 12px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > details#examples > p:nth-of-type(2)",
+      "line": 47,
+      "message": "正文字号 12.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "article.article > details#examples > pre:nth-of-type(2) > code",
+      "line": 47,
+      "message": "中文字号 9.9px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-1:nth-of-type(1) > h2",
+      "line": 56,
+      "message": "中文字距为负（-0.50px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-1:nth-of-type(1) > p",
+      "line": 56,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-1:nth-of-type(1) > p",
+      "line": 56,
+      "message": "正文行高 1.95，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#tip-1:nth-of-type(1) > div.code-block:nth-of-type(1) > div.code-head > button.copy",
+      "line": 57,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-2:nth-of-type(2) > h2",
+      "line": 69,
+      "message": "中文字距为负（-0.50px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-2:nth-of-type(2) > p",
+      "line": 69,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-2:nth-of-type(2) > p",
+      "line": 69,
+      "message": "正文行高 1.95，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#tip-2:nth-of-type(2) > div.code-block:nth-of-type(1) > div.code-head > button.copy",
+      "line": 70,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-3:nth-of-type(3) > h2",
+      "line": 85,
+      "message": "中文字距为负（-0.50px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-3:nth-of-type(3) > p",
+      "line": 85,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-3:nth-of-type(3) > p",
+      "line": 85,
+      "message": "正文行高 1.95，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#tip-3:nth-of-type(3) > div.code-block:nth-of-type(1) > div.code-head > button.copy",
+      "line": 86,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#tip-3:nth-of-type(3) > div.result:nth-of-type(2) > table > caption",
+      "line": 94,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-4:nth-of-type(4) > h2",
+      "line": 97,
+      "message": "中文字距为负（-0.50px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-4:nth-of-type(4) > p",
+      "line": 97,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-4:nth-of-type(4) > p",
+      "line": 97,
+      "message": "正文行高 1.95，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#tip-4:nth-of-type(4) > div.code-block:nth-of-type(1) > div.code-head > button.copy",
+      "line": 98,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-5:nth-of-type(5) > h2",
+      "line": 120,
+      "message": "中文字距为负（-0.50px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-5:nth-of-type(5) > p",
+      "line": 120,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#tip-5:nth-of-type(5) > p",
+      "line": 120,
+      "message": "正文行高 1.95，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#wrap-up:nth-of-type(6) > h2",
+      "line": 144,
+      "message": "中文字距为负（-0.50px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#wrap-up:nth-of-type(6) > p",
+      "line": 144,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.content-layout:nth-of-type(2) > article.article > section#wrap-up:nth-of-type(6) > p",
+      "line": 144,
+      "message": "正文行高 2.00，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "aside > div.sidebar-sticky > div#toolkit:nth-of-type(5) > p",
+      "line": 150,
+      "message": "正文每行约 105 个汉字（容器 1160px ÷ 字号 11px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T13",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.topbar > div.wrap > a.brand > small",
+      "line": 25,
+      "message": "字体栈「\"sfmono-regular\",consolas,\"liberation mono\",monospace」里没有中文字体，中文会回退到访客系统的默认字体，效果不可控。请在西文字体后面加上中文字体，例如 \"PingFang SC\", \"Noto Sans SC\"。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13"
+    },
+    {
+      "rule": "T13",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "article.article > details#examples > pre:nth-of-type(2) > code",
+      "line": 47,
+      "message": "代码块里的中文使用字体栈「\"sfmono-regular\",consolas,\"liberation mono\",monospace」，里面没有中文字体，中文会回退到访客系统的默认字体。可以在等宽字体后面补一个中文字体。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13"
+    },
+    {
+      "rule": "T13",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(4)",
+      "line": 60,
+      "message": "代码块里的中文使用字体栈「monospace」，里面没有中文字体，中文会回退到访客系统的默认字体。可以在等宽字体后面补一个中文字体。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "message": "同一条规则在本文件另有 9 处，已省略",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main#article > div.breadcrumb:nth-of-type(1) > a:nth-of-type(1)",
+      "line": 31,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main#article > div.breadcrumb:nth-of-type(1) > a:nth-of-type(2)",
+      "line": 31,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main#article > div.breadcrumb:nth-of-type(1) > span:nth-of-type(3)",
+      "line": 31,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#article > header.hero > div:nth-of-type(1) > p.dek",
+      "line": 36,
+      "message": "【窄屏 390px下】正文字号 13.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(4)",
+      "line": 60,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(5)",
+      "line": 61,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(6)",
+      "line": 62,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(7)",
+      "line": 62,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(8)",
+      "line": 62,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(9)",
+      "line": 62,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.str:nth-of-type(10)",
+      "line": 63,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.code-block:nth-of-type(1) > pre > code > span.comment:nth-of-type(13)",
+      "line": 66,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "article.article > section#tip-1:nth-of-type(1) > div.tip-line:nth-of-type(2) > b",
+      "line": 66,
+      "message": "【窄屏 390px下】中文字号 11.0px，小于 12px，笔画会糊成一团。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "viewport": 390
+    },
+    {
+      "rule": "T13",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#tip-1:nth-of-type(1) > div.code-block:nth-of-type(1) > div.code-head > button.copy",
+      "line": 57,
+      "message": "【窄屏 390px下】字体栈「\"sfmono-regular\",consolas,\"liberation mono\",monospace」里没有中文字体，中文会回退到访客系统的默认字体，效果不可控。请在西文字体后面加上中文字体，例如 \"PingFang SC\", \"Noto Sans SC\"。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13",
+      "viewport": 390
+    }
+  ]
+}

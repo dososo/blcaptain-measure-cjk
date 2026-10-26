@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Python 处理 Excel 报表</title>
+  <meta name="description" content="用 pandas 和 openpyxl 处理 Excel 报表的 5 个实用技巧：批量读取、多文件合并、透视汇总、格式化导出、条件格式。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap"><a href="#"><span class="seal">墨</span>代码札记</a></div>
+</header>
+
+<main class="wrap">
+  <article>
+    <header class="post-head">
+      <p class="kicker">PYTHON · 数据处理</p>
+      <h1>用 Python 处理 Excel 报表的 5 个技巧</h1>
+      <p class="meta"><span>2026 年 10 月 25 日</span><span>约 8 分钟读完</span><span>pandas · openpyxl</span></p>
+    </header>
+
+    <p class="lead">每月底对着十几个 Excel 复制粘贴、调列宽、标红，这活儿交给 Python 就行。下面 5 个技巧覆盖了从「读进来」到「交出去」的整条链路，代码都能直接改改就用。</p>
+
+    <nav class="toc" aria-label="目录">
+      <h2>目录</h2>
+      <ol>
+        <li><a href="#tip1">一次读完所有工作表</a></li>
+        <li><a href="#tip2">批量合并一个文件夹的报表</a></li>
+        <li><a href="#tip3">用透视表代替手工汇总</a></li>
+        <li><a href="#tip4">导出时顺手调好格式</a></li>
+        <li><a href="#tip5">用条件格式标出异常值</a></li>
+      </ol>
+    </nav>
+
+    <p>先装好两个库（本文基于 pandas 2.x 与 openpyxl 3.1）：</p>
+<pre><code>pip install pandas openpyxl</code></pre>
+
+    <!-- 技巧 1 -->
+    <section id="tip1">
+      <h2 class="tip"><span class="num">技巧 一</span>一次读完所有工作表</h2>
+      <p>很多报表按月分 sheet：「1月」「2月」……一个个 <code>read_excel</code> 太啰嗦。把 <code>sheet_name</code> 设成 <code>None</code>，pandas 会返回一个字典，键是表名，值是 DataFrame，再用 <code>concat</code> 一把拼起来。</p>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+<span class="c"># sheet_name=None：读取全部工作表，返回 {表名: DataFrame}</span>
+sheets = pd.read_excel(
+    <span class="s">"2026_sales.xlsx"</span>,
+    sheet_name=<span class="k">None</span>,
+    usecols=<span class="s">"A:F"</span>,                  <span class="c"># 只读需要的列，快且省内存</span>
+    dtype={<span class="s">"订单号"</span>: str},           <span class="c"># 防止 00123 被读成 123</span>
+)
+
+<span class="c"># 字典的键会变成索引的一层，顺手转成一列「month」</span>
+df = (
+    pd.concat(sheets, names=[<span class="s">"month"</span>, <span class="s">"row"</span>])
+      .reset_index(level=<span class="s">"month"</span>)
+      .reset_index(drop=<span class="k">True</span>)
+)
+print(df.head())</code></pre>
+      <p class="note"><strong>注意</strong>订单号、身份证号、邮编这类「长得像数字的文本」一定要用 <code>dtype=str</code> 指定，否则前导零会丢、长数字会变成科学计数法。</p>
+    </section>
+
+    <!-- 技巧 2 -->
+    <section id="tip2">
+      <h2 class="tip"><span class="num">技巧 二</span>批量合并一个文件夹的报表</h2>
+      <p>各分公司各交一份格式相同的表，要合成总表。用 <code>pathlib</code> 遍历文件夹，读的时候用 <code>assign</code> 加一列来源，后面出问题能追溯到是哪个文件。</p>
+<pre><code><span class="k">from</span> pathlib <span class="k">import</span> Path
+<span class="k">import</span> pandas <span class="k">as</span> pd
+
+frames = []
+<span class="k">for</span> f <span class="k">in</span> sorted(Path(<span class="s">"reports"</span>).glob(<span class="s">"*.xlsx"</span>)):
+    <span class="k">if</span> f.name.startswith(<span class="s">"~$"</span>):     <span class="c"># 跳过 Excel 打开文件时生成的临时锁文件</span>
+        <span class="k">continue</span>
+    frames.append(pd.read_excel(f).assign(source=f.stem))
+
+df = pd.concat(frames, ignore_index=<span class="k">True</span>)
+print(<span class="s">f"共合并 </span>{len(frames)}<span class="s"> 个文件，</span>{len(df)}<span class="s"> 行"</span>)</code></pre>
+      <p class="note"><strong>注意</strong>别在循环里反复 <code>df = pd.concat([df, new])</code>，每次都会复制整张表，文件一多就慢得离谱。先攒进列表，最后 concat 一次。</p>
+    </section>
+
+    <!-- 技巧 3 -->
+    <section id="tip3">
+      <h2 class="tip"><span class="num">技巧 三</span>用透视表代替手工汇总</h2>
+      <p>Excel 里拖来拖去的数据透视表，在 pandas 里一行 <code>pivot_table</code> 就能搞定，还自带合计行列。</p>
+<pre><code>summary = pd.pivot_table(
+    df,
+    index=<span class="s">"region"</span>,       <span class="c"># 行：大区</span>
+    columns=<span class="s">"month"</span>,      <span class="c"># 列：月份</span>
+    values=<span class="s">"amount"</span>,      <span class="c"># 值：销售额</span>
+    aggfunc=<span class="s">"sum"</span>,
+    fill_value=<span class="n">0</span>,
+    margins=<span class="k">True</span>,         <span class="c"># 加上合计行和合计列</span>
+    margins_name=<span class="s">"合计"</span>,
+)</code></pre>
+      <p>如果要同时出多个指标（总额、单数、客单价），用 <code>groupby</code> 加命名聚合更清楚：</p>
+<pre><code>stats = (
+    df.groupby(<span class="s">"region"</span>)
+      .agg(
+          total=(<span class="s">"amount"</span>, <span class="s">"sum"</span>),
+          orders=(<span class="s">"订单号"</span>, <span class="s">"nunique"</span>),
+      )
+      .assign(avg_price=<span class="k">lambda</span> t: (t.total / t.orders).round(<span class="n">2</span>))
+      .sort_values(<span class="s">"total"</span>, ascending=<span class="k">False</span>)
+)</code></pre>
+    </section>
+
+    <!-- 技巧 4 -->
+    <section id="tip4">
+      <h2 class="tip"><span class="num">技巧 四</span>导出时顺手调好格式</h2>
+      <p>直接 <code>to_excel</code> 出来的表列宽挤成一团、数字没有千分位，领导打开第一眼就皱眉。用 <code>ExcelWriter</code> 拿到 openpyxl 的工作表对象，在保存前把冻结窗格、筛选、列宽、数字格式一次设好。</p>
+<pre><code><span class="c"># 去掉列轴名，避免 pandas 多写一行表头</span>
+out = summary.rename_axis(columns=<span class="k">None</span>)
+
+<span class="k">with</span> pd.ExcelWriter(<span class="s">"summary.xlsx"</span>, engine=<span class="s">"openpyxl"</span>) <span class="k">as</span> writer:
+    out.to_excel(writer, sheet_name=<span class="s">"汇总"</span>)
+    ws = writer.sheets[<span class="s">"汇总"</span>]
+
+    ws.freeze_panes = <span class="s">"B2"</span>               <span class="c"># 冻结首行首列</span>
+    ws.auto_filter.ref = ws.dimensions     <span class="c"># 给表头加筛选按钮</span>
+
+    <span class="c"># 按内容估算列宽：中文字符按 2 个宽度算</span>
+    <span class="k">for</span> col <span class="k">in</span> ws.iter_cols():
+        width = max(
+            sum(<span class="n">2</span> <span class="k">if</span> ord(ch) &gt; <span class="n">127</span> <span class="k">else</span> <span class="n">1</span> <span class="k">for</span> ch <span class="k">in</span> str(c.value <span class="k">or</span> <span class="s">""</span>))
+            <span class="k">for</span> c <span class="k">in</span> col
+        )
+        ws.column_dimensions[col[<span class="n">0</span>].column_letter].width = width + <span class="n">2</span>
+
+    <span class="c"># 数值区域加千分位</span>
+    <span class="k">for</span> row <span class="k">in</span> ws.iter_rows(min_row=<span class="n">2</span>, min_col=<span class="n">2</span>):
+        <span class="k">for</span> cell <span class="k">in</span> row:
+            cell.number_format = <span class="s">"#,##0.00"</span></code></pre>
+      <p class="note"><strong>注意</strong><code>number_format</code> 只改显示，不改值。单元格里存的依然是数字，求和、筛选都不受影响——这比在 pandas 里先格式化成字符串再导出好得多。</p>
+    </section>
+
+    <!-- 技巧 5 -->
+    <section id="tip5">
+      <h2 class="tip"><span class="num">技巧 五</span>用条件格式标出异常值</h2>
+      <p>与其手动把低于目标的数字涂红，不如写成 Excel 原生的条件格式。好处是：别人改了数，颜色会跟着自动变。</p>
+<pre><code><span class="k">from</span> openpyxl <span class="k">import</span> load_workbook
+<span class="k">from</span> openpyxl.formatting.rule <span class="k">import</span> CellIsRule, ColorScaleRule
+<span class="k">from</span> openpyxl.styles <span class="k">import</span> Font, PatternFill
+
+wb = load_workbook(<span class="s">"summary.xlsx"</span>)
+ws = wb[<span class="s">"汇总"</span>]
+
+<span class="c"># 数据区：去掉表头、首列，以及最后的「合计」行和列</span>
+last = ws.cell(row=ws.max_row - <span class="n">1</span>, column=ws.max_column - <span class="n">1</span>).coordinate
+data_range = <span class="s">f"B2:</span>{last}<span class="s">"</span>
+
+<span class="c"># 规则一：色阶，数值越大颜色越深</span>
+ws.conditional_formatting.add(
+    data_range,
+    ColorScaleRule(start_type=<span class="s">"min"</span>, start_color=<span class="s">"F8F4EC"</span>,
+                   end_type=<span class="s">"max"</span>, end_color=<span class="s">"D9A38F"</span>),
+)
+
+<span class="c"># 规则二：低于 10000 的标红加粗</span>
+red_fill = PatternFill(start_color=<span class="s">"FFC7CE"</span>, end_color=<span class="s">"FFC7CE"</span>, fill_type=<span class="s">"solid"</span>)
+ws.conditional_formatting.add(
+    data_range,
+    CellIsRule(operator=<span class="s">"lessThan"</span>, formula=[<span class="s">"10000"</span>],
+               font=Font(color=<span class="s">"9C0006"</span>, bold=<span class="k">True</span>), fill=red_fill),
+)
+
+wb.save(<span class="s">"summary.xlsx"</span>)</code></pre>
+      <p class="note"><strong>注意</strong><code>formula</code> 要传字符串列表，写的是 Excel 公式语法。阈值想放在某个单元格里由用户自己调，可以写成 <code>["$J$1"]</code>（绝对引用）。</p>
+    </section>
+
+    <section class="summary">
+      <h2 class="tip"><span class="num">小结</span>一条龙流水线</h2>
+      <ul>
+        <li><strong>读</strong>：<code>sheet_name=None</code> 一次读全，<code>dtype=str</code> 保护编号列。</li>
+        <li><strong>合</strong>：先攒列表再一次 <code>concat</code>，加来源列方便追溯。</li>
+        <li><strong>算</strong>：<code>pivot_table</code> 出交叉表，<code>groupby().agg()</code> 出多指标。</li>
+        <li><strong>写</strong>：<code>ExcelWriter</code> 里设冻结、筛选、列宽、数字格式。</li>
+        <li><strong>标</strong>：用条件格式代替手动涂色，数据变了颜色自动跟着变。</li>
+      </ul>
+      <p>把这五步串成一个脚本，每月只要把新文件丢进 <code>reports/</code> 文件夹，跑一下就出报表。</p>
+    </section>
+  </article>
+</main>
+
+<footer>
+  <div class="wrap">代码札记 · 示例代码可自由使用</div>
+</footer>
+
+</body>
+</html>

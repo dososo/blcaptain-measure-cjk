@@ -1,0 +1,424 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-004-7VxttJ -m gpt-6-astra -c model_reasoning_effort="high" <提示词>
+工作目录：<tmp>/measure-baseline-codex-004-7VxttJ
+退出码：0 信号：无 用时：201s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-004-7VxttJ
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1731b-466b-7781-ba5d-94c2aa9ebbd6
+--------
+user
+做一个 AI 写作助手的产品介绍页，突出它能帮用户改周报和邮件。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会做一个中文产品介绍页，重点展示周报润色和邮件改写，并用前后对比呈现效果。
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-004-7VxttJ
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-004-7VxttJ
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-004-7VxttJ/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..bacdea0099e872593a59f273a816a71235a14148
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,82 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f6f2">
++  <title>言简 — 把想法，写得更好</title>
++  <style>
++    :root{--paper:#f7f6f2;--ink:#252923;--muted:#7b7e75;--line:#e2e3da;--orange:#e76838;--green:#51624d}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-offset:5px}button:disabled{cursor:wait}::selection{background:#f5c6ad}.container{width:min(1240px,calc(100% - 96px));margin:auto}
++    header{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-size:25px;font-weight:750;letter-spacing:-1px}.brand-mark{width:31px;height:33px;position:relative;display:inline-block}.brand-mark:before,.brand-mark:after{content:"";position:absolute;width:12px;height:29px;background:var(--orange);border-radius:3px;transform:skew(-24deg);top:2px}.brand-mark:before{left:4px}.brand-mark:after{left:19px;height:20px;top:11px}.brand-en{font-size:12px;color:var(--muted);font-weight:500;margin-left:8px;letter-spacing:1px}nav{display:flex;align-items:center;gap:36px;font-size:13px;color:#61655c}nav a:hover{color:var(--orange)}.nav-cta{background:var(--ink);color:white;padding:12px 20px;border-radius:7px;display:flex;gap:22px;align-items:center;font-size:13px}.nav-cta:hover{background:#40463b;color:white}.arrow{font-size:20px;line-height:1}
++    .hero{display:grid;grid-template-columns:.95fr 1.15fr;gap:50px;align-items:center;padding:84px 0 76px}.eyebrow{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:1.8px;font-weight:600;color:#626859}.dot{height:7px;width:7px;background:var(--orange);border-radius:50%;box-shadow:0 0 0 4px #e7683810}.hero h1{font-size:clamp(38px,4.05vw,58px);line-height:1.35;letter-spacing:-2px;font-weight:650;margin:25px 0 23px}.hero h1 .accent{color:var(--orange);position:relative;white-space:nowrap}.accent:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:10px;border-top:2px solid var(--orange);border-radius:50%;transform:rotate(-2deg);opacity:.6}.hero-copy>p{font-size:15px;line-height:1.95;color:#787c72;margin:0 0 29px}.actions{display:flex;align-items:center;gap:22px}.primary{border:0;display:inline-flex;align-items:center;justify-content:center;gap:30px;background:var(--orange);color:#fff;border-radius:7px;padding:16px 22px;font-size:14px;font-weight:600;box-shadow:0 5px 10px #d9602310;transition:background .2s,transform .2s}.primary:hover{background:#d75b2b;transform:translateY(-2px)}.secondary{display:flex;align-items:center;gap:8px;font-size:13px;color:#65695f}.play{border:1px solid #b8bcaf;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-size:9px}.fine-print{font-size:11px;color:#96998e;margin-top:15px;letter-spacing:.2px}.hero-proof{display:flex;align-items:center;gap:12px;margin-top:36px}.avatars{display:flex;padding-left:0}.avatar{width:29px;height:29px;border:2px solid var(--paper);border-radius:50%;margin-left:-6px;display:grid;place-items:center;font-size:11px;font-family:Georgia,serif;color:#fff;background:#858c79}.avatar:first-child{margin-left:0;background:#c99d7b}.avatar:nth-child(2){background:#788b86}.avatar:nth-child(3){background:#a5a085}.avatar:nth-child(4){background:#6f7068}.proof-text{font-size:11px;color:#85897d}.proof-text strong{font-weight:500;color:#464d40}.sparkle{color:var(--orange)}
++    .preview-wrap{position:relative;padding:10px 0 25px}.preview-wrap:before{content:"";position:absolute;inset:-30px -35px -10px;background:radial-gradient(ellipse,#e7e7d8 0,transparent 70%);z-index:-1}.editor{background:#fff;border:1px solid #dedfd6;border-radius:12px;box-shadow:0 20px 50px #3f492810,0 2px 6px #3f492804;overflow:hidden;transform:rotate(-1deg)}.editor-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eeeee7;padding:17px 19px;font-size:11px;color:#92968b}.window-dots{display:flex;gap:5px}.window-dots i{width:7px;height:7px;background:#dadcd3;border-radius:50%}.window-dots i:first-child{background:#e9b4a0}.editor-title{color:#686f60;display:flex;align-items:center;gap:7px}.tiny-symbol{color:var(--orange);font-size:15px}.editor-tabs{display:flex;gap:6px;padding:17px 20px 14px}.editor-tab{font-size:12px;background:transparent;border:0;color:#8c9085;padding:8px 13px;border-radius:5px}.editor-tab.active{background:#f0f2eb;color:#4f6048;font-weight:600}.editor-body{padding:0 22px 20px}.section-label{font-size:10px;color:#96998f;letter-spacing:.7px;display:flex;justify-content:space-between;align-items:center}.original{font-size:12px;line-height:1.9;background:#f7f7f3;border-radius:6px;padding:13px 15px;margin:10px 0 17px;color:#878b80;min-height:72px}.rewrite-label{color:#637158;display:flex;gap:6px;align-items:center;font-size:11px;font-weight:600}.tag{font-size:9px;background:#f0f3eb;padding:4px 7px;border-radius:4px;font-weight:400;color:#7f8b72}.result{font-size:12px;line-height:1.85;padding:11px 0 0;color:#626a5b;min-height:190px}.result h3{font-size:13px;color:#374131;margin:0 0 9px;font-weight:650}.result p{margin:6px 0}.result strong{font-weight:600;color:#48543e}.highlight{background:#eef1e7;padding:1px 2px}.editor-bottom{border-top:1px solid #eff0e9;display:flex;justify-content:space-between;align-items:center;padding:14px 21px;color:#8f9586;font-size:10px}.saved{display:flex;gap:5px;align-items:center}.copy-button{border:0;background:transparent;color:#707865;padding:3px;display:flex;gap:6px;align-items:center;font-size:10px}.copy-button:hover{color:var(--orange)}.floating-note{position:absolute;right:-19px;bottom:6px;background:#fffefa;border:1px solid #e4e6d9;border-radius:8px;box-shadow:0 8px 22px #383f2010;padding:13px 17px;display:flex;align-items:center;gap:11px;transform:rotate(3deg);font-size:11px;color:#6d765e}.check-circle{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#eef2e7;color:#697f4e;font-size:14px}.floating-note strong{display:block;color:#454e3b;margin-bottom:3px;font-size:12px}.floating-note small{font-size:10px;color:#989e8b}
++    .trust-strip{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0}.trust-label{color:#94978c;font-size:11px;line-height:1.8}.situations{display:flex;gap:38px;color:#757d6c;font-size:13px}.situations span{display:flex;align-items:center;gap:8px}.situations svg{width:17px;height:17px;stroke-width:1.5}
++    .features{padding:67px 0 65px}.section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:27px}.kicker{font-size:10px;letter-spacing:2px;color:var(--orange);font-weight:600;margin:0 0 12px}.section-heading h2{font-size:29px;font-weight:600;letter-spacing:-.8px;margin:0}.section-heading>p{font-size:12px;color:#8c9084;line-height:1.9;margin:0 0 3px}.feature-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.feature-card{padding:25px 25px 22px;border:1px solid var(--line);border-radius:9px;background:#fafaf6;position:relative;overflow:hidden}.feature-card:first-child{background:#eef0e7;border-color:#e0e5d5}.feature-card:nth-child(2){background:#f6eee6;border-color:#ecdfd2}.card-top{display:flex;justify-content:space-between;align-items:center}.icon-box{height:34px;width:34px;background:#ffffff90;border:1px solid #ffffff;border-radius:8px;display:grid;place-items:center;color:#6c7b5f}.feature-card:nth-child(2) .icon-box{color:#b68360}.icon-box svg{width:18px;height:18px}.card-number{font-family:Georgia,serif;font-size:12px;color:#a5aa99}.feature-card h3{font-size:17px;font-weight:600;margin:19px 0 9px;letter-spacing:-.3px}.feature-card>p{font-size:12px;line-height:1.9;color:#8b9082;margin:0 0 21px}.card-foot{font-size:10px;display:flex;gap:7px;align-items:center;color:#7d876f}.card-foot span{background:#ffffff7d;padding:4px 8px;border-radius:4px}.feature-card .card-foot>a{margin-left:auto;font-size:18px;color:#7f8871;transition:transform .2s}.feature-card .card-foot>a:hover{transform:translateX(4px)}
++    .closing{border-top:1px solid var(--line);padding:38px 0;display:flex;align-items:center;justify-content:space-between}.closing h2{font-size:21px;font-weight:550;margin:0 0 8px}.closing p{font-size:12px;color:#8c9084;margin:0}.closing a{font-size:12px;border-bottom:1px solid #b3b9a7;padding:6px 0;display:flex;gap:25px;align-items:center;color:#5e6b52}footer{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;color:#a0a398;font-size:10px}footer span:last-child{letter-spacing:.5px}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:8px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:10}.toast.visible{opacity:1;transform:translate(-50%,0)}svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.mobile-hint{display:none}
++    @media(min-width:1450px){.hero{padding-top:100px;padding-bottom:90px}.hero h1{font-size:59px}}
++    @media(max-width:1050px){.container{width:calc(100% - 64px)}.hero{gap:28px;padding-top:65px}.hero h1{font-size:39px}.hero-copy>p{font-size:13px}.situations{gap:20px}.feature-card{padding:22px 18px}.brand-en{display:none}.floating-note{right:-10px}.actions{gap:15px}.primary{gap:15px}}
++    @media(max-width:760px){.container{width:calc(100% - 40px)}header{height:79px}.brand{font-size:23px}nav{gap:16px}nav>a:not(.nav-cta){display:none}.nav-cta{padding:10px 14px;font-size:11px;gap:14px}.hero{grid-template-columns:1fr;gap:36px;padding:48px 0 35px}.hero h1{font-size:44px;letter-spacing:-1.7px;margin-top:23px}.hero-copy>p{font-size:14px}.hero-proof{margin-top:25px}.preview-wrap{max-width:560px;width:100%;margin:auto;padding:8px 5px 25px}.preview-wrap:before{inset:0}.editor{transform:rotate(-.6deg)}.floating-note{right:-3px;bottom:8px}.trust-strip{align-items:start;gap:20px}.trust-label{font-size:10px;flex-shrink:0}.situations{display:grid;grid-template-columns:1fr 1fr;gap:15px 20px;font-size:11px}.situations svg{width:14px}.features{padding:44px 0}.section-heading{display:block}.section-heading h2{font-size:26px}.section-heading>p{margin-top:13px}.feature-grid{grid-template-columns:1fr;gap:13px}.feature-card{padding:22px 23px}.feature-card h3{margin-top:14px}.feature-card>p{margin-bottom:16px}.closing{gap:20px}.closing h2{font-size:18px}.closing a{white-space:nowrap;gap:12px}footer{line-height:1.8;gap:15px}.eyebrow{font-size:10px}.result{min-height:185px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;transform:none!important}}
++  </style>
++</head>
++<body>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="言简首页"><span class="brand-mark" aria-hidden="true"></span>言简<span class="brand-en">YANJIAN</span></a>
++      <nav aria-label="主导航"><a href="#features">能帮你做什么</a><a href="#demo">看看改写效果</a><a class="nav-cta" href="#demo" data-mode="weekly">体验言简 <span class="arrow">↗</span></a></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-title">
++        <div class="hero-copy">
++          <div class="eyebrow"><span class="dot"></span> 你的 AI 职场写作搭子</div>
++          <h1 id="hero-title">想法已经很好，<br>让表达<span class="accent">更进一步。</span></h1>
++          <p>零散的进展，变成条理清晰的周报。<br>难开口的话，写成恰到好处的邮件。<br>从「怎么写」到「写好了」，交给言简。</p>
++          <div class="actions"><a class="primary" href="#demo" data-mode="weekly">体验 AI 改写 <span class="arrow">↗</span></a><a class="secondary" href="#demo" data-mode="email"><span class="play" aria-hidden="true">▶</span>看看邮件怎么改</a></div>
++          <div class="fine-print">交互示例 · 无需注册，立即查看改写效果</div>
++          <div class="hero-proof"><div class="avatars" aria-hidden="true"><span class="avatar">L</span><span class="avatar">W</span><span class="avatar">Y</span><span class="avatar">C</span></div><div class="proof-text">为每一个<span class="sparkle"> ✧ </span><strong>认真工作的人</strong>而写</div></div>
++        </div>
++        <div class="preview-wrap" id="demo">
++          <div class="editor">
++            <div class="editor-header"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><div class="editor-title"><span class="tiny-symbol">✳</span> 言简 · 写作工作台</div><span>示例预览</span></div>
++            <div class="editor-tabs" role="tablist" aria-label="选择改写场景"><button class="editor-tab active" id="weekly-tab" role="tab" aria-selected="true" aria-controls="demo-panel" data-mode="weekly">▤ &nbsp; 周报润色</button><button class="editor-tab" id="email-tab" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-mode="email">✉ &nbsp; 邮件改写</button></div>
++            <div class="editor-body" id="demo-panel" role="tabpanel" aria-labelledby="weekly-tab" tabindex="0">
++              <div class="section-label"><span>你的原稿</span><span id="input-note">有想法就行，不必字斟句酌</span></div>
++              <div class="original" id="original">这周做了首页改版，跟设计对了三次，终于上线了。还修了几个 bug。下周准备做用户访谈，看看反馈。</div>
++              <div class="section-label"><span class="rewrite-label"><span class="tiny-symbol">✧</span> 言简帮你写</span><span class="tag" id="tone">条理清晰 · 突出重点</span></div>
++              <div class="result" id="result" aria-live="polite"><h3>本周工作总结</h3><p><strong>01 &nbsp; 推进首页改版上线</strong><br>与设计团队完成 3 轮方案对齐，<span class="highlight">完成首页改版并上线</span>。</p><p><strong>02 &nbsp; 优化产品使用体验</strong><br>修复多项已知问题，改善产品体验。</p><p><strong>下周计划</strong><br>开展用户访谈，收集改版反馈，为后续优化提供依据。</p></div>
++            </div>
++            <div class="editor-bottom"><span class="saved"><span style="color:#7c8b6a">✓</span> 保留你的原意，让表达更清晰</span><button class="copy-button" id="copy" aria-label="复制改写结果"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>复制结果</span></button></div>
++          </div>
++          <div class="floating-note"><span class="check-circle">✓</span><div><strong>少一点纠结，多一点从容</strong><small>让每一次表达，都更有底气。</small></div></div>
++        </div>
++      </section>
++      <div class="trust-strip"><div class="trust-label">不止会写，更懂你的<br>每一个工作日</div><div class="situations"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>周五的工作周报</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>发给客户的邮件</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a8 8 0 0 1-8 8H7l-4 3V11a9 9 0 0 1 18 0Z"/><path d="M8 10h8M8 14h5"/></svg>需要分寸的沟通</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"/></svg>值得被看见的成果</span></div></div>
++      <section class="features" id="features" aria-labelledby="features-title">
++        <div class="section-heading"><div><p class="kicker">LESS WRITING. MORE LIVING.</p><h2 id="features-title">那些难写的时刻，都有言简。</h2></div><p>你专注把事情做好，<br>我们帮你把事情说好。</p></div>
++        <div class="feature-grid">
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span><span class="card-number">01 / REPORT</span></div><h3>周报有重点，努力被看见</h3><p>把流水账整理成工作成果。梳理进展、提炼重点，让每一份付出都有清晰的表达。</p><div class="card-foot"><span>梳理结构</span><span>突出成果</span><a href="#demo" data-mode="weekly" aria-label="查看周报改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span><span class="card-number">02 / EMAIL</span></div><h3>邮件有分寸，沟通更顺畅</h3><p>催进度不生硬，提需求不含糊。根据沟通对象调整语气，把想说的话，得体地说出来。</p><div class="card-foot"><span>调整语气</span><span>清晰传达</span><a href="#demo" data-mode="email" aria-label="查看邮件改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/></svg></span><span class="card-number">03 / YOUR VOICE</span></div><h3>表达更出色，依然是你</h3><p>润色语言，保留原意。告别空泛的套话，让文字专业又自然，带着你自己的温度。</p><div class="card-foot"><span>保留原意</span><span>自然表达</span><a href="#demo" data-mode="weekly" aria-label="查看自然表达示例">↗</a></div></article>
++        </div>
++      </section>
++      <section class="closing"><div><h2>写得轻松一点，下班早一点。</h2><p>从下一份周报、下一封邮件开始。</p></div><a href="#demo" data-mode="email">试试言简 <span class="arrow">↗</span></a></section>
++    </main>
++    <footer><span>© 2026 言简 YANJIAN</span><span>好想法，值得好表达。 &nbsp;✳</span></footer>
++  </div>
++  <div class="toast" id="toast" role="status" aria-live="polite"></div>
++  <script>
++    const original = document.getElementById('original');
++    const result = document.getElementById('result');
++    const tone = document.getElementById('tone');
++    const weekly = {original:original.textContent,result:result.innerHTML,tone:tone.textContent};
++    const email = {original:'你们的设计稿怎么还没给？我们开发都等着呢。今天能不能发一下，不然上线时间又要往后拖了。',tone:'礼貌得体 · 明确诉求',result:'<h3>主题：请协助确认设计稿交付时间</h3><p>你好，想和你确认一下设计稿的最新进展。</p><p>开发团队正在等待设计稿，以推进后续工作。为保障上线计划，<span class="highlight">方便今天提供最新版本吗？</span></p><p>如果时间上有困难，也请告知预计交付时间，我们可以一起协调后续安排。</p><p>感谢支持与配合！</p>'};
++    function setMode(mode){const data = mode === 'email' ? email : weekly;original.textContent = data.original;result.innerHTML = data.result;tone.textContent = data.tone;document.querySelectorAll('[role="tab"]').forEach(tab=>{const active=tab.dataset.mode===mode;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1});document.getElementById('demo-panel').setAttribute('aria-labelledby',mode+'-tab');}
++    document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>setMode(el.dataset.mode)));
++    document.querySelector('[role="tablist"]').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const mode=event.key==='Home'?'weekly':event.key==='End'?'email':document.getElementById('weekly-tab').getAttribute('aria-selected')==='true'?'email':'weekly';setMode(mode);document.getElementById(mode+'-tab').focus();});
++    let toastTimer;
++    function notify(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('visible'),2600);}
++    document.getElementById('copy').addEventListener('click',async()=>{const text=result.innerText;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{const area=document.createElement('textarea');area.value=text;area.style.cssText='position:fixed;top:0;left:-9999px';document.body.appendChild(area);area.select();const success=document.execCommand('copy');area.remove();document.getElementById('copy').focus();if(!success)throw new Error('Copy failed');}notify('已复制，带着更好的表达出发。');}catch{notify('暂时无法复制，请选中改写结果手动复制。');}});
++  </script>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..bacdea0099e872593a59f273a816a71235a14148
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,82 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f6f2">
++  <title>言简 — 把想法，写得更好</title>
++  <style>
++    :root{--paper:#f7f6f2;--ink:#252923;--muted:#7b7e75;--line:#e2e3da;--orange:#e76838;--green:#51624d}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-offset:5px}button:disabled{cursor:wait}::selection{background:#f5c6ad}.container{width:min(1240px,calc(100% - 96px));margin:auto}
++    header{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-size:25px;font-weight:750;letter-spacing:-1px}.brand-mark{width:31px;height:33px;position:relative;display:inline-block}.brand-mark:before,.brand-mark:after{content:"";position:absolute;width:12px;height:29px;background:var(--orange);border-radius:3px;transform:skew(-24deg);top:2px}.brand-mark:before{left:4px}.brand-mark:after{left:19px;height:20px;top:11px}.brand-en{font-size:12px;color:var(--muted);font-weight:500;margin-left:8px;letter-spacing:1px}nav{display:flex;align-items:center;gap:36px;font-size:13px;color:#61655c}nav a:hover{color:var(--orange)}.nav-cta{background:var(--ink);color:white;padding:12px 20px;border-radius:7px;display:flex;gap:22px;align-items:center;font-size:13px}.nav-cta:hover{background:#40463b;color:white}.arrow{font-size:20px;line-height:1}
++    .hero{display:grid;grid-template-columns:.95fr 1.15fr;gap:50px;align-items:center;padding:84px 0 76px}.eyebrow{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:1.8px;font-weight:600;color:#626859}.dot{height:7px;width:7px;background:var(--orange);border-radius:50%;box-shadow:0 0 0 4px #e7683810}.hero h1{font-size:clamp(38px,4.05vw,58px);line-height:1.35;letter-spacing:-2px;font-weight:650;margin:25px 0 23px}.hero h1 .accent{color:var(--orange);position:relative;white-space:nowrap}.accent:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:10px;border-top:2px solid var(--orange);border-radius:50%;transform:rotate(-2deg);opacity:.6}.hero-copy>p{font-size:15px;line-height:1.95;color:#787c72;margin:0 0 29px}.actions{display:flex;align-items:center;gap:22px}.primary{border:0;display:inline-flex;align-items:center;justify-content:center;gap:30px;background:var(--orange);color:#fff;border-radius:7px;padding:16px 22px;font-size:14px;font-weight:600;box-shadow:0 5px 10px #d9602310;transition:background .2s,transform .2s}.primary:hover{background:#d75b2b;transform:translateY(-2px)}.secondary{display:flex;align-items:center;gap:8px;font-size:13px;color:#65695f}.play{border:1px solid #b8bcaf;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-size:9px}.fine-print{font-size:11px;color:#96998e;margin-top:15px;letter-spacing:.2px}.hero-proof{display:flex;align-items:center;gap:12px;margin-top:36px}.avatars{display:flex;padding-left:0}.avatar{width:29px;height:29px;border:2px solid var(--paper);border-radius:50%;margin-left:-6px;display:grid;place-items:center;font-size:11px;font-family:Georgia,serif;color:#fff;background:#858c79}.avatar:first-child{margin-left:0;background:#c99d7b}.avatar:nth-child(2){background:#788b86}.avatar:nth-child(3){background:#a5a085}.avatar:nth-child(4){background:#6f7068}.proof-text{font-size:11px;color:#85897d}.proof-text strong{font-weight:500;color:#464d40}.sparkle{color:var(--orange)}
++    .preview-wrap{position:relative;padding:10px 0 25px}.preview-wrap:before{content:"";position:absolute;inset:-30px -35px -10px;background:radial-gradient(ellipse,#e7e7d8 0,transparent 70%);z-index:-1}.editor{background:#fff;border:1px solid #dedfd6;border-radius:12px;box-shadow:0 20px 50px #3f492810,0 2px 6px #3f492804;overflow:hidden;transform:rotate(-1deg)}.editor-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eeeee7;padding:17px 19px;font-size:11px;color:#92968b}.window-dots{display:flex;gap:5px}.window-dots i{width:7px;height:7px;background:#dadcd3;border-radius:50%}.window-dots i:first-child{background:#e9b4a0}.editor-title{color:#686f60;display:flex;align-items:center;gap:7px}.tiny-symbol{color:var(--orange);font-size:15px}.editor-tabs{display:flex;gap:6px;padding:17px 20px 14px}.editor-tab{font-size:12px;background:transparent;border:0;color:#8c9085;padding:8px 13px;border-radius:5px}.editor-tab.active{background:#f0f2eb;color:#4f6048;font-weight:600}.editor-body{padding:0 22px 20px}.section-label{font-size:10px;color:#96998f;letter-spacing:.7px;display:flex;justify-content:space-between;align-items:center}.original{font-size:12px;line-height:1.9;background:#f7f7f3;border-radius:6px;padding:13px 15px;margin:10px 0 17px;color:#878b80;min-height:72px}.rewrite-label{color:#637158;display:flex;gap:6px;align-items:center;font-size:11px;font-weight:600}.tag{font-size:9px;background:#f0f3eb;padding:4px 7px;border-radius:4px;font-weight:400;color:#7f8b72}.result{font-size:12px;line-height:1.85;padding:11px 0 0;color:#626a5b;min-height:190px}.result h3{font-size:13px;color:#374131;margin:0 0 9px;font-weight:650}.result p{margin:6px 0}.result strong{font-weight:600;color:#48543e}.highlight{background:#eef1e7;padding:1px 2px}.editor-bottom{border-top:1px solid #eff0e9;display:flex;justify-content:space-between;align-items:center;padding:14px 21px;color:#8f9586;font-size:10px}.saved{display:flex;gap:5px;align-items:center}.copy-button{border:0;background:transparent;color:#707865;padding:3px;display:flex;gap:6px;align-items:center;font-size:10px}.copy-button:hover{color:var(--orange)}.floating-note{position:absolute;right:-19px;bottom:6px;background:#fffefa;border:1px solid #e4e6d9;border-radius:8px;box-shadow:0 8px 22px #383f2010;padding:13px 17px;display:flex;align-items:center;gap:11px;transform:rotate(3deg);font-size:11px;color:#6d765e}.check-circle{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#eef2e7;color:#697f4e;font-size:14px}.floating-note strong{display:block;color:#454e3b;margin-bottom:3px;font-size:12px}.floating-note small{font-size:10px;color:#989e8b}
++    .trust-strip{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0}.trust-label{color:#94978c;font-size:11px;line-height:1.8}.situations{display:flex;gap:38px;color:#757d6c;font-size:13px}.situations span{display:flex;align-items:center;gap:8px}.situations svg{width:17px;height:17px;stroke-width:1.5}
++    .features{padding:67px 0 65px}.section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:27px}.kicker{font-size:10px;letter-spacing:2px;color:var(--orange);font-weight:600;margin:0 0 12px}.section-heading h2{font-size:29px;font-weight:600;letter-spacing:-.8px;margin:0}.section-heading>p{font-size:12px;color:#8c9084;line-height:1.9;margin:0 0 3px}.feature-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.feature-card{padding:25px 25px 22px;border:1px solid var(--line);border-radius:9px;background:#fafaf6;position:relative;overflow:hidden}.feature-card:first-child{background:#eef0e7;border-color:#e0e5d5}.feature-card:nth-child(2){background:#f6eee6;border-color:#ecdfd2}.card-top{display:flex;justify-content:space-between;align-items:center}.icon-box{height:34px;width:34px;background:#ffffff90;border:1px solid #ffffff;border-radius:8px;display:grid;place-items:center;color:#6c7b5f}.feature-card:nth-child(2) .icon-box{color:#b68360}.icon-box svg{width:18px;height:18px}.card-number{font-family:Georgia,serif;font-size:12px;color:#a5aa99}.feature-card h3{font-size:17px;font-weight:600;margin:19px 0 9px;letter-spacing:-.3px}.feature-card>p{font-size:12px;line-height:1.9;color:#8b9082;margin:0 0 21px}.card-foot{font-size:10px;display:flex;gap:7px;align-items:center;color:#7d876f}.card-foot span{background:#ffffff7d;padding:4px 8px;border-radius:4px}.feature-card .card-foot>a{margin-left:auto;font-size:18px;color:#7f8871;transition:transform .2s}.feature-card .card-foot>a:hover{transform:translateX(4px)}
++    .closing{border-top:1px solid var(--line);padding:38px 0;display:flex;align-items:center;justify-content:space-between}.closing h2{font-size:21px;font-weight:550;margin:0 0 8px}.closing p{font-size:12px;color:#8c9084;margin:0}.closing a{font-size:12px;border-bottom:1px solid #b3b9a7;padding:6px 0;display:flex;gap:25px;align-items:center;color:#5e6b52}footer{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;color:#a0a398;font-size:10px}footer span:last-child{letter-spacing:.5px}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:8px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:10}.toast.visible{opacity:1;transform:translate(-50%,0)}svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.mobile-hint{display:none}
++    @media(min-width:1450px){.hero{padding-top:100px;padding-bottom:90px}.hero h1{font-size:59px}}
++    @media(max-width:1050px){.container{width:calc(100% - 64px)}.hero{gap:28px;padding-top:65px}.hero h1{font-size:39px}.hero-copy>p{font-size:13px}.situations{gap:20px}.feature-card{padding:22px 18px}.brand-en{display:none}.floating-note{right:-10px}.actions{gap:15px}.primary{gap:15px}}
++    @media(max-width:760px){.container{width:calc(100% - 40px)}header{height:79px}.brand{font-size:23px}nav{gap:16px}nav>a:not(.nav-cta){display:none}.nav-cta{padding:10px 14px;font-size:11px;gap:14px}.hero{grid-template-columns:1fr;gap:36px;padding:48px 0 35px}.hero h1{font-size:44px;letter-spacing:-1.7px;margin-top:23px}.hero-copy>p{font-size:14px}.hero-proof{margin-top:25px}.preview-wrap{max-width:560px;width:100%;margin:auto;padding:8px 5px 25px}.preview-wrap:before{inset:0}.editor{transform:rotate(-.6deg)}.floating-note{right:-3px;bottom:8px}.trust-strip{align-items:start;gap:20px}.trust-label{font-size:10px;flex-shrink:0}.situations{display:grid;grid-template-columns:1fr 1fr;gap:15px 20px;font-size:11px}.situations svg{width:14px}.features{padding:44px 0}.section-heading{display:block}.section-heading h2{font-size:26px}.section-heading>p{margin-top:13px}.feature-grid{grid-template-columns:1fr;gap:13px}.feature-card{padding:22px 23px}.feature-card h3{margin-top:14px}.feature-card>p{margin-bottom:16px}.closing{gap:20px}.closing h2{font-size:18px}.closing a{white-space:nowrap;gap:12px}footer{line-height:1.8;gap:15px}.eyebrow{font-size:10px}.result{min-height:185px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;transform:none!important}}
++  </style>
++</head>
++<body>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="言简首页"><span class="brand-mark" aria-hidden="true"></span>言简<span class="brand-en">YANJIAN</span></a>
++      <nav aria-label="主导航"><a href="#features">能帮你做什么</a><a href="#demo">看看改写效果</a><a class="nav-cta" href="#demo" data-mode="weekly">体验言简 <span class="arrow">↗</span></a></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-title">
++        <div class="hero-copy">
++          <div class="eyebrow"><span class="dot"></span> 你的 AI 职场写作搭子</div>
++          <h1 id="hero-title">想法已经很好，<br>让表达<span class="accent">更进一步。</span></h1>
++          <p>零散的进展，变成条理清晰的周报。<br>难开口的话，写成恰到好处的邮件。<br>从「怎么写」到「写好了」，交给言简。</p>
++          <div class="actions"><a class="primary" href="#demo" data-mode="weekly">体验 AI 改写 <span class="arrow">↗</span></a><a class="secondary" href="#demo" data-mode="email"><span class="play" aria-hidden="true">▶</span>看看邮件怎么改</a></div>
++          <div class="fine-print">交互示例 · 无需注册，立即查看改写效果</div>
++          <div class="hero-proof"><div class="avatars" aria-hidden="true"><span class="avatar">L</span><span class="avatar">W</span><span class="avatar">Y</span><span class="avatar">C</span></div><div class="proof-text">为每一个<span class="sparkle"> ✧ </span><strong>认真工作的人</strong>而写</div></div>
++        </div>
++        <div class="preview-wrap" id="demo">
++          <div class="editor">
++            <div class="editor-header"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><div class="editor-title"><span class="tiny-symbol">✳</span> 言简 · 写作工作台</div><span>示例预览</span></div>
++            <div class="editor-tabs" role="tablist" aria-label="选择改写场景"><button class="editor-tab active" id="weekly-tab" role="tab" aria-selected="true" aria-controls="demo-panel" data-mode="weekly">▤ &nbsp; 周报润色</button><button class="editor-tab" id="email-tab" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-mode="email">✉ &nbsp; 邮件改写</button></div>
++            <div class="editor-body" id="demo-panel" role="tabpanel" aria-labelledby="weekly-tab" tabindex="0">
++              <div class="section-label"><span>你的原稿</span><span id="input-note">有想法就行，不必字斟句酌</span></div>
++              <div class="original" id="original">这周做了首页改版，跟设计对了三次，终于上线了。还修了几个 bug。下周准备做用户访谈，看看反馈。</div>
++              <div class="section-label"><span class="rewrite-label"><span class="tiny-symbol">✧</span> 言简帮你写</span><span class="tag" id="tone">条理清晰 · 突出重点</span></div>
++              <div class="result" id="result" aria-live="polite"><h3>本周工作总结</h3><p><strong>01 &nbsp; 推进首页改版上线</strong><br>与设计团队完成 3 轮方案对齐，<span class="highlight">完成首页改版并上线</span>。</p><p><strong>02 &nbsp; 优化产品使用体验</strong><br>修复多项已知问题，改善产品体验。</p><p><strong>下周计划</strong><br>开展用户访谈，收集改版反馈，为后续优化提供依据。</p></div>
++            </div>
++            <div class="editor-bottom"><span class="saved"><span style="color:#7c8b6a">✓</span> 保留你的原意，让表达更清晰</span><button class="copy-button" id="copy" aria-label="复制改写结果"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>复制结果</span></button></div>
++          </div>
++          <div class="floating-note"><span class="check-circle">✓</span><div><strong>少一点纠结，多一点从容</strong><small>让每一次表达，都更有底气。</small></div></div>
++        </div>
++      </section>
++      <div class="trust-strip"><div class="trust-label">不止会写，更懂你的<br>每一个工作日</div><div class="situations"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>周五的工作周报</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>发给客户的邮件</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a8 8 0 0 1-8 8H7l-4 3V11a9 9 0 0 1 18 0Z"/><path d="M8 10h8M8 14h5"/></svg>需要分寸的沟通</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"/></svg>值得被看见的成果</span></div></div>
++      <section class="features" id="features" aria-labelledby="features-title">
++        <div class="section-heading"><div><p class="kicker">LESS WRITING. MORE LIVING.</p><h2 id="features-title">那些难写的时刻，都有言简。</h2></div><p>你专注把事情做好，<br>我们帮你把事情说好。</p></div>
++        <div class="feature-grid">
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span><span class="card-number">01 / REPORT</span></div><h3>周报有重点，努力被看见</h3><p>把流水账整理成工作成果。梳理进展、提炼重点，让每一份付出都有清晰的表达。</p><div class="card-foot"><span>梳理结构</span><span>突出成果</span><a href="#demo" data-mode="weekly" aria-label="查看周报改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span><span class="card-number">02 / EMAIL</span></div><h3>邮件有分寸，沟通更顺畅</h3><p>催进度不生硬，提需求不含糊。根据沟通对象调整语气，把想说的话，得体地说出来。</p><div class="card-foot"><span>调整语气</span><span>清晰传达</span><a href="#demo" data-mode="email" aria-label="查看邮件改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/></svg></span><span class="card-number">03 / YOUR VOICE</span></div><h3>表达更出色，依然是你</h3><p>润色语言，保留原意。告别空泛的套话，让文字专业又自然，带着你自己的温度。</p><div class="card-foot"><span>保留原意</span><span>自然表达</span><a href="#demo" data-mode="weekly" aria-label="查看自然表达示例">↗</a></div></article>
++        </div>
++      </section>
++      <section class="closing"><div><h2>写得轻松一点，下班早一点。</h2><p>从下一份周报、下一封邮件开始。</p></div><a href="#demo" data-mode="email">试试言简 <span class="arrow">↗</span></a></section>
++    </main>
++    <footer><span>© 2026 言简 YANJIAN</span><span>好想法，值得好表达。 &nbsp;✳</span></footer>
++  </div>
++  <div class="toast" id="toast" role="status" aria-live="polite"></div>
++  <script>
++    const original = document.getElementById('original');
++    const result = document.getElementById('result');
++    const tone = document.getElementById('tone');
++    const weekly = {original:original.textContent,result:result.innerHTML,tone:tone.textContent};
++    const email = {original:'你们的设计稿怎么还没给？我们开发都等着呢。今天能不能发一下，不然上线时间又要往后拖了。',tone:'礼貌得体 · 明确诉求',result:'<h3>主题：请协助确认设计稿交付时间</h3><p>你好，想和你确认一下设计稿的最新进展。</p><p>开发团队正在等待设计稿，以推进后续工作。为保障上线计划，<span class="highlight">方便今天提供最新版本吗？</span></p><p>如果时间上有困难，也请告知预计交付时间，我们可以一起协调后续安排。</p><p>感谢支持与配合！</p>'};
++    function setMode(mode){const data = mode === 'email' ? email : weekly;original.textContent = data.original;result.innerHTML = data.result;tone.textContent = data.tone;document.querySelectorAll('[role="tab"]').forEach(tab=>{const active=tab.dataset.mode===mode;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1});document.getElementById('demo-panel').setAttribute('aria-labelledby',mode+'-tab');}
++    document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>setMode(el.dataset.mode)));
++    document.querySelector('[role="tablist"]').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const mode=event.key==='Home'?'weekly':event.key==='End'?'email':document.getElementById('weekly-tab').getAttribute('aria-selected')==='true'?'email':'weekly';setMode(mode);document.getElementById(mode+'-tab').focus();});
++    let toastTimer;
++    function notify(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('visible'),2600);}
++    document.getElementById('copy').addEventListener('click',async()=>{const text=result.innerText;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{const area=document.createElement('textarea');area.value=text;area.style.cssText='position:fixed;top:0;left:-9999px';document.body.appendChild(area);area.select();const success=document.execCommand('copy');area.remove();document.getElementById('copy').focus();if(!success)throw new Error('Copy failed');}notify('已复制，带着更好的表达出发。');}catch{notify('暂时无法复制，请选中改写结果手动复制。');}});
++  </script>
++</body>
++</html>
+
+codex
+页面已完成，采用暖白与橙色搭配，支持切换周报、邮件的改写示例和复制结果。我正在检查文件与脚本，确保可以直接打开使用。
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+import re, subprocess, shutil
+p = Path('index.html')
+s = p.read_text()
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=[]; self.refs=[]
+    def handle_starttag(self, tag, attrs):
+        a=dict(attrs)
+        if 'id' in a: self.ids.append(a['id'])
+        if a.get('href','').startswith('#') and len(a['href'])>1: self.refs.append(a['href'][1:])
+c=Check(); c.feed(s)
+assert len(c.ids)==len(set(c.ids)), 'Duplicate IDs'
+assert all(ref in c.ids for ref in c.refs), 'Broken internal link'
+assert '<html lang=\"zh-CN\">' in s
+script=re.search(r'<script>(.*?)</script>',s,re.S).group(1)
+if shutil.which('node'):
+    checked=subprocess.run(['node','--check'],input=script,text=True,capture_output=True)
+    assert checked.returncode==0, checked.stderr
+    print('JavaScript syntax: OK')
+print(f'HTML and navigation checks: OK. index.html: {p.stat().st_size:,} bytes')
+PY" in <tmp>/measure-baseline-codex-004-7VxttJ
+ succeeded in 9ms:
+JavaScript syntax: OK
+HTML and navigation checks: OK. index.html: 21,575 bytes
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..bacdea0099e872593a59f273a816a71235a14148
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,82 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f6f2">
++  <title>言简 — 把想法，写得更好</title>
++  <style>
++    :root{--paper:#f7f6f2;--ink:#252923;--muted:#7b7e75;--line:#e2e3da;--orange:#e76838;--green:#51624d}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-offset:5px}button:disabled{cursor:wait}::selection{background:#f5c6ad}.container{width:min(1240px,calc(100% - 96px));margin:auto}
++    header{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-size:25px;font-weight:750;letter-spacing:-1px}.brand-mark{width:31px;height:33px;position:relative;display:inline-block}.brand-mark:before,.brand-mark:after{content:"";position:absolute;width:12px;height:29px;background:var(--orange);border-radius:3px;transform:skew(-24deg);top:2px}.brand-mark:before{left:4px}.brand-mark:after{left:19px;height:20px;top:11px}.brand-en{font-size:12px;color:var(--muted);font-weight:500;margin-left:8px;letter-spacing:1px}nav{display:flex;align-items:center;gap:36px;font-size:13px;color:#61655c}nav a:hover{color:var(--orange)}.nav-cta{background:var(--ink);color:white;padding:12px 20px;border-radius:7px;display:flex;gap:22px;align-items:center;font-size:13px}.nav-cta:hover{background:#40463b;color:white}.arrow{font-size:20px;line-height:1}
++    .hero{display:grid;grid-template-columns:.95fr 1.15fr;gap:50px;align-items:center;padding:84px 0 76px}.eyebrow{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:1.8px;font-weight:600;color:#626859}.dot{height:7px;width:7px;background:var(--orange);border-radius:50%;box-shadow:0 0 0 4px #e7683810}.hero h1{font-size:clamp(38px,4.05vw,58px);line-height:1.35;letter-spacing:-2px;font-weight:650;margin:25px 0 23px}.hero h1 .accent{color:var(--orange);position:relative;white-space:nowrap}.accent:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:10px;border-top:2px solid var(--orange);border-radius:50%;transform:rotate(-2deg);opacity:.6}.hero-copy>p{font-size:15px;line-height:1.95;color:#787c72;margin:0 0 29px}.actions{display:flex;align-items:center;gap:22px}.primary{border:0;display:inline-flex;align-items:center;justify-content:center;gap:30px;background:var(--orange);color:#fff;border-radius:7px;padding:16px 22px;font-size:14px;font-weight:600;box-shadow:0 5px 10px #d9602310;transition:background .2s,transform .2s}.primary:hover{background:#d75b2b;transform:translateY(-2px)}.secondary{display:flex;align-items:center;gap:8px;font-size:13px;color:#65695f}.play{border:1px solid #b8bcaf;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-size:9px}.fine-print{font-size:11px;color:#96998e;margin-top:15px;letter-spacing:.2px}.hero-proof{display:flex;align-items:center;gap:12px;margin-top:36px}.avatars{display:flex;padding-left:0}.avatar{width:29px;height:29px;border:2px solid var(--paper);border-radius:50%;margin-left:-6px;display:grid;place-items:center;font-size:11px;font-family:Georgia,serif;color:#fff;background:#858c79}.avatar:first-child{margin-left:0;background:#c99d7b}.avatar:nth-child(2){background:#788b86}.avatar:nth-child(3){background:#a5a085}.avatar:nth-child(4){background:#6f7068}.proof-text{font-size:11px;color:#85897d}.proof-text strong{font-weight:500;color:#464d40}.sparkle{color:var(--orange)}
++    .preview-wrap{position:relative;padding:10px 0 25px}.preview-wrap:before{content:"";position:absolute;inset:-30px -35px -10px;background:radial-gradient(ellipse,#e7e7d8 0,transparent 70%);z-index:-1}.editor{background:#fff;border:1px solid #dedfd6;border-radius:12px;box-shadow:0 20px 50px #3f492810,0 2px 6px #3f492804;overflow:hidden;transform:rotate(-1deg)}.editor-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eeeee7;padding:17px 19px;font-size:11px;color:#92968b}.window-dots{display:flex;gap:5px}.window-dots i{width:7px;height:7px;background:#dadcd3;border-radius:50%}.window-dots i:first-child{background:#e9b4a0}.editor-title{color:#686f60;display:flex;align-items:center;gap:7px}.tiny-symbol{color:var(--orange);font-size:15px}.editor-tabs{display:flex;gap:6px;padding:17px 20px 14px}.editor-tab{font-size:12px;background:transparent;border:0;color:#8c9085;padding:8px 13px;border-radius:5px}.editor-tab.active{background:#f0f2eb;color:#4f6048;font-weight:600}.editor-body{padding:0 22px 20px}.section-label{font-size:10px;color:#96998f;letter-spacing:.7px;display:flex;justify-content:space-between;align-items:center}.original{font-size:12px;line-height:1.9;background:#f7f7f3;border-radius:6px;padding:13px 15px;margin:10px 0 17px;color:#878b80;min-height:72px}.rewrite-label{color:#637158;display:flex;gap:6px;align-items:center;font-size:11px;font-weight:600}.tag{font-size:9px;background:#f0f3eb;padding:4px 7px;border-radius:4px;font-weight:400;color:#7f8b72}.result{font-size:12px;line-height:1.85;padding:11px 0 0;color:#626a5b;min-height:190px}.result h3{font-size:13px;color:#374131;margin:0 0 9px;font-weight:650}.result p{margin:6px 0}.result strong{font-weight:600;color:#48543e}.highlight{background:#eef1e7;padding:1px 2px}.editor-bottom{border-top:1px solid #eff0e9;display:flex;justify-content:space-between;align-items:center;padding:14px 21px;color:#8f9586;font-size:10px}.saved{display:flex;gap:5px;align-items:center}.copy-button{border:0;background:transparent;color:#707865;padding:3px;display:flex;gap:6px;align-items:center;font-size:10px}.copy-button:hover{color:var(--orange)}.floating-note{position:absolute;right:-19px;bottom:6px;background:#fffefa;border:1px solid #e4e6d9;border-radius:8px;box-shadow:0 8px 22px #383f2010;padding:13px 17px;display:flex;align-items:center;gap:11px;transform:rotate(3deg);font-size:11px;color:#6d765e}.check-circle{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#eef2e7;color:#697f4e;font-size:14px}.floating-note strong{display:block;color:#454e3b;margin-bottom:3px;font-size:12px}.floating-note small{font-size:10px;color:#989e8b}
++    .trust-strip{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0}.trust-label{color:#94978c;font-size:11px;line-height:1.8}.situations{display:flex;gap:38px;color:#757d6c;font-size:13px}.situations span{display:flex;align-items:center;gap:8px}.situations svg{width:17px;height:17px;stroke-width:1.5}
++    .features{padding:67px 0 65px}.section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:27px}.kicker{font-size:10px;letter-spacing:2px;color:var(--orange);font-weight:600;margin:0 0 12px}.section-heading h2{font-size:29px;font-weight:600;letter-spacing:-.8px;margin:0}.section-heading>p{font-size:12px;color:#8c9084;line-height:1.9;margin:0 0 3px}.feature-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.feature-card{padding:25px 25px 22px;border:1px solid var(--line);border-radius:9px;background:#fafaf6;position:relative;overflow:hidden}.feature-card:first-child{background:#eef0e7;border-color:#e0e5d5}.feature-card:nth-child(2){background:#f6eee6;border-color:#ecdfd2}.card-top{display:flex;justify-content:space-between;align-items:center}.icon-box{height:34px;width:34px;background:#ffffff90;border:1px solid #ffffff;border-radius:8px;display:grid;place-items:center;color:#6c7b5f}.feature-card:nth-child(2) .icon-box{color:#b68360}.icon-box svg{width:18px;height:18px}.card-number{font-family:Georgia,serif;font-size:12px;color:#a5aa99}.feature-card h3{font-size:17px;font-weight:600;margin:19px 0 9px;letter-spacing:-.3px}.feature-card>p{font-size:12px;line-height:1.9;color:#8b9082;margin:0 0 21px}.card-foot{font-size:10px;display:flex;gap:7px;align-items:center;color:#7d876f}.card-foot span{background:#ffffff7d;padding:4px 8px;border-radius:4px}.feature-card .card-foot>a{margin-left:auto;font-size:18px;color:#7f8871;transition:transform .2s}.feature-card .card-foot>a:hover{transform:translateX(4px)}
++    .closing{border-top:1px solid var(--line);padding:38px 0;display:flex;align-items:center;justify-content:space-between}.closing h2{font-size:21px;font-weight:550;margin:0 0 8px}.closing p{font-size:12px;color:#8c9084;margin:0}.closing a{font-size:12px;border-bottom:1px solid #b3b9a7;padding:6px 0;display:flex;gap:25px;align-items:center;color:#5e6b52}footer{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;color:#a0a398;font-size:10px}footer span:last-child{letter-spacing:.5px}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:8px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:10}.toast.visible{opacity:1;transform:translate(-50%,0)}svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.mobile-hint{display:none}
++    @media(min-width:1450px){.hero{padding-top:100px;padding-bottom:90px}.hero h1{font-size:59px}}
++    @media(max-width:1050px){.container{width:calc(100% - 64px)}.hero{gap:28px;padding-top:65px}.hero h1{font-size:39px}.hero-copy>p{font-size:13px}.situations{gap:20px}.feature-card{padding:22px 18px}.brand-en{display:none}.floating-note{right:-10px}.actions{gap:15px}.primary{gap:15px}}
++    @media(max-width:760px){.container{width:calc(100% - 40px)}header{height:79px}.brand{font-size:23px}nav{gap:16px}nav>a:not(.nav-cta){display:none}.nav-cta{padding:10px 14px;font-size:11px;gap:14px}.hero{grid-template-columns:1fr;gap:36px;padding:48px 0 35px}.hero h1{font-size:44px;letter-spacing:-1.7px;margin-top:23px}.hero-copy>p{font-size:14px}.hero-proof{margin-top:25px}.preview-wrap{max-width:560px;width:100%;margin:auto;padding:8px 5px 25px}.preview-wrap:before{inset:0}.editor{transform:rotate(-.6deg)}.floating-note{right:-3px;bottom:8px}.trust-strip{align-items:start;gap:20px}.trust-label{font-size:10px;flex-shrink:0}.situations{display:grid;grid-template-columns:1fr 1fr;gap:15px 20px;font-size:11px}.situations svg{width:14px}.features{padding:44px 0}.section-heading{display:block}.section-heading h2{font-size:26px}.section-heading>p{margin-top:13px}.feature-grid{grid-template-columns:1fr;gap:13px}.feature-card{padding:22px 23px}.feature-card h3{margin-top:14px}.feature-card>p{margin-bottom:16px}.closing{gap:20px}.closing h2{font-size:18px}.closing a{white-space:nowrap;gap:12px}footer{line-height:1.8;gap:15px}.eyebrow{font-size:10px}.result{min-height:185px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;transform:none!important}}
++  </style>
++</head>
++<body>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="言简首页"><span class="brand-mark" aria-hidden="true"></span>言简<span class="brand-en">YANJIAN</span></a>
++      <nav aria-label="主导航"><a href="#features">能帮你做什么</a><a href="#demo">看看改写效果</a><a class="nav-cta" href="#demo" data-mode="weekly">体验言简 <span class="arrow">↗</span></a></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-title">
++        <div class="hero-copy">
++          <div class="eyebrow"><span class="dot"></span> 你的 AI 职场写作搭子</div>
++          <h1 id="hero-title">想法已经很好，<br>让表达<span class="accent">更进一步。</span></h1>
++          <p>零散的进展，变成条理清晰的周报。<br>难开口的话，写成恰到好处的邮件。<br>从「怎么写」到「写好了」，交给言简。</p>
++          <div class="actions"><a class="primary" href="#demo" data-mode="weekly">体验 AI 改写 <span class="arrow">↗</span></a><a class="secondary" href="#demo" data-mode="email"><span class="play" aria-hidden="true">▶</span>看看邮件怎么改</a></div>
++          <div class="fine-print">交互示例 · 无需注册，立即查看改写效果</div>
++          <div class="hero-proof"><div class="avatars" aria-hidden="true"><span class="avatar">L</span><span class="avatar">W</span><span class="avatar">Y</span><span class="avatar">C</span></div><div class="proof-text">为每一个<span class="sparkle"> ✧ </span><strong>认真工作的人</strong>而写</div></div>
++        </div>
++        <div class="preview-wrap" id="demo">
++          <div class="editor">
++            <div class="editor-header"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><div class="editor-title"><span class="tiny-symbol">✳</span> 言简 · 写作工作台</div><span>示例预览</span></div>
++            <div class="editor-tabs" role="tablist" aria-label="选择改写场景"><button class="editor-tab active" id="weekly-tab" role="tab" aria-selected="true" aria-controls="demo-panel" data-mode="weekly">▤ &nbsp; 周报润色</button><button class="editor-tab" id="email-tab" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-mode="email">✉ &nbsp; 邮件改写</button></div>
++            <div class="editor-body" id="demo-panel" role="tabpanel" aria-labelledby="weekly-tab" tabindex="0">
++              <div class="section-label"><span>你的原稿</span><span id="input-note">有想法就行，不必字斟句酌</span></div>
++              <div class="original" id="original">这周做了首页改版，跟设计对了三次，终于上线了。还修了几个 bug。下周准备做用户访谈，看看反馈。</div>
++              <div class="section-label"><span class="rewrite-label"><span class="tiny-symbol">✧</span> 言简帮你写</span><span class="tag" id="tone">条理清晰 · 突出重点</span></div>
++              <div class="result" id="result" aria-live="polite"><h3>本周工作总结</h3><p><strong>01 &nbsp; 推进首页改版上线</strong><br>与设计团队完成 3 轮方案对齐，<span class="highlight">完成首页改版并上线</span>。</p><p><strong>02 &nbsp; 优化产品使用体验</strong><br>修复多项已知问题，改善产品体验。</p><p><strong>下周计划</strong><br>开展用户访谈，收集改版反馈，为后续优化提供依据。</p></div>
++            </div>
++            <div class="editor-bottom"><span class="saved"><span style="color:#7c8b6a">✓</span> 保留你的原意，让表达更清晰</span><button class="copy-button" id="copy" aria-label="复制改写结果"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>复制结果</span></button></div>
++          </div>
++          <div class="floating-note"><span class="check-circle">✓</span><div><strong>少一点纠结，多一点从容</strong><small>让每一次表达，都更有底气。</small></div></div>
++        </div>
++      </section>
++      <div class="trust-strip"><div class="trust-label">不止会写，更懂你的<br>每一个工作日</div><div class="situations"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>周五的工作周报</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>发给客户的邮件</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a8 8 0 0 1-8 8H7l-4 3V11a9 9 0 0 1 18 0Z"/><path d="M8 10h8M8 14h5"/></svg>需要分寸的沟通</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"/></svg>值得被看见的成果</span></div></div>
++      <section class="features" id="features" aria-labelledby="features-title">
++        <div class="section-heading"><div><p class="kicker">LESS WRITING. MORE LIVING.</p><h2 id="features-title">那些难写的时刻，都有言简。</h2></div><p>你专注把事情做好，<br>我们帮你把事情说好。</p></div>
++        <div class="feature-grid">
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span><span class="card-number">01 / REPORT</span></div><h3>周报有重点，努力被看见</h3><p>把流水账整理成工作成果。梳理进展、提炼重点，让每一份付出都有清晰的表达。</p><div class="card-foot"><span>梳理结构</span><span>突出成果</span><a href="#demo" data-mode="weekly" aria-label="查看周报改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span><span class="card-number">02 / EMAIL</span></div><h3>邮件有分寸，沟通更顺畅</h3><p>催进度不生硬，提需求不含糊。根据沟通对象调整语气，把想说的话，得体地说出来。</p><div class="card-foot"><span>调整语气</span><span>清晰传达</span><a href="#demo" data-mode="email" aria-label="查看邮件改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/></svg></span><span class="card-number">03 / YOUR VOICE</span></div><h3>表达更出色，依然是你</h3><p>润色语言，保留原意。告别空泛的套话，让文字专业又自然，带着你自己的温度。</p><div class="card-foot"><span>保留原意</span><span>自然表达</span><a href="#demo" data-mode="weekly" aria-label="查看自然表达示例">↗</a></div></article>
++        </div>
++      </section>
++      <section class="closing"><div><h2>写得轻松一点，下班早一点。</h2><p>从下一份周报、下一封邮件开始。</p></div><a href="#demo" data-mode="email">试试言简 <span class="arrow">↗</span></a></section>
++    </main>
++    <footer><span>© 2026 言简 YANJIAN</span><span>好想法，值得好表达。 &nbsp;✳</span></footer>
++  </div>
++  <div class="toast" id="toast" role="status" aria-live="polite"></div>
++  <script>
++    const original = document.getElementById('original');
++    const result = document.getElementById('result');
++    const tone = document.getElementById('tone');
++    const weekly = {original:original.textContent,result:result.innerHTML,tone:tone.textContent};
++    const email = {original:'你们的设计稿怎么还没给？我们开发都等着呢。今天能不能发一下，不然上线时间又要往后拖了。',tone:'礼貌得体 · 明确诉求',result:'<h3>主题：请协助确认设计稿交付时间</h3><p>你好，想和你确认一下设计稿的最新进展。</p><p>开发团队正在等待设计稿，以推进后续工作。为保障上线计划，<span class="highlight">方便今天提供最新版本吗？</span></p><p>如果时间上有困难，也请告知预计交付时间，我们可以一起协调后续安排。</p><p>感谢支持与配合！</p>'};
++    function setMode(mode){const data = mode === 'email' ? email : weekly;original.textContent = data.original;result.innerHTML = data.result;tone.textContent = data.tone;document.querySelectorAll('[role="tab"]').forEach(tab=>{const active=tab.dataset.mode===mode;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1});document.getElementById('demo-panel').setAttribute('aria-labelledby',mode+'-tab');}
++    document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>setMode(el.dataset.mode)));
++    document.querySelector('[role="tablist"]').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const mode=event.key==='Home'?'weekly':event.key==='End'?'email':document.getElementById('weekly-tab').getAttribute('aria-selected')==='true'?'email':'weekly';setMode(mode);document.getElementById(mode+'-tab').focus();});
++    let toastTimer;
++    function notify(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('visible'),2600);}
++    document.getElementById('copy').addEventListener('click',async()=>{const text=result.innerText;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{const area=document.createElement('textarea');area.value=text;area.style.cssText='position:fixed;top:0;left:-9999px';document.body.appendChild(area);area.select();const success=document.execCommand('copy');area.remove();document.getElementById('copy').focus();if(!success)throw new Error('Copy failed');}notify('已复制，带着更好的表达出发。');}catch{notify('暂时无法复制，请选中改写结果手动复制。');}});
++  </script>
++</body>
++</html>
+
+codex
+已生成 [index.html](index.html)，包含响应式产品介绍、周报与邮件改写示例切换、复制功能。样式和脚本均已内嵌，无需依赖，直接用浏览器打开即可。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..bacdea0099e872593a59f273a816a71235a14148
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,82 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f6f2">
++  <title>言简 — 把想法，写得更好</title>
++  <style>
++    :root{--paper:#f7f6f2;--ink:#252923;--muted:#7b7e75;--line:#e2e3da;--orange:#e76838;--green:#51624d}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--orange);outline-offset:5px}button:disabled{cursor:wait}::selection{background:#f5c6ad}.container{width:min(1240px,calc(100% - 96px));margin:auto}
++    header{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-size:25px;font-weight:750;letter-spacing:-1px}.brand-mark{width:31px;height:33px;position:relative;display:inline-block}.brand-mark:before,.brand-mark:after{content:"";position:absolute;width:12px;height:29px;background:var(--orange);border-radius:3px;transform:skew(-24deg);top:2px}.brand-mark:before{left:4px}.brand-mark:after{left:19px;height:20px;top:11px}.brand-en{font-size:12px;color:var(--muted);font-weight:500;margin-left:8px;letter-spacing:1px}nav{display:flex;align-items:center;gap:36px;font-size:13px;color:#61655c}nav a:hover{color:var(--orange)}.nav-cta{background:var(--ink);color:white;padding:12px 20px;border-radius:7px;display:flex;gap:22px;align-items:center;font-size:13px}.nav-cta:hover{background:#40463b;color:white}.arrow{font-size:20px;line-height:1}
++    .hero{display:grid;grid-template-columns:.95fr 1.15fr;gap:50px;align-items:center;padding:84px 0 76px}.eyebrow{display:flex;align-items:center;gap:9px;font-size:11px;letter-spacing:1.8px;font-weight:600;color:#626859}.dot{height:7px;width:7px;background:var(--orange);border-radius:50%;box-shadow:0 0 0 4px #e7683810}.hero h1{font-size:clamp(38px,4.05vw,58px);line-height:1.35;letter-spacing:-2px;font-weight:650;margin:25px 0 23px}.hero h1 .accent{color:var(--orange);position:relative;white-space:nowrap}.accent:after{content:"";position:absolute;left:0;right:0;bottom:-7px;height:10px;border-top:2px solid var(--orange);border-radius:50%;transform:rotate(-2deg);opacity:.6}.hero-copy>p{font-size:15px;line-height:1.95;color:#787c72;margin:0 0 29px}.actions{display:flex;align-items:center;gap:22px}.primary{border:0;display:inline-flex;align-items:center;justify-content:center;gap:30px;background:var(--orange);color:#fff;border-radius:7px;padding:16px 22px;font-size:14px;font-weight:600;box-shadow:0 5px 10px #d9602310;transition:background .2s,transform .2s}.primary:hover{background:#d75b2b;transform:translateY(-2px)}.secondary{display:flex;align-items:center;gap:8px;font-size:13px;color:#65695f}.play{border:1px solid #b8bcaf;width:23px;height:23px;border-radius:50%;display:grid;place-items:center;font-size:9px}.fine-print{font-size:11px;color:#96998e;margin-top:15px;letter-spacing:.2px}.hero-proof{display:flex;align-items:center;gap:12px;margin-top:36px}.avatars{display:flex;padding-left:0}.avatar{width:29px;height:29px;border:2px solid var(--paper);border-radius:50%;margin-left:-6px;display:grid;place-items:center;font-size:11px;font-family:Georgia,serif;color:#fff;background:#858c79}.avatar:first-child{margin-left:0;background:#c99d7b}.avatar:nth-child(2){background:#788b86}.avatar:nth-child(3){background:#a5a085}.avatar:nth-child(4){background:#6f7068}.proof-text{font-size:11px;color:#85897d}.proof-text strong{font-weight:500;color:#464d40}.sparkle{color:var(--orange)}
++    .preview-wrap{position:relative;padding:10px 0 25px}.preview-wrap:before{content:"";position:absolute;inset:-30px -35px -10px;background:radial-gradient(ellipse,#e7e7d8 0,transparent 70%);z-index:-1}.editor{background:#fff;border:1px solid #dedfd6;border-radius:12px;box-shadow:0 20px 50px #3f492810,0 2px 6px #3f492804;overflow:hidden;transform:rotate(-1deg)}.editor-header{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eeeee7;padding:17px 19px;font-size:11px;color:#92968b}.window-dots{display:flex;gap:5px}.window-dots i{width:7px;height:7px;background:#dadcd3;border-radius:50%}.window-dots i:first-child{background:#e9b4a0}.editor-title{color:#686f60;display:flex;align-items:center;gap:7px}.tiny-symbol{color:var(--orange);font-size:15px}.editor-tabs{display:flex;gap:6px;padding:17px 20px 14px}.editor-tab{font-size:12px;background:transparent;border:0;color:#8c9085;padding:8px 13px;border-radius:5px}.editor-tab.active{background:#f0f2eb;color:#4f6048;font-weight:600}.editor-body{padding:0 22px 20px}.section-label{font-size:10px;color:#96998f;letter-spacing:.7px;display:flex;justify-content:space-between;align-items:center}.original{font-size:12px;line-height:1.9;background:#f7f7f3;border-radius:6px;padding:13px 15px;margin:10px 0 17px;color:#878b80;min-height:72px}.rewrite-label{color:#637158;display:flex;gap:6px;align-items:center;font-size:11px;font-weight:600}.tag{font-size:9px;background:#f0f3eb;padding:4px 7px;border-radius:4px;font-weight:400;color:#7f8b72}.result{font-size:12px;line-height:1.85;padding:11px 0 0;color:#626a5b;min-height:190px}.result h3{font-size:13px;color:#374131;margin:0 0 9px;font-weight:650}.result p{margin:6px 0}.result strong{font-weight:600;color:#48543e}.highlight{background:#eef1e7;padding:1px 2px}.editor-bottom{border-top:1px solid #eff0e9;display:flex;justify-content:space-between;align-items:center;padding:14px 21px;color:#8f9586;font-size:10px}.saved{display:flex;gap:5px;align-items:center}.copy-button{border:0;background:transparent;color:#707865;padding:3px;display:flex;gap:6px;align-items:center;font-size:10px}.copy-button:hover{color:var(--orange)}.floating-note{position:absolute;right:-19px;bottom:6px;background:#fffefa;border:1px solid #e4e6d9;border-radius:8px;box-shadow:0 8px 22px #383f2010;padding:13px 17px;display:flex;align-items:center;gap:11px;transform:rotate(3deg);font-size:11px;color:#6d765e}.check-circle{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:#eef2e7;color:#697f4e;font-size:14px}.floating-note strong{display:block;color:#454e3b;margin-bottom:3px;font-size:12px}.floating-note small{font-size:10px;color:#989e8b}
++    .trust-strip{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0}.trust-label{color:#94978c;font-size:11px;line-height:1.8}.situations{display:flex;gap:38px;color:#757d6c;font-size:13px}.situations span{display:flex;align-items:center;gap:8px}.situations svg{width:17px;height:17px;stroke-width:1.5}
++    .features{padding:67px 0 65px}.section-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:27px}.kicker{font-size:10px;letter-spacing:2px;color:var(--orange);font-weight:600;margin:0 0 12px}.section-heading h2{font-size:29px;font-weight:600;letter-spacing:-.8px;margin:0}.section-heading>p{font-size:12px;color:#8c9084;line-height:1.9;margin:0 0 3px}.feature-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px}.feature-card{padding:25px 25px 22px;border:1px solid var(--line);border-radius:9px;background:#fafaf6;position:relative;overflow:hidden}.feature-card:first-child{background:#eef0e7;border-color:#e0e5d5}.feature-card:nth-child(2){background:#f6eee6;border-color:#ecdfd2}.card-top{display:flex;justify-content:space-between;align-items:center}.icon-box{height:34px;width:34px;background:#ffffff90;border:1px solid #ffffff;border-radius:8px;display:grid;place-items:center;color:#6c7b5f}.feature-card:nth-child(2) .icon-box{color:#b68360}.icon-box svg{width:18px;height:18px}.card-number{font-family:Georgia,serif;font-size:12px;color:#a5aa99}.feature-card h3{font-size:17px;font-weight:600;margin:19px 0 9px;letter-spacing:-.3px}.feature-card>p{font-size:12px;line-height:1.9;color:#8b9082;margin:0 0 21px}.card-foot{font-size:10px;display:flex;gap:7px;align-items:center;color:#7d876f}.card-foot span{background:#ffffff7d;padding:4px 8px;border-radius:4px}.feature-card .card-foot>a{margin-left:auto;font-size:18px;color:#7f8871;transition:transform .2s}.feature-card .card-foot>a:hover{transform:translateX(4px)}
++    .closing{border-top:1px solid var(--line);padding:38px 0;display:flex;align-items:center;justify-content:space-between}.closing h2{font-size:21px;font-weight:550;margin:0 0 8px}.closing p{font-size:12px;color:#8c9084;margin:0}.closing a{font-size:12px;border-bottom:1px solid #b3b9a7;padding:6px 0;display:flex;gap:25px;align-items:center;color:#5e6b52}footer{border-top:1px solid var(--line);padding:24px 0;display:flex;justify-content:space-between;color:#a0a398;font-size:10px}footer span:last-child{letter-spacing:.5px}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:12px 20px;border-radius:8px;font-size:12px;opacity:0;pointer-events:none;transition:.2s;z-index:10}.toast.visible{opacity:1;transform:translate(-50%,0)}svg{fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.mobile-hint{display:none}
++    @media(min-width:1450px){.hero{padding-top:100px;padding-bottom:90px}.hero h1{font-size:59px}}
++    @media(max-width:1050px){.container{width:calc(100% - 64px)}.hero{gap:28px;padding-top:65px}.hero h1{font-size:39px}.hero-copy>p{font-size:13px}.situations{gap:20px}.feature-card{padding:22px 18px}.brand-en{display:none}.floating-note{right:-10px}.actions{gap:15px}.primary{gap:15px}}
++    @media(max-width:760px){.container{width:calc(100% - 40px)}header{height:79px}.brand{font-size:23px}nav{gap:16px}nav>a:not(.nav-cta){display:none}.nav-cta{padding:10px 14px;font-size:11px;gap:14px}.hero{grid-template-columns:1fr;gap:36px;padding:48px 0 35px}.hero h1{font-size:44px;letter-spacing:-1.7px;margin-top:23px}.hero-copy>p{font-size:14px}.hero-proof{margin-top:25px}.preview-wrap{max-width:560px;width:100%;margin:auto;padding:8px 5px 25px}.preview-wrap:before{inset:0}.editor{transform:rotate(-.6deg)}.floating-note{right:-3px;bottom:8px}.trust-strip{align-items:start;gap:20px}.trust-label{font-size:10px;flex-shrink:0}.situations{display:grid;grid-template-columns:1fr 1fr;gap:15px 20px;font-size:11px}.situations svg{width:14px}.features{padding:44px 0}.section-heading{display:block}.section-heading h2{font-size:26px}.section-heading>p{margin-top:13px}.feature-grid{grid-template-columns:1fr;gap:13px}.feature-card{padding:22px 23px}.feature-card h3{margin-top:14px}.feature-card>p{margin-bottom:16px}.closing{gap:20px}.closing h2{font-size:18px}.closing a{white-space:nowrap;gap:12px}footer{line-height:1.8;gap:15px}.eyebrow{font-size:10px}.result{min-height:185px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;transform:none!important}}
++  </style>
++</head>
++<body>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="言简首页"><span class="brand-mark" aria-hidden="true"></span>言简<span class="brand-en">YANJIAN</span></a>
++      <nav aria-label="主导航"><a href="#features">能帮你做什么</a><a href="#demo">看看改写效果</a><a class="nav-cta" href="#demo" data-mode="weekly">体验言简 <span class="arrow">↗</span></a></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-title">
++        <div class="hero-copy">
++          <div class="eyebrow"><span class="dot"></span> 你的 AI 职场写作搭子</div>
++          <h1 id="hero-title">想法已经很好，<br>让表达<span class="accent">更进一步。</span></h1>
++          <p>零散的进展，变成条理清晰的周报。<br>难开口的话，写成恰到好处的邮件。<br>从「怎么写」到「写好了」，交给言简。</p>
++          <div class="actions"><a class="primary" href="#demo" data-mode="weekly">体验 AI 改写 <span class="arrow">↗</span></a><a class="secondary" href="#demo" data-mode="email"><span class="play" aria-hidden="true">▶</span>看看邮件怎么改</a></div>
++          <div class="fine-print">交互示例 · 无需注册，立即查看改写效果</div>
++          <div class="hero-proof"><div class="avatars" aria-hidden="true"><span class="avatar">L</span><span class="avatar">W</span><span class="avatar">Y</span><span class="avatar">C</span></div><div class="proof-text">为每一个<span class="sparkle"> ✧ </span><strong>认真工作的人</strong>而写</div></div>
++        </div>
++        <div class="preview-wrap" id="demo">
++          <div class="editor">
++            <div class="editor-header"><div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div><div class="editor-title"><span class="tiny-symbol">✳</span> 言简 · 写作工作台</div><span>示例预览</span></div>
++            <div class="editor-tabs" role="tablist" aria-label="选择改写场景"><button class="editor-tab active" id="weekly-tab" role="tab" aria-selected="true" aria-controls="demo-panel" data-mode="weekly">▤ &nbsp; 周报润色</button><button class="editor-tab" id="email-tab" role="tab" aria-selected="false" aria-controls="demo-panel" tabindex="-1" data-mode="email">✉ &nbsp; 邮件改写</button></div>
++            <div class="editor-body" id="demo-panel" role="tabpanel" aria-labelledby="weekly-tab" tabindex="0">
++              <div class="section-label"><span>你的原稿</span><span id="input-note">有想法就行，不必字斟句酌</span></div>
++              <div class="original" id="original">这周做了首页改版，跟设计对了三次，终于上线了。还修了几个 bug。下周准备做用户访谈，看看反馈。</div>
++              <div class="section-label"><span class="rewrite-label"><span class="tiny-symbol">✧</span> 言简帮你写</span><span class="tag" id="tone">条理清晰 · 突出重点</span></div>
++              <div class="result" id="result" aria-live="polite"><h3>本周工作总结</h3><p><strong>01 &nbsp; 推进首页改版上线</strong><br>与设计团队完成 3 轮方案对齐，<span class="highlight">完成首页改版并上线</span>。</p><p><strong>02 &nbsp; 优化产品使用体验</strong><br>修复多项已知问题，改善产品体验。</p><p><strong>下周计划</strong><br>开展用户访谈，收集改版反馈，为后续优化提供依据。</p></div>
++            </div>
++            <div class="editor-bottom"><span class="saved"><span style="color:#7c8b6a">✓</span> 保留你的原意，让表达更清晰</span><button class="copy-button" id="copy" aria-label="复制改写结果"><svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></svg><span>复制结果</span></button></div>
++          </div>
++          <div class="floating-note"><span class="check-circle">✓</span><div><strong>少一点纠结，多一点从容</strong><small>让每一次表达，都更有底气。</small></div></div>
++        </div>
++      </section>
++      <div class="trust-strip"><div class="trust-label">不止会写，更懂你的<br>每一个工作日</div><div class="situations"><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>周五的工作周报</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg>发给客户的邮件</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11a8 8 0 0 1-8 8H7l-4 3V11a9 9 0 0 1 18 0Z"/><path d="M8 10h8M8 14h5"/></svg>需要分寸的沟通</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6Z"/></svg>值得被看见的成果</span></div></div>
++      <section class="features" id="features" aria-labelledby="features-title">
++        <div class="section-heading"><div><p class="kicker">LESS WRITING. MORE LIVING.</p><h2 id="features-title">那些难写的时刻，都有言简。</h2></div><p>你专注把事情做好，<br>我们帮你把事情说好。</p></div>
++        <div class="feature-grid">
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg></span><span class="card-number">01 / REPORT</span></div><h3>周报有重点，努力被看见</h3><p>把流水账整理成工作成果。梳理进展、提炼重点，让每一份付出都有清晰的表达。</p><div class="card-foot"><span>梳理结构</span><span>突出成果</span><a href="#demo" data-mode="weekly" aria-label="查看周报改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg></span><span class="card-number">02 / EMAIL</span></div><h3>邮件有分寸，沟通更顺畅</h3><p>催进度不生硬，提需求不含糊。根据沟通对象调整语气，把想说的话，得体地说出来。</p><div class="card-foot"><span>调整语气</span><span>清晰传达</span><a href="#demo" data-mode="email" aria-label="查看邮件改写示例">↗</a></div></article>
++          <article class="feature-card"><div class="card-top"><span class="icon-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.4 6.6L21 12l-6.6 2.4L12 21l-2.4-6.6L3 12l6.6-2.4Z"/></svg></span><span class="card-number">03 / YOUR VOICE</span></div><h3>表达更出色，依然是你</h3><p>润色语言，保留原意。告别空泛的套话，让文字专业又自然，带着你自己的温度。</p><div class="card-foot"><span>保留原意</span><span>自然表达</span><a href="#demo" data-mode="weekly" aria-label="查看自然表达示例">↗</a></div></article>
++        </div>
++      </section>
++      <section class="closing"><div><h2>写得轻松一点，下班早一点。</h2><p>从下一份周报、下一封邮件开始。</p></div><a href="#demo" data-mode="email">试试言简 <span class="arrow">↗</span></a></section>
++    </main>
++    <footer><span>© 2026 言简 YANJIAN</span><span>好想法，值得好表达。 &nbsp;✳</span></footer>
++  </div>
++  <div class="toast" id="toast" role="status" aria-live="polite"></div>
++  <script>
++    const original = document.getElementById('original');
++    const result = document.getElementById('result');
++    const tone = document.getElementById('tone');
++    const weekly = {original:original.textContent,result:result.innerHTML,tone:tone.textContent};
++    const email = {original:'你们的设计稿怎么还没给？我们开发都等着呢。今天能不能发一下，不然上线时间又要往后拖了。',tone:'礼貌得体 · 明确诉求',result:'<h3>主题：请协助确认设计稿交付时间</h3><p>你好，想和你确认一下设计稿的最新进展。</p><p>开发团队正在等待设计稿，以推进后续工作。为保障上线计划，<span class="highlight">方便今天提供最新版本吗？</span></p><p>如果时间上有困难，也请告知预计交付时间，我们可以一起协调后续安排。</p><p>感谢支持与配合！</p>'};
++    function setMode(mode){const data = mode === 'email' ? email : weekly;original.textContent = data.original;result.innerHTML = data.result;tone.textContent = data.tone;document.querySelectorAll('[role="tab"]').forEach(tab=>{const active=tab.dataset.mode===mode;tab.classList.toggle('active',active);tab.setAttribute('aria-selected',String(active));tab.tabIndex=active?0:-1});document.getElementById('demo-panel').setAttribute('aria-labelledby',mode+'-tab');}
++    document.querySelectorAll('[data-mode]').forEach(el=>el.addEventListener('click',()=>setMode(el.dataset.mode)));
++    document.querySelector('[role="tablist"]').addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const mode=event.key==='Home'?'weekly':event.key==='End'?'email':document.getElementById('weekly-tab').getAttribute('aria-selected')==='true'?'email':'weekly';setMode(mode);document.getElementById(mode+'-tab').focus();});
++    let toastTimer;
++    function notify(message){const toast=document.getElementById('toast');toast.textContent=message;toast.classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('visible'),2600);}
++    document.getElementById('copy').addEventListener('click',async()=>{const text=result.innerText;try{if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(text);}else{const area=document.createElement('textarea');area.value=text;area.style.cssText='position:fixed;top:0;left:-9999px';document.body.appendChild(area);area.select();const success=document.execCommand('copy');area.remove();document.getElementById('copy').focus();if(!success)throw new Error('Copy failed');}notify('已复制，带着更好的表达出发。');}catch{notify('暂时无法复制，请选中改写结果手动复制。');}});
++  </script>
++</body>
++</html>
+
+tokens used
+10,869
+已生成 [index.html](index.html)，包含响应式产品介绍、周报与邮件改写示例切换、复制功能。样式和脚本均已内嵌，无需依赖，直接用浏览器打开即可。

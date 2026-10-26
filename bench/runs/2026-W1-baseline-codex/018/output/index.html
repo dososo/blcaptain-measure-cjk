@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7f2">
+  <title>守家 · 智能门锁使用指南</title>
+  <style>
+    :root{--paper:#f6f7f2;--white:#fff;--ink:#223d32;--muted:#738078;--green:#37654c;--line:#dce2d9;--soft:#eaf0e5;--orange:#a5743e}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:28px}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.7}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}a{color:inherit;text-decoration:none}button{cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #91ad69;outline-offset:5px}svg{display:block}button svg{flex-shrink:0}.wrap{width:min(1140px,calc(100% - 80px));margin:auto}
+    header{height:94px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:12px}.brand-mark{width:34px;height:38px;color:var(--green)}.brand-name{font-size:25px;font-weight:700;letter-spacing:3px}.brand-sub{font-size:11px;color:var(--muted);letter-spacing:2px;border-left:1px solid #ccd5ca;padding-left:16px;margin-left:5px}nav{display:flex;gap:35px;align-items:center;font-size:13px}nav a{color:var(--muted)}nav a:first-child{color:var(--ink)}.print{border:1px solid var(--line);background:transparent;border-radius:7px;padding:9px 14px;display:flex;gap:9px;align-items:center;color:var(--ink)}.print:hover{background:var(--soft)}
+    .hero{display:grid;grid-template-columns:1.1fr 1fr;min-height:427px;align-items:center;gap:35px;padding:43px 0 31px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--green);font-size:11px;letter-spacing:2px}.dot{width:6px;height:6px;border-radius:50%;background:var(--green)}h1{font-size:49px;line-height:1.35;letter-spacing:2px;font-weight:600;margin:19px 0 18px}h1 span{color:#668064}.hero-description{font-size:14px;line-height:1.9;color:var(--muted);margin:0}.hero-meta{display:flex;align-items:center;gap:22px;margin-top:28px;color:#647263;font-size:11px}.hero-meta span{display:flex;align-items:center;gap:6px}.hero-meta svg{width:15px;height:15px}.hero-art{position:relative;min-width:0;height:340px;background:radial-gradient(ellipse at 50% 57%,#e1e8d9 0%,#edf1e7 47%,transparent 70%);border-radius:50%}.hero-art>svg{width:100%;height:100%}.art-tag{position:absolute;font-size:11px;color:#738273;border-left:2px solid #9eb193;padding:1px 0 1px 10px;line-height:1.8}.art-tag.one{top:74px;left:4%}.art-tag.two{bottom:56px;right:0}.art-tag strong{color:#3c5341;font-size:12px;font-weight:500}.art-caption{position:absolute;bottom:1px;left:50%;transform:translateX(-50%);font-size:10px;color:#8a9788;white-space:nowrap;letter-spacing:1px}
+    .section-head{display:flex;align-items:center;justify-content:space-between;margin:10px 0 18px}.section-head h2{font-size:20px;font-weight:600;margin:0;letter-spacing:1px}.section-head p{font-size:12px;color:var(--muted);margin:0}.topic-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}.topic{position:relative;display:flex;align-items:center;text-align:left;gap:17px;min-height:111px;padding:22px;border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--ink);transition:background .2s,transform .2s,border-color .2s}.topic:hover{transform:translateY(-3px);border-color:#9cac96}.topic[aria-selected=true]{background:var(--green);border-color:var(--green);color:#fff;box-shadow:0 8px 20px #30533b0d}.topic-icon{width:44px;height:44px;display:grid;place-items:center;background:#e9eee3;border-radius:10px;flex-shrink:0}.topic-icon svg{width:26px;height:26px}.topic[aria-selected=true] .topic-icon{background:#ffffff13}.topic h3{margin:0 0 4px;font-size:17px;font-weight:500}.topic p{margin:0;font-size:11px;color:var(--muted)}.topic[aria-selected=true] p{color:#d3e1d2}.topic-arrow{margin-left:auto;font-size:20px;font-weight:300}.topic-num{position:absolute;right:17px;top:10px;font-size:9px;opacity:.4;letter-spacing:1px}
+    .guide{margin-top:28px;background:var(--white);border:1px solid var(--line);border-radius:14px;padding:31px 34px}.guide[hidden]{display:none}.guide-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px}.guide-title{display:flex;gap:12px;align-items:center}.guide-index{font-family:Georgia,serif;font-size:30px;color:#a8b6a0;line-height:1}.guide h2{font-size:23px;margin:0;letter-spacing:1px;font-weight:600}.guide-duration{font-size:11px;background:#f1f4ed;color:#788371;padding:5px 11px;border-radius:5px}.notice{display:flex;gap:10px;align-items:flex-start;background:#f1f5ed;border:1px solid #e5ebdf;padding:12px 15px;border-radius:7px;font-size:12px;color:#627359}.notice svg{width:16px;height:16px;flex-shrink:0;margin-top:2px}.notice strong{font-weight:600;color:#455b3e}.notice.warning{background:#faf3e8;border-color:#ede2cd;color:#8b7148}.notice.warning strong{color:#8b622f}.guide-body{display:grid;grid-template-columns:1fr 280px;gap:44px;margin-top:26px}.steps{padding:0;margin:0;list-style:none;counter-reset:step}.steps li{position:relative;display:flex;gap:15px;padding-bottom:23px}.steps li:not(:last-child):after{content:"";position:absolute;left:13px;top:31px;width:1px;bottom:5px;background:var(--line)}.steps li:last-child{padding-bottom:0}.step-number{width:27px;height:27px;flex-shrink:0;background:#eef2e9;border:1px solid #dce5d6;border-radius:50%;font-size:11px;display:grid;place-items:center;color:#5d7752;margin-top:1px}.steps h3{font-size:14px;font-weight:600;margin:1px 0 4px}.steps p{font-size:12px;color:var(--muted);margin:0;line-height:1.85}.steps kbd{font:inherit;display:inline-block;background:#f3f5f0;border:1px solid #e0e6db;border-radius:4px;padding:0 5px;color:#53644b}.side-note{border-radius:10px;background:#f7f8f4;padding:22px;align-self:start}.side-note h3{font-size:13px;display:flex;align-items:center;gap:8px;margin:0 0 9px}.side-note p{color:var(--muted);font-size:11px;line-height:1.9;margin:0}.finger-art{height:137px;display:grid;place-items:center}.finger-art svg{width:124px;height:124px}.tip-separator{height:1px;background:var(--line);margin:17px 0}.tip-small{font-size:10px!important;color:#8a9583!important}.completion{margin-top:24px;padding-top:17px;border-top:1px solid #edf0e9;display:flex;align-items:center;gap:9px;color:#66805b;font-size:11px}.completion svg{width:16px;height:16px;flex-shrink:0}.side-large-icon{height:115px;display:grid;place-items:center;color:#7a9269}.side-large-icon svg{width:65px;height:65px}
+    .faq{margin:38px 0 32px}.faq .section-head{margin-bottom:13px}.faq-list{border-top:1px solid var(--line)}details{border-bottom:1px solid var(--line)}summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:15px;cursor:pointer;padding:17px 2px;font-size:13px}summary::-webkit-details-marker{display:none}summary:after{content:"＋";font-size:20px;color:#819175;font-weight:300}details[open] summary:after{content:"−"}details p{max-width:900px;margin:0 30px 18px 2px;font-size:12px;color:var(--muted);line-height:1.9}.bottom-note{display:flex;align-items:center;gap:10px;padding:18px 21px;border:1px solid var(--line);border-radius:9px;color:#76816d;font-size:11px;margin-bottom:37px}.bottom-note svg{width:19px;height:19px;flex-shrink:0}footer{display:flex;justify-content:space-between;border-top:1px solid var(--line);padding:23px 0 27px;color:#8b9585;font-size:10px;letter-spacing:.5px}.footer-brand{color:#52674b;letter-spacing:2px}.symbol{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.symbols{position:absolute;width:0;height:0;overflow:hidden}
+    @media(min-width:1500px){.wrap{width:1200px}.hero{min-height:465px}.hero-art{height:365px}}
+    @media(max-width:850px){.wrap{width:calc(100% - 40px)}.brand-sub{display:none}nav{gap:22px}.hero{gap:0;grid-template-columns:1.1fr 1fr}h1{font-size:39px}.hero-art{height:310px}.art-tag{display:none}.topic{padding:20px 14px;gap:10px}.topic-icon{width:36px;height:40px}.topic h3{font-size:15px}.topic p{font-size:10px}.guide-body{grid-template-columns:1fr 230px;gap:25px}.guide{padding:26px}}
+    @media(max-width:600px){.wrap{width:calc(100% - 36px)}header{height:76px}.brand-name{font-size:22px}nav{gap:15px}nav a{font-size:11px}nav a:first-child{display:none}.print{font-size:11px;padding:7px 9px}.print svg{display:none}.hero{grid-template-columns:1fr;padding:31px 0 24px;gap:8px}.hero-copy{position:relative;z-index:1}h1{font-size:39px;margin:16px 0}.hero-description{font-size:12px}.hero-meta{margin-top:21px;gap:17px}.hero-art{height:265px;margin-top:-5px}.hero-art>svg{height:265px}.art-tag{display:block}.art-tag.one{top:65px;left:3%}.art-tag.two{bottom:55px;right:0}.section-head h2{font-size:18px}.section-head p{font-size:10px}.topic-tabs{gap:8px}.topic{display:block;padding:17px 9px 13px;min-height:128px;text-align:center;border-radius:9px}.topic-icon{margin:0 auto 9px;width:33px;height:33px}.topic-icon svg{width:22px;height:22px}.topic h3{font-size:13px;margin-bottom:4px}.topic p{font-size:9px}.topic-arrow,.topic-num{display:none}.guide{padding:20px 17px;margin-top:19px}.guide h2{font-size:20px}.guide-index{font-size:25px}.guide-title{gap:9px}.guide-duration{font-size:9px;padding:4px 7px}.notice{padding:10px;font-size:11px}.guide-body{grid-template-columns:1fr;gap:23px;margin-top:23px}.steps li{padding-bottom:22px}.side-note{padding:18px}.finger-art{height:100px;float:right;width:100px;margin:0 0 5px 15px}.finger-art svg{height:100px;width:100px}.side-note:after{content:"";display:block;clear:both}.tip-separator{margin:13px 0}.side-large-icon{height:80px;float:right;width:80px}.faq{margin-top:28px}.bottom-note{padding:14px;margin-bottom:25px}footer{gap:15px;align-items:flex-start;font-size:9px}footer>span:last-child{text-align:right;max-width:190px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+    @media print{body{background:white}.wrap{width:100%}nav,.topic-tabs,.hero-art,.faq,.bottom-note{display:none}.hero{display:block;min-height:0;padding:20px 0}h1{font-size:30px}h1 br{display:none}.hero-meta{margin-top:10px}.guide[hidden]{display:block}.guide{break-inside:avoid;margin-top:20px;padding:20px}.guide-body{grid-template-columns:1fr 220px;gap:20px}.steps li{padding-bottom:12px}header{height:60px}.hero-description{font-size:12px}.section-head{margin-top:15px}footer{margin-top:20px}}
+  </style>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="icon-finger" viewBox="0 0 32 32"><path d="M6 13a10 10 0 0 1 20 0M3 17v-3M29 17v-3M10 14a6 6 0 0 1 12 0v5c0 4 2 7 3 8M16 13v7c0 4 1 7 3 10M11 20c0 4-1 7-3 9M6 18c0 4-1 7-2 8M21 12a5 5 0 0 0-9-1M26 18c0 2 0 4 2 6M14 27l-1 3"/></symbol>
+    <symbol id="icon-battery" viewBox="0 0 32 32"><rect x="4" y="8" width="23" height="16" rx="3"/><path d="M28 13h2v6h-2M10 12v8M15 12v8M20 12v8"/></symbol>
+    <symbol id="icon-reset" viewBox="0 0 32 32"><path d="M7 9a11 11 0 1 1-2 12M7 3v7h7M16 9v7l4 3"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7h.01"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></symbol>
+    <symbol id="icon-print" viewBox="0 0 24 24"><path d="M6 9V3h12v6M6 18H3V9h18v9h-3M6 14h12v7H6ZM17 12h1"/></symbol>
+    <symbol id="icon-light" viewBox="0 0 24 24"><path d="M8 16c0-3-3-3-3-7a7 7 0 0 1 14 0c0 4-3 4-3 7ZM9 19h6M10 22h4M12 7v6"/></symbol>
+  </defs></svg>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#" aria-label="守家使用指南首页"><svg class="brand-mark" viewBox="0 0 36 42" fill="none" aria-hidden="true"><path d="M18 3 32 9v11c0 9-14 17-14 17S4 29 4 20V9Z" stroke="currentColor" stroke-width="2"/><path d="m11 18 7-6 7 6v9H11Z" stroke="currentColor" stroke-width="1.6"/><path d="M16 27v-7h4v7" stroke="currentColor" stroke-width="1.6"/></svg><span class="brand-name">守家</span><span class="brand-sub">智能门锁 · 使用指南</span></a>
+      <nav aria-label="主导航"><a href="#operations">操作指南</a><a href="#faq">常见问题</a><button class="print" id="print-guide"><svg class="symbol" aria-hidden="true"><use href="#icon-print"/></svg>打印指南</button></nav>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy"><div class="eyebrow"><span class="dot"></span>让每一次回家，都简单一点</div><h1 id="hero-title">安心进出，<br><span>从容上手。</span></h1><p class="hero-description">从第一次录入指纹，到日常电池更换。<br>跟着步骤来，轻松掌握门锁的三个常用操作。</p><div class="hero-meta"><span><svg class="symbol" aria-hidden="true"><use href="#icon-check"/></svg>清晰分步指引</span><span><svg class="symbol" aria-hidden="true"><use href="#icon-shield"/></svg>实用安全提醒</span><span>随时查阅</span></div></div>
+        <div class="hero-art">
+          <svg viewBox="0 0 480 350" role="img" aria-label="智能门锁示意图：上方数字面板，中部指纹识别区与门把手">
+            <defs><linearGradient id="lock-body" x1="0" x2="1"><stop stop-color="#435048"/><stop offset=".18" stop-color="#27332e"/><stop offset=".75" stop-color="#19221e"/><stop offset="1" stop-color="#39463c"/></linearGradient><linearGradient id="handle" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#798278"/><stop offset=".3" stop-color="#3a463c"/><stop offset=".7" stop-color="#222d25"/><stop offset="1" stop-color="#505c4e"/></linearGradient><linearGradient id="side" x1="0" x2="1"><stop stop-color="#77816c"/><stop offset="1" stop-color="#b4bbaa"/></linearGradient><filter id="shadow" x="-70%" y="-30%" width="250%" height="170%"><feDropShadow dx="10" dy="15" stdDeviation="12" flood-color="#40513a" flood-opacity=".2"/></filter></defs>
+            <circle cx="244" cy="174" r="147" fill="none" stroke="#dfe6d8"/><circle cx="244" cy="174" r="115" fill="none" stroke="#e0e7d9" stroke-dasharray="3 7"/>
+            <ellipse cx="258" cy="320" rx="77" ry="10" fill="#d1d9c8" opacity=".45"/>
+            <g transform="translate(185 17) rotate(-8 48 150)" filter="url(#shadow)"><rect x="9" y="0" width="91" height="297" rx="23" fill="url(#side)"/><rect x="0" y="0" width="91" height="297" rx="23" fill="url(#lock-body)" stroke="#697461" stroke-width=".8"/><rect x="10" y="12" width="70" height="144" rx="15" fill="#19231f" stroke="#465144" stroke-width=".6"/><rect x="33" y="24" width="25" height="3" rx="1.5" fill="#839b75" opacity=".8"/><g fill="#bec9b4" font-family="sans-serif" font-size="10" text-anchor="middle"><text x="26" y="57">1</text><text x="45" y="57">2</text><text x="64" y="57">3</text><text x="26" y="80">4</text><text x="45" y="80">5</text><text x="64" y="80">6</text><text x="26" y="103">7</text><text x="45" y="103">8</text><text x="64" y="103">9</text><text x="26" y="126">＊</text><text x="45" y="126">0</text><text x="64" y="126">＃</text></g><circle cx="45" cy="180" r="25" fill="#1c2820" stroke="#6a7860"/><rect x="28" y="164" width="153" height="33" rx="15" fill="url(#handle)" stroke="#707b68" stroke-width=".7"/><circle cx="46" cy="180" r="12" fill="#202d23" stroke="#8d9f7c" stroke-width=".8"/><g transform="translate(35 169)" color="#bac9a4"><use href="#icon-finger" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></g><rect x="28" y="251" width="33" height="5" rx="2.5" fill="#121d17"/><path d="M38 270h15" stroke="#8c9982" stroke-width="1.5"/><circle cx="45" cy="235" r="3" fill="#a6b194"/></g>
+            <path d="M136 100h32l23 14M338 230h35l15 15" fill="none" stroke="#a8b69c" stroke-width="1"/><circle cx="191" cy="114" r="2.5" fill="#8c9f7f"/><circle cx="338" cy="230" r="2.5" fill="#8c9f7f"/>
+          </svg>
+          <div class="art-tag one"><strong>轻触，开启日常</strong><br>指纹识别区域</div><div class="art-tag two"><strong>熟悉它，更安心</strong><br>从这份指南开始</div><div class="art-caption">产品外观示意 · 请以实际设备为准</div>
+        </div>
+      </section>
+      <section id="operations" aria-labelledby="operations-title">
+        <div class="section-head"><h2 id="operations-title">您想了解什么？</h2><p>选择一项，查看详细步骤</p></div>
+        <div class="topic-tabs" role="tablist" aria-label="门锁操作类型">
+          <button class="topic" id="tab-fingerprint" role="tab" aria-selected="true" aria-controls="panel-fingerprint" tabindex="0"><span class="topic-num">01</span><span class="topic-icon"><svg class="symbol" aria-hidden="true"><use href="#icon-finger"/></svg></span><span><h3>录入指纹</h3><p>让指尖成为您的钥匙</p></span><span class="topic-arrow">↗</span></button>
+          <button class="topic" id="tab-battery" role="tab" aria-selected="false" aria-controls="panel-battery" tabindex="-1"><span class="topic-num">02</span><span class="topic-icon"><svg class="symbol" aria-hidden="true"><use href="#icon-battery"/></svg></span><span><h3>更换电池</h3><p>及时补充每一份安心</p></span><span class="topic-arrow">↗</span></button>
+          <button class="topic" id="tab-reset" role="tab" aria-selected="false" aria-controls="panel-reset" tabindex="-1"><span class="topic-num">03</span><span class="topic-icon"><svg class="symbol" aria-hidden="true"><use href="#icon-reset"/></svg></span><span><h3>恢复出厂设置</h3><p>重新设置，妥善交接</p></span><span class="topic-arrow">↗</span></button>
+        </div>
+        <article class="guide" id="panel-fingerprint" role="tabpanel" aria-labelledby="tab-fingerprint" tabindex="0">
+          <div class="guide-heading"><div class="guide-title"><span class="guide-index">01</span><h2>录入指纹</h2></div><span class="guide-duration">首次使用 · 建议先完成</span></div>
+          <div class="notice"><svg class="symbol" aria-hidden="true"><use href="#icon-info"/></svg><span><strong>开始之前：</strong>请保持房门开启，准备管理员验证方式，并确保手指与识别区清洁、干燥。</span></div>
+          <div class="guide-body"><ol class="steps">
+            <li><span class="step-number">1</span><div><h3>唤醒门锁，进入管理模式</h3><p>轻触面板唤醒设备，按本机说明进入设置菜单。使用管理员密码、指纹或已授权的应用完成身份验证。</p></div></li>
+            <li><span class="step-number">2</span><div><h3>选择添加指纹</h3><p>在菜单中找到 <kbd>用户管理</kbd> → <kbd>添加用户／指纹</kbd>。菜单名称因型号而异，按语音或屏幕提示操作。</p></div></li>
+            <li><span class="step-number">3</span><div><h3>分次按压，采集完整指纹</h3><p>将常用手指自然贴合识别区，每次提示后抬起，再稍微调整角度重新按压，让中心与边缘都被采集，直到提示录入成功。</p></div></li>
+            <li><span class="step-number">4</span><div><h3>保存后，在开门状态下测试</h3><p>按提示保存并退出设置，用新录入的指纹验证识别。确认识别和锁舌动作正常、备用钥匙在身边，再关门使用。</p></div></li>
+          </ol><aside class="side-note"><div class="finger-art"><svg viewBox="0 0 130 130" fill="none" aria-hidden="true"><circle cx="65" cy="65" r="52" stroke="#dbe4d1" stroke-dasharray="3 5"/><path d="M29 44V29h15M86 29h15v15M101 86v15H86M44 101H29V86" stroke="#a6b994" stroke-width="1.6"/><use href="#icon-finger" x="35" y="34" width="60" height="60" stroke="#718c5d" stroke-width="1.2" stroke-linecap="round"/><circle cx="97" cy="97" r="12" fill="#e6eddf"/><path d="m92 97 4 4 6-8" stroke="#6b8656" stroke-width="1.5"/></svg></div><h3><svg class="symbol" aria-hidden="true"><use href="#icon-light"/></svg>让识别更顺畅</h3><p>自然放置，不必用力按压。<br>每次轻微变换角度，覆盖指腹边缘。<br>建议再录入另一只手的常用手指。</p><div class="tip-separator"></div><p class="tip-small">手指有水渍、脱皮或受伤时，可使用其他已授权的开锁方式。</p></aside></div>
+          <div class="completion"><svg class="symbol" aria-hidden="true"><use href="#icon-check"/></svg>完成标志：门锁提示录入成功，新指纹可正常识别。</div>
+        </article>
+        <article class="guide" id="panel-battery" role="tabpanel" aria-labelledby="tab-battery" tabindex="0" hidden>
+          <div class="guide-heading"><div class="guide-title"><span class="guide-index">02</span><h2>更换电池</h2></div><span class="guide-duration">日常维护 · 低电量时处理</span></div>
+          <div class="notice"><svg class="symbol" aria-hidden="true"><use href="#icon-info"/></svg><span><strong>开始之前：</strong>保持房门开启，备好机械钥匙；查看电池仓标识，确认电池类型、规格及数量。</span></div>
+          <div class="guide-body"><ol class="steps">
+            <li><span class="step-number">1</span><div><h3>找到室内侧电池仓</h3><p>电池仓通常位于室内面板。按照本机说明滑开或卸下盖板；如果有固定螺丝，请使用匹配工具，不要强行撬开。</p></div></li>
+            <li><span class="step-number">2</span><div><h3>取出旧电池，检查电池仓</h3><p>记录正负极方向，取出电池。若发现漏液、锈蚀或电池鼓包，暂停使用并联系售后，不要继续装入或充电。</p></div></li>
+            <li><span class="step-number">3</span><div><h3>按设备要求补充电源</h3><p>干电池机型应按标识极性整组更换同类型、同规格新电池，不混用新旧电池。专用锂电池机型应按说明取出充电或更换匹配电池包。</p></div></li>
+            <li><span class="step-number">4</span><div><h3>盖好仓盖，检查供电与开锁</h3><p>确认电池安装稳固、盖板到位，等待设备启动。在开门状态下验证面板、指纹和锁舌动作，并确认低电量提示已解除。</p></div></li>
+          </ol><aside class="side-note"><div class="side-large-icon"><svg class="symbol" aria-hidden="true"><use href="#icon-battery"/></svg></div><h3>电池用对，更省心</h3><p>不能仅凭外形判断电池是否适用，电压、化学类型与型号均应符合厂家要求。</p><div class="tip-separator"></div><p class="tip-small">废旧电池请按当地分类回收要求处理。更换电池通常无需恢复出厂设置。</p></aside></div>
+          <div class="completion"><svg class="symbol" aria-hidden="true"><use href="#icon-check"/></svg>完成标志：设备正常供电，低电量提示解除，开锁测试通过。</div>
+        </article>
+        <article class="guide" id="panel-reset" role="tabpanel" aria-labelledby="tab-reset" tabindex="0" hidden>
+          <div class="guide-heading"><div class="guide-title"><span class="guide-index">03</span><h2>恢复出厂设置</h2></div><span class="guide-duration">谨慎操作 · 需重新配置</span></div>
+          <div class="notice warning"><svg class="symbol" aria-hidden="true"><use href="#icon-info"/></svg><span><strong>操作前请确认：</strong>重置可能清除指纹、密码、卡片及管理员配置。请保持门开启、携带机械钥匙，并确认您拥有管理权限。</span></div>
+          <div class="guide-body"><ol class="steps">
+            <li><span class="step-number">1</span><div><h3>确认型号与重置方式</h3><p>查看门锁型号，查阅随附说明书或官方指南。不同机型可能通过设置菜单或室内复位键重置，请勿套用其他机型的按键组合与时长。</p></div></li>
+            <li><span class="step-number">2</span><div><h3>准备重新设置所需资料</h3><p>确认电量充足，列出需要重新授权的用户，并准备管理员和应用账户验证方式。交接设备时，先核实官方的账户解绑流程。</p></div></li>
+            <li><span class="step-number">3</span><div><h3>按本机指引执行重置</h3><p>进入已验证的管理菜单，或按说明操作复位键。阅读设备提示、确认清除后执行，等待完成；过程中不要断电或反复按键。</p></div></li>
+            <li><span class="step-number">4</span><div><h3>重新建立管理员并验证</h3><p>按首次使用流程创建管理员，重新录入指纹、密码及其他授权，必要时重新配网。保持门开启，验证新凭证有效、已清除的旧凭证失效后再关门。</p></div></li>
+          </ol><aside class="side-note"><div class="side-large-icon"><svg class="symbol" aria-hidden="true"><use href="#icon-reset"/></svg></div><h3>重置 ≠ 账户解绑</h3><p>本地重置不一定会解除应用或云端账户绑定。转让或搬家时，请按品牌官方流程处理设备解绑与交接。</p><div class="tip-separator"></div><p class="tip-small">仅需删除某位用户时，优先使用用户管理功能。无法完成管理员验证，请联系官方售后。</p></aside></div>
+          <div class="completion"><svg class="symbol" aria-hidden="true"><use href="#icon-check"/></svg>完成标志：重置完成，新管理员已建立，授权与开锁功能已重新验证。</div>
+        </article>
+      </section>
+      <section class="faq" id="faq" aria-labelledby="faq-title"><div class="section-head"><h2 id="faq-title">还有一点小疑问？</h2><p>常见问题，快速解答</p></div><div class="faq-list">
+        <details><summary>指纹总是识别失败，怎么办？</summary><p>先擦干手指，用干燥柔软的布清洁识别区，尝试已录入的另一根手指。若仍失败，可用其他已授权方式开锁，再由管理员重新录入指纹；持续异常请联系官方售后，避免反复尝试触发临时锁定。</p></details>
+        <details><summary>电池完全没电，人在门外怎么办？</summary><p>优先使用机械钥匙。如果本机支持应急供电，请按说明书确认接口位置、输入规格和操作方式；应急供电后仍需正常身份验证。应急接口不代表可以给仓内电池充电，切勿盲目接电。无法进入时联系官方售后或合规开锁服务。</p></details>
+        <details><summary>更换电池后，需要重新录入指纹吗？</summary><p>通常不需要，用户数据一般会保留。请按具体型号说明确认；如果更换后出现初始化提示或数据异常，不要直接执行重置，可先检查电池规格、极性和接触状态，再联系售后。</p></details>
+        <details><summary>忘记管理员密码，可以直接恢复出厂设置吗？</summary><p>各型号的身份验证与重置流程不同。先尝试本机允许的其他管理员验证方式，或通过绑定账户找回管理权限；无法验证时，请携带购买或使用权凭证联系官方售后。本指南不提供绕过身份验证的方法。</p></details>
+      </div></section>
+      <div class="bottom-note"><svg class="symbol" aria-hidden="true"><use href="#icon-shield"/></svg><span>这是一份通用使用指南。具体按键、菜单、电池规格与重置方式，请以您所用型号的官方说明书为准。</span></div>
+    </main>
+    <footer><span class="footer-brand">守家 · 让安心，成为日常</span><span>智能门锁使用指南 &nbsp; / &nbsp; 通用参考版</span></footer>
+  </div>
+  <script>
+    const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+    function selectTab(tab) {
+      tabs.forEach(item => {
+        const selected = item === tab;
+        item.setAttribute('aria-selected', String(selected));
+        item.tabIndex = selected ? 0 : -1;
+        document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
+      });
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectTab(tab));
+      tab.addEventListener('keydown', event => {
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next === undefined) return;
+        event.preventDefault();
+        selectTab(tabs[next]);
+        tabs[next].focus();
+      });
+    });
+    document.getElementById('print-guide').addEventListener('click', () => window.print());
+  </script>
+</body>
+</html>

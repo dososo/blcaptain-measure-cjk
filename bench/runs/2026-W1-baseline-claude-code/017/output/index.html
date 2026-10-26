@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>团队 Git 使用规范</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+  <nav class="toc" aria-label="目录">
+    <p>目录</p>
+    <ol>
+      <li><a href="#principles">总则</a></li>
+      <li><a href="#branches">分支命名</a></li>
+      <li><a href="#commits">提交信息</a></li>
+      <li><a href="#review">代码评审</a></li>
+      <li><a href="#merge">合并与发布</a></li>
+      <li><a href="#cheatsheet">速查</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header>
+      <span class="seal">规范</span>
+      <h1>团队 Git 使用规范</h1>
+      <p class="lede">统一分支命名、提交信息和代码评审流程，让每一次改动都可追溯、可评审、可回滚。</p>
+      <p class="meta">适用范围：团队所有代码仓库 · 版本 1.0</p>
+    </header>
+
+    <section id="principles">
+      <h2><span class="no">一</span>总则</h2>
+      <ul>
+        <li><strong>主干受保护</strong>：<code>main</code> 禁止直接推送，所有改动经 Pull Request（下称 PR）合入。</li>
+        <li><strong>小步提交</strong>：一个分支只做一件事，一个提交只表达一个意图。</li>
+        <li><strong>历史可读</strong>：提交信息写给半年后的同事看，而不是写给现在的自己。</li>
+        <li><strong>评审必经</strong>：至少一位非作者成员批准，且 CI 全部通过后才能合并。</li>
+        <li><strong>不提交密钥</strong>：密码、Token、证书一律不进仓库；误提交后立即吊销，不能只删文件了事。</li>
+      </ul>
+    </section>
+
+    <section id="branches">
+      <h2><span class="no">二</span>分支命名</h2>
+
+      <h3>长期分支</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>分支</th><th>用途</th><th>规则</th></tr></thead>
+          <tbody>
+            <tr><td><code>main</code></td><td>随时可发布的稳定代码</td><td>受保护；仅通过 PR 合入；每个发布打 tag</td></tr>
+            <tr><td><code>release/x.y</code></td><td>维护中的历史版本（可选）</td><td>只接受修复，修复需同步回 <code>main</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>短期分支格式</h3>
+      <pre><code>&lt;类型&gt;/&lt;工单号&gt;-&lt;简短描述&gt;</code></pre>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>类型</th><th>场景</th><th>示例</th></tr></thead>
+          <tbody>
+            <tr><td><code>feat</code></td><td>新功能</td><td><code>feat/PROJ-128-user-export</code></td></tr>
+            <tr><td><code>fix</code></td><td>缺陷修复</td><td><code>fix/PROJ-342-login-timeout</code></td></tr>
+            <tr><td><code>hotfix</code></td><td>线上紧急修复</td><td><code>hotfix/PROJ-401-payment-crash</code></td></tr>
+            <tr><td><code>refactor</code></td><td>重构，不改行为</td><td><code>refactor/PROJ-215-order-service</code></td></tr>
+            <tr><td><code>docs</code></td><td>仅文档</td><td><code>docs/PROJ-87-api-guide</code></td></tr>
+            <tr><td><code>chore</code></td><td>构建、依赖、配置</td><td><code>chore/PROJ-90-upgrade-node</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>命名要求</h3>
+      <ul>
+        <li>全部小写，单词之间用连字符 <code>-</code>，不用下划线、空格或中文。</li>
+        <li>描述部分 2–5 个英文单词，总长不超过 50 个字符。</li>
+        <li>没有工单的改动可省略工单号，如 <code>chore/update-gitignore</code>。</li>
+        <li>分支合并后由作者删除；超过 30 天无活动的分支会被清理。</li>
+      </ul>
+
+      <div class="pair">
+        <div class="ok"><span class="label">推荐</span><pre><code>feat/PROJ-128-user-export</code></pre></div>
+        <div class="ng"><span class="label">避免</span><pre><code>Zhang_test2
+新功能-导出</code></pre></div>
+      </div>
+    </section>
+
+    <section id="commits">
+      <h2><span class="no">三</span>提交信息</h2>
+      <p>采用 <a href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">Conventional Commits 1.0.0</a> 格式，方便自动生成变更日志和判断版本号。</p>
+
+      <h3>格式</h3>
+<pre><code>&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
+
+&lt;body&gt;
+
+&lt;footer&gt;</code></pre>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>部分</th><th>要求</th></tr></thead>
+          <tbody>
+            <tr><td><code>type</code></td><td>必填。<code>feat</code> <code>fix</code> <code>refactor</code> <code>perf</code> <code>docs</code> <code>test</code> <code>build</code> <code>ci</code> <code>chore</code> <code>revert</code></td></tr>
+            <tr><td><code>scope</code></td><td>可选。受影响的模块，如 <code>auth</code>、<code>order</code></td></tr>
+            <tr><td><code>subject</code></td><td>必填。祈使句，说明「做了什么」；不超过 50 字符；结尾不加句号</td></tr>
+            <tr><td><code>body</code></td><td>改动不显而易见时必填。说明「为什么改」和「怎么改」，每行不超过 72 字符</td></tr>
+            <tr><td><code>footer</code></td><td>关联工单 <code>Refs: PROJ-128</code>；破坏性变更写 <code>BREAKING CHANGE: ...</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>示例</h3>
+<pre><code>fix(auth): 刷新 token 前校验过期时间
+
+旧逻辑在 token 已过期时仍尝试刷新，导致 401 循环重试。
+改为先比较 exp 字段，过期则直接跳转登录页。
+
+Refs: PROJ-342</code></pre>
+
+      <div class="pair">
+        <div class="ok"><span class="label">推荐</span><pre><code>feat(order): 支持按日期导出订单
+docs: 补充本地开发环境说明</code></pre></div>
+        <div class="ng"><span class="label">避免</span><pre><code>update
+fix bug
+改了点东西。</code></pre></div>
+      </div>
+
+      <h3>提交习惯</h3>
+      <ul>
+        <li>一个提交只做一件事；格式化与逻辑改动分开提交。</li>
+        <li>每个提交都应能通过编译和测试，便于 <code>git bisect</code> 定位问题。</li>
+        <li>推送前用 <code>git rebase -i</code> 整理本地的「wip」「typo」类提交。</li>
+        <li>已推送且他人在用的分支不要强推；确需强推用 <code>git push --force-with-lease</code>。</li>
+      </ul>
+    </section>
+
+    <section id="review">
+      <h2><span class="no">四</span>代码评审流程</h2>
+
+      <ol class="steps">
+        <li>
+          <h4>同步主干</h4>
+          <p>发起前执行 <code>git fetch &amp;&amp; git rebase origin/main</code>，解决冲突并确保本地测试通过。</p>
+        </li>
+        <li>
+          <h4>发起 PR</h4>
+          <p>标题沿用提交信息格式；描述写清背景、改动点、测试方式，UI 改动附截图。未完成的工作标记为 Draft。</p>
+        </li>
+        <li>
+          <h4>CI 检查</h4>
+          <p>构建、单元测试、Lint、安全扫描全部通过后再请求评审，不让评审者替 CI 找问题。</p>
+        </li>
+        <li>
+          <h4>指派评审</h4>
+          <p>至少 1 位评审者；涉及核心模块、数据库迁移或安全相关代码需 2 位，其中一位为模块负责人（CODEOWNERS）。</p>
+        </li>
+        <li>
+          <h4>评审与修改</h4>
+          <p>评审者在 1 个工作日内首次响应。作者逐条回复评论，修改以新提交推送，便于评审者查看增量。</p>
+        </li>
+        <li>
+          <h4>批准合并</h4>
+          <p>全部评论已解决、获得批准、CI 通过后，由作者本人合并，合并后删除分支。</p>
+        </li>
+      </ol>
+
+      <h3>PR 大小</h3>
+      <p>单个 PR 建议不超过 400 行有效改动。超出时拆分为多个可独立评审的 PR，或先合入不对外暴露的基础改动。</p>
+
+      <h3>评审关注点</h3>
+      <ul>
+        <li><strong>正确性</strong>：逻辑、边界条件、异常处理、并发问题。</li>
+        <li><strong>安全</strong>：输入校验、权限检查、敏感信息泄露。</li>
+        <li><strong>可维护性</strong>：命名、结构、重复代码、是否过度设计。</li>
+        <li><strong>测试</strong>：新增逻辑有对应测试，修复的缺陷有回归测试。</li>
+        <li><strong>兼容性</strong>：接口、配置、数据结构变更是否影响现有调用方。</li>
+      </ul>
+
+      <h3>评论约定</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>前缀</th><th>含义</th><th>是否阻塞合并</th></tr></thead>
+          <tbody>
+            <tr><td><code>[必改]</code></td><td>缺陷、安全问题、违反规范</td><td>是</td></tr>
+            <tr><td><code>[建议]</code></td><td>更好的写法，作者可自行判断</td><td>否</td></tr>
+            <tr><td><code>[疑问]</code></td><td>需要作者解释意图</td><td>回复前阻塞</td></tr>
+            <tr><td><code>[小问题]</code></td><td>命名、格式等细节</td><td>否</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note"><strong>评审对事不对人。</strong>评论指向代码而不是作者，说明原因并尽量给出替代方案；讨论超过三轮未达成一致时，改为当面或语音沟通，结论回写到 PR 中。</div>
+    </section>
+
+    <section id="merge">
+      <h2><span class="no">五</span>合并与发布</h2>
+      <ul>
+        <li>默认使用 <strong>Squash and merge</strong>，合并后的提交信息按第三节格式整理。</li>
+        <li>提交本身已整理干净、需要保留每一步历史时，可用 <strong>Rebase and merge</strong>。</li>
+        <li>发布时在 <code>main</code> 上打语义化版本 tag，如 <code>v2.3.0</code>；含 <code>BREAKING CHANGE</code> 时升主版本号。</li>
+        <li>热修复从 <code>main</code>（或对应 <code>release/x.y</code>）拉 <code>hotfix/*</code> 分支，同样走 PR，可将评审人数降为 1 位，但不可跳过 CI。</li>
+        <li>回滚使用 <code>git revert</code> 生成新提交，不在公共分支上 <code>reset</code> 历史。</li>
+      </ul>
+    </section>
+
+    <section id="cheatsheet">
+      <h2><span class="no">六</span>速查</h2>
+<pre><code># 从最新主干拉分支
+git switch main &amp;&amp; git pull --rebase
+git switch -c feat/PROJ-128-user-export
+
+# 提交
+git add -p
+git commit -m "feat(order): 支持按日期导出订单"
+
+# 推送前同步主干、整理提交
+git fetch origin
+git rebase -i origin/main
+
+# 推送（首次）
+git push -u origin feat/PROJ-128-user-export
+
+# 必须强推时
+git push --force-with-lease
+
+# 合并后清理
+git switch main &amp;&amp; git pull --rebase
+git branch -d feat/PROJ-128-user-export</code></pre>
+    </section>
+
+    <footer>对本规范有修改建议，请向规范所在仓库提交 PR，按本文流程评审。</footer>
+  </main>
+
+</div>
+</body>
+</html>

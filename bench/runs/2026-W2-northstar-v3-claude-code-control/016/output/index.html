@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Skiff 快速上手</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+  <nav class="toc" aria-label="目录">
+    <div class="brand">⛵ Skiff <span class="ver">v1.4</span></div>
+    <ol>
+      <li><a href="#intro">简介</a></li>
+      <li><a href="#install">1. 安装</a></li>
+      <li><a href="#config">2. 配置</a></li>
+      <li><a href="#commands">3. 常用命令</a></li>
+      <li class="sub"><a href="#cmd-init">skiff init</a></li>
+      <li class="sub"><a href="#cmd-run">skiff run</a></li>
+      <li class="sub"><a href="#cmd-sync">skiff sync</a></li>
+      <li><a href="#next">下一步</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="hero" id="intro">
+      <h1>Skiff 快速上手</h1>
+      <p class="lead">Skiff 是一个开源的命令行工具，用一份配置文件管理项目脚手架、任务脚本和远程目录同步。本指南带你在 5 分钟内完成安装、配置，并掌握三个最常用的命令。</p>
+      <div class="badges">
+        <span class="badge">MIT 许可证</span>
+        <span class="badge">macOS / Linux / Windows</span>
+        <span class="badge">单文件二进制，无运行时依赖</span>
+      </div>
+    </header>
+
+    <section id="install">
+      <h2><span class="step">第 1 步</span>安装</h2>
+      <p>选择适合你系统的安装方式。所有方式安装的都是同一个独立二进制文件。</p>
+
+      <div class="tabs" role="tablist">
+        <button role="tab" aria-selected="true" data-tab="brew">Homebrew</button>
+        <button role="tab" aria-selected="false" data-tab="script">安装脚本</button>
+        <button role="tab" aria-selected="false" data-tab="scoop">Scoop (Windows)</button>
+        <button role="tab" aria-selected="false" data-tab="source">从源码构建</button>
+      </div>
+
+      <div class="tabpanel" data-panel="brew">
+        <div class="code"><pre><span class="p">$ </span>brew install skiff</pre></div>
+      </div>
+      <div class="tabpanel" data-panel="script" hidden>
+        <div class="code"><pre><span class="p">$ </span>curl -fsSL https://get.skiff.dev/install.sh | sh</pre></div>
+        <p>脚本默认安装到 <code>~/.local/bin</code>，可通过 <code>SKIFF_INSTALL_DIR</code> 环境变量修改。</p>
+      </div>
+      <div class="tabpanel" data-panel="scoop" hidden>
+        <div class="code"><pre><span class="p">&gt; </span>scoop install skiff</pre></div>
+      </div>
+      <div class="tabpanel" data-panel="source" hidden>
+        <div class="code"><pre><span class="p">$ </span>git clone https://github.com/skiff-cli/skiff.git
+<span class="p">$ </span>cd skiff
+<span class="p">$ </span>make install</pre></div>
+        <p>需要 Go 1.22 或更高版本。</p>
+      </div>
+
+      <p>安装完成后，验证版本：</p>
+      <div class="code"><pre><span class="p">$ </span>skiff --version
+<span class="ok">skiff 1.4.2 (darwin/arm64)</span></pre></div>
+
+      <div class="note">如果提示 <code>command not found</code>，请确认安装目录已加入 <code>PATH</code>，然后重新打开终端。</div>
+    </section>
+
+    <section id="config">
+      <h2><span class="step">第 2 步</span>配置</h2>
+      <p>Skiff 按以下顺序读取配置，后者覆盖前者：</p>
+      <ol>
+        <li>全局配置：<code>~/.config/skiff/config.toml</code></li>
+        <li>项目配置：项目根目录下的 <code>skiff.toml</code></li>
+        <li>环境变量：以 <code>SKIFF_</code> 开头，例如 <code>SKIFF_LOG_LEVEL=debug</code></li>
+        <li>命令行参数：例如 <code>--profile staging</code></li>
+      </ol>
+
+      <h3>最小项目配置</h3>
+      <p>在项目根目录创建 <code>skiff.toml</code>：</p>
+      <div class="code"><div class="label">skiff.toml</div><pre><span class="c"># 项目基本信息</span>
+[project]
+name = "my-app"
+
+<span class="c"># 任务：用 skiff run &lt;名称&gt; 执行</span>
+[tasks]
+dev   = "npm run dev"
+test  = "npm test -- --coverage"
+build = { cmd = "npm run build", depends = ["test"] }
+
+<span class="c"># 同步目标：用 skiff sync &lt;名称&gt; 执行</span>
+[sync.staging]
+host    = "deploy@staging.example.com"
+path    = "/srv/my-app"
+include = ["dist/**", "package.json"]
+exclude = ["*.map"]</pre></div>
+
+      <h3>常用配置项</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>配置项</th><th>默认值</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>log_level</code></td><td><code>"info"</code></td><td>日志级别：<code>debug</code> / <code>info</code> / <code>warn</code> / <code>error</code></td></tr>
+            <tr><td><code>shell</code></td><td>系统默认</td><td>执行任务时使用的 shell，如 <code>"bash"</code>、<code>"pwsh"</code></td></tr>
+            <tr><td><code>parallel</code></td><td><code>4</code></td><td>任务并行执行的最大数量</td></tr>
+            <tr><td><code>env_file</code></td><td><code>".env"</code></td><td>运行任务前自动加载的环境变量文件</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>随时可以检查最终生效的配置：</p>
+      <div class="code"><pre><span class="p">$ </span>skiff config show</pre></div>
+    </section>
+
+    <section id="commands">
+      <h2><span class="step">第 3 步</span>三个常用命令</h2>
+
+      <div class="cmd-card" id="cmd-init">
+        <h3><code>skiff init</code> — 初始化项目</h3>
+        <p>在当前目录生成 <code>skiff.toml</code>，并根据检测到的项目类型（Node、Python、Go 等）预填常用任务。</p>
+        <div class="code"><pre><span class="p">$ </span>skiff init
+<span class="ok">✓ 检测到 Node.js 项目 (package.json)</span>
+<span class="ok">✓ 已创建 skiff.toml，包含 3 个任务：dev, test, build</span></pre></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>参数</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>--template &lt;名称&gt;</code></td><td>使用指定模板，如 <code>node</code>、<code>python</code>、<code>blank</code></td></tr>
+            <tr><td><code>--force</code></td><td>覆盖已存在的 <code>skiff.toml</code></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="cmd-card" id="cmd-run">
+        <h3><code>skiff run</code> — 执行任务</h3>
+        <p>运行配置中定义的任务。依赖任务会自动先执行；不带参数时列出所有可用任务。</p>
+        <div class="code"><pre><span class="p">$ </span>skiff run build
+<span class="c">▸ test   npm test -- --coverage</span>
+<span class="ok">✓ test   完成 (4.2s)</span>
+<span class="c">▸ build  npm run build</span>
+<span class="ok">✓ build  完成 (11.8s)</span></pre></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>参数</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>--watch</code></td><td>监听文件变化，自动重新执行</td></tr>
+            <tr><td><code>--no-deps</code></td><td>跳过依赖任务，只执行指定任务</td></tr>
+            <tr><td><code>-- &lt;参数...&gt;</code></td><td>把后续参数原样传给任务命令，如 <code>skiff run test -- --bail</code></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+
+      <div class="cmd-card" id="cmd-sync">
+        <h3><code>skiff sync</code> — 同步到远程</h3>
+        <p>按 <code>[sync.&lt;名称&gt;]</code> 中的规则，把本地文件增量同步到远程主机（基于 SSH）。</p>
+        <div class="code"><pre><span class="p">$ </span>skiff sync staging --dry-run
+<span class="c">将上传 12 个文件 (3.4 MB)，删除 0 个文件</span>
+<span class="p">$ </span>skiff sync staging
+<span class="ok">✓ 已同步到 deploy@staging.example.com:/srv/my-app (2.1s)</span></pre></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>参数</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>--dry-run</code></td><td>只显示将要变更的文件，不实际传输</td></tr>
+            <tr><td><code>--delete</code></td><td>删除远程存在但本地已不存在的文件</td></tr>
+          </tbody>
+        </table></div>
+        <div class="note">首次同步到新目标前，建议先加 <code>--dry-run</code> 确认文件列表，尤其是使用 <code>--delete</code> 时。</div>
+      </div>
+    </section>
+
+    <section id="next">
+      <h2>下一步</h2>
+      <ul>
+        <li>运行 <code>skiff help &lt;命令&gt;</code> 查看任意命令的完整参数。</li>
+        <li>运行 <code>skiff completion zsh</code>（或 <code>bash</code> / <code>fish</code> / <code>pwsh</code>）生成 shell 自动补全脚本。</li>
+        <li>遇到问题？用 <code>SKIFF_LOG_LEVEL=debug</code> 重新执行命令，并附上输出提交 Issue。</li>
+      </ul>
+    </section>
+
+    <footer>
+      Skiff 以 MIT 许可证开源。欢迎提交 Issue 与 Pull Request。
+    </footer>
+  </main>
+</div>
+
+<script>
+  // 安装方式标签页切换
+  document.querySelectorAll('.tabs button').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.tabs button').forEach(function (b) {
+        b.setAttribute('aria-selected', String(b === btn));
+      });
+      document.querySelectorAll('.tabpanel').forEach(function (p) {
+        p.hidden = p.dataset.panel !== btn.dataset.tab;
+      });
+    });
+  });
+
+  // 为每个代码块添加复制按钮（只复制命令行，去掉提示符和输出）
+  document.querySelectorAll('.code').forEach(function (block) {
+    var pre = block.querySelector('pre');
+    var btn = document.createElement('button');
+    btn.className = 'copy';
+    btn.type = 'button';
+    btn.textContent = '复制';
+    btn.addEventListener('click', function () {
+      var hasPrompt = pre.querySelector('.p');
+      var text;
+      if (hasPrompt) {
+        text = pre.innerText.split('\n')
+          .filter(function (l) { return /^[$>] /.test(l); })
+          .map(function (l) { return l.slice(2); })
+          .join('\n');
+      } else {
+        text = pre.innerText;
+      }
+      var done = function () {
+        btn.textContent = '已复制';
+        setTimeout(function () { btn.textContent = '复制'; }, 1500);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(done, function () { selectText(pre); });
+      } else {
+        selectText(pre);
+      }
+    });
+    block.appendChild(btn);
+  });
+
+  function selectText(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+</script>
+</body>
+</html>

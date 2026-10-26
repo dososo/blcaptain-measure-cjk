@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>上班族 10 分钟早餐 · 好好吃早饭</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 32px 16px; background: #e8e5dc; color: #353c2e; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .card { width: min(900px, 100%); aspect-ratio: 3 / 4; margin: auto; position: relative; container-type: inline-size; background: #faf6e9; overflow: hidden; box-shadow: 0 15px 60px #46423318; }
+    .content { position: absolute; inset: 0; padding: 4.6cqw 5cqw 3.5cqw; display: flex; flex-direction: column; gap: 2.7cqw; }
+    .topline { display: flex; justify-content: space-between; align-items: center; font-size: 1.5cqw; letter-spacing: .18cqw; font-weight: 700; }
+    .brand { display: flex; align-items: center; gap: .8cqw; }
+    .brand::before { content: ''; width: 1.4cqw; height: 1.4cqw; border-radius: 50%; background: #ea683c; }
+    .edition { color: #7b806c; font-size: 1.2cqw; }
+    header { position: relative; flex-shrink: 0; }
+    h1 { margin: 2.3cqw 0 1.1cqw; font-size: 6.6cqw; line-height: 1.23; letter-spacing: -.25cqw; font-weight: 900; }
+    h1 span { color: #e65f34; }
+    .subtitle { margin: 0; font-size: 1.9cqw; letter-spacing: .1cqw; color: #74765f; }
+    .subtitle strong { color: #444d37; font-weight: 600; }
+    .stamp { position: absolute; right: .4cqw; top: 6.1cqw; width: 12cqw; height: 12cqw; border: .16cqw solid #72805a; border-radius: 50%; display: flex; flex-direction: column; justify-content: center; align-items: center; color: #657449; transform: rotate(12deg); background: #eff0dd; outline: .14cqw dashed #72805a; outline-offset: -.7cqw; }
+    .stamp b { font-size: 3.2cqw; line-height: 1.2; }
+    .stamp span { font-size: 1.45cqw; margin-top: .3cqw; }
+    .divider { margin-top: 2.3cqw; display: flex; align-items: center; gap: 1.2cqw; font-size: 1.15cqw; letter-spacing: .2cqw; color: #9a9b84; }
+    .divider::after { content: ''; height: 1px; flex: 1; background: #d8dac5; }
+    .recipes { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 2.3cqw; flex: 1; min-height: 0; }
+    .recipe { border: 1px solid #dedcc9; border-radius: 2.2cqw; padding: 2cqw 2.6cqw; position: relative; background: #fffdf5; overflow: hidden; }
+    .recipe:nth-child(2), .recipe:nth-child(3) { background: #f1f2e4; }
+    .recipe-top { display: flex; align-items: center; justify-content: space-between; position: relative; z-index: 1; }
+    .number { font-family: Georgia, serif; font-style: italic; font-size: 2.9cqw; line-height: 1; color: #a6ab91; }
+    .time { display: flex; align-items: center; gap: .5cqw; background: #e8ecd9; border-radius: 3cqw; padding: .55cqw 1cqw; color: #52613d; font-size: 1.4cqw; font-weight: 600; }
+    .clock { width: 1.3cqw; height: 1.3cqw; border: .15cqw solid currentColor; border-radius: 50%; position: relative; }
+    .clock::after { content: ''; position: absolute; left: 45%; top: 18%; width: 35%; height: 35%; border-left: 1px solid currentColor; border-bottom: 1px solid currentColor; }
+    .food { display: block; width: 100%; height: 12cqw; margin: -.9cqw 0 .1cqw; overflow: visible; }
+    h2 { margin: 0 0 1cqw; font-size: 2.75cqw; letter-spacing: -.07cqw; font-weight: 800; }
+    .ingredients { margin: 0 0 1.35cqw; padding-bottom: 1.25cqw; border-bottom: 1px dashed #d6d7c1; font-size: 1.48cqw; color: #777b65; line-height: 1.65; white-space: nowrap; }
+    ol { list-style: none; padding: 0; margin: 0; display: grid; gap: .65cqw; counter-reset: step; }
+    li { counter-increment: step; font-size: 1.65cqw; line-height: 1.55; display: flex; gap: .8cqw; align-items: baseline; }
+    li::before { content: counter(step); font-size: 1.15cqw; font-weight: 700; min-width: 1.7cqw; height: 1.7cqw; line-height: 1.7cqw; text-align: center; border-radius: 50%; background: #ececdb; color: #687255; }
+    .tip { margin: 1.4cqw 0 0; font-size: 1.35cqw; color: #b27345; line-height: 1.5; }
+    .tip::before { content: '✦ '; }
+    footer { flex-shrink: 0; }
+    .note { background: #e8ecd8; border-radius: 1.2cqw; padding: 1.35cqw 1.8cqw; display: flex; gap: 1.4cqw; align-items: center; font-size: 1.45cqw; line-height: 1.5; }
+    .note strong { font-size: 1.6cqw; white-space: nowrap; color: #52613d; }
+    .bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 1.6cqw; font-size: 1.35cqw; color: #82866e; }
+    .save { color: #d9683f; font-weight: 700; letter-spacing: .1cqw; }
+    .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+    @media print { body { padding: 0; background: white; } .card { width: 100%; box-shadow: none; } @page { size: 180mm 240mm; margin: 0; } }
+    @media (max-width: 600px) { body { padding: 12px 8px; } }
+  </style>
+</head>
+<body>
+  <svg class="defs" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#796a42" flood-opacity=".13"/></filter>
+      <symbol id="plate" viewBox="0 0 320 140"><ellipse cx="160" cy="80" rx="111" ry="49" fill="#e4e5d4" opacity=".5"/><ellipse cx="160" cy="73" rx="112" ry="50" fill="#fffef9" stroke="#d8dccb" stroke-width="2"/><ellipse cx="160" cy="73" rx="92" ry="38" fill="none" stroke="#e6e8dc" stroke-width="1.5"/></symbol>
+      <symbol id="leaf" viewBox="0 0 30 22"><path d="M2 20Q0 0 28 2Q30 22 2 20" fill="#7c9b57"/><path d="M3 19L24 5" fill="none" stroke="#b5c68c" stroke-width="1.5"/></symbol>
+    </defs>
+  </svg>
+  <main class="card" aria-label="上班族十分钟早餐，四款快手食谱">
+    <div class="content">
+      <header>
+        <div class="topline"><span class="brand">早八也要好好吃</span><span class="edition">BREAKFAST NOTES / 01</span></div>
+        <h1>上班族<br><span>10 分钟</span>早餐</h1>
+        <div class="stamp"><b>4 款</b><span>快手 · 不重样</span></div>
+        <p class="subtitle">少睡十分钟？不如省下做饭时间。<strong>吃好再出发！</strong></p>
+        <div class="divider">给忙碌的早晨，一点从容</div>
+      </header>
+
+      <section class="recipes" aria-label="四款早餐做法">
+        <article class="recipe">
+          <div class="recipe-top"><span class="number">01</span><span class="time"><i class="clock" aria-hidden="true"></i>8 分钟</span></div>
+          <svg class="food" viewBox="0 0 320 140" role="img" aria-label="金黄鸡蛋芝士吐司，配小番茄">
+            <use href="#plate" width="320" height="140"/>
+            <g filter="url(#shadow)" transform="rotate(-9 150 70)"><path d="M97 38Q86 17 110 17H189Q214 17 202 39V104H97Z" fill="#bd7b3e"/><path d="M104 39Q94 24 113 24H187Q204 24 195 40V96H104Z" fill="#f4d398"/><path d="M111 40L185 35L190 88L113 91Z" fill="#f3b83e"/><path d="M120 43C100 51 118 64 111 77C109 95 136 90 147 94C166 101 190 84 185 73C199 53 174 37 159 42C143 32 131 37 120 43" fill="#fffbed"/><ellipse cx="150" cy="65" rx="20" ry="18" fill="#f5b52d"/><path d="M139 55Q147 48 156 53" fill="none" stroke="#ffdb73" stroke-width="4" stroke-linecap="round"/><g fill="#77824e"><circle cx="128" cy="76" r="1.5"/><circle cx="168" cy="86" r="1.5"/><circle cx="177" cy="57" r="1.5"/></g></g>
+            <circle cx="227" cy="87" r="13" fill="#db6344"/><path d="M220 76l7 5 7-4-4 8-8-2" fill="#758849"/><circle cx="241" cy="66" r="10" fill="#e77a50"/><use href="#leaf" x="65" y="72" width="31" height="23"/>
+          </svg>
+          <h2>鸡蛋芝士吐司</h2>
+          <p class="ingredients">吐司 1 片 · 鸡蛋 1 个 · 芝士 1 片</p>
+          <ol><li>平底锅刷薄油，吐司两面烘香。</li><li>另煎鸡蛋至熟，撒少许黑胡椒。</li><li>吐司铺芝士和蛋，加盖焖 1 分钟。</li></ol>
+          <p class="tip">趁热吃，芝士刚好软软的。</p>
+        </article>
+
+        <article class="recipe">
+          <div class="recipe-top"><span class="number">02</span><span class="time"><i class="clock" aria-hidden="true"></i>3 分钟</span></div>
+          <svg class="food" viewBox="0 0 320 140" role="img" aria-label="香蕉蓝莓燕麦酸奶碗">
+            <ellipse cx="158" cy="116" rx="78" ry="12" fill="#dce0cb"/>
+            <g filter="url(#shadow)"><path d="M69 54Q76 120 160 123Q244 119 251 54" fill="#b9c8a0"/><path d="M84 65Q97 108 135 113" fill="none" stroke="#d9e2c5" stroke-width="6" stroke-linecap="round"/><ellipse cx="160" cy="54" rx="91" ry="39" fill="#e5ead7"/><ellipse cx="160" cy="54" rx="80" ry="30" fill="#fffdf4"/>
+            <g fill="#f8e4a9" stroke="#e3ca85" stroke-width="1.5"><ellipse cx="122" cy="39" rx="18" ry="11" transform="rotate(-20 122 39)"/><ellipse cx="138" cy="50" rx="18" ry="11" transform="rotate(-20 138 50)"/><ellipse cx="153" cy="62" rx="18" ry="11" transform="rotate(-20 153 62)"/></g><g fill="#c7a464"><circle cx="122" cy="39" r="2"/><circle cx="138" cy="50" r="2"/><circle cx="153" cy="62" r="2"/></g>
+            <g fill="#566282"><circle cx="187" cy="38" r="9"/><circle cx="204" cy="48" r="9"/><circle cx="184" cy="56" r="9"/><circle cx="207" cy="66" r="8"/></g><g fill="#a4adc0"><circle cx="185" cy="35" r="2.5"/><circle cx="202" cy="45" r="2.5"/><circle cx="182" cy="53" r="2.5"/></g>
+            <g fill="#b98f59"><ellipse cx="105" cy="60" rx="5" ry="2" transform="rotate(30 105 60)"/><ellipse cx="113" cy="70" rx="5" ry="2"/><ellipse cx="125" cy="75" rx="5" ry="2" transform="rotate(-25 125 75)"/><ellipse cx="104" cy="73" rx="4" ry="2"/><ellipse cx="169" cy="29" rx="4" ry="2"/></g></g>
+            <use href="#leaf" x="158" y="21" width="26" height="19"/>
+          </svg>
+          <h2>香蕉燕麦酸奶碗</h2>
+          <p class="ingredients">酸奶 150g · 即食燕麦 30g · 香蕉半根</p>
+          <ol><li>酸奶倒入碗中，拌入即食燕麦。</li><li>香蕉切片铺上，放几颗蓝莓。</li><li>撒少许坚果碎，拌一拌就开吃。</li></ol>
+          <p class="tip">选开袋即食燕麦，省去煮制。</p>
+        </article>
+
+        <article class="recipe">
+          <div class="recipe-top"><span class="number">03</span><span class="time"><i class="clock" aria-hidden="true"></i>10 分钟</span></div>
+          <svg class="food" viewBox="0 0 320 140" role="img" aria-label="切开的金枪鱼蔬菜卷饼">
+            <use href="#plate" width="320" height="140"/>
+            <g filter="url(#shadow)"><g transform="rotate(-16 138 73)"><path d="M86 43Q89 33 105 34L177 49L169 100L94 86Q81 81 86 43" fill="#eaca8e"/><path d="M95 37L169 55L162 92L91 78" fill="#f4dfb4"/><path d="M101 48l18 4m-16 17 13 4m16-16 12 3m-9 20 14 4" stroke="#d5b476" stroke-width="3" stroke-linecap="round"/><ellipse cx="172" cy="74" rx="18" ry="26" fill="#fff0cb"/><path d="M170 51L180 60L179 69L184 80L171 95L160 84L163 72L158 61Z" fill="#8aa45f"/><path d="M166 61Q181 65 174 76L178 82L167 86L164 74Z" fill="#d39c81"/><path d="M178 60L182 68L163 82L161 75Z" fill="#dc7451"/></g>
+            <g transform="rotate(15 214 79)"><path d="M199 51L229 56L228 101L191 94Z" fill="#ebcf9d"/><ellipse cx="211" cy="54" rx="19" ry="12" fill="#fff0cb"/><ellipse cx="211" cy="54" rx="14" ry="8" fill="#8b9f5b"/><path d="M202 51L218 49L221 56L207 59Z" fill="#d8a48b"/><path d="M200 57L217 52" stroke="#d96d47" stroke-width="4"/><path d="M203 76l14 4m-16 7 10 3" stroke="#d2ae77" stroke-width="3" stroke-linecap="round"/></g></g>
+            <use href="#leaf" x="63" y="85" width="32" height="23"/>
+          </svg>
+          <h2>金枪鱼蔬菜卷</h2>
+          <p class="ingredients">即食饼皮 1 张 · 罐装金枪鱼 50g · 生菜</p>
+          <ol><li>生菜洗净沥干，金枪鱼沥去汁。</li><li>饼皮干烙 1 分钟，铺菜和鱼肉。</li><li>挤少许沙拉酱，卷紧后对半切。</li></ol>
+          <p class="tip">用烘焙纸包好，带走也方便。</p>
+        </article>
+
+        <article class="recipe">
+          <div class="recipe-top"><span class="number">04</span><span class="time"><i class="clock" aria-hidden="true"></i>5 分钟</span></div>
+          <svg class="food" viewBox="0 0 320 140" role="img" aria-label="冒着热气的牛奶花生酱燕麦杯">
+            <ellipse cx="153" cy="120" rx="68" ry="10" fill="#e5e4d5"/>
+            <g fill="none" stroke="#b6baa3" stroke-width="2.5" stroke-linecap="round" opacity=".65"><path d="M130 27C118 17 140 13 130 4"/><path d="M154 24C142 14 163 11 155 2"/><path d="M178 27C168 18 188 12 180 4"/></g>
+            <g filter="url(#shadow)"><path d="M208 57C250 42 256 99 208 97" fill="none" stroke="#c87d51" stroke-width="14"/><path d="M208 57C246 47 246 95 210 94" fill="none" stroke="#e5b38c" stroke-width="6"/><path d="M92 48L98 105Q102 125 151 125Q202 125 208 105L214 48" fill="#de9b6d"/><path d="M106 65L110 102Q114 111 128 113" fill="none" stroke="#edbc96" stroke-width="5" stroke-linecap="round"/><ellipse cx="153" cy="48" rx="61" ry="23" fill="#f1c6a1"/><ellipse cx="153" cy="48" rx="52" ry="16" fill="#efe0b9"/><path d="M129 45C135 33 177 35 178 46C180 56 147 61 140 51C135 43 167 40 167 47C166 51 155 51 152 48" fill="none" stroke="#b88b52" stroke-width="4" stroke-linecap="round"/><g fill="#cfb680"><ellipse cx="113" cy="47" rx="4" ry="2"/><ellipse cx="122" cy="54" rx="4" ry="2"/><ellipse cx="185" cy="48" rx="4" ry="2"/><ellipse cx="176" cy="56" rx="4" ry="2"/></g></g>
+          </svg>
+          <h2>花生酱牛奶燕麦</h2>
+          <p class="ingredients">牛奶 200ml · 即食燕麦 30g · 花生酱 1 勺</p>
+          <ol><li>牛奶与即食燕麦倒入小锅。</li><li>小火煮约 3 分钟，边煮边搅拌。</li><li>关火拌入花生酱，浓稠就好。</li></ol>
+          <p class="tip">喜欢稀一点，就再加少许牛奶。</p>
+        </article>
+      </section>
+
+      <footer>
+        <div class="note"><strong>前一晚准备好</strong><span>食材分装、餐具就位 → 早上跟着做，省时又省心。<br>时间含简单备料，按熟练程度略有浮动。</span></div>
+        <div class="bottom"><span>认真吃早餐，是照顾自己的第一件小事。</span><span class="save">♡ 收藏这张 · 明早照做</span></div>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

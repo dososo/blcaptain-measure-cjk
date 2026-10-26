@@ -1,0 +1,60 @@
+$ sh scripts/install_skill_links.sh 
+# 退出码：0
+已安装 skill 软链：
+- <tmp>/case 1 home/.agents/skills/measure -> <仓库>/skills/measure
+- <tmp>/case 1 home/.claude/skills/measure -> <仓库>/skills/measure
+校验器还需要单独安装：npm install -g measure-cjk@0.1.0（或在仓库里 npm install -g ./packages/cli）
+
+
+$ sh scripts/install_skill_links.sh 
+# 退出码：0
+已安装 skill 软链：
+- <tmp>/case 1 home/.agents/skills/measure -> <仓库>/skills/measure
+- <tmp>/case 1 home/.claude/skills/measure -> <仓库>/skills/measure
+校验器还需要单独安装：npm install -g measure-cjk@0.1.0（或在仓库里 npm install -g ./packages/cli）
+
+
+$ sh scripts/install_skill_links.sh 
+# 退出码：1
+
+[stderr]
+<tmp>/h2/.claude/skills/measure 已是软链，指向 <tmp>/h2/other/measure，不是本仓库。没有改动任何目录。确认要替换时加 --replace 重新运行。
+
+
+$ test ! -e '<tmp>/h2/.agents/skills/measure'
+# 退出码：0
+
+
+$ sh scripts/install_skill_links.sh --replace
+# 退出码：0
+已安装 skill 软链：
+- <tmp>/h2/.agents/skills/measure -> <仓库>/skills/measure
+- <tmp>/h2/.claude/skills/measure -> <仓库>/skills/measure
+校验器还需要单独安装：npm install -g measure-cjk@0.1.0（或在仓库里 npm install -g ./packages/cli）
+
+
+$ readlink '<tmp>/h2/.claude/skills/measure'
+# 退出码：0
+<仓库>/skills/measure
+
+
+$ sh scripts/install_skill_links.sh 
+# 退出码：1
+
+[stderr]
+<tmp>/h3/.claude/skills/measure 已存在而且不是软链，没有改动任何目录。请先自己确认后移走。
+
+
+$ test ! -e '<tmp>/h3/.agents/skills/measure'
+# 退出码：0
+
+
+$ sh scripts/install_skill_links.sh --force
+# 退出码：2
+
+[stderr]
+不认识的参数：--force（只支持 --replace）
+
+
+# 判定：PASS（退出码 0、0、1、0、1、2）
+# 时间：2026-10-26T09:09:19.206Z

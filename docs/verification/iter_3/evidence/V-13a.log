@@ -1,0 +1,170 @@
+$ head -c 3000 bench/runs/2026-W1-baseline-codex/summary.json
+# 退出码：0
+{
+  "schema_version": "1.0.0",
+  "run_id": "2026-W1-baseline-codex",
+  "agent": "codex",
+  "generated_at": "2026-10-25T12:06:42.155Z",
+  "prompts": 30,
+  "produced": 30,
+  "zero_error_pages": 0,
+  "zero_error_rate_over_produced": 0,
+  "zero_error_pages_excluding_T02_T04": 4,
+  "rule_hit_pages": {
+    "T02": 30,
+    "T04": 30,
+    "T11": 25,
+    "T07": 14,
+    "T13": 7,
+    "T03": 4,
+    "T08": 1,
+    "T06": 1
+  },
+  "mode": "static",
+  "baseline_kind": "用户环境基线（未安装 measure；其他 skill 与全局指令照常加载，见 environment_observed）",
+  "environment_observed": {
+    "models": {
+      "gpt-6-astra": 30
+    },
+    "skills_loaded_runs": {
+      "/.codex/skills/anthropic-frontend-design": 18,
+      "/.codex/skills/frontend-design": 2,
+      "/.agents/skills/frontend-design": 12
+    },
+    "global_instructions": "见 environment.log"
+  },
+  "relinted_with": "当前构建（--relint-only）",
+  "rows": [
+    {
+      "id": "001",
+      "agent_exit": 0,
+      "seconds": 130,
+      "produced": true,
+      "errors": 27,
+      "warns": 18,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04",
+        "T11",
+        "T13"
+      ]
+    },
+    {
+      "id": "002",
+      "agent_exit": 0,
+      "seconds": 121,
+      "produced": true,
+      "errors": 30,
+      "warns": 12,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04",
+        "T07",
+        "T08",
+        "T11"
+      ]
+    },
+    {
+      "id": "003",
+      "agent_exit": 0,
+      "seconds": 140,
+      "produced": true,
+      "errors": 27,
+      "warns": 35,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04",
+        "T07",
+        "T11"
+      ]
+    },
+    {
+      "id": "004",
+      "agent_exit": 0,
+      "seconds": 99,
+      "produced": true,
+      "errors": 26,
+      "warns": 17,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04",
+        "T07",
+        "T11",
+        "T13"
+      ]
+    },
+    {
+      "id": "005",
+      "agent_exit": 0,
+      "seconds": 137,
+      "produced": true,
+      "errors": 17,
+      "warns": 28,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04",
+        "T06",
+        "T11"
+      ]
+    },
+    {
+      "id": "006",
+      "agent_exit": 0,
+      "seconds": 80,
+      "produced": true,
+      "errors": 13,
+      "warns": 16,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04",
+        "T11"
+      ]
+    },
+    {
+      "id": "007",
+      "agent_exit": 0,
+      "seconds": 137,
+      "produced": true,
+      "errors": 44,
+      "warns": 24,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04",
+        "T07",
+        "T11",
+        "T13"
+      ]
+    },
+    {
+      "id": "008",
+      "agent_exit": 0,
+      "seconds": 151,
+      "produced": true,
+      "errors": 22,
+      "warns": 36,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T0
+
+$ cat bench/runs/2026-W1-baseline-codex/environment.log
+# 退出码：0
+~/.agents/skills：81 个条目；包含 measure：否
+~/.codex/skills：99 个条目；包含 measure：否
+~/.claude/skills：90 个条目；包含 measure：否
+~/.codex/AGENTS.md：存在；包含可能影响排版的关键词：无
+~/.claude/CLAUDE.md：存在；包含可能影响排版的关键词：中英文、空格、排版、「」
+
+
+# 判定：PASS（30 条提示词，产出 30 页，零 error 0 页（0.0%）；排除 T02/T04 后零 error 4 页；口径：用户环境基线（未安装 measure；其他 skill 与全局指令照常加载，见 environment_observed））
+# 时间：2026-10-25T12:07:52.784Z

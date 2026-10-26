@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="just 中文快速上手：安装工具、配置 justfile，使用三个常用命令简化日常开发。">
+  <title>快速上手 · just 中文指南</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <header class="header">
+    <a class="brand" href="#"><span class="brand-mark" aria-hidden="true">j<span>.</span></span><strong>just</strong><span class="brand-divider"></span><span class="brand-note">中文指南</span></a>
+    <div class="header-actions"><button class="search-trigger" id="open-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span>搜索文档</span><kbd>/</kbd></button><a class="github-link" href="https://github.com/casey/just" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar">
+      <div><p class="nav-label">开始使用</p><nav aria-label="文档导航"><a class="nav-current" href="#main"><span aria-hidden="true">↳</span> 快速上手 <span class="active-dot"></span></a><a href="#install">安装</a><a href="#configure">配置项目</a><a href="#commands">常用命令</a></nav>
+      <p class="nav-label resources-label">深入了解</p><nav aria-label="官方资源"><a href="https://just.systems/man/en/" target="_blank" rel="noopener noreferrer">完整手册 <span class="external">↗</span></a><a href="https://just.systems/man/en/command-line-options.html" target="_blank" rel="noopener noreferrer">命令行选项 <span class="external">↗</span></a><a href="https://github.com/casey/just/discussions" target="_blank" rel="noopener noreferrer">社区讨论 <span class="external">↗</span></a></nav></div>
+      <div class="sidebar-bottom"><span class="status-dot"></span> 开源，让工作更简单。<a href="https://github.com/casey/just/blob/master/LICENSE">CC0-1.0 许可证 ↗</a></div>
+    </aside>
+    <main id="main">
+      <div class="breadcrumb">文档 <span>/</span> 开始使用 <span>/</span> <b>快速上手</b></div>
+      <div class="eyebrow"><span class="status-dot"></span> 少记命令，多做事情</div>
+      <h1>从这里，开始 just。</h1>
+      <p class="intro measure-prose">把冗长的命令收进一个文件，用简单的名字运行它们。<br class="desktop-break">只需几分钟，让项目里的日常任务井井有条。</p>
+      <div class="hero-meta"><span><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 6v4l3 2"/></svg>约 5 分钟</span><span><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m7 5-5 5 5 5m6-10 5 5-5 5"/></svg>面向命令行使用者</span><span class="meta-tag">跨平台</span></div>
+      <div class="overview"><span class="overview-symbol" aria-hidden="true">❯_</span><p><strong>一个 justfile，统一项目入口。</strong><br>just 是一个命令运行器。安装一次，在每个项目中复用你的工作习惯。</p></div>
+
+      <section id="install" class="doc-section">
+        <div class="section-heading"><span class="step-number">01</span><h2>安装 just</h2><span class="section-line"></span></div>
+        <p class="measure-prose">选择你的操作系统，在终端中执行安装命令。</p>
+        <div class="install-box">
+          <div class="tabs" role="tablist" aria-label="选择操作系统"><button role="tab" aria-selected="true" aria-controls="install-panel" id="tab-mac" data-platform="mac">macOS</button><button role="tab" aria-selected="false" aria-controls="install-panel" id="tab-linux" tabindex="-1" data-platform="linux">Linux</button><button role="tab" aria-selected="false" aria-controls="install-panel" id="tab-windows" tabindex="-1" data-platform="windows">Windows</button><span id="package-manager">Homebrew</span></div>
+          <div id="install-panel" role="tabpanel" aria-labelledby="tab-mac" tabindex="0"><div class="code-single"><span class="prompt" aria-hidden="true">$</span><code id="install-command">brew install just</code><button class="copy-button" data-copy="install-command" aria-label="复制安装命令">复制 <span aria-hidden="true">⧉</span></button></div></div>
+        </div>
+        <p class="hint" id="platform-hint">需要先安装 Homebrew。其他安装方式见<a href="https://just.systems/man/en/packages.html" target="_blank" rel="noopener noreferrer">官方安装指南 ↗</a>。</p>
+        <div class="verify"><span class="check-icon" aria-hidden="true">✓</span><p>安装后运行 <code>just --version</code>，显示版本号即表示安装成功。</p></div>
+      </section>
+
+      <section id="configure" class="doc-section">
+        <div class="section-heading"><span class="step-number">02</span><h2>配置你的项目</h2><span class="section-line"></span></div>
+        <p class="measure-prose">在项目根目录新建 <code>justfile</code>，给常用任务起个简短的名字。<br>以下以已有的 Node.js 项目为例，需已配置 <code>dev</code> 和 <code>test</code> 脚本。</p>
+        <div class="code-block"><div class="code-header"><span><span class="file-icon" aria-hidden="true">▤</span> justfile</span><button class="copy-button" data-copy="config-code" aria-label="复制 justfile 配置">复制 <span aria-hidden="true">⧉</span></button></div><pre><code id="config-code"><span class="code-comment"># 启动开发服务</span>
+<span class="code-key">dev</span>:
+    npm run dev
+
+<span class="code-comment"># 运行项目测试</span>
+<span class="code-key">test</span>:
+    npm test</code></pre></div>
+        <div class="note"><span class="info-icon" aria-hidden="true">i</span><p><strong>小提示</strong><br>每个任务的命令需要缩进，示例使用 4 个空格。just 会从当前目录向上查找 justfile，在项目子目录中也能运行。</p></div>
+      </section>
+
+      <section id="commands" class="doc-section">
+        <div class="section-heading"><span class="step-number">03</span><h2>记住这三个命令</h2><span class="section-line"></span></div>
+        <p class="measure-prose">保存配置后，在项目目录打开终端，试试你的新工作流。</p>
+        <div class="command-list">
+          <article class="command-row"><div class="command-description"><span class="command-index">01 /</span><div><h3>查看可用任务</h3><p>列出任务名称和注释，随时查阅。</p></div></div><div class="command-snippet"><code id="command-list">just --list</code><button data-copy="command-list" class="copy-icon" aria-label="复制 just --list">⧉</button></div></article>
+          <article class="command-row"><div class="command-description"><span class="command-index">02 /</span><div><h3>启动开发服务</h3><p>运行配置中的 dev 任务。</p></div></div><div class="command-snippet"><code id="command-dev">just dev</code><button data-copy="command-dev" class="copy-icon" aria-label="复制 just dev">⧉</button></div></article>
+          <article class="command-row"><div class="command-description"><span class="command-index">03 /</span><div><h3>运行项目测试</h3><p>运行配置中的 test 任务。</p></div></div><div class="command-snippet"><code id="command-test">just test</code><button data-copy="command-test" class="copy-icon" aria-label="复制 just test">⧉</button></div></article>
+        </div>
+        <p class="hint">dev 和 test 是本页配置的任务名，你也可以按项目需要自行命名。</p>
+      </section>
+      <a class="next-card" href="https://just.systems/man/en/" target="_blank" rel="noopener noreferrer"><div><span class="next-label">接下来</span><h3>让工作流再进一步</h3><p>探索任务参数、依赖关系与环境变量。</p></div><span class="next-arrow" aria-hidden="true">↗</span></a>
+      <footer class="article-footer"><span>just · 社区中文快速指南</span><a href="https://just.systems/man/en/quick-start.html" target="_blank" rel="noopener noreferrer">参考官方文档 ↗</a></footer>
+    </main>
+    <aside class="toc"><p class="nav-label">本页内容</p><nav aria-label="本页目录"><a class="active" href="#install">安装 just</a><a href="#configure">配置你的项目</a><a href="#commands">三个常用命令</a></nav><div class="toc-note"><span aria-hidden="true">↗</span><p>好工具，<br>从简单开始。</p><span class="toc-note-small">A handy command runner.</span></div></aside>
+  </div>
+  <div class="toast" role="status" aria-live="polite" id="toast"></div>
+  <dialog id="search-dialog" aria-labelledby="search-label"><div class="search-dialog-heading"><label id="search-label" for="search-input">搜索快速指南</label><button id="close-search" aria-label="关闭搜索">✕</button></div><input type="search" id="search-input" placeholder="搜索安装、配置、命令……" autocomplete="off"><div id="search-results"></div><p class="search-help">按 Esc 关闭</p></dialog>
+  <script>
+    const platforms = {
+      mac: { command: 'brew install just', manager: 'Homebrew', hint: '需要先安装 Homebrew。' },
+      linux: { command: 'sudo apt install just', manager: 'APT', hint: '适用于 Debian 13、Ubuntu 24.04 及其衍生发行版。' },
+      windows: { command: 'winget install --id Casey.Just --exact', manager: 'WinGet', hint: '示例任务使用默认的 sh，请安装 Git for Windows 并确保 sh 在 PATH 中。' }
+    };
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+    function selectPlatform(tab) {
+      const value = platforms[tab.dataset.platform];
+      tabs.forEach(item => { item.setAttribute('aria-selected', String(item === tab)); item.tabIndex = item === tab ? 0 : -1; });
+      document.getElementById('install-command').textContent = value.command;
+      document.getElementById('package-manager').textContent = value.manager;
+      document.getElementById('install-panel').setAttribute('aria-labelledby', tab.id);
+      const hint = document.getElementById('platform-hint');
+      hint.replaceChildren(document.createTextNode(value.hint + '其他安装方式见'));
+      const link = document.createElement('a'); link.href = 'https://just.systems/man/en/packages.html'; link.textContent = '官方安装指南 ↗'; link.target = '_blank'; link.rel = 'noopener noreferrer'; hint.append(link, '。');
+    }
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => selectPlatform(tab));
+      tab.addEventListener('keydown', event => {
+        let next;
+        if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+        if (event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next !== undefined) { event.preventDefault(); selectPlatform(tabs[next]); tabs[next].focus(); }
+      });
+    });
+    let toastTimer;
+    document.querySelectorAll('[data-copy]').forEach(button => button.addEventListener('click', async () => {
+      const value = document.getElementById(button.dataset.copy).textContent;
+      let copied = false;
+      try { await navigator.clipboard.writeText(value); copied = true; } catch {
+        const area = document.createElement('textarea'); area.value = value; area.style.cssText = 'position:fixed;left:-9999px;top:0'; document.body.append(area); area.select();
+        try { copied = document.execCommand('copy'); } catch {} finally { area.remove(); button.focus(); }
+      }
+      const toast = document.getElementById('toast'); toast.textContent = copied ? '已复制到剪贴板' : '复制未成功，请选中代码手动复制'; toast.classList.add('visible'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('visible'), 2600);
+    }));
+    const dialog = document.getElementById('search-dialog');
+    const input = document.getElementById('search-input');
+    const pages = [{ id: 'install', title: '安装 just', description: 'macOS · Linux · Windows · 版本验证', keywords: 'brew apt winget install' }, { id: 'configure', title: '配置你的项目', description: '创建 justfile，定义 dev 和 test 任务', keywords: '配置 缩进 npm Node.js' }, { id: 'commands', title: '三个常用命令', description: 'just --list · just dev · just test', keywords: '查看 任务 开发 测试' }];
+    function renderResults() {
+      const results = document.getElementById('search-results'); results.replaceChildren();
+      const query = input.value.trim().toLowerCase();
+      pages.filter(page => (page.title + page.description + page.keywords).toLowerCase().includes(query)).forEach(page => {
+        const link = document.createElement('a'); link.href = '#' + page.id; const title = document.createElement('strong'); title.textContent = page.title; const detail = document.createElement('span'); detail.textContent = page.description; link.append(title, detail); link.addEventListener('click', () => { dialog.close(); const section = document.getElementById(page.id); section.tabIndex = -1; section.focus(); }); results.append(link);
+      });
+      if (!results.children.length) { const empty = document.createElement('p'); empty.textContent = '没有找到相关内容，试试“安装”或“命令”。'; results.append(empty); }
+    }
+    function openSearch() { input.value = ''; renderResults(); dialog.showModal(); input.focus(); }
+    document.getElementById('open-search').addEventListener('click', openSearch);
+    document.getElementById('close-search').addEventListener('click', () => dialog.close());
+    input.addEventListener('input', renderResults);
+    document.addEventListener('keydown', event => { if (event.key === '/' && !dialog.open && !event.ctrlKey && !event.metaKey && !event.altKey && !event.target.matches('input, textarea, [contenteditable="true"]')) { event.preventDefault(); openSearch(); } });
+    dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => { entries.forEach(entry => { if (entry.isIntersecting) document.querySelectorAll('.toc nav a').forEach(link => link.classList.toggle('active', link.hash === '#' + entry.target.id)); }); }, { rootMargin: '-15% 0px -60% 0px' });
+      document.querySelectorAll('.doc-section').forEach(section => observer.observe(section));
+    }
+  </script>
+</body>
+</html>

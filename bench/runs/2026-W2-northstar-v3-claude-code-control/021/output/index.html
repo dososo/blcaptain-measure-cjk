@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>活动报名</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>活动报名</h1>
+    <p class="subtitle">请填写以下信息，带 <span class="required">*</span> 的为必填项。</p>
+
+    <form id="signup-form" novalidate>
+      <div class="field" id="field-name">
+        <label for="name">姓名<span class="required">*</span></label>
+        <input type="text" id="name" name="name" maxlength="20" autocomplete="name" placeholder="请输入真实姓名">
+        <p class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" id="field-phone">
+        <label for="phone">手机号<span class="required">*</span></label>
+        <input type="tel" id="phone" name="phone" maxlength="11" inputmode="numeric" autocomplete="tel" placeholder="11 位手机号码">
+        <p class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" id="field-city">
+        <label for="city">所在城市<span class="required">*</span></label>
+        <select id="city" name="city">
+          <option value="">请选择城市</option>
+          <option>北京</option>
+          <option>上海</option>
+          <option>广州</option>
+          <option>深圳</option>
+          <option>杭州</option>
+          <option>成都</option>
+          <option>武汉</option>
+          <option>南京</option>
+          <option>西安</option>
+          <option>其他</option>
+        </select>
+        <p class="error" aria-live="polite"></p>
+      </div>
+
+      <fieldset class="field" id="field-session">
+        <legend>参加场次<span class="required">*</span></legend>
+        <div class="sessions">
+          <label class="session">
+            <input type="radio" name="session" value="第一场 · 11月15日（周六）上午 09:30–12:00">
+            <div><strong>第一场</strong><span>11月15日（周六）上午 09:30–12:00</span></div>
+          </label>
+          <label class="session">
+            <input type="radio" name="session" value="第二场 · 11月15日（周六）下午 14:00–17:00">
+            <div><strong>第二场</strong><span>11月15日（周六）下午 14:00–17:00</span></div>
+          </label>
+          <label class="session">
+            <input type="radio" name="session" value="第三场 · 11月16日（周日）下午 14:00–17:00">
+            <div><strong>第三场</strong><span>11月16日（周日）下午 14:00–17:00</span></div>
+          </label>
+        </div>
+        <p class="error" aria-live="polite"></p>
+      </fieldset>
+
+      <button type="submit">提交报名</button>
+    </form>
+
+    <section class="success" id="success" hidden>
+      <h2>报名成功 🎉</h2>
+      <p>感谢报名，以下是你提交的信息：</p>
+      <dl id="summary"></dl>
+      <button type="button" id="reset">再报一位</button>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('signup-form');
+    const success = document.getElementById('success');
+    const summary = document.getElementById('summary');
+
+    const rules = {
+      name(v) {
+        if (!v) return '请填写姓名';
+        if (v.length < 2) return '姓名至少 2 个字';
+        return '';
+      },
+      phone(v) {
+        if (!v) return '请填写手机号';
+        if (!/^1[3-9]\d{9}$/.test(v)) return '请输入正确的 11 位手机号';
+        return '';
+      },
+      city(v) {
+        return v ? '' : '请选择所在城市';
+      },
+      session(v) {
+        return v ? '' : '请选择参加场次';
+      }
+    };
+
+    function getValue(name) {
+      if (name === 'session') {
+        const checked = form.querySelector('input[name="session"]:checked');
+        return checked ? checked.value : '';
+      }
+      return form.elements[name].value.trim();
+    }
+
+    function validate(name) {
+      const field = document.getElementById('field-' + name);
+      const msg = rules[name](getValue(name));
+      field.querySelector('.error').textContent = msg;
+      field.classList.toggle('invalid', !!msg);
+      return !msg;
+    }
+
+    // 实时校验：离开输入框或修改选项时
+    ['name', 'phone', 'city'].forEach(n => {
+      form.elements[n].addEventListener('blur', () => validate(n));
+      form.elements[n].addEventListener('change', () => validate(n));
+    });
+    form.querySelectorAll('input[name="session"]').forEach(r =>
+      r.addEventListener('change', () => validate('session'))
+    );
+    // 手机号只允许数字
+    form.elements.phone.addEventListener('input', e => {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const names = Object.keys(rules);
+      const results = names.map(validate);
+      if (results.includes(false)) {
+        const first = names[results.indexOf(false)];
+        const el = first === 'session'
+          ? form.querySelector('input[name="session"]')
+          : form.elements[first];
+        el.focus();
+        return;
+      }
+
+      const data = {
+        姓名: getValue('name'),
+        手机号: getValue('phone'),
+        所在城市: getValue('city'),
+        参加场次: getValue('session')
+      };
+      console.log('报名数据：', data);
+
+      summary.innerHTML = '';
+      Object.entries(data).forEach(([k, v]) => {
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = k;
+        dd.textContent = k === '手机号' ? v.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2') : v;
+        summary.append(dt, dd);
+      });
+
+      form.hidden = true;
+      success.hidden = false;
+    });
+
+    document.getElementById('reset').addEventListener('click', () => {
+      form.reset();
+      form.querySelectorAll('.invalid').forEach(f => f.classList.remove('invalid'));
+      form.querySelectorAll('.error').forEach(p => (p.textContent = ''));
+      success.hidden = true;
+      form.hidden = false;
+      form.elements.name.focus();
+    });
+  </script>
+</body>
+</html>

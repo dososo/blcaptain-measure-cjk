@@ -1,0 +1,94 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w1-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-25T13:25:44.953Z",
+    "mode": "static",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {}
+  },
+  "summary": {
+    "files": 2,
+    "cjk_files": 1,
+    "errors": 3,
+    "warns": 2,
+    "status": "fail"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "pingfang sc",
+      "tier": "system-only",
+      "usage": "system"
+    },
+    {
+      "family": "microsoft yahei",
+      "tier": "system-only",
+      "usage": "system"
+    },
+    {
+      "family": "noto sans cjk sc",
+      "tier": "embeddable",
+      "usage": "system"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "T02",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.layout > nav.toc > h2",
+      "line": 13,
+      "message": "有 146 个中文元素没有开启 text-autospace。三大浏览器实现里它的初始值是 no-autospace，必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: \"text\"，在文案里打空格。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t02"
+    },
+    {
+      "rule": "T04",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.layout > nav.toc > h2",
+      "line": 13,
+      "message": "有 146 个中文元素没有 line-break: strict，标点可能出现在行首。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t04"
+    },
+    {
+      "rule": "T09",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.layout > nav.toc > h2",
+      "line": 13,
+      "message": "中文元素上的 text-transform: uppercase 对汉字没有效果，通常是照搬了英文样式。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t09"
+    },
+    {
+      "rule": "T13",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main > section#branch:nth-of-type(2) > pre > code",
+      "line": 81,
+      "message": "代码块里的中文使用字体栈「ui-monospace, \"sf mono\", menlo, consolas, monospace」，里面没有中文字体，中文会回退到访客系统的默认字体。可以在等宽字体后面补一个中文字体。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13"
+    },
+    {
+      "rule": "T13",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.compare:nth-of-type(2) > div.example:nth-of-type(1) > ul > li:nth-of-type(1)",
+      "line": 162,
+      "message": "字体栈「ui-monospace, \"sf mono\", menlo, consolas, monospace」里没有中文字体，中文会回退到访客系统的默认字体，效果不可控。请在西文字体后面加上中文字体，例如 \"PingFang SC\", \"Noto Sans SC\"。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13"
+    }
+  ]
+}

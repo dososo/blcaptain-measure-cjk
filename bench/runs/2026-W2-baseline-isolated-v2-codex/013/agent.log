@@ -1,0 +1,544 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-013-fZRobX <提示词>
+工作目录：<tmp>/measure-baseline-codex-013-fZRobX
+退出码：0 信号：无 用时：128s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-013-fZRobX
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17350-a4a1-7573-a74e-f420218ac9cf
+--------
+user
+做一个云存储服务的定价页面，按容量分档，并带一个常见问题区。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会制作一个中文云存储定价页面，包含容量套餐、月付/年付切换和可展开的常见问题，并直接保存到当前目录。
+
+exec
+/bin/zsh -lc "pwd; rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-013-fZRobX
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-013-fZRobX
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-013-fZRobX/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..8d831391f738ba76dcfa0feb3a2ec66ad7cd9b6f
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,112 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <meta name="description" content="云屿云存储，为照片、文件和灵感找到合适的空间。灵活选择 100 GB 至 10 TB 容量套餐。">
++  <title>容量随心，珍藏随行 · 云屿云存储</title>
++  <style>
++    :root{--bg:#f7f8fa;--ink:#202b3b;--muted:#7b8491;--line:#e5e8ed;--orange:#ed754c;--orange-dark:#c64e28;--blue:#eaf0f8;--radius:18px}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased}button,a,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #df815d;outline-offset:5px}svg{display:block}button{color:inherit}.container{width:min(1180px,calc(100% - 80px));margin-inline:auto}
++    header{height:98px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:750;font-size:24px;letter-spacing:2px}.brand svg{width:37px;height:37px}.brand small{font-size:9px;color:#8b929d;letter-spacing:2px;font-weight:500;display:block;margin-top:1px}.brand-name{line-height:1.2}nav{display:flex;gap:36px;align-items:center;font-size:13px;color:#79818c}nav a:hover,nav a.active{color:var(--ink)}nav a.active{position:relative}nav a.active:after{content:"";position:absolute;bottom:-15px;left:50%;width:4px;height:4px;background:var(--orange);border-radius:50%}.nav-cta{padding:11px 19px;border:1px solid #dce1e7;border-radius:7px;color:var(--ink);font-weight:600;font-size:12px;background:transparent;transition:background .2s}.nav-cta:hover{background:#fff}
++    .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:355px;padding-top:23px}.eyebrow{font-size:10px;letter-spacing:2.5px;font-weight:700;color:#8490a0;display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange)}h1{font-size:48px;line-height:1.36;letter-spacing:-1.5px;margin:19px 0 17px;font-weight:650}h1 span{color:var(--orange)}.hero p{font-size:13px;color:var(--muted);line-height:1.95;margin:0}.hero-art{width:100%;height:294px;overflow:visible}.hero-caption{display:flex;align-items:center;gap:8px;color:#8c95a2;font-size:10px;letter-spacing:1px;margin-top:25px}.tiny-dot{width:5px;height:5px;border-radius:50%;background:#96b6a0}
++    .pricing{padding-top:18px}.pricing-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}.section-kicker{display:flex;gap:12px;align-items:center;font-size:14px;font-weight:600}.section-kicker span{font-size:11px;color:#9098a3;font-weight:400;border-left:1px solid #d4dae2;padding-left:12px}.billing{display:flex;align-items:center;gap:13px}.toggle{display:flex;padding:4px;background:#e9ecf0;border-radius:9px;gap:2px}.toggle button{border:0;background:transparent;padding:9px 17px;font-size:12px;border-radius:6px;color:#7d8692}.toggle button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 5px #23334c0b;font-weight:600}.save{font-size:10px;font-weight:600;color:#b25c3d;background:#f9e9e1;border-radius:5px;padding:6px 9px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{position:relative;padding:27px 24px 24px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #263b5010}.card.featured{border:1.5px solid var(--orange);box-shadow:0 7px 25px #ed754c0a}.recommend{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;border-radius:5px;padding:5px 11px;font-size:10px;letter-spacing:1px}.plan-top{display:flex;align-items:center;justify-content:space-between}.plan-icon{width:35px;height:35px;background:#f0f3f8;border-radius:10px;display:grid;place-items:center;color:#6b7d99}.plan-icon svg{width:20px;height:20px}.featured .plan-icon{color:var(--orange);background:#fff0e9}.plan-no{font-size:10px;color:#aab1bc;font-family:monospace;letter-spacing:1px}.card h2{font-size:15px;font-weight:650;margin:20px 0 7px}.plan-desc{font-size:11px;color:var(--muted);margin:0;line-height:1.6}.capacity{font-size:36px;font-weight:650;letter-spacing:-1px;margin:24px 0 7px;line-height:1}.capacity span{font-size:15px;margin-left:4px;font-weight:500;letter-spacing:0;color:#939ba7}.storage-note{font-size:10px;color:#969eaa;margin:0 0 24px}.price{display:flex;align-items:baseline;gap:3px}.currency{font-size:16px;font-weight:600}.amount{font-size:36px;line-height:1.15;font-weight:600;letter-spacing:-1.5px}.period{color:#929aa6;font-size:11px;margin-left:3px}.bill-note{font-size:10px;color:#9099a5;margin:10px 0 21px;min-height:15px}.plan-button{width:100%;border:1px solid #dce2e9;border-radius:7px;background:#fff;padding:12px 7px;font-size:12px;font-weight:600;display:flex;justify-content:center;align-items:center;gap:10px;transition:background .2s}.plan-button:hover{background:#f3f5f8}.featured .plan-button{background:var(--orange);color:white;border-color:var(--orange)}.featured .plan-button:hover{background:var(--orange-dark)}.features{list-style:none;margin:23px 0 0;padding:20px 0 0;border-top:1px solid #edf0f4;display:grid;gap:14px}.features li{display:flex;gap:9px;align-items:center;color:#697484;font-size:11px;line-height:1.5}.check{color:#879caf;font-size:13px}.featured .check{color:var(--orange)}.pricing-note{display:flex;justify-content:center;gap:23px;color:#8993a0;font-size:10px;padding-top:24px}.pricing-note span{display:flex;align-items:center;gap:6px}.pricing-note svg{width:12px;height:12px}
++    .included{margin-top:62px;padding:27px 29px;background:#eef1f5;border:1px solid #e8ecf1;border-radius:13px;display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:24px;align-items:center}.included-title{font-size:14px;font-weight:650;margin:0 0 7px}.included-sub{font-size:10px;color:#8a94a2;margin:0}.benefit{display:flex;align-items:center;gap:12px}.benefit svg{width:26px;height:26px;color:#8495ad;flex-shrink:0}.benefit b{font-size:11px;font-weight:600;display:block;margin-bottom:6px}.benefit span{font-size:10px;color:#8792a1;display:block}
++    .faq{padding:76px 0 70px;display:grid;grid-template-columns:1fr 1.8fr;gap:70px}.faq .eyebrow{font-size:9px;letter-spacing:2px}.faq h2{font-size:29px;font-weight:600;letter-spacing:-.5px;margin:16px 0 12px}.faq-intro{font-size:12px;line-height:1.9;color:var(--muted);margin:0}.faq-note{font-size:10px;color:#9aa3af;line-height:1.9;margin-top:25px}.questions{border-top:1px solid var(--line)}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:21px 0;font-size:12px;font-weight:550}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:19px;color:#8e9bab;font-weight:400;line-height:1}details[open] summary:after{content:"−";color:var(--orange)}details[open] summary{padding-bottom:12px}details p{font-size:11px;color:var(--muted);line-height:2;margin:0 30px 20px 0}footer{border-top:1px solid var(--line);min-height:92px;display:flex;justify-content:space-between;align-items:center;color:#939ca8;font-size:10px}.footer-left{display:flex;gap:22px;align-items:center}.footer-brand{font-size:14px;font-weight:650;color:#647183;letter-spacing:2px}.footer-right{display:flex;gap:20px;align-items:center}.status{display:flex;align-items:center;gap:7px}.status:before{content:"";width:5px;height:5px;border-radius:50%;background:#8cad96}
++    dialog{border:1px solid var(--line);padding:34px;border-radius:20px;width:min(440px,calc(100% - 32px));box-shadow:0 25px 100px #182b4030;color:var(--ink)}dialog::backdrop{background:#202b3b65;backdrop-filter:blur(4px)}.dialog-top{display:flex;align-items:center;justify-content:space-between}.dialog-top h2{font-size:21px;margin:0}.close{border:0;background:#f0f2f5;width:30px;height:30px;border-radius:50%;font-size:20px}.dialog-copy{font-size:12px;line-height:1.9;color:var(--muted);margin:18px 0}.order-summary{background:var(--bg);padding:19px;border-radius:12px;margin-bottom:20px}.order-summary p{display:flex;justify-content:space-between;gap:15px;font-size:12px;margin:0 0 14px}.order-summary p:last-child{margin:0}.order-summary strong{color:var(--orange)}.dialog-done{background:var(--orange);color:#fff;border:0;width:100%;border-radius:8px;padding:12px;font-size:12px}.demo-label{color:#949da9;font-size:10px;text-align:center;margin:15px 0 0}
++    @media(min-width:1500px){.container{width:1240px}.hero{min-height:395px}h1{font-size:53px}.card{padding:30px 27px}.faq{padding-block:85px}}
++    @media(max-width:1000px){.container{width:calc(100% - 48px)}.cards{gap:12px}.card{padding:24px 17px}.hero{grid-template-columns:1.2fr 1fr}h1{font-size:40px}.included{gap:15px;padding:24px 20px}.benefit{gap:8px}.benefit svg{width:22px}.faq{gap:45px}.section-kicker span{display:none}}
++    @media(max-width:760px){header{height:82px}.brand{font-size:21px}.brand svg{width:32px}nav{gap:22px}nav a:first-child{display:none}.nav-cta{padding:9px 13px}.hero{grid-template-columns:1fr 0.8fr;min-height:310px}.hero-art{height:220px}h1{font-size:34px;letter-spacing:-1px}.hero p{font-size:11px}.hero-caption{font-size:9px;margin-top:18px}.eyebrow{font-size:9px;letter-spacing:1.8px}.cards{grid-template-columns:repeat(2,1fr);gap:25px 16px}.card{padding:25px}.included{grid-template-columns:1fr 1fr;gap:28px;margin-top:42px}.faq{grid-template-columns:1fr;gap:28px;padding-block:50px}.faq-note{display:none}.faq h2{margin-block:13px 8px}.footer-left{gap:13px}.footer-right{gap:12px}.footer-right>a{display:none}}
++    @media(max-width:480px){.container{width:calc(100% - 36px)}nav{gap:18px;font-size:12px}nav a[href="#included"]{display:none}.brand small{font-size:7px}.hero{position:relative;display:block;min-height:330px;padding-top:37px;overflow:hidden}.hero-art{position:absolute;width:180px;height:190px;right:-39px;bottom:3px;opacity:.65;pointer-events:none}.hero-copy{position:relative;z-index:1}h1{font-size:37px;margin-block:17px 14px}.hero p{max-width:245px;font-size:11px}.hero-caption{margin-top:22px}.pricing-top{align-items:flex-start;gap:12px;margin-bottom:30px}.section-kicker{font-size:12px;padding-top:11px}.billing{gap:7px}.toggle button{padding:8px 12px;font-size:11px}.save{font-size:9px;padding:5px}.cards{gap:25px 11px}.card{padding:22px 15px}.card h2{font-size:14px}.plan-desc{font-size:10px}.capacity{font-size:31px}.storage-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.amount{font-size:32px}.bill-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.features{gap:12px}.features li{font-size:10px;gap:6px}.plan-button{font-size:11px}.pricing-note{gap:12px;font-size:9px;flex-wrap:wrap}.included{padding:22px 17px;gap:25px 15px}.benefit svg{width:21px}.benefit span{font-size:9px}.included-title{font-size:13px}.included-sub{font-size:9px}footer{align-items:flex-start;gap:20px;padding-block:23px;min-height:95px}.footer-left{align-items:flex-start;flex-direction:column;gap:9px}.footer-right{font-size:9px;padding-top:3px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
++    <symbol id="cloud" viewBox="0 0 24 24"><path d="M6.5 18a4.5 4.5 0 0 1-.6-9A6.5 6.5 0 0 1 18.5 8a5 5 0 0 1 0 10Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m8.5 11.5 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="devices" viewBox="0 0 24 24"><path d="M13 17H3V4h17v5M5 20h7M8 17v3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="15" y="10" width="7" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 18.5h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++    <symbol id="bolt" viewBox="0 0 24 24"><path d="m13.5 2-10 12h7l-1 8 11-13h-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
++    <symbol id="folder" viewBox="0 0 24 24"><path d="M3 7V5a1 1 0 0 1 1-1h6l2 3h8a1 1 0 0 1 1 1v11H3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++  </defs></svg>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="云屿首页"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#ed754c"/><path d="M11 25c-5-1-4-8 1-9 1-7 12-8 15-1 7 0 9 11 1 12H12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"/><path d="M16 21h10" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-name">云屿<small>CLOUD ISLE</small></span></a>
++      <nav aria-label="主导航"><a href="#included">产品优势</a><a href="#pricing" class="active" aria-current="page">价格方案</a><a href="#faq">常见问题</a></nav>
++      <a href="#pricing" class="nav-cta">开启云端生活 <span aria-hidden="true">↗</span></a>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-heading">
++        <div class="hero-copy"><div class="eyebrow">A LITTLE SPACE. ENDLESS POSSIBILITIES.</div><h1 id="hero-heading">装下每一份珍贵，<br>留出<span>更多可能。</span></h1><p>从日常文件到无限灵感，为你的数字生活找到合适的空间。<br>简单透明的价格，安心自在的云端。</p><div class="hero-caption"><span class="tiny-dot"></span> 你的每一份珍藏，都值得妥善安放</div></div>
++        <svg class="hero-art" viewBox="0 0 480 310" role="img" aria-label="文件与照片环绕云端存储的插画">
++          <defs><linearGradient id="cloudGrad" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e0e8f3"/></linearGradient><linearGradient id="baseGrad" x2="0" y2="1"><stop stop-color="#eaf0f7"/><stop offset="1" stop-color="#ccd7e5"/></linearGradient><filter id="shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#8b9db4" flood-opacity=".18"/></filter></defs>
++          <ellipse cx="255" cy="177" rx="187" ry="85" fill="none" stroke="#dfe5ed" transform="rotate(-19 255 177)"/><ellipse cx="255" cy="177" rx="158" ry="106" fill="none" stroke="#e8ecf2" stroke-dasharray="3 6" transform="rotate(21 255 177)"/>
++          <ellipse cx="255" cy="257" rx="94" ry="16" fill="#e7ecf3" opacity=".8"/>
++          <g filter="url(#shadow)"><path d="m165 200 87-31 91 31v29l-90 34-88-34Z" fill="url(#baseGrad)"/><path d="m165 200 88 32 90-32-91-31Z" fill="#f5f8fc" stroke="#dfe6ef"/><path d="M253 232v31" stroke="#becbdc"/><path d="m182 222 24 9" stroke="#aab9cc" stroke-width="3" stroke-linecap="round"/><circle cx="323" cy="230" r="3" fill="#85ae9d"/>
++          <path d="M185 185c-43-5-38-64-4-68 2-47 65-62 89-21 37-11 66 18 61 46 28 19 11 60-21 59Z" fill="url(#cloudGrad)" stroke="#d3deec" stroke-width="1.5"/>
++          <path d="m243 164 0-45m-15 15 15-15 15 15" fill="none" stroke="#90a6c1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
++          </g>
++          <g transform="translate(84 106) rotate(-15)" filter="url(#shadow)"><rect width="58" height="67" rx="9" fill="#fff" stroke="#e1e7ef"/><rect x="9" y="10" width="40" height="32" rx="5" fill="#f9e7dc"/><circle cx="37" cy="19" r="5" fill="#edb091"/><path d="m12 38 12-13 9 9 6-5 8 9" fill="#dca488"/><path d="M12 51h32M12 57h22" stroke="#d9e0e9" stroke-width="3" stroke-linecap="round"/></g>
++          <g transform="translate(358 68) rotate(13)" filter="url(#shadow)"><rect width="49" height="61" rx="8" fill="#fff" stroke="#e0e6ef"/><path d="M13 15h22M13 23h22M13 31h15" stroke="#a6b8d0" stroke-width="3" stroke-linecap="round"/><rect x="13" y="42" width="13" height="8" rx="2" fill="#e6edf7"/></g>
++          <g transform="translate(369 220) rotate(12)"><rect width="39" height="39" rx="11" fill="#f8e5da"/><path d="m15 12 13 8-13 8Z" fill="#df936b"/></g><g transform="translate(142 49) rotate(-12)"><rect width="32" height="32" rx="9" fill="#e5ebf5"/><path d="M18 10v12m0-11 6-1v5m-6 5c-7-2-8 5-3 4 2 0 3-2 3-4" fill="none" stroke="#9cacbf" stroke-width="1.7" stroke-linecap="round"/></g>
++          <circle cx="89" cy="221" r="4" fill="#edaa8c"/><circle cx="330" cy="36" r="3" fill="#c5d0df"/><circle cx="434" cy="161" r="4" fill="#bac9dc"/><path d="M215 33v8m-4-4h8M420 264v8m-4-4h8" stroke="#c9d4e2" stroke-width="1.5" stroke-linecap="round"/>
++        </svg>
++      </section>
++      <section class="pricing" id="pricing" aria-label="云存储价格方案">
++        <div class="pricing-top"><div class="section-kicker">选择你的云端空间 <span>小小日常，到无限热爱</span></div><div class="billing"><div class="toggle" role="group" aria-label="付款周期"><button type="button" data-cycle="monthly" aria-pressed="false">月付</button><button type="button" data-cycle="yearly" aria-pressed="true">年付</button></div><span class="save">年付省 20%</span></div></div>
++        <div class="cards">
++          <article class="card" data-name="轻享版" data-capacity="100 GB" data-monthly="10"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#cloud"/></svg></div><span class="plan-no">01 / LITE</span></div><h2>轻享版</h2><p class="plan-desc">给日常，多一点从容</p><div class="capacity">100 <span>GB</span></div><p class="storage-note">约可存储 25,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">8</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥96，省 ¥24</p><button class="plan-button" type="button">选择轻享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>100 GB 专属存储空间</li><li><span class="check">✓</span>单文件最大 5 GB</li><li><span class="check">✓</span>30 天历史版本恢复</li><li><span class="check">✓</span>文件分享与密码保护</li></ul></article>
++          <article class="card featured" data-name="畅享版" data-capacity="1 TB" data-monthly="25"><span class="recommend">最受欢迎</span><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#folder"/></svg></div><span class="plan-no">02 / PLUS</span></div><h2>畅享版</h2><p class="plan-desc">让每一份热爱，都有位置</p><div class="capacity">1 <span>TB</span></div><p class="storage-note">约可存储 250,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">20</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥240，省 ¥60</p><button class="plan-button" type="button">选择畅享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>1 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 20 GB</li><li><span class="check">✓</span>90 天历史版本恢复</li><li><span class="check">✓</span>分享有效期与下载管理</li></ul></article>
++          <article class="card" data-name="专业版" data-capacity="2 TB" data-monthly="45"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#bolt"/></svg></div><span class="plan-no">03 / PRO</span></div><h2>专业版</h2><p class="plan-desc">为创作而生，让灵感自由</p><div class="capacity">2 <span>TB</span></div><p class="storage-note">约可存储 500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">36</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥432，省 ¥108</p><button class="plan-button" type="button">选择专业版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>2 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 50 GB</li><li><span class="check">✓</span>180 天历史版本恢复</li><li><span class="check">✓</span>优先客服支持</li></ul></article>
++          <article class="card" data-name="无界版" data-capacity="10 TB" data-monthly="125"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#layers"/></svg></div><span class="plan-no">04 / MAX</span></div><h2>无界版</h2><p class="plan-desc">海量珍藏，不必做取舍</p><div class="capacity">10 <span>TB</span></div><p class="storage-note">约可存储 2,500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">100</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥1,200，省 ¥300</p><button class="plan-button" type="button">选择无界版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>10 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 100 GB</li><li><span class="check">✓</span>365 天历史版本恢复</li><li><span class="check">✓</span>专属客服支持</li></ul></article>
++        </div>
++        <div class="pricing-note"><span><svg aria-hidden="true"><use href="#shield"/></svg>价格透明，无隐藏费用</span><span>✓ 随时升级容量</span><span>✓ 可取消自动续费</span></div>
++        <p id="price-announcement" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></p>
++      </section>
++      <section class="included" id="included" aria-label="所有方案均包含的服务"><div><h2 class="included-title">每一档，都同样安心。</h2><p class="included-sub">以下基础服务，所有方案均享有</p></div><div class="benefit"><svg aria-hidden="true"><use href="#shield"/></svg><div><b>安全加密保护</b><span>传输与存储加密，守护你的隐私</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#devices"/></svg><div><b>多端自动同步</b><span>手机、电脑、网页，随时访问</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#bolt"/></svg><div><b>上传下载不限速</b><span>速度取决于网络，体验不设限</span></div></div></section>
++      <section class="faq" id="faq" aria-labelledby="faq-heading"><div><div class="eyebrow">GOOD TO KNOW</div><h2 id="faq-heading">你可能还想了解</h2><p class="faq-intro">关于空间、订阅与安全，<br>把你关心的，都说清楚。</p><p class="faq-note">少一点疑问，多一点安心。<br>让存储回归简单。</p></div><div class="questions">
++        <details open><summary>我应该选择多大的存储空间？</summary><p>如果主要备份手机照片和日常文档，100 GB 是轻巧的起点；大量照片和视频推荐 1 TB；设计素材、高清视频等创作文件适合 2 TB；长期归档与海量资料可选择 10 TB。照片数量按每张约 4 MB、1 TB = 1,000 GB 估算，实际可存数量因文件大小而异。</p></details>
++        <details><summary>可以随时升级或降级套餐吗？</summary><p>可以。升级时按剩余订阅时长补齐差价，新容量即时生效。降级将在当前订阅周期结束后生效；请提前将已用空间调整到新套餐容量内，避免影响新文件上传和同步。</p></details>
++        <details><summary>年付与月付有什么区别？</summary><p>同一容量套餐的功能完全相同。年付一次支付 12 个月的费用，比连续月付节省 20%；页面展示的年付月价为年费除以 12 的结果。月付按月结算，更加灵活。</p></details>
++        <details><summary>订阅到期后，我的文件会被删除吗？</summary><p>到期后会保留文件 30 天，在此期间可以浏览和下载，上传与自动同步将暂停。请在保留期内续订或导出文件；保留期结束后，文件可能被清理。你也可以随时在账户中关闭自动续费。</p></details>
++        <details><summary>我的文件如何受到保护？</summary><p>文件在传输和存储时均使用加密保护，并通过冗余备份降低硬件故障带来的数据丢失风险。分享文件时可以设置密码；畅享版及以上还支持设置分享有效期与下载权限。建议同时为重要资料保留本地备份。</p></details>
++      </div></section>
++    </main>
++    <footer><div class="footer-left"><a href="#" class="footer-brand">云屿</a><span>© 2026 Cloud Isle. 给珍贵，一个安心的家。</span></div><div class="footer-right"><a href="#pricing">价格方案</a><a href="#faq">帮助中心</a><span class="status">云端生活，从容开始</span></div></footer>
++  </div>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="dialog-top"><h2 id="dialog-title">你的云端空间</h2><button type="button" class="close" aria-label="关闭">×</button></div><p class="dialog-copy" id="dialog-description">为珍贵找到合适的位置。以下是你选择的套餐：</p><div class="order-summary"><p><span>存储方案</span><b id="selected-plan"></b></p><p><span>付款周期</span><b id="selected-cycle"></b></p><p><span>每期费用</span><strong id="selected-price"></strong></p></div><button type="button" class="dialog-done">继续浏览方案</button><p class="demo-label">这是定价页面演示，暂不提供实际订阅或付款。</p></dialog>
++  <script>
++    (() => {
++      let cycle = 'yearly';
++      const format = value => value.toLocaleString('zh-CN');
++      const cards = [...document.querySelectorAll('.card')];
++      const dialog = document.getElementById('plan-dialog');
++      document.querySelectorAll('[data-cycle]').forEach(button => {
++        button.addEventListener('click', () => {
++          cycle = button.dataset.cycle;
++          document.querySelectorAll('[data-cycle]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++          cards.forEach(card => {
++            const monthly = Number(card.dataset.monthly);
++            card.querySelector('.amount').textContent = format(cycle === 'yearly' ? monthly * .8 : monthly);
++            card.querySelector('.bill-note').textContent = cycle === 'yearly'
++              ? `按年支付 ¥${format(monthly * .8 * 12)}，省 ¥${format(monthly * .2 * 12)}`
++              : `每月支付 ¥${format(monthly)}，按月结算`;
++          });
++          document.getElementById('price-announcement').textContent = cycle === 'yearly' ? '已切换为年付，所有套餐节省 20%，展示价格为折合月价。' : '已切换为月付，所有套餐价格已更新。';
++        });
++      });
++      cards.forEach(card => card.querySelector('.plan-button').addEventListener('click', () => {
++        const monthly = Number(card.dataset.monthly);
++        document.getElementById('selected-plan').textContent = `${card.dataset.name} · ${card.dataset.capacity}`;
++        document.getElementById('selected-cycle').textContent = cycle === 'yearly' ? '年付（一次支付 12 个月）' : '月付';
++        document.getElementById('selected-price').textContent = cycle === 'yearly' ? `¥${format(monthly * .8 * 12)} / 年` : `¥${format(monthly)} / 月`;
++        dialog.showModal();
++      }));
++      dialog.querySelectorAll('.close, .dialog-done').forEach(button => button.addEventListener('click', () => dialog.close()));
++      dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
++    })();
++  </script>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..8d831391f738ba76dcfa0feb3a2ec66ad7cd9b6f
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,112 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <meta name="description" content="云屿云存储，为照片、文件和灵感找到合适的空间。灵活选择 100 GB 至 10 TB 容量套餐。">
++  <title>容量随心，珍藏随行 · 云屿云存储</title>
++  <style>
++    :root{--bg:#f7f8fa;--ink:#202b3b;--muted:#7b8491;--line:#e5e8ed;--orange:#ed754c;--orange-dark:#c64e28;--blue:#eaf0f8;--radius:18px}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased}button,a,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #df815d;outline-offset:5px}svg{display:block}button{color:inherit}.container{width:min(1180px,calc(100% - 80px));margin-inline:auto}
++    header{height:98px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:750;font-size:24px;letter-spacing:2px}.brand svg{width:37px;height:37px}.brand small{font-size:9px;color:#8b929d;letter-spacing:2px;font-weight:500;display:block;margin-top:1px}.brand-name{line-height:1.2}nav{display:flex;gap:36px;align-items:center;font-size:13px;color:#79818c}nav a:hover,nav a.active{color:var(--ink)}nav a.active{position:relative}nav a.active:after{content:"";position:absolute;bottom:-15px;left:50%;width:4px;height:4px;background:var(--orange);border-radius:50%}.nav-cta{padding:11px 19px;border:1px solid #dce1e7;border-radius:7px;color:var(--ink);font-weight:600;font-size:12px;background:transparent;transition:background .2s}.nav-cta:hover{background:#fff}
++    .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:355px;padding-top:23px}.eyebrow{font-size:10px;letter-spacing:2.5px;font-weight:700;color:#8490a0;display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange)}h1{font-size:48px;line-height:1.36;letter-spacing:-1.5px;margin:19px 0 17px;font-weight:650}h1 span{color:var(--orange)}.hero p{font-size:13px;color:var(--muted);line-height:1.95;margin:0}.hero-art{width:100%;height:294px;overflow:visible}.hero-caption{display:flex;align-items:center;gap:8px;color:#8c95a2;font-size:10px;letter-spacing:1px;margin-top:25px}.tiny-dot{width:5px;height:5px;border-radius:50%;background:#96b6a0}
++    .pricing{padding-top:18px}.pricing-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}.section-kicker{display:flex;gap:12px;align-items:center;font-size:14px;font-weight:600}.section-kicker span{font-size:11px;color:#9098a3;font-weight:400;border-left:1px solid #d4dae2;padding-left:12px}.billing{display:flex;align-items:center;gap:13px}.toggle{display:flex;padding:4px;background:#e9ecf0;border-radius:9px;gap:2px}.toggle button{border:0;background:transparent;padding:9px 17px;font-size:12px;border-radius:6px;color:#7d8692}.toggle button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 5px #23334c0b;font-weight:600}.save{font-size:10px;font-weight:600;color:#b25c3d;background:#f9e9e1;border-radius:5px;padding:6px 9px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{position:relative;padding:27px 24px 24px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #263b5010}.card.featured{border:1.5px solid var(--orange);box-shadow:0 7px 25px #ed754c0a}.recommend{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;border-radius:5px;padding:5px 11px;font-size:10px;letter-spacing:1px}.plan-top{display:flex;align-items:center;justify-content:space-between}.plan-icon{width:35px;height:35px;background:#f0f3f8;border-radius:10px;display:grid;place-items:center;color:#6b7d99}.plan-icon svg{width:20px;height:20px}.featured .plan-icon{color:var(--orange);background:#fff0e9}.plan-no{font-size:10px;color:#aab1bc;font-family:monospace;letter-spacing:1px}.card h2{font-size:15px;font-weight:650;margin:20px 0 7px}.plan-desc{font-size:11px;color:var(--muted);margin:0;line-height:1.6}.capacity{font-size:36px;font-weight:650;letter-spacing:-1px;margin:24px 0 7px;line-height:1}.capacity span{font-size:15px;margin-left:4px;font-weight:500;letter-spacing:0;color:#939ba7}.storage-note{font-size:10px;color:#969eaa;margin:0 0 24px}.price{display:flex;align-items:baseline;gap:3px}.currency{font-size:16px;font-weight:600}.amount{font-size:36px;line-height:1.15;font-weight:600;letter-spacing:-1.5px}.period{color:#929aa6;font-size:11px;margin-left:3px}.bill-note{font-size:10px;color:#9099a5;margin:10px 0 21px;min-height:15px}.plan-button{width:100%;border:1px solid #dce2e9;border-radius:7px;background:#fff;padding:12px 7px;font-size:12px;font-weight:600;display:flex;justify-content:center;align-items:center;gap:10px;transition:background .2s}.plan-button:hover{background:#f3f5f8}.featured .plan-button{background:var(--orange);color:white;border-color:var(--orange)}.featured .plan-button:hover{background:var(--orange-dark)}.features{list-style:none;margin:23px 0 0;padding:20px 0 0;border-top:1px solid #edf0f4;display:grid;gap:14px}.features li{display:flex;gap:9px;align-items:center;color:#697484;font-size:11px;line-height:1.5}.check{color:#879caf;font-size:13px}.featured .check{color:var(--orange)}.pricing-note{display:flex;justify-content:center;gap:23px;color:#8993a0;font-size:10px;padding-top:24px}.pricing-note span{display:flex;align-items:center;gap:6px}.pricing-note svg{width:12px;height:12px}
++    .included{margin-top:62px;padding:27px 29px;background:#eef1f5;border:1px solid #e8ecf1;border-radius:13px;display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:24px;align-items:center}.included-title{font-size:14px;font-weight:650;margin:0 0 7px}.included-sub{font-size:10px;color:#8a94a2;margin:0}.benefit{display:flex;align-items:center;gap:12px}.benefit svg{width:26px;height:26px;color:#8495ad;flex-shrink:0}.benefit b{font-size:11px;font-weight:600;display:block;margin-bottom:6px}.benefit span{font-size:10px;color:#8792a1;display:block}
++    .faq{padding:76px 0 70px;display:grid;grid-template-columns:1fr 1.8fr;gap:70px}.faq .eyebrow{font-size:9px;letter-spacing:2px}.faq h2{font-size:29px;font-weight:600;letter-spacing:-.5px;margin:16px 0 12px}.faq-intro{font-size:12px;line-height:1.9;color:var(--muted);margin:0}.faq-note{font-size:10px;color:#9aa3af;line-height:1.9;margin-top:25px}.questions{border-top:1px solid var(--line)}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:21px 0;font-size:12px;font-weight:550}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:19px;color:#8e9bab;font-weight:400;line-height:1}details[open] summary:after{content:"−";color:var(--orange)}details[open] summary{padding-bottom:12px}details p{font-size:11px;color:var(--muted);line-height:2;margin:0 30px 20px 0}footer{border-top:1px solid var(--line);min-height:92px;display:flex;justify-content:space-between;align-items:center;color:#939ca8;font-size:10px}.footer-left{display:flex;gap:22px;align-items:center}.footer-brand{font-size:14px;font-weight:650;color:#647183;letter-spacing:2px}.footer-right{display:flex;gap:20px;align-items:center}.status{display:flex;align-items:center;gap:7px}.status:before{content:"";width:5px;height:5px;border-radius:50%;background:#8cad96}
++    dialog{border:1px solid var(--line);padding:34px;border-radius:20px;width:min(440px,calc(100% - 32px));box-shadow:0 25px 100px #182b4030;color:var(--ink)}dialog::backdrop{background:#202b3b65;backdrop-filter:blur(4px)}.dialog-top{display:flex;align-items:center;justify-content:space-between}.dialog-top h2{font-size:21px;margin:0}.close{border:0;background:#f0f2f5;width:30px;height:30px;border-radius:50%;font-size:20px}.dialog-copy{font-size:12px;line-height:1.9;color:var(--muted);margin:18px 0}.order-summary{background:var(--bg);padding:19px;border-radius:12px;margin-bottom:20px}.order-summary p{display:flex;justify-content:space-between;gap:15px;font-size:12px;margin:0 0 14px}.order-summary p:last-child{margin:0}.order-summary strong{color:var(--orange)}.dialog-done{background:var(--orange);color:#fff;border:0;width:100%;border-radius:8px;padding:12px;font-size:12px}.demo-label{color:#949da9;font-size:10px;text-align:center;margin:15px 0 0}
++    @media(min-width:1500px){.container{width:1240px}.hero{min-height:395px}h1{font-size:53px}.card{padding:30px 27px}.faq{padding-block:85px}}
++    @media(max-width:1000px){.container{width:calc(100% - 48px)}.cards{gap:12px}.card{padding:24px 17px}.hero{grid-template-columns:1.2fr 1fr}h1{font-size:40px}.included{gap:15px;padding:24px 20px}.benefit{gap:8px}.benefit svg{width:22px}.faq{gap:45px}.section-kicker span{display:none}}
++    @media(max-width:760px){header{height:82px}.brand{font-size:21px}.brand svg{width:32px}nav{gap:22px}nav a:first-child{display:none}.nav-cta{padding:9px 13px}.hero{grid-template-columns:1fr 0.8fr;min-height:310px}.hero-art{height:220px}h1{font-size:34px;letter-spacing:-1px}.hero p{font-size:11px}.hero-caption{font-size:9px;margin-top:18px}.eyebrow{font-size:9px;letter-spacing:1.8px}.cards{grid-template-columns:repeat(2,1fr);gap:25px 16px}.card{padding:25px}.included{grid-template-columns:1fr 1fr;gap:28px;margin-top:42px}.faq{grid-template-columns:1fr;gap:28px;padding-block:50px}.faq-note{display:none}.faq h2{margin-block:13px 8px}.footer-left{gap:13px}.footer-right{gap:12px}.footer-right>a{display:none}}
++    @media(max-width:480px){.container{width:calc(100% - 36px)}nav{gap:18px;font-size:12px}nav a[href="#included"]{display:none}.brand small{font-size:7px}.hero{position:relative;display:block;min-height:330px;padding-top:37px;overflow:hidden}.hero-art{position:absolute;width:180px;height:190px;right:-39px;bottom:3px;opacity:.65;pointer-events:none}.hero-copy{position:relative;z-index:1}h1{font-size:37px;margin-block:17px 14px}.hero p{max-width:245px;font-size:11px}.hero-caption{margin-top:22px}.pricing-top{align-items:flex-start;gap:12px;margin-bottom:30px}.section-kicker{font-size:12px;padding-top:11px}.billing{gap:7px}.toggle button{padding:8px 12px;font-size:11px}.save{font-size:9px;padding:5px}.cards{gap:25px 11px}.card{padding:22px 15px}.card h2{font-size:14px}.plan-desc{font-size:10px}.capacity{font-size:31px}.storage-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.amount{font-size:32px}.bill-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.features{gap:12px}.features li{font-size:10px;gap:6px}.plan-button{font-size:11px}.pricing-note{gap:12px;font-size:9px;flex-wrap:wrap}.included{padding:22px 17px;gap:25px 15px}.benefit svg{width:21px}.benefit span{font-size:9px}.included-title{font-size:13px}.included-sub{font-size:9px}footer{align-items:flex-start;gap:20px;padding-block:23px;min-height:95px}.footer-left{align-items:flex-start;flex-direction:column;gap:9px}.footer-right{font-size:9px;padding-top:3px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
++    <symbol id="cloud" viewBox="0 0 24 24"><path d="M6.5 18a4.5 4.5 0 0 1-.6-9A6.5 6.5 0 0 1 18.5 8a5 5 0 0 1 0 10Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m8.5 11.5 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="devices" viewBox="0 0 24 24"><path d="M13 17H3V4h17v5M5 20h7M8 17v3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="15" y="10" width="7" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 18.5h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++    <symbol id="bolt" viewBox="0 0 24 24"><path d="m13.5 2-10 12h7l-1 8 11-13h-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
++    <symbol id="folder" viewBox="0 0 24 24"><path d="M3 7V5a1 1 0 0 1 1-1h6l2 3h8a1 1 0 0 1 1 1v11H3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++  </defs></svg>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="云屿首页"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#ed754c"/><path d="M11 25c-5-1-4-8 1-9 1-7 12-8 15-1 7 0 9 11 1 12H12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"/><path d="M16 21h10" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-name">云屿<small>CLOUD ISLE</small></span></a>
++      <nav aria-label="主导航"><a href="#included">产品优势</a><a href="#pricing" class="active" aria-current="page">价格方案</a><a href="#faq">常见问题</a></nav>
++      <a href="#pricing" class="nav-cta">开启云端生活 <span aria-hidden="true">↗</span></a>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-heading">
++        <div class="hero-copy"><div class="eyebrow">A LITTLE SPACE. ENDLESS POSSIBILITIES.</div><h1 id="hero-heading">装下每一份珍贵，<br>留出<span>更多可能。</span></h1><p>从日常文件到无限灵感，为你的数字生活找到合适的空间。<br>简单透明的价格，安心自在的云端。</p><div class="hero-caption"><span class="tiny-dot"></span> 你的每一份珍藏，都值得妥善安放</div></div>
++        <svg class="hero-art" viewBox="0 0 480 310" role="img" aria-label="文件与照片环绕云端存储的插画">
++          <defs><linearGradient id="cloudGrad" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e0e8f3"/></linearGradient><linearGradient id="baseGrad" x2="0" y2="1"><stop stop-color="#eaf0f7"/><stop offset="1" stop-color="#ccd7e5"/></linearGradient><filter id="shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#8b9db4" flood-opacity=".18"/></filter></defs>
++          <ellipse cx="255" cy="177" rx="187" ry="85" fill="none" stroke="#dfe5ed" transform="rotate(-19 255 177)"/><ellipse cx="255" cy="177" rx="158" ry="106" fill="none" stroke="#e8ecf2" stroke-dasharray="3 6" transform="rotate(21 255 177)"/>
++          <ellipse cx="255" cy="257" rx="94" ry="16" fill="#e7ecf3" opacity=".8"/>
++          <g filter="url(#shadow)"><path d="m165 200 87-31 91 31v29l-90 34-88-34Z" fill="url(#baseGrad)"/><path d="m165 200 88 32 90-32-91-31Z" fill="#f5f8fc" stroke="#dfe6ef"/><path d="M253 232v31" stroke="#becbdc"/><path d="m182 222 24 9" stroke="#aab9cc" stroke-width="3" stroke-linecap="round"/><circle cx="323" cy="230" r="3" fill="#85ae9d"/>
++          <path d="M185 185c-43-5-38-64-4-68 2-47 65-62 89-21 37-11 66 18 61 46 28 19 11 60-21 59Z" fill="url(#cloudGrad)" stroke="#d3deec" stroke-width="1.5"/>
++          <path d="m243 164 0-45m-15 15 15-15 15 15" fill="none" stroke="#90a6c1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
++          </g>
++          <g transform="translate(84 106) rotate(-15)" filter="url(#shadow)"><rect width="58" height="67" rx="9" fill="#fff" stroke="#e1e7ef"/><rect x="9" y="10" width="40" height="32" rx="5" fill="#f9e7dc"/><circle cx="37" cy="19" r="5" fill="#edb091"/><path d="m12 38 12-13 9 9 6-5 8 9" fill="#dca488"/><path d="M12 51h32M12 57h22" stroke="#d9e0e9" stroke-width="3" stroke-linecap="round"/></g>
++          <g transform="translate(358 68) rotate(13)" filter="url(#shadow)"><rect width="49" height="61" rx="8" fill="#fff" stroke="#e0e6ef"/><path d="M13 15h22M13 23h22M13 31h15" stroke="#a6b8d0" stroke-width="3" stroke-linecap="round"/><rect x="13" y="42" width="13" height="8" rx="2" fill="#e6edf7"/></g>
++          <g transform="translate(369 220) rotate(12)"><rect width="39" height="39" rx="11" fill="#f8e5da"/><path d="m15 12 13 8-13 8Z" fill="#df936b"/></g><g transform="translate(142 49) rotate(-12)"><rect width="32" height="32" rx="9" fill="#e5ebf5"/><path d="M18 10v12m0-11 6-1v5m-6 5c-7-2-8 5-3 4 2 0 3-2 3-4" fill="none" stroke="#9cacbf" stroke-width="1.7" stroke-linecap="round"/></g>
++          <circle cx="89" cy="221" r="4" fill="#edaa8c"/><circle cx="330" cy="36" r="3" fill="#c5d0df"/><circle cx="434" cy="161" r="4" fill="#bac9dc"/><path d="M215 33v8m-4-4h8M420 264v8m-4-4h8" stroke="#c9d4e2" stroke-width="1.5" stroke-linecap="round"/>
++        </svg>
++      </section>
++      <section class="pricing" id="pricing" aria-label="云存储价格方案">
++        <div class="pricing-top"><div class="section-kicker">选择你的云端空间 <span>小小日常，到无限热爱</span></div><div class="billing"><div class="toggle" role="group" aria-label="付款周期"><button type="button" data-cycle="monthly" aria-pressed="false">月付</button><button type="button" data-cycle="yearly" aria-pressed="true">年付</button></div><span class="save">年付省 20%</span></div></div>
++        <div class="cards">
++          <article class="card" data-name="轻享版" data-capacity="100 GB" data-monthly="10"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#cloud"/></svg></div><span class="plan-no">01 / LITE</span></div><h2>轻享版</h2><p class="plan-desc">给日常，多一点从容</p><div class="capacity">100 <span>GB</span></div><p class="storage-note">约可存储 25,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">8</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥96，省 ¥24</p><button class="plan-button" type="button">选择轻享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>100 GB 专属存储空间</li><li><span class="check">✓</span>单文件最大 5 GB</li><li><span class="check">✓</span>30 天历史版本恢复</li><li><span class="check">✓</span>文件分享与密码保护</li></ul></article>
++          <article class="card featured" data-name="畅享版" data-capacity="1 TB" data-monthly="25"><span class="recommend">最受欢迎</span><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#folder"/></svg></div><span class="plan-no">02 / PLUS</span></div><h2>畅享版</h2><p class="plan-desc">让每一份热爱，都有位置</p><div class="capacity">1 <span>TB</span></div><p class="storage-note">约可存储 250,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">20</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥240，省 ¥60</p><button class="plan-button" type="button">选择畅享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>1 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 20 GB</li><li><span class="check">✓</span>90 天历史版本恢复</li><li><span class="check">✓</span>分享有效期与下载管理</li></ul></article>
++          <article class="card" data-name="专业版" data-capacity="2 TB" data-monthly="45"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#bolt"/></svg></div><span class="plan-no">03 / PRO</span></div><h2>专业版</h2><p class="plan-desc">为创作而生，让灵感自由</p><div class="capacity">2 <span>TB</span></div><p class="storage-note">约可存储 500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">36</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥432，省 ¥108</p><button class="plan-button" type="button">选择专业版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>2 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 50 GB</li><li><span class="check">✓</span>180 天历史版本恢复</li><li><span class="check">✓</span>优先客服支持</li></ul></article>
++          <article class="card" data-name="无界版" data-capacity="10 TB" data-monthly="125"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#layers"/></svg></div><span class="plan-no">04 / MAX</span></div><h2>无界版</h2><p class="plan-desc">海量珍藏，不必做取舍</p><div class="capacity">10 <span>TB</span></div><p class="storage-note">约可存储 2,500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">100</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥1,200，省 ¥300</p><button class="plan-button" type="button">选择无界版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>10 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 100 GB</li><li><span class="check">✓</span>365 天历史版本恢复</li><li><span class="check">✓</span>专属客服支持</li></ul></article>
++        </div>
++        <div class="pricing-note"><span><svg aria-hidden="true"><use href="#shield"/></svg>价格透明，无隐藏费用</span><span>✓ 随时升级容量</span><span>✓ 可取消自动续费</span></div>
++        <p id="price-announcement" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></p>
++      </section>
++      <section class="included" id="included" aria-label="所有方案均包含的服务"><div><h2 class="included-title">每一档，都同样安心。</h2><p class="included-sub">以下基础服务，所有方案均享有</p></div><div class="benefit"><svg aria-hidden="true"><use href="#shield"/></svg><div><b>安全加密保护</b><span>传输与存储加密，守护你的隐私</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#devices"/></svg><div><b>多端自动同步</b><span>手机、电脑、网页，随时访问</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#bolt"/></svg><div><b>上传下载不限速</b><span>速度取决于网络，体验不设限</span></div></div></section>
++      <section class="faq" id="faq" aria-labelledby="faq-heading"><div><div class="eyebrow">GOOD TO KNOW</div><h2 id="faq-heading">你可能还想了解</h2><p class="faq-intro">关于空间、订阅与安全，<br>把你关心的，都说清楚。</p><p class="faq-note">少一点疑问，多一点安心。<br>让存储回归简单。</p></div><div class="questions">
++        <details open><summary>我应该选择多大的存储空间？</summary><p>如果主要备份手机照片和日常文档，100 GB 是轻巧的起点；大量照片和视频推荐 1 TB；设计素材、高清视频等创作文件适合 2 TB；长期归档与海量资料可选择 10 TB。照片数量按每张约 4 MB、1 TB = 1,000 GB 估算，实际可存数量因文件大小而异。</p></details>
++        <details><summary>可以随时升级或降级套餐吗？</summary><p>可以。升级时按剩余订阅时长补齐差价，新容量即时生效。降级将在当前订阅周期结束后生效；请提前将已用空间调整到新套餐容量内，避免影响新文件上传和同步。</p></details>
++        <details><summary>年付与月付有什么区别？</summary><p>同一容量套餐的功能完全相同。年付一次支付 12 个月的费用，比连续月付节省 20%；页面展示的年付月价为年费除以 12 的结果。月付按月结算，更加灵活。</p></details>
++        <details><summary>订阅到期后，我的文件会被删除吗？</summary><p>到期后会保留文件 30 天，在此期间可以浏览和下载，上传与自动同步将暂停。请在保留期内续订或导出文件；保留期结束后，文件可能被清理。你也可以随时在账户中关闭自动续费。</p></details>
++        <details><summary>我的文件如何受到保护？</summary><p>文件在传输和存储时均使用加密保护，并通过冗余备份降低硬件故障带来的数据丢失风险。分享文件时可以设置密码；畅享版及以上还支持设置分享有效期与下载权限。建议同时为重要资料保留本地备份。</p></details>
++      </div></section>
++    </main>
++    <footer><div class="footer-left"><a href="#" class="footer-brand">云屿</a><span>© 2026 Cloud Isle. 给珍贵，一个安心的家。</span></div><div class="footer-right"><a href="#pricing">价格方案</a><a href="#faq">帮助中心</a><span class="status">云端生活，从容开始</span></div></footer>
++  </div>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="dialog-top"><h2 id="dialog-title">你的云端空间</h2><button type="button" class="close" aria-label="关闭">×</button></div><p class="dialog-copy" id="dialog-description">为珍贵找到合适的位置。以下是你选择的套餐：</p><div class="order-summary"><p><span>存储方案</span><b id="selected-plan"></b></p><p><span>付款周期</span><b id="selected-cycle"></b></p><p><span>每期费用</span><strong id="selected-price"></strong></p></div><button type="button" class="dialog-done">继续浏览方案</button><p class="demo-label">这是定价页面演示，暂不提供实际订阅或付款。</p></dialog>
++  <script>
++    (() => {
++      let cycle = 'yearly';
++      const format = value => value.toLocaleString('zh-CN');
++      const cards = [...document.querySelectorAll('.card')];
++      const dialog = document.getElementById('plan-dialog');
++      document.querySelectorAll('[data-cycle]').forEach(button => {
++        button.addEventListener('click', () => {
++          cycle = button.dataset.cycle;
++          document.querySelectorAll('[data-cycle]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++          cards.forEach(card => {
++            const monthly = Number(card.dataset.monthly);
++            card.querySelector('.amount').textContent = format(cycle === 'yearly' ? monthly * .8 : monthly);
++            card.querySelector('.bill-note').textContent = cycle === 'yearly'
++              ? `按年支付 ¥${format(monthly * .8 * 12)}，省 ¥${format(monthly * .2 * 12)}`
++              : `每月支付 ¥${format(monthly)}，按月结算`;
++          });
++          document.getElementById('price-announcement').textContent = cycle === 'yearly' ? '已切换为年付，所有套餐节省 20%，展示价格为折合月价。' : '已切换为月付，所有套餐价格已更新。';
++        });
++      });
++      cards.forEach(card => card.querySelector('.plan-button').addEventListener('click', () => {
++        const monthly = Number(card.dataset.monthly);
++        document.getElementById('selected-plan').textContent = `${card.dataset.name} · ${card.dataset.capacity}`;
++        document.getElementById('selected-cycle').textContent = cycle === 'yearly' ? '年付（一次支付 12 个月）' : '月付';
++        document.getElementById('selected-price').textContent = cycle === 'yearly' ? `¥${format(monthly * .8 * 12)} / 年` : `¥${format(monthly)} / 月`;
++        dialog.showModal();
++      }));
++      dialog.querySelectorAll('.close, .dialog-done').forEach(button => button.addEventListener('click', () => dialog.close()));
++      dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
++    })();
++  </script>
++</body>
++</html>
+
+codex
+页面已写入，包含四档容量套餐、年付优惠切换、套餐详情弹窗和折叠问答。我正在检查文件结构和价格计算，确保页面不依赖外部资源。
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from html.parser import HTMLParser
+from pathlib import Path
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=set(); self.links=[]; self.cards=0; self.faq=0; self.external=[]
+    def handle_starttag(self, tag, attrs):
+        a=dict(attrs)
+        if 'id' in a:
+            assert a['id'] not in self.ids, 'Duplicate ID'
+            self.ids.add(a['id'])
+        if tag=='a' and a.get('href','').startswith('#'): self.links.append(a['href'][1:])
+        if tag=='article': self.cards+=1
+        if tag=='details': self.faq+=1
+        if tag in ('script','link','img') and (a.get('src') or a.get('href')): self.external.append(a)
+p=Path('index.html'); text=p.read_text(); c=Check(); c.feed(text)
+assert c.cards==4 and c.faq==5
+assert all(not x or x in c.ids for x in c.links)
+assert not c.external
+assert '<html lang=\"zh-CN\">' in text and 'dialog.showModal()' in text
+for monthly in (10,25,45,125):
+    annual=round(monthly*.8*12)
+    assert annual+round(monthly*.2*12)==monthly*12
+print(f'Validated index.html ({p.stat().st_size:,} bytes): 4 plans, 5 FAQs, valid anchor targets, consistent annual pricing, no external resources.')
+PY" in <tmp>/measure-baseline-codex-013-fZRobX
+ succeeded in 0ms:
+Validated index.html (28,669 bytes): 4 plans, 5 FAQs, valid anchor targets, consistent annual pricing, no external resources.
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..8d831391f738ba76dcfa0feb3a2ec66ad7cd9b6f
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,112 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <meta name="description" content="云屿云存储，为照片、文件和灵感找到合适的空间。灵活选择 100 GB 至 10 TB 容量套餐。">
++  <title>容量随心，珍藏随行 · 云屿云存储</title>
++  <style>
++    :root{--bg:#f7f8fa;--ink:#202b3b;--muted:#7b8491;--line:#e5e8ed;--orange:#ed754c;--orange-dark:#c64e28;--blue:#eaf0f8;--radius:18px}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased}button,a,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #df815d;outline-offset:5px}svg{display:block}button{color:inherit}.container{width:min(1180px,calc(100% - 80px));margin-inline:auto}
++    header{height:98px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:750;font-size:24px;letter-spacing:2px}.brand svg{width:37px;height:37px}.brand small{font-size:9px;color:#8b929d;letter-spacing:2px;font-weight:500;display:block;margin-top:1px}.brand-name{line-height:1.2}nav{display:flex;gap:36px;align-items:center;font-size:13px;color:#79818c}nav a:hover,nav a.active{color:var(--ink)}nav a.active{position:relative}nav a.active:after{content:"";position:absolute;bottom:-15px;left:50%;width:4px;height:4px;background:var(--orange);border-radius:50%}.nav-cta{padding:11px 19px;border:1px solid #dce1e7;border-radius:7px;color:var(--ink);font-weight:600;font-size:12px;background:transparent;transition:background .2s}.nav-cta:hover{background:#fff}
++    .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:355px;padding-top:23px}.eyebrow{font-size:10px;letter-spacing:2.5px;font-weight:700;color:#8490a0;display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange)}h1{font-size:48px;line-height:1.36;letter-spacing:-1.5px;margin:19px 0 17px;font-weight:650}h1 span{color:var(--orange)}.hero p{font-size:13px;color:var(--muted);line-height:1.95;margin:0}.hero-art{width:100%;height:294px;overflow:visible}.hero-caption{display:flex;align-items:center;gap:8px;color:#8c95a2;font-size:10px;letter-spacing:1px;margin-top:25px}.tiny-dot{width:5px;height:5px;border-radius:50%;background:#96b6a0}
++    .pricing{padding-top:18px}.pricing-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}.section-kicker{display:flex;gap:12px;align-items:center;font-size:14px;font-weight:600}.section-kicker span{font-size:11px;color:#9098a3;font-weight:400;border-left:1px solid #d4dae2;padding-left:12px}.billing{display:flex;align-items:center;gap:13px}.toggle{display:flex;padding:4px;background:#e9ecf0;border-radius:9px;gap:2px}.toggle button{border:0;background:transparent;padding:9px 17px;font-size:12px;border-radius:6px;color:#7d8692}.toggle button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 5px #23334c0b;font-weight:600}.save{font-size:10px;font-weight:600;color:#b25c3d;background:#f9e9e1;border-radius:5px;padding:6px 9px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{position:relative;padding:27px 24px 24px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #263b5010}.card.featured{border:1.5px solid var(--orange);box-shadow:0 7px 25px #ed754c0a}.recommend{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;border-radius:5px;padding:5px 11px;font-size:10px;letter-spacing:1px}.plan-top{display:flex;align-items:center;justify-content:space-between}.plan-icon{width:35px;height:35px;background:#f0f3f8;border-radius:10px;display:grid;place-items:center;color:#6b7d99}.plan-icon svg{width:20px;height:20px}.featured .plan-icon{color:var(--orange);background:#fff0e9}.plan-no{font-size:10px;color:#aab1bc;font-family:monospace;letter-spacing:1px}.card h2{font-size:15px;font-weight:650;margin:20px 0 7px}.plan-desc{font-size:11px;color:var(--muted);margin:0;line-height:1.6}.capacity{font-size:36px;font-weight:650;letter-spacing:-1px;margin:24px 0 7px;line-height:1}.capacity span{font-size:15px;margin-left:4px;font-weight:500;letter-spacing:0;color:#939ba7}.storage-note{font-size:10px;color:#969eaa;margin:0 0 24px}.price{display:flex;align-items:baseline;gap:3px}.currency{font-size:16px;font-weight:600}.amount{font-size:36px;line-height:1.15;font-weight:600;letter-spacing:-1.5px}.period{color:#929aa6;font-size:11px;margin-left:3px}.bill-note{font-size:10px;color:#9099a5;margin:10px 0 21px;min-height:15px}.plan-button{width:100%;border:1px solid #dce2e9;border-radius:7px;background:#fff;padding:12px 7px;font-size:12px;font-weight:600;display:flex;justify-content:center;align-items:center;gap:10px;transition:background .2s}.plan-button:hover{background:#f3f5f8}.featured .plan-button{background:var(--orange);color:white;border-color:var(--orange)}.featured .plan-button:hover{background:var(--orange-dark)}.features{list-style:none;margin:23px 0 0;padding:20px 0 0;border-top:1px solid #edf0f4;display:grid;gap:14px}.features li{display:flex;gap:9px;align-items:center;color:#697484;font-size:11px;line-height:1.5}.check{color:#879caf;font-size:13px}.featured .check{color:var(--orange)}.pricing-note{display:flex;justify-content:center;gap:23px;color:#8993a0;font-size:10px;padding-top:24px}.pricing-note span{display:flex;align-items:center;gap:6px}.pricing-note svg{width:12px;height:12px}
++    .included{margin-top:62px;padding:27px 29px;background:#eef1f5;border:1px solid #e8ecf1;border-radius:13px;display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:24px;align-items:center}.included-title{font-size:14px;font-weight:650;margin:0 0 7px}.included-sub{font-size:10px;color:#8a94a2;margin:0}.benefit{display:flex;align-items:center;gap:12px}.benefit svg{width:26px;height:26px;color:#8495ad;flex-shrink:0}.benefit b{font-size:11px;font-weight:600;display:block;margin-bottom:6px}.benefit span{font-size:10px;color:#8792a1;display:block}
++    .faq{padding:76px 0 70px;display:grid;grid-template-columns:1fr 1.8fr;gap:70px}.faq .eyebrow{font-size:9px;letter-spacing:2px}.faq h2{font-size:29px;font-weight:600;letter-spacing:-.5px;margin:16px 0 12px}.faq-intro{font-size:12px;line-height:1.9;color:var(--muted);margin:0}.faq-note{font-size:10px;color:#9aa3af;line-height:1.9;margin-top:25px}.questions{border-top:1px solid var(--line)}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:21px 0;font-size:12px;font-weight:550}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:19px;color:#8e9bab;font-weight:400;line-height:1}details[open] summary:after{content:"−";color:var(--orange)}details[open] summary{padding-bottom:12px}details p{font-size:11px;color:var(--muted);line-height:2;margin:0 30px 20px 0}footer{border-top:1px solid var(--line);min-height:92px;display:flex;justify-content:space-between;align-items:center;color:#939ca8;font-size:10px}.footer-left{display:flex;gap:22px;align-items:center}.footer-brand{font-size:14px;font-weight:650;color:#647183;letter-spacing:2px}.footer-right{display:flex;gap:20px;align-items:center}.status{display:flex;align-items:center;gap:7px}.status:before{content:"";width:5px;height:5px;border-radius:50%;background:#8cad96}
++    dialog{border:1px solid var(--line);padding:34px;border-radius:20px;width:min(440px,calc(100% - 32px));box-shadow:0 25px 100px #182b4030;color:var(--ink)}dialog::backdrop{background:#202b3b65;backdrop-filter:blur(4px)}.dialog-top{display:flex;align-items:center;justify-content:space-between}.dialog-top h2{font-size:21px;margin:0}.close{border:0;background:#f0f2f5;width:30px;height:30px;border-radius:50%;font-size:20px}.dialog-copy{font-size:12px;line-height:1.9;color:var(--muted);margin:18px 0}.order-summary{background:var(--bg);padding:19px;border-radius:12px;margin-bottom:20px}.order-summary p{display:flex;justify-content:space-between;gap:15px;font-size:12px;margin:0 0 14px}.order-summary p:last-child{margin:0}.order-summary strong{color:var(--orange)}.dialog-done{background:var(--orange);color:#fff;border:0;width:100%;border-radius:8px;padding:12px;font-size:12px}.demo-label{color:#949da9;font-size:10px;text-align:center;margin:15px 0 0}
++    @media(min-width:1500px){.container{width:1240px}.hero{min-height:395px}h1{font-size:53px}.card{padding:30px 27px}.faq{padding-block:85px}}
++    @media(max-width:1000px){.container{width:calc(100% - 48px)}.cards{gap:12px}.card{padding:24px 17px}.hero{grid-template-columns:1.2fr 1fr}h1{font-size:40px}.included{gap:15px;padding:24px 20px}.benefit{gap:8px}.benefit svg{width:22px}.faq{gap:45px}.section-kicker span{display:none}}
++    @media(max-width:760px){header{height:82px}.brand{font-size:21px}.brand svg{width:32px}nav{gap:22px}nav a:first-child{display:none}.nav-cta{padding:9px 13px}.hero{grid-template-columns:1fr 0.8fr;min-height:310px}.hero-art{height:220px}h1{font-size:34px;letter-spacing:-1px}.hero p{font-size:11px}.hero-caption{font-size:9px;margin-top:18px}.eyebrow{font-size:9px;letter-spacing:1.8px}.cards{grid-template-columns:repeat(2,1fr);gap:25px 16px}.card{padding:25px}.included{grid-template-columns:1fr 1fr;gap:28px;margin-top:42px}.faq{grid-template-columns:1fr;gap:28px;padding-block:50px}.faq-note{display:none}.faq h2{margin-block:13px 8px}.footer-left{gap:13px}.footer-right{gap:12px}.footer-right>a{display:none}}
++    @media(max-width:480px){.container{width:calc(100% - 36px)}nav{gap:18px;font-size:12px}nav a[href="#included"]{display:none}.brand small{font-size:7px}.hero{position:relative;display:block;min-height:330px;padding-top:37px;overflow:hidden}.hero-art{position:absolute;width:180px;height:190px;right:-39px;bottom:3px;opacity:.65;pointer-events:none}.hero-copy{position:relative;z-index:1}h1{font-size:37px;margin-block:17px 14px}.hero p{max-width:245px;font-size:11px}.hero-caption{margin-top:22px}.pricing-top{align-items:flex-start;gap:12px;margin-bottom:30px}.section-kicker{font-size:12px;padding-top:11px}.billing{gap:7px}.toggle button{padding:8px 12px;font-size:11px}.save{font-size:9px;padding:5px}.cards{gap:25px 11px}.card{padding:22px 15px}.card h2{font-size:14px}.plan-desc{font-size:10px}.capacity{font-size:31px}.storage-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.amount{font-size:32px}.bill-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.features{gap:12px}.features li{font-size:10px;gap:6px}.plan-button{font-size:11px}.pricing-note{gap:12px;font-size:9px;flex-wrap:wrap}.included{padding:22px 17px;gap:25px 15px}.benefit svg{width:21px}.benefit span{font-size:9px}.included-title{font-size:13px}.included-sub{font-size:9px}footer{align-items:flex-start;gap:20px;padding-block:23px;min-height:95px}.footer-left{align-items:flex-start;flex-direction:column;gap:9px}.footer-right{font-size:9px;padding-top:3px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
++    <symbol id="cloud" viewBox="0 0 24 24"><path d="M6.5 18a4.5 4.5 0 0 1-.6-9A6.5 6.5 0 0 1 18.5 8a5 5 0 0 1 0 10Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m8.5 11.5 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="devices" viewBox="0 0 24 24"><path d="M13 17H3V4h17v5M5 20h7M8 17v3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="15" y="10" width="7" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 18.5h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++    <symbol id="bolt" viewBox="0 0 24 24"><path d="m13.5 2-10 12h7l-1 8 11-13h-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
++    <symbol id="folder" viewBox="0 0 24 24"><path d="M3 7V5a1 1 0 0 1 1-1h6l2 3h8a1 1 0 0 1 1 1v11H3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++  </defs></svg>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="云屿首页"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#ed754c"/><path d="M11 25c-5-1-4-8 1-9 1-7 12-8 15-1 7 0 9 11 1 12H12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"/><path d="M16 21h10" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-name">云屿<small>CLOUD ISLE</small></span></a>
++      <nav aria-label="主导航"><a href="#included">产品优势</a><a href="#pricing" class="active" aria-current="page">价格方案</a><a href="#faq">常见问题</a></nav>
++      <a href="#pricing" class="nav-cta">开启云端生活 <span aria-hidden="true">↗</span></a>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-heading">
++        <div class="hero-copy"><div class="eyebrow">A LITTLE SPACE. ENDLESS POSSIBILITIES.</div><h1 id="hero-heading">装下每一份珍贵，<br>留出<span>更多可能。</span></h1><p>从日常文件到无限灵感，为你的数字生活找到合适的空间。<br>简单透明的价格，安心自在的云端。</p><div class="hero-caption"><span class="tiny-dot"></span> 你的每一份珍藏，都值得妥善安放</div></div>
++        <svg class="hero-art" viewBox="0 0 480 310" role="img" aria-label="文件与照片环绕云端存储的插画">
++          <defs><linearGradient id="cloudGrad" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e0e8f3"/></linearGradient><linearGradient id="baseGrad" x2="0" y2="1"><stop stop-color="#eaf0f7"/><stop offset="1" stop-color="#ccd7e5"/></linearGradient><filter id="shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#8b9db4" flood-opacity=".18"/></filter></defs>
++          <ellipse cx="255" cy="177" rx="187" ry="85" fill="none" stroke="#dfe5ed" transform="rotate(-19 255 177)"/><ellipse cx="255" cy="177" rx="158" ry="106" fill="none" stroke="#e8ecf2" stroke-dasharray="3 6" transform="rotate(21 255 177)"/>
++          <ellipse cx="255" cy="257" rx="94" ry="16" fill="#e7ecf3" opacity=".8"/>
++          <g filter="url(#shadow)"><path d="m165 200 87-31 91 31v29l-90 34-88-34Z" fill="url(#baseGrad)"/><path d="m165 200 88 32 90-32-91-31Z" fill="#f5f8fc" stroke="#dfe6ef"/><path d="M253 232v31" stroke="#becbdc"/><path d="m182 222 24 9" stroke="#aab9cc" stroke-width="3" stroke-linecap="round"/><circle cx="323" cy="230" r="3" fill="#85ae9d"/>
++          <path d="M185 185c-43-5-38-64-4-68 2-47 65-62 89-21 37-11 66 18 61 46 28 19 11 60-21 59Z" fill="url(#cloudGrad)" stroke="#d3deec" stroke-width="1.5"/>
++          <path d="m243 164 0-45m-15 15 15-15 15 15" fill="none" stroke="#90a6c1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
++          </g>
++          <g transform="translate(84 106) rotate(-15)" filter="url(#shadow)"><rect width="58" height="67" rx="9" fill="#fff" stroke="#e1e7ef"/><rect x="9" y="10" width="40" height="32" rx="5" fill="#f9e7dc"/><circle cx="37" cy="19" r="5" fill="#edb091"/><path d="m12 38 12-13 9 9 6-5 8 9" fill="#dca488"/><path d="M12 51h32M12 57h22" stroke="#d9e0e9" stroke-width="3" stroke-linecap="round"/></g>
++          <g transform="translate(358 68) rotate(13)" filter="url(#shadow)"><rect width="49" height="61" rx="8" fill="#fff" stroke="#e0e6ef"/><path d="M13 15h22M13 23h22M13 31h15" stroke="#a6b8d0" stroke-width="3" stroke-linecap="round"/><rect x="13" y="42" width="13" height="8" rx="2" fill="#e6edf7"/></g>
++          <g transform="translate(369 220) rotate(12)"><rect width="39" height="39" rx="11" fill="#f8e5da"/><path d="m15 12 13 8-13 8Z" fill="#df936b"/></g><g transform="translate(142 49) rotate(-12)"><rect width="32" height="32" rx="9" fill="#e5ebf5"/><path d="M18 10v12m0-11 6-1v5m-6 5c-7-2-8 5-3 4 2 0 3-2 3-4" fill="none" stroke="#9cacbf" stroke-width="1.7" stroke-linecap="round"/></g>
++          <circle cx="89" cy="221" r="4" fill="#edaa8c"/><circle cx="330" cy="36" r="3" fill="#c5d0df"/><circle cx="434" cy="161" r="4" fill="#bac9dc"/><path d="M215 33v8m-4-4h8M420 264v8m-4-4h8" stroke="#c9d4e2" stroke-width="1.5" stroke-linecap="round"/>
++        </svg>
++      </section>
++      <section class="pricing" id="pricing" aria-label="云存储价格方案">
++        <div class="pricing-top"><div class="section-kicker">选择你的云端空间 <span>小小日常，到无限热爱</span></div><div class="billing"><div class="toggle" role="group" aria-label="付款周期"><button type="button" data-cycle="monthly" aria-pressed="false">月付</button><button type="button" data-cycle="yearly" aria-pressed="true">年付</button></div><span class="save">年付省 20%</span></div></div>
++        <div class="cards">
++          <article class="card" data-name="轻享版" data-capacity="100 GB" data-monthly="10"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#cloud"/></svg></div><span class="plan-no">01 / LITE</span></div><h2>轻享版</h2><p class="plan-desc">给日常，多一点从容</p><div class="capacity">100 <span>GB</span></div><p class="storage-note">约可存储 25,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">8</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥96，省 ¥24</p><button class="plan-button" type="button">选择轻享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>100 GB 专属存储空间</li><li><span class="check">✓</span>单文件最大 5 GB</li><li><span class="check">✓</span>30 天历史版本恢复</li><li><span class="check">✓</span>文件分享与密码保护</li></ul></article>
++          <article class="card featured" data-name="畅享版" data-capacity="1 TB" data-monthly="25"><span class="recommend">最受欢迎</span><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#folder"/></svg></div><span class="plan-no">02 / PLUS</span></div><h2>畅享版</h2><p class="plan-desc">让每一份热爱，都有位置</p><div class="capacity">1 <span>TB</span></div><p class="storage-note">约可存储 250,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">20</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥240，省 ¥60</p><button class="plan-button" type="button">选择畅享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>1 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 20 GB</li><li><span class="check">✓</span>90 天历史版本恢复</li><li><span class="check">✓</span>分享有效期与下载管理</li></ul></article>
++          <article class="card" data-name="专业版" data-capacity="2 TB" data-monthly="45"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#bolt"/></svg></div><span class="plan-no">03 / PRO</span></div><h2>专业版</h2><p class="plan-desc">为创作而生，让灵感自由</p><div class="capacity">2 <span>TB</span></div><p class="storage-note">约可存储 500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">36</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥432，省 ¥108</p><button class="plan-button" type="button">选择专业版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>2 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 50 GB</li><li><span class="check">✓</span>180 天历史版本恢复</li><li><span class="check">✓</span>优先客服支持</li></ul></article>
++          <article class="card" data-name="无界版" data-capacity="10 TB" data-monthly="125"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#layers"/></svg></div><span class="plan-no">04 / MAX</span></div><h2>无界版</h2><p class="plan-desc">海量珍藏，不必做取舍</p><div class="capacity">10 <span>TB</span></div><p class="storage-note">约可存储 2,500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">100</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥1,200，省 ¥300</p><button class="plan-button" type="button">选择无界版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>10 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 100 GB</li><li><span class="check">✓</span>365 天历史版本恢复</li><li><span class="check">✓</span>专属客服支持</li></ul></article>
++        </div>
++        <div class="pricing-note"><span><svg aria-hidden="true"><use href="#shield"/></svg>价格透明，无隐藏费用</span><span>✓ 随时升级容量</span><span>✓ 可取消自动续费</span></div>
++        <p id="price-announcement" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></p>
++      </section>
++      <section class="included" id="included" aria-label="所有方案均包含的服务"><div><h2 class="included-title">每一档，都同样安心。</h2><p class="included-sub">以下基础服务，所有方案均享有</p></div><div class="benefit"><svg aria-hidden="true"><use href="#shield"/></svg><div><b>安全加密保护</b><span>传输与存储加密，守护你的隐私</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#devices"/></svg><div><b>多端自动同步</b><span>手机、电脑、网页，随时访问</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#bolt"/></svg><div><b>上传下载不限速</b><span>速度取决于网络，体验不设限</span></div></div></section>
++      <section class="faq" id="faq" aria-labelledby="faq-heading"><div><div class="eyebrow">GOOD TO KNOW</div><h2 id="faq-heading">你可能还想了解</h2><p class="faq-intro">关于空间、订阅与安全，<br>把你关心的，都说清楚。</p><p class="faq-note">少一点疑问，多一点安心。<br>让存储回归简单。</p></div><div class="questions">
++        <details open><summary>我应该选择多大的存储空间？</summary><p>如果主要备份手机照片和日常文档，100 GB 是轻巧的起点；大量照片和视频推荐 1 TB；设计素材、高清视频等创作文件适合 2 TB；长期归档与海量资料可选择 10 TB。照片数量按每张约 4 MB、1 TB = 1,000 GB 估算，实际可存数量因文件大小而异。</p></details>
++        <details><summary>可以随时升级或降级套餐吗？</summary><p>可以。升级时按剩余订阅时长补齐差价，新容量即时生效。降级将在当前订阅周期结束后生效；请提前将已用空间调整到新套餐容量内，避免影响新文件上传和同步。</p></details>
++        <details><summary>年付与月付有什么区别？</summary><p>同一容量套餐的功能完全相同。年付一次支付 12 个月的费用，比连续月付节省 20%；页面展示的年付月价为年费除以 12 的结果。月付按月结算，更加灵活。</p></details>
++        <details><summary>订阅到期后，我的文件会被删除吗？</summary><p>到期后会保留文件 30 天，在此期间可以浏览和下载，上传与自动同步将暂停。请在保留期内续订或导出文件；保留期结束后，文件可能被清理。你也可以随时在账户中关闭自动续费。</p></details>
++        <details><summary>我的文件如何受到保护？</summary><p>文件在传输和存储时均使用加密保护，并通过冗余备份降低硬件故障带来的数据丢失风险。分享文件时可以设置密码；畅享版及以上还支持设置分享有效期与下载权限。建议同时为重要资料保留本地备份。</p></details>
++      </div></section>
++    </main>
++    <footer><div class="footer-left"><a href="#" class="footer-brand">云屿</a><span>© 2026 Cloud Isle. 给珍贵，一个安心的家。</span></div><div class="footer-right"><a href="#pricing">价格方案</a><a href="#faq">帮助中心</a><span class="status">云端生活，从容开始</span></div></footer>
++  </div>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="dialog-top"><h2 id="dialog-title">你的云端空间</h2><button type="button" class="close" aria-label="关闭">×</button></div><p class="dialog-copy" id="dialog-description">为珍贵找到合适的位置。以下是你选择的套餐：</p><div class="order-summary"><p><span>存储方案</span><b id="selected-plan"></b></p><p><span>付款周期</span><b id="selected-cycle"></b></p><p><span>每期费用</span><strong id="selected-price"></strong></p></div><button type="button" class="dialog-done">继续浏览方案</button><p class="demo-label">这是定价页面演示，暂不提供实际订阅或付款。</p></dialog>
++  <script>
++    (() => {
++      let cycle = 'yearly';
++      const format = value => value.toLocaleString('zh-CN');
++      const cards = [...document.querySelectorAll('.card')];
++      const dialog = document.getElementById('plan-dialog');
++      document.querySelectorAll('[data-cycle]').forEach(button => {
++        button.addEventListener('click', () => {
++          cycle = button.dataset.cycle;
++          document.querySelectorAll('[data-cycle]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++          cards.forEach(card => {
++            const monthly = Number(card.dataset.monthly);
++            card.querySelector('.amount').textContent = format(cycle === 'yearly' ? monthly * .8 : monthly);
++            card.querySelector('.bill-note').textContent = cycle === 'yearly'
++              ? `按年支付 ¥${format(monthly * .8 * 12)}，省 ¥${format(monthly * .2 * 12)}`
++              : `每月支付 ¥${format(monthly)}，按月结算`;
++          });
++          document.getElementById('price-announcement').textContent = cycle === 'yearly' ? '已切换为年付，所有套餐节省 20%，展示价格为折合月价。' : '已切换为月付，所有套餐价格已更新。';
++        });
++      });
++      cards.forEach(card => card.querySelector('.plan-button').addEventListener('click', () => {
++        const monthly = Number(card.dataset.monthly);
++        document.getElementById('selected-plan').textContent = `${card.dataset.name} · ${card.dataset.capacity}`;
++        document.getElementById('selected-cycle').textContent = cycle === 'yearly' ? '年付（一次支付 12 个月）' : '月付';
++        document.getElementById('selected-price').textContent = cycle === 'yearly' ? `¥${format(monthly * .8 * 12)} / 年` : `¥${format(monthly)} / 月`;
++        dialog.showModal();
++      }));
++      dialog.querySelectorAll('.close, .dialog-done').forEach(button => button.addEventListener('click', () => dialog.close()));
++      dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
++    })();
++  </script>
++</body>
++</html>
+
+codex
+已生成 [index.html](index.html)，内含完整样式、四档容量定价、月付/年付切换和可展开的常见问题，支持手机与桌面浏览。未启动服务器或安装依赖。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..8d831391f738ba76dcfa0feb3a2ec66ad7cd9b6f
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,112 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <meta name="description" content="云屿云存储，为照片、文件和灵感找到合适的空间。灵活选择 100 GB 至 10 TB 容量套餐。">
++  <title>容量随心，珍藏随行 · 云屿云存储</title>
++  <style>
++    :root{--bg:#f7f8fa;--ink:#202b3b;--muted:#7b8491;--line:#e5e8ed;--orange:#ed754c;--orange-dark:#c64e28;--blue:#eaf0f8;--radius:18px}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;-webkit-font-smoothing:antialiased}button,a,input{font:inherit}button,a{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #df815d;outline-offset:5px}svg{display:block}button{color:inherit}.container{width:min(1180px,calc(100% - 80px));margin-inline:auto}
++    header{height:98px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:10px;font-weight:750;font-size:24px;letter-spacing:2px}.brand svg{width:37px;height:37px}.brand small{font-size:9px;color:#8b929d;letter-spacing:2px;font-weight:500;display:block;margin-top:1px}.brand-name{line-height:1.2}nav{display:flex;gap:36px;align-items:center;font-size:13px;color:#79818c}nav a:hover,nav a.active{color:var(--ink)}nav a.active{position:relative}nav a.active:after{content:"";position:absolute;bottom:-15px;left:50%;width:4px;height:4px;background:var(--orange);border-radius:50%}.nav-cta{padding:11px 19px;border:1px solid #dce1e7;border-radius:7px;color:var(--ink);font-weight:600;font-size:12px;background:transparent;transition:background .2s}.nav-cta:hover{background:#fff}
++    .hero{display:grid;grid-template-columns:1.2fr 1fr;align-items:center;min-height:355px;padding-top:23px}.eyebrow{font-size:10px;letter-spacing:2.5px;font-weight:700;color:#8490a0;display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--orange)}h1{font-size:48px;line-height:1.36;letter-spacing:-1.5px;margin:19px 0 17px;font-weight:650}h1 span{color:var(--orange)}.hero p{font-size:13px;color:var(--muted);line-height:1.95;margin:0}.hero-art{width:100%;height:294px;overflow:visible}.hero-caption{display:flex;align-items:center;gap:8px;color:#8c95a2;font-size:10px;letter-spacing:1px;margin-top:25px}.tiny-dot{width:5px;height:5px;border-radius:50%;background:#96b6a0}
++    .pricing{padding-top:18px}.pricing-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}.section-kicker{display:flex;gap:12px;align-items:center;font-size:14px;font-weight:600}.section-kicker span{font-size:11px;color:#9098a3;font-weight:400;border-left:1px solid #d4dae2;padding-left:12px}.billing{display:flex;align-items:center;gap:13px}.toggle{display:flex;padding:4px;background:#e9ecf0;border-radius:9px;gap:2px}.toggle button{border:0;background:transparent;padding:9px 17px;font-size:12px;border-radius:6px;color:#7d8692}.toggle button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:0 2px 5px #23334c0b;font-weight:600}.save{font-size:10px;font-weight:600;color:#b25c3d;background:#f9e9e1;border-radius:5px;padding:6px 9px}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.card{position:relative;padding:27px 24px 24px;border:1px solid var(--line);border-radius:var(--radius);background:#fff;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}.card:hover{transform:translateY(-4px);box-shadow:0 12px 28px #263b5010}.card.featured{border:1.5px solid var(--orange);box-shadow:0 7px 25px #ed754c0a}.recommend{position:absolute;top:-12px;left:24px;background:var(--orange);color:#fff;border-radius:5px;padding:5px 11px;font-size:10px;letter-spacing:1px}.plan-top{display:flex;align-items:center;justify-content:space-between}.plan-icon{width:35px;height:35px;background:#f0f3f8;border-radius:10px;display:grid;place-items:center;color:#6b7d99}.plan-icon svg{width:20px;height:20px}.featured .plan-icon{color:var(--orange);background:#fff0e9}.plan-no{font-size:10px;color:#aab1bc;font-family:monospace;letter-spacing:1px}.card h2{font-size:15px;font-weight:650;margin:20px 0 7px}.plan-desc{font-size:11px;color:var(--muted);margin:0;line-height:1.6}.capacity{font-size:36px;font-weight:650;letter-spacing:-1px;margin:24px 0 7px;line-height:1}.capacity span{font-size:15px;margin-left:4px;font-weight:500;letter-spacing:0;color:#939ba7}.storage-note{font-size:10px;color:#969eaa;margin:0 0 24px}.price{display:flex;align-items:baseline;gap:3px}.currency{font-size:16px;font-weight:600}.amount{font-size:36px;line-height:1.15;font-weight:600;letter-spacing:-1.5px}.period{color:#929aa6;font-size:11px;margin-left:3px}.bill-note{font-size:10px;color:#9099a5;margin:10px 0 21px;min-height:15px}.plan-button{width:100%;border:1px solid #dce2e9;border-radius:7px;background:#fff;padding:12px 7px;font-size:12px;font-weight:600;display:flex;justify-content:center;align-items:center;gap:10px;transition:background .2s}.plan-button:hover{background:#f3f5f8}.featured .plan-button{background:var(--orange);color:white;border-color:var(--orange)}.featured .plan-button:hover{background:var(--orange-dark)}.features{list-style:none;margin:23px 0 0;padding:20px 0 0;border-top:1px solid #edf0f4;display:grid;gap:14px}.features li{display:flex;gap:9px;align-items:center;color:#697484;font-size:11px;line-height:1.5}.check{color:#879caf;font-size:13px}.featured .check{color:var(--orange)}.pricing-note{display:flex;justify-content:center;gap:23px;color:#8993a0;font-size:10px;padding-top:24px}.pricing-note span{display:flex;align-items:center;gap:6px}.pricing-note svg{width:12px;height:12px}
++    .included{margin-top:62px;padding:27px 29px;background:#eef1f5;border:1px solid #e8ecf1;border-radius:13px;display:grid;grid-template-columns:1.15fr 1fr 1fr 1fr;gap:24px;align-items:center}.included-title{font-size:14px;font-weight:650;margin:0 0 7px}.included-sub{font-size:10px;color:#8a94a2;margin:0}.benefit{display:flex;align-items:center;gap:12px}.benefit svg{width:26px;height:26px;color:#8495ad;flex-shrink:0}.benefit b{font-size:11px;font-weight:600;display:block;margin-bottom:6px}.benefit span{font-size:10px;color:#8792a1;display:block}
++    .faq{padding:76px 0 70px;display:grid;grid-template-columns:1fr 1.8fr;gap:70px}.faq .eyebrow{font-size:9px;letter-spacing:2px}.faq h2{font-size:29px;font-weight:600;letter-spacing:-.5px;margin:16px 0 12px}.faq-intro{font-size:12px;line-height:1.9;color:var(--muted);margin:0}.faq-note{font-size:10px;color:#9aa3af;line-height:1.9;margin-top:25px}.questions{border-top:1px solid var(--line)}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:21px 0;font-size:12px;font-weight:550}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:19px;color:#8e9bab;font-weight:400;line-height:1}details[open] summary:after{content:"−";color:var(--orange)}details[open] summary{padding-bottom:12px}details p{font-size:11px;color:var(--muted);line-height:2;margin:0 30px 20px 0}footer{border-top:1px solid var(--line);min-height:92px;display:flex;justify-content:space-between;align-items:center;color:#939ca8;font-size:10px}.footer-left{display:flex;gap:22px;align-items:center}.footer-brand{font-size:14px;font-weight:650;color:#647183;letter-spacing:2px}.footer-right{display:flex;gap:20px;align-items:center}.status{display:flex;align-items:center;gap:7px}.status:before{content:"";width:5px;height:5px;border-radius:50%;background:#8cad96}
++    dialog{border:1px solid var(--line);padding:34px;border-radius:20px;width:min(440px,calc(100% - 32px));box-shadow:0 25px 100px #182b4030;color:var(--ink)}dialog::backdrop{background:#202b3b65;backdrop-filter:blur(4px)}.dialog-top{display:flex;align-items:center;justify-content:space-between}.dialog-top h2{font-size:21px;margin:0}.close{border:0;background:#f0f2f5;width:30px;height:30px;border-radius:50%;font-size:20px}.dialog-copy{font-size:12px;line-height:1.9;color:var(--muted);margin:18px 0}.order-summary{background:var(--bg);padding:19px;border-radius:12px;margin-bottom:20px}.order-summary p{display:flex;justify-content:space-between;gap:15px;font-size:12px;margin:0 0 14px}.order-summary p:last-child{margin:0}.order-summary strong{color:var(--orange)}.dialog-done{background:var(--orange);color:#fff;border:0;width:100%;border-radius:8px;padding:12px;font-size:12px}.demo-label{color:#949da9;font-size:10px;text-align:center;margin:15px 0 0}
++    @media(min-width:1500px){.container{width:1240px}.hero{min-height:395px}h1{font-size:53px}.card{padding:30px 27px}.faq{padding-block:85px}}
++    @media(max-width:1000px){.container{width:calc(100% - 48px)}.cards{gap:12px}.card{padding:24px 17px}.hero{grid-template-columns:1.2fr 1fr}h1{font-size:40px}.included{gap:15px;padding:24px 20px}.benefit{gap:8px}.benefit svg{width:22px}.faq{gap:45px}.section-kicker span{display:none}}
++    @media(max-width:760px){header{height:82px}.brand{font-size:21px}.brand svg{width:32px}nav{gap:22px}nav a:first-child{display:none}.nav-cta{padding:9px 13px}.hero{grid-template-columns:1fr 0.8fr;min-height:310px}.hero-art{height:220px}h1{font-size:34px;letter-spacing:-1px}.hero p{font-size:11px}.hero-caption{font-size:9px;margin-top:18px}.eyebrow{font-size:9px;letter-spacing:1.8px}.cards{grid-template-columns:repeat(2,1fr);gap:25px 16px}.card{padding:25px}.included{grid-template-columns:1fr 1fr;gap:28px;margin-top:42px}.faq{grid-template-columns:1fr;gap:28px;padding-block:50px}.faq-note{display:none}.faq h2{margin-block:13px 8px}.footer-left{gap:13px}.footer-right{gap:12px}.footer-right>a{display:none}}
++    @media(max-width:480px){.container{width:calc(100% - 36px)}nav{gap:18px;font-size:12px}nav a[href="#included"]{display:none}.brand small{font-size:7px}.hero{position:relative;display:block;min-height:330px;padding-top:37px;overflow:hidden}.hero-art{position:absolute;width:180px;height:190px;right:-39px;bottom:3px;opacity:.65;pointer-events:none}.hero-copy{position:relative;z-index:1}h1{font-size:37px;margin-block:17px 14px}.hero p{max-width:245px;font-size:11px}.hero-caption{margin-top:22px}.pricing-top{align-items:flex-start;gap:12px;margin-bottom:30px}.section-kicker{font-size:12px;padding-top:11px}.billing{gap:7px}.toggle button{padding:8px 12px;font-size:11px}.save{font-size:9px;padding:5px}.cards{gap:25px 11px}.card{padding:22px 15px}.card h2{font-size:14px}.plan-desc{font-size:10px}.capacity{font-size:31px}.storage-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.amount{font-size:32px}.bill-note{font-size:9px;line-height:1.6;min-height:28px;margin-bottom:14px}.features{gap:12px}.features li{font-size:10px;gap:6px}.plan-button{font-size:11px}.pricing-note{gap:12px;font-size:9px;flex-wrap:wrap}.included{padding:22px 17px;gap:25px 15px}.benefit svg{width:21px}.benefit span{font-size:9px}.included-title{font-size:13px}.included-sub{font-size:9px}footer{align-items:flex-start;gap:20px;padding-block:23px;min-height:95px}.footer-left{align-items:flex-start;flex-direction:column;gap:9px}.footer-right{font-size:9px;padding-top:3px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
++    <symbol id="cloud" viewBox="0 0 24 24"><path d="M6.5 18a4.5 4.5 0 0 1-.6-9A6.5 6.5 0 0 1 18.5 8a5 5 0 0 1 0 10Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 4-4 7-8 9-4-2-8-5-8-9V6Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m8.5 11.5 2.5 2.5 4.5-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="devices" viewBox="0 0 24 24"><path d="M13 17H3V4h17v5M5 20h7M8 17v3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><rect x="15" y="10" width="7" height="11" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 18.5h1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++    <symbol id="bolt" viewBox="0 0 24 24"><path d="m13.5 2-10 12h7l-1 8 11-13h-8Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></symbol>
++    <symbol id="folder" viewBox="0 0 24 24"><path d="M3 7V5a1 1 0 0 1 1-1h6l2 3h8a1 1 0 0 1 1 1v11H3Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 9h18" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++  </defs></svg>
++  <div class="container">
++    <header>
++      <a class="brand" href="#" aria-label="云屿首页"><svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#ed754c"/><path d="M11 25c-5-1-4-8 1-9 1-7 12-8 15-1 7 0 9 11 1 12H12" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"/><path d="M16 21h10" stroke="white" stroke-width="2.2" stroke-linecap="round"/></svg><span class="brand-name">云屿<small>CLOUD ISLE</small></span></a>
++      <nav aria-label="主导航"><a href="#included">产品优势</a><a href="#pricing" class="active" aria-current="page">价格方案</a><a href="#faq">常见问题</a></nav>
++      <a href="#pricing" class="nav-cta">开启云端生活 <span aria-hidden="true">↗</span></a>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="hero-heading">
++        <div class="hero-copy"><div class="eyebrow">A LITTLE SPACE. ENDLESS POSSIBILITIES.</div><h1 id="hero-heading">装下每一份珍贵，<br>留出<span>更多可能。</span></h1><p>从日常文件到无限灵感，为你的数字生活找到合适的空间。<br>简单透明的价格，安心自在的云端。</p><div class="hero-caption"><span class="tiny-dot"></span> 你的每一份珍藏，都值得妥善安放</div></div>
++        <svg class="hero-art" viewBox="0 0 480 310" role="img" aria-label="文件与照片环绕云端存储的插画">
++          <defs><linearGradient id="cloudGrad" x1="0" y1="0" x2=".7" y2="1"><stop stop-color="#fff"/><stop offset="1" stop-color="#e0e8f3"/></linearGradient><linearGradient id="baseGrad" x2="0" y2="1"><stop stop-color="#eaf0f7"/><stop offset="1" stop-color="#ccd7e5"/></linearGradient><filter id="shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="0" dy="14" stdDeviation="12" flood-color="#8b9db4" flood-opacity=".18"/></filter></defs>
++          <ellipse cx="255" cy="177" rx="187" ry="85" fill="none" stroke="#dfe5ed" transform="rotate(-19 255 177)"/><ellipse cx="255" cy="177" rx="158" ry="106" fill="none" stroke="#e8ecf2" stroke-dasharray="3 6" transform="rotate(21 255 177)"/>
++          <ellipse cx="255" cy="257" rx="94" ry="16" fill="#e7ecf3" opacity=".8"/>
++          <g filter="url(#shadow)"><path d="m165 200 87-31 91 31v29l-90 34-88-34Z" fill="url(#baseGrad)"/><path d="m165 200 88 32 90-32-91-31Z" fill="#f5f8fc" stroke="#dfe6ef"/><path d="M253 232v31" stroke="#becbdc"/><path d="m182 222 24 9" stroke="#aab9cc" stroke-width="3" stroke-linecap="round"/><circle cx="323" cy="230" r="3" fill="#85ae9d"/>
++          <path d="M185 185c-43-5-38-64-4-68 2-47 65-62 89-21 37-11 66 18 61 46 28 19 11 60-21 59Z" fill="url(#cloudGrad)" stroke="#d3deec" stroke-width="1.5"/>
++          <path d="m243 164 0-45m-15 15 15-15 15 15" fill="none" stroke="#90a6c1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
++          </g>
++          <g transform="translate(84 106) rotate(-15)" filter="url(#shadow)"><rect width="58" height="67" rx="9" fill="#fff" stroke="#e1e7ef"/><rect x="9" y="10" width="40" height="32" rx="5" fill="#f9e7dc"/><circle cx="37" cy="19" r="5" fill="#edb091"/><path d="m12 38 12-13 9 9 6-5 8 9" fill="#dca488"/><path d="M12 51h32M12 57h22" stroke="#d9e0e9" stroke-width="3" stroke-linecap="round"/></g>
++          <g transform="translate(358 68) rotate(13)" filter="url(#shadow)"><rect width="49" height="61" rx="8" fill="#fff" stroke="#e0e6ef"/><path d="M13 15h22M13 23h22M13 31h15" stroke="#a6b8d0" stroke-width="3" stroke-linecap="round"/><rect x="13" y="42" width="13" height="8" rx="2" fill="#e6edf7"/></g>
++          <g transform="translate(369 220) rotate(12)"><rect width="39" height="39" rx="11" fill="#f8e5da"/><path d="m15 12 13 8-13 8Z" fill="#df936b"/></g><g transform="translate(142 49) rotate(-12)"><rect width="32" height="32" rx="9" fill="#e5ebf5"/><path d="M18 10v12m0-11 6-1v5m-6 5c-7-2-8 5-3 4 2 0 3-2 3-4" fill="none" stroke="#9cacbf" stroke-width="1.7" stroke-linecap="round"/></g>
++          <circle cx="89" cy="221" r="4" fill="#edaa8c"/><circle cx="330" cy="36" r="3" fill="#c5d0df"/><circle cx="434" cy="161" r="4" fill="#bac9dc"/><path d="M215 33v8m-4-4h8M420 264v8m-4-4h8" stroke="#c9d4e2" stroke-width="1.5" stroke-linecap="round"/>
++        </svg>
++      </section>
++      <section class="pricing" id="pricing" aria-label="云存储价格方案">
++        <div class="pricing-top"><div class="section-kicker">选择你的云端空间 <span>小小日常，到无限热爱</span></div><div class="billing"><div class="toggle" role="group" aria-label="付款周期"><button type="button" data-cycle="monthly" aria-pressed="false">月付</button><button type="button" data-cycle="yearly" aria-pressed="true">年付</button></div><span class="save">年付省 20%</span></div></div>
++        <div class="cards">
++          <article class="card" data-name="轻享版" data-capacity="100 GB" data-monthly="10"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#cloud"/></svg></div><span class="plan-no">01 / LITE</span></div><h2>轻享版</h2><p class="plan-desc">给日常，多一点从容</p><div class="capacity">100 <span>GB</span></div><p class="storage-note">约可存储 25,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">8</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥96，省 ¥24</p><button class="plan-button" type="button">选择轻享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>100 GB 专属存储空间</li><li><span class="check">✓</span>单文件最大 5 GB</li><li><span class="check">✓</span>30 天历史版本恢复</li><li><span class="check">✓</span>文件分享与密码保护</li></ul></article>
++          <article class="card featured" data-name="畅享版" data-capacity="1 TB" data-monthly="25"><span class="recommend">最受欢迎</span><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#folder"/></svg></div><span class="plan-no">02 / PLUS</span></div><h2>畅享版</h2><p class="plan-desc">让每一份热爱，都有位置</p><div class="capacity">1 <span>TB</span></div><p class="storage-note">约可存储 250,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">20</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥240，省 ¥60</p><button class="plan-button" type="button">选择畅享版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>1 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 20 GB</li><li><span class="check">✓</span>90 天历史版本恢复</li><li><span class="check">✓</span>分享有效期与下载管理</li></ul></article>
++          <article class="card" data-name="专业版" data-capacity="2 TB" data-monthly="45"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#bolt"/></svg></div><span class="plan-no">03 / PRO</span></div><h2>专业版</h2><p class="plan-desc">为创作而生，让灵感自由</p><div class="capacity">2 <span>TB</span></div><p class="storage-note">约可存储 500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">36</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥432，省 ¥108</p><button class="plan-button" type="button">选择专业版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>2 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 50 GB</li><li><span class="check">✓</span>180 天历史版本恢复</li><li><span class="check">✓</span>优先客服支持</li></ul></article>
++          <article class="card" data-name="无界版" data-capacity="10 TB" data-monthly="125"><div class="plan-top"><div class="plan-icon"><svg aria-hidden="true"><use href="#layers"/></svg></div><span class="plan-no">04 / MAX</span></div><h2>无界版</h2><p class="plan-desc">海量珍藏，不必做取舍</p><div class="capacity">10 <span>TB</span></div><p class="storage-note">约可存储 2,500,000 张照片</p><div class="price"><span class="currency">¥</span><span class="amount">100</span><span class="period">/ 月</span></div><p class="bill-note">按年支付 ¥1,200，省 ¥300</p><button class="plan-button" type="button">选择无界版 <span aria-hidden="true">↗</span></button><ul class="features"><li><span class="check">✓</span>10 TB 专属存储空间</li><li><span class="check">✓</span>单文件最大 100 GB</li><li><span class="check">✓</span>365 天历史版本恢复</li><li><span class="check">✓</span>专属客服支持</li></ul></article>
++        </div>
++        <div class="pricing-note"><span><svg aria-hidden="true"><use href="#shield"/></svg>价格透明，无隐藏费用</span><span>✓ 随时升级容量</span><span>✓ 可取消自动续费</span></div>
++        <p id="price-announcement" role="status" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></p>
++      </section>
++      <section class="included" id="included" aria-label="所有方案均包含的服务"><div><h2 class="included-title">每一档，都同样安心。</h2><p class="included-sub">以下基础服务，所有方案均享有</p></div><div class="benefit"><svg aria-hidden="true"><use href="#shield"/></svg><div><b>安全加密保护</b><span>传输与存储加密，守护你的隐私</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#devices"/></svg><div><b>多端自动同步</b><span>手机、电脑、网页，随时访问</span></div></div><div class="benefit"><svg aria-hidden="true"><use href="#bolt"/></svg><div><b>上传下载不限速</b><span>速度取决于网络，体验不设限</span></div></div></section>
++      <section class="faq" id="faq" aria-labelledby="faq-heading"><div><div class="eyebrow">GOOD TO KNOW</div><h2 id="faq-heading">你可能还想了解</h2><p class="faq-intro">关于空间、订阅与安全，<br>把你关心的，都说清楚。</p><p class="faq-note">少一点疑问，多一点安心。<br>让存储回归简单。</p></div><div class="questions">
++        <details open><summary>我应该选择多大的存储空间？</summary><p>如果主要备份手机照片和日常文档，100 GB 是轻巧的起点；大量照片和视频推荐 1 TB；设计素材、高清视频等创作文件适合 2 TB；长期归档与海量资料可选择 10 TB。照片数量按每张约 4 MB、1 TB = 1,000 GB 估算，实际可存数量因文件大小而异。</p></details>
++        <details><summary>可以随时升级或降级套餐吗？</summary><p>可以。升级时按剩余订阅时长补齐差价，新容量即时生效。降级将在当前订阅周期结束后生效；请提前将已用空间调整到新套餐容量内，避免影响新文件上传和同步。</p></details>
++        <details><summary>年付与月付有什么区别？</summary><p>同一容量套餐的功能完全相同。年付一次支付 12 个月的费用，比连续月付节省 20%；页面展示的年付月价为年费除以 12 的结果。月付按月结算，更加灵活。</p></details>
++        <details><summary>订阅到期后，我的文件会被删除吗？</summary><p>到期后会保留文件 30 天，在此期间可以浏览和下载，上传与自动同步将暂停。请在保留期内续订或导出文件；保留期结束后，文件可能被清理。你也可以随时在账户中关闭自动续费。</p></details>
++        <details><summary>我的文件如何受到保护？</summary><p>文件在传输和存储时均使用加密保护，并通过冗余备份降低硬件故障带来的数据丢失风险。分享文件时可以设置密码；畅享版及以上还支持设置分享有效期与下载权限。建议同时为重要资料保留本地备份。</p></details>
++      </div></section>
++    </main>
++    <footer><div class="footer-left"><a href="#" class="footer-brand">云屿</a><span>© 2026 Cloud Isle. 给珍贵，一个安心的家。</span></div><div class="footer-right"><a href="#pricing">价格方案</a><a href="#faq">帮助中心</a><span class="status">云端生活，从容开始</span></div></footer>
++  </div>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title" aria-describedby="dialog-description"><div class="dialog-top"><h2 id="dialog-title">你的云端空间</h2><button type="button" class="close" aria-label="关闭">×</button></div><p class="dialog-copy" id="dialog-description">为珍贵找到合适的位置。以下是你选择的套餐：</p><div class="order-summary"><p><span>存储方案</span><b id="selected-plan"></b></p><p><span>付款周期</span><b id="selected-cycle"></b></p><p><span>每期费用</span><strong id="selected-price"></strong></p></div><button type="button" class="dialog-done">继续浏览方案</button><p class="demo-label">这是定价页面演示，暂不提供实际订阅或付款。</p></dialog>
++  <script>
++    (() => {
++      let cycle = 'yearly';
++      const format = value => value.toLocaleString('zh-CN');
++      const cards = [...document.querySelectorAll('.card')];
++      const dialog = document.getElementById('plan-dialog');
++      document.querySelectorAll('[data-cycle]').forEach(button => {
++        button.addEventListener('click', () => {
++          cycle = button.dataset.cycle;
++          document.querySelectorAll('[data-cycle]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++          cards.forEach(card => {
++            const monthly = Number(card.dataset.monthly);
++            card.querySelector('.amount').textContent = format(cycle === 'yearly' ? monthly * .8 : monthly);
++            card.querySelector('.bill-note').textContent = cycle === 'yearly'
++              ? `按年支付 ¥${format(monthly * .8 * 12)}，省 ¥${format(monthly * .2 * 12)}`
++              : `每月支付 ¥${format(monthly)}，按月结算`;
++          });
++          document.getElementById('price-announcement').textContent = cycle === 'yearly' ? '已切换为年付，所有套餐节省 20%，展示价格为折合月价。' : '已切换为月付，所有套餐价格已更新。';
++        });
++      });
++      cards.forEach(card => card.querySelector('.plan-button').addEventListener('click', () => {
++        const monthly = Number(card.dataset.monthly);
++        document.getElementById('selected-plan').textContent = `${card.dataset.name} · ${card.dataset.capacity}`;
++        document.getElementById('selected-cycle').textContent = cycle === 'yearly' ? '年付（一次支付 12 个月）' : '月付';
++        document.getElementById('selected-price').textContent = cycle === 'yearly' ? `¥${format(monthly * .8 * 12)} / 年` : `¥${format(monthly)} / 月`;
++        dialog.showModal();
++      }));
++      dialog.querySelectorAll('.close, .dialog-done').forEach(button => button.addEventListener('click', () => dialog.close()));
++      dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
++    })();
++  </script>
++</body>
++</html>
+
+tokens used
+13,517
+已生成 [index.html](index.html)，内含完整样式、四档容量定价、月付/年付切换和可展开的常见问题，支持手机与桌面浏览。未启动服务器或安装依赖。

@@ -1,0 +1,11 @@
+# RULING-09：锁定的 CA-11 测试漏写了配置文件的 schema_version
+# 改正前：整改前、整改后的代码都在读配置时报「schema_version 应为 "1.0.0"」，测试没有测到 font_dir 的解析
+# 改正后（只在 measure.config.json 里补 schema_version: "1.0.0"，断言不变）：
+
+$ git worktree add <tmp> bef874a   # 整改前的代码（只有锁定的夹具和测试）
+$ cp test/card-audit.test.js <tmp>/test/ && cd <tmp> && npm run build && node --test --test-name-pattern="CA-11" test/card-audit.test.js
+✖ 配置文件里的 font_dir 按配置文件所在目录解析，不按当前目录（CA-11） (56.152ms)
+  AssertionError [ERR_ASSERTION]: 错误：font_dir 不存在：fonts
+
+$ node --test --test-name-pattern="CA-11" test/card-audit.test.js   # 整改后
+✔ 配置文件里的 font_dir 按配置文件所在目录解析，不按当前目录（CA-11） (1137.802333ms)

@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API 按量计费</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <h1>按量计费，用多少付多少</h1>
+      <p>无月费、无最低消费。每个接口每月都有免费额度，超出部分按每千次调用计费，不足一千次按实际次数折算。</p>
+    </header>
+
+    <section class="highlights" aria-label="计费要点">
+      <div class="highlight"><strong>¥0</strong><span>月费与开通费</span></div>
+      <div class="highlight"><strong>每月重置</strong><span>免费额度每自然月 1 日刷新</span></div>
+      <div class="highlight"><strong>按次折算</strong><span>不足千次按实际次数计费</span></div>
+      <div class="highlight"><strong>次月结算</strong><span>账单于每月 3 日前出具</span></div>
+    </section>
+
+    <h2>接口价格</h2>
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">接口</th>
+            <th scope="col" class="num">每月免费额度</th>
+            <th scope="col" class="num">超出后价格 / 千次</th>
+          </tr>
+        </thead>
+        <tbody id="price-rows"></tbody>
+      </table>
+    </div>
+    <p class="note">价格单位为人民币（含税）。失败请求（HTTP 4xx 由参数错误引起除外、5xx）不计费。</p>
+
+    <h2>阶梯折扣</h2>
+    <div class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">单个接口当月付费调用量</th>
+            <th scope="col" class="num">折扣</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>0 – 100 万次</td><td class="num">原价</td></tr>
+          <tr><td>100 万 – 1,000 万次</td><td class="num">9 折</td></tr>
+          <tr><td>1,000 万次以上</td><td class="num">8 折</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">折扣按区间累进计算，仅作用于超出免费额度的部分。</p>
+
+    <h2>费用估算</h2>
+    <div class="calc">
+      <form class="calc-inputs" id="calc-form" onsubmit="return false">
+        <!-- 输入框由脚本生成 -->
+      </form>
+      <div class="calc-result" aria-live="polite">
+        <ul id="calc-breakdown"></ul>
+        <div>
+          <div class="total-label">预计月费用</div>
+          <div class="total" id="calc-total">¥0.00</div>
+        </div>
+      </div>
+    </div>
+
+    <h2>常见问题</h2>
+    <dl class="faq">
+      <dt>免费额度可以累积到下个月吗？</dt>
+      <dd>不可以。免费额度按自然月发放，未用完的部分月底清零。</dd>
+      <dt>各接口的免费额度可以互相抵用吗？</dt>
+      <dd>不可以，每个接口的免费额度独立计算。</dd>
+      <dt>如何避免意外超支？</dt>
+      <dd>可在控制台为每个接口设置月度用量上限和余额预警，达到上限后可选择自动停止调用。</dd>
+      <dt>需要更大用量或私有部署？</dt>
+      <dd>月调用量超过 1 亿次的客户可联系销售获取定制报价。</dd>
+    </dl>
+
+    <footer>价格自 2026 年 11 月 1 日起生效，如有调整将提前 30 天通知。</footer>
+  </main>
+
+  <script>
+    const APIS = [
+      { id: "ocr",       name: "通用文字识别",   path: "/v1/ocr",          desc: "图片中的印刷体与手写文字提取",   free: 1000,   price: 15.0 },
+      { id: "translate", name: "文本翻译",       path: "/v1/translate",    desc: "支持 100+ 语种互译，单次 ≤ 5,000 字符", free: 10000,  price: 4.0 },
+      { id: "geocode",   name: "地理编码",       path: "/v1/geocode",      desc: "地址与经纬度互相转换",           free: 50000,  price: 0.8 },
+      { id: "sms",       name: "短信验证码校验", path: "/v1/verify",       desc: "验证码生成与校验（不含短信发送费）", free: 5000,   price: 2.5 },
+      { id: "ip",        name: "IP 归属地查询",  path: "/v1/ip",           desc: "国家、省市、运营商信息",         free: 100000, price: 0.3 },
+      { id: "face",      name: "人脸比对",       path: "/v1/face/compare", desc: "两张人脸图片相似度评分",         free: 500,    price: 30.0 }
+    ];
+
+    const TIERS = [
+      { upTo: 1_000_000,  rate: 1.0 },
+      { upTo: 10_000_000, rate: 0.9 },
+      { upTo: Infinity,   rate: 0.8 }
+    ];
+
+    const fmtInt = n => n.toLocaleString("zh-CN");
+    const fmtMoney = n => "¥" + n.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+    // 价格表
+    document.getElementById("price-rows").innerHTML = APIS.map(a => `
+      <tr>
+        <td>
+          <span class="api-name">${a.name}</span> <code>${a.path}</code>
+          <span class="api-desc">${a.desc}</span>
+        </td>
+        <td class="num"><span class="free">${fmtInt(a.free)} 次</span></td>
+        <td class="num price">${fmtMoney(a.price)}</td>
+      </tr>`).join("");
+
+    // 估算器
+    const form = document.getElementById("calc-form");
+    form.innerHTML = APIS.map(a => `
+      <label>${a.name}（次/月）
+        <input type="number" min="0" step="1000" inputmode="numeric" id="in-${a.id}" placeholder="0">
+      </label>`).join("");
+
+    function cost(api, calls) {
+      let billable = Math.max(0, calls - api.free);
+      let total = 0, prev = 0;
+      for (const t of TIERS) {
+        if (billable <= 0) break;
+        const chunk = Math.min(billable, t.upTo - prev);
+        total += chunk / 1000 * api.price * t.rate;
+        billable -= chunk;
+        prev = t.upTo;
+      }
+      return total;
+    }
+
+    function update() {
+      let sum = 0;
+      const lines = [];
+      for (const a of APIS) {
+        const calls = Math.max(0, Math.floor(Number(document.getElementById("in-" + a.id).value) || 0));
+        if (!calls) continue;
+        const c = cost(a, calls);
+        sum += c;
+        lines.push(`<li><span>${a.name} · ${fmtInt(calls)} 次</span><span>${c ? fmtMoney(c) : "免费"}</span></li>`);
+      }
+      document.getElementById("calc-breakdown").innerHTML =
+        lines.join("") || '<li><span>输入各接口的月调用量查看费用</span></li>';
+      document.getElementById("calc-total").textContent = fmtMoney(sum);
+    }
+
+    form.addEventListener("input", update);
+    update();
+  </script>
+</body>
+</html>

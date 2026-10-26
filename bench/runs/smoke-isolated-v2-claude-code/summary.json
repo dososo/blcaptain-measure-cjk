@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "smoke-isolated-v2-claude-code",
+  "agent": "claude-code",
+  "generated_at": "2026-10-25T13:36:18.294Z",
+  "prompts": 1,
+  "produced": 1,
+  "zero_error_pages": 0,
+  "zero_error_rate_over_produced": 0,
+  "zero_error_pages_excluding_T02_T04": 1,
+  "rule_hit_pages": {
+    "T02": 1,
+    "T04": 1
+  },
+  "mode": "static",
+  "baseline_kind": "隔离环境基线（--safe-mode + --disable-slash-commands：不加载 CLAUDE.md、用户 skill、内置 skill、插件、hooks、MCP；--no-session-persistence）",
+  "environment_observed": {
+    "models": {
+      "claude-opus-5-5": 1
+    },
+    "skills_loaded_runs": "claude -p 只输出最终回答，无法逐次统计；隔离模式用了 --safe-mode 和 --disable-slash-commands，实测可用 skill 为「无」",
+    "global_instructions": "见 environment.log"
+  },
+  "relinted_with": "生成时的构建",
+  "rows": [
+    {
+      "id": "002",
+      "agent_exit": 0,
+      "seconds": 107,
+      "produced": true,
+      "errors": 2,
+      "warns": 12,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-017-hP8mVV <提示词>
+工作目录：<tmp>/measure-baseline-codex-017-hP8mVV
+退出码：0 信号：无 用时：104s
+
+Reading additional input from stdin...
+2026-10-25T11:19:05.522850Z ERROR codex_skills_extension::loader::host: skills scan reached its traversal limit (root: file://~/.agents/skills)
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-017-hP8mVV
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a172c9-1d89-7d52-b06e-984f131684d3
+--------
+user
+写一个团队 Git 使用规范的文档页面，讲分支命名、提交信息和代码评审流程。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+warning: Under-development features enabled: chronicle, default_mode_request_user_input. Under-development features are incomplete and may behave unpredictably. To suppress this warning, set `suppress_unstable_features_warning = true` in ~/.codex/config.toml.
+warning: Skill descriptions were shortened to fit the skills context budget. Codex can still see every skill, but some descriptions are shorter. Disable unused skills or plugins to leave more room for the rest.
+codex
+队长，我会生成一个可直接打开的中文规范页面，涵盖分支命名、提交信息和代码评审流程，并检查文件是否完整。
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g 'tasks/lessons.md' -g '*.css' ." in <tmp>/measure-baseline-codex-017-hP8mVV
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-017-hP8mVV
+
+exec
+/bin/zsh -lc 'cat ~/.agents/skills/frontend-design/SKILL.md' in <tmp>/measure-baseline-codex-017-hP8mVV
+ succeeded in 0ms:
+---
+name: frontend-design
+description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.
+license: Complete terms in LICENSE.txt
+---
+
+This skill guides creation of distinctive, production-grade frontend interfaces that avoid generic "AI slop" aesthetics. Implement real working code with exceptional attention to aesthetic details and creative choices.
+
+The user provides frontend requirements: a component, page, application, or interface to build. They may include context about the purpose, audience, or technical constraints.
+
+## Design Thinking
+
+Before coding, understand the context and commit to a BOLD aesthetic direction:
+- **Purpose**: What problem does this interface solve? Who uses it?
+- **Tone**: Pick an extreme: brutally minimal, maximalist chaos, retro-futuristic, organic/natural, luxury/refined, playful/toy-like, editorial/magazine, brutalist/raw, art deco/geometric, soft/pastel, industrial/utilitarian, etc. There are so many flavors to choose from. Use these for inspiration but design one that is true to the aesthetic direction.
+- **Constraints**: Technical requirements (framework, performance, accessibility).
+- **Differentiation**: What makes this UNFORGETTABLE? What's the one thing someone will remember?
+
+**CRITICAL**: Choose a clear conceptual direction and execute it with precision. Bold maximalism and refined minimalism both work - the key is intentionality, not intensity.
+
+Then implement working code (HTML/CSS/JS, React, Vue, etc.) that is:
+- Production-grade and functional
+- Visually striking and memorable
+- Cohesive with a clear aesthetic point-of-view
+- Meticulously refined in every detail
+
+## Frontend Aesthetics Guidelines
+
+Focus on:
+- **Typography**: Choose fonts that are beautiful, unique, and interesting. Avoid generic fonts like Arial and Inter; opt instead for distinctive choices that elevate the frontend's aesthetics; unexpected, characterful font choices. Pair a distinctive display font with a refined body font.
+- **Color & Theme**: Commit to a cohesive aesthetic. Use CSS variables for consistency. Dominant colors with sharp accents outperform timid, evenly-distributed palettes.
+- **Motion**: Use animations for effects and micro-interactions. Prioritize CSS-only solutions for HTML. Use Motion library for React when available. Focus on high-impact moments: one well-orchestrated page load with staggered reveals (animation-delay) creates more delight than scattered micro-interactions. Use scroll-triggering and hover states that surprise.
+- **Spatial Composition**: Unexpected layouts. Asymmetry. Overlap. Diagonal flow. Grid-breaking elements. Generous negative space OR controlled density.
+- **Backgrounds & Visual Details**: Create atmosphere and depth rather than defaulting to solid colors. Add contextual effects and textures that match the overall aesthetic. Apply creative forms like gradient meshes, noise textures, geometric patterns, layered transparencies, dramatic shadows, decorative borders, custom cursors, and grain overlays.
+
+NEVER use generic AI-generated aesthetics like overused font families (Inter, Roboto, Arial, system fonts), cliched color schemes (particularly purple gradients on white backgrounds), predictable layouts and component patterns, and cookie-cutter design that lacks context-specific character.
+
+Interpret creatively and make unexpected choices that feel genuinely designed for the context. No design should be the same. Vary between light and dark themes, different fonts, different aesthetics. NEVER converge on common choices (Space Grotesk, for example) across generations.
+
+**IMPORTANT**: Match implementation complexity to the aesthetic vision. Maximalist designs need elaborate code with extensive animations and effects. Minimalist or refined designs need restraint, precision, and careful attention to spacing, typography, and subtle details. Elegance comes from executing the vision well.
+
+Remember: Codex is capable of extraordinary creative work. Don't hold back, show what can truly be created when thinking outside the box and committing fully to a distinctive vision.
+
+codex
+我会使用 frontend-design 技能，将页面设计成清晰的团队工程手册：固定目录、规范示例和评审检查清单。内容采用「短期分支 + 合并请求 + 主分支保护」作为示例团队约定，页面无需联网即可阅读。
+exec
+/bin/zsh -lc "cat > index.html <<'EOF'
+<"'!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="团队 Git 协作手册：统一分支命名、提交信息与代码评审流程，让每一次变更清晰可追溯。">
+<title>团队 Git 使用规范 · 工程手册</title>
+<style>
+:root{--paper:#fafbf8;--white:#fff;--ink:#24382f;--muted:#798079;--green:#377759;--lime:#d8e8b3;--line:#e3e7df;--soft:#f0f4eb;--mono:"SFMono-Regular",Consolas,"Liberation Mono",monospace}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:40px}body{margin:0;background:var(--paper);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.8}a{color:inherit;text-decoration:none}button{font:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #79a75e;outline-offset:4px}.sidebar{position:fixed;inset:0 auto 0 0;width:242px;background:#f3f5ef;border-right:1px solid var(--line);padding:35px 25px;display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:11px;font-size:18px;font-weight:650;letter-spacing:1px}.brand-icon{background:var(--ink);color:var(--lime);border-radius:10px;width:34px;height:36px;display:grid;place-items:center;font:22px var(--mono)}.brand-sub{font-size:11px;letter-spacing:3px;color:var(--muted);margin:10px 0 43px 45px}.nav-label{color:#8a9287;font-size:10px;letter-spacing:2px;padding-left:14px;margin-bottom:15px}.nav{display:grid;gap:7px}.nav a{display:flex;gap:12px;align-items:center;padding:11px 14px;border-radius:6px;font-size:13px;color:#677365}.nav a:hover{background:#e9eee3}.nav a.active{background:#e3ebda;color:#315e3d;font-weight:600}.nav .num{font:11px var(--mono);opacity:.65}.sidebar-note{margin-top:35px;border-top:1px solid var(--line);padding:23px 14px;color:var(--muted);font-size:12px}.sidebar-note strong{display:block;font-weight:500;color:#52634f;margin-bottom:8px}.sidebar-bottom{margin-top:auto;font-size:11px;color:#87907e;padding:20px 14px 0}.status-dot{display:inline-block;width:6px;height:6px;background:#678e50;border-radius:50%;margin-right:7px}.shell{margin-left:242px}.topbar{height:77px;border-bottom:1px solid var(--line);padding:0 54px;display:flex;align-items:center;justify-content:space-between;color:#7d857b;font-size:12px}.breadcrumb span{margin:0 12px;color:#b0b6ab}.breadcrumb strong{font-weight:500;color:#3e5143}.top-tag{font:10px var(--mono);letter-spacing:1px;border:1px solid var(--line);border-radius:4px;padding:4px 9px}.layout{max-width:1240px;margin:0 auto;padding:52px 54px 25px;display:grid;grid-template-columns:minmax(0,820px) 150px;gap:48px}.eyebrow{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:2px;color:#5c7a4e;font-weight:600}.eyebrow:before{content:"";width:20px;height:2px;background:#71965c}h1{font-size:clamp(32px,3.2vw,46px);letter-spacing:-1.8px;line-height:1.35;margin:18px 0 17px;font-weight:650}.lead{font-size:15px;color:#768071;max-width:620px;line-height:1.9;margin:0}.meta{display:flex;gap:20px;flex-wrap:wrap;align-items:center;font-size:11px;color:#899080;margin:23px 0 30px}.meta .badge{background:#eaf0e1;color:#587540;border-radius:4px;padding:2px 9px}.intro-rule{height:1px;background:var(--line)}.principle{margin:26px 0;background:#edf2e6;border:1px solid #e0e8d5;border-radius:7px;display:flex;gap:15px;padding:18px 20px}.principle-icon{height:25px;width:25px;flex-shrink:0;border:1px solid #799763;border-radius:50%;display:grid;place-items:center;color:#64854b;font-family:Georgia,serif;font-style:italic}.principle strong{font-size:13px}.principle p{margin:4px 0 0;font-size:12px;color:#77816e}.quick-links{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0 38px}.quick-link{border:1px solid var(--line);background:#fff;border-radius:7px;padding:18px;transition:transform .2s,border-color .2s}.quick-link:hover{transform:translateY(-3px);border-color:#9fb68b}.quick-link .top{display:flex;justify-content:space-between;font:12px var(--mono);color:#899c78;margin-bottom:13px}.quick-link strong{display:block;font-size:13px;font-weight:600}.quick-link p{margin:3px 0 0;color:#929889;font-size:11px}.section{padding:31px 0 10px;border-top:1px solid var(--line);margin-top:26px}.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:10px}.section-number{font:11px var(--mono);color:#73915a;background:#eaf0e1;border-radius:4px;width:28px;height:28px;display:grid;place-items:center}h2{font-size:22px;font-weight:600;letter-spacing:-.5px;margin:0}.section-desc{color:#818978;font-size:13px;margin:12px 0 22px}h3{font-size:14px;font-weight:600;margin:25px 0 12px}code{font-family:var(--mono);font-size:12px;background:#f0f3ec;padding:3px 6px;border-radius:4px;color:#577343}.code-box{border:1px solid var(--line);border-radius:7px;background:#f2f5ee;overflow:hidden;margin:14px 0 20px}.code-head{padding:8px 15px;border-bottom:1px solid #e2e7dc;font-size:10px;display:flex;justify-content:space-between;align-items:center;color:#8b9581}.copy{border:0;background:none;cursor:pointer;color:#6d7f5d;padding:2px 6px;font-size:10px}.copy:hover{color:#244e30}.code-box pre{padding:17px 20px;margin:0;overflow:auto;font:12px/1.9 var(--mono);color:#4a6541}.code-box pre code{padding:0;background:none;font:inherit;color:inherit}.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:7px;background:white}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;white-space:nowrap}th{background:#f4f6f0;color:#7c8672;font-size:11px;font-weight:500}td,th{padding:13px 16px;border-bottom:1px solid #edf0e8}tr:last-child td{border-bottom:none}td:first-child{font-weight:500}td code{font-size:11px}.small-note{color:#88907f;font-size:11px;margin-top:13px;line-height:1.9}.small-note b{font-weight:500;color:#677b57}.rules{padding-left:19px;color:#69765f;font-size:13px}.rules li{padding-left:4px;margin:9px 0}.rules li::marker{color:#92a87c}.example-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}.example{padding:16px;border:1px solid var(--line);border-radius:6px;background:#fff}.example-label{font-size:11px;color:#678653;margin-bottom:10px}.example.bad .example-label{color:#a28768}.example code{display:block;background:none;padding:0;font-size:11px;overflow-wrap:anywhere}.example p{font-size:11px;color:#909585;margin:9px 0 0}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:23px 0}.flow-step{background:#f0f3eb;border-radius:6px;padding:15px 12px;position:relative}.flow-step:not(:last-child):after{content:"→";position:absolute;right:-8px;top:25px;color:#81946f;z-index:1}.flow-step span{font:10px var(--mono);color:#92a27e}.flow-step strong{display:block;font-size:12px;margin:5px 0}.flow-step p{font-size:10px;color:#849076;margin:0}.review-item{display:grid;grid-template-columns:26px 1fr;gap:12px;margin:23px 0}.step-dot{width:23px;height:23px;border:1px solid #d6e0ca;border-radius:50%;display:grid;place-items:center;font:10px var(--mono);color:#7e9767;margin-top:2px}.review-item h3{margin:0 0 6px}.review-item p{margin:0;color:#7a8570;font-size:12px;line-height:1.9}.checklist{display:grid;grid-template-columns:1fr 1fr;gap:0 25px;border:1px solid var(--line);border-radius:7px;padding:10px 20px;background:#fff}.checklist label{padding:12px 0;border-bottom:1px solid #edf0e8;display:flex;align-items:flex-start;gap:10px;cursor:pointer;font-size:12px;color:#69775e}.checklist label:nth-last-child(-n+2){border-bottom:0}.checklist input{accent-color:var(--green);margin-top:5px;flex-shrink:0}.checklist label:has(input:checked){color:#9ba38f;text-decoration:line-through}.check-progress{font-size:11px;color:#80906d;margin:10px 0}.closing{margin:34px 0 10px;padding:21px 0;border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:11px;color:#8b9383}.closing a:hover{color:var(--green)}.toc{position:sticky;top:36px;align-self:start;padding-top:6px}.toc-title{font-size:10px;letter-spacing:2px;color:#9aa18e;margin-bottom:17px}.toc a{display:block;border-left:1px solid #dfe5d8;padding:7px 0 7px 15px;font-size:11px;color:#87907c}.toc a:hover,.toc a.active{color:#4c743d;border-left:2px solid #749758}.toc-note{margin-top:31px;padding-top:18px;border-top:1px solid var(--line);font-size:10px;line-height:1.9;color:#99a18f}.toc-note strong{color:#6a7d59;font-weight:500;display:block;margin-bottom:5px}.mobile-brand{display:none}button,a,input{-webkit-tap-highlight-color:transparent} @media(min-width:1550px){.layout{padding-top:65px}.sidebar{width:265px}.shell{margin-left:265px}}@media(max-width:1190px){.layout{grid-template-columns:minmax(0,1fr);max-width:900px;padding:40px}.toc{display:none}.topbar{padding:0 40px}.sidebar{width:215px;padding:30px 18px}.shell{margin-left:215px}}@media(max-width:760px){.sidebar{display:none}.shell{margin-left:0}.topbar{height:60px;padding:0 23px}.layout{padding:30px 23px 20px}.top-tag{display:none}.quick-links{gap:8px}.quick-link{padding:13px 10px}.quick-link p{font-size:10px}.lead{font-size:13px}h1{font-size:34px}.meta{gap:12px}.flow{grid-template-columns:repeat(2,1fr)}.flow-step:nth-child(2):after{display:none}.checklist{grid-template-columns:1fr}.checklist label:nth-last-child(2){border-bottom:1px solid #edf0e8}.example-pair{grid-template-columns:1fr}.section{padding-top:25px}h2{font-size:20px}.closing{gap:10px;font-size:10px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}@media print{.sidebar,.toc,.topbar,.copy,.quick-links,.closing a{display:none}.shell{margin:0}.layout{display:block;padding:0;max-width:none}body{background:white;font-size:11px}.section{break-inside:avoid}.code-box,table,.principle{break-inside:avoid}.checklist{display:block}}
+</style>
+</head>
+<body>
+<aside class="sidebar" aria-label="手册导航">
+<a href="#overview" class="brand"><span class="brand-icon" aria-hidden="true">⌘</span>工程手册</a>
+<div class="brand-sub">协作有章，交付有序</div>
+<div class="nav-label">研发协作 / 工作规范</div>
+<nav class="nav">
+<a href="#overview" class="active"><span class="num">⌑</span>规范概览</a>
+<a href="#branches"><span class="num">01</span>分支命名</a>
+<a href="#commits"><span class="num">02</span>提交信息</a>
+<a href="#reviews"><span class="num">03</span>代码评审流程</a>
+<a href="#checklist"><span class="num">04</span>合并前检查</a>
+</nav>
+<div class="sidebar-note"><strong>把协作留给规范</strong>把专注留给代码。<br>每一次变更，都有迹可循。</div>
+<div class="sidebar-bottom"><span class="status-dot"></span>团队协作指南 · 版本 1.0</div>
+</aside>
+<div class="shell">
+<header class="topbar"><div class="breadcrumb">工程手册<span>/</span>研发协作<span>/</span><strong>Git 使用规范</strong></div><span class="top-tag">规范文档 · 01</span></header>
+<div class="layout">
+<main>
+<section id="overview">
+<div class="eyebrow">让好的协作，成为默认</div>
+<h1>团队 Git 使用规范</h1>
+<p class="lead">用一致的分支、清晰的提交和有质量的评审，<br>让代码变更更容易理解，让团队协作更从容。</p>
+<div class="meta"><span class="badge">团队约定</span><span>适用范围：团队所有代码仓库</span><span>阅读约 6 分钟</span></div>
+<div class="intro-rule"></div>
+<div class="principle"><span class="principle-icon" aria-hidden="true">i</span><div><strong>一个变更，一个目的，一条清晰的记录。</strong><p>本规范采用短期分支协作：从 main 创建分支，通过合并请求完成评审，再合入受保护的主分支。</p></div></div>
+<div class="quick-links">
+<a class="quick-link" href="#branches"><div class="top"><span>01 / 分支</span><span aria-hidden="true">↗</span></div><strong>一眼看懂变更目的</strong><p>统一前缀与命名结构</p></a>
+<a class="quick-link" href="#commits"><div class="top"><span>02 / 提交</span><span aria-hidden="true">↗</span></div><strong>让历史记录可读</strong><p>描述做了什么，为什么做</p></a>
+<a class="quick-link" href="#reviews"><div class="top"><span>03 / 评审</span><span aria-hidden="true">↗</span></div><strong>让质量共同负责</strong><p>小步提交，充分沟通</p></a>
+</div>
+</section>
+<section class="section" id="branches">
+<div class="section-heading"><span class="section-number">01</span><h2>分支命名</h2></div>
+<p class="section-desc">分支名就是变更的第一份说明。保持简短、具体，并关联可追溯的任务。</p>
+<div class="code-box"><div class="code-head"><span>命名结构</span></div><pre><code>&lt;类型&gt;/&lt;任务编号&gt;-&lt;简短描述&gt;</code></pre></div>
+<div class="table-wrap"><table><thead><tr><th>分支类型</th><th>使用场景</th><th>命名示例</th></tr></thead><tbody>
+<tr><td><code>feat/</code></td><td>新增功能</td><td><code>feat/128-user-login</code></td></tr>
+<tr><td><code>fix/</code></td><td>修复缺陷</td><td><code>fix/256-token-expiry</code></td></tr>
+<tr><td><code>hotfix/</code></td><td>生产环境紧急修复</td><td><code>hotfix/301-payment-timeout</code></td></tr>
+<tr><td><code>refactor/</code></td><td>不改变行为的代码重构</td><td><code>refactor/145-auth-service</code></td></tr>
+<tr><td><code>docs/</code></td><td>文档更新</td><td><code>docs/167-api-guide</code></td></tr>
+<tr><td><code>chore/</code></td><td>依赖、工具或配置维护</td><td><code>chore/182-update-eslint</code></td></tr>
+</tbody></table></div>
+<p class="small-note"><b>命名细节：</b>使用小写英文字母、数字和连字符，避免空格、下划线及个人姓名。无任务编号时可省略编号，例如 <code>docs/update-readme</code>。</p>
+<h3>分支的生命周期</h3>
+<ul class="rules"><li><code>main</code> 始终保持可发布；禁止直接推送或强制推送，通过仓库规则保护。</li><li>每个分支只处理一件事，建议 1–3 个工作日内合并；大功能拆成可独立评审的小变更。</li><li>开始前更新本地主分支；个人分支可变基同步，共享分支用合并同步，避免改写他人历史。</li><li>合并确认后删除远端工作分支。紧急修复仍需评审与必要测试；涉及维护版本时同步修复。</li></ul>
+<div class="code-box"><div class="code-head"><span>创建功能分支</span><button class="copy" type="button" aria-label="复制创建分支命令">复制命令</button></div><pre><code>git switch main
+git pull --ff-only
+git switch -c feat/128-user-login</code></pre></div>
+</section>
+<section class="section" id="commits">
+<div class="section-heading"><span class="section-number">02</span><h2>提交信息</h2></div>
+<p class="section-desc">使用统一的语义化格式。好的提交信息，让同事无需阅读全部代码也能理解变更。</p>
+<div class="code-box"><div class="code-head"><span>提交格式 · 范围可选</span></div><pre><code>&lt;类型&gt;(&lt;范围&gt;): &lt;变更摘要&gt;
+
+&lt;可选正文：变更原因、实现思路与影响&gt;
+
+&lt;可选页脚：关联任务或不兼容变更说明&gt;</code></pre></div>
+<div class="table-wrap"><table><thead><tr><th>类型</th><th>含义</th><th>示例摘要</th></tr></thead><tbody>
+<tr><td><code>feat</code></td><td>新增功能</td><td>新增手机号登录</td></tr><tr><td><code>fix</code></td><td>修复问题</td><td>修复令牌过期后重复跳转</td></tr><tr><td><code>docs</code></td><td>文档变更</td><td>补充本地开发说明</td></tr><tr><td><code>refactor</code></td><td>重构，不改变外部行为</td><td>提取公共鉴权逻辑</td></tr><tr><td><code>perf</code></td><td>性能优化</td><td>减少列表重复请求</td></tr><tr><td><code>test</code></td><td>新增或调整测试</td><td>补充登录失败用例</td></tr><tr><td><code>style</code></td><td>仅格式调整，不改变语义</td><td>统一缩进格式</td></tr><tr><td><code>chore</code> / <code>ci</code> / <code>build</code></td><td>维护 / 持续集成 / 构建</td><td>更新检查流程配置</td></tr>
+</tbody></table></div>
+<div class="example-pair"><div class="example"><div class="example-label">✓ 推荐 · 动作 + 明确对象</div><code>fix(auth): 修复刷新令牌失效后的循环跳转</code><p>说明变更类型、影响模块和具体行为。</p></div><div class="example bad"><div class="example-label">× 避免 · 含糊或无上下文</div><code>修改了一些问题</code><p>避免“更新”“临时提交”“最终版本”等描述。</p></div></div>
+<ul class="rules"><li>摘要建议不超过 72 个字符，使用“新增、修复、移除”等动作词，结尾不加句号。</li><li>一次提交只表达一个完整意图。功能代码与必要测试一起提交，无关格式调整单独提交。</li><li>正文与标题空一行，重点说明“为什么”；页脚使用 <code>Refs: #128</code> 关联任务。</li><li>不兼容变更在类型或范围后加 <code>!</code>，并用 <code>BREAKING CHANGE:</code> 说明影响及迁移方式。</li><li>提交前检查差异，禁止提交密钥、访问令牌、本地环境文件和无关生成产物。</li></ul>
+<div class="code-box"><div class="code-head"><span>完整提交示例</span><button class="copy" type="button" aria-label="复制提交信息示例">复制示例</button></div><pre><code>fix(auth): 修复刷新令牌失效后的循环跳转
+
+刷新失败时清理登录状态并返回登录页，
+避免重试拦截器反复发起相同请求。
+补充令牌过期和刷新失败的回归测试。
+
+Refs: #256</code></pre></div>
+</section>
+<section class="section" id="reviews">
+<div class="section-heading"><span class="section-number">03</span><h2>代码评审流程</h2></div>
+<p class="section-desc">合并请求（PR / MR）是团队共同理解变更的入口。作者对交付负责，评审者对反馈负责。</p>
+<div class="flow" aria-label="评审四个阶段"><div class="flow-step"><span>01</span><strong>提交前自检</strong><p>验证行为，清理差异</p></div><div class="flow-step"><span>02</span><strong>发起合并请求</strong><p>解释目的，给出证据</p></div><div class="flow-step"><span>03</span><strong>评审与修订</strong><p>聚焦问题，闭环反馈</p></div><div class="flow-step"><span>04</span><strong>合并与清理</strong><p>检查通过，保留记录</p></div></div>
+<div class="review-item"><div class="step-dot">1</div><div><h3>作者：先完成一次自己的评审</h3><p>阅读完整差异，确认没有调试代码与无关文件。运行项目要求的格式、静态检查、构建和测试；缺陷修复需提供能复现问题的回归验证。无法执行的检查应写明原因和替代证据。</p></div></div>
+<div class="review-item"><div class="step-dot">2</div><div><h3>作者：提供足够的评审上下文</h3><p>合并请求标题沿用提交信息格式，正文写清问题、方案、影响、测试结果和回滚方式，并关联任务。界面变更附截图或录屏。建议净改动控制在 400 行以内（排除锁文件和生成文件）；较大变更说明无法拆分的原因。未完成时标记为草稿。</p></div></div>
+<div class="review-item"><div class="step-dot">3</div><div><h3>评审者：检查行为，给出可操作的反馈</h3><p>至少邀请 1 位非作者评审；关键模块需对应负责人批准。建议 1 个工作日内首次响应。优先检查正确性、边界条件、安全、可维护性和测试覆盖；评论标注“阻塞”或“建议”，说明原因，避免只表达个人风格偏好。</p></div></div>
+<div class="review-item"><div class="step-dot">4</div><div><h3>共同闭环：确认最终版本，再合并</h3><p>作者逐条回复并修订，由评审者确认阻塞问题已解决。新增实质改动后重新请求评审。所有必要检查通过、无冲突、至少 1 个有效批准且无未解决的阻塞意见，才允许合并；仓库应配置新提交后使旧批准失效。</p></div></div>
+<div class="principle"><span class="principle-icon" aria-hidden="true">↳</span><div><strong>默认使用压缩合并，主分支保留一条完整的变更记录。</strong><p>将合并请求压缩为一条语义清晰的提交，检查最终提交信息。合并后确认主分支检查通过，再清理工作分支；需要撤销时通过新的回退请求处理，不改写主分支历史。</p></div></div>
+</section>
+<section class="section" id="checklist">
+<div class="section-heading"><span class="section-number">04</span><h2>合并前，最后确认一次</h2></div>
+<p class="section-desc">在点击合并之前，用这份清单完成最后一轮检查。</p>
+<div class="checklist">
+<label><input type="checkbox">分支与提交信息符合命名规范</label><label><input type="checkbox">变更范围单一，无无关文件或敏感信息</label><label><input type="checkbox">合并请求说明、关联任务与证据齐全</label><label><input type="checkbox">测试、构建和所有必要检查通过</label><label><input type="checkbox">最终版本获得有效批准，阻塞意见已解决</label><label><input type="checkbox">无合并冲突，影响和回滚方案明确</label>
+</div>
+<p class="check-progress" aria-live="polite">已确认 0 / 6 项 · 勾选仅用于本次阅读，刷新后重置</p>
+</section>
+<footer class="closing"><span>规范让协作更轻，记录让未来更清晰。</span><a href="#overview">回到顶部 ↑</a></footer>
+</main>
+<aside class="toc" aria-label="页内目录"><div class="toc-title">本页内容</div><a href="#overview" class="active">规范概览</a><a href="#branches">01　分支命名</a><a href="#commits">02　提交信息</a><a href="#reviews">03　代码评审流程</a><a href="#checklist">04　合并前检查</a><div class="toc-note"><strong>少一点猜测，多一点共识。</strong>规则可以随团队演进，<br>清晰与责任始终不变。</div></aside>
+</div>
+</div>
+<script>
+document.querySelectorAll('"'.copy').forEach(button=>{button.addEventListener('click',async()=>{const text=button.closest('.code-box').querySelector('code').textContent;const original=button.textContent;try{await navigator.clipboard.writeText(text);button.textContent='已复制';}catch{const range=document.createRange();range.selectNodeContents(button.closest('.code-box').querySelector('code'));const selection=window.getSelection();selection.removeAllRanges();selection.addRange(range);button.textContent='已选中，请手动复制';}setTimeout(()=>button.textContent=original,2500);});});
+const checks=[...document.querySelectorAll('.checklist input')];checks.forEach(check=>check.addEventListener('change',()=>{const count=checks.filter(item=>item.checked).length;document.querySelector('.check-progress').textContent="'`已确认 ${count} / 6 项 · ${count===6?'"'清单已核对，请以仓库实际检查结果为准':'勾选仅用于本次阅读，刷新后重置'}"'`;}));
+const sections=[...document.querySelectorAll('"'main > section')];let ticking=false;function updateNav(){const current=sections.filter(section=>section.getBoundingClientRect().top<=150).pop()||sections[0];document.querySelectorAll('.nav a,.toc a').forEach(link=>{const active=link.hash==='#'+current.id;link.classList.toggle('active',active);if(active)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current');});ticking=false;}window.addEventListener('scroll',()=>{if("'!ticking){requestAnimationFrame(updateNav);ticking=true;}},{passive:true});updateNav();
+</script>
+</body>
+</html>
+EOF
+python3 - <<'"'PY'
+from html.parser import HTMLParser
+from pathlib import Path
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=[]; self.links=[]; self.stack=[]
+    def handle_starttag(self,t,a):
+        d=dict(a)
+        if 'id' in d: self.ids.append(d['id'])
+        if t=='a': self.links.append(d.get('href',''))
+        if t not in {'meta','input','br','hr','img','link','wbr','source','area','base','embed','param','track','col'}: self.stack.append(t)
+    def handle_endtag(self,t):
+        assert self.stack and self.stack.pop()==t, f'标签不匹配: {t}'
+p=Path('index.html'); s=p.read_text(); c=Check(); c.feed(s)
+assert not c.stack
+assert len(c.ids)==len(set(c.ids))
+assert all(x[1:] in c.ids for x in c.links if x.startswith('#'))
+assert 'https://' not in s and 'http://' not in s
+assert all(x in s for x in ['分支命名','提交信息','代码评审流程','合并前'])
+print(f'检查通过：HTML 标签闭合、{len(c.ids)} 个章节锚点、目录链接、核心内容和零外部依赖。文件大小：{p.stat().st_size} 字节。')
+PY" in <tmp>/measure-baseline-codex-017-hP8mVV
+ succeeded in 0ms:
+检查通过：HTML 标签闭合、5 个章节锚点、目录链接、核心内容和零外部依赖。文件大小：23664 字节。
+
+codex
+队长，已生成 [index.html](index.html)，包含分支命名、提交信息、代码评审流程及交互检查清单，样式全部内置，可直接打开。
+
+已通过页面结构和目录链接检查，未启动服务器或安装依赖。
+tokens used
+23,432
+队长，已生成 [index.html](index.html)，包含分支命名、提交信息、代码评审流程及交互检查清单，样式全部内置，可直接打开。
+
+已通过页面结构和目录链接检查，未启动服务器或安装依赖。

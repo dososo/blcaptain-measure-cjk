@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "project": "measure-cjk",
+  "milestone": "W2 发布准备（npm 包、6 个主题、插件清单）",
+  "generated_at": "2026-10-26T09:12:30.357Z",
+  "git_head": "30b88aadef0bea3d7b6bdf4bf7d8776061d106d6",
+  "dirty": false,
+  "executor": "Claude Code（用户指示全部由 Claude Code 闭环）",
+  "package": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "integrity": "sha512-uRih0V6vDedwEuabipETfWNwanGf4zDK9PefRTSeDYkxLS0Is81DmoWAmhgoZdrrkfBGqTN03YfQ+01eFOpQ7A=="
+  },
+  "assertions": [
+    {
+      "id": "RV-01",
+      "desc": "npm pack：包里有 bin、dist、assets、data、README、LICENSE、LICENSE-docs、NOTICE、npm-shrinkwrap.json，没有源码和测试；记下 integrity；npm audit 运行时依赖没有漏洞",
+      "command": "npm pack --json --pack-destination '<tmp>' && npm audit --omit=dev",
+      "status": "PASS",
+      "evidence": "evidence/npm-pack.log",
+      "notes": "npm audit 退出码 0；measure-cjk-0.1.0.tgz，45 个文件，97033 字节，integrity sha512-uRih0V6vDedwEuabipETfWNwanGf4zDK9PefRTSeDYkxLS0Is81DmoWAmhgoZdrrkfBGqTN03YfQ+01eFOpQ7A=="
+    },
+    {
+      "id": "RV-02",
+      "desc": "从 tarball 全局安装（临时 prefix）：--version 是 0.1.0；依赖版本和 shrinkwrap 一致；项目里没有 Playwright 时 --render 退出码 2 并提示怎么装；只在项目里装了 Playwright 时 --render 能用；Playwright 只在全局目录里时也能用（RA-01）",
+      "command": "npm install -g --prefix '<tmp>/global' '<tmp>/measure-cjk-0.1.0.tgz' --no-audit --no-fund && '<tmp>/global/bin/measure-cjk' --version && node -e 'const s=require(\"<仓库>/packages/cli/npm-shrinkwrap.json\");const base=\"<tmp>/global/lib/node_modules/measure-cjk\";const bad=[];for(const [k,v] of Object.entries(s.packages)){if(!k)continue;let p;try{p=require(base+\"/\"+k+\"/package.json\")}catch{p=null}if(!p||p.version!==v.version)bad.push(k+\" 期望 \"+v.version+\" 实际 \"+(p&&p.version))}console.log(bad.length?\"不一致：\\n\"+bad.join(\"\\n\"):\"依赖版本和 npm-shrinkwrap.json 一致：\"+(Object.keys(s.packages).length-1)+\" 个\")' && '<tmp>/global/bin/measure-cjk' lint page.html --format json && '<tmp>/global/bin/measure-cjk' lint page.html --render && ln -s '<仓库>/node_modules/playwright-core' '<tmp>/proj/node_modules/playwright-core' && '<tmp>/global/bin/measure-cjk' lint page.html --render --format json --evidence ev && rm '<tmp>/proj/node_modules/playwright-core' && ln -s '<仓库>/node_modules/playwright-core' '<tmp>/global/lib/node_modules/playwright-core' && '<tmp>/global/bin/measure-cjk' lint page.html --render --format json --evidence ev",
+      "status": "PASS",
+      "evidence": "evidence/tarball-install.log",
+      "notes": "7 项都通过；完整档 errors=0"
+    },
+    {
+      "id": "RV-03",
+      "desc": "npx --package=<tarball> 运行：--version 是 0.1.0；项目里装了 Playwright 时 --render 能用（RA-01 的 npx 场景）",
+      "command": "npx --yes --package='<tmp>/measure-cjk-0.1.0.tgz' -- measure-cjk --version && ln -s '<仓库>/node_modules/playwright-core' '<tmp>/proj/node_modules/playwright-core' && npx --yes --package='<tmp>/measure-cjk-0.1.0.tgz' -- measure-cjk lint page.html --render --format json --evidence ev",
+      "status": "PASS",
+      "evidence": "evidence/npx-run.log",
+      "notes": "版本 0.1.0，模式 render"
+    },
+    {
+      "id": "RV-04",
+      "desc": "6 个主题示例页：完整档 lint 0 error（结果 JSON 存为 evidence/themes-lint.json）",
+      "command": "node packages/cli/bin/measure-cjk.js lint site/themes --render --format json --out '<仓库>/docs/verification/w2/release/evidence/themes-lint.json'",
+      "status": "PASS",
+      "evidence": "evidence/themes-lint.log",
+      "notes": "6 个文件，errors 0，warns 2（T06 site/themes/broadsheet.html；T06 site/themes/songke.html）"
+    },
+    {
+      "id": "RV-05",
+      "desc": "AUDIT_RELEASE 回归测试（RA-01–RA-03，整改前锁定；SHA-256 和锁定时一致）；展示页没有 undefined",
+      "command": "shasum -a 256 -c docs/verification/w2/release/release-tests.sha256 && node --test --test-reporter=spec test/release.test.js && grep -c undefined site/index.html ; true",
+      "status": "PASS",
+      "evidence": "evidence/release-tests.log",
+      "notes": "锁定 未改；ℹ pass 4，ℹ fail 0；undefined 0 处"
+    },
+    {
+      "id": "RV-06",
+      "desc": "validate-skill（含主题截图、字号阶梯、6 处版本号一致）和 claude plugin validate --strict",
+      "command": "node scripts/validate-skill.mjs && claude plugin validate . --strict",
+      "status": "PASS",
+      "evidence": "evidence/validate.log",
+      "notes": "72 项通过，0 项失败；claude plugin validate 退出码 0"
+    },
+    {
+      "id": "RV-07",
+      "desc": "install_skill_links.sh：路径带空格能装、重复运行不变；软链指向别处时不改任何目录、加 --replace 才替换；同名普通目录报错且另一个目录也没动；未知参数退出码 2",
+      "command": "sh scripts/install_skill_links.sh  && sh scripts/install_skill_links.sh  && sh scripts/install_skill_links.sh  && test ! -e '<tmp>/h2/.agents/skills/measure' && sh scripts/install_skill_links.sh --replace && readlink '<tmp>/h2/.claude/skills/measure' && sh scripts/install_skill_links.sh  && test ! -e '<tmp>/h3/.agents/skills/measure' && sh scripts/install_skill_links.sh --force",
+      "status": "PASS",
+      "evidence": "evidence/install-script.log",
+      "notes": "退出码 0、0、1、0、1、2"
+    },
+    {
+      "id": "RV-08",
+      "desc": "Codex 插件：临时 CODEX_HOME 里 marketplace add 本仓库、plugin add measure@blcaptain-measure-cjk，插件目录里有 skills/measure/SKILL.md",
+      "command": "codex --version && codex plugin marketplace add '<仓库>' && codex plugin add measure@blcaptain-measure-cjk && find '<tmp>/codex-home' -path '*skills/measure/SKILL.md' | head -3",
+      "status": "PASS",
+      "evidence": "evidence/codex-plugin-rerun.log",
+      "notes": "找到 SKILL.md"
+    },
+    {
+      "id": "RV-10",
+      "desc": "Claude Code 插件：临时 CLAUDE_CONFIG_DIR 里 marketplace add 本仓库、plugin install measure@blcaptain-measure-cjk，列表里是 0.1.0 且已启用（D-5）",
+      "command": "claude plugin marketplace add '<仓库>' && claude plugin install measure@blcaptain-measure-cjk && claude plugin list",
+      "status": "PASS",
+      "evidence": "evidence/claude-plugin.log",
+      "notes": "marketplace add 0，install 0"
+    },
+    {
+      "id": "RV-11",
+      "desc": "已跟踪的文本文件里没有本机家目录、用户名、临时目录",
+      "command": "node scripts/scrub-local-paths.mjs",
+      "status": "PASS",
+      "evidence": "evidence/local-paths.log",
+      "notes": "命中 0 个文件"
+    },
+    {
+      "id": "RV-09",
+      "desc": "回归门：全量测试失败为 0（并发 4，日志记 uptime）",
+      "command": "uptime && npm test && uptime",
+      "status": "PASS",
+      "evidence": "evidence/regression.log",
+      "notes": "测试 317 项，失败 0 项"
+    }
+  ],
+  "gates": {
+    "task": "PASS",
+    "regression": "PASS"
+  },
+  "report": {
+    "path": "docs/verification/w2/release/VERIFICATION_REPORT.md",
+    "present": true,
+    "missing_sections": []
+  },
+  "verdict_blockers": [],
+  "verdict_conditions": [],
+  "verdict": "达标"
+}

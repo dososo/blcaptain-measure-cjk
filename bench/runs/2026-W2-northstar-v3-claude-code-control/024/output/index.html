@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>餐厅订座</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="wrap">
+  <header class="hero">
+    <p class="eyebrow">在线订座</p>
+    <h1>预订您的餐位</h1>
+    <p class="sub">请选择日期、时间和用餐人数，我们将为您保留座位。</p>
+  </header>
+
+  <form id="form" class="card" novalidate>
+    <section class="block">
+      <h2><span class="num">1</span>选择日期</h2>
+      <div id="dates" class="dates" role="radiogroup" aria-label="日期"></div>
+    </section>
+
+    <section class="block">
+      <h2><span class="num">2</span>选择时间</h2>
+      <div id="times"></div>
+      <p class="hint" id="timeHint">已过时段及已满时段不可选择。</p>
+    </section>
+
+    <section class="block">
+      <h2><span class="num">3</span>用餐人数</h2>
+      <div class="stepper">
+        <button type="button" id="minus" aria-label="减少人数">−</button>
+        <output id="guests" aria-live="polite">2</output>
+        <button type="button" id="plus" aria-label="增加人数">+</button>
+        <span class="unit">位</span>
+      </div>
+      <p class="hint">单次最多预订 12 位，更多人数请致电餐厅。</p>
+    </section>
+
+    <section class="block">
+      <h2><span class="num">4</span>联系信息与备注</h2>
+      <div class="grid">
+        <label class="field">
+          <span>姓名</span>
+          <input id="name" type="text" autocomplete="name" placeholder="请输入姓名" required>
+          <small class="err" id="nameErr"></small>
+        </label>
+        <label class="field">
+          <span>手机号</span>
+          <input id="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="11 位手机号" maxlength="11" required>
+          <small class="err" id="phoneErr"></small>
+        </label>
+      </div>
+      <div class="tags" id="tags">
+        <button type="button" class="tag">生日庆祝</button>
+        <button type="button" class="tag">需要儿童椅</button>
+        <button type="button" class="tag">靠窗座位</button>
+        <button type="button" class="tag">包间</button>
+        <button type="button" class="tag">有忌口</button>
+      </div>
+      <label class="field">
+        <span>备注（选填）</span>
+        <textarea id="note" rows="4" maxlength="200" placeholder="如过敏食物、特殊需求等"></textarea>
+        <small class="count"><span id="noteCount">0</span>/200</small>
+      </label>
+    </section>
+
+    <aside class="summary" aria-live="polite">
+      <div><span>日期</span><strong id="sDate">—</strong></div>
+      <div><span>时间</span><strong id="sTime">—</strong></div>
+      <div><span>人数</span><strong id="sGuests">2 位</strong></div>
+    </aside>
+    <small class="err center" id="formErr"></small>
+    <button type="submit" class="submit">确认预订</button>
+  </form>
+
+  <section id="done" class="card done" hidden>
+    <div class="check" aria-hidden="true">✓</div>
+    <h2>预订成功</h2>
+    <p class="sub">我们已为您保留座位，请准时到店。</p>
+    <dl id="doneList"></dl>
+    <button type="button" class="submit ghost" id="again">再订一桌</button>
+  </section>
+</main>
+
+<script>
+(function () {
+  const WEEK = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+  const SLOTS = {
+    '午市': ['11:00', '11:30', '12:00', '12:30', '13:00', '13:30'],
+    '晚市': ['17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30']
+  };
+  const MAX = 12, MIN = 1, DAYS = 14;
+  const state = { date: null, time: null, guests: 2, tags: new Set() };
+  const $ = id => document.getElementById(id);
+
+  const fmtDate = d => `${d.getMonth() + 1}月${d.getDate()}日 ${WEEK[d.getDay()]}`;
+  const key = d => `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+
+  // 伪随机“已满”时段，保证同一天结果稳定
+  function isFull(d, t) {
+    let h = 0;
+    for (const c of key(d) + t) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+    return h % 7 === 0;
+  }
+
+  function renderDates() {
+    const box = $('dates');
+    box.innerHTML = '';
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    for (let i = 0; i < DAYS; i++) {
+      const d = new Date(today);
+      d.setDate(today.getDate() + i);
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'date';
+      b.setAttribute('role', 'radio');
+      b.setAttribute('aria-checked', 'false');
+      b.innerHTML = `<span class="w">${i === 0 ? '今天' : i === 1 ? '明天' : WEEK[d.getDay()]}</span>
+        <span class="d">${d.getDate()}</span><span class="m">${d.getMonth() + 1}月</span>`;
+      b.addEventListener('click', () => {
+        state.date = d;
+        state.time = null;
+        box.querySelectorAll('.date').forEach(x => x.setAttribute('aria-checked', 'false'));
+        b.setAttribute('aria-checked', 'true');
+        renderTimes();
+        update();
+      });
+      box.appendChild(b);
+    }
+  }
+
+  function renderTimes() {
+    const box = $('times');
+    box.innerHTML = '';
+    if (!state.date) {
+      box.innerHTML = '<p class="empty">请先选择日期</p>';
+      return;
+    }
+    const now = new Date();
+    for (const [label, list] of Object.entries(SLOTS)) {
+      const g = document.createElement('div');
+      g.className = 'slot-group';
+      g.innerHTML = `<p class="slot-label">${label}</p>`;
+      const row = document.createElement('div');
+      row.className = 'slots';
+      list.forEach(t => {
+        const [h, m] = t.split(':').map(Number);
+        const dt = new Date(state.date);
+        dt.setHours(h, m);
+        const past = dt <= now;
+        const full = !past && isFull(state.date, t);
+        const b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'slot';
+        b.textContent = t;
+        b.disabled = past || full;
+        if (full) b.dataset.tag = '已满';
+        b.setAttribute('aria-pressed', state.time === t ? 'true' : 'false');
+        b.addEventListener('click', () => {
+          state.time = t;
+          box.querySelectorAll('.slot').forEach(x => x.setAttribute('aria-pressed', 'false'));
+          b.setAttribute('aria-pressed', 'true');
+          update();
+        });
+        row.appendChild(b);
+      });
+      g.appendChild(row);
+      box.appendChild(g);
+    }
+  }
+
+  function update() {
+    $('guests').textContent = state.guests;
+    $('minus').disabled = state.guests <= MIN;
+    $('plus').disabled = state.guests >= MAX;
+    $('sDate').textContent = state.date ? fmtDate(state.date) : '—';
+    $('sTime').textContent = state.time || '—';
+    $('sGuests').textContent = state.guests + ' 位';
+    if (state.date && state.time) $('formErr').textContent = '';
+  }
+
+  $('minus').addEventListener('click', () => { state.guests = Math.max(MIN, state.guests - 1); update(); });
+  $('plus').addEventListener('click', () => { state.guests = Math.min(MAX, state.guests + 1); update(); });
+
+  $('tags').addEventListener('click', e => {
+    const t = e.target.closest('.tag');
+    if (!t) return;
+    const v = t.textContent;
+    state.tags.has(v) ? state.tags.delete(v) : state.tags.add(v);
+    t.classList.toggle('on', state.tags.has(v));
+  });
+
+  $('note').addEventListener('input', e => { $('noteCount').textContent = e.target.value.length; });
+  $('phone').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g, ''); });
+
+  function validate() {
+    let ok = true;
+    const name = $('name').value.trim();
+    const phone = $('phone').value.trim();
+    $('nameErr').textContent = name ? '' : '请填写姓名';
+    $('phoneErr').textContent = /^1\d{10}$/.test(phone) ? '' : '请输入有效的 11 位手机号';
+    if (!name || !/^1\d{10}$/.test(phone)) ok = false;
+    if (!state.date || !state.time) {
+      $('formErr').textContent = '请选择用餐日期和时间';
+      ok = false;
+    } else {
+      $('formErr').textContent = '';
+    }
+    return ok;
+  }
+
+  $('form').addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validate()) return;
+    const note = $('note').value.trim();
+    const rows = [
+      ['姓名', $('name').value.trim()],
+      ['手机号', $('phone').value.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')],
+      ['日期', fmtDate(state.date)],
+      ['时间', state.time],
+      ['人数', state.guests + ' 位'],
+      ['偏好', state.tags.size ? [...state.tags].join('、') : '无'],
+      ['备注', note || '无']
+    ];
+    const dl = $('doneList');
+    dl.innerHTML = '';
+    rows.forEach(([k, v]) => {
+      const dt = document.createElement('dt'); dt.textContent = k;
+      const dd = document.createElement('dd'); dd.textContent = v;
+      dl.append(dt, dd);
+    });
+    $('form').hidden = true;
+    $('done').hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  $('again').addEventListener('click', () => {
+    $('form').reset();
+    Object.assign(state, { date: null, time: null, guests: 2 });
+    state.tags.clear();
+    document.querySelectorAll('.tag').forEach(t => t.classList.remove('on'));
+    $('noteCount').textContent = '0';
+    renderDates(); renderTimes(); update();
+    $('done').hidden = true;
+    $('form').hidden = false;
+  });
+
+  renderDates(); renderTimes(); update();
+})();
+</script>
+</body>
+</html>

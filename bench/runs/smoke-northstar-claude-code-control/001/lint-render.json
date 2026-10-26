@@ -1,0 +1,116 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w2-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-26T03:17:26.697Z",
+    "mode": "render",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [
+      "https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700&display=swap"
+    ],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {},
+    "render": {
+      "browser": "系统 Chrome 155.0.8059.86（playwright-core）",
+      "widths": [
+        360,
+        390,
+        768,
+        1024,
+        1280,
+        1440
+      ],
+      "evidence_dir": "_evidence",
+      "problems": []
+    }
+  },
+  "summary": {
+    "files": 2,
+    "cjk_files": 1,
+    "errors": 3,
+    "warns": 2,
+    "status": "fail"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "noto serif sc",
+      "tier": "embeddable",
+      "usage": "system"
+    },
+    {
+      "family": "pingfang sc",
+      "tier": "system-only",
+      "usage": "system"
+    },
+    {
+      "family": "microsoft yahei",
+      "tier": "system-only",
+      "usage": "system"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "T03",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.visit-info:nth-of-type(1) > dl.info-list > div:nth-of-type(3) > dd",
+      "line": 161,
+      "message": "配置的引号风格是 “”（curly），这里用了「」：「地铁 2 号线「梧桐路站」B 口」。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t03",
+      "evidence": "_evidence/T03-001.png"
+    },
+    {
+      "rule": "T02",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.site-header > div.container > a.logo",
+      "line": 17,
+      "viewport": 360,
+      "message": "实测：有 63 个中文元素的 text-autospace 计算值是 no-autospace。必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: \"text\"，在文案里打空格。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t02",
+      "evidence": "_evidence/T02-001.png"
+    },
+    {
+      "rule": "T04",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.site-header > div.container > a.logo",
+      "line": 17,
+      "viewport": 360,
+      "message": "有 63 个中文元素的 line-break 计算值不是 strict，标点可能出现在行首。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t04",
+      "evidence": "_evidence/T04-001.png"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#philosophy:nth-of-type(3) > div.container > div.philosophy-text > p:nth-of-type(2)",
+      "line": 110,
+      "viewport": 768,
+      "message": "实测：在 768px 宽度下，正文最长一行有 44 个字（汉字和全角标点），超过 40，建议控制在 28–40 字。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#visit:nth-of-type(4) > div.container > div.visit-info:nth-of-type(1) > p.section-intro:nth-of-type(2)",
+      "line": 148,
+      "viewport": 768,
+      "message": "实测：在 768px 宽度下，正文最长一行有 42 个字（汉字和全角标点），超过 40，建议控制在 28–40 字。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    }
+  ]
+}

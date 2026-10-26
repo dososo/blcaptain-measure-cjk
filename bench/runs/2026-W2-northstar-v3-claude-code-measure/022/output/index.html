@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>意见反馈</title>
+  <!-- measure.css 放在第一个：它声明的 measure 层排在最前，页面样式都会优先于它 -->
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="intro">
+      <h1>意见反馈</h1>
+      <p>遇到问题，或者有想法想告诉我们？填写下面的表单，我们会在 2 个工作日内查看并回复。</p>
+    </header>
+
+    <section class="card" id="formCard">
+      <form id="feedbackForm" novalidate>
+        <fieldset class="field" id="typeField">
+          <legend class="label">问题类型<span class="req" aria-hidden="true">*</span></legend>
+          <p class="hint">选一个最接近的类型，方便我们转给对应的同事。</p>
+          <div class="types">
+            <label class="type">
+              <input type="radio" name="type" value="bug" required>
+              <span><strong>功能故障</strong><small>报错、闪退、按钮没反应</small></span>
+            </label>
+            <label class="type">
+              <input type="radio" name="type" value="experience">
+              <span><strong>体验问题</strong><small>操作繁琐、不好找、看不懂</small></span>
+            </label>
+            <label class="type">
+              <input type="radio" name="type" value="performance">
+              <span><strong>性能问题</strong><small>加载慢、卡顿、耗电</small></span>
+            </label>
+            <label class="type">
+              <input type="radio" name="type" value="suggestion">
+              <span><strong>功能建议</strong><small>希望新增或改进的功能</small></span>
+            </label>
+            <label class="type">
+              <input type="radio" name="type" value="account">
+              <span><strong>账号与付费</strong><small>登录、会员、退款</small></span>
+            </label>
+            <label class="type">
+              <input type="radio" name="type" value="other">
+              <span><strong>其他</strong><small>以上都不合适</small></span>
+            </label>
+          </div>
+          <p class="error-msg" id="typeError" hidden>请选择问题类型。</p>
+        </fieldset>
+
+        <div class="field" id="descField">
+          <label class="label" for="desc">问题描述<span class="req" aria-hidden="true">*</span></label>
+          <p class="hint" id="descHint">说说你在做什么、看到了什么、期望是什么。如果能复现，写下操作步骤会很有帮助。</p>
+          <textarea id="desc" name="description" maxlength="1000" required aria-describedby="descHint descCounter"
+            placeholder="例如：在订单页点击“导出”后，页面一直转圈，等了 1 分钟也没有下载文件。"></textarea>
+          <div class="counter" id="descCounter" aria-live="polite">0 / 1000</div>
+          <p class="error-msg" id="descError" hidden>请至少写 10 个字，描述一下遇到的情况。</p>
+        </div>
+
+        <div class="field" id="shotField">
+          <span class="label" id="shotLabel">截图<span class="opt">选填</span></span>
+          <p class="hint">截图能帮我们更快定位问题。最多 5 张，每张不超过 5 MB。</p>
+          <label class="drop" id="drop">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="16" rx="2"/>
+              <circle cx="9" cy="10" r="1.8"/>
+              <path d="M21 16l-5-5-8 9"/>
+            </svg>
+            <span class="drop-main">拖拽图片到这里，或<u>点击选择</u></span>
+            <span class="drop-sub">支持 PNG、JPG、GIF、WebP，也可以直接粘贴截图</span>
+            <input type="file" id="files" accept="image/png,image/jpeg,image/gif,image/webp" multiple aria-labelledby="shotLabel">
+          </label>
+          <ul class="thumbs" id="thumbs" aria-label="已选截图"></ul>
+          <p class="error-msg" id="shotError" hidden></p>
+        </div>
+
+        <div class="field">
+          <label class="label" for="email">联系邮箱<span class="opt">选填</span></label>
+          <p class="hint">留下邮箱，处理进展会通过邮件告诉你。</p>
+          <input type="email" id="email" name="email" placeholder="name@example.com" autocomplete="email">
+          <p class="error-msg" id="emailError" hidden>邮箱格式不正确。</p>
+        </div>
+
+        <div class="actions">
+          <p>提交时会附带浏览器版本和屏幕尺寸，不会收集其他个人信息。</p>
+          <button type="submit" class="btn" id="submitBtn">提交反馈</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card done" id="doneCard" hidden aria-live="polite">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M8 12.5l2.8 2.8L16 10"/>
+      </svg>
+      <h2>反馈已收到，谢谢你</h2>
+      <p id="doneText">我们会在 2 个工作日内查看。</p>
+      <button type="button" class="btn btn-ghost" id="againBtn">再提交一条</button>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var MAX_FILES = 5;
+      var MAX_SIZE = 5 * 1024 * 1024;
+      var TYPES = ['image/png', 'image/jpeg', 'image/gif', 'image/webp'];
+
+      var form = document.getElementById('feedbackForm');
+      var desc = document.getElementById('desc');
+      var counter = document.getElementById('descCounter');
+      var drop = document.getElementById('drop');
+      var fileInput = document.getElementById('files');
+      var thumbs = document.getElementById('thumbs');
+      var shotError = document.getElementById('shotError');
+      var email = document.getElementById('email');
+      var formCard = document.getElementById('formCard');
+      var doneCard = document.getElementById('doneCard');
+      var doneText = document.getElementById('doneText');
+      var submitBtn = document.getElementById('submitBtn');
+
+      var files = [];
+
+      // 字数统计
+      function updateCounter() {
+        var n = desc.value.length;
+        counter.textContent = n + ' / 1000';
+        counter.classList.toggle('over', n >= 1000);
+      }
+      desc.addEventListener('input', function () {
+        updateCounter();
+        if (desc.value.trim().length >= 10) setError('desc', false);
+      });
+
+      // 截图
+      function addFiles(list) {
+        var errors = [];
+        Array.prototype.forEach.call(list, function (f) {
+          if (TYPES.indexOf(f.type) === -1) { errors.push('“' + f.name + '”不是支持的图片格式'); return; }
+          if (f.size > MAX_SIZE) { errors.push('“' + f.name + '”超过 5 MB'); return; }
+          if (files.length >= MAX_FILES) { errors.push('最多上传 ' + MAX_FILES + ' 张'); return; }
+          files.push({ file: f, url: URL.createObjectURL(f) });
+        });
+        shotError.hidden = errors.length === 0;
+        shotError.textContent = unique(errors).join('；') + (errors.length ? '。' : '');
+        render();
+      }
+
+      function unique(arr) {
+        return arr.filter(function (v, i) { return arr.indexOf(v) === i; });
+      }
+
+      function render() {
+        thumbs.innerHTML = '';
+        files.forEach(function (item, i) {
+          var li = document.createElement('li');
+          var img = document.createElement('img');
+          img.src = item.url;
+          img.alt = item.file.name;
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('aria-label', '移除 ' + item.file.name);
+          btn.innerHTML = '<svg viewBox="0 0 12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 2l8 8M10 2l-8 8"/></svg>';
+          btn.addEventListener('click', function () {
+            URL.revokeObjectURL(item.url);
+            files.splice(i, 1);
+            shotError.hidden = true;
+            render();
+          });
+          li.appendChild(img);
+          li.appendChild(btn);
+          thumbs.appendChild(li);
+        });
+      }
+
+      fileInput.addEventListener('change', function () {
+        addFiles(fileInput.files);
+        fileInput.value = '';
+      });
+
+      ['dragenter', 'dragover'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('dragging'); });
+      });
+      ['dragleave', 'drop'].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('dragging'); });
+      });
+      drop.addEventListener('drop', function (e) {
+        if (e.dataTransfer && e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+      });
+
+      document.addEventListener('paste', function (e) {
+        var items = (e.clipboardData && e.clipboardData.files) || [];
+        if (items.length) { e.preventDefault(); addFiles(items); }
+      });
+
+      // 校验
+      function setError(name, on) {
+        var field = document.getElementById(name + 'Field');
+        var msg = document.getElementById(name + 'Error');
+        if (field) field.classList.toggle('invalid', on);
+        msg.hidden = !on;
+      }
+
+      form.addEventListener('change', function (e) {
+        if (e.target.name === 'type') setError('type', false);
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var type = form.querySelector('input[name="type"]:checked');
+        var okType = !!type;
+        var okDesc = desc.value.trim().length >= 10;
+        var okEmail = !email.value || email.checkValidity();
+
+        setError('type', !okType);
+        setError('desc', !okDesc);
+        document.getElementById('emailError').hidden = okEmail;
+
+        if (!okType) { form.querySelector('input[name="type"]').focus(); return; }
+        if (!okDesc) { desc.focus(); return; }
+        if (!okEmail) { email.focus(); return; }
+
+        // 这里没有真实的后端，模拟一次提交
+        submitBtn.disabled = true;
+        submitBtn.textContent = '提交中…';
+        setTimeout(function () {
+          var label = type.parentNode.querySelector('strong').textContent;
+          doneText.textContent = '类型：' + label + (files.length ? '，附带 ' + files.length + ' 张截图' : '') + '。' +
+            (email.value ? '处理进展会发送到 ' + email.value + '。' : '我们会在 2 个工作日内查看。');
+          formCard.hidden = true;
+          doneCard.hidden = false;
+          submitBtn.disabled = false;
+          submitBtn.textContent = '提交反馈';
+        }, 600);
+      });
+
+      document.getElementById('againBtn').addEventListener('click', function () {
+        form.reset();
+        files.forEach(function (f) { URL.revokeObjectURL(f.url); });
+        files = [];
+        render();
+        updateCounter();
+        shotError.hidden = true;
+        doneCard.hidden = true;
+        formCard.hidden = false;
+        desc.focus();
+      });
+    })();
+  </script>
+</body>
+</html>

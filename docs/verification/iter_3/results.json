@@ -1,0 +1,157 @@
+{
+  "schema_version": "1.0.0",
+  "project": "measure-cjk",
+  "milestone": "W1",
+  "iteration": 3,
+  "generated_at": "2026-10-25T12:07:53.430Z",
+  "git_head": "50ab3dc8a6678171264fe5f2b7347f132338400c",
+  "dirty": false,
+  "executor": "Claude Code（用户指示本轮不交给 Codex，全部由 Claude Code 闭环）",
+  "assertions": [
+    {
+      "id": "V-01",
+      "desc": "skill 格式与字体授权表校验（AC-1）",
+      "command": "node scripts/validate-skill.mjs",
+      "status": "PASS",
+      "evidence": "evidence/V-01.log",
+      "notes": ""
+    },
+    {
+      "id": "V-02",
+      "desc": "仓库里没有字体文件（H3）",
+      "command": "git ls-files | grep -iE '\\.(ttf|otf|ttc|woff2?)$' ; test $? -eq 1",
+      "status": "PASS",
+      "evidence": "evidence/V-02.log",
+      "notes": "没有输出"
+    },
+    {
+      "id": "V-03",
+      "desc": "golden 20 页基础档：出现 error 的页面 ≤ 1（AC-2 W1 版）",
+      "command": "node packages/cli/bin/measure-cjk.js lint bench/golden/ --format json --out docs/verification/iter_3/evidence/V-03.json",
+      "status": "PASS",
+      "evidence": "evidence/V-03.log",
+      "notes": "有 error 的页面 0 个；含中文页面 20 个；warn 3 个；退出码 0"
+    },
+    {
+      "id": "V-04",
+      "desc": "W1 每条规则：2 反例命中、2 正例零 error（AC-3；命令由目录改为 glob）",
+      "command": "node --test test/rules/*.test.js",
+      "status": "PASS",
+      "evidence": "evidence/V-04.log",
+      "notes": "pass 102，fail 0"
+    },
+    {
+      "id": "V-05",
+      "desc": "默认零网络请求（AC-4 / H4）",
+      "command": "node --test test/offline.test.js",
+      "status": "PASS",
+      "evidence": "evidence/V-05.log",
+      "notes": ""
+    },
+    {
+      "id": "V-06",
+      "desc": "路径安全（AC-5 / H5）",
+      "command": "node --test test/security.test.js",
+      "status": "PASS",
+      "evidence": "evidence/V-06.log",
+      "notes": ""
+    },
+    {
+      "id": "V-07",
+      "desc": "--render 返回 2 并提示完整档在 W2 实现（AC-6 W1 版）",
+      "command": "node packages/cli/bin/measure-cjk.js lint bench/golden/g01.html --render; echo \"exit=$?\"",
+      "status": "PASS",
+      "evidence": "evidence/V-07.log",
+      "notes": ""
+    },
+    {
+      "id": "V-08",
+      "desc": "fonts 查询：🔴 / 🔵 / 🟢（AC-8）",
+      "command": "node packages/cli/bin/measure-cjk.js fonts \"方正兰亭黑\" && node packages/cli/bin/measure-cjk.js fonts \"阿里巴巴普惠体\" && node packages/cli/bin/measure-cjk.js fonts \"Noto Sans SC\"",
+      "status": "PASS",
+      "evidence": "evidence/V-08.log",
+      "notes": ""
+    },
+    {
+      "id": "V-09",
+      "desc": "results.json 结构与原子写入、理由必填、退出码、无 --force（H6 / H7 / H8）",
+      "command": "node --test test/cli.test.js",
+      "status": "PASS",
+      "evidence": "evidence/V-09.log",
+      "notes": ""
+    },
+    {
+      "id": "V-10",
+      "desc": "measure.css 两份副本与 PRD §7.4 逐字一致",
+      "command": "node --test test/assets.test.js",
+      "status": "PASS",
+      "evidence": "evidence/V-10.log",
+      "notes": ""
+    },
+    {
+      "id": "V-11",
+      "desc": "性能：golden 与真实页面单页 p95 ≤ 2 s，100 个文件 ≤ 20 s；超大页面受单页耗时上限约束（规模与规则类型见日志）",
+      "command": "node bench/perf.mjs",
+      "status": "PASS",
+      "evidence": "evidence/V-11.log",
+      "notes": ""
+    },
+    {
+      "id": "V-12",
+      "desc": "夹具锁定：7 份 MANIFEST 校验通过",
+      "command": "(cd bench/golden && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/w1-extra && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/w1-extra2 && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/iter2 && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/iter2b && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/iter3 && shasum -a 256 -c MANIFEST.sha256)",
+      "status": "PASS",
+      "evidence": "evidence/V-12.log",
+      "notes": ""
+    },
+    {
+      "id": "V-13a",
+      "desc": "用户环境基线（codex，未安装 measure skill）",
+      "command": "head -c 3000 bench/runs/2026-W1-baseline-codex/summary.json && cat bench/runs/2026-W1-baseline-codex/environment.log",
+      "status": "PASS",
+      "evidence": "evidence/V-13a.log",
+      "notes": "30 条提示词，产出 30 页，零 error 0 页（0.0%）；排除 T02/T04 后零 error 4 页；口径：用户环境基线（未安装 measure；其他 skill 与全局指令照常加载，见 environment_observed）"
+    },
+    {
+      "id": "V-13b",
+      "desc": "用户环境基线（claude-code，未安装 measure skill）",
+      "command": "head -c 3000 bench/runs/2026-W1-baseline-claude-code/summary.json && cat bench/runs/2026-W1-baseline-claude-code/environment.log",
+      "status": "PASS",
+      "evidence": "evidence/V-13b.log",
+      "notes": "30 条提示词，产出 30 页，零 error 0 页（0.0%）；排除 T02/T04 后零 error 18 页；口径：用户环境基线（未安装 measure；其他 skill 与全局指令照常加载，见 environment_observed）；按任务包原契约这一项应由审计方执行，本轮因用户 2026-10-25 指示「全部都由你闭环完成」由 Claude Code 执行（待用户确认，见报告开放决策）"
+    },
+    {
+      "id": "V-14",
+      "desc": "回归门：全量测试相对已知失败台账的新增失败为 0",
+      "command": "npm test",
+      "status": "PASS",
+      "evidence": "evidence/V-14.log",
+      "notes": "测试 151 项，失败 0 项，台账条目 0 条"
+    }
+  ],
+  "gates": {
+    "task": "PASS",
+    "regression": "PASS",
+    "art": "N/A"
+  },
+  "pseudo_success_scan": "未发现",
+  "report": {
+    "path": "docs/verification/iter_3/VERIFICATION_REPORT.md",
+    "present": true,
+    "missing_sections": []
+  },
+  "delivery_zip": "由 scripts/package.mjs 在本文件提交之后生成（zip 包含本文件，所以本文件无法记录 zip 的哈希；哈希见 deliverables/ 下的 .sha256 文件）",
+  "verdict_blockers": [
+    "待用户拍板：D-1（A-05）Claude Code 以需求方身份在 PRD 里写入附录 C1–C9（iter1），是否得到授权？依据是用户 2026-10-25 的指示「全部都由你闭环完成」。另外，docs/verification/PRD_CHANGE_PROPOSALS.md 里的 C10–C19 是否并入 PRD？",
+    "待用户拍板：D-2（A-06）RULING-01：追认修改后的夹具内容（独立审计已认可内容），还是恢复原夹具？",
+    "待用户拍板：D-3（A-17）当前基线标注为「用户环境基线」后保留，还是在隔离环境（不加载其他 skill 和全局指令）下重跑，作为正式的「不装 skill」对照组？",
+    "待用户拍板：D-4（A-02）claude-code 基线由 Claude Code 代跑（契约原定审计方执行），是否追认？"
+  ],
+  "verdict_conditions": [],
+  "verdict": "未达标",
+  "superseded_by": {
+    "audit": "docs/verification/iter_3/audit/AUDIT_iter3.md（独立审计复核结论：未达标，自评诚实）",
+    "next": "docs/verification/iter_4/results.json",
+    "note": "本字段于 iter4 补加"
+  }
+}

@@ -1,0 +1,676 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-017-5HXMEM <提示词>
+工作目录：<tmp>/measure-baseline-codex-017-5HXMEM
+退出码：0 信号：无 用时：140s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-017-5HXMEM
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1764c-5c43-7b53-bf71-a398cb91ef1c
+--------
+user
+写一个团队 Git 使用规范的文档页面，讲分支命名、提交信息和代码评审流程。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会制作一个中文团队 Git 规范页面，涵盖分支命名、提交信息和代码评审流程，并提供可直接使用的示例。
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"' ." in <tmp>/measure-baseline-codex-017-5HXMEM
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-017-5HXMEM
+
+exec
+/bin/zsh -lc 'ls -la' in <tmp>/measure-baseline-codex-017-5HXMEM
+ succeeded in 0ms:
+total 0
+drwx------@     2 user  staff      64 Oct 26 11:41 .
+drwx------@ 14693 user  staff  470176 Oct 26 11:41 ..
+
+exec
+/bin/zsh -lc 'for p in /AGENTS.md /private/AGENTS.md /private/var/AGENTS.md /private/var/folders/AGENTS.md /private/var/folders/8z/AGENTS.md <var-folders>/AGENTS.md <tmp>/AGENTS.md; do if [ -f "$p" ]; then cat "$p"; fi; done' in <tmp>/measure-baseline-codex-017-5HXMEM
+ succeeded in 0ms:
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-017-5HXMEM/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..e84133a7bd2b303ea680d174cda96e349929cc8b
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,143 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="团队 Git 协作规范：统一分支命名、提交信息与代码评审流程，让每一次变更清晰、可靠、可追溯。">
++  <title>Git 协作规范 · Engineering Handbook</title>
++  <style>
++    :root{--paper:#f8f7f4;--white:#fff;--ink:#252b38;--muted:#777c86;--line:#e5e4df;--pink:#b84369;--pink-light:#f5e7ec;--navy:#252d3d;--green:#387361}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:36px}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--pink);outline-offset:5px}::selection{background:#ecd0db}code,.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}code{font-size:.88em;background:#eeede9;padding:3px 6px;border-radius:4px}svg{display:block}
++    .sidebar{width:248px;position:fixed;inset:0 auto 0 0;background:#efeeea;border-right:1px solid var(--line);padding:35px 25px;display:flex;flex-direction:column;z-index:10}.brand{display:flex;gap:11px;align-items:center;line-height:1.2;font-weight:750;font-size:16px;letter-spacing:-.3px}.brand-mark{width:33px;height:33px;background:var(--navy);color:white;border-radius:9px;display:grid;place-items:center;font:700 19px monospace}.brand small{display:block;font-size:9px;font-weight:500;letter-spacing:2px;color:var(--muted);margin-top:7px}.sidebar-label{font-size:10px;letter-spacing:1.8px;color:#888b91;margin:51px 12px 16px}.nav{display:grid;gap:7px}.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;color:#656a74;font-size:13px;border-radius:6px;transition:.2s}.nav a:hover{background:#e7e5e1;color:var(--ink)}.nav a.active{color:var(--pink);background:#eadddf;font-weight:650}.nav-num{font-size:11px;opacity:.7;font-family:monospace}.sidebar-note{margin:auto 10px 0;border-top:1px solid #dcdad5;padding-top:23px;font-size:11px;color:#8b8d93}.sidebar-note strong{display:block;color:#5b626d;font-size:12px;font-weight:500;margin-bottom:4px}.status-dot{display:inline-block;width:6px;height:6px;border-radius:100%;background:#69947e;margin-right:7px}.main{margin-left:248px;padding:32px 65px 24px;max-width:1510px}.topbar{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);padding-bottom:25px;border-bottom:1px solid var(--line)}.breadcrumb{display:flex;gap:12px;align-items:center}.breadcrumb b{color:#4c5461;font-weight:500}.top-version{font-family:monospace;color:#737985}.top-version span{margin-left:12px;padding:3px 8px;border:1px solid #d5ddd4;border-radius:4px;color:var(--green);font-size:10px}.hero{padding:49px 0 34px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--pink);font-size:10px;font-weight:650;letter-spacing:2.5px}.eyebrow:before{content:"";width:20px;height:2px;background:var(--pink)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;margin:16px 0 16px;font-weight:750}.intro{font-size:14px;color:#727680;line-height:1.95;margin:0;max-width:680px}.meta{display:flex;gap:20px;align-items:center;font-size:10px;color:#878a92;margin-top:24px}.meta span{display:flex;gap:6px;align-items:center}.meta i{height:10px;width:1px;background:#d6d5d0}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid var(--line);border-radius:9px;padding:22px 0;margin-bottom:43px}.principle{padding:0 25px;display:flex;align-items:flex-start;gap:13px}.principle+.principle{border-left:1px solid var(--line)}.principle-icon{color:var(--pink);background:#f8eff2;border-radius:7px;width:34px;height:34px;display:grid;place-items:center;flex-shrink:0}.principle h3{font-size:12px;margin:0 0 4px}.principle p{font-size:11px;color:var(--muted);margin:0}
++    section{margin-bottom:43px;scroll-margin-top:24px}.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:10px}.section-index{font-family:monospace;font-size:12px;color:var(--pink);background:var(--pink-light);border-radius:5px;width:29px;height:29px;display:grid;place-items:center}h2{font-size:21px;letter-spacing:-.4px;margin:0;font-weight:700}.section-en{margin-left:auto;color:#999da5;font-size:9px;letter-spacing:1.8px}.section-desc{color:var(--muted);font-size:12px;margin:0 0 20px;line-height:1.95}.table-wrap{border:1px solid var(--line);border-radius:8px;overflow:auto;background:white}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;white-space:nowrap}th{background:#efeeeb;color:#7c8088;font-size:10px;font-weight:500;padding:11px 18px}td{padding:13px 18px;border-top:1px solid #ecebe7;color:#666c76}td:first-child{font-weight:550;color:var(--ink)}td:last-child{font-family:monospace;font-size:11px;color:#7c818a}.tag{font:11px monospace;padding:4px 8px;border-radius:4px;background:#f0eef9;color:#75649d}.tag.blue{background:#e9eff7;color:#5a789a}.tag.rose{background:#f9e9ec;color:#b0667c}.tag.gold{background:#f7f0e0;color:#9b8049}.tag.gray{background:#eeefef;color:#737b84}.note{display:flex;gap:10px;background:#efeeea;border-radius:6px;padding:12px 16px;font-size:11px;color:#737781;margin-top:13px;align-items:flex-start}.note-icon{font:italic 600 11px Georgia;border:1px solid #a0a3a9;border-radius:50%;line-height:14px;width:15px;text-align:center;flex-shrink:0;margin-top:3px}.note p{margin:0}.note code{background:#e4e3df}.commit-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:19px}.code-card{background:var(--navy);border-radius:8px;overflow:hidden;color:#d4d8e3}.code-top{padding:11px 17px;border-bottom:1px solid #3b4250;display:flex;justify-content:space-between;align-items:center;font:10px monospace;color:#9fa8bb}.window-dots{display:flex;gap:5px}.window-dots i{width:6px;height:6px;border-radius:50%;background:#626b7d}.copy{border:0;background:transparent;color:#c0c6d3;cursor:pointer;font-size:10px;display:flex;align-items:center;gap:5px;padding:3px 1px;min-width:44px}.copy:hover{color:white}.code-body{padding:21px 20px 23px;font:11px/2.1 monospace;overflow-x:auto}.code-body pre{margin:0;font:inherit}.code-body code{background:transparent;padding:0;font:inherit}.syntax-pink{color:#ee9ab6}.syntax-blue{color:#9cb9e5}.syntax-green{color:#aac9ad}.code-comment{color:#8995aa}.code-divider{height:1px;background:#414857;margin:16px 0}.types{border:1px solid var(--line);background:white;border-radius:8px;padding:15px 19px}.types h3{font-size:11px;margin:0 0 10px}.type-row{display:grid;grid-template-columns:60px 1fr;gap:12px;font-size:11px;align-items:center;padding:5px 0}.type-row code{color:var(--pink);background:transparent;padding:0;font-size:11px}.type-row span{color:#777d87}.commit-rules{display:flex;gap:22px;margin-top:14px;font-size:11px;color:#737985;flex-wrap:wrap}.commit-rules span:before{content:"✓";color:var(--green);margin-right:7px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);margin:23px 0 21px;gap:19px}.step{position:relative}.step:not(:last-child):after{content:"";position:absolute;top:15px;left:42px;right:-6px;border-top:1px dashed #d5d2cf}.step-number{width:31px;height:31px;border-radius:50%;background:#e9e7e3;display:grid;place-items:center;color:#777d85;font:11px monospace;position:relative;z-index:1}.step:last-child .step-number{background:var(--pink-light);color:var(--pink)}.step h3{font-size:12px;margin:13px 0 5px}.step p{font-size:11px;line-height:1.9;color:#7d818a;margin:0}.review-panels{display:grid;grid-template-columns:1fr 1fr;gap:19px}.review-panel{padding:18px 20px;background:white;border:1px solid var(--line);border-radius:8px}.panel-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:650;margin-bottom:13px}.panel-label svg{color:var(--pink)}.checklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:11px;color:#737985}.checklist li{display:flex;gap:9px;align-items:flex-start}.checklist li:before{content:"✓";color:#8d9992;font-size:10px}.review-banner{margin-top:15px;padding:13px 17px;background:#f2e9ec;border-left:3px solid #c8899d;border-radius:0 5px 5px 0;color:#866473;font-size:11px}.review-banner strong{font-weight:650;color:#805263}.details{border:1px solid var(--line);border-radius:8px;background:white;overflow:hidden}details+details{border-top:1px solid var(--line)}summary{padding:15px 19px;font-size:12px;font-weight:550;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:15px}summary::-webkit-details-marker{display:none}summary:after{content:"+";color:#8c919b;font-size:17px;font-weight:400;line-height:1.2}details[open] summary:after{content:"−"}.detail-body{padding:0 19px 16px;font-size:12px;color:#777d87}.detail-body p{margin:0}.footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px;margin-top:7px;font-size:10px;color:#8e929a}.footer a{color:#696f7b;display:flex;gap:8px;align-items:center}.footer-brand{letter-spacing:1.5px;font:9px monospace}.mobile-brand{display:none}
++    @media(min-width:1400px){.main{padding-left:85px;padding-right:85px}.hero{padding-top:57px}h1{font-size:49px}}
++    @media(max-width:1100px){.sidebar{width:210px;padding:30px 19px}.main{margin-left:210px;padding:27px 35px}.principle{padding:0 15px;gap:9px}.principle-icon{width:29px;height:29px}.commit-grid{grid-template-columns:1fr 1fr}.section-en{letter-spacing:1px}}
++    @media(max-width:800px){.sidebar{position:relative;width:auto;border-right:0;border-bottom:1px solid var(--line);padding:18px 22px}.brand{font-size:14px}.brand-mark{width:29px;height:29px}.brand small{font-size:8px;margin-top:4px}.sidebar-label,.sidebar-note{display:none}.nav{display:flex;gap:5px;margin-top:17px;overflow-x:auto}.nav a{white-space:nowrap;font-size:11px;padding:7px 10px;gap:7px}.main{margin:0;padding:22px 24px}.hero{padding:35px 0 28px}h1{font-size:37px}.principles{margin-bottom:33px}.principle{display:block;padding:0 15px}.principle-icon{margin-bottom:9px}.principle p{font-size:10px}.section-en{font-size:8px}.workflow{gap:15px}.code-body{font-size:10px}.commit-rules{gap:8px 18px}}
++    @media(max-width:520px){.main{padding:20px 19px}.topbar{font-size:10px;padding-bottom:18px}.top-version span{display:none}.hero{padding-top:30px}h1{font-size:34px}.intro{font-size:12px}.meta{gap:11px;font-size:9px}.principles{padding:17px 0}.principle{padding:0 11px}.principle h3{font-size:11px}.principle p{line-height:1.7}.section-en{display:none}h2{font-size:19px}.commit-grid,.review-panels{grid-template-columns:1fr}.code-body{font-size:11px}.workflow{grid-template-columns:1fr 1fr;gap:24px}.step:nth-child(2):after{display:none}.step p{max-width:180px}.footer-brand{display:none}.footer{gap:20px}.breadcrumb{gap:7px}section{margin-bottom:34px}.types{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}.types h3{grid-column:1/-1}.type-row{gap:5px;grid-template-columns:51px 1fr}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++    @media print{.sidebar,.copy,.footer a{display:none}.main{margin:0;padding:0;max-width:none}.hero{padding:25px 0}.code-card{background:#f0f0f0;color:#222}.code-body span{color:#333}.code-top{color:#555}.principles,section,.review-panel{break-inside:avoid}body{font-size:12px}.detail-body{display:block}}
++  </style>
++</head>
++<body id="top">
++  <aside class="sidebar" aria-label="文档导航">
++    <a class="brand" href="#top" aria-label="Dev Handbook 首页"><span class="brand-mark">/.</span><span>Dev Handbook<small>BUILD BETTER, TOGETHER.</small></span></a>
++    <div class="sidebar-label">ENGINEERING / 工程实践</div>
++    <nav class="nav">
++      <a href="#overview" class="active" aria-current="location"><span class="nav-num">00</span>规范概览</a>
++      <a href="#branches"><span class="nav-num">01</span>分支命名</a>
++      <a href="#commits"><span class="nav-num">02</span>提交信息</a>
++      <a href="#reviews"><span class="nav-num">03</span>代码评审</a>
++      <a href="#faq"><span class="nav-num">04</span>常见问题</a>
++    </nav>
++    <div class="sidebar-note"><strong><span class="status-dot"></span>团队协作，从共识开始</strong>Small commits. Better teamwork.<br>Engineering Handbook · v1.0</div>
++  </aside>
++  <main class="main">
++    <header class="topbar"><div class="breadcrumb"><span>团队知识库</span><span>/</span><span>工程实践</span><span>/</span><b>Git 协作规范</b></div><div class="top-version">v1.0 <span>团队标准</span></div></header>
++    <section class="hero" id="overview" aria-labelledby="page-title">
++      <div class="eyebrow">THE WAY WE COLLABORATE</div>
++      <h1 id="page-title">让每一次提交，<br>都有迹可循。</h1>
++      <p class="intro">团队 Git 协作规范。统一分支命名、提交信息与代码评审流程，<br>让代码变更更清晰，让团队协作更从容。</p>
++      <div class="meta"><span><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>约 6 分钟阅读</span><i></i><span>适用于所有项目贡献者</span><i></i><span>版本 1.0</span></div>
++    </section>
++    <div class="principles" aria-label="协作原则">
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="5" r="2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="6" r="2"/><path d="M7 7v10m10-9c0 5-10 3-10 8"/></svg></div><div><h3>一事一分支</h3><p>隔离每个变更，保持主干稳定</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6m-6 4h6m-6 4h4"/></svg></div><div><h3>一次提交，一个意图</h3><p>小步提交，让历史清晰可读</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg></div><div><h3>先评审，再合并</h3><p>让每一行代码都经过共同把关</p></div></div>
++    </div>
++    <section id="branches" aria-labelledby="branch-title">
++      <div class="section-heading"><span class="section-index">01</span><h2 id="branch-title">分支命名</h2><span class="section-en">BRANCH NAMING</span></div>
++      <p class="section-desc">从最新的 <code>main</code> 创建工作分支，使用 <code>&lt;type&gt;/&lt;issue-id&gt;-&lt;short-description&gt;</code>，让目的一目了然。</p>
++      <div class="table-wrap"><table><thead><tr><th>分支类型</th><th>命名前缀</th><th>使用场景</th><th>命名示例</th></tr></thead><tbody>
++        <tr><td>新功能</td><td><span class="tag blue">feat/</span></td><td>新增功能或能力</td><td>feat/128-user-login</td></tr>
++        <tr><td>缺陷修复</td><td><span class="tag rose">fix/</span></td><td>修复已知问题</td><td>fix/256-token-expired</td></tr>
++        <tr><td>紧急修复</td><td><span class="tag gold">hotfix/</span></td><td>修复线上紧急故障</td><td>hotfix/301-payment-timeout</td></tr>
++        <tr><td>代码重构</td><td><span class="tag">refactor/</span></td><td>调整结构，不改变外部行为</td><td>refactor/142-auth-service</td></tr>
++        <tr><td>文档与维护</td><td><span class="tag gray">docs/ · chore/</span></td><td>更新文档、依赖或工具配置</td><td>docs/168-api-guide</td></tr>
++      </tbody></table></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>统一使用小写英文、数字与短横线；没有任务编号时可省略编号。<code>main</code> 为受保护分支，禁止直接推送和强制推送；工作分支合并后及时删除。</p></div>
++    </section>
++    <section id="commits" aria-labelledby="commit-title">
++      <div class="section-heading"><span class="section-index">02</span><h2 id="commit-title">提交信息</h2><span class="section-en">COMMIT CONVENTION</span></div>
++      <p class="section-desc">采用 Conventional Commits 风格。标题说明“做了什么”，正文补充“为什么做”；每次提交只包含一个逻辑变更。</p>
++      <div class="commit-grid">
++        <div class="code-card"><div class="code-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>commit-message</span><button class="copy" type="button" data-copy="commit-example" aria-label="复制提交信息示例"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><rect x="5" y="5" width="8" height="9" rx="1"/><path d="M10 3V2H2v9h1"/></svg><span>复制</span></button></div><div class="code-body"><div class="code-comment"># 标准格式 · scope 可选</div><div><span class="syntax-pink">&lt;type&gt;</span>(<span class="syntax-blue">&lt;scope&gt;</span>): &lt;description&gt;</div><div class="code-divider"></div><pre id="commit-example"><code><span class="syntax-pink">feat</span>(<span class="syntax-blue">auth</span>): 支持邮箱验证码登录
++
++<span class="code-comment">为未设置密码的用户提供登录入口，
++复用现有验证码服务并限制重试次数。</span>
++
++<span class="syntax-green">Closes #128</span></code></pre></div></div>
++        <div class="types"><h3>选择合适的提交类型</h3><div class="type-row"><code>feat</code><span>新增功能</span></div><div class="type-row"><code>fix</code><span>修复缺陷</span></div><div class="type-row"><code>docs</code><span>仅修改文档</span></div><div class="type-row"><code>style</code><span>格式调整，不影响逻辑</span></div><div class="type-row"><code>refactor</code><span>重构，不新增功能或修复缺陷</span></div><div class="type-row"><code>test</code><span>新增或调整测试</span></div><div class="type-row"><code>chore</code><span>依赖、工具与日常维护</span></div></div>
++      </div>
++      <div class="commit-rules"><span>标题建议不超过 72 个字符</span><span>使用明确的动作描述</span><span>不使用 “update” 或 “fix bug” 等模糊信息</span></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>破坏兼容性的变更使用 <code>feat(api)!</code> 等标记，并在页脚写明 <code>BREAKING CHANGE:</code>、影响范围和迁移方式。禁止提交密钥、访问令牌及本地配置中的敏感信息。</p></div>
++    </section>
++    <section id="reviews" aria-labelledby="review-title">
++      <div class="section-heading"><span class="section-index">03</span><h2 id="review-title">代码评审流程</h2><span class="section-en">CODE REVIEW WORKFLOW</span></div>
++      <p class="section-desc">所有变更通过 Pull Request（PR）合入主干。保持 PR 聚焦，让评审成为分享上下文、提升质量的过程。</p>
++      <div class="workflow">
++        <div class="step"><div class="step-number">1</div><h3>开发与自检</h3><p>同步主干并创建分支。完成变更后，自查 diff，运行相关测试与静态检查。</p></div>
++        <div class="step"><div class="step-number">2</div><h3>发起 Pull Request</h3><p>说明背景、改动与验证结果，关联任务；界面变更附截图，指定相关评审者。</p></div>
++        <div class="step"><div class="step-number">3</div><h3>评审与迭代</h3><p>评审者提出可执行建议。作者回应并修订，逐一解决讨论，按需再次请求评审。</p></div>
++        <div class="step"><div class="step-number">4</div><h3>合并与清理</h3><p>审批与检查通过后，使用 Squash merge。确认提交标题，删除已合并分支。</p></div>
++      </div>
++      <div class="review-panels">
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m4 13 9-9 3 3-9 9-4 1 1-4Zm7-7 3 3"/></svg>提交者 · 发起评审前</div><ul class="checklist"><li>一个 PR 解决一个问题，拆分无关修改</li><li>写清变更原因、影响范围与回滚方式</li><li>补充必要测试；同步更新相关文档</li><li>未完成时使用 Draft，准备好后再请求评审</li></ul></div>
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5"/><path d="m12 12 5 5M6 8l1.5 1.5L10 6"/></svg>评审者 · 重点关注</div><ul class="checklist"><li>逻辑正确，边界条件与异常处理完整</li><li>命名清晰，设计简洁，避免无必要的复杂度</li><li>关注安全、性能以及向后兼容性</li><li>区分阻塞问题与建议，对代码给出具体反馈</li></ul></div>
++      </div>
++      <div class="review-banner"><strong>合并门槛</strong> &nbsp;至少 1 位非作者评审者批准 · 必需 CI 检查通过 · 阻塞讨论全部解决 · 无合并冲突。审批后若有实质改动，需重新评审。</div>
++    </section>
++    <section id="faq" aria-labelledby="faq-title">
++      <div class="section-heading"><span class="section-index">04</span><h2 id="faq-title">协作中的几个约定</h2><span class="section-en">GOOD TO KNOW</span></div>
++      <p class="section-desc">遇到特殊情况时，优先保持沟通与变更记录的完整。</p>
++      <div class="details">
++        <details><summary>分支出现冲突，应该由谁处理？</summary><div class="detail-body"><p>由 PR 作者将最新的 main 合并到工作分支，结合双方改动解决冲突，重新运行相关测试并推送。涉及他人逻辑时邀请原作者确认，不要直接选择整份“我的版本”或“对方版本”。共享分支不改写历史；个人分支确需 rebase 时，先确认无人基于它开发，再使用 <code>git push --force-with-lease</code>。</p></div></details>
++        <details><summary>线上紧急修复，可以跳过代码评审吗？</summary><div class="detail-body"><p>紧急修复仍需 PR、至少一位非作者审批和必需检查。联系值班人员优先处理；若线上版本与 main 不一致，从实际部署的 tag 创建 hotfix 分支，先修复对应发布线，再将修复同步回 main，并记录事故与验证结果。</p></div></details>
++        <details><summary>合并后发现问题，如何回滚？</summary><div class="detail-body"><p>使用 <code>git revert &lt;commit-sha&gt;</code> 为合并后的 squash 提交生成反向变更，通过新的 PR 评审并合入，保留可追溯历史。关联原 PR，说明回滚原因；涉及数据迁移时先确认反向操作是否安全，不要对 main 使用 reset 或强制推送。</p></div></details>
++        <details><summary>评审迟迟没有回复怎么办？</summary><div class="detail-body"><p>评审者应尽量在 1 个工作日内给出首次反馈。超过约定时间，作者可在团队协作渠道提醒，并补充优先级和截止时间；评审者无法及时处理时，应尽早告知并协助寻找替代评审者。</p></div></details>
++      </div>
++    </section>
++    <footer class="footer"><span>好的协作，藏在每一个小小的约定里。</span><span class="footer-brand">BUILT ON SHARED STANDARDS</span><a href="#top">回到顶部 <span aria-hidden="true">↑</span></a></footer>
++    <div id="copy-status" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></div>
++  </main>
++  <script>
++    const links = Array.from(document.querySelectorAll('.nav a'));
++    const sections = links.map(link => document.querySelector(link.getAttribute('href')));
++    let scheduled = false;
++    function updateNavigation() {
++      let active = sections[0];
++      for (const section of sections) if (section.getBoundingClientRect().top <= 160) active = section;
++      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10) active = sections[sections.length - 1];
++      for (const link of links) {
++        const selected = link.getAttribute('href') === '#' + active.id;
++        link.classList.toggle('active', selected);
++        if (selected) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
++      }
++      scheduled = false;
++    }
++    window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateNavigation); } }, {passive:true});
++    window.addEventListener('resize', updateNavigation);
++    updateNavigation();
++    document.querySelectorAll('[data-copy]').forEach(button => {
++      button.addEventListener('click', async () => {
++        const content = document.getElementById(button.dataset.copy).textContent;
++        const label = button.querySelector('span');
++        let success = false;
++        try {
++          if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(content); success = true; }
++        } catch (_) {}
++        if (!success) {
++          const input = document.createElement('textarea');
++          input.value = content;
++          input.style.cssText = 'position:fixed;left:-9999px;top:0';
++          document.body.appendChild(input); input.select();
++          try { success = document.execCommand('copy'); } catch (_) {}
++          input.remove(); button.focus({preventScroll:true});
++        }
++        label.textContent = success ? '已复制' : '请手动复制';
++        document.getElementById('copy-status').textContent = success ? '提交信息已复制到剪贴板' : '复制未成功，请选中示例手动复制';
++        setTimeout(() => { label.textContent = '复制'; }, 2200);
++      });
++    });
++  </script>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..e84133a7bd2b303ea680d174cda96e349929cc8b
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,143 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="团队 Git 协作规范：统一分支命名、提交信息与代码评审流程，让每一次变更清晰、可靠、可追溯。">
++  <title>Git 协作规范 · Engineering Handbook</title>
++  <style>
++    :root{--paper:#f8f7f4;--white:#fff;--ink:#252b38;--muted:#777c86;--line:#e5e4df;--pink:#b84369;--pink-light:#f5e7ec;--navy:#252d3d;--green:#387361}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:36px}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--pink);outline-offset:5px}::selection{background:#ecd0db}code,.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}code{font-size:.88em;background:#eeede9;padding:3px 6px;border-radius:4px}svg{display:block}
++    .sidebar{width:248px;position:fixed;inset:0 auto 0 0;background:#efeeea;border-right:1px solid var(--line);padding:35px 25px;display:flex;flex-direction:column;z-index:10}.brand{display:flex;gap:11px;align-items:center;line-height:1.2;font-weight:750;font-size:16px;letter-spacing:-.3px}.brand-mark{width:33px;height:33px;background:var(--navy);color:white;border-radius:9px;display:grid;place-items:center;font:700 19px monospace}.brand small{display:block;font-size:9px;font-weight:500;letter-spacing:2px;color:var(--muted);margin-top:7px}.sidebar-label{font-size:10px;letter-spacing:1.8px;color:#888b91;margin:51px 12px 16px}.nav{display:grid;gap:7px}.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;color:#656a74;font-size:13px;border-radius:6px;transition:.2s}.nav a:hover{background:#e7e5e1;color:var(--ink)}.nav a.active{color:var(--pink);background:#eadddf;font-weight:650}.nav-num{font-size:11px;opacity:.7;font-family:monospace}.sidebar-note{margin:auto 10px 0;border-top:1px solid #dcdad5;padding-top:23px;font-size:11px;color:#8b8d93}.sidebar-note strong{display:block;color:#5b626d;font-size:12px;font-weight:500;margin-bottom:4px}.status-dot{display:inline-block;width:6px;height:6px;border-radius:100%;background:#69947e;margin-right:7px}.main{margin-left:248px;padding:32px 65px 24px;max-width:1510px}.topbar{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);padding-bottom:25px;border-bottom:1px solid var(--line)}.breadcrumb{display:flex;gap:12px;align-items:center}.breadcrumb b{color:#4c5461;font-weight:500}.top-version{font-family:monospace;color:#737985}.top-version span{margin-left:12px;padding:3px 8px;border:1px solid #d5ddd4;border-radius:4px;color:var(--green);font-size:10px}.hero{padding:49px 0 34px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--pink);font-size:10px;font-weight:650;letter-spacing:2.5px}.eyebrow:before{content:"";width:20px;height:2px;background:var(--pink)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;margin:16px 0 16px;font-weight:750}.intro{font-size:14px;color:#727680;line-height:1.95;margin:0;max-width:680px}.meta{display:flex;gap:20px;align-items:center;font-size:10px;color:#878a92;margin-top:24px}.meta span{display:flex;gap:6px;align-items:center}.meta i{height:10px;width:1px;background:#d6d5d0}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid var(--line);border-radius:9px;padding:22px 0;margin-bottom:43px}.principle{padding:0 25px;display:flex;align-items:flex-start;gap:13px}.principle+.principle{border-left:1px solid var(--line)}.principle-icon{color:var(--pink);background:#f8eff2;border-radius:7px;width:34px;height:34px;display:grid;place-items:center;flex-shrink:0}.principle h3{font-size:12px;margin:0 0 4px}.principle p{font-size:11px;color:var(--muted);margin:0}
++    section{margin-bottom:43px;scroll-margin-top:24px}.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:10px}.section-index{font-family:monospace;font-size:12px;color:var(--pink);background:var(--pink-light);border-radius:5px;width:29px;height:29px;display:grid;place-items:center}h2{font-size:21px;letter-spacing:-.4px;margin:0;font-weight:700}.section-en{margin-left:auto;color:#999da5;font-size:9px;letter-spacing:1.8px}.section-desc{color:var(--muted);font-size:12px;margin:0 0 20px;line-height:1.95}.table-wrap{border:1px solid var(--line);border-radius:8px;overflow:auto;background:white}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;white-space:nowrap}th{background:#efeeeb;color:#7c8088;font-size:10px;font-weight:500;padding:11px 18px}td{padding:13px 18px;border-top:1px solid #ecebe7;color:#666c76}td:first-child{font-weight:550;color:var(--ink)}td:last-child{font-family:monospace;font-size:11px;color:#7c818a}.tag{font:11px monospace;padding:4px 8px;border-radius:4px;background:#f0eef9;color:#75649d}.tag.blue{background:#e9eff7;color:#5a789a}.tag.rose{background:#f9e9ec;color:#b0667c}.tag.gold{background:#f7f0e0;color:#9b8049}.tag.gray{background:#eeefef;color:#737b84}.note{display:flex;gap:10px;background:#efeeea;border-radius:6px;padding:12px 16px;font-size:11px;color:#737781;margin-top:13px;align-items:flex-start}.note-icon{font:italic 600 11px Georgia;border:1px solid #a0a3a9;border-radius:50%;line-height:14px;width:15px;text-align:center;flex-shrink:0;margin-top:3px}.note p{margin:0}.note code{background:#e4e3df}.commit-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:19px}.code-card{background:var(--navy);border-radius:8px;overflow:hidden;color:#d4d8e3}.code-top{padding:11px 17px;border-bottom:1px solid #3b4250;display:flex;justify-content:space-between;align-items:center;font:10px monospace;color:#9fa8bb}.window-dots{display:flex;gap:5px}.window-dots i{width:6px;height:6px;border-radius:50%;background:#626b7d}.copy{border:0;background:transparent;color:#c0c6d3;cursor:pointer;font-size:10px;display:flex;align-items:center;gap:5px;padding:3px 1px;min-width:44px}.copy:hover{color:white}.code-body{padding:21px 20px 23px;font:11px/2.1 monospace;overflow-x:auto}.code-body pre{margin:0;font:inherit}.code-body code{background:transparent;padding:0;font:inherit}.syntax-pink{color:#ee9ab6}.syntax-blue{color:#9cb9e5}.syntax-green{color:#aac9ad}.code-comment{color:#8995aa}.code-divider{height:1px;background:#414857;margin:16px 0}.types{border:1px solid var(--line);background:white;border-radius:8px;padding:15px 19px}.types h3{font-size:11px;margin:0 0 10px}.type-row{display:grid;grid-template-columns:60px 1fr;gap:12px;font-size:11px;align-items:center;padding:5px 0}.type-row code{color:var(--pink);background:transparent;padding:0;font-size:11px}.type-row span{color:#777d87}.commit-rules{display:flex;gap:22px;margin-top:14px;font-size:11px;color:#737985;flex-wrap:wrap}.commit-rules span:before{content:"✓";color:var(--green);margin-right:7px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);margin:23px 0 21px;gap:19px}.step{position:relative}.step:not(:last-child):after{content:"";position:absolute;top:15px;left:42px;right:-6px;border-top:1px dashed #d5d2cf}.step-number{width:31px;height:31px;border-radius:50%;background:#e9e7e3;display:grid;place-items:center;color:#777d85;font:11px monospace;position:relative;z-index:1}.step:last-child .step-number{background:var(--pink-light);color:var(--pink)}.step h3{font-size:12px;margin:13px 0 5px}.step p{font-size:11px;line-height:1.9;color:#7d818a;margin:0}.review-panels{display:grid;grid-template-columns:1fr 1fr;gap:19px}.review-panel{padding:18px 20px;background:white;border:1px solid var(--line);border-radius:8px}.panel-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:650;margin-bottom:13px}.panel-label svg{color:var(--pink)}.checklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:11px;color:#737985}.checklist li{display:flex;gap:9px;align-items:flex-start}.checklist li:before{content:"✓";color:#8d9992;font-size:10px}.review-banner{margin-top:15px;padding:13px 17px;background:#f2e9ec;border-left:3px solid #c8899d;border-radius:0 5px 5px 0;color:#866473;font-size:11px}.review-banner strong{font-weight:650;color:#805263}.details{border:1px solid var(--line);border-radius:8px;background:white;overflow:hidden}details+details{border-top:1px solid var(--line)}summary{padding:15px 19px;font-size:12px;font-weight:550;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:15px}summary::-webkit-details-marker{display:none}summary:after{content:"+";color:#8c919b;font-size:17px;font-weight:400;line-height:1.2}details[open] summary:after{content:"−"}.detail-body{padding:0 19px 16px;font-size:12px;color:#777d87}.detail-body p{margin:0}.footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px;margin-top:7px;font-size:10px;color:#8e929a}.footer a{color:#696f7b;display:flex;gap:8px;align-items:center}.footer-brand{letter-spacing:1.5px;font:9px monospace}.mobile-brand{display:none}
++    @media(min-width:1400px){.main{padding-left:85px;padding-right:85px}.hero{padding-top:57px}h1{font-size:49px}}
++    @media(max-width:1100px){.sidebar{width:210px;padding:30px 19px}.main{margin-left:210px;padding:27px 35px}.principle{padding:0 15px;gap:9px}.principle-icon{width:29px;height:29px}.commit-grid{grid-template-columns:1fr 1fr}.section-en{letter-spacing:1px}}
++    @media(max-width:800px){.sidebar{position:relative;width:auto;border-right:0;border-bottom:1px solid var(--line);padding:18px 22px}.brand{font-size:14px}.brand-mark{width:29px;height:29px}.brand small{font-size:8px;margin-top:4px}.sidebar-label,.sidebar-note{display:none}.nav{display:flex;gap:5px;margin-top:17px;overflow-x:auto}.nav a{white-space:nowrap;font-size:11px;padding:7px 10px;gap:7px}.main{margin:0;padding:22px 24px}.hero{padding:35px 0 28px}h1{font-size:37px}.principles{margin-bottom:33px}.principle{display:block;padding:0 15px}.principle-icon{margin-bottom:9px}.principle p{font-size:10px}.section-en{font-size:8px}.workflow{gap:15px}.code-body{font-size:10px}.commit-rules{gap:8px 18px}}
++    @media(max-width:520px){.main{padding:20px 19px}.topbar{font-size:10px;padding-bottom:18px}.top-version span{display:none}.hero{padding-top:30px}h1{font-size:34px}.intro{font-size:12px}.meta{gap:11px;font-size:9px}.principles{padding:17px 0}.principle{padding:0 11px}.principle h3{font-size:11px}.principle p{line-height:1.7}.section-en{display:none}h2{font-size:19px}.commit-grid,.review-panels{grid-template-columns:1fr}.code-body{font-size:11px}.workflow{grid-template-columns:1fr 1fr;gap:24px}.step:nth-child(2):after{display:none}.step p{max-width:180px}.footer-brand{display:none}.footer{gap:20px}.breadcrumb{gap:7px}section{margin-bottom:34px}.types{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}.types h3{grid-column:1/-1}.type-row{gap:5px;grid-template-columns:51px 1fr}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++    @media print{.sidebar,.copy,.footer a{display:none}.main{margin:0;padding:0;max-width:none}.hero{padding:25px 0}.code-card{background:#f0f0f0;color:#222}.code-body span{color:#333}.code-top{color:#555}.principles,section,.review-panel{break-inside:avoid}body{font-size:12px}.detail-body{display:block}}
++  </style>
++</head>
++<body id="top">
++  <aside class="sidebar" aria-label="文档导航">
++    <a class="brand" href="#top" aria-label="Dev Handbook 首页"><span class="brand-mark">/.</span><span>Dev Handbook<small>BUILD BETTER, TOGETHER.</small></span></a>
++    <div class="sidebar-label">ENGINEERING / 工程实践</div>
++    <nav class="nav">
++      <a href="#overview" class="active" aria-current="location"><span class="nav-num">00</span>规范概览</a>
++      <a href="#branches"><span class="nav-num">01</span>分支命名</a>
++      <a href="#commits"><span class="nav-num">02</span>提交信息</a>
++      <a href="#reviews"><span class="nav-num">03</span>代码评审</a>
++      <a href="#faq"><span class="nav-num">04</span>常见问题</a>
++    </nav>
++    <div class="sidebar-note"><strong><span class="status-dot"></span>团队协作，从共识开始</strong>Small commits. Better teamwork.<br>Engineering Handbook · v1.0</div>
++  </aside>
++  <main class="main">
++    <header class="topbar"><div class="breadcrumb"><span>团队知识库</span><span>/</span><span>工程实践</span><span>/</span><b>Git 协作规范</b></div><div class="top-version">v1.0 <span>团队标准</span></div></header>
++    <section class="hero" id="overview" aria-labelledby="page-title">
++      <div class="eyebrow">THE WAY WE COLLABORATE</div>
++      <h1 id="page-title">让每一次提交，<br>都有迹可循。</h1>
++      <p class="intro">团队 Git 协作规范。统一分支命名、提交信息与代码评审流程，<br>让代码变更更清晰，让团队协作更从容。</p>
++      <div class="meta"><span><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>约 6 分钟阅读</span><i></i><span>适用于所有项目贡献者</span><i></i><span>版本 1.0</span></div>
++    </section>
++    <div class="principles" aria-label="协作原则">
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="5" r="2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="6" r="2"/><path d="M7 7v10m10-9c0 5-10 3-10 8"/></svg></div><div><h3>一事一分支</h3><p>隔离每个变更，保持主干稳定</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6m-6 4h6m-6 4h4"/></svg></div><div><h3>一次提交，一个意图</h3><p>小步提交，让历史清晰可读</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg></div><div><h3>先评审，再合并</h3><p>让每一行代码都经过共同把关</p></div></div>
++    </div>
++    <section id="branches" aria-labelledby="branch-title">
++      <div class="section-heading"><span class="section-index">01</span><h2 id="branch-title">分支命名</h2><span class="section-en">BRANCH NAMING</span></div>
++      <p class="section-desc">从最新的 <code>main</code> 创建工作分支，使用 <code>&lt;type&gt;/&lt;issue-id&gt;-&lt;short-description&gt;</code>，让目的一目了然。</p>
++      <div class="table-wrap"><table><thead><tr><th>分支类型</th><th>命名前缀</th><th>使用场景</th><th>命名示例</th></tr></thead><tbody>
++        <tr><td>新功能</td><td><span class="tag blue">feat/</span></td><td>新增功能或能力</td><td>feat/128-user-login</td></tr>
++        <tr><td>缺陷修复</td><td><span class="tag rose">fix/</span></td><td>修复已知问题</td><td>fix/256-token-expired</td></tr>
++        <tr><td>紧急修复</td><td><span class="tag gold">hotfix/</span></td><td>修复线上紧急故障</td><td>hotfix/301-payment-timeout</td></tr>
++        <tr><td>代码重构</td><td><span class="tag">refactor/</span></td><td>调整结构，不改变外部行为</td><td>refactor/142-auth-service</td></tr>
++        <tr><td>文档与维护</td><td><span class="tag gray">docs/ · chore/</span></td><td>更新文档、依赖或工具配置</td><td>docs/168-api-guide</td></tr>
++      </tbody></table></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>统一使用小写英文、数字与短横线；没有任务编号时可省略编号。<code>main</code> 为受保护分支，禁止直接推送和强制推送；工作分支合并后及时删除。</p></div>
++    </section>
++    <section id="commits" aria-labelledby="commit-title">
++      <div class="section-heading"><span class="section-index">02</span><h2 id="commit-title">提交信息</h2><span class="section-en">COMMIT CONVENTION</span></div>
++      <p class="section-desc">采用 Conventional Commits 风格。标题说明“做了什么”，正文补充“为什么做”；每次提交只包含一个逻辑变更。</p>
++      <div class="commit-grid">
++        <div class="code-card"><div class="code-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>commit-message</span><button class="copy" type="button" data-copy="commit-example" aria-label="复制提交信息示例"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><rect x="5" y="5" width="8" height="9" rx="1"/><path d="M10 3V2H2v9h1"/></svg><span>复制</span></button></div><div class="code-body"><div class="code-comment"># 标准格式 · scope 可选</div><div><span class="syntax-pink">&lt;type&gt;</span>(<span class="syntax-blue">&lt;scope&gt;</span>): &lt;description&gt;</div><div class="code-divider"></div><pre id="commit-example"><code><span class="syntax-pink">feat</span>(<span class="syntax-blue">auth</span>): 支持邮箱验证码登录
++
++<span class="code-comment">为未设置密码的用户提供登录入口，
++复用现有验证码服务并限制重试次数。</span>
++
++<span class="syntax-green">Closes #128</span></code></pre></div></div>
++        <div class="types"><h3>选择合适的提交类型</h3><div class="type-row"><code>feat</code><span>新增功能</span></div><div class="type-row"><code>fix</code><span>修复缺陷</span></div><div class="type-row"><code>docs</code><span>仅修改文档</span></div><div class="type-row"><code>style</code><span>格式调整，不影响逻辑</span></div><div class="type-row"><code>refactor</code><span>重构，不新增功能或修复缺陷</span></div><div class="type-row"><code>test</code><span>新增或调整测试</span></div><div class="type-row"><code>chore</code><span>依赖、工具与日常维护</span></div></div>
++      </div>
++      <div class="commit-rules"><span>标题建议不超过 72 个字符</span><span>使用明确的动作描述</span><span>不使用 “update” 或 “fix bug” 等模糊信息</span></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>破坏兼容性的变更使用 <code>feat(api)!</code> 等标记，并在页脚写明 <code>BREAKING CHANGE:</code>、影响范围和迁移方式。禁止提交密钥、访问令牌及本地配置中的敏感信息。</p></div>
++    </section>
++    <section id="reviews" aria-labelledby="review-title">
++      <div class="section-heading"><span class="section-index">03</span><h2 id="review-title">代码评审流程</h2><span class="section-en">CODE REVIEW WORKFLOW</span></div>
++      <p class="section-desc">所有变更通过 Pull Request（PR）合入主干。保持 PR 聚焦，让评审成为分享上下文、提升质量的过程。</p>
++      <div class="workflow">
++        <div class="step"><div class="step-number">1</div><h3>开发与自检</h3><p>同步主干并创建分支。完成变更后，自查 diff，运行相关测试与静态检查。</p></div>
++        <div class="step"><div class="step-number">2</div><h3>发起 Pull Request</h3><p>说明背景、改动与验证结果，关联任务；界面变更附截图，指定相关评审者。</p></div>
++        <div class="step"><div class="step-number">3</div><h3>评审与迭代</h3><p>评审者提出可执行建议。作者回应并修订，逐一解决讨论，按需再次请求评审。</p></div>
++        <div class="step"><div class="step-number">4</div><h3>合并与清理</h3><p>审批与检查通过后，使用 Squash merge。确认提交标题，删除已合并分支。</p></div>
++      </div>
++      <div class="review-panels">
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m4 13 9-9 3 3-9 9-4 1 1-4Zm7-7 3 3"/></svg>提交者 · 发起评审前</div><ul class="checklist"><li>一个 PR 解决一个问题，拆分无关修改</li><li>写清变更原因、影响范围与回滚方式</li><li>补充必要测试；同步更新相关文档</li><li>未完成时使用 Draft，准备好后再请求评审</li></ul></div>
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5"/><path d="m12 12 5 5M6 8l1.5 1.5L10 6"/></svg>评审者 · 重点关注</div><ul class="checklist"><li>逻辑正确，边界条件与异常处理完整</li><li>命名清晰，设计简洁，避免无必要的复杂度</li><li>关注安全、性能以及向后兼容性</li><li>区分阻塞问题与建议，对代码给出具体反馈</li></ul></div>
++      </div>
++      <div class="review-banner"><strong>合并门槛</strong> &nbsp;至少 1 位非作者评审者批准 · 必需 CI 检查通过 · 阻塞讨论全部解决 · 无合并冲突。审批后若有实质改动，需重新评审。</div>
++    </section>
++    <section id="faq" aria-labelledby="faq-title">
++      <div class="section-heading"><span class="section-index">04</span><h2 id="faq-title">协作中的几个约定</h2><span class="section-en">GOOD TO KNOW</span></div>
++      <p class="section-desc">遇到特殊情况时，优先保持沟通与变更记录的完整。</p>
++      <div class="details">
++        <details><summary>分支出现冲突，应该由谁处理？</summary><div class="detail-body"><p>由 PR 作者将最新的 main 合并到工作分支，结合双方改动解决冲突，重新运行相关测试并推送。涉及他人逻辑时邀请原作者确认，不要直接选择整份“我的版本”或“对方版本”。共享分支不改写历史；个人分支确需 rebase 时，先确认无人基于它开发，再使用 <code>git push --force-with-lease</code>。</p></div></details>
++        <details><summary>线上紧急修复，可以跳过代码评审吗？</summary><div class="detail-body"><p>紧急修复仍需 PR、至少一位非作者审批和必需检查。联系值班人员优先处理；若线上版本与 main 不一致，从实际部署的 tag 创建 hotfix 分支，先修复对应发布线，再将修复同步回 main，并记录事故与验证结果。</p></div></details>
++        <details><summary>合并后发现问题，如何回滚？</summary><div class="detail-body"><p>使用 <code>git revert &lt;commit-sha&gt;</code> 为合并后的 squash 提交生成反向变更，通过新的 PR 评审并合入，保留可追溯历史。关联原 PR，说明回滚原因；涉及数据迁移时先确认反向操作是否安全，不要对 main 使用 reset 或强制推送。</p></div></details>
++        <details><summary>评审迟迟没有回复怎么办？</summary><div class="detail-body"><p>评审者应尽量在 1 个工作日内给出首次反馈。超过约定时间，作者可在团队协作渠道提醒，并补充优先级和截止时间；评审者无法及时处理时，应尽早告知并协助寻找替代评审者。</p></div></details>
++      </div>
++    </section>
++    <footer class="footer"><span>好的协作，藏在每一个小小的约定里。</span><span class="footer-brand">BUILT ON SHARED STANDARDS</span><a href="#top">回到顶部 <span aria-hidden="true">↑</span></a></footer>
++    <div id="copy-status" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></div>
++  </main>
++  <script>
++    const links = Array.from(document.querySelectorAll('.nav a'));
++    const sections = links.map(link => document.querySelector(link.getAttribute('href')));
++    let scheduled = false;
++    function updateNavigation() {
++      let active = sections[0];
++      for (const section of sections) if (section.getBoundingClientRect().top <= 160) active = section;
++      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10) active = sections[sections.length - 1];
++      for (const link of links) {
++        const selected = link.getAttribute('href') === '#' + active.id;
++        link.classList.toggle('active', selected);
++        if (selected) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
++      }
++      scheduled = false;
++    }
++    window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateNavigation); } }, {passive:true});
++    window.addEventListener('resize', updateNavigation);
++    updateNavigation();
++    document.querySelectorAll('[data-copy]').forEach(button => {
++      button.addEventListener('click', async () => {
++        const content = document.getElementById(button.dataset.copy).textContent;
++        const label = button.querySelector('span');
++        let success = false;
++        try {
++          if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(content); success = true; }
++        } catch (_) {}
++        if (!success) {
++          const input = document.createElement('textarea');
++          input.value = content;
++          input.style.cssText = 'position:fixed;left:-9999px;top:0';
++          document.body.appendChild(input); input.select();
++          try { success = document.execCommand('copy'); } catch (_) {}
++          input.remove(); button.focus({preventScroll:true});
++        }
++        label.textContent = success ? '已复制' : '请手动复制';
++        document.getElementById('copy-status').textContent = success ? '提交信息已复制到剪贴板' : '复制未成功，请选中示例手动复制';
++        setTimeout(() => { label.textContent = '复制'; }, 2200);
++      });
++    });
++  </script>
++</body>
++</html>
+
+codex
+页面已写入，包含分支命名表、可复制的提交示例、四步评审流程和常见问题，并适配了手机屏幕。我会再检查 HTML 结构和页面内链接。
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from html.parser import HTMLParser
+from pathlib import Path
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=[]; self.links=[]; self.stack=[]
+    def handle_starttag(self, tag, attrs):
+        a=dict(attrs)
+        if 'id' in a: self.ids.append(a['id'])
+        if tag=='a' and a.get('href','').startswith('#'): self.links.append(a['href'][1:])
+        if tag not in {'meta','link','br','hr','img','input','area','base','col','embed','param','source','track','wbr'}: self.stack.append(tag)
+    def handle_endtag(self, tag):
+        assert self.stack and self.stack[-1]==tag, (tag,self.stack[-3:])
+        self.stack.pop()
+p=Path('index.html'); parser=Check(); parser.feed(p.read_text())
+assert not parser.stack, parser.stack
+assert len(parser.ids)==len(set(parser.ids)), 'duplicate IDs'
+assert set(parser.links)<=set(parser.ids), 'broken anchor'
+assert '<html lang=\"zh-CN\">' in p.read_text()
+print('PASS: HTML structure, unique IDs, navigation anchors and Chinese language declaration.')
+print(f'index.html: {p.stat().st_size:,} bytes; styles and scripts embedded; no external assets.')
+PY" in <tmp>/measure-baseline-codex-017-5HXMEM
+ succeeded in 0ms:
+PASS: HTML structure, unique IDs, navigation anchors and Chinese language declaration.
+index.html: 26,090 bytes; styles and scripts embedded; no external assets.
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..e84133a7bd2b303ea680d174cda96e349929cc8b
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,143 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="团队 Git 协作规范：统一分支命名、提交信息与代码评审流程，让每一次变更清晰、可靠、可追溯。">
++  <title>Git 协作规范 · Engineering Handbook</title>
++  <style>
++    :root{--paper:#f8f7f4;--white:#fff;--ink:#252b38;--muted:#777c86;--line:#e5e4df;--pink:#b84369;--pink-light:#f5e7ec;--navy:#252d3d;--green:#387361}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:36px}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--pink);outline-offset:5px}::selection{background:#ecd0db}code,.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}code{font-size:.88em;background:#eeede9;padding:3px 6px;border-radius:4px}svg{display:block}
++    .sidebar{width:248px;position:fixed;inset:0 auto 0 0;background:#efeeea;border-right:1px solid var(--line);padding:35px 25px;display:flex;flex-direction:column;z-index:10}.brand{display:flex;gap:11px;align-items:center;line-height:1.2;font-weight:750;font-size:16px;letter-spacing:-.3px}.brand-mark{width:33px;height:33px;background:var(--navy);color:white;border-radius:9px;display:grid;place-items:center;font:700 19px monospace}.brand small{display:block;font-size:9px;font-weight:500;letter-spacing:2px;color:var(--muted);margin-top:7px}.sidebar-label{font-size:10px;letter-spacing:1.8px;color:#888b91;margin:51px 12px 16px}.nav{display:grid;gap:7px}.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;color:#656a74;font-size:13px;border-radius:6px;transition:.2s}.nav a:hover{background:#e7e5e1;color:var(--ink)}.nav a.active{color:var(--pink);background:#eadddf;font-weight:650}.nav-num{font-size:11px;opacity:.7;font-family:monospace}.sidebar-note{margin:auto 10px 0;border-top:1px solid #dcdad5;padding-top:23px;font-size:11px;color:#8b8d93}.sidebar-note strong{display:block;color:#5b626d;font-size:12px;font-weight:500;margin-bottom:4px}.status-dot{display:inline-block;width:6px;height:6px;border-radius:100%;background:#69947e;margin-right:7px}.main{margin-left:248px;padding:32px 65px 24px;max-width:1510px}.topbar{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);padding-bottom:25px;border-bottom:1px solid var(--line)}.breadcrumb{display:flex;gap:12px;align-items:center}.breadcrumb b{color:#4c5461;font-weight:500}.top-version{font-family:monospace;color:#737985}.top-version span{margin-left:12px;padding:3px 8px;border:1px solid #d5ddd4;border-radius:4px;color:var(--green);font-size:10px}.hero{padding:49px 0 34px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--pink);font-size:10px;font-weight:650;letter-spacing:2.5px}.eyebrow:before{content:"";width:20px;height:2px;background:var(--pink)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;margin:16px 0 16px;font-weight:750}.intro{font-size:14px;color:#727680;line-height:1.95;margin:0;max-width:680px}.meta{display:flex;gap:20px;align-items:center;font-size:10px;color:#878a92;margin-top:24px}.meta span{display:flex;gap:6px;align-items:center}.meta i{height:10px;width:1px;background:#d6d5d0}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid var(--line);border-radius:9px;padding:22px 0;margin-bottom:43px}.principle{padding:0 25px;display:flex;align-items:flex-start;gap:13px}.principle+.principle{border-left:1px solid var(--line)}.principle-icon{color:var(--pink);background:#f8eff2;border-radius:7px;width:34px;height:34px;display:grid;place-items:center;flex-shrink:0}.principle h3{font-size:12px;margin:0 0 4px}.principle p{font-size:11px;color:var(--muted);margin:0}
++    section{margin-bottom:43px;scroll-margin-top:24px}.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:10px}.section-index{font-family:monospace;font-size:12px;color:var(--pink);background:var(--pink-light);border-radius:5px;width:29px;height:29px;display:grid;place-items:center}h2{font-size:21px;letter-spacing:-.4px;margin:0;font-weight:700}.section-en{margin-left:auto;color:#999da5;font-size:9px;letter-spacing:1.8px}.section-desc{color:var(--muted);font-size:12px;margin:0 0 20px;line-height:1.95}.table-wrap{border:1px solid var(--line);border-radius:8px;overflow:auto;background:white}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;white-space:nowrap}th{background:#efeeeb;color:#7c8088;font-size:10px;font-weight:500;padding:11px 18px}td{padding:13px 18px;border-top:1px solid #ecebe7;color:#666c76}td:first-child{font-weight:550;color:var(--ink)}td:last-child{font-family:monospace;font-size:11px;color:#7c818a}.tag{font:11px monospace;padding:4px 8px;border-radius:4px;background:#f0eef9;color:#75649d}.tag.blue{background:#e9eff7;color:#5a789a}.tag.rose{background:#f9e9ec;color:#b0667c}.tag.gold{background:#f7f0e0;color:#9b8049}.tag.gray{background:#eeefef;color:#737b84}.note{display:flex;gap:10px;background:#efeeea;border-radius:6px;padding:12px 16px;font-size:11px;color:#737781;margin-top:13px;align-items:flex-start}.note-icon{font:italic 600 11px Georgia;border:1px solid #a0a3a9;border-radius:50%;line-height:14px;width:15px;text-align:center;flex-shrink:0;margin-top:3px}.note p{margin:0}.note code{background:#e4e3df}.commit-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:19px}.code-card{background:var(--navy);border-radius:8px;overflow:hidden;color:#d4d8e3}.code-top{padding:11px 17px;border-bottom:1px solid #3b4250;display:flex;justify-content:space-between;align-items:center;font:10px monospace;color:#9fa8bb}.window-dots{display:flex;gap:5px}.window-dots i{width:6px;height:6px;border-radius:50%;background:#626b7d}.copy{border:0;background:transparent;color:#c0c6d3;cursor:pointer;font-size:10px;display:flex;align-items:center;gap:5px;padding:3px 1px;min-width:44px}.copy:hover{color:white}.code-body{padding:21px 20px 23px;font:11px/2.1 monospace;overflow-x:auto}.code-body pre{margin:0;font:inherit}.code-body code{background:transparent;padding:0;font:inherit}.syntax-pink{color:#ee9ab6}.syntax-blue{color:#9cb9e5}.syntax-green{color:#aac9ad}.code-comment{color:#8995aa}.code-divider{height:1px;background:#414857;margin:16px 0}.types{border:1px solid var(--line);background:white;border-radius:8px;padding:15px 19px}.types h3{font-size:11px;margin:0 0 10px}.type-row{display:grid;grid-template-columns:60px 1fr;gap:12px;font-size:11px;align-items:center;padding:5px 0}.type-row code{color:var(--pink);background:transparent;padding:0;font-size:11px}.type-row span{color:#777d87}.commit-rules{display:flex;gap:22px;margin-top:14px;font-size:11px;color:#737985;flex-wrap:wrap}.commit-rules span:before{content:"✓";color:var(--green);margin-right:7px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);margin:23px 0 21px;gap:19px}.step{position:relative}.step:not(:last-child):after{content:"";position:absolute;top:15px;left:42px;right:-6px;border-top:1px dashed #d5d2cf}.step-number{width:31px;height:31px;border-radius:50%;background:#e9e7e3;display:grid;place-items:center;color:#777d85;font:11px monospace;position:relative;z-index:1}.step:last-child .step-number{background:var(--pink-light);color:var(--pink)}.step h3{font-size:12px;margin:13px 0 5px}.step p{font-size:11px;line-height:1.9;color:#7d818a;margin:0}.review-panels{display:grid;grid-template-columns:1fr 1fr;gap:19px}.review-panel{padding:18px 20px;background:white;border:1px solid var(--line);border-radius:8px}.panel-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:650;margin-bottom:13px}.panel-label svg{color:var(--pink)}.checklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:11px;color:#737985}.checklist li{display:flex;gap:9px;align-items:flex-start}.checklist li:before{content:"✓";color:#8d9992;font-size:10px}.review-banner{margin-top:15px;padding:13px 17px;background:#f2e9ec;border-left:3px solid #c8899d;border-radius:0 5px 5px 0;color:#866473;font-size:11px}.review-banner strong{font-weight:650;color:#805263}.details{border:1px solid var(--line);border-radius:8px;background:white;overflow:hidden}details+details{border-top:1px solid var(--line)}summary{padding:15px 19px;font-size:12px;font-weight:550;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:15px}summary::-webkit-details-marker{display:none}summary:after{content:"+";color:#8c919b;font-size:17px;font-weight:400;line-height:1.2}details[open] summary:after{content:"−"}.detail-body{padding:0 19px 16px;font-size:12px;color:#777d87}.detail-body p{margin:0}.footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px;margin-top:7px;font-size:10px;color:#8e929a}.footer a{color:#696f7b;display:flex;gap:8px;align-items:center}.footer-brand{letter-spacing:1.5px;font:9px monospace}.mobile-brand{display:none}
++    @media(min-width:1400px){.main{padding-left:85px;padding-right:85px}.hero{padding-top:57px}h1{font-size:49px}}
++    @media(max-width:1100px){.sidebar{width:210px;padding:30px 19px}.main{margin-left:210px;padding:27px 35px}.principle{padding:0 15px;gap:9px}.principle-icon{width:29px;height:29px}.commit-grid{grid-template-columns:1fr 1fr}.section-en{letter-spacing:1px}}
++    @media(max-width:800px){.sidebar{position:relative;width:auto;border-right:0;border-bottom:1px solid var(--line);padding:18px 22px}.brand{font-size:14px}.brand-mark{width:29px;height:29px}.brand small{font-size:8px;margin-top:4px}.sidebar-label,.sidebar-note{display:none}.nav{display:flex;gap:5px;margin-top:17px;overflow-x:auto}.nav a{white-space:nowrap;font-size:11px;padding:7px 10px;gap:7px}.main{margin:0;padding:22px 24px}.hero{padding:35px 0 28px}h1{font-size:37px}.principles{margin-bottom:33px}.principle{display:block;padding:0 15px}.principle-icon{margin-bottom:9px}.principle p{font-size:10px}.section-en{font-size:8px}.workflow{gap:15px}.code-body{font-size:10px}.commit-rules{gap:8px 18px}}
++    @media(max-width:520px){.main{padding:20px 19px}.topbar{font-size:10px;padding-bottom:18px}.top-version span{display:none}.hero{padding-top:30px}h1{font-size:34px}.intro{font-size:12px}.meta{gap:11px;font-size:9px}.principles{padding:17px 0}.principle{padding:0 11px}.principle h3{font-size:11px}.principle p{line-height:1.7}.section-en{display:none}h2{font-size:19px}.commit-grid,.review-panels{grid-template-columns:1fr}.code-body{font-size:11px}.workflow{grid-template-columns:1fr 1fr;gap:24px}.step:nth-child(2):after{display:none}.step p{max-width:180px}.footer-brand{display:none}.footer{gap:20px}.breadcrumb{gap:7px}section{margin-bottom:34px}.types{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}.types h3{grid-column:1/-1}.type-row{gap:5px;grid-template-columns:51px 1fr}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++    @media print{.sidebar,.copy,.footer a{display:none}.main{margin:0;padding:0;max-width:none}.hero{padding:25px 0}.code-card{background:#f0f0f0;color:#222}.code-body span{color:#333}.code-top{color:#555}.principles,section,.review-panel{break-inside:avoid}body{font-size:12px}.detail-body{display:block}}
++  </style>
++</head>
++<body id="top">
++  <aside class="sidebar" aria-label="文档导航">
++    <a class="brand" href="#top" aria-label="Dev Handbook 首页"><span class="brand-mark">/.</span><span>Dev Handbook<small>BUILD BETTER, TOGETHER.</small></span></a>
++    <div class="sidebar-label">ENGINEERING / 工程实践</div>
++    <nav class="nav">
++      <a href="#overview" class="active" aria-current="location"><span class="nav-num">00</span>规范概览</a>
++      <a href="#branches"><span class="nav-num">01</span>分支命名</a>
++      <a href="#commits"><span class="nav-num">02</span>提交信息</a>
++      <a href="#reviews"><span class="nav-num">03</span>代码评审</a>
++      <a href="#faq"><span class="nav-num">04</span>常见问题</a>
++    </nav>
++    <div class="sidebar-note"><strong><span class="status-dot"></span>团队协作，从共识开始</strong>Small commits. Better teamwork.<br>Engineering Handbook · v1.0</div>
++  </aside>
++  <main class="main">
++    <header class="topbar"><div class="breadcrumb"><span>团队知识库</span><span>/</span><span>工程实践</span><span>/</span><b>Git 协作规范</b></div><div class="top-version">v1.0 <span>团队标准</span></div></header>
++    <section class="hero" id="overview" aria-labelledby="page-title">
++      <div class="eyebrow">THE WAY WE COLLABORATE</div>
++      <h1 id="page-title">让每一次提交，<br>都有迹可循。</h1>
++      <p class="intro">团队 Git 协作规范。统一分支命名、提交信息与代码评审流程，<br>让代码变更更清晰，让团队协作更从容。</p>
++      <div class="meta"><span><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>约 6 分钟阅读</span><i></i><span>适用于所有项目贡献者</span><i></i><span>版本 1.0</span></div>
++    </section>
++    <div class="principles" aria-label="协作原则">
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="5" r="2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="6" r="2"/><path d="M7 7v10m10-9c0 5-10 3-10 8"/></svg></div><div><h3>一事一分支</h3><p>隔离每个变更，保持主干稳定</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6m-6 4h6m-6 4h4"/></svg></div><div><h3>一次提交，一个意图</h3><p>小步提交，让历史清晰可读</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg></div><div><h3>先评审，再合并</h3><p>让每一行代码都经过共同把关</p></div></div>
++    </div>
++    <section id="branches" aria-labelledby="branch-title">
++      <div class="section-heading"><span class="section-index">01</span><h2 id="branch-title">分支命名</h2><span class="section-en">BRANCH NAMING</span></div>
++      <p class="section-desc">从最新的 <code>main</code> 创建工作分支，使用 <code>&lt;type&gt;/&lt;issue-id&gt;-&lt;short-description&gt;</code>，让目的一目了然。</p>
++      <div class="table-wrap"><table><thead><tr><th>分支类型</th><th>命名前缀</th><th>使用场景</th><th>命名示例</th></tr></thead><tbody>
++        <tr><td>新功能</td><td><span class="tag blue">feat/</span></td><td>新增功能或能力</td><td>feat/128-user-login</td></tr>
++        <tr><td>缺陷修复</td><td><span class="tag rose">fix/</span></td><td>修复已知问题</td><td>fix/256-token-expired</td></tr>
++        <tr><td>紧急修复</td><td><span class="tag gold">hotfix/</span></td><td>修复线上紧急故障</td><td>hotfix/301-payment-timeout</td></tr>
++        <tr><td>代码重构</td><td><span class="tag">refactor/</span></td><td>调整结构，不改变外部行为</td><td>refactor/142-auth-service</td></tr>
++        <tr><td>文档与维护</td><td><span class="tag gray">docs/ · chore/</span></td><td>更新文档、依赖或工具配置</td><td>docs/168-api-guide</td></tr>
++      </tbody></table></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>统一使用小写英文、数字与短横线；没有任务编号时可省略编号。<code>main</code> 为受保护分支，禁止直接推送和强制推送；工作分支合并后及时删除。</p></div>
++    </section>
++    <section id="commits" aria-labelledby="commit-title">
++      <div class="section-heading"><span class="section-index">02</span><h2 id="commit-title">提交信息</h2><span class="section-en">COMMIT CONVENTION</span></div>
++      <p class="section-desc">采用 Conventional Commits 风格。标题说明“做了什么”，正文补充“为什么做”；每次提交只包含一个逻辑变更。</p>
++      <div class="commit-grid">
++        <div class="code-card"><div class="code-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>commit-message</span><button class="copy" type="button" data-copy="commit-example" aria-label="复制提交信息示例"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><rect x="5" y="5" width="8" height="9" rx="1"/><path d="M10 3V2H2v9h1"/></svg><span>复制</span></button></div><div class="code-body"><div class="code-comment"># 标准格式 · scope 可选</div><div><span class="syntax-pink">&lt;type&gt;</span>(<span class="syntax-blue">&lt;scope&gt;</span>): &lt;description&gt;</div><div class="code-divider"></div><pre id="commit-example"><code><span class="syntax-pink">feat</span>(<span class="syntax-blue">auth</span>): 支持邮箱验证码登录
++
++<span class="code-comment">为未设置密码的用户提供登录入口，
++复用现有验证码服务并限制重试次数。</span>
++
++<span class="syntax-green">Closes #128</span></code></pre></div></div>
++        <div class="types"><h3>选择合适的提交类型</h3><div class="type-row"><code>feat</code><span>新增功能</span></div><div class="type-row"><code>fix</code><span>修复缺陷</span></div><div class="type-row"><code>docs</code><span>仅修改文档</span></div><div class="type-row"><code>style</code><span>格式调整，不影响逻辑</span></div><div class="type-row"><code>refactor</code><span>重构，不新增功能或修复缺陷</span></div><div class="type-row"><code>test</code><span>新增或调整测试</span></div><div class="type-row"><code>chore</code><span>依赖、工具与日常维护</span></div></div>
++      </div>
++      <div class="commit-rules"><span>标题建议不超过 72 个字符</span><span>使用明确的动作描述</span><span>不使用 “update” 或 “fix bug” 等模糊信息</span></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>破坏兼容性的变更使用 <code>feat(api)!</code> 等标记，并在页脚写明 <code>BREAKING CHANGE:</code>、影响范围和迁移方式。禁止提交密钥、访问令牌及本地配置中的敏感信息。</p></div>
++    </section>
++    <section id="reviews" aria-labelledby="review-title">
++      <div class="section-heading"><span class="section-index">03</span><h2 id="review-title">代码评审流程</h2><span class="section-en">CODE REVIEW WORKFLOW</span></div>
++      <p class="section-desc">所有变更通过 Pull Request（PR）合入主干。保持 PR 聚焦，让评审成为分享上下文、提升质量的过程。</p>
++      <div class="workflow">
++        <div class="step"><div class="step-number">1</div><h3>开发与自检</h3><p>同步主干并创建分支。完成变更后，自查 diff，运行相关测试与静态检查。</p></div>
++        <div class="step"><div class="step-number">2</div><h3>发起 Pull Request</h3><p>说明背景、改动与验证结果，关联任务；界面变更附截图，指定相关评审者。</p></div>
++        <div class="step"><div class="step-number">3</div><h3>评审与迭代</h3><p>评审者提出可执行建议。作者回应并修订，逐一解决讨论，按需再次请求评审。</p></div>
++        <div class="step"><div class="step-number">4</div><h3>合并与清理</h3><p>审批与检查通过后，使用 Squash merge。确认提交标题，删除已合并分支。</p></div>
++      </div>
++      <div class="review-panels">
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m4 13 9-9 3 3-9 9-4 1 1-4Zm7-7 3 3"/></svg>提交者 · 发起评审前</div><ul class="checklist"><li>一个 PR 解决一个问题，拆分无关修改</li><li>写清变更原因、影响范围与回滚方式</li><li>补充必要测试；同步更新相关文档</li><li>未完成时使用 Draft，准备好后再请求评审</li></ul></div>
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5"/><path d="m12 12 5 5M6 8l1.5 1.5L10 6"/></svg>评审者 · 重点关注</div><ul class="checklist"><li>逻辑正确，边界条件与异常处理完整</li><li>命名清晰，设计简洁，避免无必要的复杂度</li><li>关注安全、性能以及向后兼容性</li><li>区分阻塞问题与建议，对代码给出具体反馈</li></ul></div>
++      </div>
++      <div class="review-banner"><strong>合并门槛</strong> &nbsp;至少 1 位非作者评审者批准 · 必需 CI 检查通过 · 阻塞讨论全部解决 · 无合并冲突。审批后若有实质改动，需重新评审。</div>
++    </section>
++    <section id="faq" aria-labelledby="faq-title">
++      <div class="section-heading"><span class="section-index">04</span><h2 id="faq-title">协作中的几个约定</h2><span class="section-en">GOOD TO KNOW</span></div>
++      <p class="section-desc">遇到特殊情况时，优先保持沟通与变更记录的完整。</p>
++      <div class="details">
++        <details><summary>分支出现冲突，应该由谁处理？</summary><div class="detail-body"><p>由 PR 作者将最新的 main 合并到工作分支，结合双方改动解决冲突，重新运行相关测试并推送。涉及他人逻辑时邀请原作者确认，不要直接选择整份“我的版本”或“对方版本”。共享分支不改写历史；个人分支确需 rebase 时，先确认无人基于它开发，再使用 <code>git push --force-with-lease</code>。</p></div></details>
++        <details><summary>线上紧急修复，可以跳过代码评审吗？</summary><div class="detail-body"><p>紧急修复仍需 PR、至少一位非作者审批和必需检查。联系值班人员优先处理；若线上版本与 main 不一致，从实际部署的 tag 创建 hotfix 分支，先修复对应发布线，再将修复同步回 main，并记录事故与验证结果。</p></div></details>
++        <details><summary>合并后发现问题，如何回滚？</summary><div class="detail-body"><p>使用 <code>git revert &lt;commit-sha&gt;</code> 为合并后的 squash 提交生成反向变更，通过新的 PR 评审并合入，保留可追溯历史。关联原 PR，说明回滚原因；涉及数据迁移时先确认反向操作是否安全，不要对 main 使用 reset 或强制推送。</p></div></details>
++        <details><summary>评审迟迟没有回复怎么办？</summary><div class="detail-body"><p>评审者应尽量在 1 个工作日内给出首次反馈。超过约定时间，作者可在团队协作渠道提醒，并补充优先级和截止时间；评审者无法及时处理时，应尽早告知并协助寻找替代评审者。</p></div></details>
++      </div>
++    </section>
++    <footer class="footer"><span>好的协作，藏在每一个小小的约定里。</span><span class="footer-brand">BUILT ON SHARED STANDARDS</span><a href="#top">回到顶部 <span aria-hidden="true">↑</span></a></footer>
++    <div id="copy-status" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></div>
++  </main>
++  <script>
++    const links = Array.from(document.querySelectorAll('.nav a'));
++    const sections = links.map(link => document.querySelector(link.getAttribute('href')));
++    let scheduled = false;
++    function updateNavigation() {
++      let active = sections[0];
++      for (const section of sections) if (section.getBoundingClientRect().top <= 160) active = section;
++      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10) active = sections[sections.length - 1];
++      for (const link of links) {
++        const selected = link.getAttribute('href') === '#' + active.id;
++        link.classList.toggle('active', selected);
++        if (selected) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
++      }
++      scheduled = false;
++    }
++    window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateNavigation); } }, {passive:true});
++    window.addEventListener('resize', updateNavigation);
++    updateNavigation();
++    document.querySelectorAll('[data-copy]').forEach(button => {
++      button.addEventListener('click', async () => {
++        const content = document.getElementById(button.dataset.copy).textContent;
++        const label = button.querySelector('span');
++        let success = false;
++        try {
++          if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(content); success = true; }
++        } catch (_) {}
++        if (!success) {
++          const input = document.createElement('textarea');
++          input.value = content;
++          input.style.cssText = 'position:fixed;left:-9999px;top:0';
++          document.body.appendChild(input); input.select();
++          try { success = document.execCommand('copy'); } catch (_) {}
++          input.remove(); button.focus({preventScroll:true});
++        }
++        label.textContent = success ? '已复制' : '请手动复制';
++        document.getElementById('copy-status').textContent = success ? '提交信息已复制到剪贴板' : '复制未成功，请选中示例手动复制';
++        setTimeout(() => { label.textContent = '复制'; }, 2200);
++      });
++    });
++  </script>
++</body>
++</html>
+
+codex
+已生成 [index.html](index.html)，包含分支命名、提交信息和代码评审流程，内置响应式样式与示例复制功能。无需依赖，直接用浏览器打开即可查看。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..e84133a7bd2b303ea680d174cda96e349929cc8b
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,143 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="团队 Git 协作规范：统一分支命名、提交信息与代码评审流程，让每一次变更清晰、可靠、可追溯。">
++  <title>Git 协作规范 · Engineering Handbook</title>
++  <style>
++    :root{--paper:#f8f7f4;--white:#fff;--ink:#252b38;--muted:#777c86;--line:#e5e4df;--pink:#b84369;--pink-light:#f5e7ec;--navy:#252d3d;--green:#387361}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:36px}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.8 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:inherit;text-decoration:none}button{font:inherit}button,a{-webkit-tap-highlight-color:transparent}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--pink);outline-offset:5px}::selection{background:#ecd0db}code,.mono{font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace}code{font-size:.88em;background:#eeede9;padding:3px 6px;border-radius:4px}svg{display:block}
++    .sidebar{width:248px;position:fixed;inset:0 auto 0 0;background:#efeeea;border-right:1px solid var(--line);padding:35px 25px;display:flex;flex-direction:column;z-index:10}.brand{display:flex;gap:11px;align-items:center;line-height:1.2;font-weight:750;font-size:16px;letter-spacing:-.3px}.brand-mark{width:33px;height:33px;background:var(--navy);color:white;border-radius:9px;display:grid;place-items:center;font:700 19px monospace}.brand small{display:block;font-size:9px;font-weight:500;letter-spacing:2px;color:var(--muted);margin-top:7px}.sidebar-label{font-size:10px;letter-spacing:1.8px;color:#888b91;margin:51px 12px 16px}.nav{display:grid;gap:7px}.nav a{display:flex;align-items:center;gap:12px;padding:10px 12px;color:#656a74;font-size:13px;border-radius:6px;transition:.2s}.nav a:hover{background:#e7e5e1;color:var(--ink)}.nav a.active{color:var(--pink);background:#eadddf;font-weight:650}.nav-num{font-size:11px;opacity:.7;font-family:monospace}.sidebar-note{margin:auto 10px 0;border-top:1px solid #dcdad5;padding-top:23px;font-size:11px;color:#8b8d93}.sidebar-note strong{display:block;color:#5b626d;font-size:12px;font-weight:500;margin-bottom:4px}.status-dot{display:inline-block;width:6px;height:6px;border-radius:100%;background:#69947e;margin-right:7px}.main{margin-left:248px;padding:32px 65px 24px;max-width:1510px}.topbar{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);padding-bottom:25px;border-bottom:1px solid var(--line)}.breadcrumb{display:flex;gap:12px;align-items:center}.breadcrumb b{color:#4c5461;font-weight:500}.top-version{font-family:monospace;color:#737985}.top-version span{margin-left:12px;padding:3px 8px;border:1px solid #d5ddd4;border-radius:4px;color:var(--green);font-size:10px}.hero{padding:49px 0 34px}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--pink);font-size:10px;font-weight:650;letter-spacing:2.5px}.eyebrow:before{content:"";width:20px;height:2px;background:var(--pink)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;margin:16px 0 16px;font-weight:750}.intro{font-size:14px;color:#727680;line-height:1.95;margin:0;max-width:680px}.meta{display:flex;gap:20px;align-items:center;font-size:10px;color:#878a92;margin-top:24px}.meta span{display:flex;gap:6px;align-items:center}.meta i{height:10px;width:1px;background:#d6d5d0}.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:#fff;border:1px solid var(--line);border-radius:9px;padding:22px 0;margin-bottom:43px}.principle{padding:0 25px;display:flex;align-items:flex-start;gap:13px}.principle+.principle{border-left:1px solid var(--line)}.principle-icon{color:var(--pink);background:#f8eff2;border-radius:7px;width:34px;height:34px;display:grid;place-items:center;flex-shrink:0}.principle h3{font-size:12px;margin:0 0 4px}.principle p{font-size:11px;color:var(--muted);margin:0}
++    section{margin-bottom:43px;scroll-margin-top:24px}.section-heading{display:flex;align-items:center;gap:12px;margin-bottom:10px}.section-index{font-family:monospace;font-size:12px;color:var(--pink);background:var(--pink-light);border-radius:5px;width:29px;height:29px;display:grid;place-items:center}h2{font-size:21px;letter-spacing:-.4px;margin:0;font-weight:700}.section-en{margin-left:auto;color:#999da5;font-size:9px;letter-spacing:1.8px}.section-desc{color:var(--muted);font-size:12px;margin:0 0 20px;line-height:1.95}.table-wrap{border:1px solid var(--line);border-radius:8px;overflow:auto;background:white}table{width:100%;border-collapse:collapse;text-align:left;font-size:12px;white-space:nowrap}th{background:#efeeeb;color:#7c8088;font-size:10px;font-weight:500;padding:11px 18px}td{padding:13px 18px;border-top:1px solid #ecebe7;color:#666c76}td:first-child{font-weight:550;color:var(--ink)}td:last-child{font-family:monospace;font-size:11px;color:#7c818a}.tag{font:11px monospace;padding:4px 8px;border-radius:4px;background:#f0eef9;color:#75649d}.tag.blue{background:#e9eff7;color:#5a789a}.tag.rose{background:#f9e9ec;color:#b0667c}.tag.gold{background:#f7f0e0;color:#9b8049}.tag.gray{background:#eeefef;color:#737b84}.note{display:flex;gap:10px;background:#efeeea;border-radius:6px;padding:12px 16px;font-size:11px;color:#737781;margin-top:13px;align-items:flex-start}.note-icon{font:italic 600 11px Georgia;border:1px solid #a0a3a9;border-radius:50%;line-height:14px;width:15px;text-align:center;flex-shrink:0;margin-top:3px}.note p{margin:0}.note code{background:#e4e3df}.commit-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:19px}.code-card{background:var(--navy);border-radius:8px;overflow:hidden;color:#d4d8e3}.code-top{padding:11px 17px;border-bottom:1px solid #3b4250;display:flex;justify-content:space-between;align-items:center;font:10px monospace;color:#9fa8bb}.window-dots{display:flex;gap:5px}.window-dots i{width:6px;height:6px;border-radius:50%;background:#626b7d}.copy{border:0;background:transparent;color:#c0c6d3;cursor:pointer;font-size:10px;display:flex;align-items:center;gap:5px;padding:3px 1px;min-width:44px}.copy:hover{color:white}.code-body{padding:21px 20px 23px;font:11px/2.1 monospace;overflow-x:auto}.code-body pre{margin:0;font:inherit}.code-body code{background:transparent;padding:0;font:inherit}.syntax-pink{color:#ee9ab6}.syntax-blue{color:#9cb9e5}.syntax-green{color:#aac9ad}.code-comment{color:#8995aa}.code-divider{height:1px;background:#414857;margin:16px 0}.types{border:1px solid var(--line);background:white;border-radius:8px;padding:15px 19px}.types h3{font-size:11px;margin:0 0 10px}.type-row{display:grid;grid-template-columns:60px 1fr;gap:12px;font-size:11px;align-items:center;padding:5px 0}.type-row code{color:var(--pink);background:transparent;padding:0;font-size:11px}.type-row span{color:#777d87}.commit-rules{display:flex;gap:22px;margin-top:14px;font-size:11px;color:#737985;flex-wrap:wrap}.commit-rules span:before{content:"✓";color:var(--green);margin-right:7px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);margin:23px 0 21px;gap:19px}.step{position:relative}.step:not(:last-child):after{content:"";position:absolute;top:15px;left:42px;right:-6px;border-top:1px dashed #d5d2cf}.step-number{width:31px;height:31px;border-radius:50%;background:#e9e7e3;display:grid;place-items:center;color:#777d85;font:11px monospace;position:relative;z-index:1}.step:last-child .step-number{background:var(--pink-light);color:var(--pink)}.step h3{font-size:12px;margin:13px 0 5px}.step p{font-size:11px;line-height:1.9;color:#7d818a;margin:0}.review-panels{display:grid;grid-template-columns:1fr 1fr;gap:19px}.review-panel{padding:18px 20px;background:white;border:1px solid var(--line);border-radius:8px}.panel-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:650;margin-bottom:13px}.panel-label svg{color:var(--pink)}.checklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;font-size:11px;color:#737985}.checklist li{display:flex;gap:9px;align-items:flex-start}.checklist li:before{content:"✓";color:#8d9992;font-size:10px}.review-banner{margin-top:15px;padding:13px 17px;background:#f2e9ec;border-left:3px solid #c8899d;border-radius:0 5px 5px 0;color:#866473;font-size:11px}.review-banner strong{font-weight:650;color:#805263}.details{border:1px solid var(--line);border-radius:8px;background:white;overflow:hidden}details+details{border-top:1px solid var(--line)}summary{padding:15px 19px;font-size:12px;font-weight:550;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:15px}summary::-webkit-details-marker{display:none}summary:after{content:"+";color:#8c919b;font-size:17px;font-weight:400;line-height:1.2}details[open] summary:after{content:"−"}.detail-body{padding:0 19px 16px;font-size:12px;color:#777d87}.detail-body p{margin:0}.footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px;margin-top:7px;font-size:10px;color:#8e929a}.footer a{color:#696f7b;display:flex;gap:8px;align-items:center}.footer-brand{letter-spacing:1.5px;font:9px monospace}.mobile-brand{display:none}
++    @media(min-width:1400px){.main{padding-left:85px;padding-right:85px}.hero{padding-top:57px}h1{font-size:49px}}
++    @media(max-width:1100px){.sidebar{width:210px;padding:30px 19px}.main{margin-left:210px;padding:27px 35px}.principle{padding:0 15px;gap:9px}.principle-icon{width:29px;height:29px}.commit-grid{grid-template-columns:1fr 1fr}.section-en{letter-spacing:1px}}
++    @media(max-width:800px){.sidebar{position:relative;width:auto;border-right:0;border-bottom:1px solid var(--line);padding:18px 22px}.brand{font-size:14px}.brand-mark{width:29px;height:29px}.brand small{font-size:8px;margin-top:4px}.sidebar-label,.sidebar-note{display:none}.nav{display:flex;gap:5px;margin-top:17px;overflow-x:auto}.nav a{white-space:nowrap;font-size:11px;padding:7px 10px;gap:7px}.main{margin:0;padding:22px 24px}.hero{padding:35px 0 28px}h1{font-size:37px}.principles{margin-bottom:33px}.principle{display:block;padding:0 15px}.principle-icon{margin-bottom:9px}.principle p{font-size:10px}.section-en{font-size:8px}.workflow{gap:15px}.code-body{font-size:10px}.commit-rules{gap:8px 18px}}
++    @media(max-width:520px){.main{padding:20px 19px}.topbar{font-size:10px;padding-bottom:18px}.top-version span{display:none}.hero{padding-top:30px}h1{font-size:34px}.intro{font-size:12px}.meta{gap:11px;font-size:9px}.principles{padding:17px 0}.principle{padding:0 11px}.principle h3{font-size:11px}.principle p{line-height:1.7}.section-en{display:none}h2{font-size:19px}.commit-grid,.review-panels{grid-template-columns:1fr}.code-body{font-size:11px}.workflow{grid-template-columns:1fr 1fr;gap:24px}.step:nth-child(2):after{display:none}.step p{max-width:180px}.footer-brand{display:none}.footer{gap:20px}.breadcrumb{gap:7px}section{margin-bottom:34px}.types{display:grid;grid-template-columns:1fr 1fr;gap:0 15px}.types h3{grid-column:1/-1}.type-row{gap:5px;grid-template-columns:51px 1fr}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++    @media print{.sidebar,.copy,.footer a{display:none}.main{margin:0;padding:0;max-width:none}.hero{padding:25px 0}.code-card{background:#f0f0f0;color:#222}.code-body span{color:#333}.code-top{color:#555}.principles,section,.review-panel{break-inside:avoid}body{font-size:12px}.detail-body{display:block}}
++  </style>
++</head>
++<body id="top">
++  <aside class="sidebar" aria-label="文档导航">
++    <a class="brand" href="#top" aria-label="Dev Handbook 首页"><span class="brand-mark">/.</span><span>Dev Handbook<small>BUILD BETTER, TOGETHER.</small></span></a>
++    <div class="sidebar-label">ENGINEERING / 工程实践</div>
++    <nav class="nav">
++      <a href="#overview" class="active" aria-current="location"><span class="nav-num">00</span>规范概览</a>
++      <a href="#branches"><span class="nav-num">01</span>分支命名</a>
++      <a href="#commits"><span class="nav-num">02</span>提交信息</a>
++      <a href="#reviews"><span class="nav-num">03</span>代码评审</a>
++      <a href="#faq"><span class="nav-num">04</span>常见问题</a>
++    </nav>
++    <div class="sidebar-note"><strong><span class="status-dot"></span>团队协作，从共识开始</strong>Small commits. Better teamwork.<br>Engineering Handbook · v1.0</div>
++  </aside>
++  <main class="main">
++    <header class="topbar"><div class="breadcrumb"><span>团队知识库</span><span>/</span><span>工程实践</span><span>/</span><b>Git 协作规范</b></div><div class="top-version">v1.0 <span>团队标准</span></div></header>
++    <section class="hero" id="overview" aria-labelledby="page-title">
++      <div class="eyebrow">THE WAY WE COLLABORATE</div>
++      <h1 id="page-title">让每一次提交，<br>都有迹可循。</h1>
++      <p class="intro">团队 Git 协作规范。统一分支命名、提交信息与代码评审流程，<br>让代码变更更清晰，让团队协作更从容。</p>
++      <div class="meta"><span><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><circle cx="8" cy="8" r="6"/><path d="M8 4v4l3 2"/></svg>约 6 分钟阅读</span><i></i><span>适用于所有项目贡献者</span><i></i><span>版本 1.0</span></div>
++    </section>
++    <div class="principles" aria-label="协作原则">
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="5" r="2"/><circle cx="7" cy="19" r="2"/><circle cx="17" cy="6" r="2"/><path d="M7 7v10m10-9c0 5-10 3-10 8"/></svg></div><div><h3>一事一分支</h3><p>隔离每个变更，保持主干稳定</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6m-6 4h6m-6 4h4"/></svg></div><div><h3>一次提交，一个意图</h3><p>小步提交，让历史清晰可读</p></div></div>
++      <div class="principle"><div class="principle-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg></div><div><h3>先评审，再合并</h3><p>让每一行代码都经过共同把关</p></div></div>
++    </div>
++    <section id="branches" aria-labelledby="branch-title">
++      <div class="section-heading"><span class="section-index">01</span><h2 id="branch-title">分支命名</h2><span class="section-en">BRANCH NAMING</span></div>
++      <p class="section-desc">从最新的 <code>main</code> 创建工作分支，使用 <code>&lt;type&gt;/&lt;issue-id&gt;-&lt;short-description&gt;</code>，让目的一目了然。</p>
++      <div class="table-wrap"><table><thead><tr><th>分支类型</th><th>命名前缀</th><th>使用场景</th><th>命名示例</th></tr></thead><tbody>
++        <tr><td>新功能</td><td><span class="tag blue">feat/</span></td><td>新增功能或能力</td><td>feat/128-user-login</td></tr>
++        <tr><td>缺陷修复</td><td><span class="tag rose">fix/</span></td><td>修复已知问题</td><td>fix/256-token-expired</td></tr>
++        <tr><td>紧急修复</td><td><span class="tag gold">hotfix/</span></td><td>修复线上紧急故障</td><td>hotfix/301-payment-timeout</td></tr>
++        <tr><td>代码重构</td><td><span class="tag">refactor/</span></td><td>调整结构，不改变外部行为</td><td>refactor/142-auth-service</td></tr>
++        <tr><td>文档与维护</td><td><span class="tag gray">docs/ · chore/</span></td><td>更新文档、依赖或工具配置</td><td>docs/168-api-guide</td></tr>
++      </tbody></table></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>统一使用小写英文、数字与短横线；没有任务编号时可省略编号。<code>main</code> 为受保护分支，禁止直接推送和强制推送；工作分支合并后及时删除。</p></div>
++    </section>
++    <section id="commits" aria-labelledby="commit-title">
++      <div class="section-heading"><span class="section-index">02</span><h2 id="commit-title">提交信息</h2><span class="section-en">COMMIT CONVENTION</span></div>
++      <p class="section-desc">采用 Conventional Commits 风格。标题说明“做了什么”，正文补充“为什么做”；每次提交只包含一个逻辑变更。</p>
++      <div class="commit-grid">
++        <div class="code-card"><div class="code-top"><span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span><span>commit-message</span><button class="copy" type="button" data-copy="commit-example" aria-label="复制提交信息示例"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor"><rect x="5" y="5" width="8" height="9" rx="1"/><path d="M10 3V2H2v9h1"/></svg><span>复制</span></button></div><div class="code-body"><div class="code-comment"># 标准格式 · scope 可选</div><div><span class="syntax-pink">&lt;type&gt;</span>(<span class="syntax-blue">&lt;scope&gt;</span>): &lt;description&gt;</div><div class="code-divider"></div><pre id="commit-example"><code><span class="syntax-pink">feat</span>(<span class="syntax-blue">auth</span>): 支持邮箱验证码登录
++
++<span class="code-comment">为未设置密码的用户提供登录入口，
++复用现有验证码服务并限制重试次数。</span>
++
++<span class="syntax-green">Closes #128</span></code></pre></div></div>
++        <div class="types"><h3>选择合适的提交类型</h3><div class="type-row"><code>feat</code><span>新增功能</span></div><div class="type-row"><code>fix</code><span>修复缺陷</span></div><div class="type-row"><code>docs</code><span>仅修改文档</span></div><div class="type-row"><code>style</code><span>格式调整，不影响逻辑</span></div><div class="type-row"><code>refactor</code><span>重构，不新增功能或修复缺陷</span></div><div class="type-row"><code>test</code><span>新增或调整测试</span></div><div class="type-row"><code>chore</code><span>依赖、工具与日常维护</span></div></div>
++      </div>
++      <div class="commit-rules"><span>标题建议不超过 72 个字符</span><span>使用明确的动作描述</span><span>不使用 “update” 或 “fix bug” 等模糊信息</span></div>
++      <div class="note"><span class="note-icon" aria-hidden="true">i</span><p>破坏兼容性的变更使用 <code>feat(api)!</code> 等标记，并在页脚写明 <code>BREAKING CHANGE:</code>、影响范围和迁移方式。禁止提交密钥、访问令牌及本地配置中的敏感信息。</p></div>
++    </section>
++    <section id="reviews" aria-labelledby="review-title">
++      <div class="section-heading"><span class="section-index">03</span><h2 id="review-title">代码评审流程</h2><span class="section-en">CODE REVIEW WORKFLOW</span></div>
++      <p class="section-desc">所有变更通过 Pull Request（PR）合入主干。保持 PR 聚焦，让评审成为分享上下文、提升质量的过程。</p>
++      <div class="workflow">
++        <div class="step"><div class="step-number">1</div><h3>开发与自检</h3><p>同步主干并创建分支。完成变更后，自查 diff，运行相关测试与静态检查。</p></div>
++        <div class="step"><div class="step-number">2</div><h3>发起 Pull Request</h3><p>说明背景、改动与验证结果，关联任务；界面变更附截图，指定相关评审者。</p></div>
++        <div class="step"><div class="step-number">3</div><h3>评审与迭代</h3><p>评审者提出可执行建议。作者回应并修订，逐一解决讨论，按需再次请求评审。</p></div>
++        <div class="step"><div class="step-number">4</div><h3>合并与清理</h3><p>审批与检查通过后，使用 Squash merge。确认提交标题，删除已合并分支。</p></div>
++      </div>
++      <div class="review-panels">
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><path d="m4 13 9-9 3 3-9 9-4 1 1-4Zm7-7 3 3"/></svg>提交者 · 发起评审前</div><ul class="checklist"><li>一个 PR 解决一个问题，拆分无关修改</li><li>写清变更原因、影响范围与回滚方式</li><li>补充必要测试；同步更新相关文档</li><li>未完成时使用 Draft，准备好后再请求评审</li></ul></div>
++        <div class="review-panel"><div class="panel-label"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="8" cy="8" r="5"/><path d="m12 12 5 5M6 8l1.5 1.5L10 6"/></svg>评审者 · 重点关注</div><ul class="checklist"><li>逻辑正确，边界条件与异常处理完整</li><li>命名清晰，设计简洁，避免无必要的复杂度</li><li>关注安全、性能以及向后兼容性</li><li>区分阻塞问题与建议，对代码给出具体反馈</li></ul></div>
++      </div>
++      <div class="review-banner"><strong>合并门槛</strong> &nbsp;至少 1 位非作者评审者批准 · 必需 CI 检查通过 · 阻塞讨论全部解决 · 无合并冲突。审批后若有实质改动，需重新评审。</div>
++    </section>
++    <section id="faq" aria-labelledby="faq-title">
++      <div class="section-heading"><span class="section-index">04</span><h2 id="faq-title">协作中的几个约定</h2><span class="section-en">GOOD TO KNOW</span></div>
++      <p class="section-desc">遇到特殊情况时，优先保持沟通与变更记录的完整。</p>
++      <div class="details">
++        <details><summary>分支出现冲突，应该由谁处理？</summary><div class="detail-body"><p>由 PR 作者将最新的 main 合并到工作分支，结合双方改动解决冲突，重新运行相关测试并推送。涉及他人逻辑时邀请原作者确认，不要直接选择整份“我的版本”或“对方版本”。共享分支不改写历史；个人分支确需 rebase 时，先确认无人基于它开发，再使用 <code>git push --force-with-lease</code>。</p></div></details>
++        <details><summary>线上紧急修复，可以跳过代码评审吗？</summary><div class="detail-body"><p>紧急修复仍需 PR、至少一位非作者审批和必需检查。联系值班人员优先处理；若线上版本与 main 不一致，从实际部署的 tag 创建 hotfix 分支，先修复对应发布线，再将修复同步回 main，并记录事故与验证结果。</p></div></details>
++        <details><summary>合并后发现问题，如何回滚？</summary><div class="detail-body"><p>使用 <code>git revert &lt;commit-sha&gt;</code> 为合并后的 squash 提交生成反向变更，通过新的 PR 评审并合入，保留可追溯历史。关联原 PR，说明回滚原因；涉及数据迁移时先确认反向操作是否安全，不要对 main 使用 reset 或强制推送。</p></div></details>
++        <details><summary>评审迟迟没有回复怎么办？</summary><div class="detail-body"><p>评审者应尽量在 1 个工作日内给出首次反馈。超过约定时间，作者可在团队协作渠道提醒，并补充优先级和截止时间；评审者无法及时处理时，应尽早告知并协助寻找替代评审者。</p></div></details>
++      </div>
++    </section>
++    <footer class="footer"><span>好的协作，藏在每一个小小的约定里。</span><span class="footer-brand">BUILT ON SHARED STANDARDS</span><a href="#top">回到顶部 <span aria-hidden="true">↑</span></a></footer>
++    <div id="copy-status" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)"></div>
++  </main>
++  <script>
++    const links = Array.from(document.querySelectorAll('.nav a'));
++    const sections = links.map(link => document.querySelector(link.getAttribute('href')));
++    let scheduled = false;
++    function updateNavigation() {
++      let active = sections[0];
++      for (const section of sections) if (section.getBoundingClientRect().top <= 160) active = section;
++      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10) active = sections[sections.length - 1];
++      for (const link of links) {
++        const selected = link.getAttribute('href') === '#' + active.id;
++        link.classList.toggle('active', selected);
++        if (selected) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
++      }
++      scheduled = false;
++    }
++    window.addEventListener('scroll', () => { if (!scheduled) { scheduled = true; requestAnimationFrame(updateNavigation); } }, {passive:true});
++    window.addEventListener('resize', updateNavigation);
++    updateNavigation();
++    document.querySelectorAll('[data-copy]').forEach(button => {
++      button.addEventListener('click', async () => {
++        const content = document.getElementById(button.dataset.copy).textContent;
++        const label = button.querySelector('span');
++        let success = false;
++        try {
++          if (navigator.clipboard && window.isSecureContext) { await navigator.clipboard.writeText(content); success = true; }
++        } catch (_) {}
++        if (!success) {
++          const input = document.createElement('textarea');
++          input.value = content;
++          input.style.cssText = 'position:fixed;left:-9999px;top:0';
++          document.body.appendChild(input); input.select();
++          try { success = document.execCommand('copy'); } catch (_) {}
++          input.remove(); button.focus({preventScroll:true});
++        }
++        label.textContent = success ? '已复制' : '请手动复制';
++        document.getElementById('copy-status').textContent = success ? '提交信息已复制到剪贴板' : '复制未成功，请选中示例手动复制';
++        setTimeout(() => { label.textContent = '复制'; }, 2200);
++      });
++    });
++  </script>
++</body>
++</html>
+
+tokens used
+12,762
+已生成 [index.html](index.html)，包含分支命名、提交信息和代码评审流程，内置响应式样式与示例复制功能。无需依赖，直接用浏览器打开即可查看。

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>杭州两天一夜路线卡</title>
+<style>
+  :root {
+    --paper: #f6f1e7;
+    --ink: #24302b;
+    --muted: #6b766f;
+    --lake: #3f7d74;
+    --lake-soft: #d7e6df;
+    --tea: #8aa35a;
+    --peach: #e98a6b;
+    --line: #d9cfbd;
+    --page: #e9e4da;
+    color-scheme: light;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--page);
+    color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+
+  /* 3:4 竖版卡片，内部全部用容器单位等比缩放 */
+  .card {
+    width: min(100%, 600px, calc((100vh - 48px) * 0.75));
+    aspect-ratio: 3 / 4;
+    container-type: inline-size;
+    background: var(--paper);
+    border-radius: 3cqw;
+    box-shadow: 0 2cqw 6cqw rgba(36, 48, 43, .18);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .inner {
+    position: relative;
+    z-index: 1;
+    padding: 6cqw 6.5cqw 5cqw;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* 背景：远山 + 湖水 */
+  .bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .bg svg { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
+
+  /* 头部 */
+  .tag {
+    display: inline-flex;
+    gap: 1.5cqw;
+    align-items: center;
+    font-size: 2.8cqw;
+    letter-spacing: .3em;
+    color: var(--lake);
+    font-weight: 600;
+  }
+  .tag::before {
+    content: "";
+    width: 5cqw; height: .5cqw;
+    background: var(--lake);
+    border-radius: 1cqw;
+  }
+  h1 {
+    margin: 2cqw 0 0;
+    font-size: 10.5cqw;
+    line-height: 1.12;
+    font-weight: 800;
+    letter-spacing: .02em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--lake);
+    position: relative;
+  }
+  h1 em::after {
+    content: "";
+    position: absolute;
+    left: -1%; right: -1%; bottom: .6cqw;
+    height: 2.4cqw;
+    background: var(--peach);
+    opacity: .35;
+    z-index: -1;
+    border-radius: 1cqw;
+  }
+  .sub {
+    margin-top: 2.2cqw;
+    font-size: 3.2cqw;
+    color: var(--muted);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.6cqw;
+  }
+  .sub span {
+    background: rgba(255,255,255,.75);
+    border: .25cqw solid var(--line);
+    border-radius: 10cqw;
+    padding: .6cqw 2.4cqw;
+  }
+
+  /* 两天行程 */
+  .days {
+    margin-top: 4.5cqw;
+    display: grid;
+    gap: 3cqw;
+  }
+  .day {
+    background: rgba(255,255,255,.82);
+    border-radius: 2.6cqw;
+    padding: 3.4cqw 3.8cqw 3cqw;
+    border: .25cqw solid var(--line);
+  }
+  .day-head {
+    display: flex;
+    align-items: baseline;
+    gap: 2cqw;
+    margin-bottom: 2cqw;
+  }
+  .day-no {
+    font-size: 3cqw;
+    font-weight: 800;
+    color: #fff;
+    background: var(--lake);
+    border-radius: 1.2cqw;
+    padding: .5cqw 1.8cqw;
+  }
+  .day.d2 .day-no { background: var(--tea); }
+  .day-title {
+    font-size: 4.4cqw;
+    font-weight: 700;
+  }
+  ol {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+  }
+  ol::before {
+    content: "";
+    position: absolute;
+    left: 1.1cqw; top: 1.6cqw; bottom: 1.6cqw;
+    border-left: .4cqw dashed var(--line);
+  }
+  li {
+    position: relative;
+    padding-left: 5cqw;
+    font-size: 3.15cqw;
+    line-height: 1.5;
+    margin-bottom: 1.3cqw;
+  }
+  li:last-child { margin-bottom: 0; }
+  li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.15cqw;
+    width: 2.6cqw; height: 2.6cqw;
+    border-radius: 50%;
+    background: var(--paper);
+    border: .6cqw solid var(--lake);
+  }
+  .d2 li::before { border-color: var(--tea); }
+  li b { font-weight: 700; }
+  .t {
+    display: inline-block;
+    min-width: 8.4cqw;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    font-size: 2.8cqw;
+  }
+  .note { color: var(--muted); font-size: 2.75cqw; }
+
+  /* 底部 tips */
+  .tips {
+    margin-top: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2cqw;
+  }
+  .tip {
+    background: var(--lake-soft);
+    border-radius: 2cqw;
+    padding: 2.2cqw 2.4cqw;
+    font-size: 2.7cqw;
+    line-height: 1.45;
+  }
+  .tip strong {
+    display: block;
+    font-size: 3cqw;
+    color: var(--lake);
+    margin-bottom: .4cqw;
+  }
+  .foot {
+    margin-top: 2.6cqw;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.5cqw;
+    color: var(--muted);
+    letter-spacing: .08em;
+  }
+</style>
+</head>
+<body>
+  <article class="card" aria-label="周末两天一夜杭州路线">
+    <div class="bg" aria-hidden="true">
+      <svg viewBox="0 0 600 260" preserveAspectRatio="none">
+        <circle cx="505" cy="70" r="34" fill="#e98a6b" opacity=".28"/>
+        <path d="M0 150 C80 110 130 120 190 135 C250 150 290 95 360 100 C430 105 470 140 600 115 L600 0 L0 0Z" fill="#f6f1e7"/>
+        <path d="M300 200 C360 150 420 130 480 150 C530 165 560 140 600 130 L600 260 L300 260Z" fill="#d7e6df" opacity=".7"/>
+        <path d="M380 210 C430 175 480 170 530 185 C560 193 580 185 600 178 L600 260 L380 260Z" fill="#3f7d74" opacity=".18"/>
+        <!-- 保俶塔 -->
+        <g fill="#3f7d74" opacity=".35">
+          <rect x="452" y="118" width="6" height="40" rx="2"/>
+          <path d="M455 104 L460 118 L450 118Z"/>
+        </g>
+      </svg>
+    </div>
+
+    <div class="inner">
+      <div class="tag">WEEKEND · HANGZHOU</div>
+      <h1>周末两天一夜<br><em>杭州</em>不踩雷路线</h1>
+      <div class="sub">
+        <span>🚄 高铁直达</span><span>🚶 轻徒步</span><span>💰 人均约 800</span>
+      </div>
+
+      <section class="days">
+        <div class="day d1">
+          <div class="day-head"><span class="day-no">DAY 1</span><span class="day-title">西湖经典 · 一圈看全</span></div>
+          <ol>
+            <li><span class="t">07:30</span><b>断桥 → 白堤 → 孤山</b> <span class="note">早去人少，晨光最好拍</span></li>
+            <li><span class="t">11:30</span><b>知味观 / 外婆家</b> <span class="note">西湖醋鱼、东坡肉、片儿川</span></li>
+            <li><span class="t">13:30</span><b>灵隐寺 + 飞来峰</b> <span class="note">留足 3 小时</span></li>
+            <li><span class="t">17:30</span><b>苏堤骑行 → 杨公堤日落</b></li>
+            <li><span class="t">19:30</span><b>湖滨步行街 · 音乐喷泉</b> <span class="note">住龙翔桥附近</span></li>
+          </ol>
+        </div>
+
+        <div class="day d2">
+          <div class="day-head"><span class="day-no">DAY 2</span><span class="day-title">山野茶香 · 慢下来</span></div>
+          <ol>
+            <li><span class="t">08:30</span><b>九溪十八涧徒步</b> <span class="note">溪水竹林，约 1.5 小时</span></li>
+            <li><span class="t">10:30</span><b>龙井村喝明前茶</b> <span class="note">茶园里吃农家菜</span></li>
+            <li><span class="t">14:00</span><b>中国美院象山校区</b> <span class="note">王澍建筑，随手出片</span></li>
+            <li><span class="t">16:30</span><b>南宋御街 · 小河直街</b> <span class="note">买伴手礼后返程</span></li>
+          </ol>
+        </div>
+      </section>
+
+      <div class="tips">
+        <div class="tip"><strong>🚇 交通</strong>地铁 + 共享单车，景区别打车</div>
+        <div class="tip"><strong>⏰ 避峰</strong>断桥白堤尽量 9 点前到</div>
+        <div class="tip"><strong>👟 装备</strong>穿运动鞋，带薄外套和伞</div>
+      </div>
+
+      <div class="foot"><span>📍 收藏起来，下个周末就出发</span><span>#杭州旅行</span></div>
+    </div>
+  </article>
+</body>
+</html>

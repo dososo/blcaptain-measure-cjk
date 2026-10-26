@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通勤情况调查问卷</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="measure-prose">
+      <h1>通勤情况调查问卷</h1>
+      <p>我们想了解大家每天上下班路上花多少时间、用什么交通方式，以便为灵活办公和交通补贴政策提供参考。</p>
+      <p>共 6 道题，大约需要 2 分钟。问卷匿名填写，不收集姓名和联系方式。</p>
+    </header>
+
+    <div class="progress" aria-live="polite">
+      <div class="progress-label">已完成 <span id="answered">0</span> / 6 题</div>
+      <div class="progress-bar"><span id="bar"></span></div>
+    </div>
+
+    <form id="survey" novalidate>
+      <fieldset data-q="mode" data-required>
+        <legend><span class="no">1.</span>你最主要的通勤交通方式是？</legend>
+        <p class="hint">单选，选路程中占用时间最长的一种。</p>
+        <div class="options two">
+          <label class="option"><input type="radio" name="mode" value="地铁 / 轻轨">地铁 / 轻轨</label>
+          <label class="option"><input type="radio" name="mode" value="公交车">公交车</label>
+          <label class="option"><input type="radio" name="mode" value="自驾">自驾</label>
+          <label class="option"><input type="radio" name="mode" value="网约车 / 出租车">网约车 / 出租车</label>
+          <label class="option"><input type="radio" name="mode" value="电动车 / 摩托车">电动车 / 摩托车</label>
+          <label class="option"><input type="radio" name="mode" value="自行车 / 共享单车">自行车 / 共享单车</label>
+          <label class="option"><input type="radio" name="mode" value="步行">步行</label>
+          <label class="option"><input type="radio" name="mode" value="班车">班车</label>
+        </div>
+      </fieldset>
+
+      <fieldset data-q="time" data-required>
+        <legend><span class="no">2.</span>单程通勤一般需要多长时间？</legend>
+        <p class="hint">单选，从出门到抵达工位计算。</p>
+        <div class="options">
+          <label class="option"><input type="radio" name="time" value="15 分钟以内">15 分钟以内</label>
+          <label class="option"><input type="radio" name="time" value="15–30 分钟">15–30 分钟</label>
+          <label class="option"><input type="radio" name="time" value="30–45 分钟">30–45 分钟</label>
+          <label class="option"><input type="radio" name="time" value="45–60 分钟">45–60 分钟</label>
+          <label class="option"><input type="radio" name="time" value="60–90 分钟">60–90 分钟</label>
+          <label class="option"><input type="radio" name="time" value="90 分钟以上">90 分钟以上</label>
+        </div>
+      </fieldset>
+
+      <fieldset data-q="days" data-required>
+        <legend><span class="no">3.</span>你每周大约有几天需要到办公地点？</legend>
+        <p class="hint">单选。</p>
+        <div class="options two">
+          <label class="option"><input type="radio" name="days" value="1 天及以下">1 天及以下</label>
+          <label class="option"><input type="radio" name="days" value="2–3 天">2–3 天</label>
+          <label class="option"><input type="radio" name="days" value="4 天">4 天</label>
+          <label class="option"><input type="radio" name="days" value="5 天及以上">5 天及以上</label>
+        </div>
+      </fieldset>
+
+      <fieldset data-q="extra" data-required>
+        <legend><span class="no">4.</span>通勤途中你还会换乘或用到哪些方式？</legend>
+        <p class="hint">多选；不换乘就选“无需换乘”。</p>
+        <div class="options two">
+          <label class="option"><input type="checkbox" name="extra" value="地铁 / 轻轨">地铁 / 轻轨</label>
+          <label class="option"><input type="checkbox" name="extra" value="公交车">公交车</label>
+          <label class="option"><input type="checkbox" name="extra" value="共享单车">共享单车</label>
+          <label class="option"><input type="checkbox" name="extra" value="网约车 / 出租车">网约车 / 出租车</label>
+          <label class="option"><input type="checkbox" name="extra" value="步行 10 分钟以上">步行 10 分钟以上</label>
+          <label class="option"><input type="checkbox" name="extra" value="无需换乘" data-exclusive>无需换乘</label>
+        </div>
+      </fieldset>
+
+      <fieldset data-q="rating" data-required>
+        <legend><span class="no">5.</span>你对目前的通勤体验满意吗？</legend>
+        <p class="hint">1 分表示非常不满意，5 分表示非常满意。</p>
+        <div class="scale">
+          <label class="option"><input type="radio" name="rating" value="1">1</label>
+          <label class="option"><input type="radio" name="rating" value="2">2</label>
+          <label class="option"><input type="radio" name="rating" value="3">3</label>
+          <label class="option"><input type="radio" name="rating" value="4">4</label>
+          <label class="option"><input type="radio" name="rating" value="5">5</label>
+        </div>
+        <div class="scale-ends"><span>非常不满意</span><span>非常满意</span></div>
+      </fieldset>
+
+      <fieldset data-q="note">
+        <legend><span class="no">6.</span>关于通勤，你最希望改善的是什么？</legend>
+        <p class="hint">选填，比如错峰上班、班车线路、停车位或补贴。</p>
+        <textarea name="note" maxlength="300" placeholder="写下你的想法"></textarea>
+        <div class="count"><span id="noteCount">0</span> / 300</div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit">提交问卷</button>
+        <span id="formError" class="error-msg" hidden></span>
+      </div>
+    </form>
+
+    <section id="done" class="done" hidden>
+      <h2>提交成功，谢谢你的参与！</h2>
+      <p>以下是你填写的内容：</p>
+      <dl id="summary"></dl>
+      <div class="actions">
+        <button type="button" class="ghost" id="again">重新填写</button>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('survey');
+      var sets = Array.prototype.slice.call(form.querySelectorAll('fieldset'));
+      var note = form.elements.note;
+      var labels = {
+        mode: '主要交通方式',
+        time: '单程通勤时间',
+        days: '每周到岗天数',
+        extra: '换乘或辅助方式',
+        rating: '通勤满意度',
+        note: '希望改善的地方'
+      };
+
+      function values(name) {
+        var el = form.elements[name];
+        if (el.tagName === 'TEXTAREA') return el.value.trim() ? [el.value.trim()] : [];
+        return Array.prototype.filter.call(form.querySelectorAll('[name="' + name + '"]'), function (i) {
+          return i.checked;
+        }).map(function (i) { return i.value; });
+      }
+
+      function updateProgress() {
+        var n = sets.filter(function (fs) { return values(fs.dataset.q).length > 0; }).length;
+        document.getElementById('answered').textContent = n;
+        document.getElementById('bar').style.width = (n / sets.length * 100) + '%';
+      }
+
+      form.addEventListener('change', function (e) {
+        var t = e.target;
+        // “无需换乘”与其他选项互斥
+        if (t.name === 'extra' && t.checked) {
+          form.querySelectorAll('[name="extra"]').forEach(function (i) {
+            if (i !== t && (t.hasAttribute('data-exclusive') || i.hasAttribute('data-exclusive'))) i.checked = false;
+          });
+        }
+        var fs = t.closest('fieldset');
+        if (fs) {
+          fs.classList.remove('invalid');
+          var msg = fs.querySelector('.error-msg');
+          if (msg) msg.remove();
+        }
+        updateProgress();
+      });
+
+      note.addEventListener('input', function () {
+        document.getElementById('noteCount').textContent = note.value.length;
+        updateProgress();
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var missing = [];
+        sets.forEach(function (fs) {
+          var old = fs.querySelector('.error-msg');
+          if (old) old.remove();
+          if (fs.hasAttribute('data-required') && values(fs.dataset.q).length === 0) {
+            missing.push(fs);
+            fs.classList.add('invalid');
+            var p = document.createElement('p');
+            p.className = 'error-msg';
+            p.textContent = '这道题还没有作答。';
+            fs.appendChild(p);
+          }
+        });
+        var err = document.getElementById('formError');
+        if (missing.length) {
+          err.textContent = '还有 ' + missing.length + ' 道必答题没有完成。';
+          err.hidden = false;
+          missing[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        err.hidden = true;
+
+        var dl = document.getElementById('summary');
+        dl.innerHTML = '';
+        sets.forEach(function (fs) {
+          var q = fs.dataset.q;
+          var v = values(q);
+          var dt = document.createElement('dt');
+          var dd = document.createElement('dd');
+          dt.textContent = labels[q];
+          if (q === 'rating') dd.textContent = v[0] + ' 分（满分 5 分）';
+          else dd.textContent = v.length ? v.join('、') : '未填写';
+          dl.appendChild(dt);
+          dl.appendChild(dd);
+        });
+        form.hidden = true;
+        document.querySelector('.progress').hidden = true;
+        document.getElementById('done').hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      document.getElementById('again').addEventListener('click', function () {
+        form.reset();
+        document.getElementById('noteCount').textContent = '0';
+        updateProgress();
+        document.getElementById('done').hidden = true;
+        document.querySelector('.progress').hidden = false;
+        form.hidden = false;
+      });
+    })();
+  </script>
+</body>
+</html>

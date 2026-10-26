@@ -1,0 +1,141 @@
+{
+  "schema_version": "1.0.0",
+  "note": "W2 发布（npm 包、6 个主题、GitHub 仓库）需要用户拍板的事项。user_quote 为用户原话摘录。",
+  "items": [
+    {
+      "id": "O7",
+      "question": "GitHub 放在个人账号下，还是新建一个组织？（PRD 附录开放决策 O7）",
+      "recommendation": "待你定",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "仓库：https://github.com/dososo",
+      "resolved_on": "2026-10-26",
+      "note": "个人账号 dososo"
+    },
+    {
+      "id": "R-1",
+      "question": "GitHub 仓库叫什么名字？",
+      "recommendation": "blcaptain-measure-cjk（沿用 blcaptain-lingjian-video 的前缀约定）",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "blcaptain-measure-cjk (Recommended)",
+      "resolved_on": "2026-10-26",
+      "note": "用户在选择题里选的选项原文"
+    },
+    {
+      "id": "D-1",
+      "question": "仓库公开时，docs/verification/（审计记录）、bench/runs/（北极星实验数据，约 32 MB）、README_PACKAGE.md（内部交付说明，引用了仓库外路径）是否一起公开？",
+      "recommendation": "公开 docs/verification/ 和 bench/runs/（北极星结论的证据，展示页和 README 都引用它们）；README_PACKAGE.md 不公开（移出仓库或加进 .gitignore）",
+      "blocks_verdict": false,
+      "blocks_publish": true,
+      "resolved": true,
+      "user_quote": "D-1 至 D-6 都按你的推荐办。",
+      "resolved_on": "2026-10-26",
+      "note": "来源：RA-22、RELEASE_PREP §4；按推荐落实"
+    },
+    {
+      "id": "D-2",
+      "question": "6 个主题的配色：按实物素材重新采样，还是这一版先用设计取值、记为已知偏差？",
+      "recommendation": "这一版先用设计取值，主题文件里已写明「没有从实物采样，待确认」，ROADMAP 记一条",
+      "blocks_verdict": false,
+      "blocks_publish": true,
+      "resolved": true,
+      "user_quote": "D-1 至 D-6 都按你的推荐办。",
+      "resolved_on": "2026-10-26",
+      "note": "来源：RA-14；按推荐落实"
+    },
+    {
+      "id": "D-3",
+      "question": "全局 CLAUDE.md 里「~/.agents/ 不是 skill 发现路径」（0.149.0 核验）要不要按 0.154.0 实测更新？",
+      "recommendation": "更新：0.154.0 下 ~/.agents/skills/ 和 $CODEX_HOME/skills/ 都能发现（docs/verification/w2/install/evidence/codex-agents.log）",
+      "blocks_verdict": false,
+      "blocks_publish": false,
+      "resolved": true,
+      "user_quote": "D-1 至 D-6 都按你的推荐办。",
+      "resolved_on": "2026-10-26",
+      "note": "来源：INSTALL_CHECK；按推荐落实"
+    },
+    {
+      "id": "D-4",
+      "question": "主题字体栈里 7 款系统字体（Songti SC、STSong、STFangsong、FangSong、SF Mono、Menlo、Consolas）不在授权表：补进授权表（🟡，附原文），还是只在主题和 SKILL.md 里注明「未收录，系统调用」？",
+      "recommendation": "这一版先注明（已临时落实，可撤回）；补表放 v0.2，因为要逐款直读 Apple、Microsoft 的原文",
+      "blocks_verdict": false,
+      "blocks_publish": false,
+      "resolved": true,
+      "user_quote": "D-1 至 D-6 都按你的推荐办。",
+      "resolved_on": "2026-10-26",
+      "note": "来源：RA-05；按推荐落实"
+    },
+    {
+      "id": "D-5",
+      "question": "Claude Code 插件市场名要不要从 measure-cjk 改成 blcaptain-measure-cjk（和 Codex 市场名、参考仓库一致）？改了以后安装命令变成 measure@blcaptain-measure-cjk",
+      "recommendation": "改，发布前改一次，之后不再变",
+      "blocks_verdict": false,
+      "blocks_publish": true,
+      "resolved": true,
+      "user_quote": "D-1 至 D-6 都按你的推荐办。",
+      "resolved_on": "2026-10-26",
+      "note": "来源：RA-21；按推荐落实"
+    },
+    {
+      "id": "D-6",
+      "question": "PRD §10 把 A02–A07、A09、A12（AI 味规则）排在 W2，这次没有实现，在 CLI 里标「计划中，未实现」，推迟到 v0.2：是否同意？",
+      "recommendation": "同意推迟；CHANGELOG、README 只写已实现的规则",
+      "blocks_verdict": false,
+      "blocks_publish": true,
+      "resolved": true,
+      "user_quote": "D-1 至 D-6 都按你的推荐办。",
+      "resolved_on": "2026-10-26",
+      "note": "来源：RA-15；按推荐落实"
+    },
+    {
+      "id": "D-7",
+      "question": "npm 包公开信息会显示发布账号的邮箱：npm 账号绑的是不是 blteam2026@outlook.com？",
+      "recommendation": "是；不是的话先在 npm 账号设置里改",
+      "blocks_verdict": false,
+      "blocks_publish": true,
+      "resolved": true,
+      "user_quote": "是的",
+      "resolved_on": "2026-10-26",
+      "note": "用户在回复里对这一条答「是的」"
+    },
+    {
+      "id": "D-8",
+      "question": "旧提交历史里有个人邮箱、README_PACKAGE.md 和本机路径：压成一个公开的初始提交（新的 main 分支，旧历史改名 private-history 只留本机），还是逐个改写？npm 等历史处理好以后在 main 上发布",
+      "recommendation": "压成一个公开的初始提交",
+      "blocks_verdict": false,
+      "blocks_publish": true,
+      "resolved": true,
+      "user_quote": "OK",
+      "resolved_on": "2026-10-26",
+      "note": "用户对「要等历史处理好以后，在新的 main 分支上发布」回复「OK」，执行方据此按推荐方式（新建 main 单提交）处理；旧历史保留在本机 private-history，推送前再请用户确认"
+    }
+  ],
+  "user_message_verbatim": [
+    {
+      "decisions": "O7、npm 包、6 个主题、README",
+      "date": "2026-10-26",
+      "text": "准备npm包并做6个主题，随仓库一起展示，仓库：https://github.com/dososo\n参考我的历史仓库结构和框架来发布和写readme\nhttps://github.com/dososo/blcaptain-lingjian-video"
+    },
+    {
+      "decisions": "R-1",
+      "date": "2026-10-26",
+      "text": "blcaptain-measure-cjk (Recommended)"
+    },
+    {
+      "decisions": "D-1–D-6",
+      "date": "2026-10-26",
+      "text": "D-1 至 D-6 都按你的推荐办。"
+    },
+    {
+      "decisions": "邮箱公开范围",
+      "date": "2026-10-26",
+      "text": "不能公开我的这个邮箱，公开的信息都是：GitHub @dososo；X / Twitter @thinkszyg；邮箱 blteam2026@outlook.com。移除README_PACKAGE.md、去除本机绝对路径"
+    },
+    {
+      "decisions": "D-7、D-8",
+      "date": "2026-10-26",
+      "text": "（npm 账号邮箱）是的；（npm 等历史处理好以后在新的 main 分支上发布）OK"
+    }
+  ]
+}

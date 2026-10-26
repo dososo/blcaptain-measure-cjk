@@ -1,0 +1,124 @@
+:root {
+  --bg: #f7f4ee;
+  --fg: #2b2824;
+  --muted: #6f685e;
+  --rule: #ddd5c8;
+  --accent: #9a4a2b;
+  --quote-bg: #efe9df;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1a17;
+    --fg: #e6e0d6;
+    --muted: #a59d90;
+    --rule: #3a352f;
+    --accent: #d98a64;
+    --quote-bg: #26231f;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1c1a17;
+  --fg: #e6e0d6;
+  --muted: #a59d90;
+  --rule: #3a352f;
+  --accent: #d98a64;
+  --quote-bg: #26231f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Source Serif 4", "Georgia", "Noto Serif SC", "Songti SC", "SimSun", serif;
+  font-size: 18px;
+}
+
+.page {
+  padding-inline: 20px;
+  padding-block: 64px 96px;
+}
+
+.measure-prose {
+  margin-inline: auto;
+}
+
+header {
+  margin-bottom: 48px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.kicker {
+  margin: 0 0 16px;
+  font-family: "Inter", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  margin: 0 0 20px;
+  font-size: 2em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.meta {
+  margin: 0;
+  font-family: "Inter", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+h2 {
+  margin: 48px 0 16px;
+  font-size: 1.25em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+p {
+  margin: 0 0 1.2em;
+  text-align: justify;
+}
+
+.lead {
+  font-size: 1.1em;
+  color: var(--muted);
+}
+
+blockquote {
+  margin: 32px 0;
+  padding: 20px 24px;
+  background: var(--quote-bg);
+  border-left: 3px solid var(--accent);
+}
+
+blockquote p {
+  margin: 0;
+  font-family: "LXGW WenKai", "Kaiti SC", "STKaiti", "KaiTi", serif;
+}
+
+.dot {
+  font-style: normal;
+  text-emphasis: dot;
+  -webkit-text-emphasis: dot;
+}
+
+footer {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  body { font-size: 17px; }
+  .page { padding-block: 40px 64px; }
+  h1 { font-size: 1.7em; }
+}

@@ -1,0 +1,114 @@
+✖ RA-01：measure-cjk 和 Playwright 分开安装（Playwright 只在项目里）时，从项目目录运行 --render 能用 (157.669125ms)
+✖ RA-01：两处都没有 Playwright 时退出码 2，提示里写明要装在运行 measure-cjk 的项目里或和它装在一起 (129.226666ms)
+✖ RA-02：展示页没有 undefined，主题索引的风格、适合场景都不为空 (1.0315ms)
+✖ RA-03：6 个主题示例页里，字号更大的文字，字重不能更重（字号越大字重越轻） (4319.89375ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 0
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4678.908583
+
+✖ failing tests:
+
+test at test/release.test.js:31:1
+✖ RA-01：measure-cjk 和 Playwright 分开安装（Playwright 只在项目里）时，从项目目录运行 --render 能用 (157.669125ms)
+  AssertionError [ERR_ASSERTION]: 退出码 2：错误：用了 --render，但没有找到 Playwright。完整档需要它来驱动浏览器，不会静默降级成基础档。
+  请先安装：npm install -D playwright && npx playwright install chromium
+  （本机已有 Chrome 或 Edge 时，只装 npm install -D playwright-core 也可以。）
+  
+      at TestContext.<anonymous> (file://<仓库>/test/release.test.js:36:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.start (node:internal/test_runner/test:944:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:296:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 2,
+    expected: 2,
+    operator: 'notStrictEqual'
+  }
+
+test at test/release.test.js:44:1
+✖ RA-01：两处都没有 Playwright 时退出码 2，提示里写明要装在运行 measure-cjk 的项目里或和它装在一起 (129.226666ms)
+  AssertionError [ERR_ASSERTION]: 提示里应说明全局安装时怎么装：错误：用了 --render，但没有找到 Playwright。完整档需要它来驱动浏览器，不会静默降级成基础档。
+  请先安装：npm install -D playwright && npx playwright install chromium
+  （本机已有 Chrome 或 Edge 时，只装 npm install -D playwright-core 也可以。）
+  
+      at TestContext.<anonymous> (file://<仓库>/test/release.test.js:49:12)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '错误：用了 --render，但没有找到 Playwright。完整档需要它来驱动浏览器，不会静默降级成基础档。\n请先安装：npm install -D playwright && npx playwright install chromium\n（本机已有 Chrome 或 Edge 时，只装 npm install -D playwright-core 也可以。）\n',
+    expected: /npm install -g playwright-core|全局/,
+    operator: 'match'
+  }
+
+test at test/release.test.js:55:1
+✖ RA-02：展示页没有 undefined，主题索引的风格、适合场景都不为空 (1.0315ms)
+  AssertionError [ERR_ASSERTION]: 展示页里出现了 undefined
+      at TestContext.<anonymous> (file://<仓库>/test/release.test.js:57:10)
+      at Test.runInAsyncScope (node:async_hooks:214:14)
+      at Test.run (node:internal/test_runner/test:1047:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+      at Test.postRun (node:internal/test_runner/test:1173:19)
+      at Test.run (node:internal/test_runner/test:1101:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: '<!doctype html>\n<html lang="zh-CN">\n<head>\n<meta charset="utf-8">\n<meta name="viewport" content="width=device-width, initial-scale=1">\n<title>分寸 · Measure：让 AI 写的中文页面排得有分寸</title>\n<meta name="description" content="给 Claude Code、Codex 这类编码 Agent 用的中文排版 skill 和校验器。">\n<style>\n:where(:lang(zh)) { line-break: strict; text-autospace: normal; font-synthesis-style: none; }\n:root {\n  --paper: #f4e9dc;\n  --paper-deep: #ebdccb;\n  --ink: #1f1b16;\n  --ink-soft: #5a5148;\n  --celadon: #7e8c6b;\n  --cinnabar: #9e4b3b;\n  --line: #d8c7b2;\n}\n* { box-sizing: border-box; }\nhtml, body { margin: 0; }\nbody { background: var(--paper); color: var(--ink); font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif; font-size: 17px; line-height: 1.8; }\nmain { max-width: 1120px; margin: 0 auto; padding: 0 24px 120px; }\np, li, dd, dt, figcaption { max-width: 36em; }\nheader.hero { padding: 120px 0 72px; }\n.eyebrow { font-size: 14px; letter-spacing: 0.08em; color: var(--celadon); margin: 0 0 24px; }\nh1 { font-size: 48px; line-height: 1.35; font-weight: 300; margin: 0 0 32px; }\nh1 em { font-style: normal; color: var(--cinnabar); }\n.lede { font-size: 19px; color: var(--ink-soft); margin: 0; }\nsection { padding: 72px 0 0; border-top: 1px solid var(--line); margin-top: 72px; }\nh2 { font-size: 32px; line-height: 1.4; font-weight: 300; margin: 0 0 24px; }\nh3 { font-size: 20px; line-height: 1.5; font-weight: 500; margin: 0 0 12px; }\nsection > p { color: var(--ink-soft); margin: 0 0 16px; }\n.numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px; margin: 40px 0 24px; }\n.agent { background: var(--paper-deep); padding: 32px; }\n.agent dl { margin: 0; }\n.agent dl > div { padding: 16px 0; border-top: 1px solid var(--line); }\n.agent dt { font-size: 14px; color: var(--ink-soft); line-height: 1.6; }\n.agent dd { margin: 4px 0 0; font-size: 28px; font-weight: 300; line-height: 1.5; }\n.agent dd.paired { font-size: 17px; font-weight: 400; line-height: 1.7; }\n.from { color: var(--ink-soft); }\n.arrow { color: var(--line); margin: 0 12px; }\n.to { color: var(--cinnabar); }\n.fine { font-size: 15px; color: var(--ink-soft); line-height: 1.75; padding-left: 1.2em; margin: 0; }\n.fine li { margin: 4px 0; }\n.demo, .real { margin: 56px 0 0; }\n.rule { display: inline-block; font-size: 14px; font-weight: 500; color: var(--paper); background: var(--celadon); padding: 0 8px; margin-right: 12px; line-height: 1.8; vertical-align: 2px; }\n.demo > p, .real > p { color: var(--ink-soft); margin: 0 0 20px; }\n.pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }\n.wide .pair, .real .pair { grid-template-columns: 1fr; gap: 32px; }\n.real.narrow .pair { grid-template-columns: 1fr 1fr; gap: 20px; }\n.model { font-size: 14px; color: var(--ink-soft); margin: -8px 0 8px; }\nfigure { margin: 0; }\nfigure img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }\nfigcaption { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-top: 8px; }\n.prompt { font-size: 15px; }\n.themes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; }\n.theme img { display: block; width: 100%; height: auto; border: 1px solid var(--line); }\n.theme h3 { margin: 16px 0 4px; }\n.theme p { font-size: 15px; color: var(--ink-soft); line-height: 1.75; margin: 0 0 6px; }\n.theme .fit { font-size: 14px; }\n.en { font-size: 15px; font-weight: 400; color: var(--ink-soft); }\n.tag { display: inline-block; font-size: 13px; color: var(--cinnabar); border: 1px solid var(--cinnabar); padding: 0 6px; margin-left: 8px; line-height: 1.6; vertical-align: 2px; }\ncode { font-family: Menlo, "SF Mono", monospace, "Noto Sans SC"; font-size: 15px; background: var(--paper-deep); padding: 1px 6px; }\nfooter { margin-top: 96px; padding-top: 32px; border-top: 1px solid var(--line); font-size: 14px; color: var(--ink-soft); line-height: 1.75; }\nfooter p { margin: 0 0 8px; }\na { color: var(--cinnabar); }\n@media (max-width: 760px) {\n  header.hero { padding: 72px 0 48px; }\n  h1 { font-size: 34px; }\n  h2 { font-size: 26px; }\n  .pair { grid-template-columns: 1fr; }\n  .agent { padding: 24px; }\n  .real.narrow .pair { grid-template-columns: 1fr; }\n  .themes { grid-template-columns: 1fr; }\n}\n@media (min-width: 761px) and (max-width: 1024px) {\n  .themes { grid-template-columns: 1fr 1fr; }\n}\n</style>\n</head>\n<body>\n<main>\n<header class="hero">\n<p class="eyebrow">分寸 · Measure</p>\n<h1>让 AI 写的中文页面，<br>排得<em>有分寸</em>。</h1>\n<p class="lede">给 Claude Code、Codex 这类编码 Agent 用的中文排版 skill，加一个离线校验器 <code>measure-cjk</code>：查字号、字距、行长、行高、标点和字体授权，并用浏览器实测。</p>\n</header>\n\n<section aria-labelledby="numbers">\n<h2 id="numbers">装上之后，差别有多大</h2>\n<p>同一个 Agent、同一个模型，30 条中文页面提示词，装和不装 measure 各生成一次，用 measure 的完整档检查。</p>\n<div class="numbers">\n<div class="agent">\n<h3>Codex</h3>\n<p class="model">模型 gpt-6-astra</p>\n<dl>\n<div><dt>零 error 页面（全部规则）</dt><dd><span class="from">0/30</span><span class="arrow" aria-hidden="true">→</span><span class="to">30/30</span></dd></div>\n<div><dt>零 error 页面（排除 T02、T04）</dt><dd><span class="from">0/30</span><span class="arrow" aria-hidden="true">→</span><span class="to">30/30</span></dd></div>\n<div><dt>同一条提示词逐条比（排除 T02、T04）</dt><dd class="paired">更好 30，一样 0，更差 0；p < 0.0001</dd></div>\n</dl>\n</div>\n<div class="agent">\n<h3>Claude Code</h3>\n<p class="model">模型 claude-opus-5-5</p>\n<dl>\n<div><dt>零 error 页面（全部规则）</dt><dd><span class="from">0/30</span><span class="arrow" aria-hidden="true">→</span><span class="to">27/30</span></dd></div>\n<div><dt>零 error 页面（排除 T02、T04）</dt><dd><span class="from">15/30</span><span class="arrow" aria-hidden="true">→</span><span class="to">27/30</span></dd></div>\n<div><dt>同一条提示词逐条比（排除 T02、T04）</dt><dd class="paired">更好 14，一样 14，更差 2；p = 0.0042</dd></div>\n</dl>\n</div>\n</div>\n<ul class="fine">\n<li>评分用的是 measure 自己的校验器，衡量的是“遵守 measure 规则”的程度，不是独立的审美评价。</li>\n<li>T02（中英文间距）、T04（行首禁则）是本项目定的规则，AI 默认几乎不写，所以同时给出排除这两条之后的数字。</li>\n<li>30 条提示词由本项目编写，每条只跑一次；装 measure 的一组里，真正跑过校验器的：Codex 30/30，Claude Code 13/30。</li>\n<li>Codex 不装 measure 的 30 页里有 1 页小红书卡片，排除 T02、T04 后只剩“字号太小”（T11）。T11 按浏览器里的像素判断卡片，口径有问题，正在修：卡片按导出尺寸换算后，这几页可能不算违规。如果不算，这一行会变成 1/30 → 30/30，逐条比更好 29、一样 1、更差 0，p < 0.0001，仍然显著。卡片的导出尺寸是假设，这只是估算。<br>Claude Code 不装 measure 的 30 页里有 5 页小红书卡片，排除 T02、T04 后只剩“字号太小”（T11）。T11 按浏览器里的像素判断卡片，口径有问题，正在修：卡片按导出尺寸换算后，这几页可能不算违规。如果不算，这一行会变成 20/30 → 27/30，逐条比更好 9、一样 18、更差 3，p = 0.1460，不再显著。卡片的导出尺寸是假设，这只是估算。</li>\n<li>完整的方法、数据和独立审计见仓库里的 <code>docs/verification/w2/northstar/</code>。</li>\n</ul>\n</section>\n\n<section aria-labelledby="rules">\n<h2 id="rules">规则示意</h2>\n<p><strong>以下是示意，不是实验结果：</strong>同一段文字，“关”只差一条规则，“开”是按 measure 改好的版本。两版都用 <code>measure-cjk lint --render</code> 检查过：“关”只报这一条规则，“开”零 error。“关”的程度按实验里真实页面的情况设，不故意做得更差。</p>\n<p>没有做示意的规则：T01（声明中文 lang）和 T13（字体栈里要有中文字体）的效果取决于浏览器和系统字体，一张图说明不了；T04（行首禁则）在 Chrome 里开不开，常用中文标点都不会落到行首，看不出差别。</p>\n<article class="demo">\n<h3><span class="rule">T02</span>中英文、中文与数字之间要有间距</h3>\n<p>汉字和字母、数字挤在一起，读的时候要自己找边界。measure.css 打开 text-autospace，浏览器自动留出约四分之一个字的空隙，文案里不用手打空格。</p>\n<div class="pair">\n<figure><img src="shots/demo-t02-off.png" alt="T02 示意：不按规则写的版本" loading="lazy"><figcaption>关</figcaption></figure>\n<figure><img src="shots/demo-t02-on.png" alt="T02 示意：按 measure 写的版本" loading="lazy"><figcaption>开</figcaption></figure>\n</div>\n</article>\n<article class="demo">\n<h3><span class="rule">T03</span>中文语境用全角标点</h3>\n<p>半角逗号、句号、问号又小又靠下，夹在汉字中间像没打完。中文句子用全角标点，字距才均匀。</p>\n<div class="pair">\n<figure><img src="shots/demo-t03-off.png" alt="T03 示意：不按规则写的版本" loading="lazy"><figcaption>关</figcaption></figure>\n<figure><img src="shots/demo-t03-on.png" alt="T03 示意：按 measure 写的版本" loading="lazy"><figcaption>开</figcaption></figure>\n</div>\n</article>\n<article class="demo wide">\n<h3><span class="rule">T05</span>正文行长 28–40 字</h3>\n<p>一行太长，眼睛从行尾回到下一行行首时容易串行。中文正文每行 28–40 个字最舒服，宽屏上要给正文限宽。</p>\n<div class="pair">\n<figure><img src="shots/demo-t05-off.png" alt="T05 示意：不按规则写的版本" loading="lazy"><figcaption>关</figcaption></figure>\n<figure><img src="shots/demo-t05-on.png" alt="T05 示意：按 measure 写的版本" loading="lazy"><figcaption>开</figcaption></figure>\n</div>\n</article>\n<article class="demo">\n<h3><span class="rule">T06</span>正文行高不低于 1.5</h3>\n<p>汉字是方块字，字面撑满整个字身，行与行之间比西文更需要留白。行高 1.35 时上下两行已经显得挤，正文建议 1.6–1.9。</p>\n<div class="pair">\n<figure><img src="shots/demo-t06-off.png" alt="T06 示意：不按规则写的版本" loading="lazy"><figcaption>关</figcaption></figure>\n<figure><img src="shots/demo-t06-on.png" alt="T06 示意：按 measure 写的版本" loading="lazy"><figcaption>开</figcaption></figure>\n</div>\n</article>\n<article class="demo">\n<h3><span class="rule">T07</span>中文字距不能为负</h3>\n<p>西文大标题常用负字距收紧，搬到中文上，笔画会碰在一起。中文标题保持默认字距，靠字重和留白拉开层次。</p>\n<div class="pair">\n<figure><img src="shots/demo-t07-off.png" alt="T07 示意：不按规则写的版本" loading="lazy"><figcaption>关</figcaption></figure>\n<figure><img src="shots/demo-t07-on.png" alt="T07 示意：按 measure 写的版本" loading="lazy"><figcaption>开</figcaption></figure>\n</div>\n</article>\n<article class="demo">\n<h3><span class="rule">T08</span>中文不用斜体</h3>\n<p>中文字体没有真正的斜体，浏览器只能把字形硬生生歪过去。强调中文，用加粗、颜色或着重号。</p>\n<div class="pair">\n<figure><img src="shots/demo-t08-off.png" alt="T08 示意：不按规则写的版本" loading="lazy"><figcaption>关</figcaption></figure>\n<figure><img src="shots/demo-t08-on.png" alt="T08 示意：按 measure 写的版本" loading="lazy"><figcaption>开</figcaption></figure>\n</div>\n</article>\n<article class="demo">\n<h3><span class="rule">T11</span>最小字号：正文 ≥ 14px，任何中文 ≥ 12px</h3>\n<p>西文 10px 还能辨认，汉字笔画多，10px 时笔画会糊成一团。价格说明、标签这类小字，中文也不要小于 12px。</p>\n<div class="pair">\n<figure><img src="shots/demo-t11-off.png" alt="T11 示意：不按规则写的版本" loading="lazy"><figcaption>关</figcaption></figure>\n<figure><img src="shots/demo-t11-on.png" alt="T11 示意：按 measure 写的版本" loading="lazy"><figcaption>开</figcaption></figure>\n</div>\n</article>\n</section>\n\n<section aria-labelledby="real">\n<h2 id="real">真实页面：同一条提示词，装之前和装之后</h2>\n<p>每组第一张是不装 measure 时 Agent 生成的页面，红框是完整档查到的问题，标签是规则编号和在这张截图里当场量到的值；第二张是装了 measure 后，同一条提示词生成的页面。截图窗口都是 1280px 宽：第一张截红框所在的位置（多数就在首屏），第二张截首屏。</p>\n<ul class="fine">\n<li>计数不含 T02、T04（本项目自定的规则），也不含 T06：它对'... 5824 more characters,
+    expected: /undefined/,
+    operator: 'doesNotMatch'
+  }
+
+test at test/release.test.js:66:1
+✖ RA-03：6 个主题示例页里，字号更大的文字，字重不能更重（字号越大字重越轻） (4319.89375ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'broadsheet：h2（24px / 500）比 .lead（19px / 400）字号大、字重也更重',
+  +   'broadsheet：h2（24px / 500）比 .meta（14px / 400）字号大、字重也更重',
+  +   'broadsheet：h2（24px / 500）比 .body p（17px / 400）字号大、字重也更重',
+  +   'broadsheet：h2（24px / 500）比 li（17px / 400）字号大、字重也更重',
+  +   'broadsheet：h2（24px / 500）比 blockquote p（20px / 400）字号大、字重也更重',
+  +   'broadsheet：h2（24px / 500）比 .note（14px / 400）字号大、字重也更重',
+  +   'manual：h2（21px / 500）比 .lead（18px / 400）字号大、字重也更重',
+  +   'manual：h2（21px / 500）比 .meta（14px / 400）字号大、字重也更重',
+  +   'manual：h2（21px / 500）比 .body p（16px / 400）字号大、字重也更重',
+  +   'manual：h2（21px / 500）比 li（16px / 400）字号大、字重也更重',
+  +   'manual：h2（21px / 500）比 blockquote p（16px / 400）字号大、字重也更重',
+  +   'manual：h2（21px / 500）比 .note（14px / 400）字号大、字重也更重',
+  +   'archive：h2（22px / 500）比 .kicker（14px / 400）字号大、字重也更重',
+  +   'archive：h2（22px / 500）比 .lead（18px / 400）字号大、字重也更重',
+  +   'archive：h2（22px / 500）比 .meta（14px / 400）字号大、字重也更重',
+  +   'archive：h2（22px / 500）比 .body p（17px / 400）字号大、字重也更重',
+  +   'archive：h2（22px / 500）比 li（17px / 400）字号大、字重也更重',
+  +   'archive：h2（22px / 500）比 blockquote p（17px / 400）字号大、字重也更重',
+  +   'archive：h2（22px / 500）比 .note（14px / 400）字号大、字重也更重',
+  +   'songke：h2（22px / 500）比 .kicker（15px / 400）字号大、字重也更重',
+  +   'songke：h2（22px / 500）比 .lead（19px / 400）字号大、字重也更重',
+  +   'songke：h2（22px / 500）比 .meta（14px / 400）字号大、字重也更重',
+  +   'songke：h2（22px / 500）比 .body p（18px / 400）字号大、字重也更重',
+  +   'songke：h2（22px / 500）比 li（18px / 400）字号大、字重也更重',
+  +   'songke：h2（22px / 500）比 blockquote p（18px / 400）字号大、字重也更重',
+  +   'songke：h2（22px / 500）比 .note（14px / 400）字号大、字重也更重'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (file://<仓库>/test/release.test.js:89:10)
+      at async Test.run (node:internal/test_runner/test:1054:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:744:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'broadsheet：h2（24px / 500）比 .lead（19px / 400）字号大、字重也更重', 'broadsheet：h2（24px / 500）比 .meta（14px / 400）字号大、字重也更重', 'broadsheet：h2（24px / 500）比 .body p（17px / 400）字号大、字重也更重', 'broadsheet：h2（24px / 500）比 li（17px / 400）字号大、字重也更重', 'broadsheet：h2（24px / 500）比 blockquote p（20px / 400）字号大、字重也更重', 'broadsheet：h2（24px / 500）比 .note（14px / 400）字号大、字重也更重', 'manual：h2（21px / 500）比 .lead（18px / 400）字号大、字重也更重', 'manual：h2（21px / 500）比 .meta（14px / 400）字号大、字重也更重', 'manual：h2（21px / 500）比 .body p（16px / 400）字号大、字重也更重', 'manual：h2（21px / 500）比 li（16px / 400）字号大、字重也更重', 'manual：h2（21px / 500）比 blockquote p（16px / 400）字号大、字重也更重', 'manual：h2（21px / 500）比 .note（14px / 400）字号大、字重也更重', 'archive：h2（22px / 500）比 .kicker（14px / 400）字号大、字重也更重', 'archive：h2（22px / 500）比 .lead（18px / 400）字号大、字重也更重', 'archive：h2（22px / 500）比 .meta（14px / 400）字号大、字重也更重', 'archive：h2（22px / 500）比 .body p（17px / 400）字号大、字重也更重', 'archive：h2（22px / 500）比 li（17px / 400）字号大、字重也更重', 'archive：h2（22px / 500）比 blockquote p（17px / 400）字号大、字重也更重', 'archive：h2（22px / 500）比 .note（14px / 400）字号大、字重也更重', 'songke：h2（22px / 500）比 .kicker（15px / 400）字号大、字重也更重', 'songke：h2（22px / 500）比 .lead（19px / 400）字号大、字重也更重', 'songke：h2（22px / 500）比 .meta（14px / 400）字号大、字重也更重', 'songke：h2（22px / 500）比 .body p（18px / 400）字号大、字重也更重', 'songke：h2（22px / 500）比 li（18px / 400）字号大、字重也更重', 'songke：h2（22px / 500）比 blockquote p（18px / 400）字号大、字重也更重', 'songke：h2（22px / 500）比 .note（14px / 400）字号大、字重也更重' ],
+    expected: [],
+    operator: 'deepStrictEqual'
+  }

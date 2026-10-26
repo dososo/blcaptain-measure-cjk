@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>租房检查清单</title>
+<style>
+  :root {
+    --bg: #efe9e1;
+    --card: #fffaf3;
+    --ink: #2b2420;
+    --muted: #7a6d63;
+    --accent: #e8573f;
+    --accent-soft: #fde3d9;
+    --line: #eaded1;
+    --tag: #fff1c9;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    min-height: 100vh;
+  }
+
+  /* 3:4 竖版卡片，内部尺寸随卡片宽度等比缩放 */
+  .card {
+    width: min(100%, 600px, calc((100vh - 48px) * 0.75));
+    aspect-ratio: 3 / 4;
+    container-type: inline-size;
+    background: var(--card);
+    border-radius: 3.5cqw;
+    box-shadow: 0 20px 50px -20px rgba(80, 50, 30, .35);
+    padding: 7cqw 7cqw 6cqw;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .card::before {
+    content: "";
+    position: absolute;
+    right: -14cqw; top: -14cqw;
+    width: 48cqw; height: 48cqw;
+    border-radius: 50%;
+    background: var(--accent-soft);
+  }
+
+  header { position: relative; }
+  .kicker {
+    display: inline-block;
+    font-size: 3.2cqw;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: .1em;
+    border: .35cqw solid var(--accent);
+    border-radius: 99px;
+    padding: .6cqw 2.6cqw;
+  }
+  h1 {
+    margin-top: 3cqw;
+    font-size: 9.4cqw;
+    line-height: 1.18;
+    font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    background: linear-gradient(transparent 62%, var(--tag) 62%);
+  }
+  .sub {
+    margin-top: 2cqw;
+    font-size: 3.6cqw;
+    color: var(--muted);
+  }
+
+  ol {
+    list-style: none;
+    margin-top: 5cqw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3cqw;
+    flex: 1;
+    position: relative;
+  }
+  li {
+    background: #fff;
+    border: .3cqw solid var(--line);
+    border-radius: 2.6cqw;
+    padding: 3.4cqw 3.4cqw 3cqw;
+    display: flex;
+    flex-direction: column;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    gap: 2cqw;
+  }
+  .num {
+    flex: none;
+    width: 6.4cqw; height: 6.4cqw;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 3.4cqw;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
+  h2 {
+    font-size: 4.4cqw;
+    font-weight: 700;
+  }
+  li p {
+    margin-top: 1.8cqw;
+    font-size: 3.05cqw;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  li p b { color: var(--ink); font-weight: 600; }
+
+  footer {
+    margin-top: 4cqw;
+    background: var(--ink);
+    color: #fff;
+    border-radius: 2.6cqw;
+    padding: 3cqw 3.6cqw;
+    font-size: 3.2cqw;
+    line-height: 1.5;
+    display: flex;
+    gap: 2.4cqw;
+    align-items: center;
+    position: relative;
+  }
+  footer strong {
+    flex: none;
+    background: var(--tag);
+    color: var(--ink);
+    font-size: 3cqw;
+    border-radius: 1.4cqw;
+    padding: .8cqw 1.8cqw;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <header>
+      <span class="kicker">租房避坑 · 收藏备用</span>
+      <h1>租房前一定要<br>检查的 <em>6 个地方</em></h1>
+      <p class="sub">看房 10 分钟，少吵一年架</p>
+    </header>
+
+    <ol>
+      <li>
+        <div class="top"><span class="num">1</span><h2>水压与下水</h2></div>
+        <p>同时开<b>淋浴和水龙头</b>看水压，马桶冲一次、地漏倒一盆水，看是否<b>返味、堵塞</b>。</p>
+      </li>
+      <li>
+        <div class="top"><span class="num">2</span><h2>墙面与天花板</h2></div>
+        <p>重点看<b>墙角、窗边、卫生间吊顶</b>，有黄渍、霉斑、起皮多半是<b>渗水</b>。</p>
+      </li>
+      <li>
+        <div class="top"><span class="num">3</span><h2>电路与插座</h2></div>
+        <p>带手机充电器<b>逐个试插座</b>，开关灯都按一遍，问清<b>电表是否民用价</b>。</p>
+      </li>
+      <li>
+        <div class="top"><span class="num">4</span><h2>燃气与热水器</h2></div>
+        <p>打火试灶台，热水<b>开 3 分钟</b>看是否稳定，留意燃气管<b>是否老化、过期</b>。</p>
+      </li>
+      <li>
+        <div class="top"><span class="num">5</span><h2>门窗与门锁</h2></div>
+        <p>窗户能否<b>关严不漏风</b>，入户门锁要求<b>换锁芯</b>，低楼层看防盗网。</p>
+      </li>
+      <li>
+        <div class="top"><span class="num">6</span><h2>家电与家具</h2></div>
+        <p>空调、冰箱、洗衣机<b>当场通电试用</b>，坏的写进合同，别等入住再扯皮。</p>
+      </li>
+    </ol>
+
+    <footer>
+      <strong>TIP</strong>
+      <span>签约前把每处问题<b>拍照 / 录视频</b>发给房东留证，退租押金不吃亏。</span>
+    </footer>
+  </main>
+</body>
+</html>

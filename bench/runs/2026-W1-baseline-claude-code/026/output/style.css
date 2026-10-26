@@ -1,0 +1,127 @@
+:root {
+  --paper: #F4E9DC;
+  --ink: #2B2622;
+  --ink-soft: #6B625A;
+  --rule: #D9CBB8;
+  --cinnabar: #9E4B3B;
+  --celadon: #7E8C6B;
+  --page: #E6DCCD;
+  --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: var(--page);
+  font-family: var(--serif);
+  color: var(--ink);
+}
+
+/* 竖版 3:4，内部尺寸全部用 cqw 随卡片宽度等比缩放（1cqw ≈ 10.8px @1080 宽） */
+.card {
+  container-type: inline-size;
+  width: min(100%, 540px);
+  aspect-ratio: 3 / 4;
+  background: var(--paper);
+  padding: 8cqw 8cqw 6cqw;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.head { padding-bottom: 5cqw; border-bottom: 1px solid var(--rule); }
+
+.kicker {
+  font-size: 3cqw;
+  letter-spacing: 0.3em;
+  color: var(--celadon);
+  margin-bottom: 3cqw;
+}
+
+h1 {
+  font-size: 8.4cqw;
+  font-weight: 300;
+  line-height: 1.18;
+  letter-spacing: 0.04em;
+}
+
+.lede {
+  margin-top: 3cqw;
+  font-size: 3.2cqw;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.list {
+  list-style: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.list li {
+  display: grid;
+  grid-template-columns: 8cqw 1fr;
+  gap: 3cqw;
+  align-items: start;
+}
+
+.no {
+  font-size: 5.6cqw;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--cinnabar);
+  padding-top: 0.3cqw;
+}
+
+h2 {
+  font-size: 4.2cqw;
+  font-weight: 600;
+  line-height: 1.3;
+  display: flex;
+  align-items: baseline;
+  gap: 2.4cqw;
+}
+
+h2 em {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 2.8cqw;
+  color: var(--celadon);
+  letter-spacing: 0.05em;
+}
+
+.body p {
+  margin-top: 1cqw;
+  font-size: 2.9cqw;
+  line-height: 1.55;
+  color: var(--ink-soft);
+}
+
+.foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 4cqw;
+  border-top: 1px solid var(--rule);
+  font-size: 2.8cqw;
+  letter-spacing: 0.15em;
+  color: var(--ink-soft);
+}
+
+.seal {
+  width: 8cqw;
+  height: 8cqw;
+  display: grid;
+  place-items: center;
+  background: var(--cinnabar);
+  color: var(--paper);
+  font-size: 4.4cqw;
+  border-radius: 1cqw;
+  letter-spacing: 0;
+}

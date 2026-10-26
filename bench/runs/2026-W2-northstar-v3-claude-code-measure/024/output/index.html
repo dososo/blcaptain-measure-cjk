@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>槐序小馆订座</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>槐序小馆 · 在线订座</h1>
+      <p class="measure-prose">可预订未来 14 天的座位，每周一店休。超过 12 位请直接致电门店，我们为您安排包间。</p>
+    </header>
+
+    <form id="booking" novalidate>
+      <fieldset>
+        <legend>选择日期</legend>
+        <div class="dates" id="dates" role="group" aria-label="日期"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>选择时间<span class="hint" id="date-label"></span></legend>
+        <div class="slot-group">
+          <h3>午市 11:30–14:00</h3>
+          <div class="slots" id="lunch"></div>
+        </div>
+        <div class="slot-group">
+          <h3>晚市 17:30–21:30</h3>
+          <div class="slots" id="dinner"></div>
+        </div>
+        <p class="error" id="time-error" hidden>请选择一个到店时间。</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>用餐人数</legend>
+        <div class="party">
+          <div class="stepper">
+            <button type="button" id="minus" aria-label="减少一位">−</button>
+            <output id="count" aria-live="polite">2 位</output>
+            <button type="button" id="plus" aria-label="增加一位">+</button>
+          </div>
+          <p class="party-note" id="party-note">将为您安排 2–4 人桌。</p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>联系方式</legend>
+        <div class="fields">
+          <div class="field">
+            <label for="name">称呼</label>
+            <input type="text" id="name" autocomplete="name" placeholder="例如：王先生">
+            <p class="error" id="name-error" hidden>请填写称呼。</p>
+          </div>
+          <div class="field">
+            <label for="phone">手机号</label>
+            <input type="tel" id="phone" autocomplete="tel" inputmode="numeric" maxlength="11" placeholder="11 位手机号">
+            <p class="error" id="phone-error" hidden>请填写正确的 11 位手机号。</p>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>备注<span class="hint">选填</span></legend>
+        <div class="tags" id="tags">
+          <button type="button" class="tag">需要儿童椅</button>
+          <button type="button" class="tag">靠窗座位</button>
+          <button type="button" class="tag">生日聚餐</button>
+          <button type="button" class="tag">不吃辣</button>
+          <button type="button" class="tag">有忌口或过敏</button>
+        </div>
+        <textarea id="note" maxlength="200" placeholder="忌口、过敏、座位偏好或其他需要我们提前准备的事项"></textarea>
+        <div class="counter"><span id="note-count">0</span>/200</div>
+      </fieldset>
+
+      <div class="summary">
+        <p id="summary">请选择日期和时间。</p>
+        <button type="submit" class="submit">确认订座</button>
+      </div>
+    </form>
+
+    <section class="confirm" id="confirm" hidden aria-live="polite">
+      <h2>订座已提交</h2>
+      <dl id="confirm-list"></dl>
+      <p>座位为您保留 15 分钟，如需改期或取消，请提前致电门店。</p>
+      <button type="button" class="ghost" id="again">再订一桌</button>
+    </section>
+
+    <footer class="measure-prose">
+      <p>门店电话：021-6288 0000　地址：上海市徐汇区武康路 120 号</p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var WEEK = ['日', '一', '二', '三', '四', '五', '六'];
+      var LUNCH = ['11:30', '12:00', '12:30', '13:00', '13:30'];
+      var DINNER = ['17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30'];
+      var MIN = 1, MAX = 12;
+
+      var state = { date: null, time: null, party: 2 };
+      var $ = function (id) { return document.getElementById(id); };
+
+      function sameDay(a, b) { return a.toDateString() === b.toDateString(); }
+      function fmtDate(d) { return (d.getMonth() + 1) + ' 月 ' + d.getDate() + ' 日（周' + WEEK[d.getDay()] + '）'; }
+
+      // 用日期生成固定的「已满」时段，模拟真实库存
+      function isFull(d, t, i) {
+        var seed = d.getDate() * 7 + d.getMonth() * 3 + i * 5;
+        var weekend = d.getDay() === 0 || d.getDay() === 6;
+        return seed % (weekend ? 3 : 5) === 0 || (weekend && (t === '18:30' || t === '19:00'));
+      }
+      function isPast(d, t) {
+        var now = new Date();
+        if (!sameDay(d, now)) return false;
+        var p = t.split(':');
+        var slot = new Date(d); slot.setHours(+p[0], +p[1], 0, 0);
+        return slot.getTime() - now.getTime() < 60 * 60 * 1000; // 至少提前一小时
+      }
+
+      // 日期
+      var today = new Date(); today.setHours(0, 0, 0, 0);
+      var days = [];
+      for (var i = 0; i < 14; i++) {
+        var d = new Date(today); d.setDate(today.getDate() + i); days.push(d);
+      }
+      var datesEl = $('dates');
+      days.forEach(function (d, idx) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'date-btn';
+        b.setAttribute('aria-pressed', 'false');
+        var closed = d.getDay() === 1;
+        var wd = idx === 0 ? '今天' : idx === 1 ? '明天' : '周' + WEEK[d.getDay()];
+        b.innerHTML = '<span class="wd">' + wd + '</span><span class="d">' + d.getDate() +
+          '</span><span class="m">' + (closed ? '店休' : (d.getMonth() + 1) + ' 月') + '</span>';
+        b.setAttribute('aria-label', fmtDate(d) + (closed ? '，店休' : ''));
+        if (closed) b.disabled = true;
+        b.addEventListener('click', function () { selectDate(d, b); });
+        datesEl.appendChild(b);
+      });
+
+      function selectDate(d, btn) {
+        state.date = d;
+        state.time = null;
+        datesEl.querySelectorAll('.date-btn').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+        btn.setAttribute('aria-pressed', 'true');
+        $('date-label').textContent = fmtDate(d);
+        renderSlots();
+        update();
+      }
+
+      function renderSlots() {
+        [['lunch', LUNCH, 0], ['dinner', DINNER, 10]].forEach(function (g) {
+          var wrap = $(g[0]);
+          wrap.innerHTML = '';
+          g[1].forEach(function (t, i) {
+            var b = document.createElement('button');
+            b.type = 'button';
+            b.className = 'slot';
+            b.textContent = t;
+            b.setAttribute('aria-pressed', 'false');
+            var full = isFull(state.date, t, i + g[2]);
+            var past = isPast(state.date, t);
+            if (full || past) {
+              b.disabled = true;
+              b.setAttribute('aria-label', t + (past ? '，已过可订时间' : '，已订满'));
+              b.title = past ? '已过可订时间' : '已订满';
+            }
+            b.addEventListener('click', function () {
+              state.time = t;
+              document.querySelectorAll('.slot').forEach(function (x) { x.setAttribute('aria-pressed', 'false'); });
+              b.setAttribute('aria-pressed', 'true');
+              $('time-error').hidden = true;
+              update();
+            });
+            wrap.appendChild(b);
+          });
+        });
+      }
+
+      // 人数
+      function setParty(n) {
+        state.party = Math.max(MIN, Math.min(MAX, n));
+        $('count').textContent = state.party + ' 位';
+        $('minus').disabled = state.party <= MIN;
+        $('plus').disabled = state.party >= MAX;
+        var p = state.party;
+        $('party-note').textContent = p <= 4 ? '将为您安排 2–4 人桌。'
+          : p <= 8 ? '将为您安排 6–8 人圆桌。'
+          : '将为您安排包间，包间有最低消费，到店前会与您电话确认。';
+        update();
+      }
+      $('minus').addEventListener('click', function () { setParty(state.party - 1); });
+      $('plus').addEventListener('click', function () { setParty(state.party + 1); });
+
+      // 备注
+      var note = $('note');
+      function syncCount() { $('note-count').textContent = note.value.length; }
+      note.addEventListener('input', syncCount);
+      $('tags').addEventListener('click', function (e) {
+        var t = e.target.closest('.tag');
+        if (!t) return;
+        var text = t.textContent;
+        if (note.value.indexOf(text) !== -1) return;
+        var next = note.value.trim() ? note.value.trim() + '；' + text : text;
+        if (next.length <= 200) { note.value = next; syncCount(); }
+        note.focus();
+      });
+
+      function update() {
+        var s = $('summary');
+        if (!state.date) { s.textContent = '请选择日期和时间。'; return; }
+        s.innerHTML = '<strong>' + fmtDate(state.date) + ' ' + (state.time || '未选时间') +
+          '</strong>，' + state.party + ' 位';
+      }
+
+      // 提交
+      $('booking').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var ok = true;
+        var name = $('name').value.trim();
+        var phone = $('phone').value.trim();
+        $('time-error').hidden = !!(state.date && state.time);
+        if (!state.date || !state.time) ok = false;
+        $('name-error').hidden = !!name;
+        if (!name) ok = false;
+        var phoneOk = /^1\d{10}$/.test(phone);
+        $('phone-error').hidden = phoneOk;
+        if (!phoneOk) ok = false;
+        if (!ok) {
+          var firstErr = document.querySelector('.error:not([hidden])');
+          if (firstErr) firstErr.closest('fieldset').scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+        var rows = [
+          ['日期', fmtDate(state.date)],
+          ['时间', state.time],
+          ['人数', state.party + ' 位'],
+          ['称呼', name],
+          ['手机号', phone.replace(/(\d{3})\d{4}(\d{4})/, '$1 **** $2')],
+          ['备注', note.value.trim() || '无']
+        ];
+        var dl = $('confirm-list');
+        dl.innerHTML = '';
+        rows.forEach(function (r) {
+          var dt = document.createElement('dt'); dt.textContent = r[0];
+          var dd = document.createElement('dd'); dd.textContent = r[1];
+          dl.appendChild(dt); dl.appendChild(dd);
+        });
+        $('booking').hidden = true;
+        $('confirm').hidden = false;
+        $('confirm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+
+      $('again').addEventListener('click', function () {
+        $('confirm').hidden = true;
+        $('booking').hidden = false;
+      });
+
+      // 初始：选中第一个可订日期
+      setParty(2);
+      var first = datesEl.querySelector('.date-btn:not(:disabled)');
+      if (first) first.click();
+    })();
+  </script>
+</body>
+</html>

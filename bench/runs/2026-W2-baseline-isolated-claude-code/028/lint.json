@@ -1,0 +1,130 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w1-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-25T13:25:45.085Z",
+    "mode": "static",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {}
+  },
+  "summary": {
+    "files": 1,
+    "cjk_files": 1,
+    "errors": 5,
+    "warns": 4,
+    "status": "fail"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "pingfang sc",
+      "tier": "system-only",
+      "usage": "system"
+    },
+    {
+      "family": "noto sans sc",
+      "tier": "embeddable",
+      "usage": "system"
+    },
+    {
+      "family": "microsoft yahei",
+      "tier": "system-only",
+      "usage": "system"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "T02",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main.card > div.inner:nth-of-type(2) > span.tag",
+      "line": 132,
+      "message": "有 21 个中文元素没有开启 text-autospace。三大浏览器实现里它的初始值是 no-autospace，必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: \"text\"，在文案里打空格。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t02"
+    },
+    {
+      "rule": "T04",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main.card > div.inner:nth-of-type(2) > span.tag",
+      "line": 132,
+      "message": "有 21 个中文元素没有 line-break: strict，标点可能出现在行首。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t04"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main.card > div.inner:nth-of-type(2) > p.sub",
+      "line": 134,
+      "message": "这段中文没有设置行高（浏览器默认约 1.2）。如果它会折行，请设为 1.6–1.9。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.list > article.item:nth-of-type(1) > div:nth-of-type(2) > p.desc:nth-of-type(1)",
+      "line": 141,
+      "message": "正文行高 1.55，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section.list > article.item:nth-of-type(1) > div:nth-of-type(2) > p.tip:nth-of-type(2)",
+      "line": 142,
+      "message": "正文行高 1.45，低于 1.5。中文正文请用 1.6–1.9。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.list > article.item:nth-of-type(2) > div:nth-of-type(2) > p.desc:nth-of-type(1)",
+      "line": 150,
+      "message": "正文行高 1.55，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section.list > article.item:nth-of-type(2) > div:nth-of-type(2) > p.tip:nth-of-type(2)",
+      "line": 151,
+      "message": "正文行高 1.45，低于 1.5。中文正文请用 1.6–1.9。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.list > article.item:nth-of-type(3) > div:nth-of-type(2) > p.desc:nth-of-type(1)",
+      "line": 159,
+      "message": "正文行高 1.55，建议在 1.6–1.9 之间。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section.list > article.item:nth-of-type(3) > div:nth-of-type(2) > p.tip:nth-of-type(2)",
+      "line": 160,
+      "message": "正文行高 1.45，低于 1.5。中文正文请用 1.6–1.9。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    }
+  ]
+}

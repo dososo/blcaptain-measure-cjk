@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>睡前书单</title>
+<style>
+  :root {
+    --bg: #e9e4da;
+    --night-1: #1b2340;
+    --night-2: #2b2f55;
+    --night-3: #4a3f6b;
+    --moon: #f6e7b8;
+    --ink: #f4efe4;
+    --ink-soft: rgba(244, 239, 228, 0.68);
+    --ink-faint: rgba(244, 239, 228, 0.38);
+    --accent: #f2c879;
+    --line: rgba(244, 239, 228, 0.14);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    display: grid;
+    place-items: center;
+    padding: 16px;
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  }
+
+  .card {
+    container-type: inline-size;
+    position: relative;
+    width: min(100%, calc((100vh - 32px) * 3 / 4), 720px);
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    border-radius: 2.4cqw;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 82% 10%, rgba(246, 231, 184, 0.22), transparent 28%),
+      linear-gradient(165deg, var(--night-1) 0%, var(--night-2) 55%, var(--night-3) 100%);
+    box-shadow: 0 20px 60px rgba(27, 35, 64, 0.35);
+    padding: 7cqw 7cqw 5.5cqw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 星星 */
+  .stars span {
+    position: absolute;
+    width: 0.5cqw; height: 0.5cqw;
+    border-radius: 50%;
+    background: var(--moon);
+    opacity: .7;
+  }
+  .stars span:nth-child(1) { top: 6%;  left: 58%; }
+  .stars span:nth-child(2) { top: 15%; left: 66%; width: .35cqw; height: .35cqw; opacity: .5; }
+  .stars span:nth-child(3) { top: 4%;  left: 40%; width: .35cqw; height: .35cqw; opacity: .45; }
+  .stars span:nth-child(4) { top: 22%; left: 92%; }
+  .stars span:nth-child(5) { top: 27%; left: 74%; width: .3cqw; height: .3cqw; opacity: .4; }
+
+  /* 月亮 */
+  .moon {
+    position: absolute;
+    top: 6cqw; right: 8cqw;
+    width: 13cqw; height: 13cqw;
+    border-radius: 50%;
+    box-shadow: inset -3.6cqw 1.4cqw 0 0 var(--moon);
+    transform: rotate(-18deg);
+    filter: drop-shadow(0 0 2.5cqw rgba(246, 231, 184, 0.45));
+  }
+
+  header { position: relative; }
+  .tag {
+    display: inline-block;
+    font-size: 2.6cqw;
+    letter-spacing: .3em;
+    color: var(--accent);
+    border: 1px solid rgba(242, 200, 121, 0.5);
+    border-radius: 999px;
+    padding: .7cqw 2.4cqw;
+  }
+  h1 {
+    margin-top: 3.4cqw;
+    font-family: "Songti SC", "STSong", "Noto Serif SC", "SimSun", serif;
+    font-size: 9.6cqw;
+    line-height: 1.15;
+    font-weight: 900;
+    letter-spacing: .04em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+  .sub {
+    margin-top: 2.2cqw;
+    font-size: 3.2cqw;
+    color: var(--ink-soft);
+    letter-spacing: .06em;
+  }
+
+  ol {
+    list-style: none;
+    margin-top: 5cqw;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  li {
+    display: grid;
+    grid-template-columns: 9cqw 1fr auto;
+    align-items: center;
+    column-gap: 3cqw;
+    padding: 2.6cqw 0;
+    border-top: 1px solid var(--line);
+  }
+  li:last-child { border-bottom: 1px solid var(--line); }
+  .no {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 7cqw;
+    color: var(--accent);
+    opacity: .85;
+    line-height: 1;
+  }
+  .title {
+    font-family: "Songti SC", "STSong", "Noto Serif SC", "SimSun", serif;
+    font-size: 4.6cqw;
+    font-weight: 700;
+    letter-spacing: .03em;
+  }
+  .author {
+    font-size: 2.6cqw;
+    color: var(--ink-faint);
+    margin-left: 1.4cqw;
+    font-weight: 400;
+    font-family: "PingFang SC", "Noto Sans SC", sans-serif;
+  }
+  .why {
+    margin-top: 1cqw;
+    font-size: 3cqw;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .mood {
+    font-size: 2.5cqw;
+    color: var(--night-1);
+    background: var(--moon);
+    border-radius: 1cqw;
+    padding: .6cqw 1.6cqw;
+    white-space: nowrap;
+    align-self: start;
+    margin-top: .8cqw;
+  }
+
+  footer {
+    margin-top: 4cqw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.6cqw;
+    color: var(--ink-faint);
+    letter-spacing: .08em;
+  }
+  footer b { color: var(--ink-soft); font-weight: 500; }
+</style>
+</head>
+<body>
+  <article class="card">
+    <div class="stars"><span></span><span></span><span></span><span></span><span></span></div>
+    <div class="moon"></div>
+
+    <header>
+      <span class="tag">睡前书单</span>
+      <h1>关灯前，<br>读这 <em>5</em> 本书</h1>
+      <p class="sub">不烧脑 · 不揪心 · 读几页就安静下来</p>
+    </header>
+
+    <ol>
+      <li>
+        <span class="no">01</span>
+        <div>
+          <div class="title">《小王子》<span class="author">圣埃克苏佩里</span></div>
+          <p class="why">每晚一颗小星球，像童年听过的睡前故事。</p>
+        </div>
+        <span class="mood">治愈</span>
+      </li>
+      <li>
+        <span class="no">02</span>
+        <div>
+          <div class="title">《枕草子》<span class="author">清少纳言</span></div>
+          <p class="why">一段一则的随笔，从哪页翻开都刚刚好。</p>
+        </div>
+        <span class="mood">碎片</span>
+      </li>
+      <li>
+        <span class="no">03</span>
+        <div>
+          <div class="title">《浮生六记》<span class="author">沈复</span></div>
+          <p class="why">寻常日子里的闲情与温柔，读完心是软的。</p>
+        </div>
+        <span class="mood">温柔</span>
+      </li>
+      <li>
+        <span class="no">04</span>
+        <div>
+          <div class="title">《瓦尔登湖》<span class="author">梭罗</span></div>
+          <p class="why">湖光、林声、四季，慢到让人想打哈欠。</p>
+        </div>
+        <span class="mood">安静</span>
+      </li>
+      <li>
+        <span class="no">05</span>
+        <div>
+          <div class="title">《夜晚的潜水艇》<span class="author">陈春成</span></div>
+          <p class="why">短篇里的奇妙梦境，适合带着想象入睡。</p>
+        </div>
+        <span class="mood">入梦</span>
+      </li>
+    </ol>
+
+    <footer>
+      <span>🌙 每晚 20 分钟，放下手机</span>
+      <b>收藏 · 今晚就读</b>
+    </footer>
+  </article>
+</body>
+</html>

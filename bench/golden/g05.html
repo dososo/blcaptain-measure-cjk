@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>用 Python 处理 Excel 报表的 5 个技巧</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<main class="measure-prose">
+<h1>用 Python 处理 Excel 报表的 5 个技巧</h1>
+<p class="lead">下面的例子都基于 pandas 2.x，每个技巧都能直接复制到你的脚本里。</p>
+<h2>1. 一次读入多个工作表</h2>
+<p>把 sheet_name 设为 None，会得到一个字典，键是工作表的名字。</p>
+<pre><code>import pandas as pd
+sheets = pd.read_excel("report.xlsx", sheet_name=None)
+for name, df in sheets.items():
+    print(name, len(df))</code></pre>
+<h2>2. 合并之前先统一列名</h2>
+<p>不同同事交上来的表格，列名经常对不上。先用 rename 统一，再用 concat 合并，能少踩很多坑。</p>
+<h2>3. 导出时保留格式</h2>
+<p>如果领导习惯看带颜色的表格，可以用 ExcelWriter 配合 openpyxl 设置列宽和表头样式。</p>
+</main>
+</body>
+</html>

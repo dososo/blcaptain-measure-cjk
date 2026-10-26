@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>按量计费价格</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <p class="eyebrow">价格</p>
+      <h1>按调用次数计费，用多少付多少</h1>
+      <p class="lead measure-prose">没有月费，没有最低消费。每个接口每月都有免费额度，超出部分按每千次调用计费，月底统一结算。</p>
+    </header>
+
+    <section aria-labelledby="free-title">
+      <h2 id="free-title">每月免费额度</h2>
+      <div class="free">
+        <div class="free-card measure-prose">
+          <p class="num">18 万次</p>
+          <p>所有接口合计的免费调用次数，每月 1 日自动重置。</p>
+        </div>
+        <div class="free-card measure-prose">
+          <p class="num">¥0</p>
+          <p>免费额度内不收费，注册即可使用，无需绑定银行卡。</p>
+        </div>
+        <div class="free-card measure-prose">
+          <p class="num">按接口独立</p>
+          <p>各接口额度互不占用，某个接口用完不影响其他接口。</p>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="price-title">
+      <h2 id="price-title">接口价格</h2>
+      <div class="table-box">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">接口</th>
+              <th scope="col">端点</th>
+              <th scope="col" class="price">每月免费额度</th>
+              <th scope="col" class="price">超出后 / 每千次</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="api-name">文本生成</span><span class="api-desc">单次输入不超过 4,000 字</span></td>
+              <td><code>/v1/text/generate</code></td>
+              <td class="price">10,000 次</td>
+              <td class="price"><strong>¥2.00</strong></td>
+            </tr>
+            <tr>
+              <td><span class="api-name">文本向量</span><span class="api-desc">返回 1,024 维向量</span></td>
+              <td><code>/v1/embeddings</code></td>
+              <td class="price">50,000 次</td>
+              <td class="price"><strong>¥0.40</strong></td>
+            </tr>
+            <tr>
+              <td><span class="api-name">图片文字识别</span><span class="api-desc">单张图片不超过 10 MB</span></td>
+              <td><code>/v1/vision/ocr</code></td>
+              <td class="price">2,000 次</td>
+              <td class="price"><strong>¥6.00</strong></td>
+            </tr>
+            <tr>
+              <td><span class="api-name">语音转写</span><span class="api-desc">单段音频不超过 60 秒</span></td>
+              <td><code>/v1/audio/transcribe</code></td>
+              <td class="price">1,000 次</td>
+              <td class="price"><strong>¥8.00</strong></td>
+            </tr>
+            <tr>
+              <td><span class="api-name">内容审核</span><span class="api-desc">文本与图片均可</span></td>
+              <td><code>/v1/moderation</code></td>
+              <td class="price">20,000 次</td>
+              <td class="price"><strong>¥0.80</strong></td>
+            </tr>
+            <tr>
+              <td><span class="api-name">地址解析</span><span class="api-desc">地址与经纬度互查</span></td>
+              <td><code>/v1/geocode</code></td>
+              <td class="price">97,000 次</td>
+              <td class="price"><strong>¥0.20</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note measure-prose">价格含税，以人民币计。调用失败（返回 5xx）不计费；参数错误（返回 4xx）照常计费。不足一千次的部分按实际次数折算，精确到分。</p>
+    </section>
+
+    <section aria-labelledby="tier-title">
+      <h2 id="tier-title">用量越大，单价越低</h2>
+      <div class="tiers">
+        <div class="tier measure-prose">
+          <h3>每月 100 万次以内</h3>
+          <p class="off">原价</p>
+          <p>按上表单价计费。</p>
+        </div>
+        <div class="tier measure-prose">
+          <h3>100 万至 1,000 万次</h3>
+          <p class="off">9 折</p>
+          <p>超过 100 万次的部分自动打折。</p>
+        </div>
+        <div class="tier measure-prose">
+          <h3>1,000 万次以上</h3>
+          <p class="off">8 折</p>
+          <p>超过 1,000 万次的部分自动打折。</p>
+        </div>
+        <div class="tier measure-prose">
+          <h3>每月 1 亿次以上</h3>
+          <p class="off">另议</p>
+          <p>可签年度合同，享专属价格与服务保障。</p>
+        </div>
+      </div>
+      <p class="note measure-prose">阶梯按单个接口当月的计费次数（已扣除免费额度）累计，分段计算。</p>
+    </section>
+
+    <section aria-labelledby="calc-title">
+      <h2 id="calc-title">费用估算</h2>
+      <form class="calc" id="calc">
+        <div>
+          <label for="api">接口</label>
+          <select id="api"></select>
+        </div>
+        <div>
+          <label for="calls">每月调用次数</label>
+          <input id="calls" type="number" min="0" step="1000" value="500000" inputmode="numeric">
+        </div>
+        <div class="result" aria-live="polite">
+          <p class="detail">预计每月费用</p>
+          <p class="total" id="total">¥0.00</p>
+          <p class="detail" id="detail"></p>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="faq-title">
+      <h2 id="faq-title">常见问题</h2>
+      <div class="faq">
+        <details>
+          <summary>免费额度用完后会自动扣费吗？</summary>
+          <p>只有在控制台开启了按量付费，超出部分才会计费；没有开启时，接口会返回 429，直到下月额度重置。</p>
+        </details>
+        <details>
+          <summary>没用完的免费额度能留到下个月吗？</summary>
+          <p>不能。免费额度每月 1 日重置，不累计、不折现。</p>
+        </details>
+        <details>
+          <summary>怎么查看用量和账单？</summary>
+          <p>控制台的“用量”页面按小时更新各接口的调用次数，账单在每月 3 日前生成，可以下载明细。</p>
+        </details>
+        <details>
+          <summary>可以设置消费上限吗？</summary>
+          <p>可以。在控制台为每个接口设置月度预算，达到上限后自动停止计费调用，并发送邮件提醒。</p>
+        </details>
+      </div>
+    </section>
+
+    <footer class="measure-prose">
+      <p>价格自 2026 年 11 月 1 日起生效，如有调整将提前 30 天通知。</p>
+    </footer>
+  </div>
+
+  <script>
+    var APIS = [
+      { name: "文本生成", free: 10000, price: 2.0 },
+      { name: "文本向量", free: 50000, price: 0.4 },
+      { name: "图片文字识别", free: 2000, price: 6.0 },
+      { name: "语音转写", free: 1000, price: 8.0 },
+      { name: "内容审核", free: 20000, price: 0.8 },
+      { name: "地址解析", free: 97000, price: 0.2 }
+    ];
+    // 分段阶梯：[上限, 折扣]
+    var TIERS = [[1e6, 1], [1e7, 0.9], [Infinity, 0.8]];
+
+    var apiSel = document.getElementById("api");
+    var callsIn = document.getElementById("calls");
+    var totalEl = document.getElementById("total");
+    var detailEl = document.getElementById("detail");
+
+    APIS.forEach(function (a, i) {
+      var o = document.createElement("option");
+      o.value = i;
+      o.textContent = a.name + "（¥" + a.price.toFixed(2) + " / 千次）";
+      apiSel.appendChild(o);
+    });
+
+    function fmt(n) { return n.toLocaleString("zh-CN"); }
+
+    function update() {
+      var a = APIS[apiSel.value];
+      var calls = Math.max(0, Math.floor(Number(callsIn.value) || 0));
+      var billable = Math.max(0, calls - a.free);
+      var cost = 0, prev = 0;
+      for (var i = 0; i < TIERS.length && billable > prev; i++) {
+        var seg = Math.min(billable, TIERS[i][0]) - prev;
+        cost += seg / 1000 * a.price * TIERS[i][1];
+        prev = TIERS[i][0];
+      }
+      totalEl.textContent = "¥" + cost.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+      detailEl.textContent = billable === 0
+        ? "全部在免费额度（" + fmt(a.free) + " 次）以内。"
+        : "扣除免费额度 " + fmt(a.free) + " 次后，计费 " + fmt(billable) + " 次。";
+    }
+
+    apiSel.addEventListener("change", update);
+    callsIn.addEventListener("input", update);
+    document.getElementById("calc").addEventListener("submit", function (e) { e.preventDefault(); });
+    update();
+  </script>
+</body>
+</html>

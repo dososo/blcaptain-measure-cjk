@@ -1,0 +1,195 @@
+:root {
+  --bg: #f6f4ef;
+  --card: #ffffff;
+  --fg: #1f2328;
+  --muted: #5b6370;
+  --line: #d9d5cc;
+  --accent: #b5462b;
+  --accent-soft: #fbeee9;
+  --error: #c0362c;
+  --ok: #2f7a4f;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17181a;
+    --card: #212326;
+    --fg: #e9e7e2;
+    --muted: #a3a8b0;
+    --line: #3a3d42;
+    --accent: #e0805f;
+    --accent-soft: #3a2a24;
+    --error: #ef7b70;
+    --ok: #6fc28f;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding-block: 48px;
+  padding-inline: 16px;
+  background: var(--bg);
+  color: var(--fg);
+  /* 西文字体在前，中文系统字体在后，最后是通用族；均为系统字体，不自托管 */
+  font-family: "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+}
+
+.wrap {
+  max-width: 34em;
+  margin: 0 auto;
+}
+
+header { margin-bottom: 28px; }
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: var(--accent);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+h1 {
+  margin: 0 0 12px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.intro {
+  margin: 0;
+  color: var(--muted);
+}
+
+form {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+
+.field { margin-bottom: 22px; }
+
+.field > label,
+fieldset legend {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.req { color: var(--accent); margin-left: 2px; }
+
+input[type="text"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 11px 12px;
+  font: inherit;
+  font-size: 16px;
+  color: var(--fg);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+input:focus-visible,
+select:focus-visible,
+.session input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.hint,
+.err {
+  margin: 6px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.hint { color: var(--muted); }
+.err { color: var(--error); }
+
+.invalid input,
+.invalid select { border-color: var(--error); }
+
+fieldset {
+  margin: 0 0 22px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+.sessions {
+  display: grid;
+  gap: 10px;
+}
+
+.session { display: block; cursor: pointer; }
+
+.session input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.session span {
+  display: block;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.session strong { display: block; font-size: 15px; }
+.session small { display: block; font-size: 13px; color: var(--muted); }
+
+.session input:checked + span {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+button {
+  width: 100%;
+  padding: 13px;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--accent);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover { filter: brightness(1.05); }
+
+.done {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 28px 24px;
+}
+
+.done h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: var(--ok);
+}
+
+.done p { margin: 0 0 12px; }
+
+.done .link {
+  padding: 0;
+  width: auto;
+  background: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+[hidden] { display: none !important; }

@@ -1,0 +1,133 @@
+:root {
+  --bg: #f4f5f7;
+  --card: #fff;
+  --text: #1f2329;
+  --muted: #6b7280;
+  --border: #dfe1e5;
+  --primary: #3b6cf6;
+  --primary-soft: #eef2fe;
+  --danger: #d93a3a;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #15171a;
+    --card: #1e2125;
+    --text: #e8eaed;
+    --muted: #9aa0a6;
+    --border: #353a40;
+    --primary: #6b8fff;
+    --primary-soft: #232c45;
+    --danger: #ff6b6b;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+  padding: 40px 16px;
+}
+.card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--card);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .06);
+}
+h1 { margin: 0 0 4px; font-size: 24px; }
+.sub { margin: 0 0 28px; color: var(--muted); }
+
+.field { border: 0; padding: 0; margin: 0 0 24px; min-width: 0; }
+.field > label, legend { display: block; font-weight: 600; margin-bottom: 10px; padding: 0; }
+.req { color: var(--danger); }
+.hint { font-weight: 400; color: var(--muted); font-size: 13px; }
+
+.types { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.type input { position: absolute; opacity: 0; pointer-events: none; }
+.type span {
+  display: block;
+  text-align: center;
+  padding: 10px 6px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: .15s;
+  user-select: none;
+}
+.type span:hover { border-color: var(--primary); }
+.type input:checked + span { border-color: var(--primary); background: var(--primary-soft); color: var(--primary); font-weight: 600; }
+.type input:focus-visible + span { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+textarea, input[type=text] {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  resize: vertical;
+}
+textarea:focus, input[type=text]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px var(--primary-soft); }
+.meta { display: flex; justify-content: space-between; margin-top: 4px; }
+.count { margin-left: auto; color: var(--muted); font-size: 13px; }
+.error { color: var(--danger); font-size: 13px; margin: 6px 0 0; }
+.meta .error { margin: 0; }
+
+.uploads { display: flex; flex-wrap: wrap; gap: 10px; }
+.drop, .thumb { width: 96px; height: 96px; border-radius: var(--radius); }
+.drop {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1.5px dashed var(--border);
+  color: var(--muted);
+  cursor: pointer;
+  transition: .15s;
+}
+.drop[hidden] { display: none; }
+.drop:hover, .drop:focus-visible, .drop.over { border-color: var(--primary); color: var(--primary); background: var(--primary-soft); outline: none; }
+.plus { font-size: 28px; line-height: 1; }
+.drop-text { font-size: 12px; margin-top: 4px; }
+.thumb { position: relative; overflow: hidden; border: 1px solid var(--border); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.remove {
+  position: absolute; top: 4px; right: 4px;
+  width: 22px; height: 22px; border: 0; border-radius: 50%;
+  background: rgba(0, 0, 0, .6); color: #fff; font-size: 15px; line-height: 1;
+  cursor: pointer;
+}
+
+.submit {
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--primary);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: .15s;
+}
+.submit:hover { filter: brightness(1.08); }
+.submit:disabled { opacity: .6; cursor: default; }
+.submit.ghost { background: var(--primary-soft); color: var(--primary); width: auto; padding: 10px 24px; }
+
+.done { text-align: center; padding: 24px 0; }
+.check {
+  width: 56px; height: 56px; margin: 0 auto 12px;
+  border-radius: 50%; background: var(--primary-soft); color: var(--primary);
+  font-size: 28px; line-height: 56px;
+}
+.done h2 { margin: 0 0 4px; }
+.done p { color: var(--muted); margin: 0 0 20px; }
+
+@media (max-width: 480px) {
+  body { padding: 16px; }
+  .card { padding: 22px 18px; }
+  .types { grid-template-columns: repeat(2, 1fr); }
+}

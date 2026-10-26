@@ -1,0 +1,346 @@
+/* 色板取自咖啡实物：牛皮纸豆袋、熟豆、生豆、封口朱印 */
+:root {
+  --paper: #F1E8DA;      /* 牛皮纸袋内衬 */
+  --paper-deep: #E6DAC6;
+  --ink: #2B2420;        /* 深烘豆表 */
+  --ink-soft: #6B5E54;
+  --bean: #6A4630;       /* 中焙熟豆，强调色 1 */
+  --seal: #9E4B3B;       /* 朱砂封口印，强调色 2 */
+  --rule: #CDBFA9;
+
+  --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+  --mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --gutter: clamp(20px, 6vw, 96px);
+  --section-gap: clamp(96px, 14vw, 180px);
+  --max: 1120px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+h1, h2, h3 { margin: 0; font-weight: 400; }
+
+p { margin: 0; }
+
+.muted { color: var(--ink-soft); }
+
+/* ---------- 页眉 ---------- */
+.site-header {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 32px var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+}
+
+.seal {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--seal);
+  color: var(--seal);
+  font-size: 12px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  writing-mode: vertical-rl;
+}
+
+.brand-name { font-size: 17px; letter-spacing: 0.2em; }
+
+.nav { display: flex; gap: clamp(20px, 4vw, 48px); }
+
+.nav a {
+  font-size: 15px;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  color: var(--ink-soft);
+  transition: color .2s;
+}
+
+.nav a:hover { color: var(--ink); }
+
+/* ---------- 首屏 ---------- */
+main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.hero {
+  padding: clamp(96px, 16vw, 200px) 0 clamp(80px, 12vw, 160px);
+  border-bottom: 1px solid var(--rule);
+}
+
+.eyebrow {
+  font-size: 14px;
+  letter-spacing: 0.3em;
+  color: var(--ink-soft);
+  margin-bottom: 40px;
+}
+
+/* 字号越大字重越轻 */
+.hero h1 {
+  font-size: clamp(48px, 9vw, 112px);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+}
+
+.lede {
+  margin-top: 48px;
+  max-width: 30em;
+  font-size: 18px;
+  color: var(--ink-soft);
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 56px;
+  font-size: 15px;
+  letter-spacing: 0.2em;
+  text-decoration: none;
+  color: var(--seal);
+  padding-bottom: 6px;
+  border-bottom: 1px solid currentColor;
+}
+
+/* ---------- 通用分节 ---------- */
+.section { padding-top: var(--section-gap); }
+
+.section-head {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  column-gap: 24px;
+  row-gap: 16px;
+  margin-bottom: 72px;
+}
+
+.index {
+  grid-row: span 2;
+  font-size: 15px;
+  color: var(--seal);
+  padding-top: 14px;
+}
+
+.section-head h2 {
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 300;
+  letter-spacing: 0.12em;
+}
+
+.section-head p {
+  color: var(--ink-soft);
+  max-width: 32em;
+}
+
+/* ---------- 豆单 ---------- */
+.bean-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid var(--rule);
+}
+
+.bean {
+  padding: 48px 40px 48px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.bean:nth-child(even) {
+  padding: 48px 0 48px 40px;
+  border-left: 1px solid var(--rule);
+}
+
+.bean-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+.roast-level { color: var(--bean); }
+
+.bean h3 {
+  margin-top: 24px;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+.notes {
+  margin-top: 12px;
+  color: var(--bean);
+  letter-spacing: 0.1em;
+}
+
+.specs {
+  margin: 32px 0 0;
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.specs div { display: flex; gap: 20px; }
+
+.specs dt { color: var(--ink-soft); width: 3em; flex-shrink: 0; }
+
+.specs dd { margin: 0; font-family: var(--mono); font-size: 13px; }
+
+.footnote {
+  margin-top: 32px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+/* ---------- 理念 ---------- */
+.principles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 48px;
+}
+
+.principle .step {
+  display: block;
+  font-size: 15px;
+  color: var(--seal);
+  margin-bottom: 20px;
+}
+
+.principle h3 {
+  font-size: 22px;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.principle p { font-size: 15px; color: var(--ink-soft); }
+
+/* ---------- 到店 ---------- */
+.visit { padding-bottom: var(--section-gap); }
+
+.visit-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 72px;
+  align-items: start;
+}
+
+.visit-info { margin: 0; display: grid; gap: 32px; }
+
+.visit-info div {
+  display: grid;
+  grid-template-columns: 4em 1fr;
+  gap: 24px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.visit-info dt {
+  color: var(--ink-soft);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  padding-top: 3px;
+}
+
+.visit-info dd { margin: 0; }
+
+.visit-info .muted { font-size: 14px; }
+
+.map {
+  margin: 0;
+  background: var(--paper-deep);
+  padding: 32px;
+}
+
+.map svg { display: block; width: 100%; height: auto; }
+
+.map-road { fill: none; stroke: var(--ink); stroke-width: 2; }
+.map-road.thin { stroke-width: 1; stroke: var(--ink-soft); }
+.map-hill { fill: none; stroke: var(--rule); stroke-width: 1.5; }
+.map-pin { fill: var(--seal); }
+.map-label { font-family: var(--serif); font-size: 13px; fill: var(--ink); letter-spacing: 1px; }
+.map-label.muted { fill: var(--ink-soft); }
+
+.map figcaption {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+/* ---------- 页脚 ---------- */
+.site-footer {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 40px var(--gutter) 56px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+  border-top: 1px solid var(--rule);
+}
+
+/* ---------- 错峰淡入（克制） ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .hero > * { animation: rise .9s ease-out both; }
+  .hero > :nth-child(2) { animation-delay: .12s; }
+  .hero > :nth-child(3) { animation-delay: .24s; }
+  .hero > :nth-child(4) { animation-delay: .36s; }
+
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: none; }
+  }
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 900px) {
+  .principles { grid-template-columns: repeat(2, 1fr); gap: 56px 40px; }
+  .visit-grid { grid-template-columns: 1fr; gap: 56px; }
+}
+
+@media (max-width: 640px) {
+  body { font-size: 16px; }
+  .site-header { padding: 24px 16px; }
+  main { padding: 0 16px; }
+  .site-footer { padding: 32px 16px 48px; flex-direction: column; }
+  .brand-name { display: none; }
+
+  .section-head { grid-template-columns: 1fr; margin-bottom: 48px; }
+  .index { grid-row: auto; padding-top: 0; }
+
+  .bean-list { grid-template-columns: 1fr; }
+  .bean, .bean:nth-child(even) { padding: 40px 0; border-left: 0; }
+
+  .principles { grid-template-columns: 1fr; gap: 48px; }
+
+  .visit-info div { grid-template-columns: 1fr; gap: 6px; }
+  .map { padding: 20px; }
+}

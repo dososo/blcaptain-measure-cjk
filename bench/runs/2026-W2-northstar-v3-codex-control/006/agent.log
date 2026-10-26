@@ -1,0 +1,631 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-006-BOs0Js <提示词>
+工作目录：<tmp>/measure-baseline-codex-006-BOs0Js
+退出码：0 信号：无 用时：105s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-006-BOs0Js
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1763f-01f1-7b40-8444-2f5ba71c9c01
+--------
+user
+写一篇关于“为什么年轻人开始重新用纸质笔记本”的博客文章页面，大约 800 字。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会把文章写成一页中文博客，搭配纸张质感的简洁排版，并保存为当前目录下的 `index.html`。
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-006-BOs0Js
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-006-BOs0Js
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-006-BOs0Js/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c14e87d61c4d14a0e15ff2a8ba18ba012f7861f4
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,135 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="当屏幕占满生活，一本纸质笔记本，为什么重新成为年轻人的日常选择？关于注意力、手写与留白的一篇生活随笔。">
++  <meta name="theme-color" content="#f5f1e8">
++  <title>为什么年轻人开始重新用纸质笔记本 · 日常之间</title>
++  <style>
++    :root{--paper:#f5f1e8;--ink:#30372f;--muted:#797b70;--line:#d9d9cb;--accent:#b95136;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif}
++    *{box-sizing:border-box}
++    html{scroll-behavior:smooth}
++    body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
++    a{color:inherit;text-decoration:none}
++    a:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
++    .wrap{width:min(1120px,calc(100% - 96px));margin:auto}
++    header{height:104px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
++    .brand{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:3px}
++    .mark{width:27px;height:31px;border:1.5px solid var(--ink);border-radius:1px 5px 5px 1px;position:relative;transform:rotate(-7deg)}
++    .mark:after{content:"";position:absolute;left:6px;top:0;bottom:0;border-left:1px solid var(--ink)}
++    .header-note{font-size:11px;letter-spacing:2.5px;color:var(--muted)}
++    .hero{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:50px;padding:67px 0 58px;border-bottom:1px solid var(--line)}
++    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:11px;letter-spacing:2px}
++    .eyebrow:before{content:"";height:6px;width:6px;background:var(--accent);border-radius:50%}
++    h1{font-family:var(--serif);font-size:clamp(34px,3.8vw,51px);line-height:1.48;font-weight:600;letter-spacing:1px;margin:24px 0 20px}
++    h1 span{color:var(--accent)}
++    .deck{font-size:14px;line-height:1.95;color:#77796d;max-width:390px;margin:0}
++    .meta{display:flex;align-items:center;gap:13px;font-size:11px;color:var(--muted);margin-top:31px;letter-spacing:.5px}
++    .meta .author{color:var(--ink)}
++    .meta .divider{height:10px;border-left:1px solid #b9bbae}
++    .still-life{height:330px;position:relative;display:flex;align-items:center;justify-content:center;background:#e8e7dc;border-radius:50% 48% 45% 43%;margin:0 8px}
++    .notebook{position:relative;width:244px;height:294px;background:#fffdf4;transform:rotate(-9deg);border-radius:2px 8px 8px 2px;box-shadow:2px 3px 0 #ddd9c9,4px 6px 0 #faf7ea,9px 18px 24px #50544322;border:1px solid #dbd9c9;padding:40px 23px 18px 37px}
++    .notebook:before{content:"";position:absolute;top:0;bottom:0;left:15px;border-left:1px solid #d5d2c5;box-shadow:-5px 0 8px #00000008}
++    .notebook:after{content:"";position:absolute;top:-9px;left:77px;width:72px;height:24px;background:#bdbfa6aa;transform:rotate(4deg);clip-path:polygon(2% 0,98% 0,100% 20%,97% 40%,100% 60%,97% 80%,100% 100%,0 100%,3% 80%,0 60%,3% 40%,0 20%)}
++    .paper-date{font-family:Georgia,serif;font-size:10px;letter-spacing:2px;color:#929383;margin-bottom:19px}
++    .handwriting{font-family:"Kaiti SC","STKaiti","KaiTi",var(--serif);font-size:23px;line-height:1.9;letter-spacing:2px;background:repeating-linear-gradient(transparent 0,transparent 42px,#daddcf 43px,transparent 44px);height:180px}
++    .handwriting em{font-style:normal;color:var(--accent)}
++    .little-leaf{position:absolute;right:28px;bottom:18px;font-size:30px;color:#788469;transform:rotate(18deg)}
++    .pencil{position:absolute;width:7px;height:238px;right:28px;top:70px;background:linear-gradient(90deg,#6f785c 0 30%,#929c7b 30% 70%,#626c51 70%);transform:rotate(19deg);box-shadow:5px 5px 8px #454a3420;border-top:15px solid #c5b6a0;border-radius:3px 3px 0 0}
++    .pencil:after{content:"";position:absolute;top:100%;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:19px solid #b49b76}
++    .art-caption{position:absolute;bottom:-30px;right:0;font-family:Georgia,serif;font-size:11px;font-style:italic;color:var(--muted);letter-spacing:1px}
++    .reading-layout{display:grid;grid-template-columns:minmax(0,690px) 210px;gap:100px;padding:52px 0 60px}
++    .article-body{font-size:15px;line-height:2.15;letter-spacing:.4px}
++    .article-body p{margin:0 0 22px}
++    .intro{font-size:16px}
++    .intro:first-letter{float:left;font-family:var(--serif);font-size:48px;line-height:1.2;margin:8px 12px 0 0;color:var(--accent)}
++    h2{display:flex;align-items:baseline;gap:16px;font-family:var(--serif);font-size:24px;font-weight:600;line-height:1.5;margin:35px 0 17px;letter-spacing:1px;scroll-margin-top:30px}
++    .section-number{font-family:Georgia,serif;font-size:13px;color:var(--accent);font-style:italic;font-weight:400;letter-spacing:0}
++    blockquote{margin:31px 0;padding:21px 0 21px 25px;border-left:2px solid var(--accent);font-family:var(--serif);font-size:22px;line-height:1.8;color:var(--accent)}
++    aside{padding-top:8px}
++    .aside-label{font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:22px}
++    .contents{border-top:1px solid var(--line);padding-top:24px}
++    .contents a{display:flex;gap:14px;font-size:12px;padding:10px 0;color:#696d60;line-height:1.8;transition:color .15s}
++    .contents a:hover{color:var(--accent)}
++    .contents a span{font-family:Georgia,serif;font-style:italic;color:#9b9e8f}
++    .margin-note{margin-top:43px;padding:22px 20px;background:#eaeadd;transform:rotate(2deg)}
++    .margin-note .note-title{font-family:var(--serif);font-size:17px;margin:0 0 13px}
++    .margin-note p{font-size:12px;line-height:2;color:#707662;margin:0}
++    .margin-note .note-line{width:27px;height:1px;background:#9a9d85;margin-top:20px}
++    .endmark{color:var(--accent);font-size:17px;margin-left:8px}
++    .tags{display:flex;gap:10px;margin-top:33px;padding-top:24px;border-top:1px solid var(--line)}
++    .tag{font-size:10px;letter-spacing:1px;color:#777c6c;border:1px solid #d5d7c8;border-radius:20px;padding:3px 12px}
++    footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:26px 0 34px;color:var(--muted);font-size:11px;letter-spacing:1px}
++    footer a:hover{color:var(--accent)}
++    @media(min-width:1400px){.hero{padding-top:77px;padding-bottom:68px}}
++    @media(max-width:900px){.wrap{width:calc(100% - 56px)}.hero{gap:25px}.still-life{transform:scale(.88);margin:0 -15px}.reading-layout{grid-template-columns:minmax(0,1fr) 180px;gap:40px}h1{font-size:37px}}
++    @media(max-width:650px){.wrap{width:calc(100% - 40px)}header{height:80px}.brand{font-size:21px}.header-note{font-size:9px;letter-spacing:1px}.hero{grid-template-columns:1fr;padding:37px 0 42px;gap:25px}h1{font-size:38px;margin-top:20px}.deck{font-size:13px;max-width:340px}.meta{margin-top:22px}.still-life{width:300px;height:300px;margin:5px auto 0;transform:scale(.92)}.notebook{height:275px;width:229px}.pencil{right:3px;top:50px}.reading-layout{display:block;padding:32px 0 40px}aside{display:none}.article-body{font-size:15px;line-height:2.1}h2{font-size:23px;gap:12px}blockquote{font-size:20px}footer{font-size:10px;letter-spacing:0}.art-caption{bottom:-25px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
++    @media print{body{background:white}.wrap{width:100%}aside,.still-life,.header-note,footer a{display:none}.hero,.reading-layout{display:block}.hero{padding:20px 0}h1{font-size:30px}.article-body{font-size:12px}h2{break-after:avoid}blockquote{break-inside:avoid}}
++  </style>
++</head>
++<body id="top">
++  <div class="wrap">
++    <header>
++      <a class="brand" href="#top" aria-label="日常之间，返回顶部"><span class="mark" aria-hidden="true"></span>日常之间</a>
++      <span class="header-note">给生活，留一点空白。</span>
++    </header>
++    <main>
++      <article>
++        <div class="hero">
++          <div>
++            <div class="eyebrow">生活观察 · VOL. 012</div>
++            <h1>为什么年轻人<br>开始重新用<br><span>纸质笔记本</span></h1>
++            <p class="deck">在随时在线的日子里，翻开一页纸，<br>或许是我们找回自己节奏的开始。</p>
++            <div class="meta"><span class="author">文 / 日常编辑部</span><span class="divider"></span><time datetime="2026-10-26">2026.10.26</time><span class="divider"></span><span>约 4 分钟</span></div>
++          </div>
++          <figure class="still-life" role="img" aria-label="一本用纸胶带固定的米白色笔记本，手写着：慢一点，也没关系。旁边放着一支绿色铅笔。">
++            <div class="notebook" aria-hidden="true"><div class="paper-date">A MOMENT TO MYSELF</div><div class="handwriting">慢一点，<br>也没关系。<br><em>把今天写下来。</em></div><span class="little-leaf">❧</span></div>
++            <div class="pencil" aria-hidden="true"></div>
++            <figcaption class="art-caption">Less scrolling, more living.</figcaption>
++          </figure>
++        </div>
++        <div class="reading-layout">
++          <div class="article-body">
++            <p class="intro">手机里明明有备忘录，包里却又多了一本笔记本。有人记下每天的开销，有人抄一句喜欢的话，也有人只是随手画几笔。当生活越来越依赖屏幕，纸笔重新出现在一些年轻人的书桌上，像是一个小小的提醒：记录生活，也可以有另一种速度。</p>
++            <section aria-labelledby="attention">
++              <h2 id="attention"><span class="section-number">01</span>让注意力，有一个落点</h2>
++              <p>打开手机本想记一件事，却顺手回了消息，又刷了几条视频。等到退出，最初的念头已经模糊了。屏幕把很多入口放在一起，也让一次简单的记录，容易变成一场漫游。</p>
++              <p>纸质笔记本的功能很少，这反而让人轻松。它没有弹窗，不会催你更新，也不需要充电。翻到空白页，眼前只有此刻想写的东西。对忙了一天的人来说，这几分钟的安静，本身就值得被保留。</p>
++            </section>
++            <section aria-labelledby="thinking">
++              <h2 id="thinking"><span class="section-number">02</span>写得慢一点，想得清楚一点</h2>
++              <p>手写赶不上念头，于是我们得挑选：哪一句值得留下，哪件事需要明天处理。把一团模糊的烦恼写成几行字，有时就能看见真正卡住自己的地方。纸面未必给出答案，却给了思考一个可以停靠的位置。</p>
++              <p>而且，这里不必排版整齐。箭头、圈画、划掉的句子，甚至半页空白，都可以留着。那些修改的痕迹，恰好记录了一个想法怎样慢慢成形。</p>
++            </section>
++            <blockquote>有些记录的意义，<br>只是让自己认真地经过这一天。</blockquote>
++            <section aria-labelledby="memory">
++              <h2 id="memory"><span class="section-number">03</span>留下一点，摸得到的日常</h2>
++              <p>一张车票、一片落叶、一杯咖啡留下的浅色圆环，都能成为某一天的坐标。纸张会变旧，字迹会随着心情改变。过些日子再翻开，唤起记忆的可能不是内容，而是那天写得特别用力的一个字。</p>
++              <p>这样的本子不必展示给谁。没有点赞，也没有连续打卡的压力。漏写一周，可以直接从今天接着写；写得琐碎，也不妨碍它成为只属于自己的生活切片。</p>
++            </section>
++            <section aria-labelledby="start">
++              <h2 id="start"><span class="section-number">04</span>从一页，而不是一套仪式开始</h2>
++              <p>重新用纸笔，不意味着放弃数字工具。日程提醒交给手机，零散心事留在纸上，两者可以配合得很好。也不用先买昂贵的钢笔、贴纸和漂亮本子，一支顺手的笔就够了。</p>
++              <p>今晚不妨写下三件小事：今天注意到了什么，什么让你疲惫，明天想给自己留一点怎样的时间。写完便合上。笔记本不需要成为新的任务，它只需要在你想说点什么的时候，安静地留着一页空白。<span class="endmark" aria-hidden="true">■</span></p>
++            </section>
++            <div class="tags" aria-label="文章标签"><span class="tag">慢生活</span><span class="tag">纸笔日常</span><span class="tag">自我记录</span></div>
++          </div>
++          <aside aria-label="阅读导航与随手记">
++            <nav class="contents" aria-label="本文目录">
++              <div class="aside-label">ON THIS PAGE / 本文目录</div>
++              <a href="#attention"><span>01</span>让注意力有一个落点</a>
++              <a href="#thinking"><span>02</span>写慢一点，想清楚一点</a>
++              <a href="#memory"><span>03</span>摸得到的日常</a>
++              <a href="#start"><span>04</span>从一页开始</a>
++            </nav>
++            <div class="margin-note"><p class="note-title">今天，写点什么？</p><p>记下一件很小、<br>但你不想忘记的事。<br><br>一句话也可以。</p><div class="note-line" aria-hidden="true"></div></div>
++          </aside>
++        </div>
++      </article>
++    </main>
++    <footer><span>© 2026 日常之间 · 记录平凡的好时光</span><a href="#top">回到顶部 ↑</a></footer>
++  </div>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c14e87d61c4d14a0e15ff2a8ba18ba012f7861f4
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,135 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="当屏幕占满生活，一本纸质笔记本，为什么重新成为年轻人的日常选择？关于注意力、手写与留白的一篇生活随笔。">
++  <meta name="theme-color" content="#f5f1e8">
++  <title>为什么年轻人开始重新用纸质笔记本 · 日常之间</title>
++  <style>
++    :root{--paper:#f5f1e8;--ink:#30372f;--muted:#797b70;--line:#d9d9cb;--accent:#b95136;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif}
++    *{box-sizing:border-box}
++    html{scroll-behavior:smooth}
++    body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
++    a{color:inherit;text-decoration:none}
++    a:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
++    .wrap{width:min(1120px,calc(100% - 96px));margin:auto}
++    header{height:104px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
++    .brand{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:3px}
++    .mark{width:27px;height:31px;border:1.5px solid var(--ink);border-radius:1px 5px 5px 1px;position:relative;transform:rotate(-7deg)}
++    .mark:after{content:"";position:absolute;left:6px;top:0;bottom:0;border-left:1px solid var(--ink)}
++    .header-note{font-size:11px;letter-spacing:2.5px;color:var(--muted)}
++    .hero{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:50px;padding:67px 0 58px;border-bottom:1px solid var(--line)}
++    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:11px;letter-spacing:2px}
++    .eyebrow:before{content:"";height:6px;width:6px;background:var(--accent);border-radius:50%}
++    h1{font-family:var(--serif);font-size:clamp(34px,3.8vw,51px);line-height:1.48;font-weight:600;letter-spacing:1px;margin:24px 0 20px}
++    h1 span{color:var(--accent)}
++    .deck{font-size:14px;line-height:1.95;color:#77796d;max-width:390px;margin:0}
++    .meta{display:flex;align-items:center;gap:13px;font-size:11px;color:var(--muted);margin-top:31px;letter-spacing:.5px}
++    .meta .author{color:var(--ink)}
++    .meta .divider{height:10px;border-left:1px solid #b9bbae}
++    .still-life{height:330px;position:relative;display:flex;align-items:center;justify-content:center;background:#e8e7dc;border-radius:50% 48% 45% 43%;margin:0 8px}
++    .notebook{position:relative;width:244px;height:294px;background:#fffdf4;transform:rotate(-9deg);border-radius:2px 8px 8px 2px;box-shadow:2px 3px 0 #ddd9c9,4px 6px 0 #faf7ea,9px 18px 24px #50544322;border:1px solid #dbd9c9;padding:40px 23px 18px 37px}
++    .notebook:before{content:"";position:absolute;top:0;bottom:0;left:15px;border-left:1px solid #d5d2c5;box-shadow:-5px 0 8px #00000008}
++    .notebook:after{content:"";position:absolute;top:-9px;left:77px;width:72px;height:24px;background:#bdbfa6aa;transform:rotate(4deg);clip-path:polygon(2% 0,98% 0,100% 20%,97% 40%,100% 60%,97% 80%,100% 100%,0 100%,3% 80%,0 60%,3% 40%,0 20%)}
++    .paper-date{font-family:Georgia,serif;font-size:10px;letter-spacing:2px;color:#929383;margin-bottom:19px}
++    .handwriting{font-family:"Kaiti SC","STKaiti","KaiTi",var(--serif);font-size:23px;line-height:1.9;letter-spacing:2px;background:repeating-linear-gradient(transparent 0,transparent 42px,#daddcf 43px,transparent 44px);height:180px}
++    .handwriting em{font-style:normal;color:var(--accent)}
++    .little-leaf{position:absolute;right:28px;bottom:18px;font-size:30px;color:#788469;transform:rotate(18deg)}
++    .pencil{position:absolute;width:7px;height:238px;right:28px;top:70px;background:linear-gradient(90deg,#6f785c 0 30%,#929c7b 30% 70%,#626c51 70%);transform:rotate(19deg);box-shadow:5px 5px 8px #454a3420;border-top:15px solid #c5b6a0;border-radius:3px 3px 0 0}
++    .pencil:after{content:"";position:absolute;top:100%;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:19px solid #b49b76}
++    .art-caption{position:absolute;bottom:-30px;right:0;font-family:Georgia,serif;font-size:11px;font-style:italic;color:var(--muted);letter-spacing:1px}
++    .reading-layout{display:grid;grid-template-columns:minmax(0,690px) 210px;gap:100px;padding:52px 0 60px}
++    .article-body{font-size:15px;line-height:2.15;letter-spacing:.4px}
++    .article-body p{margin:0 0 22px}
++    .intro{font-size:16px}
++    .intro:first-letter{float:left;font-family:var(--serif);font-size:48px;line-height:1.2;margin:8px 12px 0 0;color:var(--accent)}
++    h2{display:flex;align-items:baseline;gap:16px;font-family:var(--serif);font-size:24px;font-weight:600;line-height:1.5;margin:35px 0 17px;letter-spacing:1px;scroll-margin-top:30px}
++    .section-number{font-family:Georgia,serif;font-size:13px;color:var(--accent);font-style:italic;font-weight:400;letter-spacing:0}
++    blockquote{margin:31px 0;padding:21px 0 21px 25px;border-left:2px solid var(--accent);font-family:var(--serif);font-size:22px;line-height:1.8;color:var(--accent)}
++    aside{padding-top:8px}
++    .aside-label{font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:22px}
++    .contents{border-top:1px solid var(--line);padding-top:24px}
++    .contents a{display:flex;gap:14px;font-size:12px;padding:10px 0;color:#696d60;line-height:1.8;transition:color .15s}
++    .contents a:hover{color:var(--accent)}
++    .contents a span{font-family:Georgia,serif;font-style:italic;color:#9b9e8f}
++    .margin-note{margin-top:43px;padding:22px 20px;background:#eaeadd;transform:rotate(2deg)}
++    .margin-note .note-title{font-family:var(--serif);font-size:17px;margin:0 0 13px}
++    .margin-note p{font-size:12px;line-height:2;color:#707662;margin:0}
++    .margin-note .note-line{width:27px;height:1px;background:#9a9d85;margin-top:20px}
++    .endmark{color:var(--accent);font-size:17px;margin-left:8px}
++    .tags{display:flex;gap:10px;margin-top:33px;padding-top:24px;border-top:1px solid var(--line)}
++    .tag{font-size:10px;letter-spacing:1px;color:#777c6c;border:1px solid #d5d7c8;border-radius:20px;padding:3px 12px}
++    footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:26px 0 34px;color:var(--muted);font-size:11px;letter-spacing:1px}
++    footer a:hover{color:var(--accent)}
++    @media(min-width:1400px){.hero{padding-top:77px;padding-bottom:68px}}
++    @media(max-width:900px){.wrap{width:calc(100% - 56px)}.hero{gap:25px}.still-life{transform:scale(.88);margin:0 -15px}.reading-layout{grid-template-columns:minmax(0,1fr) 180px;gap:40px}h1{font-size:37px}}
++    @media(max-width:650px){.wrap{width:calc(100% - 40px)}header{height:80px}.brand{font-size:21px}.header-note{font-size:9px;letter-spacing:1px}.hero{grid-template-columns:1fr;padding:37px 0 42px;gap:25px}h1{font-size:38px;margin-top:20px}.deck{font-size:13px;max-width:340px}.meta{margin-top:22px}.still-life{width:300px;height:300px;margin:5px auto 0;transform:scale(.92)}.notebook{height:275px;width:229px}.pencil{right:3px;top:50px}.reading-layout{display:block;padding:32px 0 40px}aside{display:none}.article-body{font-size:15px;line-height:2.1}h2{font-size:23px;gap:12px}blockquote{font-size:20px}footer{font-size:10px;letter-spacing:0}.art-caption{bottom:-25px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
++    @media print{body{background:white}.wrap{width:100%}aside,.still-life,.header-note,footer a{display:none}.hero,.reading-layout{display:block}.hero{padding:20px 0}h1{font-size:30px}.article-body{font-size:12px}h2{break-after:avoid}blockquote{break-inside:avoid}}
++  </style>
++</head>
++<body id="top">
++  <div class="wrap">
++    <header>
++      <a class="brand" href="#top" aria-label="日常之间，返回顶部"><span class="mark" aria-hidden="true"></span>日常之间</a>
++      <span class="header-note">给生活，留一点空白。</span>
++    </header>
++    <main>
++      <article>
++        <div class="hero">
++          <div>
++            <div class="eyebrow">生活观察 · VOL. 012</div>
++            <h1>为什么年轻人<br>开始重新用<br><span>纸质笔记本</span></h1>
++            <p class="deck">在随时在线的日子里，翻开一页纸，<br>或许是我们找回自己节奏的开始。</p>
++            <div class="meta"><span class="author">文 / 日常编辑部</span><span class="divider"></span><time datetime="2026-10-26">2026.10.26</time><span class="divider"></span><span>约 4 分钟</span></div>
++          </div>
++          <figure class="still-life" role="img" aria-label="一本用纸胶带固定的米白色笔记本，手写着：慢一点，也没关系。旁边放着一支绿色铅笔。">
++            <div class="notebook" aria-hidden="true"><div class="paper-date">A MOMENT TO MYSELF</div><div class="handwriting">慢一点，<br>也没关系。<br><em>把今天写下来。</em></div><span class="little-leaf">❧</span></div>
++            <div class="pencil" aria-hidden="true"></div>
++            <figcaption class="art-caption">Less scrolling, more living.</figcaption>
++          </figure>
++        </div>
++        <div class="reading-layout">
++          <div class="article-body">
++            <p class="intro">手机里明明有备忘录，包里却又多了一本笔记本。有人记下每天的开销，有人抄一句喜欢的话，也有人只是随手画几笔。当生活越来越依赖屏幕，纸笔重新出现在一些年轻人的书桌上，像是一个小小的提醒：记录生活，也可以有另一种速度。</p>
++            <section aria-labelledby="attention">
++              <h2 id="attention"><span class="section-number">01</span>让注意力，有一个落点</h2>
++              <p>打开手机本想记一件事，却顺手回了消息，又刷了几条视频。等到退出，最初的念头已经模糊了。屏幕把很多入口放在一起，也让一次简单的记录，容易变成一场漫游。</p>
++              <p>纸质笔记本的功能很少，这反而让人轻松。它没有弹窗，不会催你更新，也不需要充电。翻到空白页，眼前只有此刻想写的东西。对忙了一天的人来说，这几分钟的安静，本身就值得被保留。</p>
++            </section>
++            <section aria-labelledby="thinking">
++              <h2 id="thinking"><span class="section-number">02</span>写得慢一点，想得清楚一点</h2>
++              <p>手写赶不上念头，于是我们得挑选：哪一句值得留下，哪件事需要明天处理。把一团模糊的烦恼写成几行字，有时就能看见真正卡住自己的地方。纸面未必给出答案，却给了思考一个可以停靠的位置。</p>
++              <p>而且，这里不必排版整齐。箭头、圈画、划掉的句子，甚至半页空白，都可以留着。那些修改的痕迹，恰好记录了一个想法怎样慢慢成形。</p>
++            </section>
++            <blockquote>有些记录的意义，<br>只是让自己认真地经过这一天。</blockquote>
++            <section aria-labelledby="memory">
++              <h2 id="memory"><span class="section-number">03</span>留下一点，摸得到的日常</h2>
++              <p>一张车票、一片落叶、一杯咖啡留下的浅色圆环，都能成为某一天的坐标。纸张会变旧，字迹会随着心情改变。过些日子再翻开，唤起记忆的可能不是内容，而是那天写得特别用力的一个字。</p>
++              <p>这样的本子不必展示给谁。没有点赞，也没有连续打卡的压力。漏写一周，可以直接从今天接着写；写得琐碎，也不妨碍它成为只属于自己的生活切片。</p>
++            </section>
++            <section aria-labelledby="start">
++              <h2 id="start"><span class="section-number">04</span>从一页，而不是一套仪式开始</h2>
++              <p>重新用纸笔，不意味着放弃数字工具。日程提醒交给手机，零散心事留在纸上，两者可以配合得很好。也不用先买昂贵的钢笔、贴纸和漂亮本子，一支顺手的笔就够了。</p>
++              <p>今晚不妨写下三件小事：今天注意到了什么，什么让你疲惫，明天想给自己留一点怎样的时间。写完便合上。笔记本不需要成为新的任务，它只需要在你想说点什么的时候，安静地留着一页空白。<span class="endmark" aria-hidden="true">■</span></p>
++            </section>
++            <div class="tags" aria-label="文章标签"><span class="tag">慢生活</span><span class="tag">纸笔日常</span><span class="tag">自我记录</span></div>
++          </div>
++          <aside aria-label="阅读导航与随手记">
++            <nav class="contents" aria-label="本文目录">
++              <div class="aside-label">ON THIS PAGE / 本文目录</div>
++              <a href="#attention"><span>01</span>让注意力有一个落点</a>
++              <a href="#thinking"><span>02</span>写慢一点，想清楚一点</a>
++              <a href="#memory"><span>03</span>摸得到的日常</a>
++              <a href="#start"><span>04</span>从一页开始</a>
++            </nav>
++            <div class="margin-note"><p class="note-title">今天，写点什么？</p><p>记下一件很小、<br>但你不想忘记的事。<br><br>一句话也可以。</p><div class="note-line" aria-hidden="true"></div></div>
++          </aside>
++        </div>
++      </article>
++    </main>
++    <footer><span>© 2026 日常之间 · 记录平凡的好时光</span><a href="#top">回到顶部 ↑</a></footer>
++  </div>
++</body>
++</html>
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+import re
+p = Path('index.html')
+s = p.read_text()
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids = set()
+        self.links = []
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if 'id' in a: self.ids.add(a['id'])
+        if tag == 'a': self.links.append(a.get('href', ''))
+c = Check()
+c.feed(s)
+assert all(h[1:] in c.ids for h in c.links if h.startswith('#'))
+body = s.split('<div class=\"article-body\">', 1)[1].split('<div class=\"tags\"', 1)[0]
+body = re.sub(r'<["'^>]+>'"', '', body)
+print('index.html 已生成；正文汉字数：', len(re.findall(r'[\\u4e00-\\u9fff]', body)))
+print('页内导航目标全部有效；CSS 已内嵌，无外部资源依赖。')
+PY" in <tmp>/measure-baseline-codex-006-BOs0Js
+ succeeded in 0ms:
+index.html 已生成；正文汉字数： 709
+页内导航目标全部有效；CSS 已内嵌，无外部资源依赖。
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c14e87d61c4d14a0e15ff2a8ba18ba012f7861f4
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,135 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="当屏幕占满生活，一本纸质笔记本，为什么重新成为年轻人的日常选择？关于注意力、手写与留白的一篇生活随笔。">
++  <meta name="theme-color" content="#f5f1e8">
++  <title>为什么年轻人开始重新用纸质笔记本 · 日常之间</title>
++  <style>
++    :root{--paper:#f5f1e8;--ink:#30372f;--muted:#797b70;--line:#d9d9cb;--accent:#b95136;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif}
++    *{box-sizing:border-box}
++    html{scroll-behavior:smooth}
++    body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
++    a{color:inherit;text-decoration:none}
++    a:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
++    .wrap{width:min(1120px,calc(100% - 96px));margin:auto}
++    header{height:104px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
++    .brand{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:3px}
++    .mark{width:27px;height:31px;border:1.5px solid var(--ink);border-radius:1px 5px 5px 1px;position:relative;transform:rotate(-7deg)}
++    .mark:after{content:"";position:absolute;left:6px;top:0;bottom:0;border-left:1px solid var(--ink)}
++    .header-note{font-size:11px;letter-spacing:2.5px;color:var(--muted)}
++    .hero{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:50px;padding:67px 0 58px;border-bottom:1px solid var(--line)}
++    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:11px;letter-spacing:2px}
++    .eyebrow:before{content:"";height:6px;width:6px;background:var(--accent);border-radius:50%}
++    h1{font-family:var(--serif);font-size:clamp(34px,3.8vw,51px);line-height:1.48;font-weight:600;letter-spacing:1px;margin:24px 0 20px}
++    h1 span{color:var(--accent)}
++    .deck{font-size:14px;line-height:1.95;color:#77796d;max-width:390px;margin:0}
++    .meta{display:flex;align-items:center;gap:13px;font-size:11px;color:var(--muted);margin-top:31px;letter-spacing:.5px}
++    .meta .author{color:var(--ink)}
++    .meta .divider{height:10px;border-left:1px solid #b9bbae}
++    .still-life{height:330px;position:relative;display:flex;align-items:center;justify-content:center;background:#e8e7dc;border-radius:50% 48% 45% 43%;margin:0 8px}
++    .notebook{position:relative;width:244px;height:294px;background:#fffdf4;transform:rotate(-9deg);border-radius:2px 8px 8px 2px;box-shadow:2px 3px 0 #ddd9c9,4px 6px 0 #faf7ea,9px 18px 24px #50544322;border:1px solid #dbd9c9;padding:40px 23px 18px 37px}
++    .notebook:before{content:"";position:absolute;top:0;bottom:0;left:15px;border-left:1px solid #d5d2c5;box-shadow:-5px 0 8px #00000008}
++    .notebook:after{content:"";position:absolute;top:-9px;left:77px;width:72px;height:24px;background:#bdbfa6aa;transform:rotate(4deg);clip-path:polygon(2% 0,98% 0,100% 20%,97% 40%,100% 60%,97% 80%,100% 100%,0 100%,3% 80%,0 60%,3% 40%,0 20%)}
++    .paper-date{font-family:Georgia,serif;font-size:10px;letter-spacing:2px;color:#929383;margin-bottom:19px}
++    .handwriting{font-family:"Kaiti SC","STKaiti","KaiTi",var(--serif);font-size:23px;line-height:1.9;letter-spacing:2px;background:repeating-linear-gradient(transparent 0,transparent 42px,#daddcf 43px,transparent 44px);height:180px}
++    .handwriting em{font-style:normal;color:var(--accent)}
++    .little-leaf{position:absolute;right:28px;bottom:18px;font-size:30px;color:#788469;transform:rotate(18deg)}
++    .pencil{position:absolute;width:7px;height:238px;right:28px;top:70px;background:linear-gradient(90deg,#6f785c 0 30%,#929c7b 30% 70%,#626c51 70%);transform:rotate(19deg);box-shadow:5px 5px 8px #454a3420;border-top:15px solid #c5b6a0;border-radius:3px 3px 0 0}
++    .pencil:after{content:"";position:absolute;top:100%;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:19px solid #b49b76}
++    .art-caption{position:absolute;bottom:-30px;right:0;font-family:Georgia,serif;font-size:11px;font-style:italic;color:var(--muted);letter-spacing:1px}
++    .reading-layout{display:grid;grid-template-columns:minmax(0,690px) 210px;gap:100px;padding:52px 0 60px}
++    .article-body{font-size:15px;line-height:2.15;letter-spacing:.4px}
++    .article-body p{margin:0 0 22px}
++    .intro{font-size:16px}
++    .intro:first-letter{float:left;font-family:var(--serif);font-size:48px;line-height:1.2;margin:8px 12px 0 0;color:var(--accent)}
++    h2{display:flex;align-items:baseline;gap:16px;font-family:var(--serif);font-size:24px;font-weight:600;line-height:1.5;margin:35px 0 17px;letter-spacing:1px;scroll-margin-top:30px}
++    .section-number{font-family:Georgia,serif;font-size:13px;color:var(--accent);font-style:italic;font-weight:400;letter-spacing:0}
++    blockquote{margin:31px 0;padding:21px 0 21px 25px;border-left:2px solid var(--accent);font-family:var(--serif);font-size:22px;line-height:1.8;color:var(--accent)}
++    aside{padding-top:8px}
++    .aside-label{font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:22px}
++    .contents{border-top:1px solid var(--line);padding-top:24px}
++    .contents a{display:flex;gap:14px;font-size:12px;padding:10px 0;color:#696d60;line-height:1.8;transition:color .15s}
++    .contents a:hover{color:var(--accent)}
++    .contents a span{font-family:Georgia,serif;font-style:italic;color:#9b9e8f}
++    .margin-note{margin-top:43px;padding:22px 20px;background:#eaeadd;transform:rotate(2deg)}
++    .margin-note .note-title{font-family:var(--serif);font-size:17px;margin:0 0 13px}
++    .margin-note p{font-size:12px;line-height:2;color:#707662;margin:0}
++    .margin-note .note-line{width:27px;height:1px;background:#9a9d85;margin-top:20px}
++    .endmark{color:var(--accent);font-size:17px;margin-left:8px}
++    .tags{display:flex;gap:10px;margin-top:33px;padding-top:24px;border-top:1px solid var(--line)}
++    .tag{font-size:10px;letter-spacing:1px;color:#777c6c;border:1px solid #d5d7c8;border-radius:20px;padding:3px 12px}
++    footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:26px 0 34px;color:var(--muted);font-size:11px;letter-spacing:1px}
++    footer a:hover{color:var(--accent)}
++    @media(min-width:1400px){.hero{padding-top:77px;padding-bottom:68px}}
++    @media(max-width:900px){.wrap{width:calc(100% - 56px)}.hero{gap:25px}.still-life{transform:scale(.88);margin:0 -15px}.reading-layout{grid-template-columns:minmax(0,1fr) 180px;gap:40px}h1{font-size:37px}}
++    @media(max-width:650px){.wrap{width:calc(100% - 40px)}header{height:80px}.brand{font-size:21px}.header-note{font-size:9px;letter-spacing:1px}.hero{grid-template-columns:1fr;padding:37px 0 42px;gap:25px}h1{font-size:38px;margin-top:20px}.deck{font-size:13px;max-width:340px}.meta{margin-top:22px}.still-life{width:300px;height:300px;margin:5px auto 0;transform:scale(.92)}.notebook{height:275px;width:229px}.pencil{right:3px;top:50px}.reading-layout{display:block;padding:32px 0 40px}aside{display:none}.article-body{font-size:15px;line-height:2.1}h2{font-size:23px;gap:12px}blockquote{font-size:20px}footer{font-size:10px;letter-spacing:0}.art-caption{bottom:-25px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
++    @media print{body{background:white}.wrap{width:100%}aside,.still-life,.header-note,footer a{display:none}.hero,.reading-layout{display:block}.hero{padding:20px 0}h1{font-size:30px}.article-body{font-size:12px}h2{break-after:avoid}blockquote{break-inside:avoid}}
++  </style>
++</head>
++<body id="top">
++  <div class="wrap">
++    <header>
++      <a class="brand" href="#top" aria-label="日常之间，返回顶部"><span class="mark" aria-hidden="true"></span>日常之间</a>
++      <span class="header-note">给生活，留一点空白。</span>
++    </header>
++    <main>
++      <article>
++        <div class="hero">
++          <div>
++            <div class="eyebrow">生活观察 · VOL. 012</div>
++            <h1>为什么年轻人<br>开始重新用<br><span>纸质笔记本</span></h1>
++            <p class="deck">在随时在线的日子里，翻开一页纸，<br>或许是我们找回自己节奏的开始。</p>
++            <div class="meta"><span class="author">文 / 日常编辑部</span><span class="divider"></span><time datetime="2026-10-26">2026.10.26</time><span class="divider"></span><span>约 4 分钟</span></div>
++          </div>
++          <figure class="still-life" role="img" aria-label="一本用纸胶带固定的米白色笔记本，手写着：慢一点，也没关系。旁边放着一支绿色铅笔。">
++            <div class="notebook" aria-hidden="true"><div class="paper-date">A MOMENT TO MYSELF</div><div class="handwriting">慢一点，<br>也没关系。<br><em>把今天写下来。</em></div><span class="little-leaf">❧</span></div>
++            <div class="pencil" aria-hidden="true"></div>
++            <figcaption class="art-caption">Less scrolling, more living.</figcaption>
++          </figure>
++        </div>
++        <div class="reading-layout">
++          <div class="article-body">
++            <p class="intro">手机里明明有备忘录，包里却又多了一本笔记本。有人记下每天的开销，有人抄一句喜欢的话，也有人只是随手画几笔。当生活越来越依赖屏幕，纸笔重新出现在一些年轻人的书桌上，像是一个小小的提醒：记录生活，也可以有另一种速度。</p>
++            <section aria-labelledby="attention">
++              <h2 id="attention"><span class="section-number">01</span>让注意力，有一个落点</h2>
++              <p>打开手机本想记一件事，却顺手回了消息，又刷了几条视频。等到退出，最初的念头已经模糊了。屏幕把很多入口放在一起，也让一次简单的记录，容易变成一场漫游。</p>
++              <p>纸质笔记本的功能很少，这反而让人轻松。它没有弹窗，不会催你更新，也不需要充电。翻到空白页，眼前只有此刻想写的东西。对忙了一天的人来说，这几分钟的安静，本身就值得被保留。</p>
++            </section>
++            <section aria-labelledby="thinking">
++              <h2 id="thinking"><span class="section-number">02</span>写得慢一点，想得清楚一点</h2>
++              <p>手写赶不上念头，于是我们得挑选：哪一句值得留下，哪件事需要明天处理。把一团模糊的烦恼写成几行字，有时就能看见真正卡住自己的地方。纸面未必给出答案，却给了思考一个可以停靠的位置。</p>
++              <p>而且，这里不必排版整齐。箭头、圈画、划掉的句子，甚至半页空白，都可以留着。那些修改的痕迹，恰好记录了一个想法怎样慢慢成形。</p>
++            </section>
++            <blockquote>有些记录的意义，<br>只是让自己认真地经过这一天。</blockquote>
++            <section aria-labelledby="memory">
++              <h2 id="memory"><span class="section-number">03</span>留下一点，摸得到的日常</h2>
++              <p>一张车票、一片落叶、一杯咖啡留下的浅色圆环，都能成为某一天的坐标。纸张会变旧，字迹会随着心情改变。过些日子再翻开，唤起记忆的可能不是内容，而是那天写得特别用力的一个字。</p>
++              <p>这样的本子不必展示给谁。没有点赞，也没有连续打卡的压力。漏写一周，可以直接从今天接着写；写得琐碎，也不妨碍它成为只属于自己的生活切片。</p>
++            </section>
++            <section aria-labelledby="start">
++              <h2 id="start"><span class="section-number">04</span>从一页，而不是一套仪式开始</h2>
++              <p>重新用纸笔，不意味着放弃数字工具。日程提醒交给手机，零散心事留在纸上，两者可以配合得很好。也不用先买昂贵的钢笔、贴纸和漂亮本子，一支顺手的笔就够了。</p>
++              <p>今晚不妨写下三件小事：今天注意到了什么，什么让你疲惫，明天想给自己留一点怎样的时间。写完便合上。笔记本不需要成为新的任务，它只需要在你想说点什么的时候，安静地留着一页空白。<span class="endmark" aria-hidden="true">■</span></p>
++            </section>
++            <div class="tags" aria-label="文章标签"><span class="tag">慢生活</span><span class="tag">纸笔日常</span><span class="tag">自我记录</span></div>
++          </div>
++          <aside aria-label="阅读导航与随手记">
++            <nav class="contents" aria-label="本文目录">
++              <div class="aside-label">ON THIS PAGE / 本文目录</div>
++              <a href="#attention"><span>01</span>让注意力有一个落点</a>
++              <a href="#thinking"><span>02</span>写慢一点，想清楚一点</a>
++              <a href="#memory"><span>03</span>摸得到的日常</a>
++              <a href="#start"><span>04</span>从一页开始</a>
++            </nav>
++            <div class="margin-note"><p class="note-title">今天，写点什么？</p><p>记下一件很小、<br>但你不想忘记的事。<br><br>一句话也可以。</p><div class="note-line" aria-hidden="true"></div></div>
++          </aside>
++        </div>
++      </article>
++    </main>
++    <footer><span>© 2026 日常之间 · 记录平凡的好时光</span><a href="#top">回到顶部 ↑</a></footer>
++  </div>
++</body>
++</html>
+
+codex
+已生成当前目录下的 `index.html`，包含约 800 字的中文博客文章、纸张风格排版和移动端适配。CSS 已内嵌，无需安装依赖，直接用浏览器打开即可。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c14e87d61c4d14a0e15ff2a8ba18ba012f7861f4
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,135 @@
++<!doctype html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="description" content="当屏幕占满生活，一本纸质笔记本，为什么重新成为年轻人的日常选择？关于注意力、手写与留白的一篇生活随笔。">
++  <meta name="theme-color" content="#f5f1e8">
++  <title>为什么年轻人开始重新用纸质笔记本 · 日常之间</title>
++  <style>
++    :root{--paper:#f5f1e8;--ink:#30372f;--muted:#797b70;--line:#d9d9cb;--accent:#b95136;--serif:"Songti SC","Noto Serif CJK SC","SimSun",serif}
++    *{box-sizing:border-box}
++    html{scroll-behavior:smooth}
++    body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
++    a{color:inherit;text-decoration:none}
++    a:focus-visible{outline:2px solid var(--accent);outline-offset:6px}
++    .wrap{width:min(1120px,calc(100% - 96px));margin:auto}
++    header{height:104px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
++    .brand{display:flex;align-items:center;gap:14px;font-family:var(--serif);font-size:24px;font-weight:700;letter-spacing:3px}
++    .mark{width:27px;height:31px;border:1.5px solid var(--ink);border-radius:1px 5px 5px 1px;position:relative;transform:rotate(-7deg)}
++    .mark:after{content:"";position:absolute;left:6px;top:0;bottom:0;border-left:1px solid var(--ink)}
++    .header-note{font-size:11px;letter-spacing:2.5px;color:var(--muted)}
++    .hero{display:grid;grid-template-columns:1.15fr 1fr;align-items:center;gap:50px;padding:67px 0 58px;border-bottom:1px solid var(--line)}
++    .eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:11px;letter-spacing:2px}
++    .eyebrow:before{content:"";height:6px;width:6px;background:var(--accent);border-radius:50%}
++    h1{font-family:var(--serif);font-size:clamp(34px,3.8vw,51px);line-height:1.48;font-weight:600;letter-spacing:1px;margin:24px 0 20px}
++    h1 span{color:var(--accent)}
++    .deck{font-size:14px;line-height:1.95;color:#77796d;max-width:390px;margin:0}
++    .meta{display:flex;align-items:center;gap:13px;font-size:11px;color:var(--muted);margin-top:31px;letter-spacing:.5px}
++    .meta .author{color:var(--ink)}
++    .meta .divider{height:10px;border-left:1px solid #b9bbae}
++    .still-life{height:330px;position:relative;display:flex;align-items:center;justify-content:center;background:#e8e7dc;border-radius:50% 48% 45% 43%;margin:0 8px}
++    .notebook{position:relative;width:244px;height:294px;background:#fffdf4;transform:rotate(-9deg);border-radius:2px 8px 8px 2px;box-shadow:2px 3px 0 #ddd9c9,4px 6px 0 #faf7ea,9px 18px 24px #50544322;border:1px solid #dbd9c9;padding:40px 23px 18px 37px}
++    .notebook:before{content:"";position:absolute;top:0;bottom:0;left:15px;border-left:1px solid #d5d2c5;box-shadow:-5px 0 8px #00000008}
++    .notebook:after{content:"";position:absolute;top:-9px;left:77px;width:72px;height:24px;background:#bdbfa6aa;transform:rotate(4deg);clip-path:polygon(2% 0,98% 0,100% 20%,97% 40%,100% 60%,97% 80%,100% 100%,0 100%,3% 80%,0 60%,3% 40%,0 20%)}
++    .paper-date{font-family:Georgia,serif;font-size:10px;letter-spacing:2px;color:#929383;margin-bottom:19px}
++    .handwriting{font-family:"Kaiti SC","STKaiti","KaiTi",var(--serif);font-size:23px;line-height:1.9;letter-spacing:2px;background:repeating-linear-gradient(transparent 0,transparent 42px,#daddcf 43px,transparent 44px);height:180px}
++    .handwriting em{font-style:normal;color:var(--accent)}
++    .little-leaf{position:absolute;right:28px;bottom:18px;font-size:30px;color:#788469;transform:rotate(18deg)}
++    .pencil{position:absolute;width:7px;height:238px;right:28px;top:70px;background:linear-gradient(90deg,#6f785c 0 30%,#929c7b 30% 70%,#626c51 70%);transform:rotate(19deg);box-shadow:5px 5px 8px #454a3420;border-top:15px solid #c5b6a0;border-radius:3px 3px 0 0}
++    .pencil:after{content:"";position:absolute;top:100%;border-left:3.5px solid transparent;border-right:3.5px solid transparent;border-top:19px solid #b49b76}
++    .art-caption{position:absolute;bottom:-30px;right:0;font-family:Georgia,serif;font-size:11px;font-style:italic;color:var(--muted);letter-spacing:1px}
++    .reading-layout{display:grid;grid-template-columns:minmax(0,690px) 210px;gap:100px;padding:52px 0 60px}
++    .article-body{font-size:15px;line-height:2.15;letter-spacing:.4px}
++    .article-body p{margin:0 0 22px}
++    .intro{font-size:16px}
++    .intro:first-letter{float:left;font-family:var(--serif);font-size:48px;line-height:1.2;margin:8px 12px 0 0;color:var(--accent)}
++    h2{display:flex;align-items:baseline;gap:16px;font-family:var(--serif);font-size:24px;font-weight:600;line-height:1.5;margin:35px 0 17px;letter-spacing:1px;scroll-margin-top:30px}
++    .section-number{font-family:Georgia,serif;font-size:13px;color:var(--accent);font-style:italic;font-weight:400;letter-spacing:0}
++    blockquote{margin:31px 0;padding:21px 0 21px 25px;border-left:2px solid var(--accent);font-family:var(--serif);font-size:22px;line-height:1.8;color:var(--accent)}
++    aside{padding-top:8px}
++    .aside-label{font-size:10px;letter-spacing:2px;color:var(--muted);margin-bottom:22px}
++    .contents{border-top:1px solid var(--line);padding-top:24px}
++    .contents a{display:flex;gap:14px;font-size:12px;padding:10px 0;color:#696d60;line-height:1.8;transition:color .15s}
++    .contents a:hover{color:var(--accent)}
++    .contents a span{font-family:Georgia,serif;font-style:italic;color:#9b9e8f}
++    .margin-note{margin-top:43px;padding:22px 20px;background:#eaeadd;transform:rotate(2deg)}
++    .margin-note .note-title{font-family:var(--serif);font-size:17px;margin:0 0 13px}
++    .margin-note p{font-size:12px;line-height:2;color:#707662;margin:0}
++    .margin-note .note-line{width:27px;height:1px;background:#9a9d85;margin-top:20px}
++    .endmark{color:var(--accent);font-size:17px;margin-left:8px}
++    .tags{display:flex;gap:10px;margin-top:33px;padding-top:24px;border-top:1px solid var(--line)}
++    .tag{font-size:10px;letter-spacing:1px;color:#777c6c;border:1px solid #d5d7c8;border-radius:20px;padding:3px 12px}
++    footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:26px 0 34px;color:var(--muted);font-size:11px;letter-spacing:1px}
++    footer a:hover{color:var(--accent)}
++    @media(min-width:1400px){.hero{padding-top:77px;padding-bottom:68px}}
++    @media(max-width:900px){.wrap{width:calc(100% - 56px)}.hero{gap:25px}.still-life{transform:scale(.88);margin:0 -15px}.reading-layout{grid-template-columns:minmax(0,1fr) 180px;gap:40px}h1{font-size:37px}}
++    @media(max-width:650px){.wrap{width:calc(100% - 40px)}header{height:80px}.brand{font-size:21px}.header-note{font-size:9px;letter-spacing:1px}.hero{grid-template-columns:1fr;padding:37px 0 42px;gap:25px}h1{font-size:38px;margin-top:20px}.deck{font-size:13px;max-width:340px}.meta{margin-top:22px}.still-life{width:300px;height:300px;margin:5px auto 0;transform:scale(.92)}.notebook{height:275px;width:229px}.pencil{right:3px;top:50px}.reading-layout{display:block;padding:32px 0 40px}aside{display:none}.article-body{font-size:15px;line-height:2.1}h2{font-size:23px;gap:12px}blockquote{font-size:20px}footer{font-size:10px;letter-spacing:0}.art-caption{bottom:-25px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
++    @media print{body{background:white}.wrap{width:100%}aside,.still-life,.header-note,footer a{display:none}.hero,.reading-layout{display:block}.hero{padding:20px 0}h1{font-size:30px}.article-body{font-size:12px}h2{break-after:avoid}blockquote{break-inside:avoid}}
++  </style>
++</head>
++<body id="top">
++  <div class="wrap">
++    <header>
++      <a class="brand" href="#top" aria-label="日常之间，返回顶部"><span class="mark" aria-hidden="true"></span>日常之间</a>
++      <span class="header-note">给生活，留一点空白。</span>
++    </header>
++    <main>
++      <article>
++        <div class="hero">
++          <div>
++            <div class="eyebrow">生活观察 · VOL. 012</div>
++            <h1>为什么年轻人<br>开始重新用<br><span>纸质笔记本</span></h1>
++            <p class="deck">在随时在线的日子里，翻开一页纸，<br>或许是我们找回自己节奏的开始。</p>
++            <div class="meta"><span class="author">文 / 日常编辑部</span><span class="divider"></span><time datetime="2026-10-26">2026.10.26</time><span class="divider"></span><span>约 4 分钟</span></div>
++          </div>
++          <figure class="still-life" role="img" aria-label="一本用纸胶带固定的米白色笔记本，手写着：慢一点，也没关系。旁边放着一支绿色铅笔。">
++            <div class="notebook" aria-hidden="true"><div class="paper-date">A MOMENT TO MYSELF</div><div class="handwriting">慢一点，<br>也没关系。<br><em>把今天写下来。</em></div><span class="little-leaf">❧</span></div>
++            <div class="pencil" aria-hidden="true"></div>
++            <figcaption class="art-caption">Less scrolling, more living.</figcaption>
++          </figure>
++        </div>
++        <div class="reading-layout">
++          <div class="article-body">
++            <p class="intro">手机里明明有备忘录，包里却又多了一本笔记本。有人记下每天的开销，有人抄一句喜欢的话，也有人只是随手画几笔。当生活越来越依赖屏幕，纸笔重新出现在一些年轻人的书桌上，像是一个小小的提醒：记录生活，也可以有另一种速度。</p>
++            <section aria-labelledby="attention">
++              <h2 id="attention"><span class="section-number">01</span>让注意力，有一个落点</h2>
++              <p>打开手机本想记一件事，却顺手回了消息，又刷了几条视频。等到退出，最初的念头已经模糊了。屏幕把很多入口放在一起，也让一次简单的记录，容易变成一场漫游。</p>
++              <p>纸质笔记本的功能很少，这反而让人轻松。它没有弹窗，不会催你更新，也不需要充电。翻到空白页，眼前只有此刻想写的东西。对忙了一天的人来说，这几分钟的安静，本身就值得被保留。</p>
++            </section>
++            <section aria-labelledby="thinking">
++              <h2 id="thinking"><span class="section-number">02</span>写得慢一点，想得清楚一点</h2>
++              <p>手写赶不上念头，于是我们得挑选：哪一句值得留下，哪件事需要明天处理。把一团模糊的烦恼写成几行字，有时就能看见真正卡住自己的地方。纸面未必给出答案，却给了思考一个可以停靠的位置。</p>
++              <p>而且，这里不必排版整齐。箭头、圈画、划掉的句子，甚至半页空白，都可以留着。那些修改的痕迹，恰好记录了一个想法怎样慢慢成形。</p>
++            </section>
++            <blockquote>有些记录的意义，<br>只是让自己认真地经过这一天。</blockquote>
++            <section aria-labelledby="memory">
++              <h2 id="memory"><span class="section-number">03</span>留下一点，摸得到的日常</h2>
++              <p>一张车票、一片落叶、一杯咖啡留下的浅色圆环，都能成为某一天的坐标。纸张会变旧，字迹会随着心情改变。过些日子再翻开，唤起记忆的可能不是内容，而是那天写得特别用力的一个字。</p>
++              <p>这样的本子不必展示给谁。没有点赞，也没有连续打卡的压力。漏写一周，可以直接从今天接着写；写得琐碎，也不妨碍它成为只属于自己的生活切片。</p>
++            </section>
++            <section aria-labelledby="start">
++              <h2 id="start"><span class="section-number">04</span>从一页，而不是一套仪式开始</h2>
++              <p>重新用纸笔，不意味着放弃数字工具。日程提醒交给手机，零散心事留在纸上，两者可以配合得很好。也不用先买昂贵的钢笔、贴纸和漂亮本子，一支顺手的笔就够了。</p>
++              <p>今晚不妨写下三件小事：今天注意到了什么，什么让你疲惫，明天想给自己留一点怎样的时间。写完便合上。笔记本不需要成为新的任务，它只需要在你想说点什么的时候，安静地留着一页空白。<span class="endmark" aria-hidden="true">■</span></p>
++            </section>
++            <div class="tags" aria-label="文章标签"><span class="tag">慢生活</span><span class="tag">纸笔日常</span><span class="tag">自我记录</span></div>
++          </div>
++          <aside aria-label="阅读导航与随手记">
++            <nav class="contents" aria-label="本文目录">
++              <div class="aside-label">ON THIS PAGE / 本文目录</div>
++              <a href="#attention"><span>01</span>让注意力有一个落点</a>
++              <a href="#thinking"><span>02</span>写慢一点，想清楚一点</a>
++              <a href="#memory"><span>03</span>摸得到的日常</a>
++              <a href="#start"><span>04</span>从一页开始</a>
++            </nav>
++            <div class="margin-note"><p class="note-title">今天，写点什么？</p><p>记下一件很小、<br>但你不想忘记的事。<br><br>一句话也可以。</p><div class="note-line" aria-hidden="true"></div></div>
++          </aside>
++        </div>
++      </article>
++    </main>
++    <footer><span>© 2026 日常之间 · 记录平凡的好时光</span><a href="#top">回到顶部 ↑</a></footer>
++  </div>
++</body>
++</html>
+
+tokens used
+22,273
+已生成当前目录下的 `index.html`，包含约 800 字的中文博客文章、纸张风格排版和移动端适配。CSS 已内嵌，无需安装依赖，直接用浏览器打开即可。

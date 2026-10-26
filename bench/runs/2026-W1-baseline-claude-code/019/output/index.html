@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用户接口文档</title>
+  <meta name="description" content="REST API 接口文档：鉴权方式与用户相关的四个接口。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <p class="brand">接口文档</p>
+    <p class="brand-sub">API v1</p>
+
+    <p class="nav-group">概述</p>
+    <ul>
+      <li><a href="#intro">基础信息</a></li>
+      <li><a href="#auth">鉴权</a></li>
+      <li><a href="#errors">错误码</a></li>
+    </ul>
+
+    <p class="nav-group">用户</p>
+    <ul>
+      <li><a href="#create-user"><span class="m post">POST</span>创建用户</a></li>
+      <li><a href="#get-user"><span class="m get">GET</span>获取用户</a></li>
+      <li><a href="#update-user"><span class="m patch">PATCH</span>更新用户</a></li>
+      <li><a href="#delete-user"><span class="m delete">DELETE</span>删除用户</a></li>
+    </ul>
+  </aside>
+
+  <main>
+    <header class="hero">
+      <span class="seal">接口</span>
+      <h1>用户服务 REST API</h1>
+      <p>本文档说明如何完成鉴权，以及如何创建、读取、更新、删除用户。所有请求与响应均使用 JSON，字符编码为 UTF-8。</p>
+    </header>
+
+    <!-- 基础信息 -->
+    <section id="intro">
+      <h2>基础信息</h2>
+      <div class="table-wrap">
+        <table>
+          <tr><th>项</th><th>值</th></tr>
+          <tr><td>Base URL</td><td><code>https://api.example.com/v1</code></td></tr>
+          <tr><td>协议</td><td>仅 HTTPS，HTTP 请求会被拒绝</td></tr>
+          <tr><td>Content-Type</td><td><code>application/json</code></td></tr>
+          <tr><td>时间格式</td><td>ISO 8601，UTC，例如 <code>2026-10-25T08:00:00Z</code></td></tr>
+          <tr><td>ID 格式</td><td>字符串，前缀 <code>usr_</code></td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 鉴权 -->
+    <section id="auth">
+      <h2>鉴权</h2>
+      <p>所有接口都需要 Bearer Token。先用 API Key 换取访问令牌（Access Token），之后每个请求在 <code>Authorization</code> 请求头中带上它。</p>
+
+      <h3>第一步：获取访问令牌</h3>
+      <div class="endpoint"><span class="method post">POST</span><span>/auth/token</span></div>
+      <p class="code-label">请求</p>
+<pre><code>curl -X POST https://api.example.com/v1/auth/token \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"api_key": "sk_live_xxxxxxxx", "api_secret": "xxxxxxxx"}'</span></code></pre>
+      <p class="code-label">响应 200</p>
+<pre><code>{
+  <span class="k">"access_token"</span>: <span class="s">"eyJhbGciOiJIUzI1NiIs..."</span>,
+  <span class="k">"token_type"</span>: <span class="s">"Bearer"</span>,
+  <span class="k">"expires_in"</span>: 3600
+}</code></pre>
+
+      <h3>第二步：在请求头中携带令牌</h3>
+<pre><code>Authorization: Bearer eyJhbGciOiJIUzI1NiIs...</code></pre>
+
+      <h3>规则</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>项</th><th>说明</th></tr>
+          <tr><td>有效期</td><td>3600 秒；过期后重新调用 <code>/auth/token</code></td></tr>
+          <tr><td>未携带 / 无效</td><td>返回 <code>401 unauthorized</code></td></tr>
+          <tr><td>权限不足</td><td>返回 <code>403 forbidden</code></td></tr>
+          <tr><td>限流</td><td>每个令牌 60 次/分钟，超出返回 <code>429</code>，见响应头 <code>Retry-After</code></td></tr>
+        </table>
+      </div>
+      <p class="note warn">不要把 API Key 或令牌放在 URL 查询参数中（如 <code>?token=</code>），它们会进入服务器日志和浏览器历史。也不要在前端代码中硬编码 API Key。</p>
+    </section>
+
+    <!-- 错误码 -->
+    <section id="errors">
+      <h2>错误码</h2>
+      <p>出错时统一返回如下结构：</p>
+<pre><code>{
+  <span class="k">"error"</span>: {
+    <span class="k">"code"</span>: <span class="s">"validation_failed"</span>,
+    <span class="k">"message"</span>: <span class="s">"email 格式不正确"</span>,
+    <span class="k">"field"</span>: <span class="s">"email"</span>
+  }
+}</code></pre>
+      <div class="table-wrap">
+        <table>
+          <tr><th>HTTP</th><th>code</th><th>含义</th></tr>
+          <tr><td>400</td><td><code>validation_failed</code></td><td>参数缺失或格式错误</td></tr>
+          <tr><td>401</td><td><code>unauthorized</code></td><td>令牌缺失、无效或过期</td></tr>
+          <tr><td>403</td><td><code>forbidden</code></td><td>无权操作该资源</td></tr>
+          <tr><td>404</td><td><code>not_found</code></td><td>用户不存在</td></tr>
+          <tr><td>409</td><td><code>conflict</code></td><td>邮箱已被注册</td></tr>
+          <tr><td>429</td><td><code>rate_limited</code></td><td>请求过于频繁</td></tr>
+          <tr><td>500</td><td><code>internal_error</code></td><td>服务端异常</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <!-- 创建用户 -->
+    <section id="create-user">
+      <h2>创建用户</h2>
+      <div class="endpoint"><span class="method post">POST</span><span>/users</span></div>
+      <p>新建一个用户，成功返回 <code>201 Created</code> 和完整的用户对象。</p>
+
+      <h3>请求体</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>字段</th><th>类型</th><th></th><th>说明</th></tr>
+          <tr><td><code>email</code></td><td>string</td><td class="req">必填</td><td>邮箱，全局唯一</td></tr>
+          <tr><td><code>name</code></td><td>string</td><td class="req">必填</td><td>显示名，1–50 字符</td></tr>
+          <tr><td><code>phone</code></td><td>string</td><td class="opt">可选</td><td>E.164 格式，如 <code>+8613800000000</code></td></tr>
+          <tr><td><code>role</code></td><td>string</td><td class="opt">可选</td><td><code>member</code>（默认）或 <code>admin</code></td></tr>
+        </table>
+      </div>
+
+      <p class="code-label">请求</p>
+<pre><code>curl -X POST https://api.example.com/v1/users \
+  -H <span class="s">"Authorization: Bearer $TOKEN"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"email": "lin@example.com", "name": "林青"}'</span></code></pre>
+      <p class="code-label">响应 201</p>
+<pre><code>{
+  <span class="k">"id"</span>: <span class="s">"usr_8f2a1c"</span>,
+  <span class="k">"email"</span>: <span class="s">"lin@example.com"</span>,
+  <span class="k">"name"</span>: <span class="s">"林青"</span>,
+  <span class="k">"phone"</span>: null,
+  <span class="k">"role"</span>: <span class="s">"member"</span>,
+  <span class="k">"created_at"</span>: <span class="s">"2026-10-25T08:00:00Z"</span>,
+  <span class="k">"updated_at"</span>: <span class="s">"2026-10-25T08:00:00Z"</span>
+}</code></pre>
+      <p class="note">可能的错误：<code>400</code> 参数错误，<code>409</code> 邮箱已存在。</p>
+    </section>
+
+    <!-- 获取用户 -->
+    <section id="get-user">
+      <h2>获取用户</h2>
+      <div class="endpoint"><span class="method get">GET</span><span>/users/{id}</span></div>
+      <p>按 ID 读取单个用户。</p>
+
+      <h3>路径参数</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>参数</th><th>类型</th><th></th><th>说明</th></tr>
+          <tr><td><code>id</code></td><td>string</td><td class="req">必填</td><td>用户 ID，如 <code>usr_8f2a1c</code></td></tr>
+        </table>
+      </div>
+
+      <p class="code-label">请求</p>
+<pre><code>curl https://api.example.com/v1/users/usr_8f2a1c \
+  -H <span class="s">"Authorization: Bearer $TOKEN"</span></code></pre>
+      <p class="code-label">响应 200</p>
+<pre><code>{
+  <span class="k">"id"</span>: <span class="s">"usr_8f2a1c"</span>,
+  <span class="k">"email"</span>: <span class="s">"lin@example.com"</span>,
+  <span class="k">"name"</span>: <span class="s">"林青"</span>,
+  <span class="k">"phone"</span>: null,
+  <span class="k">"role"</span>: <span class="s">"member"</span>,
+  <span class="k">"created_at"</span>: <span class="s">"2026-10-25T08:00:00Z"</span>,
+  <span class="k">"updated_at"</span>: <span class="s">"2026-10-25T08:00:00Z"</span>
+}</code></pre>
+      <p class="note">可能的错误：<code>404</code> 用户不存在。</p>
+    </section>
+
+    <!-- 更新用户 -->
+    <section id="update-user">
+      <h2>更新用户</h2>
+      <div class="endpoint"><span class="method patch">PATCH</span><span>/users/{id}</span></div>
+      <p>部分更新：只修改请求体中出现的字段，未出现的字段保持不变。<code>email</code> 不可修改。</p>
+
+      <h3>请求体</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>字段</th><th>类型</th><th></th><th>说明</th></tr>
+          <tr><td><code>name</code></td><td>string</td><td class="opt">可选</td><td>显示名，1–50 字符</td></tr>
+          <tr><td><code>phone</code></td><td>string | null</td><td class="opt">可选</td><td>传 <code>null</code> 表示清空</td></tr>
+          <tr><td><code>role</code></td><td>string</td><td class="opt">可选</td><td>仅 <code>admin</code> 可修改</td></tr>
+        </table>
+      </div>
+
+      <p class="code-label">请求</p>
+<pre><code>curl -X PATCH https://api.example.com/v1/users/usr_8f2a1c \
+  -H <span class="s">"Authorization: Bearer $TOKEN"</span> \
+  -H <span class="s">"Content-Type: application/json"</span> \
+  -d <span class="s">'{"phone": "+8613800000000"}'</span></code></pre>
+      <p class="code-label">响应 200</p>
+<pre><code>{
+  <span class="k">"id"</span>: <span class="s">"usr_8f2a1c"</span>,
+  <span class="k">"email"</span>: <span class="s">"lin@example.com"</span>,
+  <span class="k">"name"</span>: <span class="s">"林青"</span>,
+  <span class="k">"phone"</span>: <span class="s">"+8613800000000"</span>,
+  <span class="k">"role"</span>: <span class="s">"member"</span>,
+  <span class="k">"created_at"</span>: <span class="s">"2026-10-25T08:00:00Z"</span>,
+  <span class="k">"updated_at"</span>: <span class="s">"2026-10-25T09:12:40Z"</span>
+}</code></pre>
+      <p class="note">可能的错误：<code>400</code> 参数错误，<code>403</code> 无权修改 <code>role</code>，<code>404</code> 用户不存在。</p>
+    </section>
+
+    <!-- 删除用户 -->
+    <section id="delete-user">
+      <h2>删除用户</h2>
+      <div class="endpoint"><span class="method delete">DELETE</span><span>/users/{id}</span></div>
+      <p>删除指定用户，成功返回 <code>204 No Content</code>，无响应体。操作幂等：重复删除同一个已删除用户返回 <code>404</code>，不会产生其他副作用。</p>
+
+      <h3>路径参数</h3>
+      <div class="table-wrap">
+        <table>
+          <tr><th>参数</th><th>类型</th><th></th><th>说明</th></tr>
+          <tr><td><code>id</code></td><td>string</td><td class="req">必填</td><td>用户 ID</td></tr>
+        </table>
+      </div>
+
+      <p class="code-label">请求</p>
+<pre><code>curl -X DELETE https://api.example.com/v1/users/usr_8f2a1c \
+  -H <span class="s">"Authorization: Bearer $TOKEN"</span></code></pre>
+      <p class="code-label">响应 204</p>
+<pre><code><span class="c">（无响应体）</span></code></pre>
+      <p class="note warn">删除不可恢复。需要 <code>admin</code> 角色，否则返回 <code>403</code>。</p>
+    </section>
+
+    <footer>本文档中的域名、密钥与数据均为示例。</footer>
+  </main>
+</div>
+</body>
+</html>

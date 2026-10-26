@@ -1,0 +1,62 @@
+$ node --test --test-reporter=spec test/card-audit-r2.test.js test/card-audit-r3.test.js
+# 退出码：0
+✔ AUDIT_CARD_r2 夹具 D00-control：exported (1304.026208ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0000ms：rejected / incomplete / exported (1112.635625ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0050ms：rejected / incomplete / exported (981.275583ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0052ms：rejected / incomplete / exported (941.79025ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0054ms：rejected / incomplete / exported (935.221042ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0056ms：rejected / incomplete / exported (944.46675ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0058ms：rejected / incomplete / exported (942.036792ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0060ms：rejected / incomplete / exported (944.553584ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0062ms：rejected / incomplete / exported (940.503292ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0064ms：rejected / incomplete / exported (940.972375ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0066ms：rejected / incomplete / exported (957.920583ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0068ms：rejected / incomplete / exported (902.666541ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0070ms：rejected / incomplete / exported (913.153375ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0072ms：rejected / incomplete / exported (927.566375ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0074ms：rejected / incomplete / exported (949.249958ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0076ms：rejected / incomplete / exported (898.875417ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0078ms：rejected / incomplete / exported (840.281875ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0080ms：rejected / incomplete / exported (928.957833ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0082ms：rejected / incomplete / exported (844.637416ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0084ms：rejected / incomplete / exported (934.457917ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0086ms：rejected / incomplete / exported (934.115ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0088ms：rejected / incomplete / exported (927.873ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0090ms：rejected / incomplete / exported (834.527666ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0150ms：rejected / incomplete / exported (1651.852458ms)
+✔ AUDIT_CARD_r2 夹具 D-late-0300ms：rejected / incomplete / exported (826.480459ms)
+✔ AUDIT_CARD_r2 夹具 D-late-1000ms：rejected / incomplete / exported (835.362916ms)
+✔ AUDIT_CARD_r2 夹具 D10-embed：incomplete (856.405125ms)
+✔ AUDIT_CARD_r2 夹具 D11-css-background-file：incomplete (841.896583ms)
+✔ AUDIT_CARD_r2 夹具 D12-css-background-data：incomplete (834.281583ms)
+✔ AUDIT_CARD_r2 夹具 D13-css-mask：incomplete (835.148208ms)
+✔ AUDIT_CARD_r2 夹具 D14-content-url：incomplete (857.112ms)
+✔ AUDIT_CARD_r2 夹具 D15-inline-svg-image：incomplete (882.832792ms)
+✔ AUDIT_CARD_r2 夹具 D16-css-background-icon：exported (914.681375ms)
+✔ AUDIT_CARD_r3 夹具 E01-shadow-invisible：incomplete (1307.065125ms)
+✔ AUDIT_CARD_r3 夹具 E02-cssom-invisible：incomplete (1050.179333ms)
+✔ AUDIT_CARD_r3 夹具 E03-mark-id-forgery：incomplete (945.289ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31186.626709
+
+
+$ node scripts/sweep-card-late-change.mjs . --adaptive
+# 退出码：0
+0ms:rejected 2ms:rejected 4ms:rejected 6ms:rejected 8ms:rejected 10ms:rejected 12ms:rejected 14ms:rejected 16ms:rejected 18ms:rejected 20ms:rejected 22ms:rejected 24ms:rejected 26ms:rejected 28ms:rejected 30ms:rejected 32ms:rejected 34ms:incomplete 36ms:rejected 38ms:incomplete 40ms:incomplete 42ms:incomplete 44ms:incomplete 46ms:incomplete 48ms:incomplete 50ms:incomplete 50ms:incomplete 52ms:incomplete 54ms:incomplete 56ms:incomplete 58ms:incomplete 60ms:incomplete 62ms:incomplete 64ms:incomplete 66ms:incomplete 68ms:incomplete 70ms:incomplete 72ms:incomplete 74ms:incomplete 76ms:incomplete 78ms:incomplete 80ms:incomplete 82ms:incomplete 84ms:incomplete 86ms:incomplete 88ms:incomplete 90ms:incomplete 92ms:incomplete 94ms:incomplete 96ms:incomplete 98ms:incomplete 100ms:incomplete 100ms:incomplete 102ms:incomplete 104ms:incomplete 106ms:incomplete 108ms:incomplete 110ms:incomplete 112ms:incomplete 114ms:incomplete 116ms:incomplete 118ms:incomplete 120ms:incomplete 122ms:incomplete 124ms:incomplete 126ms:incomplete 128ms:incomplete 130ms:incomplete 132ms:incomplete 134ms:incomplete 136ms:incomplete 138ms:incomplete 140ms:exported 142ms:incomplete 144ms:incomplete 146ms:incomplete 148ms:exported 150ms:incomplete 150ms:incomplete 152ms:exported 154ms:exported 156ms:incomplete 158ms:incomplete 160ms:incomplete 162ms:exported 164ms:exported 166ms:incomplete 168ms:incomplete 170ms:exported 172ms:exported 174ms:incomplete 176ms:exported 178ms:incomplete 180ms:incomplete 182ms:incomplete 184ms:incomplete 186ms:exported 188ms:exported 190ms:incomplete 192ms:exported 194ms:exported 196ms:exported 198ms:exported 200ms:exported
+汇总：细扫区间 0–200 ms；拒绝 18、没检查完 70、导出 16；✗ 0 个；扫到了窗口两端
+
+
+$ node scripts/sweep-card-late-change.mjs . --adaptive
+# 退出码：0
+0ms:rejected 2ms:rejected 4ms:rejected 6ms:rejected 8ms:rejected 10ms:rejected 12ms:rejected 14ms:rejected 16ms:rejected 18ms:rejected 20ms:rejected 22ms:rejected 24ms:rejected 26ms:rejected 28ms:incomplete 30ms:rejected 32ms:incomplete 34ms:rejected 36ms:rejected 38ms:incomplete 40ms:incomplete 42ms:incomplete 44ms:incomplete 46ms:incomplete 48ms:incomplete 50ms:incomplete 50ms:incomplete 52ms:incomplete 54ms:incomplete 56ms:incomplete 58ms:incomplete 60ms:incomplete 62ms:incomplete 64ms:incomplete 66ms:incomplete 68ms:incomplete 70ms:incomplete 72ms:incomplete 74ms:incomplete 76ms:incomplete 78ms:incomplete 80ms:incomplete 82ms:incomplete 84ms:incomplete 86ms:incomplete 88ms:incomplete 90ms:incomplete 92ms:incomplete 94ms:incomplete 96ms:incomplete 98ms:incomplete 100ms:incomplete 100ms:incomplete 102ms:incomplete 104ms:incomplete 106ms:incomplete 108ms:incomplete 110ms:incomplete 112ms:incomplete 114ms:incomplete 116ms:incomplete 118ms:incomplete 120ms:incomplete 122ms:incomplete 124ms:incomplete 126ms:incomplete 128ms:incomplete 130ms:incomplete 132ms:incomplete 134ms:incomplete 136ms:incomplete 138ms:incomplete 140ms:incomplete 142ms:exported 144ms:incomplete 146ms:incomplete 148ms:incomplete 150ms:incomplete 150ms:incomplete 152ms:incomplete 154ms:incomplete 156ms:incomplete 158ms:incomplete 160ms:incomplete 162ms:incomplete 164ms:incomplete 166ms:incomplete 168ms:incomplete 170ms:exported 172ms:incomplete 174ms:exported 176ms:exported 178ms:incomplete 180ms:incomplete 182ms:exported 184ms:exported 186ms:exported 188ms:exported 190ms:exported 192ms:exported 194ms:exported 196ms:exported 198ms:exported 200ms:incomplete 200ms:exported 202ms:exported 204ms:exported 206ms:exported 208ms:exported 210ms:exported 212ms:exported 214ms:exported 216ms:exported 218ms:exported 220ms:exported 222ms:exported 224ms:exported 226ms:exported 228ms:exported 230ms:exported 232ms:exported 234ms:exported 236ms:exported 238ms:exported 240ms:exported 242ms:exported 244ms:exported 246ms:exported 248ms:exported 250ms:exported
+汇总：细扫区间 0–250 ms；拒绝 17、没检查完 74、导出 39；✗ 0 个；扫到了窗口两端
+
+
+# 判定：PASS（ℹ pass 36，ℹ fail 0；汇总：细扫区间 0–200 ms；拒绝 18、没检查完 70、导出 16；✗ 0 个；扫到了窗口两端；汇总：细扫区间 0–250 ms；拒绝 17、没检查完 74、导出 39；✗ 0 个；扫到了窗口两端）
+# 时间：2026-10-26T03:11:44.059Z

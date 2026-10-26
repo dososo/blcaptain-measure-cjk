@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>通勤情况调查</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <h1>每日通勤情况调查</h1>
+      <p>本问卷共 6 题，约需 1 分钟。我们想了解大家的通勤时间与交通方式，问卷匿名填写。</p>
+      <div class="progress" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+      <div class="progress-text" id="progressText">已完成 0 / 5 道必答题</div>
+    </header>
+
+    <form id="survey" novalidate>
+      <!-- Q1 -->
+      <fieldset class="question" data-required="true">
+        <legend><span class="num">1.</span>您每天单程通勤大约需要多长时间？<span class="req">*</span></legend>
+        <div class="options two-col">
+          <label class="option"><input type="radio" name="duration" value="15 分钟以内">15 分钟以内</label>
+          <label class="option"><input type="radio" name="duration" value="15–30 分钟">15–30 分钟</label>
+          <label class="option"><input type="radio" name="duration" value="30–45 分钟">30–45 分钟</label>
+          <label class="option"><input type="radio" name="duration" value="45–60 分钟">45–60 分钟</label>
+          <label class="option"><input type="radio" name="duration" value="1–1.5 小时">1–1.5 小时</label>
+          <label class="option"><input type="radio" name="duration" value="1.5 小时以上">1.5 小时以上</label>
+        </div>
+        <p class="error-msg" role="alert"></p>
+      </fieldset>
+
+      <!-- Q2 -->
+      <fieldset class="question" data-required="true">
+        <legend><span class="num">2.</span>您最主要的通勤交通方式是？<span class="req">*</span></legend>
+        <div class="options two-col">
+          <label class="option"><input type="radio" name="mainMode" value="步行">步行</label>
+          <label class="option"><input type="radio" name="mainMode" value="自行车 / 共享单车">自行车 / 共享单车</label>
+          <label class="option"><input type="radio" name="mainMode" value="电动车 / 摩托车">电动车 / 摩托车</label>
+          <label class="option"><input type="radio" name="mainMode" value="公交车">公交车</label>
+          <label class="option"><input type="radio" name="mainMode" value="地铁 / 轻轨">地铁 / 轻轨</label>
+          <label class="option"><input type="radio" name="mainMode" value="自驾">自驾</label>
+          <label class="option"><input type="radio" name="mainMode" value="出租车 / 网约车">出租车 / 网约车</label>
+          <label class="option"><input type="radio" name="mainMode" value="班车 / 拼车">班车 / 拼车</label>
+          <label class="option"><input type="radio" name="mainMode" value="其他" data-other="mainModeOther">其他</label>
+        </div>
+        <input type="text" class="other-input" id="mainModeOther" placeholder="请填写其他交通方式" maxlength="30" hidden>
+        <p class="error-msg" role="alert"></p>
+      </fieldset>
+
+      <!-- Q3 -->
+      <fieldset class="question" data-required="true">
+        <legend><span class="num">3.</span>通勤途中您还会搭配使用哪些方式？<span class="req">*</span><span class="hint">可多选</span></legend>
+        <div class="options two-col">
+          <label class="option"><input type="checkbox" name="extraModes" value="步行接驳">步行接驳</label>
+          <label class="option"><input type="checkbox" name="extraModes" value="共享单车接驳">共享单车接驳</label>
+          <label class="option"><input type="checkbox" name="extraModes" value="公交换乘">公交换乘</label>
+          <label class="option"><input type="checkbox" name="extraModes" value="地铁换乘">地铁换乘</label>
+          <label class="option"><input type="checkbox" name="extraModes" value="网约车接驳">网约车接驳</label>
+          <label class="option"><input type="checkbox" name="extraModes" value="无，只用一种方式" data-exclusive="true">无，只用一种方式</label>
+        </div>
+        <p class="error-msg" role="alert"></p>
+      </fieldset>
+
+      <!-- Q4 -->
+      <fieldset class="question" data-required="true">
+        <legend><span class="num">4.</span>您的单程通勤距离大约是？<span class="req">*</span></legend>
+        <div class="options two-col">
+          <label class="option"><input type="radio" name="distance" value="3 公里以内">3 公里以内</label>
+          <label class="option"><input type="radio" name="distance" value="3–10 公里">3–10 公里</label>
+          <label class="option"><input type="radio" name="distance" value="10–20 公里">10–20 公里</label>
+          <label class="option"><input type="radio" name="distance" value="20–30 公里">20–30 公里</label>
+          <label class="option"><input type="radio" name="distance" value="30 公里以上">30 公里以上</label>
+          <label class="option"><input type="radio" name="distance" value="不清楚">不清楚</label>
+        </div>
+        <p class="error-msg" role="alert"></p>
+      </fieldset>
+
+      <!-- Q5 -->
+      <fieldset class="question" data-required="true">
+        <legend><span class="num">5.</span>您对目前的通勤体验满意吗？<span class="req">*</span></legend>
+        <div class="scale">
+          <label class="option"><input type="radio" name="satisfaction" value="1"><strong>1</strong><span>很不满意</span></label>
+          <label class="option"><input type="radio" name="satisfaction" value="2"><strong>2</strong><span>不满意</span></label>
+          <label class="option"><input type="radio" name="satisfaction" value="3"><strong>3</strong><span>一般</span></label>
+          <label class="option"><input type="radio" name="satisfaction" value="4"><strong>4</strong><span>满意</span></label>
+          <label class="option"><input type="radio" name="satisfaction" value="5"><strong>5</strong><span>很满意</span></label>
+        </div>
+        <div class="scale-labels"><span>很不满意</span><span>很满意</span></div>
+        <p class="error-msg" role="alert"></p>
+      </fieldset>
+
+      <!-- Q6 -->
+      <fieldset class="question">
+        <legend><span class="num">6.</span>关于通勤，您最希望改善的是什么？<span class="hint">选填</span></legend>
+        <textarea name="suggestion" id="suggestion" maxlength="300" placeholder="例如：地铁太挤、公交班次少、停车难……"></textarea>
+        <div class="char-count"><span id="charCount">0</span> / 300</div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="reset">重置</button>
+        <button type="submit" class="primary">提交问卷</button>
+      </div>
+    </form>
+
+    <section class="result" id="result" hidden>
+      <h2>感谢您的参与！</h2>
+      <p>您的回答已记录，以下是您的填写内容：</p>
+      <dl id="summary"></dl>
+      <button type="button" id="again">重新填写</button>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('survey');
+      var result = document.getElementById('result');
+      var summary = document.getElementById('summary');
+      var progressBar = document.getElementById('progressBar');
+      var progressText = document.getElementById('progressText');
+      var suggestion = document.getElementById('suggestion');
+      var charCount = document.getElementById('charCount');
+      var otherInput = document.getElementById('mainModeOther');
+      var required = Array.prototype.slice.call(form.querySelectorAll('fieldset[data-required]'));
+
+      function isAnswered(fs) {
+        if (!fs.querySelector('input:checked')) return false;
+        var other = fs.querySelector('input[data-other]:checked');
+        if (other) {
+          return document.getElementById(other.dataset.other).value.trim() !== '';
+        }
+        return true;
+      }
+
+      function updateProgress() {
+        var done = required.filter(isAnswered).length;
+        progressBar.style.width = (done / required.length * 100) + '%';
+        progressText.textContent = '已完成 ' + done + ' / ' + required.length + ' 道必答题';
+      }
+
+      function validate() {
+        var firstInvalid = null;
+        required.forEach(function (fs) {
+          var msg = fs.querySelector('.error-msg');
+          if (isAnswered(fs)) {
+            fs.classList.remove('invalid');
+            msg.textContent = '';
+          } else {
+            fs.classList.add('invalid');
+            msg.textContent = fs.querySelector('input:checked') ? '请填写具体内容' : '此题为必答题';
+            if (!firstInvalid) firstInvalid = fs;
+          }
+        });
+        return firstInvalid;
+      }
+
+      form.addEventListener('change', function (e) {
+        var t = e.target;
+
+        // “其他”选项显示输入框
+        if (t.name === 'mainMode') {
+          otherInput.hidden = t.value !== '其他';
+          if (!otherInput.hidden) otherInput.focus();
+        }
+
+        // 多选题中的互斥选项
+        if (t.name === 'extraModes' && t.checked) {
+          var boxes = form.querySelectorAll('input[name="extraModes"]');
+          boxes.forEach(function (b) {
+            if (b !== t && (t.dataset.exclusive || b.dataset.exclusive)) b.checked = false;
+          });
+        }
+
+        var fs = t.closest('fieldset');
+        if (fs && fs.classList.contains('invalid') && isAnswered(fs)) {
+          fs.classList.remove('invalid');
+          fs.querySelector('.error-msg').textContent = '';
+        }
+        updateProgress();
+      });
+
+      otherInput.addEventListener('input', updateProgress);
+
+      suggestion.addEventListener('input', function () {
+        charCount.textContent = suggestion.value.length;
+      });
+
+      form.addEventListener('reset', function () {
+        setTimeout(function () {
+          otherInput.hidden = true;
+          charCount.textContent = '0';
+          required.forEach(function (fs) {
+            fs.classList.remove('invalid');
+            fs.querySelector('.error-msg').textContent = '';
+          });
+          updateProgress();
+        });
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var invalid = validate();
+        if (invalid) {
+          invalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        var data = new FormData(form);
+        var mainMode = data.get('mainMode');
+        if (mainMode === '其他') mainMode = '其他：' + otherInput.value.trim();
+
+        var answers = {
+          '单程通勤时间': data.get('duration'),
+          '主要交通方式': mainMode,
+          '搭配使用的方式': data.getAll('extraModes').join('、'),
+          '单程通勤距离': data.get('distance'),
+          '通勤满意度': data.get('satisfaction') + ' / 5',
+          '希望改善的地方': data.get('suggestion').trim() || '（未填写）'
+        };
+
+        // 本地保存一份记录（如需收集到服务端，可在此处改为 fetch 提交）
+        try {
+          var list = JSON.parse(localStorage.getItem('commuteSurvey') || '[]');
+          list.push(Object.assign({ time: new Date().toISOString() }, answers));
+          localStorage.setItem('commuteSurvey', JSON.stringify(list));
+        } catch (err) { /* 存储不可用时忽略 */ }
+
+        summary.innerHTML = '';
+        Object.keys(answers).forEach(function (k) {
+          var dt = document.createElement('dt');
+          var dd = document.createElement('dd');
+          dt.textContent = k;
+          dd.textContent = answers[k];
+          summary.appendChild(dt);
+          summary.appendChild(dd);
+        });
+
+        form.hidden = true;
+        result.hidden = false;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      document.getElementById('again').addEventListener('click', function () {
+        form.reset();
+        result.hidden = true;
+        form.hidden = false;
+      });
+
+      updateProgress();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+$ node --test --test-reporter=spec --test-name-pattern='命令行|安全|D-C3|Playwright|WOFF2|接口' test/card.test.js
+# 退出码：0
+✔ card 和字体解析的接口存在 (0.655583ms)
+✔ 字体解析：TTF、OTF 头、WOFF、WOFF2、TTC 都能读出家族名、全名、PostScript 名和本地化名 (5.811959ms)
+✔ font_dir 里的 WOFF2 字体同样能加载并放行 (1061.90375ms)
+✔ 命令行：card <html> --out --font-dir --result；导出时退出码 0，拒绝时退出码 1，结果 JSON 带 schema_version (2279.7645ms)
+✔ 安全：font_dir 在工作区外或是符号链接、--out 不是 .png、--out 指向已有的非 PNG 文件或工作区外 → 退出码 2，不写任何文件 (263.274208ms)
+✔ D-C3：超过 64 MB 的字体文件跳过并记录；超过 50 个字体文件 → 退出码 2 (998.057042ms)
+✔ 没有安装 Playwright 时 card 退出码 2，并给出安装提示 (65.608167ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4746.659333
+
+
+# 判定：PASS（ℹ pass 7，ℹ fail 0）
+# 时间：2026-10-26T03:07:04.166Z

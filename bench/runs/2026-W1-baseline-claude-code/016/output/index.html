@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>sumi 快速上手</title>
+  <meta name="description" content="sumi 命令行工具快速上手：安装、配置与三个常用命令。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+
+    <header class="masthead">
+      <div class="seal">快速上手</div>
+      <h1><span class="latin">sumi</span> 墨</h1>
+      <p class="lede">一个把 Markdown 目录编译成静态网站的开源命令行工具。单个二进制文件，没有运行时依赖，五分钟内跑通第一个站点。</p>
+      <div class="meta"><span>版本 0.9.2</span><span>Apache-2.0</span><span>macOS · Linux · Windows</span></div>
+    </header>
+
+    <nav class="toc" aria-label="目录">
+      <ol>
+        <li><a href="#install"><span class="num">一</span>安装</a></li>
+        <li><a href="#config"><span class="num">二</span>配置</a></li>
+        <li><a href="#commands"><span class="num">三</span>常用命令</a></li>
+        <li><a href="#next"><span class="num">四</span>下一步</a></li>
+      </ol>
+    </nav>
+
+    <!-- 一 安装 -->
+    <section id="install">
+      <div class="section-head"><span class="num">一</span><h2>安装</h2></div>
+      <p>任选一种方式。三种方式装出来的是同一个二进制文件。</p>
+
+      <h3>Homebrew（macOS / Linux）</h3>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>brew install sumi</code></pre>
+      </div>
+
+      <h3>Cargo（需要 Rust 1.75+）</h3>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>cargo install sumi-cli --locked</code></pre>
+      </div>
+
+      <h3>预编译二进制</h3>
+      <p>从 GitHub Releases 页面下载对应平台的压缩包，解压后把 <code>sumi</code> 放进 <code>PATH</code> 里的任一目录即可。下载后建议用同页的 <code>SHA256SUMS</code> 文件校验：</p>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>shasum -a 256 -c SHA256SUMS --ignore-missing</code></pre>
+      </div>
+
+      <h3>确认安装成功</h3>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>sumi --version
+<span class="out">sumi 0.9.2</span></code></pre>
+      </div>
+    </section>
+
+    <!-- 二 配置 -->
+    <section id="config">
+      <div class="section-head"><span class="num">二</span><h2>配置</h2></div>
+      <p>sumi 读取项目根目录下的 <code>sumi.toml</code>。没有这个文件时全部使用默认值，所以配置是可选的。最小可用配置如下：</p>
+
+      <div class="code">
+        <span class="label">sumi.toml</span>
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="key">schema_version</span> = <span class="str">"1"</span>
+
+<span class="key">[site]</span>
+<span class="key">title</span>    = <span class="str">"我的笔记"</span>
+<span class="key">base_url</span> = <span class="str">"https://example.com"</span>
+<span class="key">language</span> = <span class="str">"zh-CN"</span>
+
+<span class="key">[build]</span>
+<span class="key">source</span> = <span class="str">"content"</span>   <span class="cmt"># Markdown 所在目录</span>
+<span class="key">output</span> = <span class="str">"public"</span>    <span class="cmt"># 生成的静态文件目录</span>
+<span class="key">drafts</span> = false       <span class="cmt"># 是否输出 draft: true 的文章</span></code></pre>
+      </div>
+
+      <h3>常用字段</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>字段</th><th>默认值</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>site.title</code></td><td>目录名</td><td>站点标题，出现在页面 <code>&lt;title&gt;</code> 与页头</td></tr>
+            <tr><td><code>site.base_url</code></td><td><code>/</code></td><td>部署后的根地址，用于生成绝对链接与 sitemap</td></tr>
+            <tr><td><code>build.source</code></td><td><code>content</code></td><td>Markdown 源文件目录</td></tr>
+            <tr><td><code>build.output</code></td><td><code>public</code></td><td>构建产物目录，每次构建前会被清空</td></tr>
+            <tr><td><code>build.drafts</code></td><td><code>false</code></td><td>是否包含草稿</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>环境变量覆盖</h3>
+      <p>任何字段都可以用 <code>SUMI_</code> 前缀的环境变量临时覆盖，层级用双下划线连接。适合在 CI 里切换部署地址：</p>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>SUMI_SITE__BASE_URL=https://staging.example.com sumi build</code></pre>
+      </div>
+
+      <div class="note"><strong>优先级：</strong>命令行参数 &gt; 环境变量 &gt; <code>sumi.toml</code> &gt; 内置默认值。</div>
+    </section>
+
+    <!-- 三 常用命令 -->
+    <section id="commands">
+      <div class="section-head"><span class="num">三</span><h2>常用命令</h2></div>
+      <p>日常使用基本只需要下面三个命令。完整列表见 <code>sumi help</code>。</p>
+
+      <h3><code>sumi init</code> — 新建项目</h3>
+      <p>在指定目录生成项目骨架：一份 <code>sumi.toml</code>、一个 <code>content/</code> 目录和一篇示例文章。目标目录非空时会拒绝执行，不会覆盖已有文件。</p>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>sumi init my-notes
+<span class="out">created  my-notes/sumi.toml
+created  my-notes/content/hello.md
+done. next: cd my-notes &amp;&amp; sumi serve</span></code></pre>
+      </div>
+
+      <h3><code>sumi serve</code> — 本地预览</h3>
+      <p>启动本地预览服务器，监听文件变化并自动刷新浏览器。默认只绑定 <code>127.0.0.1</code>，不会暴露到局域网。</p>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>sumi serve --port 4000 --drafts
+<span class="out">watching content/ …
+serving  http://127.0.0.1:4000</span></code></pre>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>参数</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>--port &lt;n&gt;</code></td><td>端口号，默认 <code>3000</code></td></tr>
+            <tr><td><code>--drafts</code></td><td>预览时包含草稿</td></tr>
+            <tr><td><code>--open</code></td><td>启动后自动打开浏览器</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3><code>sumi build</code> — 构建发布</h3>
+      <p>把 <code>content/</code> 编译到 <code>public/</code>。产物是纯静态文件，可直接上传到任何静态托管服务。</p>
+      <div class="code">
+        <button class="copy" type="button">复制</button>
+        <pre><code><span class="prompt">$ </span>sumi build --minify
+<span class="out">built 42 pages in 0.31s → public/</span></code></pre>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>参数</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>--minify</code></td><td>压缩 HTML / CSS 输出</td></tr>
+            <tr><td><code>--output &lt;dir&gt;</code></td><td>覆盖 <code>build.output</code></td></tr>
+            <tr><td><code>--strict</code></td><td>遇到失效内链时以非零状态退出，适合放进 CI</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 四 下一步 -->
+    <section id="next">
+      <div class="section-head"><span class="num">四</span><h2>下一步</h2></div>
+      <ol class="steps">
+        <li>在 <code>content/</code> 里写下第一篇文章，文件头用 YAML front matter 填 <code>title</code> 与 <code>date</code>。</li>
+        <li>运行 <code>sumi serve</code> 边写边看。</li>
+        <li>满意后 <code>sumi build --strict</code>，把 <code>public/</code> 部署出去。</li>
+      </ol>
+      <p>遇到问题，先运行 <code>sumi doctor</code> 检查环境与配置，再到项目仓库提 issue。</p>
+    </section>
+
+    <footer>
+      <p>sumi 为本文档的示例工具，命令与参数仅作版式演示。</p>
+      <p>文档以 Apache-2.0 发布。</p>
+    </footer>
+  </main>
+
+  <script>
+    document.querySelectorAll('.copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var code = btn.parentElement.querySelector('code').cloneNode(true);
+        code.querySelectorAll('.prompt, .out').forEach(function (n) { n.remove(); });
+        var text = code.textContent.replace(/\n{2,}$/, '').trim();
+        try {
+          navigator.clipboard.writeText(text).then(function () {
+            btn.textContent = '已复制';
+            setTimeout(function () { btn.textContent = '复制'; }, 1500);
+          }).catch(function () { btn.textContent = '请手动复制'; });
+        } catch (e) { btn.textContent = '请手动复制'; }
+      });
+    });
+  </script>
+</body>
+</html>

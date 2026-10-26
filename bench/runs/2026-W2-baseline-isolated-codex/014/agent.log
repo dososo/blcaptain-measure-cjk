@@ -1,0 +1,576 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-014-nI8F0Z -m gpt-6-astra -c model_reasoning_effort="high" <提示词>
+工作目录：<tmp>/measure-baseline-codex-014-nI8F0Z
+退出码：0 信号：无 用时：237s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-014-nI8F0Z
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17326-d9c6-7a50-a1e9-1850faeec6ae
+--------
+user
+给一个在线英语口语课做价格页，区分一对一和小班课。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会做一个清晰的中文价格页，分别展示一对一和小班课，配上套餐对比与常见问题，并适配手机屏幕。
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-014-nI8F0Z
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-014-nI8F0Z
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-014-nI8F0Z/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..22fbd860c090efd26ca03827c80e4e4790df2855
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,120 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <title>课程与价格 · HeyTalk 英语口语</title>
++  <style>
++    :root{--ink:#192c31;--muted:#748080;--paper:#f7f8fa;--green:#c9ef91;--line:#e3e7e6;--dark:#203b3b;--purple:#e9e5f5}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7e9d51;outline-offset:5px}.wrap{max-width:1120px;margin:auto;padding:0 32px}.site-header{height:94px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.logo{font-size:27px;font-weight:800;letter-spacing:-1.3px;display:flex;align-items:center;gap:9px}.logo-icon{width:31px;height:29px;background:var(--dark);border-radius:11px 11px 11px 3px;display:flex;align-items:center;justify-content:center;gap:4px;transform:rotate(-5deg)}.logo-icon i{width:4px;height:10px;background:var(--green);border-radius:4px}.logo-icon i:nth-child(2){height:16px}.logo-dot{color:#7da64f}.nav{display:flex;align-items:center;gap:33px;font-size:13px;color:#657373}.nav a:hover{color:var(--ink)}.nav .active{color:var(--ink);font-weight:650;position:relative}.nav .active:after{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink);position:absolute;bottom:-10px;left:50%}.nav-cta{padding:11px 19px;background:transparent;border:1px solid #bbc6c3;border-radius:7px;font-size:12px;color:var(--ink)}.nav-cta:hover{background:#e9eee9}
++    .hero{text-align:center;padding:60px 0 30px;position:relative}.eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;color:#658075;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:#83a76c}.hero h1{font-size:45px;line-height:1.4;letter-spacing:-2px;margin:19px 0 17px;font-weight:750}.hero h1 span{position:relative;isolation:isolate;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;left:-3px;right:-5px;height:12px;bottom:3px;background:var(--green);z-index:-1;transform:rotate(-2deg)}.hero p{font-size:14px;color:var(--muted);line-height:1.9;margin:0}.hero-mark{position:absolute;width:45px;height:45px;right:86px;top:79px;transform:rotate(11deg);color:#9db69d}.hero-small{position:absolute;left:100px;top:134px;font-family:Georgia,serif;font-size:45px;color:#b9c8be;transform:rotate(-16deg)}.billing{display:flex;align-items:center;justify-content:center;gap:13px;margin-top:30px}.segmented{display:flex;border:1px solid #dfe5e0;background:#edf0ed;padding:4px;border-radius:9px;gap:3px}.segmented button{border:0;background:transparent;color:#7b8580;padding:9px 22px;font-size:12px;border-radius:6px;min-width:90px}.segmented button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #192c3110;font-weight:650}.save{font-size:11px;background:#eaf3e3;color:#5a7947;border-radius:5px;padding:6px 8px}.billing-note{font-size:11px!important;margin-top:12px!important;color:#8b9690!important}
++    .pricing{display:grid;grid-template-columns:1fr 1fr;gap:23px;margin-top:5px}.price-card{border:1px solid var(--line);border-radius:16px;padding:30px 32px 26px;background:#fff;position:relative;overflow:hidden}.price-card.personal{background:var(--dark);border-color:var(--dark);color:#fff}.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.type-icon{width:44px;height:44px;border-radius:12px;background:var(--purple);display:flex;align-items:center;justify-content:center;color:#6d6387}.personal .type-icon{background:#ffffff10;color:var(--green);border:1px solid #ffffff12}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.tag{font-size:10px;color:#bfe29c;padding:6px 10px;border:1px solid #54715d;border-radius:20px;display:flex;align-items:center;gap:5px}.tag .icon{width:12px;height:12px}.soft-tag{color:#827495;border-color:#e4ddef;background:#f8f6fc}.card-heading{display:flex;align-items:baseline;gap:11px}.card-heading h2{font-size:24px;margin:0;letter-spacing:-.7px}.english{font-size:10px;letter-spacing:1.4px;font-weight:500;color:#9faeaa}.small-group .english{color:#9b99a4}.card-description{font-size:12px;color:#b6c6c1;margin:11px 0 25px;line-height:1.7}.small-group .card-description{color:var(--muted)}.price{display:flex;align-items:baseline;gap:4px;height:63px}.currency{font-size:24px;font-weight:550;align-self:flex-start;margin-top:9px}.amount{font-size:56px;font-weight:650;line-height:1;letter-spacing:-3px;font-variant-numeric:tabular-nums}.per{font-size:12px;color:#a9beb6;margin-left:7px}.small-group .per{color:#8c9591}.old-price{font-size:13px;color:#91a99d;text-decoration:line-through;margin-left:10px}.small-group .old-price{color:#a1a7a3}.billing-detail{font-size:11px;color:#aec2b8;margin:6px 0 22px;min-height:18px}.small-group .billing-detail{color:#8b9590}.course-meta{display:flex;gap:9px;margin-bottom:23px}.course-meta span{font-size:10px;padding:6px 9px;border-radius:4px;background:#ffffff0b;color:#d5e0db;border:1px solid #ffffff12}.small-group .course-meta span{color:#7b7b87;background:#f6f5f9;border-color:#edebf0}.card-line{height:1px;background:#ffffff19}.small-group .card-line{background:var(--line)}.features-title{font-size:11px;font-weight:550;margin:22px 0 15px;color:#e8eeeb}.small-group .features-title{color:#63726c}.features{list-style:none;margin:0;padding:0;display:grid;gap:15px}.features li{display:flex;align-items:center;gap:10px;font-size:12px;line-height:1.5;color:#e3ebe7}.check{width:16px;height:16px;flex:none;stroke:var(--green);stroke-width:1.8;fill:none}.small-group .features li{color:#53635e}.small-group .check{stroke:#89809c}.card-cta{margin-top:27px;width:100%;border:0;border-radius:7px;padding:13px 17px;font-size:12px;font-weight:650;display:flex;align-items:center;justify-content:center;gap:14px;background:var(--green);color:var(--dark);transition:transform .15s,background .15s}.card-cta:hover{background:#d7f5ad;transform:translateY(-2px)}.small-group .card-cta{background:#eae6f4;color:#625776}.small-group .card-cta:hover{background:#ddd5ee}.card-cta .icon{width:16px;height:16px}.cta-note{text-align:center;font-size:10px;color:#a0b4a9;margin:11px 0 0}.small-group .cta-note{color:#9b9a9f}.under-cards{display:flex;gap:28px;align-items:center;justify-content:center;margin:22px 0 38px;font-size:10px;color:#88948c}.under-cards span{display:flex;align-items:center;gap:6px}.under-cards .icon{width:14px;height:14px}
++    .help-strip{border:1px solid #e0e6dc;background:#eef2e9;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:20px}.chat-art{position:relative;width:51px;height:47px;flex:none}.bubble{display:flex;align-items:center;justify-content:center;position:absolute;width:35px;height:29px;border:1.5px solid #7f9271;border-radius:9px 9px 9px 2px;color:#6e865d;font-size:16px;background:#dbe7ce;left:0;top:0}.bubble.back{left:17px;top:15px;transform:scaleX(-1);background:#f5f8ef}.bubble.front{z-index:1}.help-copy h3{margin:0 0 6px;font-size:14px;font-weight:650}.help-copy p{font-size:11px;color:#7a8674;line-height:1.7;margin:0}.help-cta{margin-left:auto;flex:none;padding:10px 15px;border:1px solid #b8c3af;border-radius:6px;color:#54654a;font-size:11px;background:transparent;display:flex;align-items:center;gap:12px}.help-cta:hover{background:#e1e9d8}.help-cta .icon{width:14px;height:14px}
++    .faq{padding:53px 0 49px;display:grid;grid-template-columns:1fr 1.6fr;gap:55px}.section-label{font-size:10px;letter-spacing:2px;color:#89968b;font-weight:600;margin:0 0 12px}.faq h2{font-size:26px;letter-spacing:-.8px;margin:0 0 11px}.faq-intro{font-size:12px;line-height:1.8;color:#8a948d;margin:0}.faq details{border-bottom:1px solid var(--line)}.faq details:first-child{border-top:1px solid var(--line)}.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:19px 1px;font-size:12px;font-weight:500;gap:16px}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";font-size:19px;font-weight:300;color:#8f9c91;flex:none}.faq details[open] summary:after{content:"−"}.faq details p{font-size:12px;color:#7a877c;line-height:1.9;margin:0;padding:0 23px 18px 1px}.footer{display:flex;align-items:center;justify-content:space-between;padding:25px 0 30px;border-top:1px solid var(--line);gap:20px}.footer .logo{font-size:19px;gap:7px}.footer .logo-icon{width:23px;height:22px;border-radius:8px 8px 8px 2px;gap:3px}.footer .logo-icon i{width:3px;height:8px}.footer .logo-icon i:nth-child(2){height:12px}.footer-brand{display:flex;align-items:center;gap:20px}.footer-tagline,.copyright{font-size:10px;color:#929c96}.footer-tagline{border-left:1px solid #dce2dd;padding-left:20px}
++    dialog{border:1px solid var(--line);border-radius:18px;padding:34px;max-width:420px;width:calc(100% - 36px);color:var(--ink);box-shadow:0 24px 80px #10282630}dialog::backdrop{background:#142a2a70;backdrop-filter:blur(4px)}.close{position:absolute;right:13px;top:12px;border:0;background:transparent;font-size:24px;color:#87928b;width:32px;height:32px}.modal-label{font-size:10px;letter-spacing:1.7px;color:#7a9266;margin:0 0 12px}dialog h2{font-size:25px;margin:0 0 13px}dialog p{font-size:13px;line-height:1.9;color:#7b877e}.modal-details{padding:15px;background:#f1f5ec;border-radius:9px;margin:21px 0;line-height:1.9;font-size:13px}.modal-button{width:100%;padding:13px;border:0;border-radius:7px;background:var(--dark);color:white;font-size:13px}
++    @media(min-width:1280px){.wrap{max-width:1110px}.hero{padding-top:65px}.pricing{gap:25px}.price-card{padding:30px 34px 25px}}
++    @media(max-width:760px){.wrap{padding:0 22px}.site-header{height:76px}.nav{gap:18px}.nav a:not(.active){display:none}.nav-cta{padding:9px 13px}.logo{font-size:24px}.hero{padding:44px 0 26px}.hero h1{font-size:35px;letter-spacing:-1.5px}.hero p{font-size:12px}.hero-mark,.hero-small{display:none}.pricing{gap:15px}.price-card{padding:24px 21px}.card-heading{display:block}.english{display:block;margin-top:7px;font-size:9px}.card-description{min-height:41px;margin:10px 0 20px}.amount{font-size:48px}.old-price{margin-left:3px}.course-meta{gap:5px;flex-wrap:wrap}.features li{font-size:11px;gap:7px}.faq{gap:28px;grid-template-columns:1fr 1.4fr}.help-strip{padding:22px 20px;gap:14px}.help-copy p{max-width:270px}.footer-tagline{display:none}}
++    @media(max-width:540px){.wrap{padding:0 20px}.nav .active{display:none}.hero h1{font-size:32px}.hero{padding-top:38px}.hero p{padding:0 6px}.hero p br{display:none}.billing{margin-top:25px}.segmented button{min-width:80px;padding:8px 17px}.pricing{grid-template-columns:1fr;gap:20px;margin-top:5px}.price-card{padding:26px}.card-heading{display:flex}.english{margin-top:0}.card-description{min-height:0;font-size:12px}.amount{font-size:54px}.features li{font-size:12px}.card-top{margin-bottom:21px}.under-cards{gap:13px;flex-wrap:wrap;font-size:9px;margin-bottom:29px}.help-strip{flex-wrap:wrap;gap:14px}.help-copy{flex:1}.help-copy h3{font-size:13px}.help-cta{margin-left:65px}.faq{display:block;padding-top:37px;padding-bottom:32px}.faq-intro{margin-bottom:25px}.faq h2{font-size:24px}.footer{align-items:center}.copyright{font-size:9px}.footer .logo{font-size:18px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
++    <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2M19 3v4m-2-2h4"/></symbol>
++    <symbol id="group" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m0-16a3 3 0 0 1 0 6m3 3a5 5 0 0 1 3 5v2"/></symbol>
++    <symbol id="tick" viewBox="0 0 18 18"><path d="m4 9 3.3 3.3L14 5.5"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 11 3 3 5-5"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="book" viewBox="0 0 24 24"><path d="M12 5v15M3 4c4-1 6 0 9 1 3-1 5-2 9-1v15c-4-1-6 0-9 1-3-1-5-2-9-1V4Z"/></symbol>
++    <symbol id="spark" viewBox="0 0 24 24"><path d="m12 2 2.8 7.2L22 12l-7.2 2.8L12 22l-2.8-7.2L2 12l7.2-2.8L12 2Z"/></symbol>
++  </defs></svg>
++  <div class="wrap">
++    <header class="site-header">
++      <a class="logo" href="#" aria-label="HeyTalk 首页"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a>
++      <nav class="nav" aria-label="主导航"><a href="#courses">课程方案</a><a href="#included">学习保障</a><a href="#courses" class="active" aria-current="page">课程与价格</a><button class="nav-cta" data-action="trial">预约体验课 ↗</button></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="page-title">
++        <div class="eyebrow">A LITTLE PRACTICE. A BIG DIFFERENCE.</div>
++        <span class="hero-small" aria-hidden="true">✳</span><svg class="hero-mark icon" aria-hidden="true"><use href="#spark"/></svg>
++        <h1 id="page-title">让英语，成为你<span>自然的表达</span></h1>
++        <p>专属老师，或一群同频的伙伴。找到适合你的开口方式。<br>每一次对话，都离自信的自己更近一点。</p>
++        <div class="billing"><div class="segmented" role="group" aria-label="选择课程套餐周期"><button aria-pressed="true" data-period="monthly">月度套餐</button><button aria-pressed="false" data-period="quarterly">季度套餐</button></div><span class="save">季度最高省 20%</span></div>
++        <p class="billing-note">一次购买 · 无自动续费 · 价格透明</p>
++      </section>
++      <section class="pricing" id="courses" aria-label="课程价格方案">
++        <article class="price-card personal">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#person"/></svg></div><span class="tag"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg>高效进阶之选</span></div>
++          <div class="card-heading"><h2>一对一私教课</h2><span class="english">JUST FOR YOU</span></div>
++          <p class="card-description">100% 专属时间，按你的节奏，突破你的瓶颈。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="personal-price">129</span><span class="per">/ 节</span><span class="old-price" id="personal-original" hidden>¥129</span></div>
++          <p class="billing-detail" id="personal-total" aria-live="polite">每月 4 节课，套餐合计 ¥516</p>
++          <div class="course-meta"><span>1 位学员 × 1 位老师</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">把每一分钟，都留给你的成长</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>根据水平与目标，定制专属学习计划</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师，全程互动与即时纠音</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>职场、旅行、日常，想练什么由你决定</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>灵活预约时间，轻松融入你的日程</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后专属反馈 + 个人学习报告</li>
++          </ul>
++          <button class="card-cta" data-action="personal">选择一对一，专注提升<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合有明确目标、希望快速突破的你</p>
++        </article>
++        <article class="price-card small-group">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#group"/></svg></div><span class="tag soft-tag">一起学，更有动力</span></div>
++          <div class="card-heading"><h2>互动小班课</h2><span class="english">BETTER TOGETHER</span></div>
++          <p class="card-description">在轻松的真实对话里，找到开口的勇气和乐趣。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="group-price">49</span><span class="per">/ 节</span><span class="old-price" id="group-original" hidden>¥49</span></div>
++          <p class="billing-detail" id="group-total" aria-live="polite">每月 8 节课，套餐合计 ¥392</p>
++          <div class="course-meta"><span>3–6 人精品小班</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">好的伙伴，让开口变得更简单</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>按英语水平分班，找到同频学习伙伴</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师引导，每个人都有机会说</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>主题讨论、角色扮演，告别枯燥跟读</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>每周固定 2 次课，养成稳定练习习惯</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后练习资料 + 班级学习社群</li>
++          </ul>
++          <button class="card-cta" data-action="group">加入小班，一起开口<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合喜欢互动、希望持续积累的你</p>
++        </article>
++      </section>
++      <div class="under-cards" id="included"><span><svg class="icon" aria-hidden="true"><use href="#shield"/></svg>精选专业口语教师</span><span><svg class="icon" aria-hidden="true"><use href="#book"/></svg>教材与学习资料全包含</span><span><svg class="icon" aria-hidden="true"><use href="#clock"/></svg>在家就能上的在线课堂</span></div>
++      <section class="help-strip" aria-labelledby="help-title"><div class="chat-art" aria-hidden="true"><span class="bubble back">···</span><span class="bubble front">Hi!</span></div><div class="help-copy"><h3 id="help-title">还没想好？先聊一次，再做决定。</h3><p>用 25 分钟体验真实课堂，老师帮你找到适合的学习起点。</p></div><button class="help-cta" data-action="trial">免费预约体验课<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button></section>
++      <section class="faq" id="faq" aria-labelledby="faq-title"><div><p class="section-label">GOOD QUESTIONS.</p><h2 id="faq-title">你可能还想知道</h2><p class="faq-intro">关于开口之前的那些小疑问，<br>我们都为你想到了。</p></div><div>
++        <details><summary>英语基础不太好，也可以参加吗？</summary><p>当然可以。开始前会进行简短的口语水平评估。一对一老师会根据你的基础调整节奏，小班课则会安排水平相近的伙伴，让你从适合的难度开始练习。</p></details>
++        <details><summary>一对一和小班课，怎么选更适合我？</summary><p>如果你有面试、工作沟通等具体目标，或需要灵活安排上课时间，推荐一对一。如果你喜欢和伙伴交流，希望通过规律练习保持语感，可以选择小班。体验课也能帮助你判断。</p></details>
++        <details><summary>临时有事，可以请假或调整上课时间吗？</summary><p>一对一课程可提前 24 小时免费改约；小班课按固定课表进行，提前请假后可领取本节学习资料。小班补课需视同级别班级的空位安排，报名时会确认具体规则。</p></details>
++        <details><summary>套餐有效期多久？会自动续费吗？</summary><p>月度套餐自开课日起 30 天内有效，季度套餐 90 天内有效。所有套餐均为一次性购买，不会自动续费。季度一对一共 12 节，小班共 24 节；如需延期，请在到期前沟通。</p></details>
++      </div></section>
++    </main>
++    <footer class="footer"><div class="footer-brand"><a class="logo" href="#" aria-label="返回顶部"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a><span class="footer-tagline">Small steps. Real conversations.</span></div><span class="copyright">© 2026 HeyTalk · 每一次开口，都算数。</span></footer>
++  </div>
++  <dialog id="course-dialog" aria-labelledby="dialog-title"><button class="close" aria-label="关闭弹窗">×</button><p class="modal-label">YOUR NEXT STEP</p><h2 id="dialog-title"></h2><p id="dialog-copy"></p><div class="modal-details" id="dialog-details"></div><p>这是课程价格展示页，暂未开放在线报名与付款。你可以关闭此窗口，继续比较课程方案。</p><button class="modal-button">继续了解课程</button></dialog>
++  <script>
++    const plans={monthly:{personal:129,group:49,personalCount:4,groupCount:8,label:'月度'},quarterly:{personal:109,group:39,personalCount:12,groupCount:24,label:'季度'}};
++    let period='monthly';
++    document.querySelectorAll('[data-period]').forEach(button=>button.addEventListener('click',()=>{
++      period=button.dataset.period;
++      document.querySelectorAll('[data-period]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
++      const plan=plans[period];
++      ['personal','group'].forEach(type=>{
++        document.getElementById(type+'-price').textContent=plan[type];
++        document.getElementById(type+'-original').hidden=period==='monthly';
++        document.getElementById(type+'-total').textContent=(period==='monthly'?'每月 ':'每季度 ')+plan[type+'Count']+' 节课，套餐合计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      });
++    }));
++    const dialog=document.getElementById('course-dialog');
++    document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>{
++      const type=button.dataset.action,plan=plans[period],trial=type==='trial';
++      document.getElementById('dialog-title').textContent=trial?'先从一次对话开始':type==='personal'?'你的专属口语计划':'和同频的人，一起进步';
++      document.getElementById('dialog-copy').textContent=trial?'25 分钟，认识老师、了解自己的口语水平，找到适合你的练习方式。':'你正在了解以下课程方案：';
++      document.getElementById('dialog-details').textContent=trial?'免费体验 · 口语水平评估 · 个性化学习建议':(type==='personal'?'一对一私教课':'互动小班课')+' · '+plan.label+'套餐 · '+plan[type+'Count']+' 节 × 50 分钟，总计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      dialog.showModal();
++    }));
++    dialog.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>dialog.close()));
++    dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
++  </script>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..22fbd860c090efd26ca03827c80e4e4790df2855
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,120 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <title>课程与价格 · HeyTalk 英语口语</title>
++  <style>
++    :root{--ink:#192c31;--muted:#748080;--paper:#f7f8fa;--green:#c9ef91;--line:#e3e7e6;--dark:#203b3b;--purple:#e9e5f5}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7e9d51;outline-offset:5px}.wrap{max-width:1120px;margin:auto;padding:0 32px}.site-header{height:94px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.logo{font-size:27px;font-weight:800;letter-spacing:-1.3px;display:flex;align-items:center;gap:9px}.logo-icon{width:31px;height:29px;background:var(--dark);border-radius:11px 11px 11px 3px;display:flex;align-items:center;justify-content:center;gap:4px;transform:rotate(-5deg)}.logo-icon i{width:4px;height:10px;background:var(--green);border-radius:4px}.logo-icon i:nth-child(2){height:16px}.logo-dot{color:#7da64f}.nav{display:flex;align-items:center;gap:33px;font-size:13px;color:#657373}.nav a:hover{color:var(--ink)}.nav .active{color:var(--ink);font-weight:650;position:relative}.nav .active:after{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink);position:absolute;bottom:-10px;left:50%}.nav-cta{padding:11px 19px;background:transparent;border:1px solid #bbc6c3;border-radius:7px;font-size:12px;color:var(--ink)}.nav-cta:hover{background:#e9eee9}
++    .hero{text-align:center;padding:60px 0 30px;position:relative}.eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;color:#658075;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:#83a76c}.hero h1{font-size:45px;line-height:1.4;letter-spacing:-2px;margin:19px 0 17px;font-weight:750}.hero h1 span{position:relative;isolation:isolate;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;left:-3px;right:-5px;height:12px;bottom:3px;background:var(--green);z-index:-1;transform:rotate(-2deg)}.hero p{font-size:14px;color:var(--muted);line-height:1.9;margin:0}.hero-mark{position:absolute;width:45px;height:45px;right:86px;top:79px;transform:rotate(11deg);color:#9db69d}.hero-small{position:absolute;left:100px;top:134px;font-family:Georgia,serif;font-size:45px;color:#b9c8be;transform:rotate(-16deg)}.billing{display:flex;align-items:center;justify-content:center;gap:13px;margin-top:30px}.segmented{display:flex;border:1px solid #dfe5e0;background:#edf0ed;padding:4px;border-radius:9px;gap:3px}.segmented button{border:0;background:transparent;color:#7b8580;padding:9px 22px;font-size:12px;border-radius:6px;min-width:90px}.segmented button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #192c3110;font-weight:650}.save{font-size:11px;background:#eaf3e3;color:#5a7947;border-radius:5px;padding:6px 8px}.billing-note{font-size:11px!important;margin-top:12px!important;color:#8b9690!important}
++    .pricing{display:grid;grid-template-columns:1fr 1fr;gap:23px;margin-top:5px}.price-card{border:1px solid var(--line);border-radius:16px;padding:30px 32px 26px;background:#fff;position:relative;overflow:hidden}.price-card.personal{background:var(--dark);border-color:var(--dark);color:#fff}.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.type-icon{width:44px;height:44px;border-radius:12px;background:var(--purple);display:flex;align-items:center;justify-content:center;color:#6d6387}.personal .type-icon{background:#ffffff10;color:var(--green);border:1px solid #ffffff12}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.tag{font-size:10px;color:#bfe29c;padding:6px 10px;border:1px solid #54715d;border-radius:20px;display:flex;align-items:center;gap:5px}.tag .icon{width:12px;height:12px}.soft-tag{color:#827495;border-color:#e4ddef;background:#f8f6fc}.card-heading{display:flex;align-items:baseline;gap:11px}.card-heading h2{font-size:24px;margin:0;letter-spacing:-.7px}.english{font-size:10px;letter-spacing:1.4px;font-weight:500;color:#9faeaa}.small-group .english{color:#9b99a4}.card-description{font-size:12px;color:#b6c6c1;margin:11px 0 25px;line-height:1.7}.small-group .card-description{color:var(--muted)}.price{display:flex;align-items:baseline;gap:4px;height:63px}.currency{font-size:24px;font-weight:550;align-self:flex-start;margin-top:9px}.amount{font-size:56px;font-weight:650;line-height:1;letter-spacing:-3px;font-variant-numeric:tabular-nums}.per{font-size:12px;color:#a9beb6;margin-left:7px}.small-group .per{color:#8c9591}.old-price{font-size:13px;color:#91a99d;text-decoration:line-through;margin-left:10px}.small-group .old-price{color:#a1a7a3}.billing-detail{font-size:11px;color:#aec2b8;margin:6px 0 22px;min-height:18px}.small-group .billing-detail{color:#8b9590}.course-meta{display:flex;gap:9px;margin-bottom:23px}.course-meta span{font-size:10px;padding:6px 9px;border-radius:4px;background:#ffffff0b;color:#d5e0db;border:1px solid #ffffff12}.small-group .course-meta span{color:#7b7b87;background:#f6f5f9;border-color:#edebf0}.card-line{height:1px;background:#ffffff19}.small-group .card-line{background:var(--line)}.features-title{font-size:11px;font-weight:550;margin:22px 0 15px;color:#e8eeeb}.small-group .features-title{color:#63726c}.features{list-style:none;margin:0;padding:0;display:grid;gap:15px}.features li{display:flex;align-items:center;gap:10px;font-size:12px;line-height:1.5;color:#e3ebe7}.check{width:16px;height:16px;flex:none;stroke:var(--green);stroke-width:1.8;fill:none}.small-group .features li{color:#53635e}.small-group .check{stroke:#89809c}.card-cta{margin-top:27px;width:100%;border:0;border-radius:7px;padding:13px 17px;font-size:12px;font-weight:650;display:flex;align-items:center;justify-content:center;gap:14px;background:var(--green);color:var(--dark);transition:transform .15s,background .15s}.card-cta:hover{background:#d7f5ad;transform:translateY(-2px)}.small-group .card-cta{background:#eae6f4;color:#625776}.small-group .card-cta:hover{background:#ddd5ee}.card-cta .icon{width:16px;height:16px}.cta-note{text-align:center;font-size:10px;color:#a0b4a9;margin:11px 0 0}.small-group .cta-note{color:#9b9a9f}.under-cards{display:flex;gap:28px;align-items:center;justify-content:center;margin:22px 0 38px;font-size:10px;color:#88948c}.under-cards span{display:flex;align-items:center;gap:6px}.under-cards .icon{width:14px;height:14px}
++    .help-strip{border:1px solid #e0e6dc;background:#eef2e9;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:20px}.chat-art{position:relative;width:51px;height:47px;flex:none}.bubble{display:flex;align-items:center;justify-content:center;position:absolute;width:35px;height:29px;border:1.5px solid #7f9271;border-radius:9px 9px 9px 2px;color:#6e865d;font-size:16px;background:#dbe7ce;left:0;top:0}.bubble.back{left:17px;top:15px;transform:scaleX(-1);background:#f5f8ef}.bubble.front{z-index:1}.help-copy h3{margin:0 0 6px;font-size:14px;font-weight:650}.help-copy p{font-size:11px;color:#7a8674;line-height:1.7;margin:0}.help-cta{margin-left:auto;flex:none;padding:10px 15px;border:1px solid #b8c3af;border-radius:6px;color:#54654a;font-size:11px;background:transparent;display:flex;align-items:center;gap:12px}.help-cta:hover{background:#e1e9d8}.help-cta .icon{width:14px;height:14px}
++    .faq{padding:53px 0 49px;display:grid;grid-template-columns:1fr 1.6fr;gap:55px}.section-label{font-size:10px;letter-spacing:2px;color:#89968b;font-weight:600;margin:0 0 12px}.faq h2{font-size:26px;letter-spacing:-.8px;margin:0 0 11px}.faq-intro{font-size:12px;line-height:1.8;color:#8a948d;margin:0}.faq details{border-bottom:1px solid var(--line)}.faq details:first-child{border-top:1px solid var(--line)}.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:19px 1px;font-size:12px;font-weight:500;gap:16px}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";font-size:19px;font-weight:300;color:#8f9c91;flex:none}.faq details[open] summary:after{content:"−"}.faq details p{font-size:12px;color:#7a877c;line-height:1.9;margin:0;padding:0 23px 18px 1px}.footer{display:flex;align-items:center;justify-content:space-between;padding:25px 0 30px;border-top:1px solid var(--line);gap:20px}.footer .logo{font-size:19px;gap:7px}.footer .logo-icon{width:23px;height:22px;border-radius:8px 8px 8px 2px;gap:3px}.footer .logo-icon i{width:3px;height:8px}.footer .logo-icon i:nth-child(2){height:12px}.footer-brand{display:flex;align-items:center;gap:20px}.footer-tagline,.copyright{font-size:10px;color:#929c96}.footer-tagline{border-left:1px solid #dce2dd;padding-left:20px}
++    dialog{border:1px solid var(--line);border-radius:18px;padding:34px;max-width:420px;width:calc(100% - 36px);color:var(--ink);box-shadow:0 24px 80px #10282630}dialog::backdrop{background:#142a2a70;backdrop-filter:blur(4px)}.close{position:absolute;right:13px;top:12px;border:0;background:transparent;font-size:24px;color:#87928b;width:32px;height:32px}.modal-label{font-size:10px;letter-spacing:1.7px;color:#7a9266;margin:0 0 12px}dialog h2{font-size:25px;margin:0 0 13px}dialog p{font-size:13px;line-height:1.9;color:#7b877e}.modal-details{padding:15px;background:#f1f5ec;border-radius:9px;margin:21px 0;line-height:1.9;font-size:13px}.modal-button{width:100%;padding:13px;border:0;border-radius:7px;background:var(--dark);color:white;font-size:13px}
++    @media(min-width:1280px){.wrap{max-width:1110px}.hero{padding-top:65px}.pricing{gap:25px}.price-card{padding:30px 34px 25px}}
++    @media(max-width:760px){.wrap{padding:0 22px}.site-header{height:76px}.nav{gap:18px}.nav a:not(.active){display:none}.nav-cta{padding:9px 13px}.logo{font-size:24px}.hero{padding:44px 0 26px}.hero h1{font-size:35px;letter-spacing:-1.5px}.hero p{font-size:12px}.hero-mark,.hero-small{display:none}.pricing{gap:15px}.price-card{padding:24px 21px}.card-heading{display:block}.english{display:block;margin-top:7px;font-size:9px}.card-description{min-height:41px;margin:10px 0 20px}.amount{font-size:48px}.old-price{margin-left:3px}.course-meta{gap:5px;flex-wrap:wrap}.features li{font-size:11px;gap:7px}.faq{gap:28px;grid-template-columns:1fr 1.4fr}.help-strip{padding:22px 20px;gap:14px}.help-copy p{max-width:270px}.footer-tagline{display:none}}
++    @media(max-width:540px){.wrap{padding:0 20px}.nav .active{display:none}.hero h1{font-size:32px}.hero{padding-top:38px}.hero p{padding:0 6px}.hero p br{display:none}.billing{margin-top:25px}.segmented button{min-width:80px;padding:8px 17px}.pricing{grid-template-columns:1fr;gap:20px;margin-top:5px}.price-card{padding:26px}.card-heading{display:flex}.english{margin-top:0}.card-description{min-height:0;font-size:12px}.amount{font-size:54px}.features li{font-size:12px}.card-top{margin-bottom:21px}.under-cards{gap:13px;flex-wrap:wrap;font-size:9px;margin-bottom:29px}.help-strip{flex-wrap:wrap;gap:14px}.help-copy{flex:1}.help-copy h3{font-size:13px}.help-cta{margin-left:65px}.faq{display:block;padding-top:37px;padding-bottom:32px}.faq-intro{margin-bottom:25px}.faq h2{font-size:24px}.footer{align-items:center}.copyright{font-size:9px}.footer .logo{font-size:18px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
++    <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2M19 3v4m-2-2h4"/></symbol>
++    <symbol id="group" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m0-16a3 3 0 0 1 0 6m3 3a5 5 0 0 1 3 5v2"/></symbol>
++    <symbol id="tick" viewBox="0 0 18 18"><path d="m4 9 3.3 3.3L14 5.5"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 11 3 3 5-5"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="book" viewBox="0 0 24 24"><path d="M12 5v15M3 4c4-1 6 0 9 1 3-1 5-2 9-1v15c-4-1-6 0-9 1-3-1-5-2-9-1V4Z"/></symbol>
++    <symbol id="spark" viewBox="0 0 24 24"><path d="m12 2 2.8 7.2L22 12l-7.2 2.8L12 22l-2.8-7.2L2 12l7.2-2.8L12 2Z"/></symbol>
++  </defs></svg>
++  <div class="wrap">
++    <header class="site-header">
++      <a class="logo" href="#" aria-label="HeyTalk 首页"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a>
++      <nav class="nav" aria-label="主导航"><a href="#courses">课程方案</a><a href="#included">学习保障</a><a href="#courses" class="active" aria-current="page">课程与价格</a><button class="nav-cta" data-action="trial">预约体验课 ↗</button></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="page-title">
++        <div class="eyebrow">A LITTLE PRACTICE. A BIG DIFFERENCE.</div>
++        <span class="hero-small" aria-hidden="true">✳</span><svg class="hero-mark icon" aria-hidden="true"><use href="#spark"/></svg>
++        <h1 id="page-title">让英语，成为你<span>自然的表达</span></h1>
++        <p>专属老师，或一群同频的伙伴。找到适合你的开口方式。<br>每一次对话，都离自信的自己更近一点。</p>
++        <div class="billing"><div class="segmented" role="group" aria-label="选择课程套餐周期"><button aria-pressed="true" data-period="monthly">月度套餐</button><button aria-pressed="false" data-period="quarterly">季度套餐</button></div><span class="save">季度最高省 20%</span></div>
++        <p class="billing-note">一次购买 · 无自动续费 · 价格透明</p>
++      </section>
++      <section class="pricing" id="courses" aria-label="课程价格方案">
++        <article class="price-card personal">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#person"/></svg></div><span class="tag"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg>高效进阶之选</span></div>
++          <div class="card-heading"><h2>一对一私教课</h2><span class="english">JUST FOR YOU</span></div>
++          <p class="card-description">100% 专属时间，按你的节奏，突破你的瓶颈。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="personal-price">129</span><span class="per">/ 节</span><span class="old-price" id="personal-original" hidden>¥129</span></div>
++          <p class="billing-detail" id="personal-total" aria-live="polite">每月 4 节课，套餐合计 ¥516</p>
++          <div class="course-meta"><span>1 位学员 × 1 位老师</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">把每一分钟，都留给你的成长</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>根据水平与目标，定制专属学习计划</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师，全程互动与即时纠音</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>职场、旅行、日常，想练什么由你决定</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>灵活预约时间，轻松融入你的日程</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后专属反馈 + 个人学习报告</li>
++          </ul>
++          <button class="card-cta" data-action="personal">选择一对一，专注提升<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合有明确目标、希望快速突破的你</p>
++        </article>
++        <article class="price-card small-group">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#group"/></svg></div><span class="tag soft-tag">一起学，更有动力</span></div>
++          <div class="card-heading"><h2>互动小班课</h2><span class="english">BETTER TOGETHER</span></div>
++          <p class="card-description">在轻松的真实对话里，找到开口的勇气和乐趣。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="group-price">49</span><span class="per">/ 节</span><span class="old-price" id="group-original" hidden>¥49</span></div>
++          <p class="billing-detail" id="group-total" aria-live="polite">每月 8 节课，套餐合计 ¥392</p>
++          <div class="course-meta"><span>3–6 人精品小班</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">好的伙伴，让开口变得更简单</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>按英语水平分班，找到同频学习伙伴</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师引导，每个人都有机会说</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>主题讨论、角色扮演，告别枯燥跟读</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>每周固定 2 次课，养成稳定练习习惯</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后练习资料 + 班级学习社群</li>
++          </ul>
++          <button class="card-cta" data-action="group">加入小班，一起开口<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合喜欢互动、希望持续积累的你</p>
++        </article>
++      </section>
++      <div class="under-cards" id="included"><span><svg class="icon" aria-hidden="true"><use href="#shield"/></svg>精选专业口语教师</span><span><svg class="icon" aria-hidden="true"><use href="#book"/></svg>教材与学习资料全包含</span><span><svg class="icon" aria-hidden="true"><use href="#clock"/></svg>在家就能上的在线课堂</span></div>
++      <section class="help-strip" aria-labelledby="help-title"><div class="chat-art" aria-hidden="true"><span class="bubble back">···</span><span class="bubble front">Hi!</span></div><div class="help-copy"><h3 id="help-title">还没想好？先聊一次，再做决定。</h3><p>用 25 分钟体验真实课堂，老师帮你找到适合的学习起点。</p></div><button class="help-cta" data-action="trial">免费预约体验课<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button></section>
++      <section class="faq" id="faq" aria-labelledby="faq-title"><div><p class="section-label">GOOD QUESTIONS.</p><h2 id="faq-title">你可能还想知道</h2><p class="faq-intro">关于开口之前的那些小疑问，<br>我们都为你想到了。</p></div><div>
++        <details><summary>英语基础不太好，也可以参加吗？</summary><p>当然可以。开始前会进行简短的口语水平评估。一对一老师会根据你的基础调整节奏，小班课则会安排水平相近的伙伴，让你从适合的难度开始练习。</p></details>
++        <details><summary>一对一和小班课，怎么选更适合我？</summary><p>如果你有面试、工作沟通等具体目标，或需要灵活安排上课时间，推荐一对一。如果你喜欢和伙伴交流，希望通过规律练习保持语感，可以选择小班。体验课也能帮助你判断。</p></details>
++        <details><summary>临时有事，可以请假或调整上课时间吗？</summary><p>一对一课程可提前 24 小时免费改约；小班课按固定课表进行，提前请假后可领取本节学习资料。小班补课需视同级别班级的空位安排，报名时会确认具体规则。</p></details>
++        <details><summary>套餐有效期多久？会自动续费吗？</summary><p>月度套餐自开课日起 30 天内有效，季度套餐 90 天内有效。所有套餐均为一次性购买，不会自动续费。季度一对一共 12 节，小班共 24 节；如需延期，请在到期前沟通。</p></details>
++      </div></section>
++    </main>
++    <footer class="footer"><div class="footer-brand"><a class="logo" href="#" aria-label="返回顶部"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a><span class="footer-tagline">Small steps. Real conversations.</span></div><span class="copyright">© 2026 HeyTalk · 每一次开口，都算数。</span></footer>
++  </div>
++  <dialog id="course-dialog" aria-labelledby="dialog-title"><button class="close" aria-label="关闭弹窗">×</button><p class="modal-label">YOUR NEXT STEP</p><h2 id="dialog-title"></h2><p id="dialog-copy"></p><div class="modal-details" id="dialog-details"></div><p>这是课程价格展示页，暂未开放在线报名与付款。你可以关闭此窗口，继续比较课程方案。</p><button class="modal-button">继续了解课程</button></dialog>
++  <script>
++    const plans={monthly:{personal:129,group:49,personalCount:4,groupCount:8,label:'月度'},quarterly:{personal:109,group:39,personalCount:12,groupCount:24,label:'季度'}};
++    let period='monthly';
++    document.querySelectorAll('[data-period]').forEach(button=>button.addEventListener('click',()=>{
++      period=button.dataset.period;
++      document.querySelectorAll('[data-period]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
++      const plan=plans[period];
++      ['personal','group'].forEach(type=>{
++        document.getElementById(type+'-price').textContent=plan[type];
++        document.getElementById(type+'-original').hidden=period==='monthly';
++        document.getElementById(type+'-total').textContent=(period==='monthly'?'每月 ':'每季度 ')+plan[type+'Count']+' 节课，套餐合计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      });
++    }));
++    const dialog=document.getElementById('course-dialog');
++    document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>{
++      const type=button.dataset.action,plan=plans[period],trial=type==='trial';
++      document.getElementById('dialog-title').textContent=trial?'先从一次对话开始':type==='personal'?'你的专属口语计划':'和同频的人，一起进步';
++      document.getElementById('dialog-copy').textContent=trial?'25 分钟，认识老师、了解自己的口语水平，找到适合你的练习方式。':'你正在了解以下课程方案：';
++      document.getElementById('dialog-details').textContent=trial?'免费体验 · 口语水平评估 · 个性化学习建议':(type==='personal'?'一对一私教课':'互动小班课')+' · '+plan.label+'套餐 · '+plan[type+'Count']+' 节 × 50 分钟，总计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      dialog.showModal();
++    }));
++    dialog.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>dialog.close()));
++    dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
++  </script>
++</body>
++</html>
+
+codex
+页面已生成，采用墨绿与浅紫区分两种课程，支持月度／季度价格切换、课程方案弹窗和常见问题展开。正在检查文件与交互脚本，确保可以直接打开使用。
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+import shutil, subprocess
+p = Path('index.html')
+s = p.read_text()
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids = []
+    def handle_starttag(self, tag, attrs):
+        for key, value in attrs:
+            if key == 'id': self.ids.append(value)
+c = Check()
+c.feed(s)
+assert len(c.ids) == len(set(c.ids)), 'Duplicate IDs'
+assert '<html lang=\"zh-CN\">' in s
+assert all(x in s for x in ['@media', '一对一私教课', '互动小班课', 'showModal'])
+node = shutil.which('node')
+if node:
+    script = s.split('<script>')[1].split('</script>')[0]
+    result = subprocess.run([node, '--check', '-'], input=script, text=True, capture_output=True)
+    assert result.returncode == 0, result.stderr
+    print('JavaScript syntax: passed')
+print(f'HTML checks: passed; {p.stat().st_size:,} bytes; no external dependencies')
+PY" in <tmp>/measure-baseline-codex-014-nI8F0Z
+ succeeded in 5ms:
+JavaScript syntax: passed
+HTML checks: passed; 23,983 bytes; no external dependencies
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..22fbd860c090efd26ca03827c80e4e4790df2855
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,120 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <title>课程与价格 · HeyTalk 英语口语</title>
++  <style>
++    :root{--ink:#192c31;--muted:#748080;--paper:#f7f8fa;--green:#c9ef91;--line:#e3e7e6;--dark:#203b3b;--purple:#e9e5f5}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7e9d51;outline-offset:5px}.wrap{max-width:1120px;margin:auto;padding:0 32px}.site-header{height:94px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.logo{font-size:27px;font-weight:800;letter-spacing:-1.3px;display:flex;align-items:center;gap:9px}.logo-icon{width:31px;height:29px;background:var(--dark);border-radius:11px 11px 11px 3px;display:flex;align-items:center;justify-content:center;gap:4px;transform:rotate(-5deg)}.logo-icon i{width:4px;height:10px;background:var(--green);border-radius:4px}.logo-icon i:nth-child(2){height:16px}.logo-dot{color:#7da64f}.nav{display:flex;align-items:center;gap:33px;font-size:13px;color:#657373}.nav a:hover{color:var(--ink)}.nav .active{color:var(--ink);font-weight:650;position:relative}.nav .active:after{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink);position:absolute;bottom:-10px;left:50%}.nav-cta{padding:11px 19px;background:transparent;border:1px solid #bbc6c3;border-radius:7px;font-size:12px;color:var(--ink)}.nav-cta:hover{background:#e9eee9}
++    .hero{text-align:center;padding:60px 0 30px;position:relative}.eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;color:#658075;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:#83a76c}.hero h1{font-size:45px;line-height:1.4;letter-spacing:-2px;margin:19px 0 17px;font-weight:750}.hero h1 span{position:relative;isolation:isolate;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;left:-3px;right:-5px;height:12px;bottom:3px;background:var(--green);z-index:-1;transform:rotate(-2deg)}.hero p{font-size:14px;color:var(--muted);line-height:1.9;margin:0}.hero-mark{position:absolute;width:45px;height:45px;right:86px;top:79px;transform:rotate(11deg);color:#9db69d}.hero-small{position:absolute;left:100px;top:134px;font-family:Georgia,serif;font-size:45px;color:#b9c8be;transform:rotate(-16deg)}.billing{display:flex;align-items:center;justify-content:center;gap:13px;margin-top:30px}.segmented{display:flex;border:1px solid #dfe5e0;background:#edf0ed;padding:4px;border-radius:9px;gap:3px}.segmented button{border:0;background:transparent;color:#7b8580;padding:9px 22px;font-size:12px;border-radius:6px;min-width:90px}.segmented button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #192c3110;font-weight:650}.save{font-size:11px;background:#eaf3e3;color:#5a7947;border-radius:5px;padding:6px 8px}.billing-note{font-size:11px!important;margin-top:12px!important;color:#8b9690!important}
++    .pricing{display:grid;grid-template-columns:1fr 1fr;gap:23px;margin-top:5px}.price-card{border:1px solid var(--line);border-radius:16px;padding:30px 32px 26px;background:#fff;position:relative;overflow:hidden}.price-card.personal{background:var(--dark);border-color:var(--dark);color:#fff}.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.type-icon{width:44px;height:44px;border-radius:12px;background:var(--purple);display:flex;align-items:center;justify-content:center;color:#6d6387}.personal .type-icon{background:#ffffff10;color:var(--green);border:1px solid #ffffff12}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.tag{font-size:10px;color:#bfe29c;padding:6px 10px;border:1px solid #54715d;border-radius:20px;display:flex;align-items:center;gap:5px}.tag .icon{width:12px;height:12px}.soft-tag{color:#827495;border-color:#e4ddef;background:#f8f6fc}.card-heading{display:flex;align-items:baseline;gap:11px}.card-heading h2{font-size:24px;margin:0;letter-spacing:-.7px}.english{font-size:10px;letter-spacing:1.4px;font-weight:500;color:#9faeaa}.small-group .english{color:#9b99a4}.card-description{font-size:12px;color:#b6c6c1;margin:11px 0 25px;line-height:1.7}.small-group .card-description{color:var(--muted)}.price{display:flex;align-items:baseline;gap:4px;height:63px}.currency{font-size:24px;font-weight:550;align-self:flex-start;margin-top:9px}.amount{font-size:56px;font-weight:650;line-height:1;letter-spacing:-3px;font-variant-numeric:tabular-nums}.per{font-size:12px;color:#a9beb6;margin-left:7px}.small-group .per{color:#8c9591}.old-price{font-size:13px;color:#91a99d;text-decoration:line-through;margin-left:10px}.small-group .old-price{color:#a1a7a3}.billing-detail{font-size:11px;color:#aec2b8;margin:6px 0 22px;min-height:18px}.small-group .billing-detail{color:#8b9590}.course-meta{display:flex;gap:9px;margin-bottom:23px}.course-meta span{font-size:10px;padding:6px 9px;border-radius:4px;background:#ffffff0b;color:#d5e0db;border:1px solid #ffffff12}.small-group .course-meta span{color:#7b7b87;background:#f6f5f9;border-color:#edebf0}.card-line{height:1px;background:#ffffff19}.small-group .card-line{background:var(--line)}.features-title{font-size:11px;font-weight:550;margin:22px 0 15px;color:#e8eeeb}.small-group .features-title{color:#63726c}.features{list-style:none;margin:0;padding:0;display:grid;gap:15px}.features li{display:flex;align-items:center;gap:10px;font-size:12px;line-height:1.5;color:#e3ebe7}.check{width:16px;height:16px;flex:none;stroke:var(--green);stroke-width:1.8;fill:none}.small-group .features li{color:#53635e}.small-group .check{stroke:#89809c}.card-cta{margin-top:27px;width:100%;border:0;border-radius:7px;padding:13px 17px;font-size:12px;font-weight:650;display:flex;align-items:center;justify-content:center;gap:14px;background:var(--green);color:var(--dark);transition:transform .15s,background .15s}.card-cta:hover{background:#d7f5ad;transform:translateY(-2px)}.small-group .card-cta{background:#eae6f4;color:#625776}.small-group .card-cta:hover{background:#ddd5ee}.card-cta .icon{width:16px;height:16px}.cta-note{text-align:center;font-size:10px;color:#a0b4a9;margin:11px 0 0}.small-group .cta-note{color:#9b9a9f}.under-cards{display:flex;gap:28px;align-items:center;justify-content:center;margin:22px 0 38px;font-size:10px;color:#88948c}.under-cards span{display:flex;align-items:center;gap:6px}.under-cards .icon{width:14px;height:14px}
++    .help-strip{border:1px solid #e0e6dc;background:#eef2e9;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:20px}.chat-art{position:relative;width:51px;height:47px;flex:none}.bubble{display:flex;align-items:center;justify-content:center;position:absolute;width:35px;height:29px;border:1.5px solid #7f9271;border-radius:9px 9px 9px 2px;color:#6e865d;font-size:16px;background:#dbe7ce;left:0;top:0}.bubble.back{left:17px;top:15px;transform:scaleX(-1);background:#f5f8ef}.bubble.front{z-index:1}.help-copy h3{margin:0 0 6px;font-size:14px;font-weight:650}.help-copy p{font-size:11px;color:#7a8674;line-height:1.7;margin:0}.help-cta{margin-left:auto;flex:none;padding:10px 15px;border:1px solid #b8c3af;border-radius:6px;color:#54654a;font-size:11px;background:transparent;display:flex;align-items:center;gap:12px}.help-cta:hover{background:#e1e9d8}.help-cta .icon{width:14px;height:14px}
++    .faq{padding:53px 0 49px;display:grid;grid-template-columns:1fr 1.6fr;gap:55px}.section-label{font-size:10px;letter-spacing:2px;color:#89968b;font-weight:600;margin:0 0 12px}.faq h2{font-size:26px;letter-spacing:-.8px;margin:0 0 11px}.faq-intro{font-size:12px;line-height:1.8;color:#8a948d;margin:0}.faq details{border-bottom:1px solid var(--line)}.faq details:first-child{border-top:1px solid var(--line)}.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:19px 1px;font-size:12px;font-weight:500;gap:16px}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";font-size:19px;font-weight:300;color:#8f9c91;flex:none}.faq details[open] summary:after{content:"−"}.faq details p{font-size:12px;color:#7a877c;line-height:1.9;margin:0;padding:0 23px 18px 1px}.footer{display:flex;align-items:center;justify-content:space-between;padding:25px 0 30px;border-top:1px solid var(--line);gap:20px}.footer .logo{font-size:19px;gap:7px}.footer .logo-icon{width:23px;height:22px;border-radius:8px 8px 8px 2px;gap:3px}.footer .logo-icon i{width:3px;height:8px}.footer .logo-icon i:nth-child(2){height:12px}.footer-brand{display:flex;align-items:center;gap:20px}.footer-tagline,.copyright{font-size:10px;color:#929c96}.footer-tagline{border-left:1px solid #dce2dd;padding-left:20px}
++    dialog{border:1px solid var(--line);border-radius:18px;padding:34px;max-width:420px;width:calc(100% - 36px);color:var(--ink);box-shadow:0 24px 80px #10282630}dialog::backdrop{background:#142a2a70;backdrop-filter:blur(4px)}.close{position:absolute;right:13px;top:12px;border:0;background:transparent;font-size:24px;color:#87928b;width:32px;height:32px}.modal-label{font-size:10px;letter-spacing:1.7px;color:#7a9266;margin:0 0 12px}dialog h2{font-size:25px;margin:0 0 13px}dialog p{font-size:13px;line-height:1.9;color:#7b877e}.modal-details{padding:15px;background:#f1f5ec;border-radius:9px;margin:21px 0;line-height:1.9;font-size:13px}.modal-button{width:100%;padding:13px;border:0;border-radius:7px;background:var(--dark);color:white;font-size:13px}
++    @media(min-width:1280px){.wrap{max-width:1110px}.hero{padding-top:65px}.pricing{gap:25px}.price-card{padding:30px 34px 25px}}
++    @media(max-width:760px){.wrap{padding:0 22px}.site-header{height:76px}.nav{gap:18px}.nav a:not(.active){display:none}.nav-cta{padding:9px 13px}.logo{font-size:24px}.hero{padding:44px 0 26px}.hero h1{font-size:35px;letter-spacing:-1.5px}.hero p{font-size:12px}.hero-mark,.hero-small{display:none}.pricing{gap:15px}.price-card{padding:24px 21px}.card-heading{display:block}.english{display:block;margin-top:7px;font-size:9px}.card-description{min-height:41px;margin:10px 0 20px}.amount{font-size:48px}.old-price{margin-left:3px}.course-meta{gap:5px;flex-wrap:wrap}.features li{font-size:11px;gap:7px}.faq{gap:28px;grid-template-columns:1fr 1.4fr}.help-strip{padding:22px 20px;gap:14px}.help-copy p{max-width:270px}.footer-tagline{display:none}}
++    @media(max-width:540px){.wrap{padding:0 20px}.nav .active{display:none}.hero h1{font-size:32px}.hero{padding-top:38px}.hero p{padding:0 6px}.hero p br{display:none}.billing{margin-top:25px}.segmented button{min-width:80px;padding:8px 17px}.pricing{grid-template-columns:1fr;gap:20px;margin-top:5px}.price-card{padding:26px}.card-heading{display:flex}.english{margin-top:0}.card-description{min-height:0;font-size:12px}.amount{font-size:54px}.features li{font-size:12px}.card-top{margin-bottom:21px}.under-cards{gap:13px;flex-wrap:wrap;font-size:9px;margin-bottom:29px}.help-strip{flex-wrap:wrap;gap:14px}.help-copy{flex:1}.help-copy h3{font-size:13px}.help-cta{margin-left:65px}.faq{display:block;padding-top:37px;padding-bottom:32px}.faq-intro{margin-bottom:25px}.faq h2{font-size:24px}.footer{align-items:center}.copyright{font-size:9px}.footer .logo{font-size:18px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
++    <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2M19 3v4m-2-2h4"/></symbol>
++    <symbol id="group" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m0-16a3 3 0 0 1 0 6m3 3a5 5 0 0 1 3 5v2"/></symbol>
++    <symbol id="tick" viewBox="0 0 18 18"><path d="m4 9 3.3 3.3L14 5.5"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 11 3 3 5-5"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="book" viewBox="0 0 24 24"><path d="M12 5v15M3 4c4-1 6 0 9 1 3-1 5-2 9-1v15c-4-1-6 0-9 1-3-1-5-2-9-1V4Z"/></symbol>
++    <symbol id="spark" viewBox="0 0 24 24"><path d="m12 2 2.8 7.2L22 12l-7.2 2.8L12 22l-2.8-7.2L2 12l7.2-2.8L12 2Z"/></symbol>
++  </defs></svg>
++  <div class="wrap">
++    <header class="site-header">
++      <a class="logo" href="#" aria-label="HeyTalk 首页"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a>
++      <nav class="nav" aria-label="主导航"><a href="#courses">课程方案</a><a href="#included">学习保障</a><a href="#courses" class="active" aria-current="page">课程与价格</a><button class="nav-cta" data-action="trial">预约体验课 ↗</button></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="page-title">
++        <div class="eyebrow">A LITTLE PRACTICE. A BIG DIFFERENCE.</div>
++        <span class="hero-small" aria-hidden="true">✳</span><svg class="hero-mark icon" aria-hidden="true"><use href="#spark"/></svg>
++        <h1 id="page-title">让英语，成为你<span>自然的表达</span></h1>
++        <p>专属老师，或一群同频的伙伴。找到适合你的开口方式。<br>每一次对话，都离自信的自己更近一点。</p>
++        <div class="billing"><div class="segmented" role="group" aria-label="选择课程套餐周期"><button aria-pressed="true" data-period="monthly">月度套餐</button><button aria-pressed="false" data-period="quarterly">季度套餐</button></div><span class="save">季度最高省 20%</span></div>
++        <p class="billing-note">一次购买 · 无自动续费 · 价格透明</p>
++      </section>
++      <section class="pricing" id="courses" aria-label="课程价格方案">
++        <article class="price-card personal">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#person"/></svg></div><span class="tag"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg>高效进阶之选</span></div>
++          <div class="card-heading"><h2>一对一私教课</h2><span class="english">JUST FOR YOU</span></div>
++          <p class="card-description">100% 专属时间，按你的节奏，突破你的瓶颈。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="personal-price">129</span><span class="per">/ 节</span><span class="old-price" id="personal-original" hidden>¥129</span></div>
++          <p class="billing-detail" id="personal-total" aria-live="polite">每月 4 节课，套餐合计 ¥516</p>
++          <div class="course-meta"><span>1 位学员 × 1 位老师</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">把每一分钟，都留给你的成长</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>根据水平与目标，定制专属学习计划</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师，全程互动与即时纠音</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>职场、旅行、日常，想练什么由你决定</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>灵活预约时间，轻松融入你的日程</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后专属反馈 + 个人学习报告</li>
++          </ul>
++          <button class="card-cta" data-action="personal">选择一对一，专注提升<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合有明确目标、希望快速突破的你</p>
++        </article>
++        <article class="price-card small-group">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#group"/></svg></div><span class="tag soft-tag">一起学，更有动力</span></div>
++          <div class="card-heading"><h2>互动小班课</h2><span class="english">BETTER TOGETHER</span></div>
++          <p class="card-description">在轻松的真实对话里，找到开口的勇气和乐趣。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="group-price">49</span><span class="per">/ 节</span><span class="old-price" id="group-original" hidden>¥49</span></div>
++          <p class="billing-detail" id="group-total" aria-live="polite">每月 8 节课，套餐合计 ¥392</p>
++          <div class="course-meta"><span>3–6 人精品小班</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">好的伙伴，让开口变得更简单</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>按英语水平分班，找到同频学习伙伴</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师引导，每个人都有机会说</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>主题讨论、角色扮演，告别枯燥跟读</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>每周固定 2 次课，养成稳定练习习惯</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后练习资料 + 班级学习社群</li>
++          </ul>
++          <button class="card-cta" data-action="group">加入小班，一起开口<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合喜欢互动、希望持续积累的你</p>
++        </article>
++      </section>
++      <div class="under-cards" id="included"><span><svg class="icon" aria-hidden="true"><use href="#shield"/></svg>精选专业口语教师</span><span><svg class="icon" aria-hidden="true"><use href="#book"/></svg>教材与学习资料全包含</span><span><svg class="icon" aria-hidden="true"><use href="#clock"/></svg>在家就能上的在线课堂</span></div>
++      <section class="help-strip" aria-labelledby="help-title"><div class="chat-art" aria-hidden="true"><span class="bubble back">···</span><span class="bubble front">Hi!</span></div><div class="help-copy"><h3 id="help-title">还没想好？先聊一次，再做决定。</h3><p>用 25 分钟体验真实课堂，老师帮你找到适合的学习起点。</p></div><button class="help-cta" data-action="trial">免费预约体验课<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button></section>
++      <section class="faq" id="faq" aria-labelledby="faq-title"><div><p class="section-label">GOOD QUESTIONS.</p><h2 id="faq-title">你可能还想知道</h2><p class="faq-intro">关于开口之前的那些小疑问，<br>我们都为你想到了。</p></div><div>
++        <details><summary>英语基础不太好，也可以参加吗？</summary><p>当然可以。开始前会进行简短的口语水平评估。一对一老师会根据你的基础调整节奏，小班课则会安排水平相近的伙伴，让你从适合的难度开始练习。</p></details>
++        <details><summary>一对一和小班课，怎么选更适合我？</summary><p>如果你有面试、工作沟通等具体目标，或需要灵活安排上课时间，推荐一对一。如果你喜欢和伙伴交流，希望通过规律练习保持语感，可以选择小班。体验课也能帮助你判断。</p></details>
++        <details><summary>临时有事，可以请假或调整上课时间吗？</summary><p>一对一课程可提前 24 小时免费改约；小班课按固定课表进行，提前请假后可领取本节学习资料。小班补课需视同级别班级的空位安排，报名时会确认具体规则。</p></details>
++        <details><summary>套餐有效期多久？会自动续费吗？</summary><p>月度套餐自开课日起 30 天内有效，季度套餐 90 天内有效。所有套餐均为一次性购买，不会自动续费。季度一对一共 12 节，小班共 24 节；如需延期，请在到期前沟通。</p></details>
++      </div></section>
++    </main>
++    <footer class="footer"><div class="footer-brand"><a class="logo" href="#" aria-label="返回顶部"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a><span class="footer-tagline">Small steps. Real conversations.</span></div><span class="copyright">© 2026 HeyTalk · 每一次开口，都算数。</span></footer>
++  </div>
++  <dialog id="course-dialog" aria-labelledby="dialog-title"><button class="close" aria-label="关闭弹窗">×</button><p class="modal-label">YOUR NEXT STEP</p><h2 id="dialog-title"></h2><p id="dialog-copy"></p><div class="modal-details" id="dialog-details"></div><p>这是课程价格展示页，暂未开放在线报名与付款。你可以关闭此窗口，继续比较课程方案。</p><button class="modal-button">继续了解课程</button></dialog>
++  <script>
++    const plans={monthly:{personal:129,group:49,personalCount:4,groupCount:8,label:'月度'},quarterly:{personal:109,group:39,personalCount:12,groupCount:24,label:'季度'}};
++    let period='monthly';
++    document.querySelectorAll('[data-period]').forEach(button=>button.addEventListener('click',()=>{
++      period=button.dataset.period;
++      document.querySelectorAll('[data-period]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
++      const plan=plans[period];
++      ['personal','group'].forEach(type=>{
++        document.getElementById(type+'-price').textContent=plan[type];
++        document.getElementById(type+'-original').hidden=period==='monthly';
++        document.getElementById(type+'-total').textContent=(period==='monthly'?'每月 ':'每季度 ')+plan[type+'Count']+' 节课，套餐合计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      });
++    }));
++    const dialog=document.getElementById('course-dialog');
++    document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>{
++      const type=button.dataset.action,plan=plans[period],trial=type==='trial';
++      document.getElementById('dialog-title').textContent=trial?'先从一次对话开始':type==='personal'?'你的专属口语计划':'和同频的人，一起进步';
++      document.getElementById('dialog-copy').textContent=trial?'25 分钟，认识老师、了解自己的口语水平，找到适合你的练习方式。':'你正在了解以下课程方案：';
++      document.getElementById('dialog-details').textContent=trial?'免费体验 · 口语水平评估 · 个性化学习建议':(type==='personal'?'一对一私教课':'互动小班课')+' · '+plan.label+'套餐 · '+plan[type+'Count']+' 节 × 50 分钟，总计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      dialog.showModal();
++    }));
++    dialog.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>dialog.close()));
++    dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
++  </script>
++</body>
++</html>
+
+codex
+已生成 [index.html](index.html)，包含一对一与小班课价格、月度／季度切换、常见问题及移动端适配。样式和脚本均内置，无需依赖，直接打开即可查看。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..22fbd860c090efd26ca03827c80e4e4790df2855
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,120 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8fa">
++  <title>课程与价格 · HeyTalk 英语口语</title>
++  <style>
++    :root{--ink:#192c31;--muted:#748080;--paper:#f7f8fa;--green:#c9ef91;--line:#e3e7e6;--dark:#203b3b;--purple:#e9e5f5}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7e9d51;outline-offset:5px}.wrap{max-width:1120px;margin:auto;padding:0 32px}.site-header{height:94px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.logo{font-size:27px;font-weight:800;letter-spacing:-1.3px;display:flex;align-items:center;gap:9px}.logo-icon{width:31px;height:29px;background:var(--dark);border-radius:11px 11px 11px 3px;display:flex;align-items:center;justify-content:center;gap:4px;transform:rotate(-5deg)}.logo-icon i{width:4px;height:10px;background:var(--green);border-radius:4px}.logo-icon i:nth-child(2){height:16px}.logo-dot{color:#7da64f}.nav{display:flex;align-items:center;gap:33px;font-size:13px;color:#657373}.nav a:hover{color:var(--ink)}.nav .active{color:var(--ink);font-weight:650;position:relative}.nav .active:after{content:"";width:4px;height:4px;border-radius:50%;background:var(--ink);position:absolute;bottom:-10px;left:50%}.nav-cta{padding:11px 19px;background:transparent;border:1px solid #bbc6c3;border-radius:7px;font-size:12px;color:var(--ink)}.nav-cta:hover{background:#e9eee9}
++    .hero{text-align:center;padding:60px 0 30px;position:relative}.eyebrow{font-size:10px;font-weight:700;letter-spacing:2.5px;color:#658075;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;border-radius:50%;background:#83a76c}.hero h1{font-size:45px;line-height:1.4;letter-spacing:-2px;margin:19px 0 17px;font-weight:750}.hero h1 span{position:relative;isolation:isolate;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;left:-3px;right:-5px;height:12px;bottom:3px;background:var(--green);z-index:-1;transform:rotate(-2deg)}.hero p{font-size:14px;color:var(--muted);line-height:1.9;margin:0}.hero-mark{position:absolute;width:45px;height:45px;right:86px;top:79px;transform:rotate(11deg);color:#9db69d}.hero-small{position:absolute;left:100px;top:134px;font-family:Georgia,serif;font-size:45px;color:#b9c8be;transform:rotate(-16deg)}.billing{display:flex;align-items:center;justify-content:center;gap:13px;margin-top:30px}.segmented{display:flex;border:1px solid #dfe5e0;background:#edf0ed;padding:4px;border-radius:9px;gap:3px}.segmented button{border:0;background:transparent;color:#7b8580;padding:9px 22px;font-size:12px;border-radius:6px;min-width:90px}.segmented button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #192c3110;font-weight:650}.save{font-size:11px;background:#eaf3e3;color:#5a7947;border-radius:5px;padding:6px 8px}.billing-note{font-size:11px!important;margin-top:12px!important;color:#8b9690!important}
++    .pricing{display:grid;grid-template-columns:1fr 1fr;gap:23px;margin-top:5px}.price-card{border:1px solid var(--line);border-radius:16px;padding:30px 32px 26px;background:#fff;position:relative;overflow:hidden}.price-card.personal{background:var(--dark);border-color:var(--dark);color:#fff}.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}.type-icon{width:44px;height:44px;border-radius:12px;background:var(--purple);display:flex;align-items:center;justify-content:center;color:#6d6387}.personal .type-icon{background:#ffffff10;color:var(--green);border:1px solid #ffffff12}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.tag{font-size:10px;color:#bfe29c;padding:6px 10px;border:1px solid #54715d;border-radius:20px;display:flex;align-items:center;gap:5px}.tag .icon{width:12px;height:12px}.soft-tag{color:#827495;border-color:#e4ddef;background:#f8f6fc}.card-heading{display:flex;align-items:baseline;gap:11px}.card-heading h2{font-size:24px;margin:0;letter-spacing:-.7px}.english{font-size:10px;letter-spacing:1.4px;font-weight:500;color:#9faeaa}.small-group .english{color:#9b99a4}.card-description{font-size:12px;color:#b6c6c1;margin:11px 0 25px;line-height:1.7}.small-group .card-description{color:var(--muted)}.price{display:flex;align-items:baseline;gap:4px;height:63px}.currency{font-size:24px;font-weight:550;align-self:flex-start;margin-top:9px}.amount{font-size:56px;font-weight:650;line-height:1;letter-spacing:-3px;font-variant-numeric:tabular-nums}.per{font-size:12px;color:#a9beb6;margin-left:7px}.small-group .per{color:#8c9591}.old-price{font-size:13px;color:#91a99d;text-decoration:line-through;margin-left:10px}.small-group .old-price{color:#a1a7a3}.billing-detail{font-size:11px;color:#aec2b8;margin:6px 0 22px;min-height:18px}.small-group .billing-detail{color:#8b9590}.course-meta{display:flex;gap:9px;margin-bottom:23px}.course-meta span{font-size:10px;padding:6px 9px;border-radius:4px;background:#ffffff0b;color:#d5e0db;border:1px solid #ffffff12}.small-group .course-meta span{color:#7b7b87;background:#f6f5f9;border-color:#edebf0}.card-line{height:1px;background:#ffffff19}.small-group .card-line{background:var(--line)}.features-title{font-size:11px;font-weight:550;margin:22px 0 15px;color:#e8eeeb}.small-group .features-title{color:#63726c}.features{list-style:none;margin:0;padding:0;display:grid;gap:15px}.features li{display:flex;align-items:center;gap:10px;font-size:12px;line-height:1.5;color:#e3ebe7}.check{width:16px;height:16px;flex:none;stroke:var(--green);stroke-width:1.8;fill:none}.small-group .features li{color:#53635e}.small-group .check{stroke:#89809c}.card-cta{margin-top:27px;width:100%;border:0;border-radius:7px;padding:13px 17px;font-size:12px;font-weight:650;display:flex;align-items:center;justify-content:center;gap:14px;background:var(--green);color:var(--dark);transition:transform .15s,background .15s}.card-cta:hover{background:#d7f5ad;transform:translateY(-2px)}.small-group .card-cta{background:#eae6f4;color:#625776}.small-group .card-cta:hover{background:#ddd5ee}.card-cta .icon{width:16px;height:16px}.cta-note{text-align:center;font-size:10px;color:#a0b4a9;margin:11px 0 0}.small-group .cta-note{color:#9b9a9f}.under-cards{display:flex;gap:28px;align-items:center;justify-content:center;margin:22px 0 38px;font-size:10px;color:#88948c}.under-cards span{display:flex;align-items:center;gap:6px}.under-cards .icon{width:14px;height:14px}
++    .help-strip{border:1px solid #e0e6dc;background:#eef2e9;border-radius:12px;padding:24px 28px;display:flex;align-items:center;gap:20px}.chat-art{position:relative;width:51px;height:47px;flex:none}.bubble{display:flex;align-items:center;justify-content:center;position:absolute;width:35px;height:29px;border:1.5px solid #7f9271;border-radius:9px 9px 9px 2px;color:#6e865d;font-size:16px;background:#dbe7ce;left:0;top:0}.bubble.back{left:17px;top:15px;transform:scaleX(-1);background:#f5f8ef}.bubble.front{z-index:1}.help-copy h3{margin:0 0 6px;font-size:14px;font-weight:650}.help-copy p{font-size:11px;color:#7a8674;line-height:1.7;margin:0}.help-cta{margin-left:auto;flex:none;padding:10px 15px;border:1px solid #b8c3af;border-radius:6px;color:#54654a;font-size:11px;background:transparent;display:flex;align-items:center;gap:12px}.help-cta:hover{background:#e1e9d8}.help-cta .icon{width:14px;height:14px}
++    .faq{padding:53px 0 49px;display:grid;grid-template-columns:1fr 1.6fr;gap:55px}.section-label{font-size:10px;letter-spacing:2px;color:#89968b;font-weight:600;margin:0 0 12px}.faq h2{font-size:26px;letter-spacing:-.8px;margin:0 0 11px}.faq-intro{font-size:12px;line-height:1.8;color:#8a948d;margin:0}.faq details{border-bottom:1px solid var(--line)}.faq details:first-child{border-top:1px solid var(--line)}.faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;padding:19px 1px;font-size:12px;font-weight:500;gap:16px}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";font-size:19px;font-weight:300;color:#8f9c91;flex:none}.faq details[open] summary:after{content:"−"}.faq details p{font-size:12px;color:#7a877c;line-height:1.9;margin:0;padding:0 23px 18px 1px}.footer{display:flex;align-items:center;justify-content:space-between;padding:25px 0 30px;border-top:1px solid var(--line);gap:20px}.footer .logo{font-size:19px;gap:7px}.footer .logo-icon{width:23px;height:22px;border-radius:8px 8px 8px 2px;gap:3px}.footer .logo-icon i{width:3px;height:8px}.footer .logo-icon i:nth-child(2){height:12px}.footer-brand{display:flex;align-items:center;gap:20px}.footer-tagline,.copyright{font-size:10px;color:#929c96}.footer-tagline{border-left:1px solid #dce2dd;padding-left:20px}
++    dialog{border:1px solid var(--line);border-radius:18px;padding:34px;max-width:420px;width:calc(100% - 36px);color:var(--ink);box-shadow:0 24px 80px #10282630}dialog::backdrop{background:#142a2a70;backdrop-filter:blur(4px)}.close{position:absolute;right:13px;top:12px;border:0;background:transparent;font-size:24px;color:#87928b;width:32px;height:32px}.modal-label{font-size:10px;letter-spacing:1.7px;color:#7a9266;margin:0 0 12px}dialog h2{font-size:25px;margin:0 0 13px}dialog p{font-size:13px;line-height:1.9;color:#7b877e}.modal-details{padding:15px;background:#f1f5ec;border-radius:9px;margin:21px 0;line-height:1.9;font-size:13px}.modal-button{width:100%;padding:13px;border:0;border-radius:7px;background:var(--dark);color:white;font-size:13px}
++    @media(min-width:1280px){.wrap{max-width:1110px}.hero{padding-top:65px}.pricing{gap:25px}.price-card{padding:30px 34px 25px}}
++    @media(max-width:760px){.wrap{padding:0 22px}.site-header{height:76px}.nav{gap:18px}.nav a:not(.active){display:none}.nav-cta{padding:9px 13px}.logo{font-size:24px}.hero{padding:44px 0 26px}.hero h1{font-size:35px;letter-spacing:-1.5px}.hero p{font-size:12px}.hero-mark,.hero-small{display:none}.pricing{gap:15px}.price-card{padding:24px 21px}.card-heading{display:block}.english{display:block;margin-top:7px;font-size:9px}.card-description{min-height:41px;margin:10px 0 20px}.amount{font-size:48px}.old-price{margin-left:3px}.course-meta{gap:5px;flex-wrap:wrap}.features li{font-size:11px;gap:7px}.faq{gap:28px;grid-template-columns:1fr 1.4fr}.help-strip{padding:22px 20px;gap:14px}.help-copy p{max-width:270px}.footer-tagline{display:none}}
++    @media(max-width:540px){.wrap{padding:0 20px}.nav .active{display:none}.hero h1{font-size:32px}.hero{padding-top:38px}.hero p{padding:0 6px}.hero p br{display:none}.billing{margin-top:25px}.segmented button{min-width:80px;padding:8px 17px}.pricing{grid-template-columns:1fr;gap:20px;margin-top:5px}.price-card{padding:26px}.card-heading{display:flex}.english{margin-top:0}.card-description{min-height:0;font-size:12px}.amount{font-size:54px}.features li{font-size:12px}.card-top{margin-bottom:21px}.under-cards{gap:13px;flex-wrap:wrap;font-size:9px;margin-bottom:29px}.help-strip{flex-wrap:wrap;gap:14px}.help-copy{flex:1}.help-copy h3{font-size:13px}.help-cta{margin-left:65px}.faq{display:block;padding-top:37px;padding-bottom:32px}.faq-intro{margin-bottom:25px}.faq h2{font-size:24px}.footer{align-items:center}.copyright{font-size:9px}.footer .logo{font-size:18px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
++    <symbol id="person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 21v-2a7 7 0 0 1 14 0v2M19 3v4m-2-2h4"/></symbol>
++    <symbol id="group" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3m0-16a3 3 0 0 1 0 6m3 3a5 5 0 0 1 3 5v2"/></symbol>
++    <symbol id="tick" viewBox="0 0 18 18"><path d="m4 9 3.3 3.3L14 5.5"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 11 3 3 5-5"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="book" viewBox="0 0 24 24"><path d="M12 5v15M3 4c4-1 6 0 9 1 3-1 5-2 9-1v15c-4-1-6 0-9 1-3-1-5-2-9-1V4Z"/></symbol>
++    <symbol id="spark" viewBox="0 0 24 24"><path d="m12 2 2.8 7.2L22 12l-7.2 2.8L12 22l-2.8-7.2L2 12l7.2-2.8L12 2Z"/></symbol>
++  </defs></svg>
++  <div class="wrap">
++    <header class="site-header">
++      <a class="logo" href="#" aria-label="HeyTalk 首页"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a>
++      <nav class="nav" aria-label="主导航"><a href="#courses">课程方案</a><a href="#included">学习保障</a><a href="#courses" class="active" aria-current="page">课程与价格</a><button class="nav-cta" data-action="trial">预约体验课 ↗</button></nav>
++    </header>
++    <main>
++      <section class="hero" aria-labelledby="page-title">
++        <div class="eyebrow">A LITTLE PRACTICE. A BIG DIFFERENCE.</div>
++        <span class="hero-small" aria-hidden="true">✳</span><svg class="hero-mark icon" aria-hidden="true"><use href="#spark"/></svg>
++        <h1 id="page-title">让英语，成为你<span>自然的表达</span></h1>
++        <p>专属老师，或一群同频的伙伴。找到适合你的开口方式。<br>每一次对话，都离自信的自己更近一点。</p>
++        <div class="billing"><div class="segmented" role="group" aria-label="选择课程套餐周期"><button aria-pressed="true" data-period="monthly">月度套餐</button><button aria-pressed="false" data-period="quarterly">季度套餐</button></div><span class="save">季度最高省 20%</span></div>
++        <p class="billing-note">一次购买 · 无自动续费 · 价格透明</p>
++      </section>
++      <section class="pricing" id="courses" aria-label="课程价格方案">
++        <article class="price-card personal">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#person"/></svg></div><span class="tag"><svg class="icon" aria-hidden="true"><use href="#spark"/></svg>高效进阶之选</span></div>
++          <div class="card-heading"><h2>一对一私教课</h2><span class="english">JUST FOR YOU</span></div>
++          <p class="card-description">100% 专属时间，按你的节奏，突破你的瓶颈。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="personal-price">129</span><span class="per">/ 节</span><span class="old-price" id="personal-original" hidden>¥129</span></div>
++          <p class="billing-detail" id="personal-total" aria-live="polite">每月 4 节课，套餐合计 ¥516</p>
++          <div class="course-meta"><span>1 位学员 × 1 位老师</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">把每一分钟，都留给你的成长</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>根据水平与目标，定制专属学习计划</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师，全程互动与即时纠音</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>职场、旅行、日常，想练什么由你决定</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>灵活预约时间，轻松融入你的日程</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后专属反馈 + 个人学习报告</li>
++          </ul>
++          <button class="card-cta" data-action="personal">选择一对一，专注提升<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合有明确目标、希望快速突破的你</p>
++        </article>
++        <article class="price-card small-group">
++          <div class="card-top"><div class="type-icon"><svg class="icon" aria-hidden="true"><use href="#group"/></svg></div><span class="tag soft-tag">一起学，更有动力</span></div>
++          <div class="card-heading"><h2>互动小班课</h2><span class="english">BETTER TOGETHER</span></div>
++          <p class="card-description">在轻松的真实对话里，找到开口的勇气和乐趣。</p>
++          <div class="price"><span class="currency">¥</span><span class="amount" id="group-price">49</span><span class="per">/ 节</span><span class="old-price" id="group-original" hidden>¥49</span></div>
++          <p class="billing-detail" id="group-total" aria-live="polite">每月 8 节课，套餐合计 ¥392</p>
++          <div class="course-meta"><span>3–6 人精品小班</span><span>每节 50 分钟</span></div>
++          <div class="card-line"></div><p class="features-title">好的伙伴，让开口变得更简单</p>
++          <ul class="features">
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>按英语水平分班，找到同频学习伙伴</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>精选口语老师引导，每个人都有机会说</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>主题讨论、角色扮演，告别枯燥跟读</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>每周固定 2 次课，养成稳定练习习惯</li>
++            <li><svg class="check" aria-hidden="true"><use href="#tick"/></svg>课后练习资料 + 班级学习社群</li>
++          </ul>
++          <button class="card-cta" data-action="group">加入小班，一起开口<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="cta-note">适合喜欢互动、希望持续积累的你</p>
++        </article>
++      </section>
++      <div class="under-cards" id="included"><span><svg class="icon" aria-hidden="true"><use href="#shield"/></svg>精选专业口语教师</span><span><svg class="icon" aria-hidden="true"><use href="#book"/></svg>教材与学习资料全包含</span><span><svg class="icon" aria-hidden="true"><use href="#clock"/></svg>在家就能上的在线课堂</span></div>
++      <section class="help-strip" aria-labelledby="help-title"><div class="chat-art" aria-hidden="true"><span class="bubble back">···</span><span class="bubble front">Hi!</span></div><div class="help-copy"><h3 id="help-title">还没想好？先聊一次，再做决定。</h3><p>用 25 分钟体验真实课堂，老师帮你找到适合的学习起点。</p></div><button class="help-cta" data-action="trial">免费预约体验课<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button></section>
++      <section class="faq" id="faq" aria-labelledby="faq-title"><div><p class="section-label">GOOD QUESTIONS.</p><h2 id="faq-title">你可能还想知道</h2><p class="faq-intro">关于开口之前的那些小疑问，<br>我们都为你想到了。</p></div><div>
++        <details><summary>英语基础不太好，也可以参加吗？</summary><p>当然可以。开始前会进行简短的口语水平评估。一对一老师会根据你的基础调整节奏，小班课则会安排水平相近的伙伴，让你从适合的难度开始练习。</p></details>
++        <details><summary>一对一和小班课，怎么选更适合我？</summary><p>如果你有面试、工作沟通等具体目标，或需要灵活安排上课时间，推荐一对一。如果你喜欢和伙伴交流，希望通过规律练习保持语感，可以选择小班。体验课也能帮助你判断。</p></details>
++        <details><summary>临时有事，可以请假或调整上课时间吗？</summary><p>一对一课程可提前 24 小时免费改约；小班课按固定课表进行，提前请假后可领取本节学习资料。小班补课需视同级别班级的空位安排，报名时会确认具体规则。</p></details>
++        <details><summary>套餐有效期多久？会自动续费吗？</summary><p>月度套餐自开课日起 30 天内有效，季度套餐 90 天内有效。所有套餐均为一次性购买，不会自动续费。季度一对一共 12 节，小班共 24 节；如需延期，请在到期前沟通。</p></details>
++      </div></section>
++    </main>
++    <footer class="footer"><div class="footer-brand"><a class="logo" href="#" aria-label="返回顶部"><span class="logo-icon" aria-hidden="true"><i></i><i></i><i></i></span>HeyTalk<span class="logo-dot">.</span></a><span class="footer-tagline">Small steps. Real conversations.</span></div><span class="copyright">© 2026 HeyTalk · 每一次开口，都算数。</span></footer>
++  </div>
++  <dialog id="course-dialog" aria-labelledby="dialog-title"><button class="close" aria-label="关闭弹窗">×</button><p class="modal-label">YOUR NEXT STEP</p><h2 id="dialog-title"></h2><p id="dialog-copy"></p><div class="modal-details" id="dialog-details"></div><p>这是课程价格展示页，暂未开放在线报名与付款。你可以关闭此窗口，继续比较课程方案。</p><button class="modal-button">继续了解课程</button></dialog>
++  <script>
++    const plans={monthly:{personal:129,group:49,personalCount:4,groupCount:8,label:'月度'},quarterly:{personal:109,group:39,personalCount:12,groupCount:24,label:'季度'}};
++    let period='monthly';
++    document.querySelectorAll('[data-period]').forEach(button=>button.addEventListener('click',()=>{
++      period=button.dataset.period;
++      document.querySelectorAll('[data-period]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));
++      const plan=plans[period];
++      ['personal','group'].forEach(type=>{
++        document.getElementById(type+'-price').textContent=plan[type];
++        document.getElementById(type+'-original').hidden=period==='monthly';
++        document.getElementById(type+'-total').textContent=(period==='monthly'?'每月 ':'每季度 ')+plan[type+'Count']+' 节课，套餐合计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      });
++    }));
++    const dialog=document.getElementById('course-dialog');
++    document.querySelectorAll('[data-action]').forEach(button=>button.addEventListener('click',()=>{
++      const type=button.dataset.action,plan=plans[period],trial=type==='trial';
++      document.getElementById('dialog-title').textContent=trial?'先从一次对话开始':type==='personal'?'你的专属口语计划':'和同频的人，一起进步';
++      document.getElementById('dialog-copy').textContent=trial?'25 分钟，认识老师、了解自己的口语水平，找到适合你的练习方式。':'你正在了解以下课程方案：';
++      document.getElementById('dialog-details').textContent=trial?'免费体验 · 口语水平评估 · 个性化学习建议':(type==='personal'?'一对一私教课':'互动小班课')+' · '+plan.label+'套餐 · '+plan[type+'Count']+' 节 × 50 分钟，总计 ¥'+(plan[type]*plan[type+'Count']).toLocaleString('zh-CN');
++      dialog.showModal();
++    }));
++    dialog.querySelectorAll('button').forEach(button=>button.addEventListener('click',()=>dialog.close()));
++    dialog.addEventListener('click',event=>{if(event.target===dialog){const rect=dialog.getBoundingClientRect();if(event.clientX<rect.left||event.clientX>rect.right||event.clientY<rect.top||event.clientY>rect.bottom)dialog.close();}});
++  </script>
++</body>
++</html>
+
+tokens used
+22,278
+已生成 [index.html](index.html)，包含一对一与小班课价格、月度／季度切换、常见问题及移动端适配。样式和脚本均内置，无需依赖，直接打开即可查看。

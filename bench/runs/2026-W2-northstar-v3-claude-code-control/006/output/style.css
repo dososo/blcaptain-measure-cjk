@@ -1,0 +1,118 @@
+:root {
+  --bg: #f7f3ec;
+  --paper: #fffdf8;
+  --fg: #2b2620;
+  --muted: #7a6f62;
+  --accent: #b5562f;
+  --line: #e6ddcf;
+  --quote-bg: #f3ece1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1a17;
+    --paper: #24211d;
+    --fg: #ece5da;
+    --muted: #a59a8b;
+    --accent: #e08a62;
+    --line: #3a352e;
+    --quote-bg: #2d2924;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1c1a17;
+  --paper: #24211d;
+  --fg: #ece5da;
+  --muted: #a59a8b;
+  --accent: #e08a62;
+  --line: #3a352e;
+  --quote-bg: #2d2924;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 3rem 1rem;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", Georgia, serif;
+  line-height: 1.9;
+  font-size: 1.0625rem;
+}
+
+article {
+  max-width: 42rem;
+  margin: 0 auto;
+  background: var(--paper);
+  padding: 3rem clamp(1.25rem, 5vw, 3.5rem);
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  /* 横线纸的感觉 */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent calc(1.9em - 1px),
+    var(--line) calc(1.9em - 1px),
+    var(--line) 1.9em
+  );
+  background-size: 100% 1.9em;
+  background-position: 0 3rem;
+}
+
+header { margin-bottom: 2rem; }
+
+.tag {
+  display: inline-block;
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.1rem 0.75rem;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 5vw, 2.2rem);
+  line-height: 1.35;
+  margin: 0.8rem 0 0.6rem;
+}
+
+.meta {
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 2.2rem 0 0.6rem;
+  color: var(--accent);
+}
+
+p { margin: 0 0 1.9em; text-align: justify; }
+
+blockquote {
+  margin: 0 0 1.9em;
+  padding: 0.6rem 1.2rem;
+  background: var(--quote-bg);
+  border-left: 3px solid var(--accent);
+  color: var(--fg);
+  font-style: italic;
+}
+
+blockquote p { margin: 0; }
+
+footer {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px dashed var(--line);
+  font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
+  font-size: 0.875rem;
+  color: var(--muted);
+}

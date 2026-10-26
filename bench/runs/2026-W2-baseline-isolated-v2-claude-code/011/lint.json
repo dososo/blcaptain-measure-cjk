@@ -1,0 +1,224 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w1-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-25T14:01:45.122Z",
+    "mode": "static",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {}
+  },
+  "summary": {
+    "files": 2,
+    "cjk_files": 1,
+    "errors": 6,
+    "warns": 14,
+    "status": "fail"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "pingfang sc",
+      "tier": "system-only",
+      "usage": "system"
+    },
+    {
+      "family": "microsoft yahei",
+      "tier": "system-only",
+      "usage": "system"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "T02",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.nav > div.wrap > a.logo:nth-of-type(1)",
+      "line": 13,
+      "message": "有 115 个中文元素没有开启 text-autospace。三大浏览器实现里它的初始值是 no-autospace，必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: \"text\"，在文案里打空格。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t02"
+    },
+    {
+      "rule": "T03",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(4) > div.faq-list > details:nth-of-type(4) > p",
+      "line": 158,
+      "message": "配置的引号风格是 “”（curly），这里用了「」：「20 个，可在「账户设置 → 订」。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t03"
+    },
+    {
+      "rule": "T04",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.nav > div.wrap > a.logo:nth-of-type(1)",
+      "line": 13,
+      "message": "有 115 个中文元素没有 line-break: strict，标点可能出现在行首。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t04"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(2) > article.plan:nth-of-type(1) > p.desc:nth-of-type(1)",
+      "line": 41,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(2) > article.plan:nth-of-type(1) > p.price-note:nth-of-type(2)",
+      "line": 43,
+      "message": "正文字号 13.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(2) > article.plan:nth-of-type(1) > ul.features > li.head:nth-of-type(1)",
+      "line": 46,
+      "message": "正文字号 13.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(2) > article.plan:nth-of-type(2) > p.desc:nth-of-type(1)",
+      "line": 60,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(2) > article.plan:nth-of-type(2) > p.price-note:nth-of-type(2)",
+      "line": 62,
+      "message": "正文字号 13.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(2) > article.plan:nth-of-type(2) > ul.features > li.head:nth-of-type(1)",
+      "line": 65,
+      "message": "正文字号 13.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(2) > article.plan:nth-of-type(3) > p.desc:nth-of-type(1)",
+      "line": 78,
+      "message": "正文每行约 83 个汉字（容器 1160px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(2) > article.plan:nth-of-type(3) > p#team-note:nth-of-type(2)",
+      "line": 80,
+      "message": "正文字号 13.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(2) > article.plan:nth-of-type(3) > ul.features > li.head:nth-of-type(1)",
+      "line": 92,
+      "message": "正文字号 13.0px，建议不小于 14px。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(3) > h3",
+      "line": 110,
+      "message": "中文字距为负（-0.28px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(4) > h3",
+      "line": 141,
+      "message": "中文字距为负（-0.28px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(4) > div.faq-list > details:nth-of-type(1) > p",
+      "line": 146,
+      "message": "正文每行约 51 个汉字（容器 760px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(4) > div.faq-list > details:nth-of-type(2) > p",
+      "line": 150,
+      "message": "正文每行约 51 个汉字（容器 760px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(4) > div.faq-list > details:nth-of-type(3) > p",
+      "line": 154,
+      "message": "正文每行约 51 个汉字（容器 760px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(4) > div.faq-list > details:nth-of-type(4) > p",
+      "line": 158,
+      "message": "正文每行约 51 个汉字（容器 760px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section.wrap:nth-of-type(4) > div.faq-list > details:nth-of-type(5) > p",
+      "line": 162,
+      "message": "正文每行约 51 个汉字（容器 760px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main > section.wrap:nth-of-type(5) > div.cta > h3",
+      "line": 169,
+      "message": "中文字距为负（-0.26px），汉字会挤在一起。中文字距请用 0 到 0.05em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07"
+    }
+  ]
+}

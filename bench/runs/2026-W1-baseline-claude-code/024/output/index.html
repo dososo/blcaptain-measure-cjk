@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>听松小馆 · 订座</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <div class="seal" aria-hidden="true">听<br>松</div>
+      <h1>听松小馆</h1>
+      <p>午市 11:00–14:00 · 晚市 17:00–21:30 · 逢周一店休</p>
+    </header>
+
+    <form id="booking" novalidate>
+      <section class="section" aria-labelledby="h-date">
+        <div class="section-head">
+          <span class="num">壹</span>
+          <h2 id="h-date">日期</h2>
+          <span class="hint">可预订未来两周</span>
+        </div>
+        <div class="dates" id="dates" role="group" aria-label="选择日期"></div>
+      </section>
+
+      <section class="section" aria-labelledby="h-time">
+        <div class="section-head">
+          <span class="num">贰</span>
+          <h2 id="h-time">时间</h2>
+          <span class="hint">划线为已满</span>
+        </div>
+        <div id="slots"></div>
+      </section>
+
+      <section class="section" aria-labelledby="h-party">
+        <div class="section-head">
+          <span class="num">叁</span>
+          <h2 id="h-party">人数</h2>
+        </div>
+        <div class="party">
+          <div class="stepper">
+            <button type="button" id="minus" aria-label="减少人数">−</button>
+            <output id="count" aria-live="polite">2</output>
+            <button type="button" id="plus" aria-label="增加人数">+</button>
+          </div>
+          <span class="party-note" id="partyNote">位</span>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="h-info">
+        <div class="section-head">
+          <span class="num">肆</span>
+          <h2 id="h-info">联系与备注</h2>
+        </div>
+        <div class="fields">
+          <div class="field" id="f-name">
+            <label for="name">称呼</label>
+            <input id="name" name="name" autocomplete="name" placeholder="如：王先生" maxlength="20">
+            <span class="err" id="e-name"></span>
+          </div>
+          <div class="field" id="f-phone">
+            <label for="phone">手机号</label>
+            <input id="phone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="11 位手机号" maxlength="11">
+            <span class="err" id="e-phone"></span>
+          </div>
+          <div class="field full">
+            <label for="note">备注（选填）</label>
+            <div class="tags" id="tags">
+              <button type="button" class="tag">靠窗</button>
+              <button type="button" class="tag">包间</button>
+              <button type="button" class="tag">需要儿童椅</button>
+              <button type="button" class="tag">生日</button>
+              <button type="button" class="tag">不吃辣</button>
+              <button type="button" class="tag">有忌口</button>
+            </div>
+            <textarea id="note" name="note" maxlength="200" placeholder="过敏食材、座位偏好、纪念日安排等"></textarea>
+            <span class="counter" id="counter">0 / 200</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="summary" aria-live="polite">
+        <dl id="summary"></dl>
+      </div>
+      <button type="submit" class="submit">确认订座</button>
+      <p class="form-err" id="formErr" role="alert"></p>
+    </form>
+
+    <section class="confirm" id="confirm" aria-live="polite">
+      <div class="seal" aria-hidden="true">已<br>订</div>
+      <h2>订座成功</h2>
+      <p>座位将为您保留 15 分钟，如需改期请提前来电。</p>
+      <p class="code" id="code"></p>
+      <div class="summary"><dl id="confirmSummary"></dl></div>
+      <button type="button" class="link-btn" id="again">再订一桌</button>
+    </section>
+  </main>
+
+  <script>
+  (function () {
+    var WEEK = ['日', '一', '二', '三', '四', '五', '六'];
+    var LUNCH = ['11:00', '11:30', '12:00', '12:30', '13:00', '13:30'];
+    var DINNER = ['17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00'];
+    var MIN = 1, MAX = 12, LARGE = 8;
+
+    var state = { date: null, time: null, party: 2 };
+    var $ = function (id) { return document.getElementById(id); };
+
+    function ymd(d) {
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function label(dateStr) {
+      var d = new Date(dateStr + 'T00:00:00');
+      return (d.getMonth() + 1) + '月' + d.getDate() + '日 周' + WEEK[d.getDay()];
+    }
+
+    // 演示用：按日期+时段生成稳定的「已满」状态
+    function isFull(dateStr, time) {
+      var s = dateStr + time, h = 0;
+      for (var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+      return h % 5 === 0;
+    }
+
+    function renderDates() {
+      var box = $('dates'), today = new Date();
+      today.setHours(0, 0, 0, 0);
+      box.innerHTML = '';
+      for (var i = 0; i < 14; i++) {
+        var d = new Date(today);
+        d.setDate(today.getDate() + i);
+        var key = ymd(d), closed = d.getDay() === 1;
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'date-btn';
+        b.dataset.date = key;
+        b.disabled = closed;
+        b.setAttribute('aria-pressed', 'false');
+        b.setAttribute('aria-label', label(key) + (closed ? '，店休' : ''));
+        b.innerHTML = '<span class="wk">' + (i === 0 ? '今天' : '周' + WEEK[d.getDay()]) + '</span>' +
+          '<span class="d">' + d.getDate() + '</span>' +
+          '<span class="m">' + (closed ? '店休' : (d.getMonth() + 1) + '月') + '</span>';
+        box.appendChild(b);
+      }
+      var first = box.querySelector('.date-btn:not(:disabled)');
+      if (first) selectDate(first.dataset.date);
+    }
+
+    function selectDate(key) {
+      state.date = key;
+      state.time = null;
+      document.querySelectorAll('.date-btn').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.date === key));
+      });
+      renderSlots();
+      renderSummary();
+    }
+
+    function renderSlots() {
+      var box = $('slots');
+      box.innerHTML = '';
+      if (!state.date) { box.innerHTML = '<p class="empty-tip">请先选择日期</p>'; return; }
+      var now = new Date(), isToday = state.date === ymd(now);
+      var nowMin = now.getHours() * 60 + now.getMinutes();
+      var anyOpen = false;
+
+      [['午市', LUNCH], ['晚市', DINNER]].forEach(function (g) {
+        var wrap = document.createElement('div');
+        wrap.className = 'slot-group';
+        wrap.innerHTML = '<div class="slot-label">' + g[0] + '</div>';
+        var grid = document.createElement('div');
+        grid.className = 'slots';
+        grid.setAttribute('role', 'group');
+        grid.setAttribute('aria-label', g[0]);
+        g[1].forEach(function (t) {
+          var p = t.split(':'), m = +p[0] * 60 + +p[1];
+          var past = isToday && m <= nowMin + 30; // 至少提前 30 分钟
+          var full = isFull(state.date, t);
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'slot-btn';
+          b.dataset.time = t;
+          b.textContent = t;
+          b.disabled = past || full;
+          b.setAttribute('aria-pressed', 'false');
+          if (full) b.setAttribute('aria-label', t + '，已满');
+          if (!b.disabled) anyOpen = true;
+          grid.appendChild(b);
+        });
+        wrap.appendChild(grid);
+        box.appendChild(wrap);
+      });
+
+      if (!anyOpen) {
+        var tip = document.createElement('p');
+        tip.className = 'empty-tip';
+        tip.style.marginTop = '12px';
+        tip.textContent = '当天已无可订时段，请换个日期。';
+        box.appendChild(tip);
+      }
+    }
+
+    function selectTime(t) {
+      state.time = t;
+      document.querySelectorAll('.slot-btn').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.time === t));
+      });
+      renderSummary();
+    }
+
+    function setParty(n) {
+      state.party = Math.max(MIN, Math.min(MAX, n));
+      $('count').textContent = state.party;
+      $('minus').disabled = state.party <= MIN;
+      $('plus').disabled = state.party >= MAX;
+      $('partyNote').textContent = state.party >= LARGE
+        ? '位 · ' + LARGE + ' 位及以上将安排包间，可能需要预付定金'
+        : '位 · 最多 ' + MAX + ' 位，更多请来电';
+      renderSummary();
+    }
+
+    function esc(s) {
+      return s.replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function summaryHTML(withContact) {
+      var rows = [
+        ['日期', state.date ? label(state.date) : null],
+        ['时间', state.time],
+        ['人数', state.party + ' 位']
+      ];
+      if (withContact) {
+        rows.push(['称呼', $('name').value.trim()]);
+        rows.push(['电话', $('phone').value.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2')]);
+      }
+      var note = $('note').value.trim();
+      if (note) rows.push(['备注', note]);
+      return rows.map(function (r) {
+        return '<dt>' + r[0] + '</dt>' + (r[1]
+          ? '<dd>' + esc(r[1]) + '</dd>'
+          : '<dd class="pending">未选择</dd>');
+      }).join('');
+    }
+
+    function renderSummary() { $('summary').innerHTML = summaryHTML(false); }
+
+    function setErr(field, msg) {
+      $('e-' + field).textContent = msg;
+      $('f-' + field).classList.toggle('invalid', !!msg);
+    }
+
+    function validate() {
+      var ok = true, name = $('name').value.trim(), phone = $('phone').value.trim();
+      if (!name) { setErr('name', '请填写称呼'); ok = false; } else setErr('name', '');
+      if (!/^1[3-9]\d{9}$/.test(phone)) { setErr('phone', '请填写正确的 11 位手机号'); ok = false; } else setErr('phone', '');
+      var missing = [];
+      if (!state.date) missing.push('日期');
+      if (!state.time) missing.push('时间');
+      $('formErr').textContent = missing.length ? '请选择' + missing.join('和') : (ok ? '' : '请完善联系信息');
+      return ok && !missing.length;
+    }
+
+    // 事件
+    $('dates').addEventListener('click', function (e) {
+      var b = e.target.closest('.date-btn');
+      if (b && !b.disabled) selectDate(b.dataset.date);
+    });
+    $('slots').addEventListener('click', function (e) {
+      var b = e.target.closest('.slot-btn');
+      if (b && !b.disabled) { selectTime(b.dataset.time); $('formErr').textContent = ''; }
+    });
+    $('minus').addEventListener('click', function () { setParty(state.party - 1); });
+    $('plus').addEventListener('click', function () { setParty(state.party + 1); });
+
+    $('phone').addEventListener('input', function () { this.value = this.value.replace(/\D/g, ''); });
+    ['name', 'phone'].forEach(function (id) {
+      $(id).addEventListener('input', function () { setErr(id, ''); });
+    });
+
+    var note = $('note');
+    function updateCounter() { $('counter').textContent = note.value.length + ' / 200'; renderSummary(); }
+    note.addEventListener('input', updateCounter);
+    $('tags').addEventListener('click', function (e) {
+      var t = e.target.closest('.tag');
+      if (!t) return;
+      var word = t.textContent;
+      if (note.value.indexOf(word) !== -1) return;
+      var next = note.value.trim() ? note.value.trim() + '，' + word : word;
+      if (next.length <= 200) note.value = next;
+      updateCounter();
+      note.focus();
+    });
+
+    $('booking').addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) return;
+      $('code').textContent = '订座号 ' + state.date.replace(/-/g, '').slice(4) + '-' +
+        String(Math.floor(Math.random() * 9000) + 1000);
+      $('confirmSummary').innerHTML = summaryHTML(true);
+      $('booking').hidden = true;
+      $('confirm').classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    $('again').addEventListener('click', function () {
+      $('booking').reset();
+      $('confirm').classList.remove('show');
+      $('booking').hidden = false;
+      updateCounter();
+      setParty(2);
+      renderDates();
+    });
+
+    setParty(2);
+    renderDates();
+  })();
+  </script>
+</body>
+</html>

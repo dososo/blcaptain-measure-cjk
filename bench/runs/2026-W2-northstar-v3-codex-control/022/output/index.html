@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f8f4">
+  <title>意见反馈 · 一起让产品更好</title>
+  <style>
+    :root{--ink:#242923;--muted:#8a8e84;--line:#e8eae3;--green:#d5ee90;--bg:#f7f8f4;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;-webkit-font-smoothing:antialiased}button,input,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button,a,input,textarea{ -webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #91ad50;outline-offset:4px}svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.icon-defs{display:none}
+    .sidebar{position:fixed;inset:0 auto 0 0;width:226px;padding:40px 22px 22px;background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column}.brand{display:flex;align-items:center;gap:10px;padding-left:12px;font-size:24px;font-weight:750;letter-spacing:-1px}.brand-mark{width:32px;height:32px;background:var(--ink);border-radius:10px;display:grid;place-items:center;color:var(--green);transform:rotate(-7deg)}.brand-mark svg{width:23px;height:23px}.brand span:last-child{font-size:11px;color:#969b8c;letter-spacing:1.5px;font-weight:500;margin-left:3px}.nav-label{font-size:10px;color:#a0a499;letter-spacing:2px;margin:59px 14px 16px}.nav-item{display:flex;gap:12px;align-items:center;padding:14px;border-radius:8px;font-weight:550}.nav-item.active{background:#edf3e3;color:#425334}.nav-item .dot{margin-left:auto;width:6px;height:6px;border-radius:100%;background:#7a964e}.sidebar-note{margin-top:auto;padding:18px 13px 25px;color:#969b90;font-size:12px;line-height:1.9}.sidebar-note svg{color:#71835a;margin-bottom:10px;width:24px;height:24px}.profile{border-top:1px solid var(--line);padding:23px 10px 0;display:flex;align-items:center;gap:10px}.avatar{width:34px;height:34px;border-radius:50%;background:#eceee5;display:grid;place-items:center;font-size:12px;font-weight:700}.profile strong{font-size:12px;font-weight:600}.profile p{margin:4px 0 0;font-size:10px;color:var(--muted)}.profile>svg{margin-left:auto;width:15px;color:#a1a599}
+    .workspace{margin-left:226px}.topbar{height:88px;border-bottom:1px solid var(--line);padding:0 48px;display:flex;align-items:center;justify-content:space-between;font-size:12px;color:#8b9085}.breadcrumb{display:flex;align-items:center;gap:12px}.breadcrumb svg{width:14px;height:14px}.breadcrumb strong{font-weight:500;color:#454b40}.top-status{display:flex;align-items:center;gap:8px}.status-dot{width:6px;height:6px;background:#8caa60;border-radius:50%}.main{max-width:1200px;margin:auto;padding:48px 48px 26px}.eyebrow{font-size:10px;letter-spacing:2px;color:#7b896b;font-weight:650;margin:0 0 16px}.intro{position:relative;margin-bottom:34px}.intro h1{font-size:32px;line-height:1.4;letter-spacing:-1px;font-weight:650;margin:0 0 11px}.intro h1 span{position:relative;z-index:0;white-space:nowrap}.intro h1 span:after{content:"";position:absolute;left:-2px;right:-2px;height:10px;bottom:2px;z-index:-1;background:#dcebb8;transform:rotate(-2deg)}.intro p{margin:0;color:#858b7e;line-height:1.8;font-size:13px}.intro-spark{position:absolute;right:6px;top:20px;width:44px;height:44px;color:#839764;transform:rotate(12deg)}.layout{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:25px;align-items:start}.form-card{background:#fff;border:1px solid #e4e7dd;border-radius:14px;padding:30px 30px 25px;box-shadow:0 4px 12px #28382102}.section-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;padding-bottom:22px;border-bottom:1px solid var(--line)}.section-heading h2{font-size:16px;font-weight:650;margin:0}.section-heading span{font-size:10px;color:#959a8f}.required{color:#809957;margin-left:4px}.field{margin:0 0 27px;padding:0;border:0;min-width:0}.field-title{display:block;font-size:13px;font-weight:600;margin-bottom:12px}.optional{font-weight:400;font-size:11px;color:#969b90;margin-left:7px}.type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.type-option{position:relative;cursor:pointer}.type-option input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0}.type-face{height:82px;border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;font-size:11px;color:#757d6e;transition:.18s;background:#fff}.type-face svg{width:20px;height:20px}.type-option:hover .type-face{background:#f8faf3;border-color:#bccc9f}.type-option input:checked+.type-face{background:#f1f6e7;border-color:#9ab973;color:#516837}.type-option input:focus-visible+.type-face{outline:3px solid #b6ca98;outline-offset:2px}.selected-mark{display:none;position:absolute;right:6px;top:5px;width:12px;height:12px;border-radius:50%;color:white;background:#8ba965}.selected-mark svg{width:10px;height:10px;display:block;margin:1px}.type-option input:checked~.selected-mark{display:block}.text-wrap{border:1px solid #e4e7de;border-radius:8px;overflow:hidden;transition:border-color .2s}.text-wrap:focus-within{border-color:#9ab973;box-shadow:0 0 0 3px #b8ca9218}.text-wrap textarea{display:block;border:0;outline:none!important;width:100%;min-height:143px;resize:vertical;line-height:1.9;padding:14px 15px 4px;color:var(--ink);background:transparent;font-size:12px}.text-wrap textarea::placeholder{color:#afb3aa}.counter{text-align:right;padding:4px 13px 11px;font-size:10px;color:#a2a79b;font-variant-numeric:tabular-nums}.upload-title{display:flex;align-items:baseline;justify-content:space-between}.upload-title>span{font-size:10px;color:#9a9e94}.dropzone{position:relative;background:#fbfcf9;border:1px dashed #d6ddca;border-radius:8px;min-height:132px;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:.2s;padding:18px;text-align:center}.dropzone:hover,.dropzone.dragging{background:#f0f5e5;border-color:#90ac65}.upload-icon{width:33px;height:33px;background:#edf1e5;border-radius:8px;display:grid;place-items:center;color:#8a9c70;margin-bottom:10px}.upload-icon svg{width:18px;height:18px}.dropzone p{margin:0 0 6px;font-size:11px;color:#858c7c}.dropzone p strong{font-weight:550;color:#667c47}.dropzone small{font-size:10px;color:#a6ac9c}.dropzone input{position:absolute;width:1px;height:1px;opacity:0}.dropzone:focus-within{outline:3px solid #b6ca98;outline-offset:3px}.previews{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}.previews:empty{display:none}.preview{position:relative;width:88px;height:75px;border-radius:7px;border:1px solid var(--line);background:#f3f5ee}.preview img{width:100%;height:100%;object-fit:cover;border-radius:6px}.remove{position:absolute;right:-5px;top:-5px;width:22px;height:22px;border:2px solid #fff;background:#353e30;color:#fff;border-radius:50%;display:grid;place-items:center;padding:0}.remove svg{width:12px;height:12px}.email{width:100%;height:43px;border:1px solid #e4e7de;border-radius:7px;background:#fff;padding:0 13px;font-size:12px;color:var(--ink)}.email::placeholder{color:#afb3aa}.hint{font-size:10px;color:#a0a599;margin:9px 0 0;line-height:1.7}.actions{padding-top:22px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}.privacy{display:flex;align-items:center;gap:6px;color:#979e8d;font-size:10px}.privacy svg{width:13px;height:13px}.submit{border:0;border-radius:7px;background:var(--green);padding:13px 21px;display:flex;align-items:center;gap:20px;font-size:12px;font-weight:650;color:#344022;transition:.2s}.submit:hover{background:#c7e479;transform:translateY(-1px)}.submit svg{width:16px;height:16px}.error{display:none;color:#a34e3b;font-size:11px;line-height:1.6;margin:12px 0 0}.error.visible{display:block}
+    .aside-card{background:#293329;color:#fff;border-radius:13px;overflow:hidden;padding:27px 25px;position:relative;min-height:236px}.aside-label{font-size:9px;letter-spacing:1.9px;color:#c2d59e;display:flex;align-items:center;gap:8px}.aside-label:before{content:"";width:5px;height:5px;border-radius:50%;background:#c6e693}.aside-card h2{font-size:23px;line-height:1.55;font-weight:500;letter-spacing:.5px;margin:21px 0 13px}.aside-card p{font-size:11px;line-height:1.9;color:#b3bcae;max-width:190px;margin:0;position:relative;z-index:1}.orbit{position:absolute;right:-34px;bottom:-45px;width:135px;height:135px;border:1px solid #81936955;border-radius:50%}.orbit:before{content:"";position:absolute;inset:16px;border:1px solid #81936955;border-radius:50%}.orbit:after{content:"";position:absolute;inset:33px;border:1px solid #81936955;border-radius:50%}.orbit-star{position:absolute;right:23px;bottom:28px;color:#d5ee90;width:29px;height:29px;transform:rotate(12deg)}.guide{padding:28px 7px}.guide h3{font-size:12px;font-weight:600;margin:0 0 24px;display:flex;align-items:center;gap:8px}.guide h3 svg{width:16px;height:16px;color:#879574}.guide-row{display:flex;gap:12px;margin-bottom:22px}.number{font-family:Georgia,serif;font-size:12px;flex-shrink:0;color:#899476;width:23px;height:23px;display:grid;place-items:center;border-radius:50%;border:1px solid #dce2d1}.guide-row h4{margin:2px 0 7px;font-size:11px;font-weight:600}.guide-row p{font-size:11px;color:#92998a;line-height:1.9;margin:0}.thanks{border-top:1px solid #e3e7db;padding-top:21px;display:flex;gap:9px;align-items:center;font-size:10px;line-height:1.8;color:#919b84}.thanks svg{width:15px;height:15px;color:#82966a}.page-footer{display:flex;justify-content:space-between;gap:15px;color:#a7ad9f;font-size:9px;letter-spacing:.2px;padding-top:25px}.page-footer span:last-child{display:flex;align-items:center;gap:5px}.page-footer svg{width:11px;height:11px}
+    dialog{border:1px solid #e1e6d6;border-radius:16px;padding:34px;max-width:420px;width:calc(100% - 40px);box-shadow:0 20px 100px #18231330;text-align:center;color:var(--ink)}dialog::backdrop{background:#1d291d66;backdrop-filter:blur(4px)}.success-icon{display:grid;place-items:center;margin:auto;background:#eef5df;border-radius:50%;width:54px;height:54px;color:#7a9554}.success-icon svg{width:28px;height:28px}dialog h2{font-size:22px;margin:20px 0 12px}dialog p{color:#858e7b;font-size:13px;line-height:1.8}dialog .submit{margin:24px auto 0}
+    @media(min-width:1450px){.main{padding-top:60px}.layout{grid-template-columns:minmax(0,1fr) 285px;gap:30px}.form-card{padding:34px}.type-face{height:89px}}
+    @media(max-width:1100px){.sidebar{width:190px;padding-left:16px;padding-right:16px}.workspace{margin-left:190px}.main{padding:35px 28px}.topbar{padding:0 28px}.layout{grid-template-columns:minmax(0,1fr) 230px;gap:20px}.form-card{padding:24px 20px}.aside-card{padding:24px 20px}.type-grid{gap:6px}.privacy{max-width:130px;line-height:1.6}.intro h1{font-size:28px}}
+    @media(max-width:900px){.sidebar{width:76px;padding:28px 12px}.brand{padding:0;justify-content:center}.brand-text,.brand span:last-child,.nav-label,.nav-item span,.sidebar-note,.profile{display:none}.nav-item{justify-content:center;margin-top:44px;padding:14px}.nav-item .dot{display:none}.workspace{margin-left:76px}.layout{grid-template-columns:minmax(0,1fr) 220px}.intro-spark{display:none}.type-grid{grid-template-columns:repeat(2,1fr)}.type-face{height:66px;flex-direction:row;gap:8px}.actions{align-items:flex-start;flex-direction:column}.submit{width:100%;justify-content:center}.privacy{max-width:none}}
+    @media(max-width:700px){.sidebar{position:static;width:100%;height:66px;flex-direction:row;align-items:center;padding:14px 22px;border-right:0;border-bottom:1px solid var(--line);justify-content:space-between}.brand{font-size:21px}.brand-text{display:inline}.brand span:last-child{display:none}.brand-mark{width:28px;height:28px}.sidebar nav{margin:0}.nav-item{margin:0;padding:8px 12px;gap:7px;font-size:11px}.nav-item span{display:inline}.nav-item svg{width:15px;height:15px}.workspace{margin:0}.topbar{height:52px;padding:0 23px;font-size:10px}.main{padding:30px 20px 22px}.intro{margin-bottom:25px}.eyebrow{font-size:9px;margin-bottom:12px}.intro h1{font-size:27px}.intro p{font-size:12px;max-width:280px}.layout{grid-template-columns:1fr}.form-card{padding:25px 21px}.type-grid{grid-template-columns:repeat(4,1fr)}.type-face{height:77px;flex-direction:column;gap:9px;font-size:10px}.actions{flex-direction:row;align-items:center}.submit{width:auto;gap:10px;padding:13px 17px}.privacy{font-size:9px}.aside-card{min-height:170px;padding:23px}.aside-card h2{font-size:21px;margin:15px 0 10px}.aside-card h2 br{display:none}.aside-card p{max-width:260px}.orbit{width:180px;height:180px;bottom:-70px}.guide{padding:25px 5px 0}.guide-row{margin-bottom:18px}.guide-row p{font-size:12px}.guide-row h4{font-size:12px}.thanks{padding-top:17px}.page-footer{font-size:8px;flex-wrap:wrap}.top-status{font-size:9px}.section-heading span{font-size:9px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <svg class="icon-defs" aria-hidden="true"><defs>
+    <symbol id="spark" viewBox="0 0 24 24"><path d="m12 2 2.5 7.5L22 12l-7.5 2.5L12 22l-2.5-7.5L2 12l7.5-2.5Z"/></symbol>
+    <symbol id="message" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H5l-3 2v-10a9 9 0 0 1 18 0Z"/><path d="M7 9h8M7 13h5"/></symbol>
+    <symbol id="chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="bug" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="m8 3 2 4m6-4-2 4M3 9l4 2m10 0 4-2M3 15h4m10 0h4M5 21l3-3m8 0 3 3M12 11v5"/></symbol>
+    <symbol id="bulb" viewBox="0 0 24 24"><path d="M8 16c0-3-3-4-3-8a7 7 0 0 1 14 0c0 4-3 5-3 8ZM9 19h6m-5 3h4M10 8l2 2 2-2m-2 2v6"/></symbol>
+    <symbol id="layout" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 9v12"/></symbol>
+    <symbol id="more" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M7.5 12h.01M12 12h.01M16.5 12h.01" stroke-width="2.5"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V3m-4 4 4-4 4 4M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/></symbol>
+    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 2 8 3v6c0 5-5 9-8 11-3-2-8-6-8-11V5Z"/><path d="m8 11 3 3 5-5"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M20.5 4.5a5.2 5.2 0 0 0-7.5 0L12 5.6l-1-1.1a5.3 5.3 0 0 0-7.5 7.5L12 21l8.5-9a5.2 5.2 0 0 0 0-7.5Z"/></symbol>
+    <symbol id="close" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </defs></svg>
+  <aside class="sidebar">
+    <a class="brand" href="./index.html" aria-label="unto 首页"><span class="brand-mark"><svg><use href="#spark"/></svg></span><b class="brand-text">unto</b><span>SPACE</span></a>
+    <nav aria-label="工作空间导航"><p class="nav-label">WORKSPACE</p><a class="nav-item active" href="#feedback-form" aria-current="page"><svg><use href="#message"/></svg><span>意见反馈</span><i class="dot"></i></a></nav>
+    <div class="sidebar-note"><svg><use href="#spark"/></svg><br>每一个小想法，<br>都可能带来大不同。</div>
+    <div class="profile"><div class="avatar">U</div><div><strong>体验用户</strong><p>每一份声音都重要</p></div><svg><use href="#spark"/></svg></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb"><span>工作空间</span><svg><use href="#chevron"/></svg><strong>意见反馈</strong></div><div class="top-status"><i class="status-dot"></i>倾听中，持续改进中</div></header>
+    <main class="main">
+      <div class="intro"><div class="eyebrow">YOUR VOICE MATTERS</div><h1>一起，让产品<span>更好一点。</span></h1><p>遇到了问题，或是有个好点子？我们很想听听你的声音。</p><svg class="intro-spark" aria-hidden="true"><use href="#spark"/></svg></div>
+      <div class="layout">
+        <form class="form-card" id="feedback-form">
+          <div class="section-heading"><h2>告诉我们你的想法</h2><span><b class="required">*</b> 为必填项</span></div>
+          <fieldset class="field"><legend class="field-title">问题类型<span class="required">*</span></legend><div class="type-grid">
+            <label class="type-option"><input type="radio" name="type" value="功能异常" checked required><span class="type-face"><svg><use href="#bug"/></svg>功能异常</span><span class="selected-mark"><svg><use href="#check"/></svg></span></label>
+            <label class="type-option"><input type="radio" name="type" value="产品建议"><span class="type-face"><svg><use href="#bulb"/></svg>产品建议</span><span class="selected-mark"><svg><use href="#check"/></svg></span></label>
+            <label class="type-option"><input type="radio" name="type" value="使用体验"><span class="type-face"><svg><use href="#layout"/></svg>使用体验</span><span class="selected-mark"><svg><use href="#check"/></svg></span></label>
+            <label class="type-option"><input type="radio" name="type" value="其他反馈"><span class="type-face"><svg><use href="#more"/></svg>其他反馈</span><span class="selected-mark"><svg><use href="#check"/></svg></span></label>
+          </div></fieldset>
+          <div class="field"><label class="field-title" for="description">具体描述<span class="required">*</span></label><div class="text-wrap"><textarea id="description" name="description" required maxlength="2000" placeholder="请描述你遇到的问题或建议…&#10;例如：在哪个页面、进行了什么操作、出现了什么情况？" aria-describedby="description-count"></textarea><div class="counter" id="description-count"><span id="count">0</span> / 2000</div></div></div>
+          <div class="field"><div class="upload-title"><label class="field-title" for="screenshots">添加截图<span class="optional">选填</span></label><span><span id="image-count">0</span> / 3 张</span></div><label class="dropzone" id="dropzone" for="screenshots"><span class="upload-icon"><svg><use href="#upload"/></svg></span><p><strong>点击上传</strong>，或将图片拖到这里</p><small>支持 PNG、JPG、WebP，单张不超过 10 MB</small><input id="screenshots" type="file" accept="image/png,image/jpeg,image/webp" multiple aria-describedby="upload-error"></label><div class="previews" id="previews" aria-label="已选截图"></div><p class="error" id="upload-error" role="alert"></p></div>
+          <div class="field"><label class="field-title" for="email">联系邮箱<span class="optional">选填</span></label><input class="email" type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" maxlength="254"><p class="hint">方便我们进一步了解情况，并与你同步处理进展。</p></div>
+          <div class="actions"><span class="privacy"><svg><use href="#shield"/></svg>你的反馈与个人信息将受到保护</span><button class="submit" type="submit">提交反馈<svg><use href="#arrow"/></svg></button></div>
+          <p class="error" id="form-error" role="alert"></p>
+        </form>
+        <aside aria-label="反馈指南"><div class="aside-card"><div class="aside-label">BETTER, TOGETHER</div><h2>好的产品，<br>从倾听开始。</h2><p>你的每一次反馈，都是我们向前迈进的一小步。</p><div class="orbit" aria-hidden="true"></div><svg class="orbit-star" aria-hidden="true"><use href="#spark"/></svg></div><div class="guide"><h3><svg><use href="#bulb"/></svg>让反馈更有效的小提示</h3><div class="guide-row"><span class="number">1</span><div><h4>描述具体一点</h4><p>告诉我们发生问题的页面和操作步骤，帮助我们快速定位。</p></div></div><div class="guide-row"><span class="number">2</span><div><h4>一张截图，胜过千言</h4><p>附上相关截图，让问题更直观。记得遮盖图片中的敏感信息。</p></div></div><div class="guide-row"><span class="number">3</span><div><h4>分享你的期待</h4><p>你希望它如何改进？你的使用场景和想法，对我们很有帮助。</p></div></div><div class="thanks"><svg><use href="#heart"/></svg>感谢你花时间，和我们一起打磨产品。</div></div></aside>
+      </div>
+      <footer class="page-footer"><span>© 2026 unto. 为每一个更好的体验。</span><span>预览演示 · 提交内容不会发送<svg><use href="#spark"/></svg></span></footer>
+    </main>
+  </div>
+  <dialog id="success-dialog" aria-labelledby="success-title"><div class="success-icon"><svg><use href="#check"/></svg></div><h2 id="success-title">感谢你的声音</h2><p>本次反馈已完成演示提交。<br>这是一个预览表单，内容不会发送至服务器。</p><button class="submit" id="close-dialog" type="button">返回表单<svg><use href="#arrow"/></svg></button></dialog>
+  <script>
+    const form = document.getElementById('feedback-form');
+    const description = document.getElementById('description');
+    const fileInput = document.getElementById('screenshots');
+    const dropzone = document.getElementById('dropzone');
+    const uploadError = document.getElementById('upload-error');
+    const formError = document.getElementById('form-error');
+    const previews = document.getElementById('previews');
+    const dialog = document.getElementById('success-dialog');
+    let attachments = [];
+    let processing = 0;
+    function showError(element, message) { element.textContent = message; element.classList.toggle('visible', !!message); }
+    description.addEventListener('input', () => { document.getElementById('count').textContent = description.value.length; description.setCustomValidity(''); showError(formError, ''); });
+    function renderImages() {
+      previews.replaceChildren();
+      document.getElementById('image-count').textContent = attachments.length;
+      attachments.forEach(item => {
+        const wrap = document.createElement('div'); wrap.className = 'preview';
+        const img = document.createElement('img'); img.src = item.url; img.alt = item.file.name;
+        const remove = document.createElement('button'); remove.type = 'button'; remove.className = 'remove'; remove.setAttribute('aria-label', '移除 ' + item.file.name);
+        remove.innerHTML = '<svg aria-hidden="true"><use href="#close"/></svg>';
+        remove.addEventListener('click', () => { URL.revokeObjectURL(item.url); attachments = attachments.filter(image => image !== item); renderImages(); fileInput.focus(); });
+        wrap.append(img, remove); previews.append(wrap);
+      });
+    }
+    async function addFiles(files) {
+      const messages = [];
+      processing++;
+      for (const file of files) {
+        if (!['image/png', 'image/jpeg', 'image/webp'].includes(file.type)) { messages.push('请选择 PNG、JPG 或 WebP 格式的图片。'); continue; }
+        if (file.size > 10 * 1024 * 1024) { messages.push('图片不能超过 10 MB，请压缩后重试。'); continue; }
+        if (attachments.some(item => item.file.name === file.name && item.file.size === file.size && item.file.lastModified === file.lastModified)) { messages.push('这张图片已经添加过了。'); continue; }
+        const url = URL.createObjectURL(file);
+        const valid = await new Promise(resolve => { const image = new Image(); image.onload = () => resolve(true); image.onerror = () => resolve(false); image.src = url; });
+        if (!valid) { URL.revokeObjectURL(url); messages.push('有图片无法读取，请选择有效的图片文件。'); continue; }
+        if (attachments.length >= 3) { URL.revokeObjectURL(url); messages.push('最多添加 3 张截图，请移除已有截图后再试。'); continue; }
+        attachments.push({file, url}); renderImages();
+      }
+      processing--;
+      showError(uploadError, [...new Set(messages)].join(' '));
+    }
+    fileInput.addEventListener('change', () => { const files = Array.from(fileInput.files); fileInput.value = ''; addFiles(files); });
+    let dragDepth = 0;
+    dropzone.addEventListener('dragenter', event => { event.preventDefault(); dragDepth++; dropzone.classList.add('dragging'); });
+    dropzone.addEventListener('dragover', event => { event.preventDefault(); event.dataTransfer.dropEffect = 'copy'; });
+    dropzone.addEventListener('dragleave', () => { dragDepth--; if (dragDepth <= 0) dropzone.classList.remove('dragging'); });
+    dropzone.addEventListener('drop', event => { event.preventDefault(); dragDepth = 0; dropzone.classList.remove('dragging'); addFiles(Array.from(event.dataTransfer.files)); });
+    window.addEventListener('dragover', event => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); });
+    window.addEventListener('drop', event => { if (event.dataTransfer.types.includes('Files')) event.preventDefault(); });
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      if (!description.value.trim()) { description.setCustomValidity('请填写具体的问题描述或建议。'); description.reportValidity(); return; }
+      if (processing) { showError(formError, '图片正在处理中，请稍后再提交。'); return; }
+      showError(formError, ''); dialog.showModal();
+    });
+    document.getElementById('close-dialog').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => { if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close(); } });
+    window.addEventListener('pagehide', () => attachments.forEach(item => URL.revokeObjectURL(item.url)));
+  </script>
+</body>
+</html>

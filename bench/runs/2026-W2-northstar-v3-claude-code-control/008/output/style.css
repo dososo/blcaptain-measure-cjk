@@ -1,0 +1,154 @@
+:root {
+  --bg: #f7f3ec;
+  --fg: #2b2a28;
+  --muted: #6d675e;
+  --accent: #2f6f8f;
+  --accent-soft: #dfeaf0;
+  --card: #fffdf9;
+  --line: #e4ddd1;
+  --hero-from: #1f4e66;
+  --hero-to: #6f9fb4;
+  --hero-fg: #fdfbf7;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #181a1c;
+    --fg: #e8e4dc;
+    --muted: #a39d92;
+    --accent: #7fb9d4;
+    --accent-soft: #23323a;
+    --card: #212427;
+    --line: #34383c;
+    --hero-from: #0f2a38;
+    --hero-to: #2c5568;
+    --hero-fg: #f2efe9;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #181a1c;
+  --fg: #e8e4dc;
+  --muted: #a39d92;
+  --accent: #7fb9d4;
+  --accent-soft: #23323a;
+  --card: #212427;
+  --line: #34383c;
+  --hero-from: #0f2a38;
+  --hero-to: #2c5568;
+  --hero-fg: #f2efe9;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Songti SC", "Noto Serif SC", "Source Han Serif SC", serif;
+  font-size: 1.0625rem;
+  line-height: 1.9;
+}
+
+.hero {
+  background: linear-gradient(160deg, var(--hero-from), var(--hero-to));
+  color: var(--hero-fg);
+  padding-block: 4.5rem 3.5rem;
+  padding-inline: 1.25rem;
+  text-align: center;
+}
+.hero .eyebrow {
+  margin: 0 0 0.75rem;
+  font-family: system-ui, -apple-system, "PingFang SC", sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  opacity: 0.85;
+}
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+}
+.hero .sub {
+  margin: 1rem auto 0;
+  max-width: 32rem;
+  opacity: 0.9;
+}
+
+.wrap {
+  max-width: 44rem;
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+  padding-block: 2.5rem 4rem;
+}
+
+.toc {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2.5rem;
+  font-family: system-ui, -apple-system, "PingFang SC", sans-serif;
+  font-size: 0.95rem;
+}
+.toc strong { display: block; margin-bottom: 0.4rem; color: var(--muted); font-weight: 500; }
+.toc ol { margin: 0; padding-left: 1.4rem; }
+.toc a { color: var(--accent); text-decoration: none; }
+.toc a:hover { text-decoration: underline; }
+
+section { margin-bottom: 3rem; }
+
+h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px solid var(--line);
+  scroll-margin-top: 1rem;
+}
+h2 .num {
+  color: var(--accent);
+  margin-right: 0.5rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+}
+
+p { margin: 0 0 1.1rem; text-align: justify; }
+
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.9rem 1.25rem;
+  background: var(--accent-soft);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--fg);
+}
+
+.tips {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 0.9rem;
+}
+.tips li {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 0.9rem 1rem;
+  min-width: 0;
+  font-size: 0.97rem;
+  line-height: 1.75;
+}
+.tips li b { display: block; color: var(--accent); margin-bottom: 0.2rem; }
+
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-family: system-ui, -apple-system, "PingFang SC", sans-serif;
+  padding-inline: 1.25rem;
+  padding-block: 0 3rem;
+}

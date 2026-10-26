@@ -1,0 +1,167 @@
+$ head -c 3000 bench/runs/2026-W1-baseline-claude-code/summary.json
+# 退出码：0
+{
+  "schema_version": "1.0.0",
+  "run_id": "2026-W1-baseline-claude-code",
+  "agent": "claude-code",
+  "generated_at": "2026-10-25T12:06:42.542Z",
+  "prompts": 30,
+  "produced": 30,
+  "zero_error_pages": 0,
+  "zero_error_rate_over_produced": 0,
+  "zero_error_pages_excluding_T02_T04": 18,
+  "rule_hit_pages": {
+    "T02": 30,
+    "T04": 30,
+    "T03": 11,
+    "T11": 2,
+    "T13": 1,
+    "T08": 1
+  },
+  "mode": "static",
+  "baseline_kind": "用户环境基线（未安装 measure；其他 skill 与全局指令照常加载，见 environment_observed）",
+  "environment_observed": {
+    "models": "输出里没有记录模型（待确认）",
+    "skills_loaded_runs": "claude -p 只输出最终回答，无法从日志统计加载过的 skill（待确认）",
+    "global_instructions": "见 environment.log"
+  },
+  "relinted_with": "当前构建（--relint-only）",
+  "rows": [
+    {
+      "id": "001",
+      "agent_exit": 0,
+      "seconds": 83,
+      "produced": true,
+      "errors": 5,
+      "warns": 6,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04",
+        "T11"
+      ]
+    },
+    {
+      "id": "002",
+      "agent_exit": 0,
+      "seconds": 73,
+      "produced": true,
+      "errors": 2,
+      "warns": 11,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04"
+      ]
+    },
+    {
+      "id": "003",
+      "agent_exit": 0,
+      "seconds": 88,
+      "produced": true,
+      "errors": 2,
+      "warns": 20,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04"
+      ]
+    },
+    {
+      "id": "004",
+      "agent_exit": 0,
+      "seconds": 94,
+      "produced": true,
+      "errors": 4,
+      "warns": 17,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04"
+      ]
+    },
+    {
+      "id": "005",
+      "agent_exit": 0,
+      "seconds": 69,
+      "produced": true,
+      "errors": 2,
+      "warns": 16,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04"
+      ]
+    },
+    {
+      "id": "006",
+      "agent_exit": 0,
+      "seconds": 48,
+      "produced": true,
+      "errors": 3,
+      "warns": 8,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04"
+      ]
+    },
+    {
+      "id": "007",
+      "agent_exit": 0,
+      "seconds": 96,
+      "produced": true,
+      "errors": 5,
+      "warns": 31,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04"
+      ]
+    },
+    {
+      "id": "008",
+      "agent_exit": 0,
+      "seconds": 76,
+      "produced": true,
+      "errors": 2,
+      "warns": 22,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T04"
+      ]
+    },
+    {
+      "id": "009",
+      "agent_exit": 0,
+      "seconds": 41,
+      "produced": true,
+      "errors": 7,
+      "warns": 10,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04"
+      ]
+    },
+    {
+      "id": "010",
+      "
+
+$ cat bench/runs/2026-W1-baseline-claude-code/environment.log
+# 退出码：0
+~/.agents/skills：81 个条目；包含 measure：否
+~/.codex/skills：99 个条目；包含 measure：否
+~/.claude/skills：90 个条目；包含 measure：否
+~/.codex/AGENTS.md：存在；包含可能影响排版的关键词：无
+~/.claude/CLAUDE.md：存在；包含可能影响排版的关键词：中英文、空格、排版、「」
+
+
+# 判定：PASS（30 条提示词，产出 30 页，零 error 0 页（0.0%）；排除 T02/T04 后零 error 18 页；口径：用户环境基线（未安装 measure；其他 skill 与全局指令照常加载，见 environment_observed）；由 Claude Code 代跑，用户已追认（2026-10-25，原话「D-4 追认」））
+# 时间：2026-10-25T12:29:49.858Z

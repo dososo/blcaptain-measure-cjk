@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w2-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-26T04:19:46.805Z",
+    "mode": "static",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {}
+  },
+  "summary": {
+    "files": 3,
+    "cjk_files": 1,
+    "errors": 0,
+    "warns": 2,
+    "status": "pass"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "noto serif sc",
+      "tier": "embeddable",
+      "usage": "system"
+    },
+    {
+      "family": "lxgw wenkai",
+      "tier": "embeddable",
+      "usage": "system"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main.measure-prose > header > p.meta:nth-of-type(3)",
+      "line": 16,
+      "message": "正文每行约 46 个汉字（容器 648px ÷ 字号 14px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main.measure-prose > footer > p",
+      "line": 69,
+      "message": "正文每行约 43 个汉字（容器 648px ÷ 字号 15px），超过 40。基础档是估算，只报 warn；完整档实测超过 45 才报 error。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    }
+  ]
+}

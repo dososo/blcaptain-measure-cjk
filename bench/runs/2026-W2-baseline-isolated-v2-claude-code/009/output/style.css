@@ -1,0 +1,103 @@
+:root {
+  --bg: #f7f4ee;
+  --card: #ffffff;
+  --fg: #2b2622;
+  --muted: #7a6f66;
+  --accent: #b23a2a;
+  --line: #e6dfd4;
+  --tint: #fbf1ec;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1916;
+    --card: #25221e;
+    --fg: #ece6dd;
+    --muted: #a69b90;
+    --accent: #e0725f;
+    --line: #3a352f;
+    --tint: #2f2521;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+  line-height: 1.8;
+  font-size: 16px;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 3.5rem 1.25rem 4rem;
+}
+
+.hero { margin-bottom: 2.5rem; }
+.eyebrow {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+}
+.hero h1 {
+  margin: 0.3rem 0 0;
+  font-family: "Songti SC", "Noto Serif CJK SC", "SimSun", serif;
+  font-size: clamp(2.2rem, 7vw, 3.2rem);
+  line-height: 1.2;
+}
+.subtitle { margin: 0.4rem 0 1.5rem; color: var(--muted); }
+.intro {
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--accent);
+}
+
+.notes { display: grid; gap: 1.25rem; }
+
+.note {
+  display: flex;
+  gap: 1.25rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1.5rem;
+}
+.num {
+  flex: none;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  line-height: 1;
+}
+.body { min-width: 0; }
+.note h2 { margin: 0 0 0.6rem; font-size: 1.2rem; line-height: 1.5; }
+.note p { margin: 0 0 0.8rem; }
+.takeaway {
+  margin-bottom: 0 !important;
+  background: var(--tint);
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+.takeaway strong { color: var(--accent); }
+
+.footer {
+  margin-top: 3rem;
+  text-align: center;
+  color: var(--muted);
+}
+.footer blockquote {
+  margin: 0 0 0.5rem;
+  font-family: "Songti SC", "Noto Serif CJK SC", serif;
+  font-size: 1.25rem;
+  color: var(--fg);
+}
+
+@media (max-width: 480px) {
+  .note { flex-direction: column; gap: 0.6rem; padding: 1.25rem; }
+}

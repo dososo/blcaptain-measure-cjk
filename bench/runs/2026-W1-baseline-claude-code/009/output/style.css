@@ -1,0 +1,140 @@
+:root {
+  --paper: #f3ede2;
+  --ink: #2a2521;
+  --ink-soft: #6b6058;
+  --rule: #d8cebf;
+  --cinnabar: #a2392b;
+  --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #1d1b19;
+    --ink: #e8e1d6;
+    --ink-soft: #a39a8f;
+    --rule: #3a3530;
+    --cinnabar: #c4553f;
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  line-height: 1.9;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 96px 16px 80px;
+}
+
+/* 题头 */
+.masthead {
+  position: relative;
+  padding-bottom: 48px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.label {
+  font-size: 13px;
+  letter-spacing: 0.4em;
+  color: var(--ink-soft);
+  margin-bottom: 24px;
+}
+
+h1 {
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  line-height: 1.2;
+}
+
+.subtitle {
+  margin-top: 12px;
+  font-size: 18px;
+  letter-spacing: 0.1em;
+}
+
+.meta {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  letter-spacing: 0.08em;
+}
+
+.seal {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  writing-mode: vertical-rl;
+  padding: 10px 6px;
+  border: 1.5px solid var(--cinnabar);
+  color: var(--cinnabar);
+  font-size: 15px;
+  letter-spacing: 0.3em;
+  border-radius: 2px;
+}
+
+/* 导语 */
+.intro {
+  padding: 48px 0;
+  font-size: 16px;
+  color: var(--ink-soft);
+}
+
+/* 三条收获 */
+.notes { list-style: none; }
+
+.note {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  padding: 48px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.num {
+  font-size: 28px;
+  color: var(--cinnabar);
+  line-height: 1.3;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.body p { font-size: 16px; }
+.body p + p { margin-top: 16px; }
+
+.takeaway {
+  padding-left: 14px;
+  border-left: 2px solid var(--cinnabar);
+  font-weight: 600;
+}
+
+/* 尾注 */
+.colophon {
+  margin-top: 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  font-size: 14px;
+  color: var(--ink-soft);
+  letter-spacing: 0.06em;
+}
+
+@media (max-width: 520px) {
+  .page { padding-top: 64px; }
+  h1 { font-size: 40px; }
+  .note { grid-template-columns: 1fr; gap: 4px; }
+  .seal { top: 24px; }
+}

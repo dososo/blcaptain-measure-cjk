@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>理财新手三个词</title>
+<style>
+  :root {
+    --bg: #ede6da;
+    --card: #fffaf2;
+    --ink: #2b2420;
+    --muted: #7a6c60;
+    --accent: #e0573a;
+    --accent-soft: #fbe3d8;
+    --c1: #e0573a;
+    --c2: #d9922b;
+    --c3: #3f8f7a;
+    --line: #eadfce;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", system-ui, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    min-height: 100vh;
+  }
+  .card {
+    width: min(100%, 600px, calc((100vh - 32px) * 0.75));
+    aspect-ratio: 3 / 4;
+    background: var(--card);
+    border-radius: 3.5cqw;
+    container-type: inline-size;
+    box-shadow: 0 10px 40px rgba(80, 55, 30, .14);
+    overflow: hidden;
+    position: relative;
+  }
+  .inner {
+    position: absolute; inset: 0;
+    padding: 6.5cqw 7cqw 5.5cqw;
+    display: flex; flex-direction: column;
+  }
+  /* 装饰 */
+  .blob {
+    position: absolute; right: -14cqw; top: -14cqw;
+    width: 48cqw; height: 48cqw; border-radius: 50%;
+    background: var(--accent-soft);
+  }
+  .tag {
+    position: relative;
+    align-self: flex-start;
+    font-size: 3.1cqw; font-weight: 600;
+    color: var(--accent);
+    border: .35cqw solid var(--accent);
+    border-radius: 99px;
+    padding: .7cqw 2.6cqw;
+    letter-spacing: .1em;
+  }
+  h1 {
+    position: relative;
+    margin-top: 3cqw;
+    font-size: 9.2cqw; line-height: 1.18; font-weight: 800;
+    letter-spacing: -.01em;
+  }
+  h1 .num {
+    color: var(--accent);
+    font-size: 1.25em;
+    font-family: "DIN Alternate", "Avenir Next", system-ui, sans-serif;
+    margin: 0 .05em;
+  }
+  h1 .hl {
+    background: linear-gradient(transparent 62%, #ffd3a8 62%);
+  }
+  .sub {
+    position: relative;
+    margin-top: 1.8cqw;
+    font-size: 3.4cqw; color: var(--muted);
+  }
+
+  .list { margin-top: 4.5cqw; display: flex; flex-direction: column; gap: 3cqw; flex: 1; }
+  .item {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 11cqw 1fr;
+    gap: 3.2cqw;
+    padding: 3.2cqw 3.6cqw;
+    background: #fff;
+    border: .3cqw solid var(--line);
+    border-radius: 2.6cqw;
+  }
+  .idx {
+    width: 11cqw; height: 11cqw; border-radius: 2.4cqw;
+    display: grid; place-items: center;
+    color: #fff; font-weight: 800; font-size: 4.8cqw;
+    font-family: "DIN Alternate", "Avenir Next", system-ui, sans-serif;
+  }
+  .i1 .idx { background: var(--c1); } .i1 .k { color: var(--c1); }
+  .i2 .idx { background: var(--c2); } .i2 .k { color: var(--c2); }
+  .i3 .idx { background: var(--c3); } .i3 .k { color: var(--c3); }
+  .head { display: flex; align-items: baseline; gap: 2cqw; flex-wrap: wrap; }
+  .k { font-size: 5.6cqw; font-weight: 800; }
+  .one { font-size: 3.4cqw; font-weight: 600; }
+  .desc { margin-top: 1.2cqw; font-size: 3.15cqw; line-height: 1.55; color: #4d433b; }
+  .desc b { color: var(--ink); }
+  .tip {
+    margin-top: 1.3cqw;
+    font-size: 2.95cqw; line-height: 1.45;
+    color: var(--muted);
+  }
+  .tip::before { content: "👉 "; }
+
+  .foot {
+    margin-top: 3.6cqw;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 2.6cqw; color: var(--muted);
+  }
+  .save {
+    background: var(--ink); color: var(--card);
+    font-weight: 600; font-size: 3cqw;
+    padding: 1.2cqw 3cqw; border-radius: 99px;
+  }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="blob"></div>
+    <div class="inner">
+      <span class="tag">理财入门 · 第 1 课</span>
+      <h1>理财新手<br>先搞懂这<span class="num">3</span><span class="hl">个词</span></h1>
+      <p class="sub">看懂它们，才不会被“高收益”带着走</p>
+
+      <section class="list">
+        <article class="item i1">
+          <div class="idx">01</div>
+          <div>
+            <div class="head"><span class="k">复利</span><span class="one">利息也会生利息</span></div>
+            <p class="desc">1 万元、年化 5%：10 年后约 <b>1.63 万</b>，30 年后约 <b>4.32 万</b>。时间越长，雪球越大。</p>
+            <p class="tip">越早开始越占便宜，别等“有钱了”再理财</p>
+          </div>
+        </article>
+
+        <article class="item i2">
+          <div class="idx">02</div>
+          <div>
+            <div class="head"><span class="k">通货膨胀</span><span class="one">钱在悄悄变“薄”</span></div>
+            <p class="desc">若每年通胀 3%，今天 100 元的东西，10 年后约要 <b>134 元</b>。钱躺着不动，购买力在缩水。</p>
+            <p class="tip">收益跑不赢通胀 = 实际上在亏</p>
+          </div>
+        </article>
+
+        <article class="item i3">
+          <div class="idx">03</div>
+          <div>
+            <div class="head"><span class="k">流动性</span><span class="one">急用时能多快取出</span></div>
+            <p class="desc">活期 &gt; 定期 &gt; 房产。流动性越好，收益通常越低；锁得越久，提前取越容易吃亏。</p>
+            <p class="tip">先留 3–6 个月生活费做应急金，再谈投资</p>
+          </div>
+        </article>
+      </section>
+
+      <footer class="foot">
+        <span>* 仅作知识科普，不构成投资建议</span>
+        <span class="save">⭐ 收藏慢慢看</span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

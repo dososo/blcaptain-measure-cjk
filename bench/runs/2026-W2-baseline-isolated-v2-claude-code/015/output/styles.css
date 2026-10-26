@@ -1,0 +1,112 @@
+:root {
+  --bg: #f7f8fa;
+  --surface: #ffffff;
+  --fg: #1a1d23;
+  --muted: #5f6673;
+  --border: #e3e6eb;
+  --accent: #2f6bff;
+  --accent-soft: #e8efff;
+  --free: #12805c;
+  --free-soft: #e3f5ee;
+  --row-alt: #fafbfc;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1115; --surface: #171a21; --fg: #e8eaee; --muted: #9aa3b2;
+    --border: #2a2f3a; --accent: #6b95ff; --accent-soft: #1d2740;
+    --free: #4cc59a; --free-soft: #15291f; --row-alt: #1b1f27;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1115; --surface: #171a21; --fg: #e8eaee; --muted: #9aa3b2;
+  --border: #2a2f3a; --accent: #6b95ff; --accent-soft: #1d2740;
+  --free: #4cc59a; --free-soft: #15291f; --row-alt: #1b1f27;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+}
+.wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding-inline: 1rem;
+  padding-block: 3rem 4rem;
+}
+
+header { text-align: center; margin-bottom: 2.5rem; }
+header h1 { font-size: clamp(1.6rem, 4vw, 2.3rem); margin: 0 0 .5rem; }
+header p { color: var(--muted); margin: 0 auto; max-width: 36rem; }
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: .75rem;
+  padding: 1.25rem;
+}
+.card .label { color: var(--muted); font-size: .85rem; }
+.card .value { font-size: 1.5rem; font-weight: 700; margin-top: .25rem; }
+.card .value.free { color: var(--free); }
+
+section { margin-bottom: 2.5rem; }
+section h2 { font-size: 1.25rem; margin: 0 0 1rem; }
+
+.table-scroll {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: .75rem;
+}
+table { width: 100%; border-collapse: collapse; min-width: 40rem; }
+th, td { padding: .85rem 1rem; text-align: left; border-bottom: 1px solid var(--border); }
+th { font-size: .82rem; color: var(--muted); font-weight: 600; background: var(--row-alt); }
+tbody tr:last-child td { border-bottom: none; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.api-name { font-weight: 600; }
+.api-path { display: block; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .8rem; color: var(--muted); }
+.pill {
+  display: inline-block; padding: .1rem .55rem; border-radius: 999px;
+  background: var(--free-soft); color: var(--free); font-size: .82rem; font-weight: 600;
+}
+.price { font-weight: 700; color: var(--accent); }
+
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+.tier .range { font-weight: 600; }
+.tier .discount { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+.tier p { margin: .25rem 0 0; color: var(--muted); font-size: .88rem; }
+
+.calc { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); align-items: end; }
+.calc label { display: block; font-size: .85rem; color: var(--muted); margin-bottom: .35rem; }
+.calc select, .calc input {
+  width: 100%; padding: .6rem .75rem; font: inherit; color: var(--fg);
+  background: var(--bg); border: 1px solid var(--border); border-radius: .5rem;
+}
+.calc select:focus, .calc input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.result {
+  margin-top: 1.25rem; padding: 1rem 1.25rem; border-radius: .6rem;
+  background: var(--accent-soft);
+}
+.result .total { font-size: 1.6rem; font-weight: 700; color: var(--accent); }
+.result .detail { color: var(--muted); font-size: .88rem; margin-top: .25rem; }
+
+.notes { color: var(--muted); font-size: .88rem; padding-left: 1.2rem; margin: 0; }
+.notes li { margin-bottom: .35rem; }
+
+footer { text-align: center; color: var(--muted); font-size: .82rem; margin-top: 3rem; }

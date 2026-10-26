@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>简历投递</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="page-header">
+      <h1>简历投递</h1>
+      <p>请如实填写以下信息，我们会在 3 个工作日内与您联系。带 <span style="color:var(--danger)">*</span> 的为必填项。</p>
+      <ol class="steps">
+        <li><span>1</span>基本信息</li>
+        <li><span>2</span>工作经历</li>
+        <li><span>3</span>期望薪资</li>
+      </ol>
+    </header>
+
+    <form id="resumeForm" novalidate>
+      <!-- 基本信息 -->
+      <section class="card">
+        <h2 class="card-title">基本信息</h2>
+        <div class="grid">
+          <div class="field">
+            <label for="name">姓名<span class="req">*</span></label>
+            <input type="text" id="name" name="name" maxlength="20" placeholder="请输入真实姓名" required>
+            <div class="error">请填写姓名</div>
+          </div>
+          <div class="field">
+            <label>性别<span class="req">*</span></label>
+            <div class="radio-group">
+              <label><input type="radio" name="gender" value="男" required> 男</label>
+              <label><input type="radio" name="gender" value="女"> 女</label>
+            </div>
+            <div class="error">请选择性别</div>
+          </div>
+          <div class="field">
+            <label for="phone">手机号码<span class="req">*</span></label>
+            <input type="tel" id="phone" name="phone" maxlength="11" placeholder="11 位手机号" required pattern="^1[3-9]\d{9}$">
+            <div class="error">请输入正确的 11 位手机号</div>
+          </div>
+          <div class="field">
+            <label for="email">电子邮箱<span class="req">*</span></label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            <div class="error">请输入正确的邮箱地址</div>
+          </div>
+          <div class="field">
+            <label for="birth">出生日期</label>
+            <input type="date" id="birth" name="birth">
+          </div>
+          <div class="field">
+            <label for="city">现居城市<span class="req">*</span></label>
+            <input type="text" id="city" name="city" placeholder="如：上海" required>
+            <div class="error">请填写现居城市</div>
+          </div>
+          <div class="field">
+            <label for="education">最高学历<span class="req">*</span></label>
+            <select id="education" name="education" required>
+              <option value="">请选择</option>
+              <option>高中/中专</option>
+              <option>大专</option>
+              <option>本科</option>
+              <option>硕士</option>
+              <option>博士</option>
+            </select>
+            <div class="error">请选择最高学历</div>
+          </div>
+          <div class="field">
+            <label for="years">工作年限<span class="req">*</span></label>
+            <select id="years" name="years" required>
+              <option value="">请选择</option>
+              <option>应届生</option>
+              <option>1 年以下</option>
+              <option>1-3 年</option>
+              <option>3-5 年</option>
+              <option>5-10 年</option>
+              <option>10 年以上</option>
+            </select>
+            <div class="error">请选择工作年限</div>
+          </div>
+          <div class="field full">
+            <label for="position">应聘职位<span class="req">*</span></label>
+            <input type="text" id="position" name="position" placeholder="如：前端开发工程师" required>
+            <div class="error">请填写应聘职位</div>
+          </div>
+          <div class="field full">
+            <label for="intro">自我评价</label>
+            <textarea id="intro" name="intro" maxlength="500" placeholder="简要介绍您的优势与特长（500 字以内）"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- 工作经历 -->
+      <section class="card">
+        <h2 class="card-title">工作经历 <small>可添加多段，应届生可不填</small></h2>
+        <div id="expList"></div>
+        <div class="empty" id="expEmpty">暂无工作经历</div>
+        <button type="button" class="btn btn-dashed" id="addExp">+ 添加工作经历</button>
+      </section>
+
+      <!-- 期望薪资 -->
+      <section class="card">
+        <h2 class="card-title">求职期望</h2>
+        <div class="grid">
+          <div class="field full" id="salaryField">
+            <label>期望月薪（税前）<span class="req">*</span></label>
+            <div class="range-row">
+              <div class="input-suffix">
+                <input type="number" id="salaryMin" name="salaryMin" min="0" step="500" placeholder="最低">
+                <em>元/月</em>
+              </div>
+              <span>—</span>
+              <div class="input-suffix">
+                <input type="number" id="salaryMax" name="salaryMax" min="0" step="500" placeholder="最高">
+                <em>元/月</em>
+              </div>
+            </div>
+            <label class="check" style="margin-top:10px"><input type="checkbox" id="negotiable" name="negotiable"> 薪资面议</label>
+            <div class="error" id="salaryError">请填写期望薪资范围</div>
+          </div>
+          <div class="field">
+            <label for="months">期望薪资月数</label>
+            <select id="months" name="months">
+              <option>12 薪</option>
+              <option>13 薪</option>
+              <option>14 薪</option>
+              <option>15 薪及以上</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="currentSalary">当前月薪</label>
+            <div class="input-suffix">
+              <input type="number" id="currentSalary" name="currentSalary" min="0" step="500" placeholder="选填">
+              <em>元/月</em>
+            </div>
+          </div>
+          <div class="field">
+            <label for="workCity">期望工作城市</label>
+            <input type="text" id="workCity" name="workCity" placeholder="如：北京、杭州">
+          </div>
+          <div class="field">
+            <label for="arrival">到岗时间<span class="req">*</span></label>
+            <select id="arrival" name="arrival" required>
+              <option value="">请选择</option>
+              <option>随时到岗</option>
+              <option>1 周内</option>
+              <option>2 周内</option>
+              <option>1 个月内</option>
+              <option>1 个月以上</option>
+            </select>
+            <div class="error">请选择到岗时间</div>
+          </div>
+        </div>
+      </section>
+
+      <label class="check agree" id="agreeWrap">
+        <input type="checkbox" id="agree"> 我确认以上信息真实有效，并同意公司依据隐私政策处理我的个人信息
+      </label>
+
+      <div class="actions">
+        <button type="button" class="btn" id="resetBtn">重置</button>
+        <button type="submit" class="btn btn-primary">提交简历</button>
+      </div>
+    </form>
+  </main>
+
+  <template id="expTpl">
+    <div class="exp-item">
+      <div class="exp-head">
+        <strong class="exp-no">工作经历 1</strong>
+        <button type="button" class="btn-link exp-del">删除</button>
+      </div>
+      <div class="grid">
+        <div class="field">
+          <label>公司名称<span class="req">*</span></label>
+          <input type="text" data-key="company" required placeholder="公司全称">
+          <div class="error">请填写公司名称</div>
+        </div>
+        <div class="field">
+          <label>职位名称<span class="req">*</span></label>
+          <input type="text" data-key="title" required placeholder="如：高级工程师">
+          <div class="error">请填写职位名称</div>
+        </div>
+        <div class="field">
+          <label>入职时间<span class="req">*</span></label>
+          <input type="month" data-key="start" required>
+          <div class="error">请选择入职时间</div>
+        </div>
+        <div class="field">
+          <label>离职时间<span class="req">*</span></label>
+          <input type="month" data-key="end" required>
+          <label class="check" style="margin-top:6px"><input type="checkbox" data-key="current"> 至今在职</label>
+          <div class="error">请选择离职时间，且不早于入职时间</div>
+        </div>
+        <div class="field full">
+          <label>工作内容</label>
+          <textarea data-key="desc" maxlength="1000" placeholder="主要职责与业绩"></textarea>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <h3 id="modalTitle">投递成功</h3>
+      <p style="margin:0;color:var(--muted)">感谢您的投递，以下是您提交的信息摘要：</p>
+      <dl id="summary"></dl>
+      <div class="actions"><button type="button" class="btn btn-primary" id="closeModal">好的</button></div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    (function () {
+      const form = document.getElementById('resumeForm');
+      const expList = document.getElementById('expList');
+      const expEmpty = document.getElementById('expEmpty');
+      const tpl = document.getElementById('expTpl');
+      const DRAFT_KEY = 'resume-draft';
+
+      // ---------- 工作经历 ----------
+      function renumber() {
+        const items = expList.querySelectorAll('.exp-item');
+        items.forEach((el, i) => el.querySelector('.exp-no').textContent = '工作经历 ' + (i + 1));
+        expEmpty.style.display = items.length ? 'none' : 'block';
+      }
+
+      function addExp(data) {
+        const node = tpl.content.firstElementChild.cloneNode(true);
+        const end = node.querySelector('[data-key="end"]');
+        const current = node.querySelector('[data-key="current"]');
+        current.addEventListener('change', () => {
+          end.disabled = current.checked;
+          if (current.checked) { end.value = ''; end.closest('.field').classList.remove('invalid'); }
+        });
+        node.querySelector('.exp-del').addEventListener('click', () => {
+          node.remove(); renumber(); saveDraft();
+        });
+        if (data) {
+          node.querySelectorAll('[data-key]').forEach(el => {
+            const v = data[el.dataset.key];
+            if (el.type === 'checkbox') el.checked = !!v; else if (v != null) el.value = v;
+          });
+          end.disabled = current.checked;
+        }
+        expList.appendChild(node);
+        renumber();
+        return node;
+      }
+
+      function getExps() {
+        return [...expList.querySelectorAll('.exp-item')].map(item => {
+          const o = {};
+          item.querySelectorAll('[data-key]').forEach(el => {
+            o[el.dataset.key] = el.type === 'checkbox' ? el.checked : el.value.trim();
+          });
+          return o;
+        });
+      }
+
+      document.getElementById('addExp').addEventListener('click', () => {
+        addExp().querySelector('input').focus();
+      });
+
+      // ---------- 薪资面议 ----------
+      const salaryMin = document.getElementById('salaryMin');
+      const salaryMax = document.getElementById('salaryMax');
+      const negotiable = document.getElementById('negotiable');
+      function syncNegotiable() {
+        salaryMin.disabled = salaryMax.disabled = negotiable.checked;
+        if (negotiable.checked) document.getElementById('salaryField').classList.remove('invalid');
+      }
+      negotiable.addEventListener('change', syncNegotiable);
+
+      // ---------- 校验 ----------
+      function setInvalid(el, bad) {
+        const f = el.closest('.field');
+        if (f) f.classList.toggle('invalid', bad);
+        return !bad;
+      }
+
+      function validateField(el) {
+        if (el.disabled) return setInvalid(el, false);
+        if (el.type === 'radio') {
+          const checked = form.querySelector(`input[name="${el.name}"]:checked`);
+          return setInvalid(el, el.required && !checked);
+        }
+        let bad = !el.checkValidity();
+        if (el.dataset.key === 'end' && !bad) {
+          const start = el.closest('.exp-item').querySelector('[data-key="start"]').value;
+          if (start && el.value && el.value < start) bad = true;
+        }
+        return setInvalid(el, bad);
+      }
+
+      function validateSalary() {
+        const field = document.getElementById('salaryField');
+        const err = document.getElementById('salaryError');
+        if (negotiable.checked) { field.classList.remove('invalid'); return true; }
+        const min = Number(salaryMin.value), max = Number(salaryMax.value);
+        let msg = '';
+        if (!salaryMin.value || !salaryMax.value) msg = '请填写期望薪资范围，或勾选“薪资面议”';
+        else if (min <= 0 || max <= 0) msg = '薪资需大于 0';
+        else if (min > max) msg = '最低薪资不能高于最高薪资';
+        err.textContent = msg;
+        field.classList.toggle('invalid', !!msg);
+        return !msg;
+      }
+
+      function validateAll() {
+        let ok = true, first = null;
+        form.querySelectorAll('input[required], select[required], textarea[required], input[data-key="end"]').forEach(el => {
+          if (!validateField(el)) { ok = false; first = first || el; }
+        });
+        if (!validateSalary()) { ok = false; first = first || salaryMin; }
+        const agree = document.getElementById('agree');
+        document.getElementById('agreeWrap').classList.toggle('invalid', !agree.checked);
+        if (!agree.checked) { ok = false; first = first || agree; }
+        if (first) { first.scrollIntoView({ behavior: 'smooth', block: 'center' }); first.focus({ preventScroll: true }); }
+        return ok;
+      }
+
+      form.addEventListener('input', e => {
+        const el = e.target;
+        if (el.closest('.field.invalid')) {
+          if (el === salaryMin || el === salaryMax) validateSalary(); else validateField(el);
+        }
+        saveDraft();
+      });
+      form.addEventListener('change', e => {
+        const el = e.target;
+        if (el.type === 'radio' || el.tagName === 'SELECT') validateField(el);
+        if (el.id === 'agree') document.getElementById('agreeWrap').classList.toggle('invalid', !el.checked);
+        saveDraft();
+      });
+      form.addEventListener('focusout', e => {
+        const el = e.target;
+        if (el.matches('input[required], select[required]') && el.value) validateField(el);
+      });
+
+      // ---------- 草稿（仅本地浏览器） ----------
+      function collect() {
+        const fd = new FormData(form);
+        const data = {};
+        for (const [k, v] of fd.entries()) data[k] = typeof v === 'string' ? v.trim() : v;
+        data.negotiable = negotiable.checked;
+        data.experiences = getExps();
+        return data;
+      }
+
+      let saveTimer;
+      function saveDraft() {
+        clearTimeout(saveTimer);
+        saveTimer = setTimeout(() => {
+          try { localStorage.setItem(DRAFT_KEY, JSON.stringify(collect())); } catch (e) {}
+        }, 300);
+      }
+
+      function loadDraft() {
+        let data;
+        try { data = JSON.parse(localStorage.getItem(DRAFT_KEY)); } catch (e) {}
+        if (!data) return;
+        Object.entries(data).forEach(([k, v]) => {
+          if (k === 'experiences' || k === 'negotiable') return;
+          const els = form.querySelectorAll(`[name="${k}"]`);
+          els.forEach(el => {
+            if (el.type === 'radio') el.checked = el.value === v; else el.value = v;
+          });
+        });
+        negotiable.checked = !!data.negotiable;
+        syncNegotiable();
+        (data.experiences || []).forEach(addExp);
+        toast('已恢复上次未提交的草稿');
+      }
+
+      // ---------- 提交 / 重置 ----------
+      function salaryText(d) {
+        if (d.negotiable) return '面议';
+        const fmt = n => Number(n).toLocaleString('zh-CN');
+        return `${fmt(d.salaryMin)} - ${fmt(d.salaryMax)} 元/月 · ${d.months}`;
+      }
+
+      function esc(s) {
+        return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      }
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        if (!validateAll()) { toast('请完善标红的信息'); return; }
+        const d = collect();
+        const rows = [
+          ['姓名', d.name], ['联系方式', `${d.phone} / ${d.email}`], ['应聘职位', d.position],
+          ['学历', d.education], ['工作年限', d.years], ['期望薪资', salaryText(d)], ['到岗时间', d.arrival]
+        ];
+        document.getElementById('summary').innerHTML =
+          rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('') +
+          `<dt>工作经历</dt><dd>${d.experiences.length ? d.experiences.map(x => esc(`${x.company}（${x.title}）`)).join('<br>') : '无'}</dd>`;
+        console.log('提交数据：', d);
+        try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+        document.getElementById('modal').classList.add('open');
+      });
+
+      function resetAll() {
+        form.reset();
+        expList.innerHTML = '';
+        renumber();
+        syncNegotiable();
+        form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+        document.getElementById('agreeWrap').classList.remove('invalid');
+        try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+      }
+
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        if (confirm('确定清空所有已填写的内容吗？')) { resetAll(); toast('已清空'); }
+      });
+
+      document.getElementById('closeModal').addEventListener('click', () => {
+        document.getElementById('modal').classList.remove('open');
+        resetAll();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      // ---------- 提示 ----------
+      let toastTimer;
+      function toast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => t.classList.remove('show'), 2000);
+      }
+
+      loadDraft();
+      renumber();
+    })();
+  </script>
+</body>
+</html>

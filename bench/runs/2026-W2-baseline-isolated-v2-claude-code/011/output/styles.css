@@ -1,0 +1,144 @@
+:root {
+  --bg: #f7f6f3;
+  --surface: #ffffff;
+  --surface-2: #f0eee9;
+  --fg: #1c1b19;
+  --muted: #6b6860;
+  --line: #e3e0d8;
+  --accent: #ff5a36;
+  --accent-soft: #ffe9e3;
+  --accent-fg: #ffffff;
+  --ink: #1c1b19;
+  --ink-fg: #ffffff;
+  --ok: #1f9d6b;
+  --radius: 18px;
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 32px -12px rgba(0,0,0,.12);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --surface: #1b1b19; --surface-2: #242421; --fg: #f2f0ea;
+    --muted: #a19e95; --line: #2f2e2a; --accent: #ff6b4a; --accent-soft: #3a211a;
+    --accent-fg: #ffffff; --ink: #f2f0ea; --ink-fg: #121211; --ok: #3ccf91;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --surface: #1b1b19; --surface-2: #242421; --fg: #f2f0ea;
+  --muted: #a19e95; --line: #2f2e2a; --accent: #ff6b4a; --accent-soft: #3a211a;
+  --accent-fg: #ffffff; --ink: #f2f0ea; --ink-fg: #121211; --ok: #3ccf91;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+a { color: inherit; }
+.wrap { max-width: 1160px; margin: 0 auto; padding-inline: 20px; }
+
+/* 顶栏 */
+.nav { border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; }
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+.logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; text-decoration: none; }
+.logo-mark { width: 28px; height: 28px; border-radius: 8px; background: conic-gradient(from 200deg, var(--accent), #ffb547, #6c8cff, var(--accent)); }
+.nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--muted); }
+.nav-links a { text-decoration: none; }
+.nav-links a:hover, .nav-links a[aria-current] { color: var(--fg); }
+.nav-cta { font-size: 14px; text-decoration: none; padding: 8px 16px; border-radius: 999px; border: 1px solid var(--line); }
+@media (max-width: 720px) { .nav-links { display: none; } }
+
+/* 标题区 */
+.hero { text-align: center; padding-block: 72px 40px; }
+.eyebrow { display: inline-block; font-size: 13px; font-weight: 600; color: var(--accent); background: var(--accent-soft); padding: 4px 12px; border-radius: 999px; }
+.hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.2; margin: 18px 0 12px; letter-spacing: -.02em; }
+.hero p { color: var(--muted); font-size: 17px; margin: 0 auto; max-width: 560px; }
+
+/* 计费切换 */
+.billing { display: inline-flex; margin-top: 32px; padding: 4px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); }
+.billing button {
+  border: 0; background: transparent; color: var(--muted); font: inherit; font-size: 14px; font-weight: 600;
+  padding: 8px 20px; border-radius: 999px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;
+}
+.billing button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: 0 1px 3px rgba(0,0,0,.12); }
+.save { font-size: 12px; color: var(--ok); }
+
+/* 价格卡 */
+.plans { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; align-items: stretch; padding-bottom: 32px; }
+@media (max-width: 900px) { .plans { grid-template-columns: minmax(0, 1fr); max-width: 480px; margin: 0 auto; } }
+.plan {
+  position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 32px 28px; display: flex; flex-direction: column; min-width: 0;
+}
+.plan.featured { border: 2px solid var(--accent); box-shadow: var(--shadow); }
+.badge {
+  position: absolute; top: -13px; left: 28px; background: var(--accent); color: var(--accent-fg);
+  font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+}
+.plan h2 { font-size: 20px; margin: 0; }
+.plan .desc { color: var(--muted); margin: 6px 0 24px; font-size: 14px; min-height: 44px; }
+.price { display: flex; align-items: baseline; gap: 4px; }
+.price .cur { font-size: 20px; font-weight: 600; }
+.price .amt { font-size: 44px; font-weight: 800; letter-spacing: -.02em; line-height: 1; }
+.price .per { color: var(--muted); font-size: 14px; }
+.price-note { color: var(--muted); font-size: 13px; margin: 8px 0 24px; min-height: 21px; }
+.btn {
+  display: block; text-align: center; text-decoration: none; font-weight: 700; font-size: 15px;
+  padding: 12px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer;
+}
+.btn:hover { background: var(--surface-2); }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+.btn.primary:hover { filter: brightness(1.05); background: var(--accent); }
+.btn.dark { background: var(--ink); border-color: var(--ink); color: var(--ink-fg); }
+.btn.dark:hover { opacity: .9; background: var(--ink); }
+.features { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 12px; font-size: 14px; }
+.features .head { font-weight: 700; font-size: 13px; color: var(--muted); }
+.features li:not(.head) { display: flex; gap: 10px; align-items: flex-start; }
+.features li::before { content: ""; flex: none; }
+.ico { flex: none; width: 18px; height: 18px; margin-top: 2px; border-radius: 50%; display: grid; place-items: center; }
+.ico.yes { background: var(--accent-soft); color: var(--accent); }
+.ico.no { background: var(--surface-2); color: var(--muted); }
+.features li.off { color: var(--muted); }
+.seats { margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); background: var(--surface-2); border-radius: 10px; padding: 8px 12px; }
+.stepper { display: inline-flex; align-items: center; gap: 4px; }
+.stepper button { width: 28px; height: 28px; border-radius: 8px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); font-size: 16px; cursor: pointer; }
+.stepper output { min-width: 28px; text-align: center; font-weight: 700; color: var(--fg); }
+
+.trust { text-align: center; color: var(--muted); font-size: 13px; padding-block: 8px 64px; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px; }
+
+/* 对比表 */
+section h3 { font-size: 28px; text-align: center; margin: 0 0 8px; letter-spacing: -.01em; }
+section .sub { text-align: center; color: var(--muted); margin: 0 0 32px; }
+.compare { padding-block: 32px 64px; }
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+table { width: 100%; border-collapse: collapse; min-width: 640px; font-size: 14px; }
+th, td { padding: 14px 20px; text-align: center; border-bottom: 1px solid var(--line); }
+th:first-child, td:first-child { text-align: left; }
+thead th { font-size: 15px; background: var(--surface-2); position: sticky; top: 0; }
+thead th.hl { color: var(--accent); }
+tbody tr.group td { background: var(--bg); font-weight: 700; font-size: 13px; color: var(--muted); }
+tbody tr:last-child td { border-bottom: 0; }
+td.y { color: var(--accent); font-weight: 700; }
+td.n { color: var(--muted); }
+
+/* FAQ */
+.faq { padding-block: 32px 72px; }
+.faq-list { max-width: 760px; margin: 0 auto; display: grid; gap: 12px; }
+details { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 4px 20px; }
+summary { cursor: pointer; font-weight: 600; padding: 14px 0; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: "+"; color: var(--muted); font-size: 20px; line-height: 1; }
+details[open] summary::after { content: "−"; }
+details p { margin: 0 0 16px; color: var(--muted); }
+
+/* 底部 CTA */
+.cta { margin-bottom: 64px; border-radius: 24px; background: var(--ink); color: var(--ink-fg); padding: 48px 32px; text-align: center; }
+.cta h3 { font-size: 26px; margin: 0 0 8px; }
+.cta p { margin: 0 0 24px; opacity: .75; }
+.cta .btn { display: inline-block; padding-inline: 28px; }
+footer { border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; padding-block: 24px; text-align: center; }

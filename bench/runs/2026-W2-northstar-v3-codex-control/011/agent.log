@@ -1,0 +1,761 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-011-9P2Q4s <提示词>
+工作目录：<tmp>/measure-baseline-codex-011-9P2Q4s
+退出码：0 信号：无 用时：167s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-011-9P2Q4s
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17645-2ff4-7510-95a6-57d16361b0e9
+--------
+user
+做一个设计素材网站的会员价格页，分免费版、专业版、团队版三档。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会制作一个可直接打开的中文会员价格页，包含免费版、专业版和团队版，并适配手机与桌面屏幕。
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-011-9P2Q4s
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-011-9P2Q4s
+
+exec
+/bin/zsh -lc 'ls -la' in <tmp>/measure-baseline-codex-011-9P2Q4s
+ succeeded in 0ms:
+total 0
+drwx------@     2 user  staff      64 Oct 26 11:33 .
+drwx------@ 14626 user  staff  468032 Oct 26 11:35 ..
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-011-9P2Q4s/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..2ce925348234371a4723fa44cf9edd8e3c05fc98
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,164 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f3">
++  <title>拾集 SÍJI — 为每一份灵感，找到合适的计划</title>
++  <style>
++    :root{--ink:#202a26;--muted:#7c827b;--green:#356851;--lime:#d5f594;--paper:#f7f8f3;--line:#e2e5dc;--dark:#263d32}
++    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button,input{font:inherit}button,a{touch-action:manipulation}a{color:inherit;text-decoration:none}button{cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7fae64;outline-offset:5px}button{color:inherit}.wrap{max-width:1120px;margin:auto;padding:0 28px}
++    .header{height:88px;border-bottom:1px solid var(--line)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:30px}.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:750;letter-spacing:1px}.logo-icon{width:31px;height:31px;background:var(--dark);color:var(--lime);display:grid;place-items:center;border-radius:9px;transform:rotate(-5deg)}.logo-icon svg{width:23px;height:23px}.logo small{font-size:11px;letter-spacing:2px;font-weight:500;padding-left:3px}.nav-links{display:flex;gap:35px;align-items:center;font-size:13px;color:#737b72}.nav-links a{position:relative;padding:34px 0}.nav-links a:hover,.nav-links .active{color:var(--ink)}.nav-links .active:after{content:"";width:16px;height:3px;border-radius:3px;background:var(--green);position:absolute;bottom:20px;left:calc(50% - 8px)}.account{display:flex;align-items:center;gap:22px;font-size:12px}.nav-button{border:1px solid #ced5c7;background:transparent;border-radius:7px;padding:10px 18px}.nav-button:hover{background:#e9efdf}.login{border:0;background:none;font-size:12px;padding:8px 0}
++    .hero{text-align:center;padding:58px 0 29px;position:relative}.eyebrow{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:650;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}.hero h1{font-size:42px;line-height:1.4;letter-spacing:-1.5px;margin:19px 0 14px;font-weight:650}.hero h1 span{color:var(--green);position:relative;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;bottom:-7px;left:0;right:0;height:7px;border-top:2px solid #98af80;border-radius:50%;transform:rotate(-2deg)}.hero p{font-size:13px;color:var(--muted);line-height:1.9;margin:0}.spark{position:absolute;left:5%;top:90px;color:#8caa75;transform:rotate(-12deg);width:46px;height:46px}.orbit{position:absolute;right:5%;top:112px;width:49px;height:49px;border:1px solid #c8d1ba;border-radius:50%;transform:rotate(-30deg)}.orbit:before{content:"";position:absolute;inset:9px -12px;border:1px solid #c8d1ba;border-radius:50%}.orbit:after{content:"";position:absolute;top:5px;right:-2px;background:var(--green);width:6px;height:6px;border-radius:50%}
++    .billing-row{display:flex;justify-content:center;align-items:center;margin-top:30px;position:relative}.billing{display:flex;border:1px solid #e1e5d9;background:#edefe6;padding:4px;border-radius:9px;gap:3px}.billing button{border:0;border-radius:6px;padding:10px 21px;background:transparent;color:#81877c;font-size:12px;min-width:102px;transition:background .2s,color .2s}.billing button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #243d3210;font-weight:600}.save{font-size:9px;background:#e5efce;color:#506d34;border-radius:4px;padding:3px 5px;margin-left:5px;vertical-align:1px}.billing-note{position:absolute;left:calc(50% + 149px);font-size:11px;color:#738461;white-space:nowrap;transform:rotate(-5deg)}.billing-note svg{width:29px;height:21px;vertical-align:middle;margin-right:4px}
++    .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-top:23px;align-items:stretch}.plan{background:#fff;border:1px solid var(--line);border-radius:14px;padding:29px 27px 25px;position:relative;display:flex;flex-direction:column}.plan.pro{background:var(--dark);color:#f8fbf2;border-color:var(--dark);box-shadow:0 12px 24px #263d3212}.recommended{position:absolute;top:-13px;right:22px;background:var(--lime);color:var(--dark);padding:6px 12px;border-radius:5px;font-size:10px;font-weight:600;display:flex;align-items:center;gap:5px}.recommended svg{width:12px;height:12px}.plan-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.plan-icon{width:35px;height:35px;border:1px solid #e1e6db;border-radius:10px;display:grid;place-items:center;color:#4b6952;background:#f8faf4}.plan-icon svg{width:19px;height:19px;stroke-width:1.5}.pro .plan-icon{background:#ffffff08;border-color:#ffffff26;color:var(--lime)}.plan-label{font-size:10px;letter-spacing:1.6px;color:#959b90}.pro .plan-label{color:#9daf9c}.plan h2{font-size:21px;letter-spacing:.5px;margin:0 0 8px;font-weight:600}.description{font-size:11px;color:var(--muted);margin:0;line-height:1.7}.pro .description{color:#b7c4b7}.price{display:flex;align-items:baseline;gap:4px;margin:25px 0 6px;height:54px}.currency{font-size:24px;align-self:flex-start;margin-top:10px;font-weight:500}.amount{font-size:53px;letter-spacing:-2px;font-weight:600;line-height:1}.unit{font-size:11px;color:var(--muted);margin-left:4px}.pro .unit{color:#b4c4b7}.bill-caption{font-size:10px;color:#92988c;min-height:16px;margin:0 0 23px}.pro .bill-caption{color:#a4b6a6}.cta{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid #dce2d4;border-radius:7px;background:#f5f7ef;height:43px;font-size:12px;font-weight:600;transition:transform .18s,background .18s}.cta:hover{background:#e9efdf;transform:translateY(-2px)}.cta svg{width:15px;height:15px}.pro .cta{background:var(--lime);border-color:var(--lime);color:#273f2f}.pro .cta:hover{background:#e0ffac}.team .cta{background:white}.team .cta:hover{background:#f1f5e9}.plan-rule{height:1px;background:var(--line);margin:25px 0 19px}.pro .plan-rule{background:#ffffff20}.features-title{font-size:10px;font-weight:600;margin:0 0 16px;color:#747e6f}.pro .features-title{color:#c2d0bd}.features{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:15px;font-size:11px;line-height:1.45}.features li{display:flex;align-items:center;gap:9px}.check{width:15px;height:15px;flex-shrink:0;color:#628454}.pro .check{color:var(--lime)}.features b{font-weight:600}.features .unavailable{color:#b1b6ab}.unavailable .check{color:#bdc3b7}.feature-note{font-size:9px;background:#edf1e7;padding:2px 5px;border-radius:3px;color:#728367;margin-left:auto}.plan-bottom{font-size:10px;color:#91988a;margin:24px 0 0;display:flex;align-items:center;gap:6px}.pro .plan-bottom{color:#a1b79c}.plan-bottom svg{width:12px;height:12px}
++    .assurance{display:flex;align-items:center;justify-content:center;gap:25px;font-size:10px;color:#939b8c;padding:24px 0 33px}.assurance span{display:flex;gap:6px;align-items:center}.assurance svg{width:13px;height:13px}.assurance i{height:9px;width:1px;background:#d8ddcf}
++    .community{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:27px 0 29px;text-align:center}.community p{font-size:11px;color:#8d9487;margin:0 0 22px}.community p strong{color:#5e6c58;font-weight:600}.creative-types{display:flex;justify-content:center;gap:51px;color:#7e8977;align-items:center}.creative-types span{display:flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.5px;font-weight:600}.creative-types svg{width:19px;height:19px}.creative-types .latin{font-family:Georgia,serif;font-size:20px;font-style:italic;font-weight:500;letter-spacing:-.5px}
++    .faq{display:grid;grid-template-columns:1fr 1.7fr;gap:70px;padding:53px 0 56px}.section-tag{font-size:9px;letter-spacing:2px;color:#8b9880}.faq h2{font-size:25px;font-weight:600;margin:12px 0}.faq-intro p{font-size:11px;color:#89917f;line-height:1.8}.faq-intro a{display:inline-block;margin-top:9px;color:var(--green);font-size:11px;border-bottom:1px solid #bdcbb0;padding-bottom:4px}.faq-list details{border-bottom:1px solid var(--line)}.faq-list details:first-child{border-top:1px solid var(--line)}summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:19px 0;gap:20px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:20px;font-weight:300;color:#8b9681;line-height:1}details[open] summary:after{content:"−"}details p{font-size:11px;line-height:1.9;color:#7f8976;margin:0;padding:0 24px 19px 0}.footer{border-top:1px solid var(--line);padding:23px 0 27px;display:flex;justify-content:space-between;align-items:center;color:#9ba18f;font-size:10px}.footer-brand{display:flex;align-items:center;gap:12px}.footer-brand strong{color:#63725c;font-size:14px}.footer-links{display:flex;gap:24px}.footer a:hover{color:var(--green)}
++    dialog{border:1px solid var(--line);border-radius:18px;width:min(420px,calc(100% - 32px));padding:32px;background:var(--paper);color:var(--ink);box-shadow:0 24px 90px #16231b33}dialog::backdrop{background:#17251b70;backdrop-filter:blur(5px)}.dialog-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:24px;color:#86917c}.dialog-kicker{font-size:10px;letter-spacing:2px;color:var(--green)}dialog h2{font-size:24px;margin:15px 0}dialog p{font-size:13px;line-height:1.9;color:#78846d}.dialog-total{font-size:32px;font-weight:600;margin:24px 0 8px}.dialog-confirm{background:var(--dark);color:white;border:0;margin-top:24px}.dialog-confirm:hover{background:#3d5947}.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,20px);background:var(--dark);color:#fff;border-radius:9px;padding:14px 24px;font-size:12px;box-shadow:0 8px 30px #263d3225;opacity:0;pointer-events:none;transition:.25s;z-index:5;max-width:calc(100vw - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.svg-defs{position:absolute;width:0;height:0;overflow:hidden}
++    @media(min-width:1400px){.wrap{max-width:1180px}.hero{padding-top:65px}.hero h1{font-size:46px}.plan{padding:31px}.features{gap:17px}.plans{gap:22px}}
++    @media(max-width:850px){.nav-links{gap:21px}.account{gap:12px}.logo small{display:none}.plan{padding:24px 18px}.features{font-size:10px}.creative-types{gap:28px}.hero h1{font-size:35px}.spark{left:1%;width:32px}.orbit{right:1%;width:35px;height:35px}.faq{gap:30px}.feature-note{font-size:8px}}
++    @media(max-width:650px){.wrap{padding:0 21px}.header{height:72px}.nav{gap:15px}.logo{font-size:21px}.nav-links{margin-left:auto}.nav-links a{padding:24px 0}.nav-links a:not(.active){display:none}.nav-links .active:after{bottom:12px}.account .login{display:none}.nav-button{padding:9px 12px;font-size:11px}.hero{padding:42px 0 23px}.hero h1{font-size:31px;letter-spacing:-1px;max-width:340px;margin:19px auto 17px;line-height:1.6}.hero h1 span{display:block}.hero p{font-size:12px;max-width:270px;margin:auto}.spark{top:92px;left:5px;width:28px}.orbit{top:130px;right:9px;width:27px;height:27px}.eyebrow{font-size:9px;letter-spacing:2px}.billing-row{margin-top:25px;margin-bottom:15px}.billing-note{position:static;font-size:10px;transform:none;margin-left:8px}.billing-note svg{display:none}.billing button{padding:10px 12px;min-width:85px}.plans{grid-template-columns:1fr;gap:27px;padding-top:10px;max-width:420px;margin:auto}.plan{padding:26px 27px}.plan-top{margin-bottom:15px}.plan h2{font-size:22px}.description{font-size:12px}.features{font-size:12px;gap:15px}.feature-note{font-size:9px}.price{margin-top:22px}.assurance{gap:12px;font-size:9px;flex-wrap:wrap;padding:25px 0}.assurance i{display:none}.creative-types{display:grid;grid-template-columns:1fr 1fr;gap:23px}.creative-types span{justify-content:center;font-size:12px}.creative-types span:last-child{grid-column:1/-1}.community{margin-top:5px;padding:27px 0}.faq{grid-template-columns:1fr;gap:25px;padding:36px 0}.faq h2{font-size:24px}.faq-intro p{margin-bottom:0}.faq-intro a{margin-top:13px}.footer{align-items:flex-start;gap:22px;flex-direction:column}.footer-brand{font-size:9px}.footer-links{font-size:10px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="star" viewBox="0 0 24 24"><path d="m12 1 2.8 7.2L22 5l-3.2 7 4.2 3-8.1.7L14 23l-4.2-6.5L3 20l2.7-7.4L0 9l8-.7Z" fill="currentColor"/></symbol>
++    <symbol id="check" viewBox="0 0 20 20"><path d="m5 10 3.3 3.4L15 6.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="arrow" viewBox="0 0 20 20"><path d="M4 10h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="leaf" viewBox="0 0 24 24"><path d="M19 4C10 2 4 6 5 12c1 6 9 7 12 1 2-3 2-6 2-9ZM5 21c0-6 4-10 9-13" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="diamond" viewBox="0 0 24 24"><path d="m3 9 4-5h10l4 5-9 12L3 9Zm0 0h18M8 9l4 12 4-12-4-5-4 5Z" fill="none" stroke="currentColor" stroke-linejoin="round"/></symbol>
++    <symbol id="team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></g></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++  </defs></svg>
++  <header class="header"><nav class="nav wrap" aria-label="主导航">
++    <a href="#" class="logo" aria-label="拾集首页"><span class="logo-icon"><svg aria-hidden="true"><use href="#star"/></svg></span>拾集<small>SÍJI</small></a>
++    <div class="nav-links"><a href="#creative">发现灵感</a><a href="#plans">精选素材</a><a href="#faq">使用指南</a><a href="#plans" class="active" aria-current="page">会员计划</a></div>
++    <div class="account"><button class="login" data-info="account">登录</button><button class="nav-button" data-plan="free">免费开始 <span aria-hidden="true">↗</span></button></div>
++  </nav></header>
++  <main class="wrap">
++    <section class="hero" aria-labelledby="title">
++      <svg class="spark" aria-hidden="true"><use href="#star"/></svg><span class="orbit" aria-hidden="true"></span>
++      <div class="eyebrow">MADE FOR YOUR NEXT BIG IDEA</div>
++      <h1 id="title">好灵感，<span>值得自由创作。</span></h1>
++      <p>从第一份灵感，到每一个精彩作品。<br>找到适合你的计划，让优质素材成为创作的日常。</p>
++      <div class="billing-row"><div class="billing" role="group" aria-label="计费周期"><button data-billing="monthly" aria-pressed="false">按月付费</button><button data-billing="yearly" aria-pressed="true">按年付费 <span class="save">省 25% 起</span></button></div><span class="billing-note"><svg viewBox="0 0 35 24" fill="none" aria-hidden="true"><path d="M33 3C25 22 10 22 2 10m0 0 1 8m-1-8 8 2" stroke="currentColor" stroke-linecap="round"/></svg>给长期的热爱一点优惠</span></div>
++    </section>
++    <section class="plans" id="plans" aria-label="会员方案">
++      <article class="plan free">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#leaf"/></svg></span><span class="plan-label">GET INSPIRED</span></div>
++        <h2>免费版</h2><p class="description">偶尔找找灵感，轻松开始创作</p>
++        <div class="price"><span class="currency">¥</span><span class="amount">0</span><span class="unit">/ 永久免费</span></div><p class="bill-caption">无需信用卡，好灵感即刻拥有</p>
++        <button class="cta" data-plan="free">免费开始创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">为你的第一步，准备好一切</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg>每日下载 <b>3 份</b> 免费素材</li>
++          <li><svg class="check"><use href="#check"/></svg>精选免费素材库</li>
++          <li><svg class="check"><use href="#check"/></svg>高清图片与基础设计模板</li>
++          <li><svg class="check"><use href="#check"/></svg>个人灵感收藏夹 <span class="feature-note">最多 3 个</span></li>
++          <li><svg class="check"><use href="#check"/></svg>个人非商业项目使用</li>
++          <li class="unavailable"><svg class="check" viewBox="0 0 20 20"><path d="M6 10h8" stroke="currentColor" stroke-width="1.5"/></svg>专属商用授权</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#leaf"/></svg>小小的开始，也能有大大的灵感</p>
++      </article>
++      <article class="plan pro">
++        <div class="recommended"><svg aria-hidden="true"><use href="#star"/></svg>创作者首选</div>
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#diamond"/></svg></span><span class="plan-label">CREATE WITHOUT LIMITS</span></div>
++        <h2>专业版</h2><p class="description">为独立设计师与每一位认真创作的你</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="pro-price">29</span><span class="unit">/ 月</span></div><p class="bill-caption" id="pro-caption">按年付款 ¥348，相比月付节省 ¥120</p>
++        <button class="cta" data-plan="pro">解锁专业版 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含免费版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>无限下载</b> 全站精选素材</li>
++          <li><svg class="check"><use href="#check"/></svg>海量图片、字体、插画与模板</li>
++          <li><svg class="check"><use href="#check"/></svg>可编辑源文件与最高画质</li>
++          <li><svg class="check"><use href="#check"/></svg>个人商用授权，放心交付</li>
++          <li><svg class="check"><use href="#check"/></svg>无限收藏夹，灵感井井有条</li>
++          <li><svg class="check"><use href="#check"/></svg>每周上新素材优先体验</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#shield"/></svg>一份订阅，承包你的下一份好作品</p>
++      </article>
++      <article class="plan team">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#team"/></svg></span><span class="plan-label">BETTER TOGETHER</span></div>
++        <h2>团队版</h2><p class="description">让团队的每一份创意，在一起生长</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="team-price">79</span><span class="unit">/ 人 / 月</span></div><p class="bill-caption" id="team-caption">按年付款 ¥948 / 人，3 人起订</p>
++        <button class="cta" data-plan="team">开启团队创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含专业版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>团队商用授权</b>，覆盖企业项目</li>
++          <li><svg class="check"><use href="#check"/></svg>共享素材库与团队收藏夹</li>
++          <li><svg class="check"><use href="#check"/></svg>成员管理与灵活席位分配</li>
++          <li><svg class="check"><use href="#check"/></svg>统一账单与企业发票</li>
++          <li><svg class="check"><use href="#check"/></svg>专属客户经理与优先支持</li>
++          <li><svg class="check"><use href="#check"/></svg>品牌素材集中管理</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#team"/></svg>为更好的协作，留出更多可能</p>
++      </article>
++    </section>
++    <div class="assurance"><span><svg aria-hidden="true"><use href="#shield"/></svg>正版素材 · 安心使用</span><i></i><span><svg aria-hidden="true"><use href="#circle"/></svg>随时升级 · 到期可取消续订</span><i></i><span><svg aria-hidden="true"><use href="#diamond"/></svg>持续上新 · 灵感常在</span></div>
++    <section class="community" id="creative" aria-label="为不同领域的创作者而生"><p>让创作少一点寻找，多一点心动。与 <strong>30,000+</strong> 位创作者一起，把想法变成作品。</p><div class="creative-types"><span><svg aria-hidden="true"><use href="#star"/></svg>品牌设计师</span><span><svg aria-hidden="true"><use href="#diamond"/></svg>独立创作者</span><span class="latin">Design studios.</span><span><svg aria-hidden="true"><use href="#leaf"/></svg>内容工作者</span><span><svg aria-hidden="true"><use href="#team"/></svg>创意团队</span></div></section>
++    <section class="faq" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><span class="section-tag">A LITTLE MORE CLARITY</span><h2 id="faq-title">你可能还想知道</h2><p>关于会员的一些小解答，<br>让每一次选择都更安心。</p><a href="#" data-info="support">还有疑问？了解会员支持 <span aria-hidden="true">↗</span></a></div><div class="faq-list">
++      <details><summary>下载的素材可以用于商业项目吗？</summary><p>专业版支持个人商业项目及客户交付；团队版的商用授权覆盖已购买席位的团队成员。免费版仅限个人非商业项目。具体使用范围以每份素材附带的授权说明为准，素材本身不可直接转售或重新分发。</p></details>
++      <details><summary>我可以随时升级或取消会员吗？</summary><p>可以随时申请升级方案。取消续订后，已付款的会员权益会保留至当前计费周期结束，之后不再续费。取消续订不会退还当前周期的费用。</p></details>
++      <details><summary>团队版如何计算人数和费用？</summary><p>团队版 3 人起订。年付为每人每月 ¥79，按年一次支付；3 人团队合计 ¥2,844 / 年。月付为每人每月 ¥109，3 人团队合计 ¥327 / 月。每位成员拥有独立账号，管理员可统一分配席位。</p></details>
++    </div></section>
++    <footer class="footer"><div class="footer-brand"><strong>拾集 SÍJI</strong><span>© 2026 拾集 · 拾起灵感，集成好设计。</span></div><div class="footer-links"><a href="#" data-info="terms">服务条款</a><a href="#" data-info="license">授权说明</a><a href="#" data-info="privacy">隐私政策</a></div></footer>
++  </main>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="关闭弹窗">×</button><span class="dialog-kicker">YOUR NEXT CHAPTER</span><h2 id="dialog-title">选择你的创作计划</h2><p id="dialog-description"></p><div class="dialog-total" id="dialog-total"></div><p id="dialog-detail"></p><button class="cta dialog-confirm" id="confirm-plan">确认选择 <svg aria-hidden="true"><use href="#arrow"/></svg></button></dialog>
++  <div class="toast" role="status" aria-live="polite" id="toast"></div>
++  <script>
++    (() => {
++      let billing = 'yearly';
++      let selectedPlan = null;
++      let toastTimer;
++      const dialog = document.getElementById('plan-dialog');
++      const title = document.getElementById('dialog-title');
++      const description = document.getElementById('dialog-description');
++      const total = document.getElementById('dialog-total');
++      const detail = document.getElementById('dialog-detail');
++      const confirm = document.getElementById('confirm-plan');
++      const names = {free:'免费版',pro:'专业版',team:'团队版'};
++      document.querySelectorAll('[data-billing]').forEach(button => button.addEventListener('click', () => {
++        billing = button.dataset.billing;
++        document.querySelectorAll('[data-billing]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++        const yearly = billing === 'yearly';
++        document.getElementById('pro-price').textContent = yearly ? '29' : '39';
++        document.getElementById('team-price').textContent = yearly ? '79' : '109';
++        document.getElementById('pro-caption').textContent = yearly ? '按年付款 ¥348，相比月付节省 ¥120' : '每月付款 ¥39，按月订阅更灵活';
++        document.getElementById('team-caption').textContent = yearly ? '按年付款 ¥948 / 人，3 人起订' : '每月付款 ¥109 / 人，3 人起订';
++      }));
++      document.querySelectorAll('[data-plan]').forEach(button => button.addEventListener('click', () => {
++        selectedPlan = button.dataset.plan;
++        const yearly = billing === 'yearly';
++        title.textContent = '开启' + names[selectedPlan] + '创作';
++        description.textContent = selectedPlan === 'free' ? '从一份灵感开始，发现创作的更多可能。' : '确认适合你的方案，让下一份作品更进一步。';
++        total.textContent = selectedPlan === 'free' ? '¥0 · 永久免费' : selectedPlan === 'pro' ? (yearly ? '¥348 / 年' : '¥39 / 月') : (yearly ? '¥2,844 / 年' : '¥327 / 月');
++        detail.textContent = selectedPlan === 'team' ? '包含 3 个团队席位。' + (yearly ? '每人每月 ¥79，按年付款。' : '每人每月 ¥109，按月付款。') : selectedPlan === 'pro' ? (yearly ? '折合每月 ¥29，按年付款。包含个人商用授权及全站素材下载。' : '每月 ¥39。包含个人商用授权及全站素材下载。') : '每日 3 次免费素材下载，适用于个人非商业项目。';
++        confirm.textContent = '确认选择';
++        dialog.showModal();
++      }));
++      const info = {
++        account:['欢迎回到拾集','选择适合你的会员计划，开始整理下一份创作灵感。','本页面用于浏览和选择会员方案；账号登录服务尚未开放。'],
++        support:['每一份创作，都值得支持','免费版可查阅使用指南，专业版享有优先素材支持。','团队版配备专属客户经理，协助处理席位、发票与企业授权问题。'],
++        terms:['服务条款','会员权益以所选方案及计费周期为准。','素材不可用于违法用途，不可转售原始文件。完整服务协议需在正式订阅前确认。'],
++        license:['让每一次使用都有依据','免费版仅限个人非商业使用；专业版提供个人商用授权；团队版覆盖团队商业项目。','部分素材可能存在额外限制，使用前请查阅对应素材的授权说明。'],
++        privacy:['尊重你的创作，也尊重你的隐私','浏览此页面无需提供个人信息。','此页面不会收集账号、支付或个人联系信息。']
++      };
++      document.querySelectorAll('[data-info]').forEach(button => button.addEventListener('click', event => {
++        event.preventDefault(); selectedPlan = null;
++        const content = info[button.dataset.info];
++        title.textContent = content[0]; description.textContent = content[1]; total.textContent = ''; detail.textContent = content[2]; confirm.textContent = '知道了'; dialog.showModal();
++      }));
++      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
++      dialog.addEventListener('click', event => {if (event.target === dialog) {const rect = dialog.getBoundingClientRect();if(event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();}});
++      confirm.addEventListener('click', () => {
++        dialog.close();
++        if(!selectedPlan) return;
++        const toast = document.getElementById('toast');
++        toast.textContent = '已选择' + names[selectedPlan] + (selectedPlan === 'free' ? ' · 永久免费' : billing === 'yearly' ? ' · 按年付费' : ' · 按月付费') + '，尚未产生订阅或扣费';
++        toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
++      });
++      document.querySelectorAll('.features svg').forEach(svg => svg.setAttribute('aria-hidden','true'));
++    })();
++  </script>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..2ce925348234371a4723fa44cf9edd8e3c05fc98
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,164 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f3">
++  <title>拾集 SÍJI — 为每一份灵感，找到合适的计划</title>
++  <style>
++    :root{--ink:#202a26;--muted:#7c827b;--green:#356851;--lime:#d5f594;--paper:#f7f8f3;--line:#e2e5dc;--dark:#263d32}
++    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button,input{font:inherit}button,a{touch-action:manipulation}a{color:inherit;text-decoration:none}button{cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7fae64;outline-offset:5px}button{color:inherit}.wrap{max-width:1120px;margin:auto;padding:0 28px}
++    .header{height:88px;border-bottom:1px solid var(--line)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:30px}.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:750;letter-spacing:1px}.logo-icon{width:31px;height:31px;background:var(--dark);color:var(--lime);display:grid;place-items:center;border-radius:9px;transform:rotate(-5deg)}.logo-icon svg{width:23px;height:23px}.logo small{font-size:11px;letter-spacing:2px;font-weight:500;padding-left:3px}.nav-links{display:flex;gap:35px;align-items:center;font-size:13px;color:#737b72}.nav-links a{position:relative;padding:34px 0}.nav-links a:hover,.nav-links .active{color:var(--ink)}.nav-links .active:after{content:"";width:16px;height:3px;border-radius:3px;background:var(--green);position:absolute;bottom:20px;left:calc(50% - 8px)}.account{display:flex;align-items:center;gap:22px;font-size:12px}.nav-button{border:1px solid #ced5c7;background:transparent;border-radius:7px;padding:10px 18px}.nav-button:hover{background:#e9efdf}.login{border:0;background:none;font-size:12px;padding:8px 0}
++    .hero{text-align:center;padding:58px 0 29px;position:relative}.eyebrow{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:650;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}.hero h1{font-size:42px;line-height:1.4;letter-spacing:-1.5px;margin:19px 0 14px;font-weight:650}.hero h1 span{color:var(--green);position:relative;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;bottom:-7px;left:0;right:0;height:7px;border-top:2px solid #98af80;border-radius:50%;transform:rotate(-2deg)}.hero p{font-size:13px;color:var(--muted);line-height:1.9;margin:0}.spark{position:absolute;left:5%;top:90px;color:#8caa75;transform:rotate(-12deg);width:46px;height:46px}.orbit{position:absolute;right:5%;top:112px;width:49px;height:49px;border:1px solid #c8d1ba;border-radius:50%;transform:rotate(-30deg)}.orbit:before{content:"";position:absolute;inset:9px -12px;border:1px solid #c8d1ba;border-radius:50%}.orbit:after{content:"";position:absolute;top:5px;right:-2px;background:var(--green);width:6px;height:6px;border-radius:50%}
++    .billing-row{display:flex;justify-content:center;align-items:center;margin-top:30px;position:relative}.billing{display:flex;border:1px solid #e1e5d9;background:#edefe6;padding:4px;border-radius:9px;gap:3px}.billing button{border:0;border-radius:6px;padding:10px 21px;background:transparent;color:#81877c;font-size:12px;min-width:102px;transition:background .2s,color .2s}.billing button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #243d3210;font-weight:600}.save{font-size:9px;background:#e5efce;color:#506d34;border-radius:4px;padding:3px 5px;margin-left:5px;vertical-align:1px}.billing-note{position:absolute;left:calc(50% + 149px);font-size:11px;color:#738461;white-space:nowrap;transform:rotate(-5deg)}.billing-note svg{width:29px;height:21px;vertical-align:middle;margin-right:4px}
++    .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-top:23px;align-items:stretch}.plan{background:#fff;border:1px solid var(--line);border-radius:14px;padding:29px 27px 25px;position:relative;display:flex;flex-direction:column}.plan.pro{background:var(--dark);color:#f8fbf2;border-color:var(--dark);box-shadow:0 12px 24px #263d3212}.recommended{position:absolute;top:-13px;right:22px;background:var(--lime);color:var(--dark);padding:6px 12px;border-radius:5px;font-size:10px;font-weight:600;display:flex;align-items:center;gap:5px}.recommended svg{width:12px;height:12px}.plan-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.plan-icon{width:35px;height:35px;border:1px solid #e1e6db;border-radius:10px;display:grid;place-items:center;color:#4b6952;background:#f8faf4}.plan-icon svg{width:19px;height:19px;stroke-width:1.5}.pro .plan-icon{background:#ffffff08;border-color:#ffffff26;color:var(--lime)}.plan-label{font-size:10px;letter-spacing:1.6px;color:#959b90}.pro .plan-label{color:#9daf9c}.plan h2{font-size:21px;letter-spacing:.5px;margin:0 0 8px;font-weight:600}.description{font-size:11px;color:var(--muted);margin:0;line-height:1.7}.pro .description{color:#b7c4b7}.price{display:flex;align-items:baseline;gap:4px;margin:25px 0 6px;height:54px}.currency{font-size:24px;align-self:flex-start;margin-top:10px;font-weight:500}.amount{font-size:53px;letter-spacing:-2px;font-weight:600;line-height:1}.unit{font-size:11px;color:var(--muted);margin-left:4px}.pro .unit{color:#b4c4b7}.bill-caption{font-size:10px;color:#92988c;min-height:16px;margin:0 0 23px}.pro .bill-caption{color:#a4b6a6}.cta{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid #dce2d4;border-radius:7px;background:#f5f7ef;height:43px;font-size:12px;font-weight:600;transition:transform .18s,background .18s}.cta:hover{background:#e9efdf;transform:translateY(-2px)}.cta svg{width:15px;height:15px}.pro .cta{background:var(--lime);border-color:var(--lime);color:#273f2f}.pro .cta:hover{background:#e0ffac}.team .cta{background:white}.team .cta:hover{background:#f1f5e9}.plan-rule{height:1px;background:var(--line);margin:25px 0 19px}.pro .plan-rule{background:#ffffff20}.features-title{font-size:10px;font-weight:600;margin:0 0 16px;color:#747e6f}.pro .features-title{color:#c2d0bd}.features{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:15px;font-size:11px;line-height:1.45}.features li{display:flex;align-items:center;gap:9px}.check{width:15px;height:15px;flex-shrink:0;color:#628454}.pro .check{color:var(--lime)}.features b{font-weight:600}.features .unavailable{color:#b1b6ab}.unavailable .check{color:#bdc3b7}.feature-note{font-size:9px;background:#edf1e7;padding:2px 5px;border-radius:3px;color:#728367;margin-left:auto}.plan-bottom{font-size:10px;color:#91988a;margin:24px 0 0;display:flex;align-items:center;gap:6px}.pro .plan-bottom{color:#a1b79c}.plan-bottom svg{width:12px;height:12px}
++    .assurance{display:flex;align-items:center;justify-content:center;gap:25px;font-size:10px;color:#939b8c;padding:24px 0 33px}.assurance span{display:flex;gap:6px;align-items:center}.assurance svg{width:13px;height:13px}.assurance i{height:9px;width:1px;background:#d8ddcf}
++    .community{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:27px 0 29px;text-align:center}.community p{font-size:11px;color:#8d9487;margin:0 0 22px}.community p strong{color:#5e6c58;font-weight:600}.creative-types{display:flex;justify-content:center;gap:51px;color:#7e8977;align-items:center}.creative-types span{display:flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.5px;font-weight:600}.creative-types svg{width:19px;height:19px}.creative-types .latin{font-family:Georgia,serif;font-size:20px;font-style:italic;font-weight:500;letter-spacing:-.5px}
++    .faq{display:grid;grid-template-columns:1fr 1.7fr;gap:70px;padding:53px 0 56px}.section-tag{font-size:9px;letter-spacing:2px;color:#8b9880}.faq h2{font-size:25px;font-weight:600;margin:12px 0}.faq-intro p{font-size:11px;color:#89917f;line-height:1.8}.faq-intro a{display:inline-block;margin-top:9px;color:var(--green);font-size:11px;border-bottom:1px solid #bdcbb0;padding-bottom:4px}.faq-list details{border-bottom:1px solid var(--line)}.faq-list details:first-child{border-top:1px solid var(--line)}summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:19px 0;gap:20px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:20px;font-weight:300;color:#8b9681;line-height:1}details[open] summary:after{content:"−"}details p{font-size:11px;line-height:1.9;color:#7f8976;margin:0;padding:0 24px 19px 0}.footer{border-top:1px solid var(--line);padding:23px 0 27px;display:flex;justify-content:space-between;align-items:center;color:#9ba18f;font-size:10px}.footer-brand{display:flex;align-items:center;gap:12px}.footer-brand strong{color:#63725c;font-size:14px}.footer-links{display:flex;gap:24px}.footer a:hover{color:var(--green)}
++    dialog{border:1px solid var(--line);border-radius:18px;width:min(420px,calc(100% - 32px));padding:32px;background:var(--paper);color:var(--ink);box-shadow:0 24px 90px #16231b33}dialog::backdrop{background:#17251b70;backdrop-filter:blur(5px)}.dialog-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:24px;color:#86917c}.dialog-kicker{font-size:10px;letter-spacing:2px;color:var(--green)}dialog h2{font-size:24px;margin:15px 0}dialog p{font-size:13px;line-height:1.9;color:#78846d}.dialog-total{font-size:32px;font-weight:600;margin:24px 0 8px}.dialog-confirm{background:var(--dark);color:white;border:0;margin-top:24px}.dialog-confirm:hover{background:#3d5947}.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,20px);background:var(--dark);color:#fff;border-radius:9px;padding:14px 24px;font-size:12px;box-shadow:0 8px 30px #263d3225;opacity:0;pointer-events:none;transition:.25s;z-index:5;max-width:calc(100vw - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.svg-defs{position:absolute;width:0;height:0;overflow:hidden}
++    @media(min-width:1400px){.wrap{max-width:1180px}.hero{padding-top:65px}.hero h1{font-size:46px}.plan{padding:31px}.features{gap:17px}.plans{gap:22px}}
++    @media(max-width:850px){.nav-links{gap:21px}.account{gap:12px}.logo small{display:none}.plan{padding:24px 18px}.features{font-size:10px}.creative-types{gap:28px}.hero h1{font-size:35px}.spark{left:1%;width:32px}.orbit{right:1%;width:35px;height:35px}.faq{gap:30px}.feature-note{font-size:8px}}
++    @media(max-width:650px){.wrap{padding:0 21px}.header{height:72px}.nav{gap:15px}.logo{font-size:21px}.nav-links{margin-left:auto}.nav-links a{padding:24px 0}.nav-links a:not(.active){display:none}.nav-links .active:after{bottom:12px}.account .login{display:none}.nav-button{padding:9px 12px;font-size:11px}.hero{padding:42px 0 23px}.hero h1{font-size:31px;letter-spacing:-1px;max-width:340px;margin:19px auto 17px;line-height:1.6}.hero h1 span{display:block}.hero p{font-size:12px;max-width:270px;margin:auto}.spark{top:92px;left:5px;width:28px}.orbit{top:130px;right:9px;width:27px;height:27px}.eyebrow{font-size:9px;letter-spacing:2px}.billing-row{margin-top:25px;margin-bottom:15px}.billing-note{position:static;font-size:10px;transform:none;margin-left:8px}.billing-note svg{display:none}.billing button{padding:10px 12px;min-width:85px}.plans{grid-template-columns:1fr;gap:27px;padding-top:10px;max-width:420px;margin:auto}.plan{padding:26px 27px}.plan-top{margin-bottom:15px}.plan h2{font-size:22px}.description{font-size:12px}.features{font-size:12px;gap:15px}.feature-note{font-size:9px}.price{margin-top:22px}.assurance{gap:12px;font-size:9px;flex-wrap:wrap;padding:25px 0}.assurance i{display:none}.creative-types{display:grid;grid-template-columns:1fr 1fr;gap:23px}.creative-types span{justify-content:center;font-size:12px}.creative-types span:last-child{grid-column:1/-1}.community{margin-top:5px;padding:27px 0}.faq{grid-template-columns:1fr;gap:25px;padding:36px 0}.faq h2{font-size:24px}.faq-intro p{margin-bottom:0}.faq-intro a{margin-top:13px}.footer{align-items:flex-start;gap:22px;flex-direction:column}.footer-brand{font-size:9px}.footer-links{font-size:10px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="star" viewBox="0 0 24 24"><path d="m12 1 2.8 7.2L22 5l-3.2 7 4.2 3-8.1.7L14 23l-4.2-6.5L3 20l2.7-7.4L0 9l8-.7Z" fill="currentColor"/></symbol>
++    <symbol id="check" viewBox="0 0 20 20"><path d="m5 10 3.3 3.4L15 6.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="arrow" viewBox="0 0 20 20"><path d="M4 10h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="leaf" viewBox="0 0 24 24"><path d="M19 4C10 2 4 6 5 12c1 6 9 7 12 1 2-3 2-6 2-9ZM5 21c0-6 4-10 9-13" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="diamond" viewBox="0 0 24 24"><path d="m3 9 4-5h10l4 5-9 12L3 9Zm0 0h18M8 9l4 12 4-12-4-5-4 5Z" fill="none" stroke="currentColor" stroke-linejoin="round"/></symbol>
++    <symbol id="team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></g></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++  </defs></svg>
++  <header class="header"><nav class="nav wrap" aria-label="主导航">
++    <a href="#" class="logo" aria-label="拾集首页"><span class="logo-icon"><svg aria-hidden="true"><use href="#star"/></svg></span>拾集<small>SÍJI</small></a>
++    <div class="nav-links"><a href="#creative">发现灵感</a><a href="#plans">精选素材</a><a href="#faq">使用指南</a><a href="#plans" class="active" aria-current="page">会员计划</a></div>
++    <div class="account"><button class="login" data-info="account">登录</button><button class="nav-button" data-plan="free">免费开始 <span aria-hidden="true">↗</span></button></div>
++  </nav></header>
++  <main class="wrap">
++    <section class="hero" aria-labelledby="title">
++      <svg class="spark" aria-hidden="true"><use href="#star"/></svg><span class="orbit" aria-hidden="true"></span>
++      <div class="eyebrow">MADE FOR YOUR NEXT BIG IDEA</div>
++      <h1 id="title">好灵感，<span>值得自由创作。</span></h1>
++      <p>从第一份灵感，到每一个精彩作品。<br>找到适合你的计划，让优质素材成为创作的日常。</p>
++      <div class="billing-row"><div class="billing" role="group" aria-label="计费周期"><button data-billing="monthly" aria-pressed="false">按月付费</button><button data-billing="yearly" aria-pressed="true">按年付费 <span class="save">省 25% 起</span></button></div><span class="billing-note"><svg viewBox="0 0 35 24" fill="none" aria-hidden="true"><path d="M33 3C25 22 10 22 2 10m0 0 1 8m-1-8 8 2" stroke="currentColor" stroke-linecap="round"/></svg>给长期的热爱一点优惠</span></div>
++    </section>
++    <section class="plans" id="plans" aria-label="会员方案">
++      <article class="plan free">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#leaf"/></svg></span><span class="plan-label">GET INSPIRED</span></div>
++        <h2>免费版</h2><p class="description">偶尔找找灵感，轻松开始创作</p>
++        <div class="price"><span class="currency">¥</span><span class="amount">0</span><span class="unit">/ 永久免费</span></div><p class="bill-caption">无需信用卡，好灵感即刻拥有</p>
++        <button class="cta" data-plan="free">免费开始创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">为你的第一步，准备好一切</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg>每日下载 <b>3 份</b> 免费素材</li>
++          <li><svg class="check"><use href="#check"/></svg>精选免费素材库</li>
++          <li><svg class="check"><use href="#check"/></svg>高清图片与基础设计模板</li>
++          <li><svg class="check"><use href="#check"/></svg>个人灵感收藏夹 <span class="feature-note">最多 3 个</span></li>
++          <li><svg class="check"><use href="#check"/></svg>个人非商业项目使用</li>
++          <li class="unavailable"><svg class="check" viewBox="0 0 20 20"><path d="M6 10h8" stroke="currentColor" stroke-width="1.5"/></svg>专属商用授权</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#leaf"/></svg>小小的开始，也能有大大的灵感</p>
++      </article>
++      <article class="plan pro">
++        <div class="recommended"><svg aria-hidden="true"><use href="#star"/></svg>创作者首选</div>
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#diamond"/></svg></span><span class="plan-label">CREATE WITHOUT LIMITS</span></div>
++        <h2>专业版</h2><p class="description">为独立设计师与每一位认真创作的你</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="pro-price">29</span><span class="unit">/ 月</span></div><p class="bill-caption" id="pro-caption">按年付款 ¥348，相比月付节省 ¥120</p>
++        <button class="cta" data-plan="pro">解锁专业版 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含免费版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>无限下载</b> 全站精选素材</li>
++          <li><svg class="check"><use href="#check"/></svg>海量图片、字体、插画与模板</li>
++          <li><svg class="check"><use href="#check"/></svg>可编辑源文件与最高画质</li>
++          <li><svg class="check"><use href="#check"/></svg>个人商用授权，放心交付</li>
++          <li><svg class="check"><use href="#check"/></svg>无限收藏夹，灵感井井有条</li>
++          <li><svg class="check"><use href="#check"/></svg>每周上新素材优先体验</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#shield"/></svg>一份订阅，承包你的下一份好作品</p>
++      </article>
++      <article class="plan team">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#team"/></svg></span><span class="plan-label">BETTER TOGETHER</span></div>
++        <h2>团队版</h2><p class="description">让团队的每一份创意，在一起生长</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="team-price">79</span><span class="unit">/ 人 / 月</span></div><p class="bill-caption" id="team-caption">按年付款 ¥948 / 人，3 人起订</p>
++        <button class="cta" data-plan="team">开启团队创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含专业版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>团队商用授权</b>，覆盖企业项目</li>
++          <li><svg class="check"><use href="#check"/></svg>共享素材库与团队收藏夹</li>
++          <li><svg class="check"><use href="#check"/></svg>成员管理与灵活席位分配</li>
++          <li><svg class="check"><use href="#check"/></svg>统一账单与企业发票</li>
++          <li><svg class="check"><use href="#check"/></svg>专属客户经理与优先支持</li>
++          <li><svg class="check"><use href="#check"/></svg>品牌素材集中管理</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#team"/></svg>为更好的协作，留出更多可能</p>
++      </article>
++    </section>
++    <div class="assurance"><span><svg aria-hidden="true"><use href="#shield"/></svg>正版素材 · 安心使用</span><i></i><span><svg aria-hidden="true"><use href="#circle"/></svg>随时升级 · 到期可取消续订</span><i></i><span><svg aria-hidden="true"><use href="#diamond"/></svg>持续上新 · 灵感常在</span></div>
++    <section class="community" id="creative" aria-label="为不同领域的创作者而生"><p>让创作少一点寻找，多一点心动。与 <strong>30,000+</strong> 位创作者一起，把想法变成作品。</p><div class="creative-types"><span><svg aria-hidden="true"><use href="#star"/></svg>品牌设计师</span><span><svg aria-hidden="true"><use href="#diamond"/></svg>独立创作者</span><span class="latin">Design studios.</span><span><svg aria-hidden="true"><use href="#leaf"/></svg>内容工作者</span><span><svg aria-hidden="true"><use href="#team"/></svg>创意团队</span></div></section>
++    <section class="faq" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><span class="section-tag">A LITTLE MORE CLARITY</span><h2 id="faq-title">你可能还想知道</h2><p>关于会员的一些小解答，<br>让每一次选择都更安心。</p><a href="#" data-info="support">还有疑问？了解会员支持 <span aria-hidden="true">↗</span></a></div><div class="faq-list">
++      <details><summary>下载的素材可以用于商业项目吗？</summary><p>专业版支持个人商业项目及客户交付；团队版的商用授权覆盖已购买席位的团队成员。免费版仅限个人非商业项目。具体使用范围以每份素材附带的授权说明为准，素材本身不可直接转售或重新分发。</p></details>
++      <details><summary>我可以随时升级或取消会员吗？</summary><p>可以随时申请升级方案。取消续订后，已付款的会员权益会保留至当前计费周期结束，之后不再续费。取消续订不会退还当前周期的费用。</p></details>
++      <details><summary>团队版如何计算人数和费用？</summary><p>团队版 3 人起订。年付为每人每月 ¥79，按年一次支付；3 人团队合计 ¥2,844 / 年。月付为每人每月 ¥109，3 人团队合计 ¥327 / 月。每位成员拥有独立账号，管理员可统一分配席位。</p></details>
++    </div></section>
++    <footer class="footer"><div class="footer-brand"><strong>拾集 SÍJI</strong><span>© 2026 拾集 · 拾起灵感，集成好设计。</span></div><div class="footer-links"><a href="#" data-info="terms">服务条款</a><a href="#" data-info="license">授权说明</a><a href="#" data-info="privacy">隐私政策</a></div></footer>
++  </main>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="关闭弹窗">×</button><span class="dialog-kicker">YOUR NEXT CHAPTER</span><h2 id="dialog-title">选择你的创作计划</h2><p id="dialog-description"></p><div class="dialog-total" id="dialog-total"></div><p id="dialog-detail"></p><button class="cta dialog-confirm" id="confirm-plan">确认选择 <svg aria-hidden="true"><use href="#arrow"/></svg></button></dialog>
++  <div class="toast" role="status" aria-live="polite" id="toast"></div>
++  <script>
++    (() => {
++      let billing = 'yearly';
++      let selectedPlan = null;
++      let toastTimer;
++      const dialog = document.getElementById('plan-dialog');
++      const title = document.getElementById('dialog-title');
++      const description = document.getElementById('dialog-description');
++      const total = document.getElementById('dialog-total');
++      const detail = document.getElementById('dialog-detail');
++      const confirm = document.getElementById('confirm-plan');
++      const names = {free:'免费版',pro:'专业版',team:'团队版'};
++      document.querySelectorAll('[data-billing]').forEach(button => button.addEventListener('click', () => {
++        billing = button.dataset.billing;
++        document.querySelectorAll('[data-billing]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++        const yearly = billing === 'yearly';
++        document.getElementById('pro-price').textContent = yearly ? '29' : '39';
++        document.getElementById('team-price').textContent = yearly ? '79' : '109';
++        document.getElementById('pro-caption').textContent = yearly ? '按年付款 ¥348，相比月付节省 ¥120' : '每月付款 ¥39，按月订阅更灵活';
++        document.getElementById('team-caption').textContent = yearly ? '按年付款 ¥948 / 人，3 人起订' : '每月付款 ¥109 / 人，3 人起订';
++      }));
++      document.querySelectorAll('[data-plan]').forEach(button => button.addEventListener('click', () => {
++        selectedPlan = button.dataset.plan;
++        const yearly = billing === 'yearly';
++        title.textContent = '开启' + names[selectedPlan] + '创作';
++        description.textContent = selectedPlan === 'free' ? '从一份灵感开始，发现创作的更多可能。' : '确认适合你的方案，让下一份作品更进一步。';
++        total.textContent = selectedPlan === 'free' ? '¥0 · 永久免费' : selectedPlan === 'pro' ? (yearly ? '¥348 / 年' : '¥39 / 月') : (yearly ? '¥2,844 / 年' : '¥327 / 月');
++        detail.textContent = selectedPlan === 'team' ? '包含 3 个团队席位。' + (yearly ? '每人每月 ¥79，按年付款。' : '每人每月 ¥109，按月付款。') : selectedPlan === 'pro' ? (yearly ? '折合每月 ¥29，按年付款。包含个人商用授权及全站素材下载。' : '每月 ¥39。包含个人商用授权及全站素材下载。') : '每日 3 次免费素材下载，适用于个人非商业项目。';
++        confirm.textContent = '确认选择';
++        dialog.showModal();
++      }));
++      const info = {
++        account:['欢迎回到拾集','选择适合你的会员计划，开始整理下一份创作灵感。','本页面用于浏览和选择会员方案；账号登录服务尚未开放。'],
++        support:['每一份创作，都值得支持','免费版可查阅使用指南，专业版享有优先素材支持。','团队版配备专属客户经理，协助处理席位、发票与企业授权问题。'],
++        terms:['服务条款','会员权益以所选方案及计费周期为准。','素材不可用于违法用途，不可转售原始文件。完整服务协议需在正式订阅前确认。'],
++        license:['让每一次使用都有依据','免费版仅限个人非商业使用；专业版提供个人商用授权；团队版覆盖团队商业项目。','部分素材可能存在额外限制，使用前请查阅对应素材的授权说明。'],
++        privacy:['尊重你的创作，也尊重你的隐私','浏览此页面无需提供个人信息。','此页面不会收集账号、支付或个人联系信息。']
++      };
++      document.querySelectorAll('[data-info]').forEach(button => button.addEventListener('click', event => {
++        event.preventDefault(); selectedPlan = null;
++        const content = info[button.dataset.info];
++        title.textContent = content[0]; description.textContent = content[1]; total.textContent = ''; detail.textContent = content[2]; confirm.textContent = '知道了'; dialog.showModal();
++      }));
++      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
++      dialog.addEventListener('click', event => {if (event.target === dialog) {const rect = dialog.getBoundingClientRect();if(event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();}});
++      confirm.addEventListener('click', () => {
++        dialog.close();
++        if(!selectedPlan) return;
++        const toast = document.getElementById('toast');
++        toast.textContent = '已选择' + names[selectedPlan] + (selectedPlan === 'free' ? ' · 永久免费' : billing === 'yearly' ? ' · 按年付费' : ' · 按月付费') + '，尚未产生订阅或扣费';
++        toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
++      });
++      document.querySelectorAll('.features svg').forEach(svg => svg.setAttribute('aria-hidden','true'));
++    })();
++  </script>
++</body>
++</html>
+
+codex
+页面已完成，采用奶油白与深森林绿配色，突出专业版推荐方案；年付/月付切换、方案确认弹窗和常见问题展开均已加入。现在检查文件结构和脚本语法。
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from html.parser import HTMLParser
+from pathlib import Path
+import re, subprocess, shutil
+p=Path('index.html')
+s=p.read_text()
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=[]; self.refs=[]
+    def handle_starttag(self, tag, attrs):
+        a=dict(attrs)
+        if 'id' in a: self.ids.append(a['id'])
+        if a.get('href','').startswith('#') and a['href']"'!='"'#': self.refs.append(a['href'][1:])
+c=Check(); c.feed(s)
+assert len(c.ids)==len(set(c.ids)), 'Duplicate IDs'
+assert set(c.refs)<=set(c.ids), 'Broken internal links'
+assert s.count('data-plan=\"') == 4
+if shutil.which('node'):
+    js=re.search(r'<script>(.*?)</script>',s,re.S).group(1)
+    r=subprocess.run(['node','--check'],input=js,text=True,capture_output=True)
+    assert r.returncode==0,r.stderr
+    print('JavaScript syntax: OK')
+print('HTML parsing, unique IDs, internal links: OK')
+print('index.html:',p.stat().st_size,'bytes; CSS and JavaScript are embedded.')
+PY" in <tmp>/measure-baseline-codex-011-9P2Q4s
+ succeeded in 0ms:
+JavaScript syntax: OK
+HTML parsing, unique IDs, internal links: OK
+index.html: 28942 bytes; CSS and JavaScript are embedded.
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..2ce925348234371a4723fa44cf9edd8e3c05fc98
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,164 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f3">
++  <title>拾集 SÍJI — 为每一份灵感，找到合适的计划</title>
++  <style>
++    :root{--ink:#202a26;--muted:#7c827b;--green:#356851;--lime:#d5f594;--paper:#f7f8f3;--line:#e2e5dc;--dark:#263d32}
++    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button,input{font:inherit}button,a{touch-action:manipulation}a{color:inherit;text-decoration:none}button{cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7fae64;outline-offset:5px}button{color:inherit}.wrap{max-width:1120px;margin:auto;padding:0 28px}
++    .header{height:88px;border-bottom:1px solid var(--line)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:30px}.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:750;letter-spacing:1px}.logo-icon{width:31px;height:31px;background:var(--dark);color:var(--lime);display:grid;place-items:center;border-radius:9px;transform:rotate(-5deg)}.logo-icon svg{width:23px;height:23px}.logo small{font-size:11px;letter-spacing:2px;font-weight:500;padding-left:3px}.nav-links{display:flex;gap:35px;align-items:center;font-size:13px;color:#737b72}.nav-links a{position:relative;padding:34px 0}.nav-links a:hover,.nav-links .active{color:var(--ink)}.nav-links .active:after{content:"";width:16px;height:3px;border-radius:3px;background:var(--green);position:absolute;bottom:20px;left:calc(50% - 8px)}.account{display:flex;align-items:center;gap:22px;font-size:12px}.nav-button{border:1px solid #ced5c7;background:transparent;border-radius:7px;padding:10px 18px}.nav-button:hover{background:#e9efdf}.login{border:0;background:none;font-size:12px;padding:8px 0}
++    .hero{text-align:center;padding:58px 0 29px;position:relative}.eyebrow{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:650;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}.hero h1{font-size:42px;line-height:1.4;letter-spacing:-1.5px;margin:19px 0 14px;font-weight:650}.hero h1 span{color:var(--green);position:relative;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;bottom:-7px;left:0;right:0;height:7px;border-top:2px solid #98af80;border-radius:50%;transform:rotate(-2deg)}.hero p{font-size:13px;color:var(--muted);line-height:1.9;margin:0}.spark{position:absolute;left:5%;top:90px;color:#8caa75;transform:rotate(-12deg);width:46px;height:46px}.orbit{position:absolute;right:5%;top:112px;width:49px;height:49px;border:1px solid #c8d1ba;border-radius:50%;transform:rotate(-30deg)}.orbit:before{content:"";position:absolute;inset:9px -12px;border:1px solid #c8d1ba;border-radius:50%}.orbit:after{content:"";position:absolute;top:5px;right:-2px;background:var(--green);width:6px;height:6px;border-radius:50%}
++    .billing-row{display:flex;justify-content:center;align-items:center;margin-top:30px;position:relative}.billing{display:flex;border:1px solid #e1e5d9;background:#edefe6;padding:4px;border-radius:9px;gap:3px}.billing button{border:0;border-radius:6px;padding:10px 21px;background:transparent;color:#81877c;font-size:12px;min-width:102px;transition:background .2s,color .2s}.billing button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #243d3210;font-weight:600}.save{font-size:9px;background:#e5efce;color:#506d34;border-radius:4px;padding:3px 5px;margin-left:5px;vertical-align:1px}.billing-note{position:absolute;left:calc(50% + 149px);font-size:11px;color:#738461;white-space:nowrap;transform:rotate(-5deg)}.billing-note svg{width:29px;height:21px;vertical-align:middle;margin-right:4px}
++    .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-top:23px;align-items:stretch}.plan{background:#fff;border:1px solid var(--line);border-radius:14px;padding:29px 27px 25px;position:relative;display:flex;flex-direction:column}.plan.pro{background:var(--dark);color:#f8fbf2;border-color:var(--dark);box-shadow:0 12px 24px #263d3212}.recommended{position:absolute;top:-13px;right:22px;background:var(--lime);color:var(--dark);padding:6px 12px;border-radius:5px;font-size:10px;font-weight:600;display:flex;align-items:center;gap:5px}.recommended svg{width:12px;height:12px}.plan-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.plan-icon{width:35px;height:35px;border:1px solid #e1e6db;border-radius:10px;display:grid;place-items:center;color:#4b6952;background:#f8faf4}.plan-icon svg{width:19px;height:19px;stroke-width:1.5}.pro .plan-icon{background:#ffffff08;border-color:#ffffff26;color:var(--lime)}.plan-label{font-size:10px;letter-spacing:1.6px;color:#959b90}.pro .plan-label{color:#9daf9c}.plan h2{font-size:21px;letter-spacing:.5px;margin:0 0 8px;font-weight:600}.description{font-size:11px;color:var(--muted);margin:0;line-height:1.7}.pro .description{color:#b7c4b7}.price{display:flex;align-items:baseline;gap:4px;margin:25px 0 6px;height:54px}.currency{font-size:24px;align-self:flex-start;margin-top:10px;font-weight:500}.amount{font-size:53px;letter-spacing:-2px;font-weight:600;line-height:1}.unit{font-size:11px;color:var(--muted);margin-left:4px}.pro .unit{color:#b4c4b7}.bill-caption{font-size:10px;color:#92988c;min-height:16px;margin:0 0 23px}.pro .bill-caption{color:#a4b6a6}.cta{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid #dce2d4;border-radius:7px;background:#f5f7ef;height:43px;font-size:12px;font-weight:600;transition:transform .18s,background .18s}.cta:hover{background:#e9efdf;transform:translateY(-2px)}.cta svg{width:15px;height:15px}.pro .cta{background:var(--lime);border-color:var(--lime);color:#273f2f}.pro .cta:hover{background:#e0ffac}.team .cta{background:white}.team .cta:hover{background:#f1f5e9}.plan-rule{height:1px;background:var(--line);margin:25px 0 19px}.pro .plan-rule{background:#ffffff20}.features-title{font-size:10px;font-weight:600;margin:0 0 16px;color:#747e6f}.pro .features-title{color:#c2d0bd}.features{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:15px;font-size:11px;line-height:1.45}.features li{display:flex;align-items:center;gap:9px}.check{width:15px;height:15px;flex-shrink:0;color:#628454}.pro .check{color:var(--lime)}.features b{font-weight:600}.features .unavailable{color:#b1b6ab}.unavailable .check{color:#bdc3b7}.feature-note{font-size:9px;background:#edf1e7;padding:2px 5px;border-radius:3px;color:#728367;margin-left:auto}.plan-bottom{font-size:10px;color:#91988a;margin:24px 0 0;display:flex;align-items:center;gap:6px}.pro .plan-bottom{color:#a1b79c}.plan-bottom svg{width:12px;height:12px}
++    .assurance{display:flex;align-items:center;justify-content:center;gap:25px;font-size:10px;color:#939b8c;padding:24px 0 33px}.assurance span{display:flex;gap:6px;align-items:center}.assurance svg{width:13px;height:13px}.assurance i{height:9px;width:1px;background:#d8ddcf}
++    .community{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:27px 0 29px;text-align:center}.community p{font-size:11px;color:#8d9487;margin:0 0 22px}.community p strong{color:#5e6c58;font-weight:600}.creative-types{display:flex;justify-content:center;gap:51px;color:#7e8977;align-items:center}.creative-types span{display:flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.5px;font-weight:600}.creative-types svg{width:19px;height:19px}.creative-types .latin{font-family:Georgia,serif;font-size:20px;font-style:italic;font-weight:500;letter-spacing:-.5px}
++    .faq{display:grid;grid-template-columns:1fr 1.7fr;gap:70px;padding:53px 0 56px}.section-tag{font-size:9px;letter-spacing:2px;color:#8b9880}.faq h2{font-size:25px;font-weight:600;margin:12px 0}.faq-intro p{font-size:11px;color:#89917f;line-height:1.8}.faq-intro a{display:inline-block;margin-top:9px;color:var(--green);font-size:11px;border-bottom:1px solid #bdcbb0;padding-bottom:4px}.faq-list details{border-bottom:1px solid var(--line)}.faq-list details:first-child{border-top:1px solid var(--line)}summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:19px 0;gap:20px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:20px;font-weight:300;color:#8b9681;line-height:1}details[open] summary:after{content:"−"}details p{font-size:11px;line-height:1.9;color:#7f8976;margin:0;padding:0 24px 19px 0}.footer{border-top:1px solid var(--line);padding:23px 0 27px;display:flex;justify-content:space-between;align-items:center;color:#9ba18f;font-size:10px}.footer-brand{display:flex;align-items:center;gap:12px}.footer-brand strong{color:#63725c;font-size:14px}.footer-links{display:flex;gap:24px}.footer a:hover{color:var(--green)}
++    dialog{border:1px solid var(--line);border-radius:18px;width:min(420px,calc(100% - 32px));padding:32px;background:var(--paper);color:var(--ink);box-shadow:0 24px 90px #16231b33}dialog::backdrop{background:#17251b70;backdrop-filter:blur(5px)}.dialog-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:24px;color:#86917c}.dialog-kicker{font-size:10px;letter-spacing:2px;color:var(--green)}dialog h2{font-size:24px;margin:15px 0}dialog p{font-size:13px;line-height:1.9;color:#78846d}.dialog-total{font-size:32px;font-weight:600;margin:24px 0 8px}.dialog-confirm{background:var(--dark);color:white;border:0;margin-top:24px}.dialog-confirm:hover{background:#3d5947}.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,20px);background:var(--dark);color:#fff;border-radius:9px;padding:14px 24px;font-size:12px;box-shadow:0 8px 30px #263d3225;opacity:0;pointer-events:none;transition:.25s;z-index:5;max-width:calc(100vw - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.svg-defs{position:absolute;width:0;height:0;overflow:hidden}
++    @media(min-width:1400px){.wrap{max-width:1180px}.hero{padding-top:65px}.hero h1{font-size:46px}.plan{padding:31px}.features{gap:17px}.plans{gap:22px}}
++    @media(max-width:850px){.nav-links{gap:21px}.account{gap:12px}.logo small{display:none}.plan{padding:24px 18px}.features{font-size:10px}.creative-types{gap:28px}.hero h1{font-size:35px}.spark{left:1%;width:32px}.orbit{right:1%;width:35px;height:35px}.faq{gap:30px}.feature-note{font-size:8px}}
++    @media(max-width:650px){.wrap{padding:0 21px}.header{height:72px}.nav{gap:15px}.logo{font-size:21px}.nav-links{margin-left:auto}.nav-links a{padding:24px 0}.nav-links a:not(.active){display:none}.nav-links .active:after{bottom:12px}.account .login{display:none}.nav-button{padding:9px 12px;font-size:11px}.hero{padding:42px 0 23px}.hero h1{font-size:31px;letter-spacing:-1px;max-width:340px;margin:19px auto 17px;line-height:1.6}.hero h1 span{display:block}.hero p{font-size:12px;max-width:270px;margin:auto}.spark{top:92px;left:5px;width:28px}.orbit{top:130px;right:9px;width:27px;height:27px}.eyebrow{font-size:9px;letter-spacing:2px}.billing-row{margin-top:25px;margin-bottom:15px}.billing-note{position:static;font-size:10px;transform:none;margin-left:8px}.billing-note svg{display:none}.billing button{padding:10px 12px;min-width:85px}.plans{grid-template-columns:1fr;gap:27px;padding-top:10px;max-width:420px;margin:auto}.plan{padding:26px 27px}.plan-top{margin-bottom:15px}.plan h2{font-size:22px}.description{font-size:12px}.features{font-size:12px;gap:15px}.feature-note{font-size:9px}.price{margin-top:22px}.assurance{gap:12px;font-size:9px;flex-wrap:wrap;padding:25px 0}.assurance i{display:none}.creative-types{display:grid;grid-template-columns:1fr 1fr;gap:23px}.creative-types span{justify-content:center;font-size:12px}.creative-types span:last-child{grid-column:1/-1}.community{margin-top:5px;padding:27px 0}.faq{grid-template-columns:1fr;gap:25px;padding:36px 0}.faq h2{font-size:24px}.faq-intro p{margin-bottom:0}.faq-intro a{margin-top:13px}.footer{align-items:flex-start;gap:22px;flex-direction:column}.footer-brand{font-size:9px}.footer-links{font-size:10px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="star" viewBox="0 0 24 24"><path d="m12 1 2.8 7.2L22 5l-3.2 7 4.2 3-8.1.7L14 23l-4.2-6.5L3 20l2.7-7.4L0 9l8-.7Z" fill="currentColor"/></symbol>
++    <symbol id="check" viewBox="0 0 20 20"><path d="m5 10 3.3 3.4L15 6.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="arrow" viewBox="0 0 20 20"><path d="M4 10h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="leaf" viewBox="0 0 24 24"><path d="M19 4C10 2 4 6 5 12c1 6 9 7 12 1 2-3 2-6 2-9ZM5 21c0-6 4-10 9-13" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="diamond" viewBox="0 0 24 24"><path d="m3 9 4-5h10l4 5-9 12L3 9Zm0 0h18M8 9l4 12 4-12-4-5-4 5Z" fill="none" stroke="currentColor" stroke-linejoin="round"/></symbol>
++    <symbol id="team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></g></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++  </defs></svg>
++  <header class="header"><nav class="nav wrap" aria-label="主导航">
++    <a href="#" class="logo" aria-label="拾集首页"><span class="logo-icon"><svg aria-hidden="true"><use href="#star"/></svg></span>拾集<small>SÍJI</small></a>
++    <div class="nav-links"><a href="#creative">发现灵感</a><a href="#plans">精选素材</a><a href="#faq">使用指南</a><a href="#plans" class="active" aria-current="page">会员计划</a></div>
++    <div class="account"><button class="login" data-info="account">登录</button><button class="nav-button" data-plan="free">免费开始 <span aria-hidden="true">↗</span></button></div>
++  </nav></header>
++  <main class="wrap">
++    <section class="hero" aria-labelledby="title">
++      <svg class="spark" aria-hidden="true"><use href="#star"/></svg><span class="orbit" aria-hidden="true"></span>
++      <div class="eyebrow">MADE FOR YOUR NEXT BIG IDEA</div>
++      <h1 id="title">好灵感，<span>值得自由创作。</span></h1>
++      <p>从第一份灵感，到每一个精彩作品。<br>找到适合你的计划，让优质素材成为创作的日常。</p>
++      <div class="billing-row"><div class="billing" role="group" aria-label="计费周期"><button data-billing="monthly" aria-pressed="false">按月付费</button><button data-billing="yearly" aria-pressed="true">按年付费 <span class="save">省 25% 起</span></button></div><span class="billing-note"><svg viewBox="0 0 35 24" fill="none" aria-hidden="true"><path d="M33 3C25 22 10 22 2 10m0 0 1 8m-1-8 8 2" stroke="currentColor" stroke-linecap="round"/></svg>给长期的热爱一点优惠</span></div>
++    </section>
++    <section class="plans" id="plans" aria-label="会员方案">
++      <article class="plan free">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#leaf"/></svg></span><span class="plan-label">GET INSPIRED</span></div>
++        <h2>免费版</h2><p class="description">偶尔找找灵感，轻松开始创作</p>
++        <div class="price"><span class="currency">¥</span><span class="amount">0</span><span class="unit">/ 永久免费</span></div><p class="bill-caption">无需信用卡，好灵感即刻拥有</p>
++        <button class="cta" data-plan="free">免费开始创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">为你的第一步，准备好一切</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg>每日下载 <b>3 份</b> 免费素材</li>
++          <li><svg class="check"><use href="#check"/></svg>精选免费素材库</li>
++          <li><svg class="check"><use href="#check"/></svg>高清图片与基础设计模板</li>
++          <li><svg class="check"><use href="#check"/></svg>个人灵感收藏夹 <span class="feature-note">最多 3 个</span></li>
++          <li><svg class="check"><use href="#check"/></svg>个人非商业项目使用</li>
++          <li class="unavailable"><svg class="check" viewBox="0 0 20 20"><path d="M6 10h8" stroke="currentColor" stroke-width="1.5"/></svg>专属商用授权</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#leaf"/></svg>小小的开始，也能有大大的灵感</p>
++      </article>
++      <article class="plan pro">
++        <div class="recommended"><svg aria-hidden="true"><use href="#star"/></svg>创作者首选</div>
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#diamond"/></svg></span><span class="plan-label">CREATE WITHOUT LIMITS</span></div>
++        <h2>专业版</h2><p class="description">为独立设计师与每一位认真创作的你</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="pro-price">29</span><span class="unit">/ 月</span></div><p class="bill-caption" id="pro-caption">按年付款 ¥348，相比月付节省 ¥120</p>
++        <button class="cta" data-plan="pro">解锁专业版 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含免费版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>无限下载</b> 全站精选素材</li>
++          <li><svg class="check"><use href="#check"/></svg>海量图片、字体、插画与模板</li>
++          <li><svg class="check"><use href="#check"/></svg>可编辑源文件与最高画质</li>
++          <li><svg class="check"><use href="#check"/></svg>个人商用授权，放心交付</li>
++          <li><svg class="check"><use href="#check"/></svg>无限收藏夹，灵感井井有条</li>
++          <li><svg class="check"><use href="#check"/></svg>每周上新素材优先体验</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#shield"/></svg>一份订阅，承包你的下一份好作品</p>
++      </article>
++      <article class="plan team">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#team"/></svg></span><span class="plan-label">BETTER TOGETHER</span></div>
++        <h2>团队版</h2><p class="description">让团队的每一份创意，在一起生长</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="team-price">79</span><span class="unit">/ 人 / 月</span></div><p class="bill-caption" id="team-caption">按年付款 ¥948 / 人，3 人起订</p>
++        <button class="cta" data-plan="team">开启团队创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含专业版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>团队商用授权</b>，覆盖企业项目</li>
++          <li><svg class="check"><use href="#check"/></svg>共享素材库与团队收藏夹</li>
++          <li><svg class="check"><use href="#check"/></svg>成员管理与灵活席位分配</li>
++          <li><svg class="check"><use href="#check"/></svg>统一账单与企业发票</li>
++          <li><svg class="check"><use href="#check"/></svg>专属客户经理与优先支持</li>
++          <li><svg class="check"><use href="#check"/></svg>品牌素材集中管理</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#team"/></svg>为更好的协作，留出更多可能</p>
++      </article>
++    </section>
++    <div class="assurance"><span><svg aria-hidden="true"><use href="#shield"/></svg>正版素材 · 安心使用</span><i></i><span><svg aria-hidden="true"><use href="#circle"/></svg>随时升级 · 到期可取消续订</span><i></i><span><svg aria-hidden="true"><use href="#diamond"/></svg>持续上新 · 灵感常在</span></div>
++    <section class="community" id="creative" aria-label="为不同领域的创作者而生"><p>让创作少一点寻找，多一点心动。与 <strong>30,000+</strong> 位创作者一起，把想法变成作品。</p><div class="creative-types"><span><svg aria-hidden="true"><use href="#star"/></svg>品牌设计师</span><span><svg aria-hidden="true"><use href="#diamond"/></svg>独立创作者</span><span class="latin">Design studios.</span><span><svg aria-hidden="true"><use href="#leaf"/></svg>内容工作者</span><span><svg aria-hidden="true"><use href="#team"/></svg>创意团队</span></div></section>
++    <section class="faq" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><span class="section-tag">A LITTLE MORE CLARITY</span><h2 id="faq-title">你可能还想知道</h2><p>关于会员的一些小解答，<br>让每一次选择都更安心。</p><a href="#" data-info="support">还有疑问？了解会员支持 <span aria-hidden="true">↗</span></a></div><div class="faq-list">
++      <details><summary>下载的素材可以用于商业项目吗？</summary><p>专业版支持个人商业项目及客户交付；团队版的商用授权覆盖已购买席位的团队成员。免费版仅限个人非商业项目。具体使用范围以每份素材附带的授权说明为准，素材本身不可直接转售或重新分发。</p></details>
++      <details><summary>我可以随时升级或取消会员吗？</summary><p>可以随时申请升级方案。取消续订后，已付款的会员权益会保留至当前计费周期结束，之后不再续费。取消续订不会退还当前周期的费用。</p></details>
++      <details><summary>团队版如何计算人数和费用？</summary><p>团队版 3 人起订。年付为每人每月 ¥79，按年一次支付；3 人团队合计 ¥2,844 / 年。月付为每人每月 ¥109，3 人团队合计 ¥327 / 月。每位成员拥有独立账号，管理员可统一分配席位。</p></details>
++    </div></section>
++    <footer class="footer"><div class="footer-brand"><strong>拾集 SÍJI</strong><span>© 2026 拾集 · 拾起灵感，集成好设计。</span></div><div class="footer-links"><a href="#" data-info="terms">服务条款</a><a href="#" data-info="license">授权说明</a><a href="#" data-info="privacy">隐私政策</a></div></footer>
++  </main>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="关闭弹窗">×</button><span class="dialog-kicker">YOUR NEXT CHAPTER</span><h2 id="dialog-title">选择你的创作计划</h2><p id="dialog-description"></p><div class="dialog-total" id="dialog-total"></div><p id="dialog-detail"></p><button class="cta dialog-confirm" id="confirm-plan">确认选择 <svg aria-hidden="true"><use href="#arrow"/></svg></button></dialog>
++  <div class="toast" role="status" aria-live="polite" id="toast"></div>
++  <script>
++    (() => {
++      let billing = 'yearly';
++      let selectedPlan = null;
++      let toastTimer;
++      const dialog = document.getElementById('plan-dialog');
++      const title = document.getElementById('dialog-title');
++      const description = document.getElementById('dialog-description');
++      const total = document.getElementById('dialog-total');
++      const detail = document.getElementById('dialog-detail');
++      const confirm = document.getElementById('confirm-plan');
++      const names = {free:'免费版',pro:'专业版',team:'团队版'};
++      document.querySelectorAll('[data-billing]').forEach(button => button.addEventListener('click', () => {
++        billing = button.dataset.billing;
++        document.querySelectorAll('[data-billing]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++        const yearly = billing === 'yearly';
++        document.getElementById('pro-price').textContent = yearly ? '29' : '39';
++        document.getElementById('team-price').textContent = yearly ? '79' : '109';
++        document.getElementById('pro-caption').textContent = yearly ? '按年付款 ¥348，相比月付节省 ¥120' : '每月付款 ¥39，按月订阅更灵活';
++        document.getElementById('team-caption').textContent = yearly ? '按年付款 ¥948 / 人，3 人起订' : '每月付款 ¥109 / 人，3 人起订';
++      }));
++      document.querySelectorAll('[data-plan]').forEach(button => button.addEventListener('click', () => {
++        selectedPlan = button.dataset.plan;
++        const yearly = billing === 'yearly';
++        title.textContent = '开启' + names[selectedPlan] + '创作';
++        description.textContent = selectedPlan === 'free' ? '从一份灵感开始，发现创作的更多可能。' : '确认适合你的方案，让下一份作品更进一步。';
++        total.textContent = selectedPlan === 'free' ? '¥0 · 永久免费' : selectedPlan === 'pro' ? (yearly ? '¥348 / 年' : '¥39 / 月') : (yearly ? '¥2,844 / 年' : '¥327 / 月');
++        detail.textContent = selectedPlan === 'team' ? '包含 3 个团队席位。' + (yearly ? '每人每月 ¥79，按年付款。' : '每人每月 ¥109，按月付款。') : selectedPlan === 'pro' ? (yearly ? '折合每月 ¥29，按年付款。包含个人商用授权及全站素材下载。' : '每月 ¥39。包含个人商用授权及全站素材下载。') : '每日 3 次免费素材下载，适用于个人非商业项目。';
++        confirm.textContent = '确认选择';
++        dialog.showModal();
++      }));
++      const info = {
++        account:['欢迎回到拾集','选择适合你的会员计划，开始整理下一份创作灵感。','本页面用于浏览和选择会员方案；账号登录服务尚未开放。'],
++        support:['每一份创作，都值得支持','免费版可查阅使用指南，专业版享有优先素材支持。','团队版配备专属客户经理，协助处理席位、发票与企业授权问题。'],
++        terms:['服务条款','会员权益以所选方案及计费周期为准。','素材不可用于违法用途，不可转售原始文件。完整服务协议需在正式订阅前确认。'],
++        license:['让每一次使用都有依据','免费版仅限个人非商业使用；专业版提供个人商用授权；团队版覆盖团队商业项目。','部分素材可能存在额外限制，使用前请查阅对应素材的授权说明。'],
++        privacy:['尊重你的创作，也尊重你的隐私','浏览此页面无需提供个人信息。','此页面不会收集账号、支付或个人联系信息。']
++      };
++      document.querySelectorAll('[data-info]').forEach(button => button.addEventListener('click', event => {
++        event.preventDefault(); selectedPlan = null;
++        const content = info[button.dataset.info];
++        title.textContent = content[0]; description.textContent = content[1]; total.textContent = ''; detail.textContent = content[2]; confirm.textContent = '知道了'; dialog.showModal();
++      }));
++      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
++      dialog.addEventListener('click', event => {if (event.target === dialog) {const rect = dialog.getBoundingClientRect();if(event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();}});
++      confirm.addEventListener('click', () => {
++        dialog.close();
++        if(!selectedPlan) return;
++        const toast = document.getElementById('toast');
++        toast.textContent = '已选择' + names[selectedPlan] + (selectedPlan === 'free' ? ' · 永久免费' : billing === 'yearly' ? ' · 按年付费' : ' · 按月付费') + '，尚未产生订阅或扣费';
++        toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
++      });
++      document.querySelectorAll('.features svg').forEach(svg => svg.setAttribute('aria-hidden','true'));
++    })();
++  </script>
++</body>
++</html>
+
+codex
+已生成当前目录下的 [index.html](index.html)，内含完整样式和交互，支持三档会员、月付/年付切换及手机适配。可直接用浏览器打开，无需安装依赖或启动服务器。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..2ce925348234371a4723fa44cf9edd8e3c05fc98
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,164 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f3">
++  <title>拾集 SÍJI — 为每一份灵感，找到合适的计划</title>
++  <style>
++    :root{--ink:#202a26;--muted:#7c827b;--green:#356851;--lime:#d5f594;--paper:#f7f8f3;--line:#e2e5dc;--dark:#263d32}
++    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;-webkit-font-smoothing:antialiased}button,a{-webkit-tap-highlight-color:transparent}button,input{font:inherit}button,a{touch-action:manipulation}a{color:inherit;text-decoration:none}button{cursor:pointer}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #7fae64;outline-offset:5px}button{color:inherit}.wrap{max-width:1120px;margin:auto;padding:0 28px}
++    .header{height:88px;border-bottom:1px solid var(--line)}.nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:30px}.logo{display:flex;align-items:center;gap:10px;font-size:23px;font-weight:750;letter-spacing:1px}.logo-icon{width:31px;height:31px;background:var(--dark);color:var(--lime);display:grid;place-items:center;border-radius:9px;transform:rotate(-5deg)}.logo-icon svg{width:23px;height:23px}.logo small{font-size:11px;letter-spacing:2px;font-weight:500;padding-left:3px}.nav-links{display:flex;gap:35px;align-items:center;font-size:13px;color:#737b72}.nav-links a{position:relative;padding:34px 0}.nav-links a:hover,.nav-links .active{color:var(--ink)}.nav-links .active:after{content:"";width:16px;height:3px;border-radius:3px;background:var(--green);position:absolute;bottom:20px;left:calc(50% - 8px)}.account{display:flex;align-items:center;gap:22px;font-size:12px}.nav-button{border:1px solid #ced5c7;background:transparent;border-radius:7px;padding:10px 18px}.nav-button:hover{background:#e9efdf}.login{border:0;background:none;font-size:12px;padding:8px 0}
++    .hero{text-align:center;padding:58px 0 29px;position:relative}.eyebrow{font-size:10px;letter-spacing:3px;color:var(--green);font-weight:650;display:flex;justify-content:center;align-items:center;gap:9px}.eyebrow:before{content:"";width:6px;height:6px;background:var(--green);border-radius:50%}.hero h1{font-size:42px;line-height:1.4;letter-spacing:-1.5px;margin:19px 0 14px;font-weight:650}.hero h1 span{color:var(--green);position:relative;white-space:nowrap}.hero h1 span:after{content:"";position:absolute;bottom:-7px;left:0;right:0;height:7px;border-top:2px solid #98af80;border-radius:50%;transform:rotate(-2deg)}.hero p{font-size:13px;color:var(--muted);line-height:1.9;margin:0}.spark{position:absolute;left:5%;top:90px;color:#8caa75;transform:rotate(-12deg);width:46px;height:46px}.orbit{position:absolute;right:5%;top:112px;width:49px;height:49px;border:1px solid #c8d1ba;border-radius:50%;transform:rotate(-30deg)}.orbit:before{content:"";position:absolute;inset:9px -12px;border:1px solid #c8d1ba;border-radius:50%}.orbit:after{content:"";position:absolute;top:5px;right:-2px;background:var(--green);width:6px;height:6px;border-radius:50%}
++    .billing-row{display:flex;justify-content:center;align-items:center;margin-top:30px;position:relative}.billing{display:flex;border:1px solid #e1e5d9;background:#edefe6;padding:4px;border-radius:9px;gap:3px}.billing button{border:0;border-radius:6px;padding:10px 21px;background:transparent;color:#81877c;font-size:12px;min-width:102px;transition:background .2s,color .2s}.billing button[aria-pressed="true"]{background:white;color:var(--ink);box-shadow:0 2px 5px #243d3210;font-weight:600}.save{font-size:9px;background:#e5efce;color:#506d34;border-radius:4px;padding:3px 5px;margin-left:5px;vertical-align:1px}.billing-note{position:absolute;left:calc(50% + 149px);font-size:11px;color:#738461;white-space:nowrap;transform:rotate(-5deg)}.billing-note svg{width:29px;height:21px;vertical-align:middle;margin-right:4px}
++    .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding-top:23px;align-items:stretch}.plan{background:#fff;border:1px solid var(--line);border-radius:14px;padding:29px 27px 25px;position:relative;display:flex;flex-direction:column}.plan.pro{background:var(--dark);color:#f8fbf2;border-color:var(--dark);box-shadow:0 12px 24px #263d3212}.recommended{position:absolute;top:-13px;right:22px;background:var(--lime);color:var(--dark);padding:6px 12px;border-radius:5px;font-size:10px;font-weight:600;display:flex;align-items:center;gap:5px}.recommended svg{width:12px;height:12px}.plan-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.plan-icon{width:35px;height:35px;border:1px solid #e1e6db;border-radius:10px;display:grid;place-items:center;color:#4b6952;background:#f8faf4}.plan-icon svg{width:19px;height:19px;stroke-width:1.5}.pro .plan-icon{background:#ffffff08;border-color:#ffffff26;color:var(--lime)}.plan-label{font-size:10px;letter-spacing:1.6px;color:#959b90}.pro .plan-label{color:#9daf9c}.plan h2{font-size:21px;letter-spacing:.5px;margin:0 0 8px;font-weight:600}.description{font-size:11px;color:var(--muted);margin:0;line-height:1.7}.pro .description{color:#b7c4b7}.price{display:flex;align-items:baseline;gap:4px;margin:25px 0 6px;height:54px}.currency{font-size:24px;align-self:flex-start;margin-top:10px;font-weight:500}.amount{font-size:53px;letter-spacing:-2px;font-weight:600;line-height:1}.unit{font-size:11px;color:var(--muted);margin-left:4px}.pro .unit{color:#b4c4b7}.bill-caption{font-size:10px;color:#92988c;min-height:16px;margin:0 0 23px}.pro .bill-caption{color:#a4b6a6}.cta{width:100%;display:flex;align-items:center;justify-content:center;gap:12px;border:1px solid #dce2d4;border-radius:7px;background:#f5f7ef;height:43px;font-size:12px;font-weight:600;transition:transform .18s,background .18s}.cta:hover{background:#e9efdf;transform:translateY(-2px)}.cta svg{width:15px;height:15px}.pro .cta{background:var(--lime);border-color:var(--lime);color:#273f2f}.pro .cta:hover{background:#e0ffac}.team .cta{background:white}.team .cta:hover{background:#f1f5e9}.plan-rule{height:1px;background:var(--line);margin:25px 0 19px}.pro .plan-rule{background:#ffffff20}.features-title{font-size:10px;font-weight:600;margin:0 0 16px;color:#747e6f}.pro .features-title{color:#c2d0bd}.features{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:15px;font-size:11px;line-height:1.45}.features li{display:flex;align-items:center;gap:9px}.check{width:15px;height:15px;flex-shrink:0;color:#628454}.pro .check{color:var(--lime)}.features b{font-weight:600}.features .unavailable{color:#b1b6ab}.unavailable .check{color:#bdc3b7}.feature-note{font-size:9px;background:#edf1e7;padding:2px 5px;border-radius:3px;color:#728367;margin-left:auto}.plan-bottom{font-size:10px;color:#91988a;margin:24px 0 0;display:flex;align-items:center;gap:6px}.pro .plan-bottom{color:#a1b79c}.plan-bottom svg{width:12px;height:12px}
++    .assurance{display:flex;align-items:center;justify-content:center;gap:25px;font-size:10px;color:#939b8c;padding:24px 0 33px}.assurance span{display:flex;gap:6px;align-items:center}.assurance svg{width:13px;height:13px}.assurance i{height:9px;width:1px;background:#d8ddcf}
++    .community{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:27px 0 29px;text-align:center}.community p{font-size:11px;color:#8d9487;margin:0 0 22px}.community p strong{color:#5e6c58;font-weight:600}.creative-types{display:flex;justify-content:center;gap:51px;color:#7e8977;align-items:center}.creative-types span{display:flex;align-items:center;gap:9px;font-size:13px;letter-spacing:.5px;font-weight:600}.creative-types svg{width:19px;height:19px}.creative-types .latin{font-family:Georgia,serif;font-size:20px;font-style:italic;font-weight:500;letter-spacing:-.5px}
++    .faq{display:grid;grid-template-columns:1fr 1.7fr;gap:70px;padding:53px 0 56px}.section-tag{font-size:9px;letter-spacing:2px;color:#8b9880}.faq h2{font-size:25px;font-weight:600;margin:12px 0}.faq-intro p{font-size:11px;color:#89917f;line-height:1.8}.faq-intro a{display:inline-block;margin-top:9px;color:var(--green);font-size:11px;border-bottom:1px solid #bdcbb0;padding-bottom:4px}.faq-list details{border-bottom:1px solid var(--line)}.faq-list details:first-child{border-top:1px solid var(--line)}summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-size:12px;padding:19px 0;gap:20px}summary::-webkit-details-marker{display:none}summary:after{content:"+";font-size:20px;font-weight:300;color:#8b9681;line-height:1}details[open] summary:after{content:"−"}details p{font-size:11px;line-height:1.9;color:#7f8976;margin:0;padding:0 24px 19px 0}.footer{border-top:1px solid var(--line);padding:23px 0 27px;display:flex;justify-content:space-between;align-items:center;color:#9ba18f;font-size:10px}.footer-brand{display:flex;align-items:center;gap:12px}.footer-brand strong{color:#63725c;font-size:14px}.footer-links{display:flex;gap:24px}.footer a:hover{color:var(--green)}
++    dialog{border:1px solid var(--line);border-radius:18px;width:min(420px,calc(100% - 32px));padding:32px;background:var(--paper);color:var(--ink);box-shadow:0 24px 90px #16231b33}dialog::backdrop{background:#17251b70;backdrop-filter:blur(5px)}.dialog-close{position:absolute;top:12px;right:14px;background:none;border:0;font-size:24px;color:#86917c}.dialog-kicker{font-size:10px;letter-spacing:2px;color:var(--green)}dialog h2{font-size:24px;margin:15px 0}dialog p{font-size:13px;line-height:1.9;color:#78846d}.dialog-total{font-size:32px;font-weight:600;margin:24px 0 8px}.dialog-confirm{background:var(--dark);color:white;border:0;margin-top:24px}.dialog-confirm:hover{background:#3d5947}.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,20px);background:var(--dark);color:#fff;border-radius:9px;padding:14px 24px;font-size:12px;box-shadow:0 8px 30px #263d3225;opacity:0;pointer-events:none;transition:.25s;z-index:5;max-width:calc(100vw - 32px);text-align:center}.toast.show{opacity:1;transform:translate(-50%,0)}.svg-defs{position:absolute;width:0;height:0;overflow:hidden}
++    @media(min-width:1400px){.wrap{max-width:1180px}.hero{padding-top:65px}.hero h1{font-size:46px}.plan{padding:31px}.features{gap:17px}.plans{gap:22px}}
++    @media(max-width:850px){.nav-links{gap:21px}.account{gap:12px}.logo small{display:none}.plan{padding:24px 18px}.features{font-size:10px}.creative-types{gap:28px}.hero h1{font-size:35px}.spark{left:1%;width:32px}.orbit{right:1%;width:35px;height:35px}.faq{gap:30px}.feature-note{font-size:8px}}
++    @media(max-width:650px){.wrap{padding:0 21px}.header{height:72px}.nav{gap:15px}.logo{font-size:21px}.nav-links{margin-left:auto}.nav-links a{padding:24px 0}.nav-links a:not(.active){display:none}.nav-links .active:after{bottom:12px}.account .login{display:none}.nav-button{padding:9px 12px;font-size:11px}.hero{padding:42px 0 23px}.hero h1{font-size:31px;letter-spacing:-1px;max-width:340px;margin:19px auto 17px;line-height:1.6}.hero h1 span{display:block}.hero p{font-size:12px;max-width:270px;margin:auto}.spark{top:92px;left:5px;width:28px}.orbit{top:130px;right:9px;width:27px;height:27px}.eyebrow{font-size:9px;letter-spacing:2px}.billing-row{margin-top:25px;margin-bottom:15px}.billing-note{position:static;font-size:10px;transform:none;margin-left:8px}.billing-note svg{display:none}.billing button{padding:10px 12px;min-width:85px}.plans{grid-template-columns:1fr;gap:27px;padding-top:10px;max-width:420px;margin:auto}.plan{padding:26px 27px}.plan-top{margin-bottom:15px}.plan h2{font-size:22px}.description{font-size:12px}.features{font-size:12px;gap:15px}.feature-note{font-size:9px}.price{margin-top:22px}.assurance{gap:12px;font-size:9px;flex-wrap:wrap;padding:25px 0}.assurance i{display:none}.creative-types{display:grid;grid-template-columns:1fr 1fr;gap:23px}.creative-types span{justify-content:center;font-size:12px}.creative-types span:last-child{grid-column:1/-1}.community{margin-top:5px;padding:27px 0}.faq{grid-template-columns:1fr;gap:25px;padding:36px 0}.faq h2{font-size:24px}.faq-intro p{margin-bottom:0}.faq-intro a{margin-top:13px}.footer{align-items:flex-start;gap:22px;flex-direction:column}.footer-brand{font-size:9px}.footer-links{font-size:10px}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="star" viewBox="0 0 24 24"><path d="m12 1 2.8 7.2L22 5l-3.2 7 4.2 3-8.1.7L14 23l-4.2-6.5L3 20l2.7-7.4L0 9l8-.7Z" fill="currentColor"/></symbol>
++    <symbol id="check" viewBox="0 0 20 20"><path d="m5 10 3.3 3.4L15 6.7" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="arrow" viewBox="0 0 20 20"><path d="M4 10h12m-5-5 5 5-5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="leaf" viewBox="0 0 24 24"><path d="M19 4C10 2 4 6 5 12c1 6 9 7 12 1 2-3 2-6 2-9ZM5 21c0-6 4-10 9-13" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></symbol>
++    <symbol id="diamond" viewBox="0 0 24 24"><path d="m3 9 4-5h10l4 5-9 12L3 9Zm0 0h18M8 9l4 12 4-12-4-5-4 5Z" fill="none" stroke="currentColor" stroke-linejoin="round"/></symbol>
++    <symbol id="team" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v2"/></g></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m8 12 3 3 5-6" fill="none" stroke="currentColor" stroke-width="1.5"/></symbol>
++    <symbol id="circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
++  </defs></svg>
++  <header class="header"><nav class="nav wrap" aria-label="主导航">
++    <a href="#" class="logo" aria-label="拾集首页"><span class="logo-icon"><svg aria-hidden="true"><use href="#star"/></svg></span>拾集<small>SÍJI</small></a>
++    <div class="nav-links"><a href="#creative">发现灵感</a><a href="#plans">精选素材</a><a href="#faq">使用指南</a><a href="#plans" class="active" aria-current="page">会员计划</a></div>
++    <div class="account"><button class="login" data-info="account">登录</button><button class="nav-button" data-plan="free">免费开始 <span aria-hidden="true">↗</span></button></div>
++  </nav></header>
++  <main class="wrap">
++    <section class="hero" aria-labelledby="title">
++      <svg class="spark" aria-hidden="true"><use href="#star"/></svg><span class="orbit" aria-hidden="true"></span>
++      <div class="eyebrow">MADE FOR YOUR NEXT BIG IDEA</div>
++      <h1 id="title">好灵感，<span>值得自由创作。</span></h1>
++      <p>从第一份灵感，到每一个精彩作品。<br>找到适合你的计划，让优质素材成为创作的日常。</p>
++      <div class="billing-row"><div class="billing" role="group" aria-label="计费周期"><button data-billing="monthly" aria-pressed="false">按月付费</button><button data-billing="yearly" aria-pressed="true">按年付费 <span class="save">省 25% 起</span></button></div><span class="billing-note"><svg viewBox="0 0 35 24" fill="none" aria-hidden="true"><path d="M33 3C25 22 10 22 2 10m0 0 1 8m-1-8 8 2" stroke="currentColor" stroke-linecap="round"/></svg>给长期的热爱一点优惠</span></div>
++    </section>
++    <section class="plans" id="plans" aria-label="会员方案">
++      <article class="plan free">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#leaf"/></svg></span><span class="plan-label">GET INSPIRED</span></div>
++        <h2>免费版</h2><p class="description">偶尔找找灵感，轻松开始创作</p>
++        <div class="price"><span class="currency">¥</span><span class="amount">0</span><span class="unit">/ 永久免费</span></div><p class="bill-caption">无需信用卡，好灵感即刻拥有</p>
++        <button class="cta" data-plan="free">免费开始创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">为你的第一步，准备好一切</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg>每日下载 <b>3 份</b> 免费素材</li>
++          <li><svg class="check"><use href="#check"/></svg>精选免费素材库</li>
++          <li><svg class="check"><use href="#check"/></svg>高清图片与基础设计模板</li>
++          <li><svg class="check"><use href="#check"/></svg>个人灵感收藏夹 <span class="feature-note">最多 3 个</span></li>
++          <li><svg class="check"><use href="#check"/></svg>个人非商业项目使用</li>
++          <li class="unavailable"><svg class="check" viewBox="0 0 20 20"><path d="M6 10h8" stroke="currentColor" stroke-width="1.5"/></svg>专属商用授权</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#leaf"/></svg>小小的开始，也能有大大的灵感</p>
++      </article>
++      <article class="plan pro">
++        <div class="recommended"><svg aria-hidden="true"><use href="#star"/></svg>创作者首选</div>
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#diamond"/></svg></span><span class="plan-label">CREATE WITHOUT LIMITS</span></div>
++        <h2>专业版</h2><p class="description">为独立设计师与每一位认真创作的你</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="pro-price">29</span><span class="unit">/ 月</span></div><p class="bill-caption" id="pro-caption">按年付款 ¥348，相比月付节省 ¥120</p>
++        <button class="cta" data-plan="pro">解锁专业版 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含免费版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>无限下载</b> 全站精选素材</li>
++          <li><svg class="check"><use href="#check"/></svg>海量图片、字体、插画与模板</li>
++          <li><svg class="check"><use href="#check"/></svg>可编辑源文件与最高画质</li>
++          <li><svg class="check"><use href="#check"/></svg>个人商用授权，放心交付</li>
++          <li><svg class="check"><use href="#check"/></svg>无限收藏夹，灵感井井有条</li>
++          <li><svg class="check"><use href="#check"/></svg>每周上新素材优先体验</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#shield"/></svg>一份订阅，承包你的下一份好作品</p>
++      </article>
++      <article class="plan team">
++        <div class="plan-top"><span class="plan-icon"><svg aria-hidden="true"><use href="#team"/></svg></span><span class="plan-label">BETTER TOGETHER</span></div>
++        <h2>团队版</h2><p class="description">让团队的每一份创意，在一起生长</p>
++        <div class="price"><span class="currency">¥</span><span class="amount" id="team-price">79</span><span class="unit">/ 人 / 月</span></div><p class="bill-caption" id="team-caption">按年付款 ¥948 / 人，3 人起订</p>
++        <button class="cta" data-plan="team">开启团队创作 <svg aria-hidden="true"><use href="#arrow"/></svg></button>
++        <div class="plan-rule"></div><p class="features-title">包含专业版全部功能，以及</p>
++        <ul class="features">
++          <li><svg class="check"><use href="#check"/></svg><b>团队商用授权</b>，覆盖企业项目</li>
++          <li><svg class="check"><use href="#check"/></svg>共享素材库与团队收藏夹</li>
++          <li><svg class="check"><use href="#check"/></svg>成员管理与灵活席位分配</li>
++          <li><svg class="check"><use href="#check"/></svg>统一账单与企业发票</li>
++          <li><svg class="check"><use href="#check"/></svg>专属客户经理与优先支持</li>
++          <li><svg class="check"><use href="#check"/></svg>品牌素材集中管理</li>
++        </ul><p class="plan-bottom"><svg aria-hidden="true"><use href="#team"/></svg>为更好的协作，留出更多可能</p>
++      </article>
++    </section>
++    <div class="assurance"><span><svg aria-hidden="true"><use href="#shield"/></svg>正版素材 · 安心使用</span><i></i><span><svg aria-hidden="true"><use href="#circle"/></svg>随时升级 · 到期可取消续订</span><i></i><span><svg aria-hidden="true"><use href="#diamond"/></svg>持续上新 · 灵感常在</span></div>
++    <section class="community" id="creative" aria-label="为不同领域的创作者而生"><p>让创作少一点寻找，多一点心动。与 <strong>30,000+</strong> 位创作者一起，把想法变成作品。</p><div class="creative-types"><span><svg aria-hidden="true"><use href="#star"/></svg>品牌设计师</span><span><svg aria-hidden="true"><use href="#diamond"/></svg>独立创作者</span><span class="latin">Design studios.</span><span><svg aria-hidden="true"><use href="#leaf"/></svg>内容工作者</span><span><svg aria-hidden="true"><use href="#team"/></svg>创意团队</span></div></section>
++    <section class="faq" id="faq" aria-labelledby="faq-title"><div class="faq-intro"><span class="section-tag">A LITTLE MORE CLARITY</span><h2 id="faq-title">你可能还想知道</h2><p>关于会员的一些小解答，<br>让每一次选择都更安心。</p><a href="#" data-info="support">还有疑问？了解会员支持 <span aria-hidden="true">↗</span></a></div><div class="faq-list">
++      <details><summary>下载的素材可以用于商业项目吗？</summary><p>专业版支持个人商业项目及客户交付；团队版的商用授权覆盖已购买席位的团队成员。免费版仅限个人非商业项目。具体使用范围以每份素材附带的授权说明为准，素材本身不可直接转售或重新分发。</p></details>
++      <details><summary>我可以随时升级或取消会员吗？</summary><p>可以随时申请升级方案。取消续订后，已付款的会员权益会保留至当前计费周期结束，之后不再续费。取消续订不会退还当前周期的费用。</p></details>
++      <details><summary>团队版如何计算人数和费用？</summary><p>团队版 3 人起订。年付为每人每月 ¥79，按年一次支付；3 人团队合计 ¥2,844 / 年。月付为每人每月 ¥109，3 人团队合计 ¥327 / 月。每位成员拥有独立账号，管理员可统一分配席位。</p></details>
++    </div></section>
++    <footer class="footer"><div class="footer-brand"><strong>拾集 SÍJI</strong><span>© 2026 拾集 · 拾起灵感，集成好设计。</span></div><div class="footer-links"><a href="#" data-info="terms">服务条款</a><a href="#" data-info="license">授权说明</a><a href="#" data-info="privacy">隐私政策</a></div></footer>
++  </main>
++  <dialog id="plan-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="关闭弹窗">×</button><span class="dialog-kicker">YOUR NEXT CHAPTER</span><h2 id="dialog-title">选择你的创作计划</h2><p id="dialog-description"></p><div class="dialog-total" id="dialog-total"></div><p id="dialog-detail"></p><button class="cta dialog-confirm" id="confirm-plan">确认选择 <svg aria-hidden="true"><use href="#arrow"/></svg></button></dialog>
++  <div class="toast" role="status" aria-live="polite" id="toast"></div>
++  <script>
++    (() => {
++      let billing = 'yearly';
++      let selectedPlan = null;
++      let toastTimer;
++      const dialog = document.getElementById('plan-dialog');
++      const title = document.getElementById('dialog-title');
++      const description = document.getElementById('dialog-description');
++      const total = document.getElementById('dialog-total');
++      const detail = document.getElementById('dialog-detail');
++      const confirm = document.getElementById('confirm-plan');
++      const names = {free:'免费版',pro:'专业版',team:'团队版'};
++      document.querySelectorAll('[data-billing]').forEach(button => button.addEventListener('click', () => {
++        billing = button.dataset.billing;
++        document.querySelectorAll('[data-billing]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
++        const yearly = billing === 'yearly';
++        document.getElementById('pro-price').textContent = yearly ? '29' : '39';
++        document.getElementById('team-price').textContent = yearly ? '79' : '109';
++        document.getElementById('pro-caption').textContent = yearly ? '按年付款 ¥348，相比月付节省 ¥120' : '每月付款 ¥39，按月订阅更灵活';
++        document.getElementById('team-caption').textContent = yearly ? '按年付款 ¥948 / 人，3 人起订' : '每月付款 ¥109 / 人，3 人起订';
++      }));
++      document.querySelectorAll('[data-plan]').forEach(button => button.addEventListener('click', () => {
++        selectedPlan = button.dataset.plan;
++        const yearly = billing === 'yearly';
++        title.textContent = '开启' + names[selectedPlan] + '创作';
++        description.textContent = selectedPlan === 'free' ? '从一份灵感开始，发现创作的更多可能。' : '确认适合你的方案，让下一份作品更进一步。';
++        total.textContent = selectedPlan === 'free' ? '¥0 · 永久免费' : selectedPlan === 'pro' ? (yearly ? '¥348 / 年' : '¥39 / 月') : (yearly ? '¥2,844 / 年' : '¥327 / 月');
++        detail.textContent = selectedPlan === 'team' ? '包含 3 个团队席位。' + (yearly ? '每人每月 ¥79，按年付款。' : '每人每月 ¥109，按月付款。') : selectedPlan === 'pro' ? (yearly ? '折合每月 ¥29，按年付款。包含个人商用授权及全站素材下载。' : '每月 ¥39。包含个人商用授权及全站素材下载。') : '每日 3 次免费素材下载，适用于个人非商业项目。';
++        confirm.textContent = '确认选择';
++        dialog.showModal();
++      }));
++      const info = {
++        account:['欢迎回到拾集','选择适合你的会员计划，开始整理下一份创作灵感。','本页面用于浏览和选择会员方案；账号登录服务尚未开放。'],
++        support:['每一份创作，都值得支持','免费版可查阅使用指南，专业版享有优先素材支持。','团队版配备专属客户经理，协助处理席位、发票与企业授权问题。'],
++        terms:['服务条款','会员权益以所选方案及计费周期为准。','素材不可用于违法用途，不可转售原始文件。完整服务协议需在正式订阅前确认。'],
++        license:['让每一次使用都有依据','免费版仅限个人非商业使用；专业版提供个人商用授权；团队版覆盖团队商业项目。','部分素材可能存在额外限制，使用前请查阅对应素材的授权说明。'],
++        privacy:['尊重你的创作，也尊重你的隐私','浏览此页面无需提供个人信息。','此页面不会收集账号、支付或个人联系信息。']
++      };
++      document.querySelectorAll('[data-info]').forEach(button => button.addEventListener('click', event => {
++        event.preventDefault(); selectedPlan = null;
++        const content = info[button.dataset.info];
++        title.textContent = content[0]; description.textContent = content[1]; total.textContent = ''; detail.textContent = content[2]; confirm.textContent = '知道了'; dialog.showModal();
++      }));
++      document.querySelector('.dialog-close').addEventListener('click', () => dialog.close());
++      dialog.addEventListener('click', event => {if (event.target === dialog) {const rect = dialog.getBoundingClientRect();if(event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();}});
++      confirm.addEventListener('click', () => {
++        dialog.close();
++        if(!selectedPlan) return;
++        const toast = document.getElementById('toast');
++        toast.textContent = '已选择' + names[selectedPlan] + (selectedPlan === 'free' ? ' · 永久免费' : billing === 'yearly' ? ' · 按年付费' : ' · 按月付费') + '，尚未产生订阅或扣费';
++        toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 4500);
++      });
++      document.querySelectorAll('.features svg').forEach(svg => svg.setAttribute('aria-hidden','true'));
++    })();
++  </script>
++</body>
++</html>
+
+tokens used
+13,700
+已生成当前目录下的 [index.html](index.html)，内含完整样式和交互，支持三档会员、月付/年付切换及手机适配。可直接用浏览器打开，无需安装依赖或启动服务器。

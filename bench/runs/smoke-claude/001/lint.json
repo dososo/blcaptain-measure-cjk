@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w1-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-25T11:06:17.320Z",
+    "mode": "static",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": []
+  },
+  "summary": {
+    "files": 2,
+    "cjk_files": 1,
+    "errors": 5,
+    "warns": 5,
+    "status": "fail"
+  },
+  "disabled_rules": [],
+  "fonts": [],
+  "findings": [
+    {
+      "rule": "T02",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.site-header > a.brand > span.seal:nth-of-type(1)",
+      "line": 14,
+      "message": "有 78 个中文元素没有开启 text-autospace。三大浏览器实现里它的初始值是 no-autospace，必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: \"text\"，在文案里打空格。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t02"
+    },
+    {
+      "rule": "T03",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.visit-grid:nth-of-type(2) > dl.visit-info > div:nth-of-type(3) > dd",
+      "line": 146,
+      "message": "配置的引号风格是 “”（curly），这里用了「」：「公交 4 路「满觉陇」站下，步」。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t03"
+    },
+    {
+      "rule": "T04",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.site-header > a.brand > span.seal:nth-of-type(1)",
+      "line": 14,
+      "message": "有 78 个中文元素没有 line-break: strict，标点可能出现在行首。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t04"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#top > section#beans:nth-of-type(2) > p.footnote",
+      "line": 93,
+      "message": "正文找不到行长约束（max-width / width），在宽屏上一行可能有几十个字。请给正文容器加 .measure-prose 或 max-width: 36em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#roast:nth-of-type(3) > div.principles:nth-of-type(2) > article.principle:nth-of-type(1) > p",
+      "line": 107,
+      "message": "正文找不到行长约束（max-width / width），在宽屏上一行可能有几十个字。请给正文容器加 .measure-prose 或 max-width: 36em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#roast:nth-of-type(3) > div.principles:nth-of-type(2) > article.principle:nth-of-type(2) > p",
+      "line": 112,
+      "message": "正文找不到行长约束（max-width / width），在宽屏上一行可能有几十个字。请给正文容器加 .measure-prose 或 max-width: 36em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#roast:nth-of-type(3) > div.principles:nth-of-type(2) > article.principle:nth-of-type(3) > p",
+      "line": 117,
+      "message": "正文找不到行长约束（max-width / width），在宽屏上一行可能有几十个字。请给正文容器加 .measure-prose 或 max-width: 36em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T05",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#roast:nth-of-type(3) > div.principles:nth-of-type(2) > article.principle:nth-of-type(4) > p",
+      "line": 122,
+      "message": "正文找不到行长约束（max-width / width），在宽屏上一行可能有几十个字。请给正文容器加 .measure-prose 或 max-width: 36em。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t05"
+    },
+    {
+      "rule": "T13",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "header.site-header > a.brand > span.seal:nth-of-type(1)",
+      "line": 14,
+      "message": "字体栈「var(--serif)」里没有中文字体，中文会回退到系统默认字体（Windows 上常是宋体）。请在西文字体后面加上中文字体，例如 \"PingFang SC\", \"Noto Sans SC\"。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13"
+    },
+    {
+      "rule": "T13",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "li.bean:nth-of-type(1) > dl.specs > div:nth-of-type(2) > dd",
+      "line": 49,
+      "message": "字体栈「var(--mono)」里没有中文字体，中文会回退到系统默认字体（Windows 上常是宋体）。请在西文字体后面加上中文字体，例如 \"PingFang SC\", \"Noto Sans SC\"。",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t13"
+    }
+  ]
+}

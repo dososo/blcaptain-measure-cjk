@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>活动报名</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">EVENT · 报名</p>
+        <h1 class="title">活动报名表</h1>
+        <p class="lead">请填写以下信息，带 <span style="color:var(--seal)">*</span> 为必填项。</p>
+      </div>
+      <div class="seal" aria-hidden="true">报名</div>
+    </header>
+
+    <form id="signup" novalidate>
+      <div class="field" data-field="name">
+        <label class="label" for="name">姓名<span class="req">*</span></label>
+        <input class="input" id="name" name="name" type="text" autocomplete="name"
+               maxlength="20" placeholder="请输入真实姓名" required>
+        <p class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" data-field="phone">
+        <label class="label" for="phone">手机号<span class="req">*</span></label>
+        <input class="input" id="phone" name="phone" type="tel" inputmode="numeric"
+               autocomplete="tel" maxlength="11" placeholder="11 位中国大陆手机号" required>
+        <p class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" data-field="city">
+        <label class="label" for="city">所在城市<span class="req">*</span></label>
+        <select class="input" id="city" name="city" required>
+          <option value="" disabled selected>请选择城市</option>
+          <option>北京</option>
+          <option>上海</option>
+          <option>广州</option>
+          <option>深圳</option>
+          <option>杭州</option>
+          <option>成都</option>
+          <option>武汉</option>
+          <option>南京</option>
+          <option>西安</option>
+          <option value="其他">其他城市</option>
+        </select>
+        <p class="error" aria-live="polite"></p>
+      </div>
+
+      <div class="field" data-field="other-city" hidden>
+        <label class="label" for="otherCity">城市名称<span class="req">*</span></label>
+        <input class="input" id="otherCity" name="otherCity" type="text" maxlength="20"
+               placeholder="请输入所在城市">
+        <p class="error" aria-live="polite"></p>
+      </div>
+
+      <fieldset class="field" data-field="session">
+        <legend class="label">参加场次<span class="req">*</span></legend>
+        <div class="sessions">
+          <label class="session">
+            <input type="radio" name="session" value="第一场 · 上午场">
+            <span class="session-name">第一场 · 上午场</span>
+            <span class="session-meta">09:30 – 11:30</span>
+          </label>
+          <label class="session">
+            <input type="radio" name="session" value="第二场 · 下午场">
+            <span class="session-name">第二场 · 下午场</span>
+            <span class="session-meta">14:00 – 16:00</span>
+          </label>
+          <label class="session">
+            <input type="radio" name="session" value="第三场 · 晚场">
+            <span class="session-name">第三场 · 晚场</span>
+            <span class="session-meta">19:00 – 21:00</span>
+          </label>
+        </div>
+        <p class="error" aria-live="polite"></p>
+      </fieldset>
+
+      <button class="submit" type="submit">提交报名</button>
+      <p class="note">本页为纯前端表单，提交后仅在本页展示结果，未接入后端。</p>
+    </form>
+
+    <section class="done" id="done" hidden aria-live="polite">
+      <h2 class="done-title">报名信息已记录</h2>
+      <p class="done-text">请核对以下信息：</p>
+      <dl class="summary" id="summary"></dl>
+      <button class="submit ghost" type="button" id="again">重新填写</button>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var form = document.getElementById('signup');
+      var done = document.getElementById('done');
+      var summary = document.getElementById('summary');
+      var city = document.getElementById('city');
+      var otherWrap = document.querySelector('[data-field="other-city"]');
+      var otherInput = document.getElementById('otherCity');
+
+      var PHONE_RE = /^1[3-9]\d{9}$/;
+
+      function setError(key, msg) {
+        var wrap = document.querySelector('[data-field="' + key + '"]');
+        wrap.classList.toggle('invalid', !!msg);
+        wrap.querySelector('.error').textContent = msg || '';
+        return !msg;
+      }
+
+      var rules = {
+        name: function () {
+          var v = form.name.value.trim();
+          if (!v) return '请填写姓名';
+          if (v.length < 2) return '姓名至少 2 个字';
+          return '';
+        },
+        phone: function () {
+          var v = form.phone.value.trim();
+          if (!v) return '请填写手机号';
+          if (!PHONE_RE.test(v)) return '请输入正确的 11 位手机号';
+          return '';
+        },
+        city: function () {
+          return city.value ? '' : '请选择所在城市';
+        },
+        'other-city': function () {
+          if (city.value !== '其他') return '';
+          return otherInput.value.trim() ? '' : '请填写城市名称';
+        },
+        session: function () {
+          return form.querySelector('input[name="session"]:checked') ? '' : '请选择参加场次';
+        }
+      };
+
+      function validate(key) { return setError(key, rules[key]()); }
+
+      // 手机号只保留数字
+      form.phone.addEventListener('input', function () {
+        this.value = this.value.replace(/\D/g, '').slice(0, 11);
+      });
+
+      city.addEventListener('change', function () {
+        var isOther = city.value === '其他';
+        otherWrap.hidden = !isOther;
+        otherInput.required = isOther;
+        if (!isOther) { otherInput.value = ''; setError('other-city', ''); }
+        validate('city');
+      });
+
+      ['name', 'phone'].forEach(function (k) {
+        form[k].addEventListener('blur', function () { validate(k); });
+      });
+      otherInput.addEventListener('blur', function () { validate('other-city'); });
+      form.addEventListener('change', function (e) {
+        if (e.target.name === 'session') validate('session');
+      });
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var keys = Object.keys(rules);
+        var ok = keys.map(validate).every(Boolean);
+        if (!ok) {
+          var first = form.querySelector('.invalid input, .invalid select');
+          if (first) first.focus();
+          return;
+        }
+
+        var phone = form.phone.value.trim();
+        var data = [
+          ['姓名', form.name.value.trim()],
+          ['手机号', phone.slice(0, 3) + ' **** ' + phone.slice(7)],
+          ['所在城市', city.value === '其他' ? otherInput.value.trim() : city.value],
+          ['参加场次', form.querySelector('input[name="session"]:checked').value]
+        ];
+
+        summary.textContent = '';
+        data.forEach(function (row) {
+          var div = document.createElement('div');
+          var dt = document.createElement('dt');
+          var dd = document.createElement('dd');
+          dt.textContent = row[0];
+          dd.textContent = row[1]; // textContent 防注入
+          div.appendChild(dt);
+          div.appendChild(dd);
+          summary.appendChild(div);
+        });
+
+        form.hidden = true;
+        done.hidden = false;
+        window.scrollTo(0, 0);
+      });
+
+      document.getElementById('again').addEventListener('click', function () {
+        form.reset();
+        otherWrap.hidden = true;
+        Object.keys(rules).forEach(function (k) { setError(k, ''); });
+        done.hidden = true;
+        form.hidden = false;
+        form.name.focus();
+      });
+    })();
+  </script>
+</body>
+</html>

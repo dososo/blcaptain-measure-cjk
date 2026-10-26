@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用 Python 处理 Excel 报表的 5 个技巧</title>
+  <meta name="description" content="多表合并、保留格式写入、透视汇总、条件格式和大文件读取：五个在日常报表里真正省时间的 Python 写法。">
+  <!-- measure.css 放在第一个：它声明的 measure 层排在最前，页面上的其他样式都会优先于它 -->
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<article class="measure-prose">
+
+  <header class="post-header">
+    <p class="crumb"><a href="#">技术博客</a> / 数据处理</p>
+    <h1>用 Python 处理 Excel 报表的 5 个技巧</h1>
+    <p class="meta">
+      <span>2026 年 10 月 26 日</span>
+      <span>阅读约 8 分钟</span>
+      <span>pandas 2.2 · openpyxl 3.1</span>
+    </p>
+  </header>
+
+  <p class="lead">每到月底，总有人要把十几个部门交上来的 Excel 拼成一张汇总表，再调格式、标颜色、发邮件。这些重复劳动大部分都可以交给 Python。下面五个技巧来自真实的报表脚本，每个都附了能直接运行的代码。</p>
+
+  <p>示例默认你已经装好了 <code>pandas</code> 和 <code>openpyxl</code>。文中的文件名和列名都是虚构的，换成自己的即可。</p>
+
+  <nav class="toc" aria-label="目录">
+    <p class="toc-title">本文目录</p>
+    <ol>
+      <li><a href="#tip-1">一次读入所有工作表并合并</a></li>
+      <li><a href="#tip-2">写回已有文件，不破坏原来的格式</a></li>
+      <li><a href="#tip-3">用 pivot_table 生成汇总报表</a></li>
+      <li><a href="#tip-4">自动调整列宽并加条件格式</a></li>
+      <li><a href="#tip-5">读取大文件时省内存</a></li>
+    </ol>
+  </nav>
+
+  <!-- 技巧 1 -->
+  <h2 id="tip-1"><span class="num">01</span>一次读入所有工作表并合并</h2>
+
+  <p>很多报表按月份或部门分成多个工作表，结构完全一样。逐个调用 <code>read_excel</code> 既啰嗦又容易漏表。把 <code>sheet_name</code> 设成 <code>None</code>，pandas 会返回一个字典：键是工作表名，值是对应的 DataFrame。</p>
+
+  <div class="code">
+    <div class="code-head"><span>merge_sheets.py</span><button class="copy" type="button">复制</button></div>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+<span class="c"># sheet_name=None：读取全部工作表，返回 {表名: DataFrame}</span>
+sheets = pd.<span class="f">read_excel</span>(<span class="s">"2026年销售明细.xlsx"</span>, sheet_name=<span class="k">None</span>)
+
+<span class="c"># 合并时把来源表名记成一列，方便后面按月份筛选</span>
+df = pd.<span class="f">concat</span>(
+    [d.<span class="f">assign</span>(月份=name) <span class="k">for</span> name, d <span class="k">in</span> sheets.<span class="f">items</span>()],
+    ignore_index=<span class="k">True</span>,
+)
+
+<span class="f">print</span>(df.shape)        <span class="c"># (行数, 列数)</span>
+<span class="f">print</span>(df[<span class="s">"月份"</span>].<span class="f">unique</span>())</code></pre>
+  </div>
+
+  <p>如果要合并的是一个文件夹里的多个文件，思路相同，只是外面再套一层 <code>glob</code>：</p>
+
+  <div class="code">
+    <div class="code-head"><span>merge_files.py</span><button class="copy" type="button">复制</button></div>
+<pre><code><span class="k">from</span> pathlib <span class="k">import</span> Path
+<span class="k">import</span> pandas <span class="k">as</span> pd
+
+frames = []
+<span class="k">for</span> path <span class="k">in</span> <span class="f">sorted</span>(<span class="f">Path</span>(<span class="s">"部门报表"</span>).<span class="f">glob</span>(<span class="s">"*.xlsx"</span>)):
+    <span class="k">if</span> path.name.<span class="f">startswith</span>(<span class="s">"~$"</span>):   <span class="c"># 跳过 Excel 打开时生成的临时文件</span>
+        <span class="k">continue</span>
+    d = pd.<span class="f">read_excel</span>(path)
+    d[<span class="s">"来源文件"</span>] = path.stem
+    frames.<span class="f">append</span>(d)
+
+df = pd.<span class="f">concat</span>(frames, ignore_index=<span class="k">True</span>)</code></pre>
+  </div>
+
+  <div class="note">
+    <p><span class="note-label">提示</span>各部门的列名常常不统一，比如“金额”和“金额（元）”。合并前先用 <code>d.columns = d.columns.str.strip()</code> 去掉首尾空格，再用一个映射字典统一列名，能少踩很多坑。</p>
+  </div>
+
+  <!-- 技巧 2 -->
+  <h2 id="tip-2"><span class="num">02</span>写回已有文件，不破坏原来的格式</h2>
+
+  <p>直接 <code>df.to_excel("报表.xlsx")</code> 会生成一个全新的文件，原来的表头样式、公司 Logo、其他工作表统统丢失。正确的做法是用追加模式打开 <code>ExcelWriter</code>，只覆盖需要更新的区域。</p>
+
+  <div class="code">
+    <div class="code-head"><span>write_back.py</span><button class="copy" type="button">复制</button></div>
+<pre><code><span class="k">import</span> pandas <span class="k">as</span> pd
+
+summary = df.<span class="f">groupby</span>(<span class="s">"区域"</span>, as_index=<span class="k">False</span>)[<span class="s">"销售额"</span>].<span class="f">sum</span>()
+
+<span class="k">with</span> pd.<span class="f">ExcelWriter</span>(
+    <span class="s">"月度报表模板.xlsx"</span>,
+    engine=<span class="s">"openpyxl"</span>,
+    mode=<span class="s">"a"</span>,                     <span class="c"># 追加到已有文件</span>
+    if_sheet_exists=<span class="s">"overlay"</span>,     <span class="c"># 只写数据，保留原有样式</span>
+) <span class="k">as</span> writer:
+    summary.<span class="f">to_excel</span>(
+        writer,
+        sheet_name=<span class="s">"汇总"</span>,
+        startrow=<span class="n">3</span>,                 <span class="c"># 从第 4 行开始写，留出模板的标题区</span>
+        index=<span class="k">False</span>,
+        header=<span class="k">False</span>,
+    )</code></pre>
+  </div>
+
+  <p><code>if_sheet_exists</code> 有四个取值，含义差别很大：</p>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>取值</th><th>行为</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>"error"</code></td><td>工作表已存在就报错（默认）</td></tr>
+        <tr><td><code>"new"</code></td><td>新建一个带数字后缀的工作表，比如“汇总1”</td></tr>
+        <tr><td><code>"replace"</code></td><td>删掉原表再新建，格式会丢</td></tr>
+        <tr><td><code>"overlay"</code></td><td>在原表上直接写入单元格，格式保留</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note">
+    <p><span class="note-label">注意</span>写入前要关掉 Excel 里打开的同名文件，否则在 Windows 上会遇到 <code>PermissionError</code>。另外，openpyxl 不会保留图表和数据透视表之外的一些高级对象，重要模板记得先备份。</p>
+  </div>
+
+  <!-- 技巧 3 -->
+  <h2 id="tip-3"><span class="num">03</span>用 pivot_table 生成汇总报表</h2>
+
+  <p>在 Excel 里拖数据透视表很直观，但每个月都要重新拖一遍。<code>pivot_table</code> 能用一行代码得到同样的结果，而且可以加上合计行。</p>
+
+  <div class="code">
+    <div class="code-head"><span>pivot.py</span><button class="copy" type="button">复制</button></div>
+<pre><code>report = pd.<span class="f">pivot_table</span>(
+    df,
+    index=<span class="s">"区域"</span>,              <span class="c"># 行</span>
+    columns=<span class="s">"月份"</span>,            <span class="c"># 列</span>
+    values=<span class="s">"销售额"</span>,           <span class="c"># 值</span>
+    aggfunc=<span class="s">"sum"</span>,
+    fill_value=<span class="n">0</span>,              <span class="c"># 没有数据的格子填 0，而不是 NaN</span>
+    margins=<span class="k">True</span>,              <span class="c"># 加上合计行和合计列</span>
+    margins_name=<span class="s">"合计"</span>,
+)
+
+<span class="c"># 让月份按自然顺序排列，而不是按字符串排序</span>
+order = [<span class="s">f"</span>{m}<span class="s">月"</span> <span class="k">for</span> m <span class="k">in</span> <span class="f">range</span>(<span class="n">1</span>, <span class="n">13</span>)]
+report = report.<span class="f">reindex</span>(
+    columns=[c <span class="k">for</span> c <span class="k">in</span> order <span class="k">if</span> c <span class="k">in</span> report.columns] + [<span class="s">"合计"</span>]
+)
+
+report.<span class="f">to_excel</span>(<span class="s">"区域月度汇总.xlsx"</span>)</code></pre>
+  </div>
+
+  <p>需要同时统计多个指标时，给 <code>aggfunc</code> 传字典即可，例如 <code>{"销售额": "sum", "订单号": "nunique"}</code>，一张表里就能看到金额和订单数。</p>
+
+  <!-- 技巧 4 -->
+  <h2 id="tip-4"><span class="num">04</span>自动调整列宽并加条件格式</h2>
+
+  <p>pandas 导出的表格列宽都是默认值，长一点的文字会被截断，数字也没有千分位。用 openpyxl 再处理一遍，报表看起来就像手工调过的。</p>
+
+  <div class="code">
+    <div class="code-head"><span>beautify.py</span><button class="copy" type="button">复制</button></div>
+<pre><code><span class="k">from</span> openpyxl <span class="k">import</span> load_workbook
+<span class="k">from</span> openpyxl.formatting.rule <span class="k">import</span> CellIsRule, ColorScaleRule
+<span class="k">from</span> openpyxl.styles <span class="k">import</span> Font, PatternFill
+<span class="k">from</span> openpyxl.utils <span class="k">import</span> get_column_letter
+
+wb = <span class="f">load_workbook</span>(<span class="s">"区域月度汇总.xlsx"</span>)
+ws = wb.active
+
+<span class="k">def</span> <span class="f">display_width</span>(value):
+    <span class="s">"""中文字符按 2 个宽度计算，英文和数字按 1 个。"""</span>
+    text = <span class="f">str</span>(value) <span class="k">if</span> value <span class="k">is not</span> <span class="k">None</span> <span class="k">else</span> <span class="s">""</span>
+    <span class="k">return</span> <span class="f">sum</span>(<span class="n">2</span> <span class="k">if</span> <span class="f">ord</span>(ch) &gt; <span class="n">127</span> <span class="k">else</span> <span class="n">1</span> <span class="k">for</span> ch <span class="k">in</span> text)
+
+<span class="c"># 1. 按每列最长的内容设置列宽</span>
+<span class="k">for</span> col <span class="k">in</span> ws.<span class="f">iter_cols</span>():
+    width = <span class="f">max</span>(<span class="f">display_width</span>(c.value) <span class="k">for</span> c <span class="k">in</span> col)
+    ws.column_dimensions[<span class="f">get_column_letter</span>(col[<span class="n">0</span>].column)].width = width + <span class="n">2</span>
+
+<span class="c"># 2. 表头加粗、冻结首行</span>
+<span class="k">for</span> cell <span class="k">in</span> ws[<span class="n">1</span>]:
+    cell.font = <span class="f">Font</span>(bold=<span class="k">True</span>)
+ws.freeze_panes = <span class="s">"B2"</span>
+
+<span class="c"># 3. 数字加千分位</span>
+data_range = <span class="s">f"B2:</span>{<span class="f">get_column_letter</span>(ws.max_column)}{ws.max_row}<span class="s">"</span>
+<span class="k">for</span> row <span class="k">in</span> ws[data_range]:
+    <span class="k">for</span> cell <span class="k">in</span> row:
+        cell.number_format = <span class="s">"#,##0"</span>
+
+<span class="c"># 4. 条件格式：低于 10 万标红，整体加三色色阶</span>
+ws.conditional_formatting.<span class="f">add</span>(
+    data_range,
+    <span class="f">CellIsRule</span>(operator=<span class="s">"lessThan"</span>, formula=[<span class="s">"100000"</span>],
+               fill=<span class="f">PatternFill</span>(<span class="s">"solid"</span>, fgColor=<span class="s">"F8D7D3"</span>)),
+)
+ws.conditional_formatting.<span class="f">add</span>(
+    data_range,
+    <span class="f">ColorScaleRule</span>(start_type=<span class="s">"min"</span>, start_color=<span class="s">"FFFFFF"</span>,
+                   end_type=<span class="s">"max"</span>, end_color=<span class="s">"63BE7B"</span>),
+)
+
+wb.<span class="f">save</span>(<span class="s">"区域月度汇总.xlsx"</span>)</code></pre>
+  </div>
+
+  <p>这里用的是 Excel 原生的条件格式，而不是把颜色直接写进单元格。好处是同事在 Excel 里改了数字，颜色会跟着变。</p>
+
+  <!-- 技巧 5 -->
+  <h2 id="tip-5"><span class="num">05</span>读取大文件时省内存</h2>
+
+  <p>几十万行的导出文件，用默认参数读进来可能要占好几 GB 内存，还要等上一两分钟。三个参数能明显改善：只读需要的列，提前指定类型，以及把重复值多的文本列设成 <code>category</code>。</p>
+
+  <div class="code">
+    <div class="code-head"><span>read_large.py</span><button class="copy" type="button">复制</button></div>
+<pre><code>df = pd.<span class="f">read_excel</span>(
+    <span class="s">"全年订单导出.xlsx"</span>,
+    usecols=[<span class="s">"订单日期"</span>, <span class="s">"区域"</span>, <span class="s">"产品线"</span>, <span class="s">"销售额"</span>],   <span class="c"># 只读需要的列</span>
+    dtype={
+        <span class="s">"区域"</span>: <span class="s">"category"</span>,       <span class="c"># 重复值多的文本列，内存可降到十分之一</span>
+        <span class="s">"产品线"</span>: <span class="s">"category"</span>,
+        <span class="s">"销售额"</span>: <span class="s">"float32"</span>,
+    },
+    parse_dates=[<span class="s">"订单日期"</span>],
+)
+
+<span class="f">print</span>(df.<span class="f">memory_usage</span>(deep=<span class="k">True</span>).<span class="f">sum</span>() / <span class="n">1024</span>**<span class="n">2</span>, <span class="s">"MB"</span>)</code></pre>
+  </div>
+
+  <p>如果文件大到连读进来都困难，可以用 openpyxl 的只读模式逐行处理，边读边累加，内存占用几乎是常数：</p>
+
+  <div class="code">
+    <div class="code-head"><span>stream_rows.py</span><button class="copy" type="button">复制</button></div>
+<pre><code><span class="k">from</span> collections <span class="k">import</span> defaultdict
+<span class="k">from</span> openpyxl <span class="k">import</span> load_workbook
+
+wb = <span class="f">load_workbook</span>(<span class="s">"全年订单导出.xlsx"</span>, read_only=<span class="k">True</span>, data_only=<span class="k">True</span>)
+ws = wb.active
+
+totals = <span class="f">defaultdict</span>(<span class="f">float</span>)
+rows = ws.<span class="f">iter_rows</span>(min_row=<span class="n">2</span>, values_only=<span class="k">True</span>)   <span class="c"># 跳过表头</span>
+<span class="k">for</span> date, region, product, amount <span class="k">in</span> rows:
+    totals[region] += amount <span class="k">or</span> <span class="n">0</span>
+
+wb.<span class="f">close</span>()   <span class="c"># 只读模式会占用文件句柄，用完要关闭</span>
+<span class="f">print</span>(<span class="f">dict</span>(totals))</code></pre>
+  </div>
+
+  <div class="note">
+    <p><span class="note-label">提示</span><code>data_only=True</code> 读取的是公式的计算结果，而不是公式本身。但这个结果是 Excel 上次保存时缓存的；如果文件是由程序生成、从没在 Excel 里打开过，读到的会是 <code>None</code>。</p>
+  </div>
+
+  <h2 id="summary">小结</h2>
+
+  <p>把这五个技巧串起来，就是一条完整的报表流水线：合并原始数据，透视汇总，写回模板，最后统一美化。整个脚本通常不超过一百行，跑一次只要几秒钟。</p>
+
+  <p>建议先从你每个月<em>最耗时</em>的那一步开始改，跑通之后再逐步把其他环节接进来。等整条流程稳定了，再配合定时任务，月底那一天就能轻松很多。</p>
+
+  <footer class="post-footer">
+    <ul class="tags" aria-label="标签">
+      <li>Python</li>
+      <li>pandas</li>
+      <li>openpyxl</li>
+      <li>Excel</li>
+      <li>自动化</li>
+    </ul>
+    <p>文中代码在 Python 3.12、pandas 2.2、openpyxl 3.1 下测试通过。</p>
+  </footer>
+
+</article>
+</div>
+
+<script>
+  document.querySelectorAll(".copy").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var code = btn.closest(".code").querySelector("pre code").innerText;
+      var done = function (label) {
+        btn.textContent = label;
+        setTimeout(function () { btn.textContent = "复制"; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(
+          function () { done("已复制"); },
+          function () { done("复制失败"); }
+        );
+      } else {
+        done("复制失败");
+      }
+    });
+  });
+</script>
+</body>
+</html>

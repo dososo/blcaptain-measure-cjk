@@ -1,0 +1,557 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-029-dQKlc5 <提示词>
+工作目录：<tmp>/measure-baseline-codex-029-dQKlc5
+退出码：0 信号：无 用时：130s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-029-dQKlc5
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17659-0102-77c2-808b-483980ade62d
+--------
+user
+做一张小红书卡片（HTML，竖版 3:4），推荐 5 本适合睡前读的书。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会做成暖色、安静的睡前阅读卡片，用 3:4 竖版排版展示 5 本书和简短推荐语，并写入当前目录的 `index.html`。
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-029-dQKlc5
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-029-dQKlc5
+
+web search: 
+web search: 人间草木 汪曾祺 山茶文具店 小川糸 简介 ...
+exec
+/bin/zsh -lc 'ls -la' in <tmp>/measure-baseline-codex-029-dQKlc5
+ succeeded in 0ms:
+total 0
+drwx------@     2 user  staff      64 Oct 26 11:55 .
+drwx------@ 14742 user  staff  471744 Oct 26 11:55 ..
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-029-dQKlc5/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..4c32ca6393c7e060ac1ad8a74d94ca93e63ac352
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,113 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f4f0e5">
++  <title>睡前，把心放轻一点 · 5 本枕边书</title>
++  <style>
++    * { box-sizing: border-box; }
++    :root { color-scheme: light; }
++    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; background: #dedfd7; color: #34473c; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
++    .frame { width: min(900px, 100%); container-type: inline-size; }
++    .card { position: relative; isolation: isolate; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; padding: 5.4cqw 7cqw 4.2cqw; background: #f6f2e8; box-shadow: 0 18px 70px #26392d1c; }
++    .card::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .24; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239b9276' opacity='.3' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); pointer-events: none; }
++    .topline { display: flex; justify-content: space-between; align-items: center; font-size: 1.25cqw; letter-spacing: .24cqw; font-weight: 500; }
++    .topline span:first-child { display: flex; align-items: center; gap: 1cqw; }
++    .dot { width: .7cqw; height: .7cqw; border-radius: 50%; background: #aa724d; }
++    header { position: relative; padding-top: 4.5cqw; padding-bottom: 3.5cqw; }
++    .eyebrow { margin: 0 0 1.3cqw; color: #977951; font-size: 1.6cqw; letter-spacing: .5cqw; }
++    h1 { margin: 0; font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; font-size: 7.3cqw; font-weight: 600; letter-spacing: .15cqw; line-height: 1.24; }
++    h1 .second { display: block; }
++    .hero-art { position: absolute; width: 25cqw; height: 25cqw; right: -1.2cqw; top: 3.9cqw; }
++    .intro { display: flex; align-items: center; gap: 1.5cqw; margin: 2.5cqw 0 0; color: #6d7469; font-size: 1.85cqw; letter-spacing: .1cqw; }
++    .intro strong { color: #526047; font-weight: 500; padding: .55cqw 1.3cqw; border-radius: 50%; background: #e9dfb8; transform: rotate(-5deg); }
++    .list-heading { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #a8ad9c; border-bottom: 1px solid #c8c9b9; padding: 1.4cqw 0; color: #78816f; font-size: 1.2cqw; letter-spacing: .2cqw; }
++    .list-heading b { color: #4d604c; font-weight: 500; font-size: 1.4cqw; letter-spacing: .22cqw; }
++    ol { margin: 0; padding: 0; list-style: none; }
++    .book { display: grid; grid-template-columns: 3.6cqw 8.2cqw 1fr; align-items: center; column-gap: 2.5cqw; height: 14.6cqw; border-bottom: 1px solid #d7d7c8; }
++    .number { align-self: start; padding-top: 2.4cqw; font-family: Georgia, serif; color: #9a9d88; font-style: italic; font-size: 2cqw; }
++    .cover { width: 8.2cqw; height: 10.5cqw; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 1.15cqw .35cqw .5cqw .65cqw; box-shadow: .3cqw .4cqw .6cqw #30352b1c; border-radius: .15cqw .4cqw .4cqw .15cqw; }
++    .cover::after { content: ""; position: absolute; inset: 0; border-left: .4cqw solid #00000013; box-shadow: inset .6cqw 0 .3cqw #ffffff20, inset -.2cqw 0 #00000010; pointer-events: none; }
++    .cover-title { position: relative; z-index: 1; font-family: "Songti SC", "STSong", serif; font-size: 1.25cqw; font-weight: 600; letter-spacing: .18cqw; white-space: nowrap; }
++    .cover-author { position: relative; z-index: 1; font-size: .55cqw; margin-top: .5cqw; letter-spacing: .1cqw; }
++    .cover svg { position: absolute; bottom: .5cqw; width: 6.5cqw; height: 6cqw; }
++    .green { background: #dce1cd; color: #455b42; transform: rotate(-3deg); }
++    .pink { background: #e9c6b6; color: #684c3e; transform: rotate(2deg); }
++    .blue { background: #334e68; color: #f7e6b9; transform: rotate(-2deg); }
++    .sand { background: #e9dfbb; color: #685e43; transform: rotate(2deg); }
++    .lake { background: #8daba5; color: #233f3d; transform: rotate(-2deg); }
++    .book-top { display: flex; align-items: center; justify-content: space-between; gap: 1cqw; }
++    h2 { margin: 0; font-size: 2.9cqw; letter-spacing: .08cqw; font-weight: 600; }
++    h2 a { color: inherit; text-decoration: none; }
++    h2 a:hover { text-decoration: underline; text-underline-offset: .4cqw; }
++    .tag { flex-shrink: 0; padding: .45cqw 1cqw; border: 1px solid #c5c9b6; border-radius: .3cqw; color: #738063; font-size: 1.15cqw; letter-spacing: .1cqw; }
++    .author { margin: .55cqw 0 1cqw; font-size: 1.4cqw; color: #929082; }
++    .description { margin: 0; font-size: 1.85cqw; line-height: 1.65; color: #626a5d; letter-spacing: .035cqw; }
++    footer { padding-top: 2.8cqw; }
++    .ritual { display: flex; align-items: center; gap: 1.2cqw; color: #5b6c52; font-size: 1.65cqw; letter-spacing: .1cqw; }
++    .ritual svg { width: 2.7cqw; height: 2.7cqw; flex-shrink: 0; }
++    .bottomline { display: flex; justify-content: space-between; align-items: center; margin-top: 2.1cqw; font-size: 1.15cqw; letter-spacing: .12cqw; color: #9a9a88; }
++    .goodnight { font-family: Georgia, serif; font-size: 2cqw; font-style: italic; color: #7a846b; }
++    @media (max-width: 600px) { body { padding: 0; background: #f6f2e8; } .card { box-shadow: none; } }
++    @media print { @page { size: 180mm 240mm; margin: 0; } body { padding: 0; background: none; } .frame { width: 180mm; } .card { box-shadow: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
++  </style>
++</head>
++<body>
++  <div class="frame">
++    <main class="card" aria-label="五本适合睡前读的书推荐卡片">
++      <div class="topline"><span><i class="dot" aria-hidden="true"></i> 枕边阅读计划</span><span>BEDTIME READING / VOL. 01</span></div>
++      <header>
++        <p class="eyebrow">给忙碌了一天的你</p>
++        <h1>睡前，<span class="second">把心放轻一点</span></h1>
++        <svg class="hero-art" viewBox="0 0 240 240" fill="none" aria-hidden="true">
++          <circle cx="142" cy="92" r="76" fill="#eae5cd" opacity=".65"/>
++          <path d="M154 31c-21 20-17 52 10 65-30 9-55-12-48-39 4-15 19-26 38-26Z" fill="#c4a56b"/>
++          <path d="m82 34 3 8 8 3-8 3-3 8-3-8-8-3 8-3 3-8ZM193 105l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#a1a27f"/>
++          <circle cx="189" cy="47" r="2" fill="#a1a27f"/><circle cx="100" cy="100" r="2" fill="#a1a27f"/>
++          <path d="m33 159 76 27 88-30-77-22-87 25Z" fill="#a7b297" stroke="#5c7058" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m33 159 1 12 75 29 88-30v-14l-88 30-76-27Z" fill="#e9e6d3" stroke="#5c7058" stroke-width="1.5"/>
++          <path d="m34 175 75 28 91-31M109 186v14M40 166l62 23M121 190l67-23" stroke="#7d8c70" stroke-width="1.5" stroke-linecap="round"/>
++          <path d="M110 181c-17-18-45-24-68-25l13-40c25 3 45 11 59 29 16-13 39-19 66-17l8 32c-34-1-55 6-78 21Z" fill="#fbf8ee" stroke="#6c7c60" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m114 145-4 36M62 128c15 3 28 8 39 17M59 136c15 3 27 9 38 17M56 144c15 3 27 9 38 17M126 146c14-7 28-10 44-9M125 154c15-7 31-10 47-9" stroke="#b9bba4" stroke-width="1.3" stroke-linecap="round"/>
++          <path d="m142 169 2 24 8-6 7 2-3-25" fill="#b47d5f"/>
++          <path d="M183 194c20-21 27-45 26-72M206 153c-13 0-19-8-19-17 13 2 20 8 19 17ZM210 143c13-4 18-13 15-23-13 5-17 13-15 23ZM199 174c-12-1-18-8-18-17 12 2 18 8 18 17Z" stroke="#7f8c65" stroke-width="1.5" fill="#b3bc99" stroke-linejoin="round"/>
++        </svg>
++        <p class="intro"><strong>5 本枕边书</strong> 每晚读几页，让白天的喧嚣慢慢退场。</p>
++      </header>
++      <div class="list-heading"><b>今晚，你想把心安放在哪里？</b><span>A LITTLE READING, A LITTLE PEACE</span></div>
++      <ol>
++        <li class="book">
++          <span class="number">01</span>
++          <div class="cover green" aria-hidden="true"><span class="cover-title">人间草木</span><span class="cover-author">汪曾祺</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 66 38 9M40 45 21 27M40 34l17-16M41 56l20-15" stroke="#607451" stroke-width="1.5"/><g fill="#83956a"><ellipse cx="22" cy="28" rx="6" ry="13" transform="rotate(-40 22 28)"/><ellipse cx="55" cy="23" rx="6" ry="13" transform="rotate(40 55 23)"/><ellipse cx="57" cy="44" rx="6" ry="13" transform="rotate(48 57 44)"/><ellipse cx="37" cy="14" rx="5" ry="12"/></g></svg></div>
++          <div><div class="book-top"><h2>人间草木</h2><span class="tag">人间烟火</span></div><p class="author">汪曾祺 · 散文</p><p class="description">花草、吃食与旧日小事，都被写得有滋有味。<br>适合累了一天，只想感受一点日常温柔的你。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">02</span>
++          <div class="cover pink" aria-hidden="true"><span class="cover-title">山茶文具店</span><span class="cover-author">小川糸</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 67V29m0 18L26 37" stroke="#75815f" stroke-width="2"/><ellipse cx="52" cy="49" rx="12" ry="5" fill="#85916b" transform="rotate(-30 52 49)"/><path d="m11 53 23-4 4 15-23 4-4-15Z" fill="#f9ebd7"/><path d="m12 54 14 6 8-10" stroke="#aa9981"/><g fill="#ad6855"><circle cx="36" cy="24" r="9"/><circle cx="48" cy="25" r="9"/><circle cx="42" cy="16" r="9"/><circle cx="42" cy="31" r="9"/></g><circle cx="42" cy="25" r="4" fill="#e2bb75"/></svg></div>
++          <div><div class="book-top"><h2>山茶文具店</h2><span class="tag">温柔来信</span></div><p class="author">[日] 小川糸 · 小说</p><p class="description">走进镰仓的小店，读一封封替人写下的信。<br>在缓缓展开的故事里，感受人与人之间的善意。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">03</span>
++          <div class="cover blue" aria-hidden="true"><span class="cover-title">小王子</span><span class="cover-author">LE PETIT PRINCE</span><svg viewBox="0 0 80 70" fill="none"><circle cx="41" cy="67" r="25" fill="#b5b3a1"/><path d="m41 46-2-17 7-1 3 18" fill="#ceb77c"/><circle cx="42" cy="24" r="5" fill="#e5c98d"/><path d="m40 31 22 5-1 3-22-5" fill="#c79761"/><path d="m17 14 1 4 4 1-4 1-1 4-1-4-4-1 4-1 1-4Z" fill="#eadcae"/><circle cx="61" cy="10" r="1.5" fill="#eadcae"/><circle cx="67" cy="43" r="1" fill="#eadcae"/></svg></div>
++          <div><div class="book-top"><h2><a href="https://www.tup.tsinghua.edu.cn/booksCenter/book_05581601.html" target="_blank" rel="noopener noreferrer" title="查看出版社图书介绍">小王子</a></h2><span class="tag">重拾童心</span></div><p class="author">[法] 圣埃克苏佩里 · 童话</p><p class="description">跟着小王子拜访星球，重新想想爱与陪伴。<br>读一小章，留一点时间给心里那个小孩。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">04</span>
++          <div class="cover sand" aria-hidden="true"><span class="cover-title">飞鸟集</span><span class="cover-author">STRAY BIRDS</span><svg viewBox="0 0 80 70" fill="none"><circle cx="57" cy="22" r="12" fill="#d4b56e" opacity=".7"/><path d="M12 34c9-4 15-3 23 2 5-10 13-15 25-15-8 5-14 11-18 19-11-4-20-6-30-6Z" fill="#657468"/><path d="M21 54c5-3 10-2 15 0 3-5 7-8 13-8" stroke="#90977a" stroke-width="2" stroke-linecap="round"/></svg></div>
++          <div><div class="book-top"><h2>飞鸟集</h2><span class="tag">片刻诗意</span></div><p class="author">[印] 泰戈尔 · 诗集</p><p class="description">短短几行，把自然、爱与生活写成微光。<br>不必追赶情节，读几首就可以轻轻合上。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">05</span>
++          <div class="cover lake" aria-hidden="true"><span class="cover-title">瓦尔登湖</span><span class="cover-author">H. D. THOREAU</span><svg viewBox="0 0 80 70" fill="none"><path d="m0 32 17-18 15 14 15-21 33 27v36H0Z" fill="#5d8077"/><path d="m0 40 24-12 22 11 34-13v44H0Z" fill="#41695f"/><path d="M0 47c19-4 34 2 49 0s22-3 31-2v25H0Z" fill="#b9c9b7"/><path d="M9 53h27m9 5h24m-51 5h30" stroke="#819f91" stroke-width="1.5"/></svg></div>
++          <div><div class="book-top"><h2>瓦尔登湖</h2><span class="tag">走近自然</span></div><p class="author">[美] 亨利·戴维·梭罗 · 散文</p><p class="description">把注意力交给湖水、树林和四季的变化。<br>从描写自然的段落读起，适合想慢下来的一晚。</p></div>
++        </li>
++      </ol>
++      <footer>
++        <div class="ritual"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M18 4A10 10 0 1 0 24 19 10 10 0 0 1 18 4Z" stroke="currentColor" stroke-width="1.4"/><path d="m23 5 .8 2.3L26 8l-2.2.7L23 11l-.8-2.3L20 8l2.2-.7L23 5Z" fill="currentColor"/></svg><span>睡前小仪式：放下手机 · 留一盏暖灯 · 读 10 分钟</span></div>
++        <div class="bottomline"><span>不必读完一章，困了就合上。&nbsp; #睡前阅读 &nbsp; #治愈系书单</span><span class="goodnight">Good night, slow reader.</span></div>
++      </footer>
++    </main>
++  </div>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..4c32ca6393c7e060ac1ad8a74d94ca93e63ac352
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,113 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f4f0e5">
++  <title>睡前，把心放轻一点 · 5 本枕边书</title>
++  <style>
++    * { box-sizing: border-box; }
++    :root { color-scheme: light; }
++    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; background: #dedfd7; color: #34473c; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
++    .frame { width: min(900px, 100%); container-type: inline-size; }
++    .card { position: relative; isolation: isolate; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; padding: 5.4cqw 7cqw 4.2cqw; background: #f6f2e8; box-shadow: 0 18px 70px #26392d1c; }
++    .card::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .24; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239b9276' opacity='.3' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); pointer-events: none; }
++    .topline { display: flex; justify-content: space-between; align-items: center; font-size: 1.25cqw; letter-spacing: .24cqw; font-weight: 500; }
++    .topline span:first-child { display: flex; align-items: center; gap: 1cqw; }
++    .dot { width: .7cqw; height: .7cqw; border-radius: 50%; background: #aa724d; }
++    header { position: relative; padding-top: 4.5cqw; padding-bottom: 3.5cqw; }
++    .eyebrow { margin: 0 0 1.3cqw; color: #977951; font-size: 1.6cqw; letter-spacing: .5cqw; }
++    h1 { margin: 0; font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; font-size: 7.3cqw; font-weight: 600; letter-spacing: .15cqw; line-height: 1.24; }
++    h1 .second { display: block; }
++    .hero-art { position: absolute; width: 25cqw; height: 25cqw; right: -1.2cqw; top: 3.9cqw; }
++    .intro { display: flex; align-items: center; gap: 1.5cqw; margin: 2.5cqw 0 0; color: #6d7469; font-size: 1.85cqw; letter-spacing: .1cqw; }
++    .intro strong { color: #526047; font-weight: 500; padding: .55cqw 1.3cqw; border-radius: 50%; background: #e9dfb8; transform: rotate(-5deg); }
++    .list-heading { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #a8ad9c; border-bottom: 1px solid #c8c9b9; padding: 1.4cqw 0; color: #78816f; font-size: 1.2cqw; letter-spacing: .2cqw; }
++    .list-heading b { color: #4d604c; font-weight: 500; font-size: 1.4cqw; letter-spacing: .22cqw; }
++    ol { margin: 0; padding: 0; list-style: none; }
++    .book { display: grid; grid-template-columns: 3.6cqw 8.2cqw 1fr; align-items: center; column-gap: 2.5cqw; height: 14.6cqw; border-bottom: 1px solid #d7d7c8; }
++    .number { align-self: start; padding-top: 2.4cqw; font-family: Georgia, serif; color: #9a9d88; font-style: italic; font-size: 2cqw; }
++    .cover { width: 8.2cqw; height: 10.5cqw; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 1.15cqw .35cqw .5cqw .65cqw; box-shadow: .3cqw .4cqw .6cqw #30352b1c; border-radius: .15cqw .4cqw .4cqw .15cqw; }
++    .cover::after { content: ""; position: absolute; inset: 0; border-left: .4cqw solid #00000013; box-shadow: inset .6cqw 0 .3cqw #ffffff20, inset -.2cqw 0 #00000010; pointer-events: none; }
++    .cover-title { position: relative; z-index: 1; font-family: "Songti SC", "STSong", serif; font-size: 1.25cqw; font-weight: 600; letter-spacing: .18cqw; white-space: nowrap; }
++    .cover-author { position: relative; z-index: 1; font-size: .55cqw; margin-top: .5cqw; letter-spacing: .1cqw; }
++    .cover svg { position: absolute; bottom: .5cqw; width: 6.5cqw; height: 6cqw; }
++    .green { background: #dce1cd; color: #455b42; transform: rotate(-3deg); }
++    .pink { background: #e9c6b6; color: #684c3e; transform: rotate(2deg); }
++    .blue { background: #334e68; color: #f7e6b9; transform: rotate(-2deg); }
++    .sand { background: #e9dfbb; color: #685e43; transform: rotate(2deg); }
++    .lake { background: #8daba5; color: #233f3d; transform: rotate(-2deg); }
++    .book-top { display: flex; align-items: center; justify-content: space-between; gap: 1cqw; }
++    h2 { margin: 0; font-size: 2.9cqw; letter-spacing: .08cqw; font-weight: 600; }
++    h2 a { color: inherit; text-decoration: none; }
++    h2 a:hover { text-decoration: underline; text-underline-offset: .4cqw; }
++    .tag { flex-shrink: 0; padding: .45cqw 1cqw; border: 1px solid #c5c9b6; border-radius: .3cqw; color: #738063; font-size: 1.15cqw; letter-spacing: .1cqw; }
++    .author { margin: .55cqw 0 1cqw; font-size: 1.4cqw; color: #929082; }
++    .description { margin: 0; font-size: 1.85cqw; line-height: 1.65; color: #626a5d; letter-spacing: .035cqw; }
++    footer { padding-top: 2.8cqw; }
++    .ritual { display: flex; align-items: center; gap: 1.2cqw; color: #5b6c52; font-size: 1.65cqw; letter-spacing: .1cqw; }
++    .ritual svg { width: 2.7cqw; height: 2.7cqw; flex-shrink: 0; }
++    .bottomline { display: flex; justify-content: space-between; align-items: center; margin-top: 2.1cqw; font-size: 1.15cqw; letter-spacing: .12cqw; color: #9a9a88; }
++    .goodnight { font-family: Georgia, serif; font-size: 2cqw; font-style: italic; color: #7a846b; }
++    @media (max-width: 600px) { body { padding: 0; background: #f6f2e8; } .card { box-shadow: none; } }
++    @media print { @page { size: 180mm 240mm; margin: 0; } body { padding: 0; background: none; } .frame { width: 180mm; } .card { box-shadow: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
++  </style>
++</head>
++<body>
++  <div class="frame">
++    <main class="card" aria-label="五本适合睡前读的书推荐卡片">
++      <div class="topline"><span><i class="dot" aria-hidden="true"></i> 枕边阅读计划</span><span>BEDTIME READING / VOL. 01</span></div>
++      <header>
++        <p class="eyebrow">给忙碌了一天的你</p>
++        <h1>睡前，<span class="second">把心放轻一点</span></h1>
++        <svg class="hero-art" viewBox="0 0 240 240" fill="none" aria-hidden="true">
++          <circle cx="142" cy="92" r="76" fill="#eae5cd" opacity=".65"/>
++          <path d="M154 31c-21 20-17 52 10 65-30 9-55-12-48-39 4-15 19-26 38-26Z" fill="#c4a56b"/>
++          <path d="m82 34 3 8 8 3-8 3-3 8-3-8-8-3 8-3 3-8ZM193 105l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#a1a27f"/>
++          <circle cx="189" cy="47" r="2" fill="#a1a27f"/><circle cx="100" cy="100" r="2" fill="#a1a27f"/>
++          <path d="m33 159 76 27 88-30-77-22-87 25Z" fill="#a7b297" stroke="#5c7058" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m33 159 1 12 75 29 88-30v-14l-88 30-76-27Z" fill="#e9e6d3" stroke="#5c7058" stroke-width="1.5"/>
++          <path d="m34 175 75 28 91-31M109 186v14M40 166l62 23M121 190l67-23" stroke="#7d8c70" stroke-width="1.5" stroke-linecap="round"/>
++          <path d="M110 181c-17-18-45-24-68-25l13-40c25 3 45 11 59 29 16-13 39-19 66-17l8 32c-34-1-55 6-78 21Z" fill="#fbf8ee" stroke="#6c7c60" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m114 145-4 36M62 128c15 3 28 8 39 17M59 136c15 3 27 9 38 17M56 144c15 3 27 9 38 17M126 146c14-7 28-10 44-9M125 154c15-7 31-10 47-9" stroke="#b9bba4" stroke-width="1.3" stroke-linecap="round"/>
++          <path d="m142 169 2 24 8-6 7 2-3-25" fill="#b47d5f"/>
++          <path d="M183 194c20-21 27-45 26-72M206 153c-13 0-19-8-19-17 13 2 20 8 19 17ZM210 143c13-4 18-13 15-23-13 5-17 13-15 23ZM199 174c-12-1-18-8-18-17 12 2 18 8 18 17Z" stroke="#7f8c65" stroke-width="1.5" fill="#b3bc99" stroke-linejoin="round"/>
++        </svg>
++        <p class="intro"><strong>5 本枕边书</strong> 每晚读几页，让白天的喧嚣慢慢退场。</p>
++      </header>
++      <div class="list-heading"><b>今晚，你想把心安放在哪里？</b><span>A LITTLE READING, A LITTLE PEACE</span></div>
++      <ol>
++        <li class="book">
++          <span class="number">01</span>
++          <div class="cover green" aria-hidden="true"><span class="cover-title">人间草木</span><span class="cover-author">汪曾祺</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 66 38 9M40 45 21 27M40 34l17-16M41 56l20-15" stroke="#607451" stroke-width="1.5"/><g fill="#83956a"><ellipse cx="22" cy="28" rx="6" ry="13" transform="rotate(-40 22 28)"/><ellipse cx="55" cy="23" rx="6" ry="13" transform="rotate(40 55 23)"/><ellipse cx="57" cy="44" rx="6" ry="13" transform="rotate(48 57 44)"/><ellipse cx="37" cy="14" rx="5" ry="12"/></g></svg></div>
++          <div><div class="book-top"><h2>人间草木</h2><span class="tag">人间烟火</span></div><p class="author">汪曾祺 · 散文</p><p class="description">花草、吃食与旧日小事，都被写得有滋有味。<br>适合累了一天，只想感受一点日常温柔的你。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">02</span>
++          <div class="cover pink" aria-hidden="true"><span class="cover-title">山茶文具店</span><span class="cover-author">小川糸</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 67V29m0 18L26 37" stroke="#75815f" stroke-width="2"/><ellipse cx="52" cy="49" rx="12" ry="5" fill="#85916b" transform="rotate(-30 52 49)"/><path d="m11 53 23-4 4 15-23 4-4-15Z" fill="#f9ebd7"/><path d="m12 54 14 6 8-10" stroke="#aa9981"/><g fill="#ad6855"><circle cx="36" cy="24" r="9"/><circle cx="48" cy="25" r="9"/><circle cx="42" cy="16" r="9"/><circle cx="42" cy="31" r="9"/></g><circle cx="42" cy="25" r="4" fill="#e2bb75"/></svg></div>
++          <div><div class="book-top"><h2>山茶文具店</h2><span class="tag">温柔来信</span></div><p class="author">[日] 小川糸 · 小说</p><p class="description">走进镰仓的小店，读一封封替人写下的信。<br>在缓缓展开的故事里，感受人与人之间的善意。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">03</span>
++          <div class="cover blue" aria-hidden="true"><span class="cover-title">小王子</span><span class="cover-author">LE PETIT PRINCE</span><svg viewBox="0 0 80 70" fill="none"><circle cx="41" cy="67" r="25" fill="#b5b3a1"/><path d="m41 46-2-17 7-1 3 18" fill="#ceb77c"/><circle cx="42" cy="24" r="5" fill="#e5c98d"/><path d="m40 31 22 5-1 3-22-5" fill="#c79761"/><path d="m17 14 1 4 4 1-4 1-1 4-1-4-4-1 4-1 1-4Z" fill="#eadcae"/><circle cx="61" cy="10" r="1.5" fill="#eadcae"/><circle cx="67" cy="43" r="1" fill="#eadcae"/></svg></div>
++          <div><div class="book-top"><h2><a href="https://www.tup.tsinghua.edu.cn/booksCenter/book_05581601.html" target="_blank" rel="noopener noreferrer" title="查看出版社图书介绍">小王子</a></h2><span class="tag">重拾童心</span></div><p class="author">[法] 圣埃克苏佩里 · 童话</p><p class="description">跟着小王子拜访星球，重新想想爱与陪伴。<br>读一小章，留一点时间给心里那个小孩。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">04</span>
++          <div class="cover sand" aria-hidden="true"><span class="cover-title">飞鸟集</span><span class="cover-author">STRAY BIRDS</span><svg viewBox="0 0 80 70" fill="none"><circle cx="57" cy="22" r="12" fill="#d4b56e" opacity=".7"/><path d="M12 34c9-4 15-3 23 2 5-10 13-15 25-15-8 5-14 11-18 19-11-4-20-6-30-6Z" fill="#657468"/><path d="M21 54c5-3 10-2 15 0 3-5 7-8 13-8" stroke="#90977a" stroke-width="2" stroke-linecap="round"/></svg></div>
++          <div><div class="book-top"><h2>飞鸟集</h2><span class="tag">片刻诗意</span></div><p class="author">[印] 泰戈尔 · 诗集</p><p class="description">短短几行，把自然、爱与生活写成微光。<br>不必追赶情节，读几首就可以轻轻合上。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">05</span>
++          <div class="cover lake" aria-hidden="true"><span class="cover-title">瓦尔登湖</span><span class="cover-author">H. D. THOREAU</span><svg viewBox="0 0 80 70" fill="none"><path d="m0 32 17-18 15 14 15-21 33 27v36H0Z" fill="#5d8077"/><path d="m0 40 24-12 22 11 34-13v44H0Z" fill="#41695f"/><path d="M0 47c19-4 34 2 49 0s22-3 31-2v25H0Z" fill="#b9c9b7"/><path d="M9 53h27m9 5h24m-51 5h30" stroke="#819f91" stroke-width="1.5"/></svg></div>
++          <div><div class="book-top"><h2>瓦尔登湖</h2><span class="tag">走近自然</span></div><p class="author">[美] 亨利·戴维·梭罗 · 散文</p><p class="description">把注意力交给湖水、树林和四季的变化。<br>从描写自然的段落读起，适合想慢下来的一晚。</p></div>
++        </li>
++      </ol>
++      <footer>
++        <div class="ritual"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M18 4A10 10 0 1 0 24 19 10 10 0 0 1 18 4Z" stroke="currentColor" stroke-width="1.4"/><path d="m23 5 .8 2.3L26 8l-2.2.7L23 11l-.8-2.3L20 8l2.2-.7L23 5Z" fill="currentColor"/></svg><span>睡前小仪式：放下手机 · 留一盏暖灯 · 读 10 分钟</span></div>
++        <div class="bottomline"><span>不必读完一章，困了就合上。&nbsp; #睡前阅读 &nbsp; #治愈系书单</span><span class="goodnight">Good night, slow reader.</span></div>
++      </footer>
++    </main>
++  </div>
++</body>
++</html>
+
+codex
+卡片已写好，采用奶油色纸张背景、鼠尾草绿文字和手绘风书封，包含 5 本书的推荐理由与睡前阅读小提示。我再检查一下文件结构和竖版比例。
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.stack = []
+        self.books = 0
+    def handle_starttag(self, tag, attrs):
+        if tag not in {'meta', 'path', 'circle', 'ellipse', 'br'}:
+            self.stack.append(tag)
+        if tag == 'li' and ('class', 'book') in attrs:
+            self.books += 1
+    def handle_endtag(self, tag):
+        if tag in {'path', 'circle', 'ellipse'}:
+            return
+        assert self.stack and self.stack.pop() == tag, f'Mismatched closing tag: {tag}'
+p = Path('index.html')
+s = p.read_text()
+check = Check()
+check.feed(s)
+assert not check.stack, check.stack
+assert check.books == 5
+assert 'aspect-ratio: 3 / 4' in s
+assert '<script' not in s and '<link' not in s
+print(f'OK: {p.name}; {check.books} books; 3:4 ratio; inline CSS and SVG; {p.stat().st_size} bytes')
+PY" in <tmp>/measure-baseline-codex-029-dQKlc5
+ succeeded in 0ms:
+OK: index.html; 5 books; 3:4 ratio; inline CSS and SVG; 13293 bytes
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..4c32ca6393c7e060ac1ad8a74d94ca93e63ac352
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,113 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f4f0e5">
++  <title>睡前，把心放轻一点 · 5 本枕边书</title>
++  <style>
++    * { box-sizing: border-box; }
++    :root { color-scheme: light; }
++    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; background: #dedfd7; color: #34473c; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
++    .frame { width: min(900px, 100%); container-type: inline-size; }
++    .card { position: relative; isolation: isolate; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; padding: 5.4cqw 7cqw 4.2cqw; background: #f6f2e8; box-shadow: 0 18px 70px #26392d1c; }
++    .card::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .24; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239b9276' opacity='.3' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); pointer-events: none; }
++    .topline { display: flex; justify-content: space-between; align-items: center; font-size: 1.25cqw; letter-spacing: .24cqw; font-weight: 500; }
++    .topline span:first-child { display: flex; align-items: center; gap: 1cqw; }
++    .dot { width: .7cqw; height: .7cqw; border-radius: 50%; background: #aa724d; }
++    header { position: relative; padding-top: 4.5cqw; padding-bottom: 3.5cqw; }
++    .eyebrow { margin: 0 0 1.3cqw; color: #977951; font-size: 1.6cqw; letter-spacing: .5cqw; }
++    h1 { margin: 0; font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; font-size: 7.3cqw; font-weight: 600; letter-spacing: .15cqw; line-height: 1.24; }
++    h1 .second { display: block; }
++    .hero-art { position: absolute; width: 25cqw; height: 25cqw; right: -1.2cqw; top: 3.9cqw; }
++    .intro { display: flex; align-items: center; gap: 1.5cqw; margin: 2.5cqw 0 0; color: #6d7469; font-size: 1.85cqw; letter-spacing: .1cqw; }
++    .intro strong { color: #526047; font-weight: 500; padding: .55cqw 1.3cqw; border-radius: 50%; background: #e9dfb8; transform: rotate(-5deg); }
++    .list-heading { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #a8ad9c; border-bottom: 1px solid #c8c9b9; padding: 1.4cqw 0; color: #78816f; font-size: 1.2cqw; letter-spacing: .2cqw; }
++    .list-heading b { color: #4d604c; font-weight: 500; font-size: 1.4cqw; letter-spacing: .22cqw; }
++    ol { margin: 0; padding: 0; list-style: none; }
++    .book { display: grid; grid-template-columns: 3.6cqw 8.2cqw 1fr; align-items: center; column-gap: 2.5cqw; height: 14.6cqw; border-bottom: 1px solid #d7d7c8; }
++    .number { align-self: start; padding-top: 2.4cqw; font-family: Georgia, serif; color: #9a9d88; font-style: italic; font-size: 2cqw; }
++    .cover { width: 8.2cqw; height: 10.5cqw; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 1.15cqw .35cqw .5cqw .65cqw; box-shadow: .3cqw .4cqw .6cqw #30352b1c; border-radius: .15cqw .4cqw .4cqw .15cqw; }
++    .cover::after { content: ""; position: absolute; inset: 0; border-left: .4cqw solid #00000013; box-shadow: inset .6cqw 0 .3cqw #ffffff20, inset -.2cqw 0 #00000010; pointer-events: none; }
++    .cover-title { position: relative; z-index: 1; font-family: "Songti SC", "STSong", serif; font-size: 1.25cqw; font-weight: 600; letter-spacing: .18cqw; white-space: nowrap; }
++    .cover-author { position: relative; z-index: 1; font-size: .55cqw; margin-top: .5cqw; letter-spacing: .1cqw; }
++    .cover svg { position: absolute; bottom: .5cqw; width: 6.5cqw; height: 6cqw; }
++    .green { background: #dce1cd; color: #455b42; transform: rotate(-3deg); }
++    .pink { background: #e9c6b6; color: #684c3e; transform: rotate(2deg); }
++    .blue { background: #334e68; color: #f7e6b9; transform: rotate(-2deg); }
++    .sand { background: #e9dfbb; color: #685e43; transform: rotate(2deg); }
++    .lake { background: #8daba5; color: #233f3d; transform: rotate(-2deg); }
++    .book-top { display: flex; align-items: center; justify-content: space-between; gap: 1cqw; }
++    h2 { margin: 0; font-size: 2.9cqw; letter-spacing: .08cqw; font-weight: 600; }
++    h2 a { color: inherit; text-decoration: none; }
++    h2 a:hover { text-decoration: underline; text-underline-offset: .4cqw; }
++    .tag { flex-shrink: 0; padding: .45cqw 1cqw; border: 1px solid #c5c9b6; border-radius: .3cqw; color: #738063; font-size: 1.15cqw; letter-spacing: .1cqw; }
++    .author { margin: .55cqw 0 1cqw; font-size: 1.4cqw; color: #929082; }
++    .description { margin: 0; font-size: 1.85cqw; line-height: 1.65; color: #626a5d; letter-spacing: .035cqw; }
++    footer { padding-top: 2.8cqw; }
++    .ritual { display: flex; align-items: center; gap: 1.2cqw; color: #5b6c52; font-size: 1.65cqw; letter-spacing: .1cqw; }
++    .ritual svg { width: 2.7cqw; height: 2.7cqw; flex-shrink: 0; }
++    .bottomline { display: flex; justify-content: space-between; align-items: center; margin-top: 2.1cqw; font-size: 1.15cqw; letter-spacing: .12cqw; color: #9a9a88; }
++    .goodnight { font-family: Georgia, serif; font-size: 2cqw; font-style: italic; color: #7a846b; }
++    @media (max-width: 600px) { body { padding: 0; background: #f6f2e8; } .card { box-shadow: none; } }
++    @media print { @page { size: 180mm 240mm; margin: 0; } body { padding: 0; background: none; } .frame { width: 180mm; } .card { box-shadow: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
++  </style>
++</head>
++<body>
++  <div class="frame">
++    <main class="card" aria-label="五本适合睡前读的书推荐卡片">
++      <div class="topline"><span><i class="dot" aria-hidden="true"></i> 枕边阅读计划</span><span>BEDTIME READING / VOL. 01</span></div>
++      <header>
++        <p class="eyebrow">给忙碌了一天的你</p>
++        <h1>睡前，<span class="second">把心放轻一点</span></h1>
++        <svg class="hero-art" viewBox="0 0 240 240" fill="none" aria-hidden="true">
++          <circle cx="142" cy="92" r="76" fill="#eae5cd" opacity=".65"/>
++          <path d="M154 31c-21 20-17 52 10 65-30 9-55-12-48-39 4-15 19-26 38-26Z" fill="#c4a56b"/>
++          <path d="m82 34 3 8 8 3-8 3-3 8-3-8-8-3 8-3 3-8ZM193 105l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#a1a27f"/>
++          <circle cx="189" cy="47" r="2" fill="#a1a27f"/><circle cx="100" cy="100" r="2" fill="#a1a27f"/>
++          <path d="m33 159 76 27 88-30-77-22-87 25Z" fill="#a7b297" stroke="#5c7058" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m33 159 1 12 75 29 88-30v-14l-88 30-76-27Z" fill="#e9e6d3" stroke="#5c7058" stroke-width="1.5"/>
++          <path d="m34 175 75 28 91-31M109 186v14M40 166l62 23M121 190l67-23" stroke="#7d8c70" stroke-width="1.5" stroke-linecap="round"/>
++          <path d="M110 181c-17-18-45-24-68-25l13-40c25 3 45 11 59 29 16-13 39-19 66-17l8 32c-34-1-55 6-78 21Z" fill="#fbf8ee" stroke="#6c7c60" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m114 145-4 36M62 128c15 3 28 8 39 17M59 136c15 3 27 9 38 17M56 144c15 3 27 9 38 17M126 146c14-7 28-10 44-9M125 154c15-7 31-10 47-9" stroke="#b9bba4" stroke-width="1.3" stroke-linecap="round"/>
++          <path d="m142 169 2 24 8-6 7 2-3-25" fill="#b47d5f"/>
++          <path d="M183 194c20-21 27-45 26-72M206 153c-13 0-19-8-19-17 13 2 20 8 19 17ZM210 143c13-4 18-13 15-23-13 5-17 13-15 23ZM199 174c-12-1-18-8-18-17 12 2 18 8 18 17Z" stroke="#7f8c65" stroke-width="1.5" fill="#b3bc99" stroke-linejoin="round"/>
++        </svg>
++        <p class="intro"><strong>5 本枕边书</strong> 每晚读几页，让白天的喧嚣慢慢退场。</p>
++      </header>
++      <div class="list-heading"><b>今晚，你想把心安放在哪里？</b><span>A LITTLE READING, A LITTLE PEACE</span></div>
++      <ol>
++        <li class="book">
++          <span class="number">01</span>
++          <div class="cover green" aria-hidden="true"><span class="cover-title">人间草木</span><span class="cover-author">汪曾祺</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 66 38 9M40 45 21 27M40 34l17-16M41 56l20-15" stroke="#607451" stroke-width="1.5"/><g fill="#83956a"><ellipse cx="22" cy="28" rx="6" ry="13" transform="rotate(-40 22 28)"/><ellipse cx="55" cy="23" rx="6" ry="13" transform="rotate(40 55 23)"/><ellipse cx="57" cy="44" rx="6" ry="13" transform="rotate(48 57 44)"/><ellipse cx="37" cy="14" rx="5" ry="12"/></g></svg></div>
++          <div><div class="book-top"><h2>人间草木</h2><span class="tag">人间烟火</span></div><p class="author">汪曾祺 · 散文</p><p class="description">花草、吃食与旧日小事，都被写得有滋有味。<br>适合累了一天，只想感受一点日常温柔的你。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">02</span>
++          <div class="cover pink" aria-hidden="true"><span class="cover-title">山茶文具店</span><span class="cover-author">小川糸</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 67V29m0 18L26 37" stroke="#75815f" stroke-width="2"/><ellipse cx="52" cy="49" rx="12" ry="5" fill="#85916b" transform="rotate(-30 52 49)"/><path d="m11 53 23-4 4 15-23 4-4-15Z" fill="#f9ebd7"/><path d="m12 54 14 6 8-10" stroke="#aa9981"/><g fill="#ad6855"><circle cx="36" cy="24" r="9"/><circle cx="48" cy="25" r="9"/><circle cx="42" cy="16" r="9"/><circle cx="42" cy="31" r="9"/></g><circle cx="42" cy="25" r="4" fill="#e2bb75"/></svg></div>
++          <div><div class="book-top"><h2>山茶文具店</h2><span class="tag">温柔来信</span></div><p class="author">[日] 小川糸 · 小说</p><p class="description">走进镰仓的小店，读一封封替人写下的信。<br>在缓缓展开的故事里，感受人与人之间的善意。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">03</span>
++          <div class="cover blue" aria-hidden="true"><span class="cover-title">小王子</span><span class="cover-author">LE PETIT PRINCE</span><svg viewBox="0 0 80 70" fill="none"><circle cx="41" cy="67" r="25" fill="#b5b3a1"/><path d="m41 46-2-17 7-1 3 18" fill="#ceb77c"/><circle cx="42" cy="24" r="5" fill="#e5c98d"/><path d="m40 31 22 5-1 3-22-5" fill="#c79761"/><path d="m17 14 1 4 4 1-4 1-1 4-1-4-4-1 4-1 1-4Z" fill="#eadcae"/><circle cx="61" cy="10" r="1.5" fill="#eadcae"/><circle cx="67" cy="43" r="1" fill="#eadcae"/></svg></div>
++          <div><div class="book-top"><h2><a href="https://www.tup.tsinghua.edu.cn/booksCenter/book_05581601.html" target="_blank" rel="noopener noreferrer" title="查看出版社图书介绍">小王子</a></h2><span class="tag">重拾童心</span></div><p class="author">[法] 圣埃克苏佩里 · 童话</p><p class="description">跟着小王子拜访星球，重新想想爱与陪伴。<br>读一小章，留一点时间给心里那个小孩。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">04</span>
++          <div class="cover sand" aria-hidden="true"><span class="cover-title">飞鸟集</span><span class="cover-author">STRAY BIRDS</span><svg viewBox="0 0 80 70" fill="none"><circle cx="57" cy="22" r="12" fill="#d4b56e" opacity=".7"/><path d="M12 34c9-4 15-3 23 2 5-10 13-15 25-15-8 5-14 11-18 19-11-4-20-6-30-6Z" fill="#657468"/><path d="M21 54c5-3 10-2 15 0 3-5 7-8 13-8" stroke="#90977a" stroke-width="2" stroke-linecap="round"/></svg></div>
++          <div><div class="book-top"><h2>飞鸟集</h2><span class="tag">片刻诗意</span></div><p class="author">[印] 泰戈尔 · 诗集</p><p class="description">短短几行，把自然、爱与生活写成微光。<br>不必追赶情节，读几首就可以轻轻合上。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">05</span>
++          <div class="cover lake" aria-hidden="true"><span class="cover-title">瓦尔登湖</span><span class="cover-author">H. D. THOREAU</span><svg viewBox="0 0 80 70" fill="none"><path d="m0 32 17-18 15 14 15-21 33 27v36H0Z" fill="#5d8077"/><path d="m0 40 24-12 22 11 34-13v44H0Z" fill="#41695f"/><path d="M0 47c19-4 34 2 49 0s22-3 31-2v25H0Z" fill="#b9c9b7"/><path d="M9 53h27m9 5h24m-51 5h30" stroke="#819f91" stroke-width="1.5"/></svg></div>
++          <div><div class="book-top"><h2>瓦尔登湖</h2><span class="tag">走近自然</span></div><p class="author">[美] 亨利·戴维·梭罗 · 散文</p><p class="description">把注意力交给湖水、树林和四季的变化。<br>从描写自然的段落读起，适合想慢下来的一晚。</p></div>
++        </li>
++      </ol>
++      <footer>
++        <div class="ritual"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M18 4A10 10 0 1 0 24 19 10 10 0 0 1 18 4Z" stroke="currentColor" stroke-width="1.4"/><path d="m23 5 .8 2.3L26 8l-2.2.7L23 11l-.8-2.3L20 8l2.2-.7L23 5Z" fill="currentColor"/></svg><span>睡前小仪式：放下手机 · 留一盏暖灯 · 读 10 分钟</span></div>
++        <div class="bottomline"><span>不必读完一章，困了就合上。&nbsp; #睡前阅读 &nbsp; #治愈系书单</span><span class="goodnight">Good night, slow reader.</span></div>
++      </footer>
++    </main>
++  </div>
++</body>
++</html>
+
+codex
+已生成 [index.html](index.html)：3:4 竖版小红书卡片，包含 5 本睡前读物及推荐语。样式与插画均已内嵌，可直接用浏览器打开，无需安装依赖或启动服务器。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..4c32ca6393c7e060ac1ad8a74d94ca93e63ac352
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,113 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f4f0e5">
++  <title>睡前，把心放轻一点 · 5 本枕边书</title>
++  <style>
++    * { box-sizing: border-box; }
++    :root { color-scheme: light; }
++    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 16px; background: #dedfd7; color: #34473c; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
++    .frame { width: min(900px, 100%); container-type: inline-size; }
++    .card { position: relative; isolation: isolate; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; padding: 5.4cqw 7cqw 4.2cqw; background: #f6f2e8; box-shadow: 0 18px 70px #26392d1c; }
++    .card::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .24; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.76' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%239b9276' opacity='.3' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); pointer-events: none; }
++    .topline { display: flex; justify-content: space-between; align-items: center; font-size: 1.25cqw; letter-spacing: .24cqw; font-weight: 500; }
++    .topline span:first-child { display: flex; align-items: center; gap: 1cqw; }
++    .dot { width: .7cqw; height: .7cqw; border-radius: 50%; background: #aa724d; }
++    header { position: relative; padding-top: 4.5cqw; padding-bottom: 3.5cqw; }
++    .eyebrow { margin: 0 0 1.3cqw; color: #977951; font-size: 1.6cqw; letter-spacing: .5cqw; }
++    h1 { margin: 0; font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; font-size: 7.3cqw; font-weight: 600; letter-spacing: .15cqw; line-height: 1.24; }
++    h1 .second { display: block; }
++    .hero-art { position: absolute; width: 25cqw; height: 25cqw; right: -1.2cqw; top: 3.9cqw; }
++    .intro { display: flex; align-items: center; gap: 1.5cqw; margin: 2.5cqw 0 0; color: #6d7469; font-size: 1.85cqw; letter-spacing: .1cqw; }
++    .intro strong { color: #526047; font-weight: 500; padding: .55cqw 1.3cqw; border-radius: 50%; background: #e9dfb8; transform: rotate(-5deg); }
++    .list-heading { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid #a8ad9c; border-bottom: 1px solid #c8c9b9; padding: 1.4cqw 0; color: #78816f; font-size: 1.2cqw; letter-spacing: .2cqw; }
++    .list-heading b { color: #4d604c; font-weight: 500; font-size: 1.4cqw; letter-spacing: .22cqw; }
++    ol { margin: 0; padding: 0; list-style: none; }
++    .book { display: grid; grid-template-columns: 3.6cqw 8.2cqw 1fr; align-items: center; column-gap: 2.5cqw; height: 14.6cqw; border-bottom: 1px solid #d7d7c8; }
++    .number { align-self: start; padding-top: 2.4cqw; font-family: Georgia, serif; color: #9a9d88; font-style: italic; font-size: 2cqw; }
++    .cover { width: 8.2cqw; height: 10.5cqw; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 1.15cqw .35cqw .5cqw .65cqw; box-shadow: .3cqw .4cqw .6cqw #30352b1c; border-radius: .15cqw .4cqw .4cqw .15cqw; }
++    .cover::after { content: ""; position: absolute; inset: 0; border-left: .4cqw solid #00000013; box-shadow: inset .6cqw 0 .3cqw #ffffff20, inset -.2cqw 0 #00000010; pointer-events: none; }
++    .cover-title { position: relative; z-index: 1; font-family: "Songti SC", "STSong", serif; font-size: 1.25cqw; font-weight: 600; letter-spacing: .18cqw; white-space: nowrap; }
++    .cover-author { position: relative; z-index: 1; font-size: .55cqw; margin-top: .5cqw; letter-spacing: .1cqw; }
++    .cover svg { position: absolute; bottom: .5cqw; width: 6.5cqw; height: 6cqw; }
++    .green { background: #dce1cd; color: #455b42; transform: rotate(-3deg); }
++    .pink { background: #e9c6b6; color: #684c3e; transform: rotate(2deg); }
++    .blue { background: #334e68; color: #f7e6b9; transform: rotate(-2deg); }
++    .sand { background: #e9dfbb; color: #685e43; transform: rotate(2deg); }
++    .lake { background: #8daba5; color: #233f3d; transform: rotate(-2deg); }
++    .book-top { display: flex; align-items: center; justify-content: space-between; gap: 1cqw; }
++    h2 { margin: 0; font-size: 2.9cqw; letter-spacing: .08cqw; font-weight: 600; }
++    h2 a { color: inherit; text-decoration: none; }
++    h2 a:hover { text-decoration: underline; text-underline-offset: .4cqw; }
++    .tag { flex-shrink: 0; padding: .45cqw 1cqw; border: 1px solid #c5c9b6; border-radius: .3cqw; color: #738063; font-size: 1.15cqw; letter-spacing: .1cqw; }
++    .author { margin: .55cqw 0 1cqw; font-size: 1.4cqw; color: #929082; }
++    .description { margin: 0; font-size: 1.85cqw; line-height: 1.65; color: #626a5d; letter-spacing: .035cqw; }
++    footer { padding-top: 2.8cqw; }
++    .ritual { display: flex; align-items: center; gap: 1.2cqw; color: #5b6c52; font-size: 1.65cqw; letter-spacing: .1cqw; }
++    .ritual svg { width: 2.7cqw; height: 2.7cqw; flex-shrink: 0; }
++    .bottomline { display: flex; justify-content: space-between; align-items: center; margin-top: 2.1cqw; font-size: 1.15cqw; letter-spacing: .12cqw; color: #9a9a88; }
++    .goodnight { font-family: Georgia, serif; font-size: 2cqw; font-style: italic; color: #7a846b; }
++    @media (max-width: 600px) { body { padding: 0; background: #f6f2e8; } .card { box-shadow: none; } }
++    @media print { @page { size: 180mm 240mm; margin: 0; } body { padding: 0; background: none; } .frame { width: 180mm; } .card { box-shadow: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
++  </style>
++</head>
++<body>
++  <div class="frame">
++    <main class="card" aria-label="五本适合睡前读的书推荐卡片">
++      <div class="topline"><span><i class="dot" aria-hidden="true"></i> 枕边阅读计划</span><span>BEDTIME READING / VOL. 01</span></div>
++      <header>
++        <p class="eyebrow">给忙碌了一天的你</p>
++        <h1>睡前，<span class="second">把心放轻一点</span></h1>
++        <svg class="hero-art" viewBox="0 0 240 240" fill="none" aria-hidden="true">
++          <circle cx="142" cy="92" r="76" fill="#eae5cd" opacity=".65"/>
++          <path d="M154 31c-21 20-17 52 10 65-30 9-55-12-48-39 4-15 19-26 38-26Z" fill="#c4a56b"/>
++          <path d="m82 34 3 8 8 3-8 3-3 8-3-8-8-3 8-3 3-8ZM193 105l2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#a1a27f"/>
++          <circle cx="189" cy="47" r="2" fill="#a1a27f"/><circle cx="100" cy="100" r="2" fill="#a1a27f"/>
++          <path d="m33 159 76 27 88-30-77-22-87 25Z" fill="#a7b297" stroke="#5c7058" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m33 159 1 12 75 29 88-30v-14l-88 30-76-27Z" fill="#e9e6d3" stroke="#5c7058" stroke-width="1.5"/>
++          <path d="m34 175 75 28 91-31M109 186v14M40 166l62 23M121 190l67-23" stroke="#7d8c70" stroke-width="1.5" stroke-linecap="round"/>
++          <path d="M110 181c-17-18-45-24-68-25l13-40c25 3 45 11 59 29 16-13 39-19 66-17l8 32c-34-1-55 6-78 21Z" fill="#fbf8ee" stroke="#6c7c60" stroke-width="1.5" stroke-linejoin="round"/>
++          <path d="m114 145-4 36M62 128c15 3 28 8 39 17M59 136c15 3 27 9 38 17M56 144c15 3 27 9 38 17M126 146c14-7 28-10 44-9M125 154c15-7 31-10 47-9" stroke="#b9bba4" stroke-width="1.3" stroke-linecap="round"/>
++          <path d="m142 169 2 24 8-6 7 2-3-25" fill="#b47d5f"/>
++          <path d="M183 194c20-21 27-45 26-72M206 153c-13 0-19-8-19-17 13 2 20 8 19 17ZM210 143c13-4 18-13 15-23-13 5-17 13-15 23ZM199 174c-12-1-18-8-18-17 12 2 18 8 18 17Z" stroke="#7f8c65" stroke-width="1.5" fill="#b3bc99" stroke-linejoin="round"/>
++        </svg>
++        <p class="intro"><strong>5 本枕边书</strong> 每晚读几页，让白天的喧嚣慢慢退场。</p>
++      </header>
++      <div class="list-heading"><b>今晚，你想把心安放在哪里？</b><span>A LITTLE READING, A LITTLE PEACE</span></div>
++      <ol>
++        <li class="book">
++          <span class="number">01</span>
++          <div class="cover green" aria-hidden="true"><span class="cover-title">人间草木</span><span class="cover-author">汪曾祺</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 66 38 9M40 45 21 27M40 34l17-16M41 56l20-15" stroke="#607451" stroke-width="1.5"/><g fill="#83956a"><ellipse cx="22" cy="28" rx="6" ry="13" transform="rotate(-40 22 28)"/><ellipse cx="55" cy="23" rx="6" ry="13" transform="rotate(40 55 23)"/><ellipse cx="57" cy="44" rx="6" ry="13" transform="rotate(48 57 44)"/><ellipse cx="37" cy="14" rx="5" ry="12"/></g></svg></div>
++          <div><div class="book-top"><h2>人间草木</h2><span class="tag">人间烟火</span></div><p class="author">汪曾祺 · 散文</p><p class="description">花草、吃食与旧日小事，都被写得有滋有味。<br>适合累了一天，只想感受一点日常温柔的你。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">02</span>
++          <div class="cover pink" aria-hidden="true"><span class="cover-title">山茶文具店</span><span class="cover-author">小川糸</span><svg viewBox="0 0 80 70" fill="none"><path d="M42 67V29m0 18L26 37" stroke="#75815f" stroke-width="2"/><ellipse cx="52" cy="49" rx="12" ry="5" fill="#85916b" transform="rotate(-30 52 49)"/><path d="m11 53 23-4 4 15-23 4-4-15Z" fill="#f9ebd7"/><path d="m12 54 14 6 8-10" stroke="#aa9981"/><g fill="#ad6855"><circle cx="36" cy="24" r="9"/><circle cx="48" cy="25" r="9"/><circle cx="42" cy="16" r="9"/><circle cx="42" cy="31" r="9"/></g><circle cx="42" cy="25" r="4" fill="#e2bb75"/></svg></div>
++          <div><div class="book-top"><h2>山茶文具店</h2><span class="tag">温柔来信</span></div><p class="author">[日] 小川糸 · 小说</p><p class="description">走进镰仓的小店，读一封封替人写下的信。<br>在缓缓展开的故事里，感受人与人之间的善意。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">03</span>
++          <div class="cover blue" aria-hidden="true"><span class="cover-title">小王子</span><span class="cover-author">LE PETIT PRINCE</span><svg viewBox="0 0 80 70" fill="none"><circle cx="41" cy="67" r="25" fill="#b5b3a1"/><path d="m41 46-2-17 7-1 3 18" fill="#ceb77c"/><circle cx="42" cy="24" r="5" fill="#e5c98d"/><path d="m40 31 22 5-1 3-22-5" fill="#c79761"/><path d="m17 14 1 4 4 1-4 1-1 4-1-4-4-1 4-1 1-4Z" fill="#eadcae"/><circle cx="61" cy="10" r="1.5" fill="#eadcae"/><circle cx="67" cy="43" r="1" fill="#eadcae"/></svg></div>
++          <div><div class="book-top"><h2><a href="https://www.tup.tsinghua.edu.cn/booksCenter/book_05581601.html" target="_blank" rel="noopener noreferrer" title="查看出版社图书介绍">小王子</a></h2><span class="tag">重拾童心</span></div><p class="author">[法] 圣埃克苏佩里 · 童话</p><p class="description">跟着小王子拜访星球，重新想想爱与陪伴。<br>读一小章，留一点时间给心里那个小孩。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">04</span>
++          <div class="cover sand" aria-hidden="true"><span class="cover-title">飞鸟集</span><span class="cover-author">STRAY BIRDS</span><svg viewBox="0 0 80 70" fill="none"><circle cx="57" cy="22" r="12" fill="#d4b56e" opacity=".7"/><path d="M12 34c9-4 15-3 23 2 5-10 13-15 25-15-8 5-14 11-18 19-11-4-20-6-30-6Z" fill="#657468"/><path d="M21 54c5-3 10-2 15 0 3-5 7-8 13-8" stroke="#90977a" stroke-width="2" stroke-linecap="round"/></svg></div>
++          <div><div class="book-top"><h2>飞鸟集</h2><span class="tag">片刻诗意</span></div><p class="author">[印] 泰戈尔 · 诗集</p><p class="description">短短几行，把自然、爱与生活写成微光。<br>不必追赶情节，读几首就可以轻轻合上。</p></div>
++        </li>
++        <li class="book">
++          <span class="number">05</span>
++          <div class="cover lake" aria-hidden="true"><span class="cover-title">瓦尔登湖</span><span class="cover-author">H. D. THOREAU</span><svg viewBox="0 0 80 70" fill="none"><path d="m0 32 17-18 15 14 15-21 33 27v36H0Z" fill="#5d8077"/><path d="m0 40 24-12 22 11 34-13v44H0Z" fill="#41695f"/><path d="M0 47c19-4 34 2 49 0s22-3 31-2v25H0Z" fill="#b9c9b7"/><path d="M9 53h27m9 5h24m-51 5h30" stroke="#819f91" stroke-width="1.5"/></svg></div>
++          <div><div class="book-top"><h2>瓦尔登湖</h2><span class="tag">走近自然</span></div><p class="author">[美] 亨利·戴维·梭罗 · 散文</p><p class="description">把注意力交给湖水、树林和四季的变化。<br>从描写自然的段落读起，适合想慢下来的一晚。</p></div>
++        </li>
++      </ol>
++      <footer>
++        <div class="ritual"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M18 4A10 10 0 1 0 24 19 10 10 0 0 1 18 4Z" stroke="currentColor" stroke-width="1.4"/><path d="m23 5 .8 2.3L26 8l-2.2.7L23 11l-.8-2.3L20 8l2.2-.7L23 5Z" fill="currentColor"/></svg><span>睡前小仪式：放下手机 · 留一盏暖灯 · 读 10 分钟</span></div>
++        <div class="bottomline"><span>不必读完一章，困了就合上。&nbsp; #睡前阅读 &nbsp; #治愈系书单</span><span class="goodnight">Good night, slow reader.</span></div>
++      </footer>
++    </main>
++  </div>
++</body>
++</html>
+
+tokens used
+13,978
+已生成 [index.html](index.html)：3:4 竖版小红书卡片，包含 5 本睡前读物及推荐语。样式与插画均已内嵌，可直接用浏览器打开，无需安装依赖或启动服务器。

@@ -1,0 +1,295 @@
+:root {
+  --paper: #f4efe5;
+  --paper-deep: #ebe3d5;
+  --ink: #2a2622;
+  --ink-soft: #5c544b;
+  --ink-faint: #9a9086;
+  --line: #d6cbb9;
+  --seal: #a3352b;
+  --seal-soft: #f1ddd6;
+  --field: #fbf8f2;
+  --ok: #4a6b4f;
+  --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 16px 96px;
+}
+
+/* 页眉 */
+.masthead {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--ink);
+  margin-bottom: 48px;
+}
+.masthead h1 {
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  margin: 0;
+  line-height: 1.2;
+}
+.masthead p {
+  margin: 10px 0 0;
+  color: var(--ink-soft);
+  font-size: 14px;
+}
+.seal {
+  flex: none;
+  width: 56px;
+  height: 56px;
+  border: 2px solid var(--seal);
+  color: var(--seal);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.05;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 4px;
+  border-radius: 3px;
+  transform: rotate(-4deg);
+}
+
+/* 步骤指示 */
+.steps {
+  display: flex;
+  gap: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px;
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+.steps li {
+  flex: 1;
+  padding-top: 10px;
+  border-top: 2px solid var(--line);
+}
+.steps li.done, .steps li.current { border-top-color: var(--ink); color: var(--ink); }
+.steps li span { font-family: var(--serif); margin-right: 6px; }
+
+/* 分节 */
+.section { margin-bottom: 56px; }
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.section-head .num {
+  font-family: var(--serif);
+  color: var(--seal);
+  font-size: 15px;
+}
+.section-head h2 {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+.section-head .hint {
+  margin-left: auto;
+  color: var(--ink-faint);
+  font-size: 13px;
+}
+
+/* 表单栅格 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+.full { grid-column: 1 / -1; }
+
+.field label, .field .label {
+  display: block;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.req::after { content: " *"; color: var(--seal); }
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"],
+input[type="month"], input[type="date"], select, textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: var(--field);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 9px 12px;
+  outline: none;
+  transition: border-color .15s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+select {
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-soft) 50%),
+                    linear-gradient(135deg, var(--ink-soft) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 55%, calc(100% - 12px) 55%;
+  background-size: 5px 5px;
+  background-repeat: no-repeat;
+  padding-right: 32px;
+}
+textarea { resize: vertical; min-height: 96px; }
+input:focus, select:focus, textarea:focus { border-color: var(--ink); }
+
+.field.invalid input, .field.invalid select, .field.invalid textarea { border-color: var(--seal); }
+.error {
+  display: none;
+  color: var(--seal);
+  font-size: 12px;
+  margin-top: 4px;
+}
+.field.invalid .error { display: block; }
+
+.counter { float: right; color: var(--ink-faint); font-size: 12px; }
+
+/* 单选 / 复选 */
+.choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.choices label {
+  margin: 0;
+  cursor: pointer;
+}
+.choices input { position: absolute; opacity: 0; pointer-events: none; }
+.choices span {
+  display: inline-block;
+  padding: 6px 16px;
+  border: 1px solid var(--line);
+  background: var(--field);
+  color: var(--ink-soft);
+  font-size: 14px;
+  border-radius: 2px;
+}
+.choices input:checked + span { border-color: var(--ink); color: var(--paper); background: var(--ink); }
+.choices input:focus-visible + span { outline: 2px solid var(--seal); outline-offset: 2px; }
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  margin-top: 8px;
+}
+.check input { accent-color: var(--ink); width: 15px; height: 15px; margin: 0; }
+
+/* 工作经历条目 */
+.job {
+  position: relative;
+  padding: 24px 0 28px;
+  border-top: 1px dashed var(--line);
+}
+.job:first-child { border-top: none; padding-top: 0; }
+.job-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  font-family: var(--serif);
+  font-size: 16px;
+}
+.job-title b { font-weight: 400; color: var(--ink-soft); }
+.range { display: flex; align-items: center; gap: 8px; }
+.range > span { color: var(--ink-faint); }
+
+.empty {
+  padding: 28px;
+  text-align: center;
+  color: var(--ink-faint);
+  border: 1px dashed var(--line);
+  font-size: 14px;
+}
+
+/* 按钮 */
+.btn {
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 9px 22px;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  letter-spacing: 0.05em;
+}
+.btn:hover { background: var(--paper-deep); }
+.btn.primary { background: var(--seal); border-color: var(--seal); color: #fbf6ef; padding: 11px 36px; }
+.btn.primary:hover { background: #8d2c23; }
+.btn.text { border: none; padding: 4px 0; color: var(--ink-faint); font-size: 13px; }
+.btn.text:hover { background: none; color: var(--seal); }
+.btn.add { width: 100%; border-style: dashed; color: var(--ink-soft); border-color: var(--ink-faint); margin-top: 8px; }
+
+/* 薪资预览 */
+.salary-note {
+  margin-top: 16px;
+  padding: 14px 16px;
+  background: var(--paper-deep);
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.salary-note strong { font-family: var(--serif); color: var(--ink); font-weight: 400; font-size: 17px; }
+
+/* 底部操作 */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 28px;
+  border-top: 1px solid var(--ink);
+}
+.actions .status { margin-right: auto; font-size: 13px; color: var(--ink-faint); }
+.agree { font-size: 13px; color: var(--ink-soft); margin-bottom: 20px; }
+.agree.invalid { color: var(--seal); }
+
+/* 提交结果 */
+.result { display: none; }
+.result.show { display: block; }
+.result h2 { font-family: var(--serif); font-weight: 400; font-size: 26px; letter-spacing: .08em; margin: 0 0 8px; }
+.result .lead { color: var(--ink-soft); margin: 0 0 32px; }
+.summary dl {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  gap: 10px 16px;
+  margin: 0 0 32px;
+  font-size: 14px;
+}
+.summary dt { color: var(--ink-faint); }
+.summary dd { margin: 0; }
+.summary h3 { font-family: var(--serif); font-weight: 400; font-size: 17px; margin: 0 0 14px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.summary .job-sum { margin-bottom: 18px; font-size: 14px; }
+.summary .job-sum p { margin: 4px 0 0; color: var(--ink-soft); white-space: pre-wrap; }
+
+@media (max-width: 600px) {
+  .page { padding-top: 40px; }
+  .masthead h1 { font-size: 30px; }
+  .grid { grid-template-columns: 1fr; }
+  .section-head .hint { display: none; }
+  .actions { flex-wrap: wrap; }
+  .actions .status { width: 100%; }
+  .actions .btn { flex: 1; }
+  .summary dl { grid-template-columns: 88px 1fr; }
+}

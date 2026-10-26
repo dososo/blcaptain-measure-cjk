@@ -1,0 +1,112 @@
+{
+  "schema_version": "1.0.0",
+  "project": "measure-cjk",
+  "milestone": "W2 card 命令（小红书卡片导出）",
+  "generated_at": "2026-10-26T03:13:41.142Z",
+  "git_head": "c140d9bfe43f2f3cb32fadc2a16bc401b32235bf",
+  "dirty": false,
+  "executor": "Claude Code（用户指示全部由 Claude Code 闭环）",
+  "assertions": [
+    {
+      "id": "CV-01",
+      "desc": "字体文件解析：TTF、OTF、TTC、WOFF、WOFF2 读出名称；坏文件返回 error 不抛异常",
+      "command": "node --test --test-reporter=spec --test-name-pattern='字体解析' test/card.test.js",
+      "status": "PASS",
+      "evidence": "evidence/CV-01.log",
+      "notes": "ℹ pass 3，ℹ fail 0"
+    },
+    {
+      "id": "CV-02",
+      "desc": "F06 判定：🟢、🔵 放行；🔴、微软雅黑进 font_dir、查不到的字体拒绝；缺字回退到不能出图的系统字体时拒绝；页面自带字体被拦截；有 lint error 不出图（D-C1、D-C2）",
+      "command": "node --test --test-reporter=spec --test-name-pattern='card 夹具' test/card.test.js",
+      "status": "PASS",
+      "evidence": "evidence/CV-02.log",
+      "notes": "ℹ pass 8，ℹ fail 0"
+    },
+    {
+      "id": "CV-03",
+      "desc": "3 种模板和 examples/card.html：导出 1080×1440，lint 零 error（AC-9，方框字体）",
+      "command": "node --test --test-reporter=spec --test-name-pattern='模板' test/card.test.js",
+      "status": "PASS",
+      "evidence": "evidence/CV-03.log",
+      "notes": "ℹ pass 4，ℹ fail 0"
+    },
+    {
+      "id": "CV-04",
+      "desc": "命令行、结果 JSON、WOFF2 注入、安全（font_dir、--out 校验）、64 MB 与 50 个的上限（D-C3）、没装 Playwright 时退出码 2",
+      "command": "node --test --test-reporter=spec --test-name-pattern='命令行|安全|D-C3|Playwright|WOFF2|接口' test/card.test.js",
+      "status": "PASS",
+      "evidence": "evidence/CV-04.log",
+      "notes": "ℹ pass 7，ℹ fail 0"
+    },
+    {
+      "id": "CV-05",
+      "desc": "card 在 Node 一侧零网络请求",
+      "command": "node --test --test-reporter=spec test/card-offline.test.js",
+      "status": "PASS",
+      "evidence": "evidence/CV-05.log",
+      "notes": "ℹ pass 1，ℹ fail 0"
+    },
+    {
+      "id": "CV-06",
+      "desc": "夹具锁定：7 份 MANIFEST 校验通过",
+      "command": "(cd bench/golden && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/w2-render && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/w2-card && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/w2-card-audit && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/w2-card-audit-r2 && shasum -a 256 -c MANIFEST.sha256) && (cd test/fixtures/w2-card-audit-r3 && shasum -a 256 -c MANIFEST.sha256)",
+      "status": "PASS",
+      "evidence": "evidence/CV-06.log",
+      "notes": ""
+    },
+    {
+      "id": "CV-07",
+      "desc": "仓库里没有字体文件（H3），skill 格式和授权表校验通过（AC-1）",
+      "command": "git ls-files | grep -iE '\\.(ttf|otf|ttc|woff2?)$' ; test $? -eq 1 && node scripts/validate-skill.mjs",
+      "status": "PASS",
+      "evidence": "evidence/CV-07.log",
+      "notes": ""
+    },
+    {
+      "id": "CV-08",
+      "desc": "AC-9 真实字体验收：用霞鹜文楷 v1.530（SHA-256 核对过）导出 3 种模板和示例卡片，全部导出，只用到这一款字体，lint 零 error",
+      "command": "node measure-cjk/packages/cli/bin/measure-cjk.js card measure-cjk/skills/measure/assets/cards/cover.html --out deliverables/card-samples/cover.png --font-dir deliverables/fonts-for-test --root . --result deliverables/card-samples/cover.json --format json && node measure-cjk/packages/cli/bin/measure-cjk.js card measure-cjk/skills/measure/assets/cards/list.html --out deliverables/card-samples/list.png --font-dir deliverables/fonts-for-test --root . --result deliverables/card-samples/list.json --format json && node measure-cjk/packages/cli/bin/measure-cjk.js card measure-cjk/skills/measure/assets/cards/quote.html --out deliverables/card-samples/quote.png --font-dir deliverables/fonts-for-test --root . --result deliverables/card-samples/quote.json --format json && node measure-cjk/packages/cli/bin/measure-cjk.js card measure-cjk/examples/card.html --out deliverables/card-samples/card.png --font-dir deliverables/fonts-for-test --root . --result deliverables/card-samples/card.json --format json",
+      "status": "PASS",
+      "evidence": "evidence/CV-08.log",
+      "notes": "cover.html：exported，字体 LXGW WenKai（单个元素最多 53 字形）；list.html：exported，字体 LXGW WenKai（单个元素最多 32 字形）；quote.html：exported，字体 LXGW WenKai（单个元素最多 42 字形）；card.html：exported，字体 LXGW WenKai（单个元素最多 53 字形）；样张哈希见 evidence/real-font/SHA256SUMS"
+    },
+    {
+      "id": "CV-10",
+      "desc": "AUDIT_CARD 回归：伪元素、表单控件、shadow DOM、canvas、含文字的 SVG 图片（img、object）、iframe、动画、页面自带字体（data:、blob:、FontFace）、点名的 🔴 字体、竖屏媒体查询、按文件名放行都不能导出；安全检查逐条给出原因；--evidence；配置里的 font_dir；解压炸弹（CA-01–CA-07、CA-09–CA-11、CA-13）",
+      "command": "node --test --test-reporter=spec test/card-audit.test.js",
+      "status": "PASS",
+      "evidence": "evidence/CV-10.log",
+      "notes": "ℹ pass 34，ℹ fail 0"
+    },
+    {
+      "id": "CV-11",
+      "desc": "AUDIT_CARD_r2/r3 回归：lint 测量之后、截图之前改页面不能导出没检查过的画面（CB-01：夹具 + 自适应扫描 2 次，必须扫到窗口两端且 0 个 ✗，CC-02）；embed、CSS 背景、mask、content: url()、内联 SVG 的 image 里的 SVG 文字判没检查完（CB-02）；shadow DOM、样式表、冒用红框 id 的持续改动判没检查完（CC-01）",
+      "command": "node --test --test-reporter=spec test/card-audit-r2.test.js test/card-audit-r3.test.js && node scripts/sweep-card-late-change.mjs . --adaptive && node scripts/sweep-card-late-change.mjs . --adaptive",
+      "status": "PASS",
+      "evidence": "evidence/CV-11.log",
+      "notes": "ℹ pass 36，ℹ fail 0；汇总：细扫区间 0–200 ms；拒绝 18、没检查完 70、导出 16；✗ 0 个；扫到了窗口两端；汇总：细扫区间 0–250 ms；拒绝 17、没检查完 74、导出 39；✗ 0 个；扫到了窗口两端"
+    },
+    {
+      "id": "CV-09",
+      "desc": "回归门：全量测试失败为 0（并发 4，日志记 uptime）",
+      "command": "uptime && npm test && uptime",
+      "status": "PASS",
+      "evidence": "evidence/CV-09.log",
+      "notes": "测试 313 项，失败 0 项"
+    }
+  ],
+  "gates": {
+    "task": "PASS",
+    "regression": "PASS"
+  },
+  "pseudo_success_scan": "未发现",
+  "report": {
+    "path": "docs/verification/w2/card/VERIFICATION_REPORT.md",
+    "present": true,
+    "missing_sections": []
+  },
+  "verdict_blockers": [],
+  "verdict_conditions": [],
+  "verdict": "达标"
+}

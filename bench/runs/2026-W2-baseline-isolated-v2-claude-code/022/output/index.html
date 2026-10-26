@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>产品意见反馈</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="card">
+    <form id="form" novalidate>
+      <h1>意见反馈</h1>
+      <p class="sub">感谢你帮助我们改进产品，我们会认真阅读每一条反馈。</p>
+
+      <fieldset class="field">
+        <legend class="label">问题类型<span class="req">*</span></legend>
+        <div class="types">
+          <label class="type"><input type="radio" name="type" value="bug"><span><i class="ico">🐞</i>功能异常</span></label>
+          <label class="type"><input type="radio" name="type" value="feature"><span><i class="ico">💡</i>功能建议</span></label>
+          <label class="type"><input type="radio" name="type" value="ui"><span><i class="ico">🎨</i>界面体验</span></label>
+          <label class="type"><input type="radio" name="type" value="performance"><span><i class="ico">⚡</i>性能问题</span></label>
+          <label class="type"><input type="radio" name="type" value="account"><span><i class="ico">👤</i>账号相关</span></label>
+          <label class="type"><input type="radio" name="type" value="other"><span><i class="ico">💬</i>其他</span></label>
+        </div>
+        <div class="error" id="typeErr" hidden>请选择问题类型</div>
+      </fieldset>
+
+      <div class="field">
+        <label class="label" for="desc">问题描述<span class="req">*</span><span class="hint">至少 10 个字</span></label>
+        <textarea id="desc" name="description" maxlength="500"
+          placeholder="请描述你遇到的问题或建议，例如：在什么页面、做了什么操作、期望的结果是什么……"></textarea>
+        <div class="counter" id="counter">0 / 500</div>
+        <div class="error" id="descErr" hidden>请填写至少 10 个字的描述</div>
+      </div>
+
+      <div class="field">
+        <span class="label">截图<span class="hint">选填，最多 5 张，单张不超过 5MB</span></span>
+        <div class="drop" id="drop" tabindex="0" role="button" aria-label="上传截图">
+          <span class="big">＋</span>
+          <span>点击、拖拽或粘贴图片到此处</span>
+        </div>
+        <input type="file" id="file" accept="image/*" multiple hidden>
+        <div class="previews" id="previews"></div>
+        <div class="error" id="fileErr" hidden></div>
+      </div>
+
+      <div class="field">
+        <label class="label" for="contact">联系方式<span class="hint">选填，方便我们回复你</span></label>
+        <input type="text" id="contact" name="contact" placeholder="邮箱或手机号">
+        <div class="error" id="contactErr" hidden>请输入有效的邮箱或手机号</div>
+      </div>
+
+      <div class="actions">
+        <button type="reset" class="btn">重置</button>
+        <button type="submit" class="btn primary" id="submit">提交反馈</button>
+      </div>
+    </form>
+
+    <div class="done" id="done" hidden>
+      <div class="check">✓</div>
+      <h1>提交成功</h1>
+      <p>感谢你的反馈！我们会尽快处理。</p>
+      <button type="button" class="btn primary" id="again">再提交一条</button>
+    </div>
+  </main>
+
+  <script>
+    const MAX_FILES = 5, MAX_SIZE = 5 * 1024 * 1024, MIN_DESC = 10;
+    const $ = id => document.getElementById(id);
+    const form = $('form'), desc = $('desc'), drop = $('drop'), fileInput = $('file'), previews = $('previews');
+    let files = [];
+
+    // 字数统计
+    desc.addEventListener('input', () => {
+      const n = desc.value.trim().length;
+      $('counter').textContent = `${desc.value.length} / 500`;
+      if (n >= MIN_DESC) { $('descErr').hidden = true; desc.classList.remove('invalid'); }
+    });
+
+    form.addEventListener('change', e => {
+      if (e.target.name === 'type') $('typeErr').hidden = true;
+    });
+
+    // 截图上传
+    drop.addEventListener('click', () => fileInput.click());
+    drop.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); }
+    });
+    fileInput.addEventListener('change', () => { addFiles(fileInput.files); fileInput.value = ''; });
+    ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('drag'); }));
+    ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('drag'); }));
+    drop.addEventListener('drop', e => addFiles(e.dataTransfer.files));
+    document.addEventListener('paste', e => {
+      const imgs = [...(e.clipboardData?.files || [])].filter(f => f.type.startsWith('image/'));
+      if (imgs.length) addFiles(imgs);
+    });
+
+    function addFiles(list) {
+      const errs = [];
+      for (const f of list) {
+        if (!f.type.startsWith('image/')) { errs.push(`“${f.name}” 不是图片`); continue; }
+        if (f.size > MAX_SIZE) { errs.push(`“${f.name}” 超过 5MB`); continue; }
+        if (files.length >= MAX_FILES) { errs.push(`最多上传 ${MAX_FILES} 张`); break; }
+        files.push({ file: f, url: URL.createObjectURL(f) });
+      }
+      $('fileErr').textContent = errs.join('；');
+      $('fileErr').hidden = !errs.length;
+      render();
+    }
+
+    function render() {
+      previews.innerHTML = '';
+      files.forEach((item, i) => {
+        const div = document.createElement('div');
+        div.className = 'thumb';
+        const img = document.createElement('img');
+        img.src = item.url;
+        img.alt = item.file.name;
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.textContent = '×';
+        btn.setAttribute('aria-label', '删除截图');
+        btn.onclick = () => { URL.revokeObjectURL(item.url); files.splice(i, 1); $('fileErr').hidden = true; render(); };
+        div.append(img, btn);
+        previews.append(div);
+      });
+      drop.classList.toggle('disabled', files.length >= MAX_FILES);
+    }
+
+    // 校验 & 提交
+    function validate() {
+      let ok = true;
+      if (!form.querySelector('input[name="type"]:checked')) { $('typeErr').hidden = false; ok = false; }
+      if (desc.value.trim().length < MIN_DESC) { $('descErr').hidden = false; desc.classList.add('invalid'); ok = false; }
+      const c = $('contact').value.trim();
+      const validContact = !c || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c) || /^1\d{10}$/.test(c);
+      $('contactErr').hidden = validContact;
+      $('contact').classList.toggle('invalid', !validContact);
+      return ok && validContact;
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!validate()) {
+        form.querySelector('.error:not([hidden])')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      const data = new FormData(form);
+      files.forEach(f => data.append('screenshots', f.file));
+
+      const btn = $('submit');
+      btn.disabled = true;
+      btn.textContent = '提交中…';
+      // TODO: 替换为真实接口，例如 await fetch('/api/feedback', { method: 'POST', body: data });
+      await new Promise(r => setTimeout(r, 800));
+      console.log('反馈内容：', Object.fromEntries([...data.entries()].filter(([k]) => k !== 'screenshots')), `截图 ${files.length} 张`);
+
+      btn.disabled = false;
+      btn.textContent = '提交反馈';
+      form.hidden = true;
+      $('done').hidden = false;
+    });
+
+    form.addEventListener('reset', () => {
+      files.forEach(f => URL.revokeObjectURL(f.url));
+      files = [];
+      render();
+      document.querySelectorAll('.error').forEach(el => el.hidden = true);
+      document.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+      $('counter').textContent = '0 / 500';
+    });
+
+    $('again').addEventListener('click', () => {
+      form.reset();
+      $('done').hidden = true;
+      form.hidden = false;
+    });
+  </script>
+</body>
+</html>

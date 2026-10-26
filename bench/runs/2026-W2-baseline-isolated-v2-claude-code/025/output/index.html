@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>简历投递</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="page">
+    <h1>简历投递</h1>
+    <p>请如实填写以下信息，带 <span style="color:var(--danger)">*</span> 为必填项。填写内容会自动保存为草稿。</p>
+    <ul class="steps">
+      <li><a href="#sec-basic">① 基本信息</a></li>
+      <li><a href="#sec-work">② 工作经历</a></li>
+      <li><a href="#sec-salary">③ 期望薪资</a></li>
+    </ul>
+  </header>
+
+  <form id="resumeForm" novalidate>
+    <!-- 基本信息 -->
+    <section class="card" id="sec-basic">
+      <h2><span class="num">1</span>基本信息</h2>
+      <div class="grid">
+        <div class="field">
+          <label class="req" for="fullname">姓名</label>
+          <input type="text" id="fullname" name="fullname" maxlength="30" placeholder="请输入真实姓名">
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <span class="label req">性别</span>
+          <div class="radios">
+            <label><input type="radio" name="gender" value="男"> 男</label>
+            <label><input type="radio" name="gender" value="女"> 女</label>
+            <label><input type="radio" name="gender" value="不愿透露"> 不愿透露</label>
+          </div>
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label class="req" for="phone">手机号码</label>
+          <input type="tel" id="phone" name="phone" maxlength="11" placeholder="11 位手机号">
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label class="req" for="email">电子邮箱</label>
+          <input type="email" id="email" name="email" placeholder="name@example.com">
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label for="birth">出生日期</label>
+          <input type="date" id="birth" name="birth">
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label class="req" for="city">现居城市</label>
+          <input type="text" id="city" name="city" placeholder="如：上海">
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label class="req" for="education">最高学历</label>
+          <select id="education" name="education">
+            <option value="">请选择</option>
+            <option>高中/中专</option>
+            <option>大专</option>
+            <option>本科</option>
+            <option>硕士</option>
+            <option>博士</option>
+          </select>
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label class="req" for="years">工作年限</label>
+          <select id="years" name="years">
+            <option value="">请选择</option>
+            <option>应届生</option>
+            <option>1 年以下</option>
+            <option>1-3 年</option>
+            <option>3-5 年</option>
+            <option>5-10 年</option>
+            <option>10 年以上</option>
+          </select>
+          <div class="err"></div>
+        </div>
+        <div class="field full">
+          <label class="req" for="position">应聘职位</label>
+          <input type="text" id="position" name="position" placeholder="如：前端开发工程师">
+          <div class="err"></div>
+        </div>
+        <div class="field full">
+          <label for="intro">自我介绍</label>
+          <textarea id="intro" name="intro" maxlength="500" placeholder="简要介绍你的优势、技能与职业规划（500 字以内）"></textarea>
+          <span class="hint"><span id="introCount">0</span> / 500</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 工作经历 -->
+    <section class="card" id="sec-work">
+      <h2><span class="num">2</span>工作经历</h2>
+      <div id="jobList"></div>
+      <div class="empty" id="jobEmpty">暂无工作经历，应届生可跳过此项</div>
+      <button type="button" class="btn btn-dashed" id="addJob">＋ 添加一段工作经历</button>
+    </section>
+
+    <!-- 期望薪资 -->
+    <section class="card" id="sec-salary">
+      <h2><span class="num">3</span>期望薪资</h2>
+      <div class="grid">
+        <div class="field">
+          <span class="label req">薪资类型</span>
+          <div class="radios">
+            <label><input type="radio" name="salaryType" value="月薪" checked> 月薪</label>
+            <label><input type="radio" name="salaryType" value="年薪"> 年薪</label>
+          </div>
+        </div>
+        <div class="field">
+          <label class="req" for="salaryMin">期望范围</label>
+          <div class="range">
+            <div class="input-suffix"><input type="number" id="salaryMin" name="salaryMin" min="0" step="0.5" placeholder="最低"><em class="unit">K</em></div>
+            <span>—</span>
+            <div class="input-suffix"><input type="number" id="salaryMax" name="salaryMax" min="0" step="0.5" placeholder="最高"><em class="unit">K</em></div>
+          </div>
+          <span class="hint" id="salaryHint">单位：千元/月（税前）</span>
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label for="currentSalary">当前薪资</label>
+          <div class="input-suffix"><input type="number" id="currentSalary" name="currentSalary" min="0" step="0.5" placeholder="选填"><em class="unit">K</em></div>
+          <div class="err"></div>
+        </div>
+        <div class="field">
+          <label class="req" for="arrival">到岗时间</label>
+          <select id="arrival" name="arrival">
+            <option value="">请选择</option>
+            <option>随时到岗</option>
+            <option>1 周内</option>
+            <option>2 周内</option>
+            <option>1 个月内</option>
+            <option>1-3 个月</option>
+          </select>
+          <div class="err"></div>
+        </div>
+        <div class="field full">
+          <label class="inline-check"><input type="checkbox" id="negotiable" name="negotiable"> 薪资可面议</label>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <label class="agree"><input type="checkbox" id="agree" name="agree">
+        <span>我确认以上信息真实有效，并同意公司在招聘过程中使用我的个人信息。</span></label>
+      <div class="err" id="agreeErr" style="margin-top:6px"></div>
+      <div class="actions" style="margin-top:18px">
+        <span class="status" id="status"></span>
+        <button type="button" class="btn" id="resetBtn">清空重填</button>
+        <button type="submit" class="btn btn-primary">提交简历</button>
+      </div>
+    </section>
+  </form>
+
+  <section class="card result" id="result" hidden>
+    <div class="ok">✓</div>
+    <h2 style="justify-content:center;margin:0 0 4px">投递成功</h2>
+    <p style="color:var(--muted);margin:0">感谢你的投递，我们会在 5 个工作日内通过邮件或电话与你联系。</p>
+    <div class="summary" id="summary"></div>
+    <div class="actions" style="justify-content:center;margin-top:16px">
+      <button type="button" class="btn" id="editBtn">返回修改</button>
+    </div>
+  </section>
+</div>
+
+<template id="jobTpl">
+  <div class="job">
+    <div class="job-head">
+      <strong class="job-title">工作经历</strong>
+      <button type="button" class="btn-link job-del">删除</button>
+    </div>
+    <div class="grid">
+      <div class="field">
+        <label class="req">公司名称</label>
+        <input type="text" data-k="company" placeholder="公司全称">
+        <div class="err"></div>
+      </div>
+      <div class="field">
+        <label class="req">职位名称</label>
+        <input type="text" data-k="title" placeholder="如：高级工程师">
+        <div class="err"></div>
+      </div>
+      <div class="field">
+        <label class="req">入职时间</label>
+        <input type="month" data-k="start">
+        <div class="err"></div>
+      </div>
+      <div class="field">
+        <label class="req">离职时间</label>
+        <input type="month" data-k="end">
+        <label class="inline-check"><input type="checkbox" data-k="current"> 至今在职</label>
+        <div class="err"></div>
+      </div>
+      <div class="field full">
+        <label>工作内容 / 主要成就</label>
+        <textarea data-k="desc" maxlength="1000" placeholder="描述你的职责、负责的项目和取得的成果"></textarea>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+(function () {
+  const form = document.getElementById('resumeForm');
+  const jobList = document.getElementById('jobList');
+  const jobEmpty = document.getElementById('jobEmpty');
+  const tpl = document.getElementById('jobTpl');
+  const statusEl = document.getElementById('status');
+  const DRAFT_KEY = 'resume-draft-v1';
+
+  // ---------- 工作经历 ----------
+  function addJob(data) {
+    const node = tpl.content.firstElementChild.cloneNode(true);
+    const current = node.querySelector('[data-k="current"]');
+    const end = node.querySelector('[data-k="end"]');
+    current.addEventListener('change', () => {
+      end.disabled = current.checked;
+      if (current.checked) { end.value = ''; clearErr(end); }
+    });
+    node.querySelector('.job-del').addEventListener('click', () => {
+      node.remove(); refreshJobs(); saveDraft();
+    });
+    if (data) {
+      node.querySelectorAll('[data-k]').forEach(el => {
+        const v = data[el.dataset.k];
+        if (el.type === 'checkbox') el.checked = !!v; else if (v != null) el.value = v;
+      });
+      end.disabled = current.checked;
+    }
+    jobList.appendChild(node);
+    refreshJobs();
+    return node;
+  }
+  function refreshJobs() {
+    const jobs = jobList.querySelectorAll('.job');
+    jobs.forEach((j, i) => j.querySelector('.job-title').textContent = '工作经历 ' + (i + 1));
+    jobEmpty.hidden = jobs.length > 0;
+  }
+  function getJobs() {
+    return [...jobList.querySelectorAll('.job')].map(j => {
+      const o = {};
+      j.querySelectorAll('[data-k]').forEach(el => o[el.dataset.k] = el.type === 'checkbox' ? el.checked : el.value.trim());
+      return o;
+    });
+  }
+  document.getElementById('addJob').addEventListener('click', () => {
+    const n = addJob();
+    n.querySelector('input').focus();
+  });
+
+  // ---------- 薪资单位 ----------
+  function updateUnit() {
+    const yearly = form.salaryType.value === '年薪';
+    document.querySelectorAll('.unit').forEach(u => u.textContent = yearly ? '万' : 'K');
+    document.getElementById('salaryHint').textContent = yearly ? '单位：万元/年（税前）' : '单位：千元/月（税前）';
+  }
+  form.querySelectorAll('[name="salaryType"]').forEach(r => r.addEventListener('change', updateUnit));
+
+  // ---------- 字数统计 ----------
+  const intro = document.getElementById('intro');
+  const introCount = document.getElementById('introCount');
+  intro.addEventListener('input', () => introCount.textContent = intro.value.length);
+
+  // ---------- 校验 ----------
+  function fieldOf(el) { return el.closest('.field'); }
+  function setErr(el, msg) {
+    const f = fieldOf(el); if (!f) return;
+    f.classList.add('invalid'); f.querySelector('.err').textContent = msg;
+  }
+  function clearErr(el) {
+    const f = fieldOf(el); if (!f) return;
+    f.classList.remove('invalid'); f.querySelector('.err').textContent = '';
+  }
+
+  function validate() {
+    let first = null;
+    const fail = (el, msg) => { setErr(el, msg); if (!first) first = el; };
+    form.querySelectorAll('.invalid').forEach(f => { f.classList.remove('invalid'); f.querySelector('.err').textContent = ''; });
+    document.getElementById('agreeErr').textContent = '';
+
+    const v = id => form[id].value.trim();
+    if (!v('fullname')) fail(form.fullname, '请填写姓名');
+    if (!form.gender.value) fail(form.querySelector('[name="gender"]'), '请选择性别');
+    if (!v('phone')) fail(form.phone, '请填写手机号码');
+    else if (!/^1[3-9]\d{9}$/.test(v('phone'))) fail(form.phone, '手机号码格式不正确');
+    if (!v('email')) fail(form.email, '请填写电子邮箱');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v('email'))) fail(form.email, '邮箱格式不正确');
+    if (v('birth') && new Date(v('birth')) > new Date()) fail(form.birth, '出生日期不能晚于今天');
+    if (!v('city')) fail(form.city, '请填写现居城市');
+    if (!v('education')) fail(form.education, '请选择最高学历');
+    if (!v('years')) fail(form.years, '请选择工作年限');
+    if (!v('position')) fail(form.position, '请填写应聘职位');
+
+    const thisMonth = new Date().toISOString().slice(0, 7);
+    jobList.querySelectorAll('.job').forEach(j => {
+      const g = k => j.querySelector(`[data-k="${k}"]`);
+      if (!g('company').value.trim()) fail(g('company'), '请填写公司名称');
+      if (!g('title').value.trim()) fail(g('title'), '请填写职位名称');
+      const s = g('start').value, e = g('end').value, cur = g('current').checked;
+      if (!s) fail(g('start'), '请选择入职时间');
+      else if (s > thisMonth) fail(g('start'), '入职时间不能晚于当前月份');
+      if (!cur && !e) fail(g('end'), '请选择离职时间或勾选“至今在职”');
+      else if (!cur && s && e < s) fail(g('end'), '离职时间不能早于入职时间');
+    });
+
+    const min = form.salaryMin.value, max = form.salaryMax.value, cs = form.currentSalary.value;
+    if (min === '' || max === '') fail(form.salaryMin, '请填写期望薪资范围');
+    else if (+min <= 0 || +max <= 0) fail(form.salaryMin, '薪资需大于 0');
+    else if (+min > +max) fail(form.salaryMin, '最低薪资不能高于最高薪资');
+    if (cs !== '' && +cs < 0) fail(form.currentSalary, '薪资不能为负数');
+    if (!v('arrival')) fail(form.arrival, '请选择到岗时间');
+
+    if (!form.agree.checked) {
+      document.getElementById('agreeErr').textContent = '请勾选确认后再提交';
+      if (!first) first = form.agree;
+    }
+    if (first) {
+      first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => first.focus({ preventScroll: true }), 300);
+    }
+    return !first;
+  }
+
+  // 输入时清除对应错误
+  form.addEventListener('input', e => { if (fieldOf(e.target)) clearErr(e.target); saveDraftSoon(); });
+  form.addEventListener('change', e => {
+    if (fieldOf(e.target)) clearErr(e.target);
+    if (e.target === form.agree) document.getElementById('agreeErr').textContent = '';
+    saveDraftSoon();
+  });
+
+  // ---------- 数据收集 ----------
+  function collect() {
+    const fd = new FormData(form);
+    const data = {};
+    ['fullname', 'gender', 'phone', 'email', 'birth', 'city', 'education', 'years', 'position', 'intro',
+     'salaryType', 'salaryMin', 'salaryMax', 'currentSalary', 'arrival'].forEach(k => data[k] = (fd.get(k) || '').toString().trim());
+    data.negotiable = form.negotiable.checked;
+    data.agree = form.agree.checked;
+    data.jobs = getJobs();
+    return data;
+  }
+  function fill(data) {
+    ['fullname', 'phone', 'email', 'birth', 'city', 'education', 'years', 'position', 'intro',
+     'salaryMin', 'salaryMax', 'currentSalary', 'arrival'].forEach(k => { if (data[k] != null) form[k].value = data[k]; });
+    ['gender', 'salaryType'].forEach(k => {
+      const r = form.querySelector(`[name="${k}"][value="${data[k]}"]`); if (r) r.checked = true;
+    });
+    form.negotiable.checked = !!data.negotiable;
+    form.agree.checked = !!data.agree;
+    jobList.innerHTML = '';
+    (data.jobs || []).forEach(addJob);
+    introCount.textContent = intro.value.length;
+    updateUnit(); refreshJobs();
+  }
+
+  // ---------- 草稿 ----------
+  let timer;
+  function saveDraftSoon() { clearTimeout(timer); timer = setTimeout(saveDraft, 400); }
+  function saveDraft() {
+    try {
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(collect()));
+      statusEl.textContent = '草稿已自动保存 ' + new Date().toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });
+    } catch (e) { /* 存储不可用时忽略 */ }
+  }
+  function loadDraft() {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY);
+      if (raw) { fill(JSON.parse(raw)); statusEl.textContent = '已恢复上次填写的草稿'; return true; }
+    } catch (e) { /* ignore */ }
+    return false;
+  }
+
+  // ---------- 重置 ----------
+  const resetBtn = document.getElementById('resetBtn');
+  let resetArmed = false, resetTimer;
+  resetBtn.addEventListener('click', () => {
+    if (!resetArmed) {
+      resetArmed = true; resetBtn.textContent = '再次点击确认清空';
+      resetTimer = setTimeout(() => { resetArmed = false; resetBtn.textContent = '清空重填'; }, 3000);
+      return;
+    }
+    clearTimeout(resetTimer); resetArmed = false; resetBtn.textContent = '清空重填';
+    form.reset(); jobList.innerHTML = ''; refreshJobs(); updateUnit();
+    introCount.textContent = '0';
+    form.querySelectorAll('.invalid').forEach(f => { f.classList.remove('invalid'); f.querySelector('.err').textContent = ''; });
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    statusEl.textContent = '已清空';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ---------- 提交 ----------
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fmtMonth = m => m ? m.replace('-', '.') : '';
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validate()) return;
+    const d = collect();
+    const unit = d.salaryType === '年薪' ? '万/年' : 'K/月';
+    const rows = [
+      ['姓名', d.fullname], ['性别', d.gender], ['手机', d.phone], ['邮箱', d.email],
+      ['出生日期', d.birth || '—'], ['现居城市', d.city], ['学历', d.education], ['工作年限', d.years],
+      ['应聘职位', d.position],
+      ['期望薪资', `${d.salaryMin} - ${d.salaryMax} ${unit}${d.negotiable ? '（可面议）' : ''}`],
+      ['当前薪资', d.currentSalary ? `${d.currentSalary} ${unit}` : '—'],
+      ['到岗时间', d.arrival]
+    ];
+    let html = '<h3>投递信息</h3><dl>' + rows.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join('') + '</dl>';
+    if (d.intro) html += `<h3>自我介绍</h3><p style="white-space:pre-wrap;margin:0">${esc(d.intro)}</p>`;
+    html += '<h3>工作经历</h3>';
+    html += d.jobs.length
+      ? d.jobs.map(j => `<div class="sjob"><strong>${esc(j.company)}</strong> · ${esc(j.title)}
+          <span style="color:var(--muted)">（${fmtMonth(j.start)} - ${j.current ? '至今' : fmtMonth(j.end)}）</span>
+          ${j.desc ? `<p>${esc(j.desc)}</p>` : ''}</div>`).join('')
+      : '<p style="color:var(--muted);margin:0">无</p>';
+    document.getElementById('summary').innerHTML = html;
+    console.log('提交数据：', d);
+    form.hidden = true;
+    document.getElementById('result').hidden = false;
+    try { localStorage.removeItem(DRAFT_KEY); } catch (e) {}
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window._lastSubmit = d;
+  });
+
+  document.getElementById('editBtn').addEventListener('click', () => {
+    document.getElementById('result').hidden = true;
+    form.hidden = false;
+    if (window._lastSubmit) { fill(window._lastSubmit); saveDraft(); }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // ---------- 初始化 ----------
+  if (!loadDraft()) addJob();
+  updateUnit();
+})();
+</script>
+</body>
+</html>

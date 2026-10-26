@@ -1,0 +1,212 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-007-gHw0ht -m gpt-6-astra -c model_reasoning_effort="high" <提示词>
+工作目录：<tmp>/measure-baseline-codex-007-gHw0ht
+退出码：0 信号：无 用时：311s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-007-gHw0ht
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a1731e-57c6-7953-8e5e-a3b018642244
+--------
+user
+做一个技术博客文章页，主题是用 Python 处理 Excel 报表的 5 个技巧，带代码示例。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会把它做成一页可直接打开的中文技术博客，包含 5 个 Excel 处理技巧、Python 代码示例和响应式排版，并写入当前目录的 `index.html`。
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g 'README*' ." in <tmp>/measure-baseline-codex-007-gHw0ht
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-007-gHw0ht
+
+web search: 
+web search: site.pandas.pydata.org docs read_excel ExcelWriter to_excel ...
+exec
+/bin/zsh -lc 'ls -la' in <tmp>/measure-baseline-codex-007-gHw0ht
+ succeeded in 0ms:
+total 0
+drwx------@    2 user  staff     64 Oct 25 20:52 .
+drwx------@ 1944 user  staff  62208 Oct 25 20:52 ..
+
+codex
+页面会采用浅色阅读布局、墨绿色点缀和深色代码块，配上文章目录、代码复制与示例下载。内容按“读取、清洗、合并、汇总、美化”展开，代码接口已参考 pandas 和 openpyxl 官方文档。
+
+exec
+/bin/zsh -lc "cat > index.html <<'EOF'
+<"'!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="从读取数据到美化导出，用 pandas 与 openpyxl 掌握 Python 处理 Excel 报表的 5 个实用技巧。附可复制、可下载的代码示例。">
+<title>用 Python 处理 Excel 报表的 5 个技巧 · 栈记</title>
+<style>
+:root{--bg:#fafbf8;--paper:#fff;--ink:#202d28;--muted:#78817b;--green:#2b6b4d;--light:#edf3eb;--line:#e3e8df;--code:#202925;--shadow:0 18px 45px #213d2510}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:100px}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:15px;line-height:1.8}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:3px solid #8ab899;outline-offset:5px}::selection{background:#cce4cb}svg{display:inline-block;vertical-align:middle}header{height:83px;background:var(--paper);border-bottom:1px solid var(--line)}.nav{max-width:1180px;height:100%;margin:auto;display:flex;align-items:center;gap:56px;padding:0 24px}.brand{display:flex;align-items:center;gap:11px}.brand-icon{background:var(--green);color:#fff;border-radius:8px;width:33px;height:36px;display:grid;place-items:center;font-size:21px;font-weight:700}.brand-name{font-size:23px;font-weight:750;letter-spacing:2px}.brand-en{font-size:10px;letter-spacing:1.8px;border-left:1px solid var(--line);padding-left:14px;margin-left:3px;color:var(--muted)}nav{display:flex;gap:30px;height:100%;align-items:center;font-size:14px}nav a{height:100%;display:flex;align-items:center;position:relative;color:var(--muted)}nav a.active{color:var(--green);font-weight:600}nav a.active:after{content:"";position:absolute;height:3px;background:var(--green);bottom:0;left:0;right:0}.nav-right{margin-left:auto;display:flex;gap:20px;align-items:center}.nav-note{font-size:12px;letter-spacing:1px;color:var(--muted)}.icon-button{border:0;background:transparent;color:var(--ink);padding:7px;display:grid;place-items:center}.container{max-width:1180px;margin:auto;padding:0 24px}.breadcrumb{display:flex;gap:12px;align-items:center;font-size:12px;color:var(--muted);margin:29px 0 23px}.breadcrumb a:hover{color:var(--green)}.hero{display:grid;grid-template-columns:1.12fr 1fr;align-items:center;gap:30px;padding-bottom:35px;border-bottom:1px solid var(--line)}.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:18px;font-size:11px;letter-spacing:1.5px;color:var(--muted)}.category{background:var(--light);border:1px solid #dce7d7;color:var(--green);border-radius:5px;padding:3px 9px;font-size:11px;font-weight:600;letter-spacing:.5px}.eyebrow .dot{height:3px;width:3px;border-radius:50%;background:#9ca69f}h1{font-size:42px;line-height:1.48;letter-spacing:-1.3px;margin:0 0 15px;font-weight:750}h1 .accent{color:var(--green)}.hero-desc{font-size:14px;color:#747e76;line-height:1.95;margin:0 0 24px;max-width:490px}.author{display:flex;align-items:center;gap:11px;font-size:12px;color:var(--muted)}.avatar{height:35px;width:35px;border-radius:50%;background:#e8ecdf;display:grid;place-items:center;color:var(--green);font-family:Georgia,serif;font-size:21px;font-style:italic;border:3px solid #fff}.author-name{color:var(--ink);font-weight:600;margin-right:4px}.author .sep{height:12px;width:1px;background:#d4dbd1;margin:0 3px}.hero-art{height:290px;border:1px solid #e0e8db;border-radius:12px;background:radial-gradient(ellipse at 65% 60%,#dbe7cc80,transparent 65%),#edf2e8;position:relative;overflow:hidden;isolation:isolate}.hero-art:before{content:"";position:absolute;inset:0;background-image:linear-gradient(#597a4210 1px,transparent 1px),linear-gradient(90deg,#597a4210 1px,transparent 1px);background-size:24px 24px;mask-image:linear-gradient(115deg,transparent,#000)}.art-label{position:absolute;left:24px;top:17px;font-size:9px;letter-spacing:2px;color:#85927d;font-family:monospace}.sheet{position:absolute;width:270px;height:176px;top:54px;right:31px;background:#fff;border:1px solid #d5decf;border-radius:7px;box-shadow:10px 15px 22px #53704a14;transform:rotate(-7deg);overflow:hidden}.sheet-title{height:31px;background:#376a4c;color:#eff8e8;font-size:9px;padding:6px 13px;display:flex;justify-content:space-between}.sheet-grid{display:grid;grid-template-columns:24px repeat(4,1fr);grid-auto-rows:23px;font-family:monospace;font-size:8px;text-align:center;color:#97a38f}.sheet-grid span{border-right:1px solid #e8ece4;border-bottom:1px solid #e8ece4;padding-top:3px}.sheet-grid .cell-head{background:#f0f4eb;color:#788e6c}.sheet-grid .selected{background:#e1edd5;color:#538349}.excel-badge{position:absolute;top:105px;left:64px;background:#276544;border-radius:9px;width:62px;height:67px;display:grid;place-items:center;color:#fff;font-size:39px;font-weight:600;transform:rotate(-7deg);box-shadow:4px 8px 14px #2c623e26}.code-card{position:absolute;left:85px;bottom:22px;width:282px;padding:12px 16px;background:#233b2d;color:#d2e0cc;border:1px solid #4c6450;border-radius:8px;box-shadow:0 10px 24px #25412920;transform:rotate(3deg);font-family:monospace;font-size:10px;line-height:1.8}.window-dots{display:flex;gap:4px;margin-bottom:8px}.window-dots i{width:5px;height:5px;background:#8b9d80;border-radius:50%}.window-dots i:first-child{background:#d6b587}.window-dots i:nth-child(2){background:#d1cf8c}.art-spark{position:absolute;right:27px;bottom:20px;font-size:28px;color:#789269}.art-caption{position:absolute;left:25px;bottom:13px;font:8px monospace;letter-spacing:1px;color:#87977d;writing-mode:vertical-rl;transform:rotate(180deg)}.layout{display:grid;grid-template-columns:minmax(0,760px) 265px;gap:66px;align-items:start;padding-top:32px}.article-tools{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);margin-bottom:24px}.tag{padding:3px 10px;border:1px solid var(--line);background:var(--paper);border-radius:5px;color:#69766a;line-height:1.6}.tools-right{margin-left:auto;display:flex;gap:16px}.tool-button{border:0;padding:2px;background:none;color:var(--muted);font-size:12px;display:flex;align-items:center;gap:5px}.tool-button:hover,.tool-button[aria-pressed=true]{color:var(--green)}.intro{margin:0 0 20px;color:#58655d;font-size:14px;line-height:2}.intro strong{font-weight:600;color:var(--ink)}.callout{padding:16px 19px;background:var(--light);border-left:3px solid #73965d;border-radius:0 6px 6px 0;font-size:13px;display:flex;align-items:flex-start;gap:11px;margin:21px 0 31px}.callout svg{flex-shrink:0;margin-top:4px;color:var(--green)}.callout p{margin:0;color:#63715f}.callout strong{color:#3c5941;font-weight:600}.callout code{font-size:11px;padding:2px 5px;background:#dce8d5;border-radius:4px;color:#4c6343}.article-section{margin-bottom:37px;scroll-margin-top:25px}.section-heading{display:flex;align-items:center;gap:13px;margin-bottom:11px}.section-num{width:31px;height:31px;display:grid;place-items:center;border-radius:7px;background:var(--light);color:var(--green);font:600 13px ui-monospace,monospace}.section-heading h2{font-size:21px;letter-spacing:-.35px;line-height:1.5;margin:0;font-weight:650}.article-section>p{font-size:14px;line-height:1.95;margin:10px 0 17px;color:#637067}p code{background:var(--light);color:var(--green);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;padding:2px 5px;border-radius:3px}.code-block{background:var(--code);border-radius:8px;overflow:hidden;margin:16px 0}.code-head{padding:9px 16px;border-bottom:1px solid #ffffff10;display:flex;align-items:center;font-family:ui-monospace,monospace;font-size:11px;color:#a4b2a8;gap:8px}.code-head .code-dot{height:6px;width:6px;border-radius:50%;background:#89b776}.copy{margin-left:auto;background:none;color:#a8b4ab;border:0;font:11px inherit;display:flex;align-items:center;gap:5px;padding:1px 3px}.copy:hover{color:white}pre{margin:0;padding:17px 20px 20px;overflow-x:auto;color:#e0e9de;line-height:1.85;tab-size:4;font-size:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.kw{color:#c4a8d9}.str{color:#b7d295}.comment{color:#829080}.func{color:#9ec8c5}.num{color:#dfbc87}.inline-note{font-size:12px!important;color:var(--muted)!important;display:flex;gap:7px}.inline-note span{color:var(--green)}aside{position:sticky;top:28px}.toc{border:1px solid var(--line);background:var(--paper);border-radius:9px;padding:21px 20px 19px}.aside-title{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;margin:0 0 17px}.aside-title .label{margin-left:auto;font-size:9px;letter-spacing:1.2px;color:#9aa398;font-weight:400}.toc-links{display:flex;flex-direction:column;gap:2px}.toc-links a{font-size:12px;color:#7d857e;display:flex;gap:10px;padding:8px 9px;border-left:2px solid transparent;line-height:1.6}.toc-links a span{font:11px ui-monospace,monospace;padding-top:3px;color:#99a293}.toc-links a.active{color:var(--green);background:var(--light);border-left-color:var(--green);font-weight:600;border-radius:0 4px 4px 0}.toc-links a:hover{color:var(--green)}.reading{border-top:1px solid var(--line);margin-top:17px;padding-top:14px;color:#929a92;font-size:10px;display:flex;justify-content:space-between}.progress-track{height:3px;background:var(--line);margin-top:9px;border-radius:3px;overflow:hidden}.progress-fill{height:100%;width:0;background:#789a67}.download-card{background:#edf2e7;border:1px solid #dfe7d8;border-radius:9px;padding:22px 20px;margin-top:20px}.download-icon{color:#60824e;border:1px solid #cedcc4;background:#e5eedc;width:34px;height:36px;border-radius:7px;display:grid;place-items:center;margin-bottom:13px}.download-card h3{font-size:14px;margin:0 0 6px;color:#344c35}.download-card p{font-size:12px;color:#7c8973;margin:0 0 16px;line-height:1.9}.download-btn{border:1px solid #c6d5bd;border-radius:5px;color:#4d6c3f;background:#f7faf3;padding:8px 10px;display:flex;gap:10px;align-items:center;justify-content:center;font-size:12px;width:100%;transition:background .2s}.download-btn:hover{background:#dce8d2}.download-foot{text-align:center;font:9px ui-monospace,monospace;color:#97a18f;margin-top:10px;letter-spacing:.3px}.aside-note{display:flex;gap:8px;color:#969f93;font-size:11px;padding:19px 8px;line-height:1.8}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:7px}table{width:100%;border-collapse:collapse;font-size:12px;text-align:left;white-space:nowrap}th{background:var(--light);color:var(--green);font-weight:500}th,td{padding:10px 17px;border-bottom:1px solid var(--line)}tr:last-child td{border:0}.end-card{border-top:1px solid var(--line);padding:24px 0;margin-top:10px}.end-card h2{font-size:20px;margin:0 0 10px}.end-card p{font-size:14px;color:var(--muted)}.references{font-size:12px;color:var(--muted);padding:20px 0 35px}.references a{color:var(--green);text-decoration:underline;text-underline-offset:3px}.references a+a{margin-left:14px}footer{border-top:1px solid var(--line);margin-top:20px;padding:25px 0;color:var(--muted);font-size:11px}footer .container{display:flex;justify-content:space-between}.toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,15px);opacity:0;background:#284c37;color:#fff;padding:10px 22px;border-radius:7px;font-size:13px;transition:.2s;pointer-events:none;z-index:5;box-shadow:var(--shadow)}.toast.show{opacity:1;transform:translate(-50%,0)}body.dark{--bg:#19211d;--paper:#202a24;--ink:#e1e9df;--muted:#9ba99e;--green:#a7c997;--light:#2c3a2c;--line:#354237;--code:#111b15}.dark .intro,.dark .article-section>p{color:#b1bdb1}.dark .hero-desc{color:#a4b2a4}.dark .callout p,.dark .callout strong{color:#b3c9a7}.dark .tag{color:#a7b7a6}.dark .avatar{border-color:#344333}.dark .category{border-color:#44553e}dialog{max-width:450px;width:calc(100% - 40px);background:var(--paper);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:30px;box-shadow:var(--shadow)}dialog::backdrop{background:#10221965;backdrop-filter:blur(4px)}dialog h2{font-size:24px;margin-top:0}dialog p{font-size:14px;color:var(--muted)}.dialog-close{float:right;background:none;border:0;color:var(--muted);font-size:23px}.about-label{font-size:10px;letter-spacing:2px;color:var(--green)}@media(min-width:1400px){.nav,.container{max-width:1230px}.layout{grid-template-columns:minmax(0,790px) 265px;gap:76px}.hero-art{height:304px}h1{font-size:46px}}@media(max-width:1000px){.layout{grid-template-columns:minmax(0,1fr) 235px;gap:30px}h1{font-size:34px}.hero-art{height:270px}.sheet{right:15px;width:235px}.excel-badge{left:25px}.code-card{left:40px;width:255px}.nav{gap:30px}.brand-en{display:none}}@media(max-width:760px){header{height:68px}.nav,.container{padding-left:21px;padding-right:21px}.nav{gap:25px}.brand-name{font-size:20px}.brand-icon{width:29px;height:31px;font-size:19px}nav{gap:20px;font-size:12px}.nav-note{display:none}.nav-right{margin-left:auto}.hero{grid-template-columns:1fr;gap:25px}.hero-art{height:250px}.sheet{width:270px;right:12%;top:35px}.excel-badge{left:18%;top:82px}.code-card{left:28%;bottom:20px}.hero-desc{max-width:100%}h1{font-size:36px}.layout{display:block;padding-top:25px}aside{display:none}.author{flex-wrap:wrap;font-size:11px}.breadcrumb{margin-top:20px}.article-tools{margin-bottom:21px}.section-heading h2{font-size:19px}.hero{padding-bottom:25px}.references a{display:inline-block;margin:6px 14px 0 0!important}.nav a:nth-child(2){display:none}footer .container{gap:10px;flex-wrap:wrap}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg"><symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v11a1 1 0 0 0 1 1h4"/></symbol><symbol id="download" viewBox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 15v5h16v-5"/></symbol><symbol id="file" viewBox="0 0 24 24"><path d="M14 3H5v18h14V8zM14 3v6h5M8 13h8M8 17h5"/></symbol><symbol id="bookmark" viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4-6 4z"/></symbol><symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6m-5 3h4M8 14a7 7 0 1 1 8 0l-1 2H9z"/></symbol></svg>
+<header><div class="nav"><a class="brand" href="#top" aria-label="栈记首页"><span class="brand-icon">≋</span><span class="brand-name">栈记</span><span class="brand-en">STACK NOTES</span></a><nav aria-label="主导航"><a class="active" href="#article">文章</a><a href="#resources">资源</a><a href="#about" id="about-link">关于</a></nav><div class="nav-right"><span class="nav-note">记录技术，也记录思考。</span><button class="icon-button" id="theme" aria-label="切换深色主题" title="切换主题"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.8 13.2A9 9 0 0 1 10.8 3.1a9 9 0 1 0 10 10.1Z"/></svg></button></div></div></header>
+<main class="container" id="top">
+<div class="breadcrumb"><a href="#top">首页</a><span>/</span><a href="#article">技术文章</a><span>/</span><span>Python</span></div>
+<section class="hero" aria-labelledby="title"><div><div class="eyebrow"><span class="category">PYTHON 实战</span><span class="dot"></span><span>让重复工作，自动完成</span></div><h1 id="title">用 Python 处理 Excel 报表的<br><span class="accent">5 个实用技巧</span></h1><p class="hero-desc">告别重复的复制粘贴。从数据读取到报表美化，<br>用几行 Python，把每个月的报表工作变得简单一点。</p><div class="author"><span class="avatar" aria-hidden="true">L.</span><span class="author-name">林间代码</span><span class="sep"></span><time datetime="2026-10-25">2026 年 10 月 25 日</time><span class="sep"></span><span>约 8 分钟阅读</span></div></div><div class="hero-art" role="img" aria-label="Excel 表格与 Python 代码的绿色插画"><span class="art-label">LESS REPETITION. MORE CREATION.</span><div class="sheet"><div class="sheet-title"><span>▦ &nbsp; monthly_report.xlsx</span><span>− &nbsp; □ &nbsp; ×</span></div><div class="sheet-grid"><span class="cell-head"></span><span class="cell-head">A</span><span class="cell-head">B</span><span class="cell-head">C</span><span class="cell-head">D</span><span>1</span><span>PRODUCT</span><span>SALES</span><span>COST</span><span>PROFIT</span><span>2</span><span>Notebook</span><span>12,800</span><span>8,400</span><span>4,400</span><span>3</span><span>Keyboard</span><span>8,600</span><span>5,200</span><span>3,400</span><span>4</span><span class="selected">Monitor</span><span class="selected">24,600</span><span class="selected">16,200</span><span class="selected">8,400</span><span>5</span><span></span><span></span><span></span><span></span><span>6</span><span></span><span></span><span></span><span></span></div></div><div class="excel-badge">X</div><div class="code-card"><div class="window-dots"><i></i><i></i><i></i></div><span style="color:#c2ba8b">import</span> pandas <span style="color:#c2ba8b">as</span> pd<br>df = pd.read_excel(<span style="color:#bbd29e">"report.xlsx"</span>)<br>df.to_excel(<span style="color:#bbd29e">"done.xlsx"</span>, index=<span style="color:#c2ba8b">False</span>)</div><span class="art-spark">✳</span><span class="art-caption">PYTHON × EXCEL</span></div></section>
+<div class="layout"><article id="article"><div class="article-tools"><span class="tag">Python</span><span class="tag">Excel</span><span class="tag">自动化办公</span><div class="tools-right"><button class="tool-button" id="save" aria-pressed="false"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#bookmark"/></svg><span>收藏</span></button><button class="tool-button" id="share"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 16V3m-5 5 5-5 5 5M5 12v9h14v-9"/></svg>分享</button></div></div>
+<p class="intro">每到月底，总有几张 Excel 报表等着整理：清洗数据、合并文件、统计汇总……<br>这些看似琐碎的工作，其实都可以交给 Python。本文整理了 <strong>5 个高频、实用的小技巧</strong>，让你从繁琐的表格操作中解放出来。</p>
+<div class="callout"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#bulb"/></svg><p><strong>开始之前</strong><br>示例使用 Python 3、pandas 和 openpyxl。运行前需准备好这两个库；文章页面本身无需安装任何依赖。示例按顺序执行，源文件为 <code>sales.xlsx</code>。</p></div>
+<section class="article-section" id="tip-1"><div class="section-heading"><span class="section-num">01</span><h2>精准读取，只加载你需要的数据</h2></div><p>一张表有几十列，但分析可能只需要其中几列。用 <code>usecols</code> 指定字段，再为订单编号指定文本类型，保留原本存为文本的前导零。</p><div class="code-block"><div class="code-head"><span class="code-dot"></span>Python <span style="color:#617367">/</span> read_report.py<button class="copy" aria-label="复制读取数据代码"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg><span>复制代码</span></button></div><pre><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+<span class="comment"># 读取「销售明细」工作表，并保留订单编号的前导零</span>
+df = pd.<span class="func">read_excel</span>(
+    <span class="str">"sales.xlsx"</span>,
+    sheet_name=<span class="str">"销售明细"</span>,
+    usecols=[<span class="str">"订单编号"</span>, <span class="str">"日期"</span>, <span class="str">"地区"</span>, <span class="str">"销售额"</span>],
+    dtype={<span class="str">"订单编号"</span>: <span class="str">"string"</span>},
+    engine=<span class="str">"openpyxl"</span>,
+)
+<span class="func">print</span>(df.head())</code></pre></div><p class="inline-note"><span>↳</span>这里假设首行为表头，且每个订单一行。Excel 中仅通过数字格式显示的前导零，无法靠 dtype 恢复。</p></section>
+<section class="article-section" id="tip-2"><div class="section-heading"><span class="section-num">02</span><h2>一次清洗，处理空值与重复数据</h2></div><p>统一字段、修正类型，再处理缺失值和重复订单。把规则封装成函数，后续每个月都能复用。无法解析的销售额和日期先变为空值，再移除并记录数量。</p><div class="code-block"><div class="code-head"><span class="code-dot"></span>Python <span style="color:#617367">/</span> clean_data.py<button class="copy" aria-label="复制数据清洗代码"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg><span>复制代码</span></button></div><pre><code><span class="kw">def</span> <span class="func">clean_sales</span>(data):
+    data = data.copy()
+    data.columns = data.columns.str.strip()
+    data[<span class="str">"订单编号"</span>] = data[<span class="str">"订单编号"</span>].str.strip().replace(<span class="str">""</span>, pd.NA)
+    data[<span class="str">"地区"</span>] = data[<span class="str">"地区"</span>].astype(<span class="str">"string"</span>).str.strip()
+    data[<span class="str">"地区"</span>] = data[<span class="str">"地区"</span>].replace(<span class="str">""</span>, pd.NA).fillna(<span class="str">"未分类"</span>)
+    data[<span class="str">"销售额"</span>] = pd.to_numeric(data[<span class="str">"销售额"</span>], errors=<span class="str">"coerce"</span>)
+    data[<span class="str">"日期"</span>] = pd.to_datetime(data[<span class="str">"日期"</span>], errors=<span class="str">"coerce"</span>)
+    before = <span class="func">len</span>(data)
+    data = data.dropna(subset=[<span class="str">"订单编号"</span>, <span class="str">"销售额"</span>, <span class="str">"日期"</span>])
+    data = data.drop_duplicates(subset=<span class="str">"订单编号"</span>, keep=<span class="str">"last"</span>)
+    <span class="func">print</span>(<span class="str">f"移除了 {before - len(data)} 行无效或重复记录"</span>)
+    <span class="kw">return</span> data
+
+clean = <span class="func">clean_sales</span>(df)</code></pre></div><p class="inline-note"><span>↳</span>若一个订单包含多条商品明细，请改用“订单编号 + 商品编号”等组合键去重。</p></section>
+<section class="article-section" id="tip-3"><div class="section-heading"><span class="section-num">03</span><h2>批量合并，告别逐个复制粘贴</h2></div><p>把同结构的报表放进 <code>reports/</code> 文件夹，用 <code>pathlib</code> 找到它们，再用 <code>concat</code> 一次拼接。增加来源列，方便之后追溯数据。</p><div class="code-block"><div class="code-head"><span class="code-dot"></span>Python <span style="color:#617367">/</span> merge_files.py<button class="copy" aria-label="复制文件合并代码"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg><span>复制代码</span></button></div><pre><code><span class="kw">from</span> pathlib <span class="kw">import</span> Path
+
+files = <span class="func">sorted</span>(
+    p <span class="kw">for</span> p <span class="kw">in</span> Path(<span class="str">"reports"</span>).glob(<span class="str">"*.xlsx"</span>)
+    <span class="kw">if not</span> p.name.startswith(<span class="str">"~$"</span>)  <span class="comment"># 跳过 Excel 临时文件</span>
+)
+<span class="kw">if not</span> files:
+    <span class="kw">raise</span> FileNotFoundError(<span class="str">"reports 文件夹内没有 .xlsx 报表"</span>)
+
+frames = [
+    pd.read_excel(p, sheet_name=<span class="str">"销售明细"</span>,
+                  dtype={<span class="str">"订单编号"</span>: <span class="str">"string"</span>})
+      .assign(来源文件=p.name)
+    <span class="kw">for</span> p <span class="kw">in</span> files
+]
+merged = pd.<span class="func">concat</span>(frames, ignore_index=<span class="kw">True</span>)
+clean = <span class="func">clean_sales</span>(merged)</code></pre></div><p class="inline-note"><span>↳</span>示例假设订单编号跨文件唯一；重复记录保留文件名排序后靠后的那一条。请先确认这符合你的业务规则。</p></section>
+<section class="article-section" id="tip-4"><div class="section-heading"><span class="section-num">04</span><h2>快速汇总，生成你的数据透视表</h2></div><p>想看各地区每个月的销售额？用 <code>pivot_table</code> 指定行、列、指标和汇总方式，一张清晰的月度报表就准备好了。</p><div class="code-block"><div class="code-head"><span class="code-dot"></span>Python <span style="color:#617367">/</span> summarize.py<button class="copy" aria-label="复制汇总代码"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg><span>复制代码</span></button></div><pre><code>clean[<span class="str">"月份"</span>] = clean[<span class="str">"日期"</span>].dt.strftime(<span class="str">"%Y-%m"</span>)
+summary = clean.<span class="func">pivot_table</span>(
+    index=<span class="str">"地区"</span>,
+    columns=<span class="str">"月份"</span>,
+    values=<span class="str">"销售额"</span>,
+    aggfunc=<span class="str">"sum"</span>,
+    fill_value=<span class="num">0</span>,
+    margins=<span class="kw">True</span>,
+    margins_name=<span class="str">"总计"</span>,
+)
+<span class="func">print</span>(summary)</code></pre></div><p class="inline-note"><span>↳</span>输出结构示意（金额为示例数据；源数据的地区字段请勿使用“总计”）：</p><div class="table-wrap"><table><thead><tr><th>地区 / 月份</th><th>2026-08</th><th>2026-09</th><th>总计</th></tr></thead><tbody><tr><td>华东</td><td>42,800</td><td>51,200</td><td>94,000</td></tr><tr><td>华南</td><td>36,500</td><td>40,600</td><td>77,100</td></tr><tr><td>总计</td><td>79,300</td><td>91,800</td><td>171,100</td></tr></tbody></table></div></section>
+<section class="article-section" id="tip-5"><div class="section-heading"><span class="section-num">05</span><h2>美化导出，让报表可以直接交付</h2></div><p>用 <code>ExcelWriter</code> 把明细与汇总放进同一个文件，再用 openpyxl 设置表头、列宽和金额格式。冻结首行，滚动查看数据也不容易迷失。</p><div class="code-block"><div class="code-head"><span class="code-dot"></span>Python <span style="color:#617367">/</span> export_report.py<button class="copy" aria-label="复制导出代码"><svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg><span>复制代码</span></button></div><pre><code><span class="kw">from</span> openpyxl.styles <span class="kw">import</span> Font, PatternFill
+
+<span class="comment"># 保存为新文件；再次运行会覆盖同名的输出文件</span>
+<span class="kw">with</span> pd.<span class="func">ExcelWriter</span>(<span class="str">"月度销售报表.xlsx"</span>, engine=<span class="str">"openpyxl"</span>) <span class="kw">as</span> writer:
+    clean.to_excel(writer, sheet_name=<span class="str">"销售明细"</span>, index=<span class="kw">False</span>)
+    summary.to_excel(writer, sheet_name=<span class="str">"月度汇总"</span>)
+
+    <span class="kw">for</span> ws <span class="kw">in</span> writer.book.worksheets:
+        ws.freeze_panes = <span class="str">"B2"</span>
+        ws.auto_filter.ref = ws.dimensions
+        <span class="kw">for</span> cell <span class="kw">in</span> ws[<span class="num">1</span>]:
+            cell.font = Font(bold=<span class="kw">True</span>, color=<span class="str">"FFFFFF"</span>)
+            cell.fill = PatternFill(<span class="str">"solid"</span>, fgColor=<span class="str">"2B6B4D"</span>)
+            ws.column_dimensions[cell.column_letter].width = <span class="num">20</span>
+        <span class="kw">for</span> row <span class="kw">in</span> ws.iter_rows(min_row=<span class="num">2</span>):
+            <span class="kw">for</span> cell <span class="kw">in</span> row:
+                header = ws.cell(<span class="num">1</span>, cell.column).value
+                <span class="kw">if</span> header == <span class="str">"销售额"</span> <span class="kw">or</span> (
+                    ws.title == <span class="str">"月度汇总"</span> <span class="kw">and</span> cell.column &gt; <span class="num">1</span>
+                ):
+                    cell.number_format = <span class="str">"#,##0.00"</span></code></pre></div></section>
+<div class="end-card"><h2>把时间留给分析，把重复交给代码。</h2><p>从一张报表开始，把读取、清洗、合并、汇总和导出串成固定流程。下一次月末，你只需要更新源文件，再运行一次脚本。</p><button class="download-btn" data-download style="max-width:230px"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#download"/></svg>下载完整示例代码 <span>↓</span></button></div>
+<div class="references" id="resources">继续阅读 · 官方文档<br><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html" target="_blank" rel="noopener noreferrer">pandas 数据读写 ↗</a><a href="https://pandas.pydata.org/docs/reference/api/pandas.ExcelWriter.html" target="_blank" rel="noopener noreferrer">ExcelWriter ↗</a><a href="https://openpyxl.readthedocs.io/en/latest/styles.html" target="_blank" rel="noopener noreferrer">openpyxl 样式指南 ↗</a></div>
+</article>
+<aside aria-label="文章辅助导航"><div class="toc"><h2 class="aside-title"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 6h12M9 12h12M9 18h12M3 6h1M3 12h1M3 18h1"/></svg>文章目录 <span class="label">ON THIS PAGE</span></h2><div class="toc-links"><a class="active" href="#tip-1"><span>01</span>精准读取数据</a><a href="#tip-2"><span>02</span>清洗空值与重复数据</a><a href="#tip-3"><span>03</span>批量合并 Excel 文件</a><a href="#tip-4"><span>04</span>数据汇总与透视表</a><a href="#tip-5"><span>05</span>美化并导出报表</a></div><div class="reading"><span>阅读进度</span><span id="progress-text">0%</span></div><div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div></div><div class="download-card"><div class="download-icon"><svg width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.3"><use href="#file"/></svg></div><h3>边读边练，事半功倍</h3><p>完整示例代码已打包，<br>从第一行代码开始你的自动化。</p><button class="download-btn" data-download><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.4"><use href="#download"/></svg>下载示例代码<span style="margin-left:auto">↗</span></button><div class="download-foot">.py 文件 · 含演示数据 · 可直接运行</div></div><div class="aside-note"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.4" style="flex-shrink:0;margin-top:3px"><use href="#bulb"/></svg><span>好的工具，让每一份努力<br>都用在更有价值的地方。</span></div></aside></div>
+</main>
+<footer><div class="container"><span>© 2026 栈记 · Stack Notes</span><span>保持好奇，持续构建。 <a href="#top" style="margin-left:24px;color:var(--green)">回到顶部 ↑</a></span></div></footer>
+<dialog id="about"><button class="dialog-close" aria-label="关闭关于窗口">×</button><span class="about-label">ABOUT STACK NOTES</span><h2>栈记，记录技术与思考。</h2><p>用简单的例子，拆解实际工作里的技术问题。这里关注 Python、数据处理和自动化，让知识成为可以动手使用的工具。</p></dialog><div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>
+const $ = s => document.querySelector(s);
+let toastTimer;
+function notify(message){$('"'#toast').textContent=message;"'$('"'#toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>"'$('"'#toast').classList.remove('show'),2400)}
+async function copyText(text){if(navigator.clipboard && window.isSecureContext){await navigator.clipboard.writeText(text);return}const input=document.createElement('textarea');input.value=text;input.style.cssText='position:fixed;left:-9999px;top:0';document.body.append(input);input.select();const ok=document.execCommand('copy');input.remove();if("'!ok)throw new Error('"'copy failed')}
+document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{try{await copyText(button.closest('.code-block').querySelector('code').textContent);button.querySelector('span').textContent='已复制';setTimeout(()=>button.querySelector('span').textContent='复制代码',2000)}catch{notify('复制未成功，请选中代码手动复制')}}));
+function store(key,value){try{localStorage.setItem(key,value)}catch{}}
+function restore(key){try{return localStorage.getItem(key)}catch{return null}}
+function setTheme(dark){document.body.classList.toggle('dark',dark);"'$('"'#theme').setAttribute('aria-label',dark?'切换浅色主题':'切换深色主题');"'$('"'#theme').setAttribute('aria-pressed',String(dark))}
+setTheme(restore('stack-theme')==='dark');"'$('"'#theme').addEventListener('click',()=>{const dark="'!document.body.classList.contains('"'dark');setTheme(dark);store('stack-theme',dark?'dark':'light')});
+function setSaved(saved){"'$('"'#save').setAttribute('aria-pressed',String(saved));"'$('"'#save span').textContent=saved?'已收藏':'收藏'}setSaved(restore('stack-excel-saved')==='true');"'$('"'#save').addEventListener('click',()=>{const saved="'$('"'#save').getAttribute('aria-pressed')"'!=='"'true';setSaved(saved);store('stack-excel-saved',String(saved));notify(saved?'已在当前浏览器收藏这篇文章':'已取消收藏')});
+"'$('"'#share').addEventListener('click',async()=>{try{await copyText(location.href);notify(location.protocol==='file:'?'已复制本地文件地址；分享时请同时发送 HTML 文件':'文章链接已复制')}catch{notify('请从地址栏复制文章地址')}});
+"'$('"'#about-link').addEventListener('click',event=>{event.preventDefault();"'$('"'#about').showModal()});"'$('"'.dialog-close').addEventListener('click',()=>"'$('"'#about').close());"'$('"'#about').addEventListener('click',event=>{if(event.target==="'$('"'#about')){const r="'$('"'#about').getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)"'$('"'#about').close()}});
+const sections=[...document.querySelectorAll('.article-section')],links=[...document.querySelectorAll('.toc-links a')];let scheduled=false;function updateReading(){const article="'$('"'#article'),start=article.offsetTop,end=article.offsetTop+article.offsetHeight-innerHeight;const progress=Math.min(100,Math.max(0,Math.round((scrollY-start)/Math.max(1,end-start)*100)));"'$('"'#progress-text').textContent=progress+'%';"'$('"'#progress-fill').style.width=progress+'%';let active=sections[0].id;sections.forEach(section=>{if(section.getBoundingClientRect().top<innerHeight*.35)active=section.id});links.forEach(link=>{const on=link.hash==='#'+active;link.classList.toggle('active',on);if(on)link.setAttribute('aria-current','location');else link.removeAttribute('aria-current')});scheduled=false}addEventListener('scroll',()=>{if("'!scheduled){scheduled=true;requestAnimationFrame(updateReading)}},{passive:true});addEventListener('"'resize',updateReading);updateReading();
+const sampleSetup="'`# Python Excel 报表示例'"\\n# 运行前请在自己的 Python 环境中准备 pandas 和 openpyxl。\\n# 运行：python excel_report_demo.py\\n# 在新建的独立演示目录中生成输入文件和输出报表，避免覆盖已有数据。\\nimport pandas as pd\\nfrom pathlib import Path\\nimport tempfile\\nimport os\\n\\nworkspace = Path(tempfile.mkdtemp(prefix=\"excel_report_demo_\", dir=Path.cwd()))\\nos.chdir(workspace)\\nPath(\"reports\").mkdir()\\nsample = pd.DataFrame({\\n    \"订单编号\": [\"001\", \"002\", \"003\", \"004\", \"005\", \"006\"],\\n    \"日期\": pd.to_datetime([\"2026-08-01\", \"2026-08-02\", \"2026-09-01\", \"2026-09-02\", \"2026-09-03\", \"2026-09-04\"]),\\n    \"地区\": [\"华东\", \"华南\", \"华东\", \"华南\", \"华东\", \"华南\"],\\n    \"销售额\": [42800, 36500, 30000, 26000, 21200, 14600],\\n})\\nsample.to_excel(\"sales.xlsx\", sheet_name=\"销售明细\", index=False)\\nsample.iloc[:3].to_excel(\"reports/01.xlsx\", sheet_name=\"销售明细\", index=False)\\nsample.iloc[3:].to_excel(\"reports/02.xlsx\", sheet_name=\"销售明细\", index=False)\\n\\n"'`;
+document.querySelectorAll('"'[data-download]').forEach(button=>button.addEventListener('click',()=>{const code=sampleSetup+[...document.querySelectorAll('pre code')].map((block,i)=>'# 技巧 '+(i+1)+'\\n'+block.textContent).join('\\n\\n')+'\\n\\nprint(f\"报表已生成：{workspace / chr(26376)}\")\\n';const finalCode=code.replace('print(f\"报表已生成：{workspace / chr(26376)}\")','print(\"报表已生成：\", workspace / \"月度销售报表.xlsx\")');const url=URL.createObjectURL(new Blob([finalCode],{type:'text/x-python;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='excel_report_demo.py';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);notify('示例代码已准备好，包含可运行的演示数据')}));
+</script>
+</body>
+</html>
+EOF" in <tmp>/measure-baseline-codex-007-gHw0ht
+ succeeded in 0ms:
+codex
+`index.html` 已生成，包含完整的五个技巧，以及代码复制、目录定位、阅读进度和主题切换。正在检查页面结构与示例代码语法；下载按钮会生成附带演示数据的 Python 脚本。
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+import ast
+p=Path('index.html')
+s=p.read_text()
+s=s.replace(\"+'\\\\n\\\\nprint(f\\\"报表已生成：{workspace / chr(26376)}\\\")\\\\n';const finalCode=code.replace('print(f\\\"报表已生成：{workspace / chr(26376)}\\\")','print(\\\"报表已生成：\\\", workspace / \\\"月度销售报表.xlsx\\\")');\", \"+'\\\\n\\\\nprint(\\\"报表已生成：\\\", workspace / \\\"月度销售报表.xlsx\\\")\\\\n';\")
+s=s.replace('new Blob([finalCode]', 'new Blob([code]')
+p.write_text(s)
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=[]; self.targets=[]; self.codes=[]; self.in_pre=False; self.in_script=False; self.js=''
+    def handle_starttag(self, tag, attrs):
+        a=dict(attrs)
+        if 'id' in a: self.ids.append(a['id'])
+        if tag=='a' and a.get('href','').startswith('#'): self.targets.append(a['href'][1:])
+        if tag=='pre': self.in_pre=True; self.codes.append('')
+        if tag=='script': self.in_script=True
+    def handle_endtag(self, tag):
+        if tag=='pre': self.in_pre=False
+        if tag=='script': self.in_script=False
+    def handle_data(self,data):
+        if self.in_pre: self.codes[-1]+=data
+        if self.in_script: self.js+=data
+c=Check();c.feed(s)
+assert len(c.ids)==len(set(c.ids)), 'Duplicate IDs'
+assert all(t in c.ids for t in c.targets), 'Missing anchor target'
+assert len(c.codes)==5
+ast.parse('\\n\\n'.join(c.codes))
+Path('/tmp/stack-notes-check.js').write_text(c.js)
+print('HTML anchors: OK; five Python examples: syntax OK')
+print(f'index.html: {p.stat().st_size:,} bytes')
+PY
+node --check /tmp/stack-notes-check.js" in <tmp>/measure-baseline-codex-007-gHw0ht
+ succeeded in 0ms:
+HTML anchors: OK; five Python examples: syntax OK
+index.html: 37,481 bytes
+
+codex
+已生成 [index.html](index.html)，包含 5 个 Python Excel 处理技巧、代码示例、复制与下载功能，并支持移动端和深色模式。所有样式与脚本均内嵌，无需安装依赖或启动服务器，直接打开即可。
+tokens used
+21,796
+已生成 [index.html](index.html)，包含 5 个 Python Excel 处理技巧、代码示例、复制与下载功能，并支持移动端和深色模式。所有样式与脚本均内嵌，无需安装依赖或启动服务器，直接打开即可。

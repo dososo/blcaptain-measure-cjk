@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>活动报名</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <section id="form-view">
+      <h1>活动报名</h1>
+      <p class="subtitle">请填写以下信息，带 <span class="required">*</span> 为必填项</p>
+
+      <form id="signup-form" novalidate>
+        <div class="field" data-field="name">
+          <label for="name">姓名<span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="请输入真实姓名" maxlength="20" autocomplete="name">
+          <div class="error" aria-live="polite"></div>
+        </div>
+
+        <div class="field" data-field="phone">
+          <label for="phone">手机号<span class="required">*</span></label>
+          <input type="tel" id="phone" name="phone" placeholder="请输入 11 位手机号" maxlength="11" inputmode="numeric" autocomplete="tel">
+          <div class="error" aria-live="polite"></div>
+        </div>
+
+        <div class="field" data-field="city">
+          <label for="city">所在城市<span class="required">*</span></label>
+          <select id="city" name="city">
+            <option value="">请选择城市</option>
+            <option>北京</option>
+            <option>上海</option>
+            <option>广州</option>
+            <option>深圳</option>
+            <option>杭州</option>
+            <option>成都</option>
+            <option>武汉</option>
+            <option>南京</option>
+            <option>西安</option>
+            <option value="其他">其他</option>
+          </select>
+          <div class="error" aria-live="polite"></div>
+        </div>
+
+        <fieldset class="field" data-field="session">
+          <legend>参加场次<span class="required">*</span></legend>
+          <div class="sessions">
+            <label class="session">
+              <input type="radio" name="session" value="第一场：11月8日（周六）14:00–17:00">
+              <span>
+                <span class="session-title">第一场</span><br>
+                <span class="session-meta">11月8日（周六）14:00–17:00</span>
+              </span>
+            </label>
+            <label class="session">
+              <input type="radio" name="session" value="第二场：11月15日（周六）14:00–17:00">
+              <span>
+                <span class="session-title">第二场</span><br>
+                <span class="session-meta">11月15日（周六）14:00–17:00</span>
+              </span>
+            </label>
+            <label class="session">
+              <input type="radio" name="session" value="第三场：11月22日（周六）19:00–21:00">
+              <span>
+                <span class="session-title">第三场</span><br>
+                <span class="session-meta">11月22日（周六）19:00–21:00</span>
+              </span>
+            </label>
+          </div>
+          <div class="error" aria-live="polite"></div>
+        </fieldset>
+
+        <button type="submit">提交报名</button>
+      </form>
+    </section>
+
+    <section id="success-view" class="success" hidden>
+      <div class="success-icon">✓</div>
+      <h2>报名成功</h2>
+      <p class="subtitle">感谢报名，我们将通过短信通知您活动详情。</p>
+      <dl class="summary" id="summary"></dl>
+      <button type="button" class="link-btn" id="again">再报一位</button>
+    </section>
+  </main>
+
+  <script>
+    const form = document.getElementById('signup-form');
+    const formView = document.getElementById('form-view');
+    const successView = document.getElementById('success-view');
+
+    const rules = {
+      name: v => !v.trim() ? '请输入姓名'
+        : v.trim().length < 2 ? '姓名至少 2 个字' : '',
+      phone: v => !v ? '请输入手机号'
+        : !/^1[3-9]\d{9}$/.test(v) ? '请输入正确的 11 位手机号' : '',
+      city: v => !v ? '请选择所在城市' : '',
+      session: v => !v ? '请选择参加场次' : ''
+    };
+
+    function getValue(key) {
+      if (key === 'session') {
+        const checked = form.querySelector('input[name="session"]:checked');
+        return checked ? checked.value : '';
+      }
+      return form.elements[key].value;
+    }
+
+    function validate(key) {
+      const field = form.querySelector(`[data-field="${key}"]`);
+      const msg = rules[key](getValue(key));
+      field.classList.toggle('invalid', !!msg);
+      field.querySelector('.error').textContent = msg;
+      return !msg;
+    }
+
+    // 手机号只允许输入数字
+    form.elements.phone.addEventListener('input', e => {
+      e.target.value = e.target.value.replace(/\D/g, '');
+    });
+
+    // 失焦/变更时校验；已出错的字段在输入时实时更新
+    Object.keys(rules).forEach(key => {
+      const els = key === 'session'
+        ? form.querySelectorAll('input[name="session"]')
+        : [form.elements[key]];
+      els.forEach(el => {
+        el.addEventListener('blur', () => key !== 'session' && validate(key));
+        el.addEventListener('change', () => validate(key));
+        el.addEventListener('input', () => {
+          if (form.querySelector(`[data-field="${key}"]`).classList.contains('invalid')) validate(key);
+        });
+      });
+    });
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const results = Object.keys(rules).map(validate);
+      if (results.includes(false)) {
+        const first = form.querySelector('.field.invalid input, .field.invalid select');
+        if (first) first.focus();
+        return;
+      }
+
+      const data = {
+        姓名: getValue('name').trim(),
+        手机号: getValue('phone'),
+        所在城市: getValue('city'),
+        参加场次: getValue('session')
+      };
+
+      // TODO: 在此处将 data 提交到后端接口，例如：
+      // fetch('/api/signup', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      console.log('报名数据：', data);
+
+      const summary = document.getElementById('summary');
+      summary.innerHTML = '';
+      Object.entries(data).forEach(([k, v]) => {
+        const row = document.createElement('div');
+        const dt = document.createElement('dt');
+        const dd = document.createElement('dd');
+        dt.textContent = k;
+        dd.textContent = k === '手机号' ? v.replace(/^(\d{3})\d{4}(\d{4})$/, '$1****$2') : v;
+        row.append(dt, dd);
+        summary.append(row);
+      });
+
+      formView.hidden = true;
+      successView.hidden = false;
+    });
+
+    document.getElementById('again').addEventListener('click', () => {
+      form.reset();
+      form.querySelectorAll('.field').forEach(f => {
+        f.classList.remove('invalid');
+        f.querySelector('.error').textContent = '';
+      });
+      successView.hidden = true;
+      formView.hidden = false;
+      form.elements.name.focus();
+    });
+  </script>
+</body>
+</html>

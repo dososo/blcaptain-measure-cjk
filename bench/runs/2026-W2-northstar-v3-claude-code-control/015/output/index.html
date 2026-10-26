@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>API 按量计费价格</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <span class="badge">按量计费 · 无月费 · 无最低消费</span>
+      <h1>API 服务价格</h1>
+      <p>只为实际调用付费。每个接口每月都有免费额度，超出部分按每千次调用计费，按月结算。</p>
+    </header>
+
+    <section class="highlights">
+      <div class="card"><div class="label">起步价格</div><div class="value">¥0.50 / 千次</div></div>
+      <div class="card"><div class="label">每月免费调用</div><div class="value free">最高 10 万次</div></div>
+      <div class="card"><div class="label">计费粒度</div><div class="value">按次累计</div></div>
+      <div class="card"><div class="label">结算周期</div><div class="value">自然月</div></div>
+    </section>
+
+    <h2>接口价格表</h2>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>接口</th>
+            <th>说明</th>
+            <th>每月免费额度</th>
+            <th>超出后单价（每千次）</th>
+          </tr>
+        </thead>
+        <tbody id="price-body"></tbody>
+      </table>
+    </div>
+
+    <h2>阶梯折扣</h2>
+    <div class="tiers">
+      <div class="card"><h3>0 – 100 万次</h3><div class="value">标准价</div><p>超出免费额度后按价格表计费</p></div>
+      <div class="card"><h3>100 万 – 1000 万次</h3><div class="value">9 折</div><p>当月该接口超出部分自动享受</p></div>
+      <div class="card"><h3>1000 万次以上</h3><div class="value">8 折</div><p>更大用量可联系销售定制价格</p></div>
+    </div>
+
+    <h2>费用估算</h2>
+    <div class="card calc">
+      <div class="calc-row">
+        <label>接口
+          <select id="calc-api"></select>
+        </label>
+        <label>每月调用次数
+          <input id="calc-calls" type="number" min="0" step="1000" value="500000">
+        </label>
+      </div>
+      <div class="calc-result">
+        <div class="total" id="calc-total">¥0.00</div>
+        <div class="detail" id="calc-detail"></div>
+      </div>
+    </div>
+
+    <h2>计费说明</h2>
+    <ul class="notes">
+      <li>免费额度按接口分别计算，每月 1 日 00:00（UTC+8）重置，未用完的额度不累计到下月。</li>
+      <li>仅成功返回（HTTP 2xx）的请求计入调用次数；4xx、5xx 及限流请求不计费。</li>
+      <li>不足一千次的部分按实际次数折算，费用精确到分。</li>
+      <li>阶梯折扣按单个接口当月累计调用量计算，与免费额度叠加使用。</li>
+      <li>以上价格均为人民币含税价，如有调整将提前 30 天通知。</li>
+    </ul>
+
+    <footer>如需企业套餐、私有化部署或 SLA 保障，请联系销售团队。</footer>
+  </div>
+
+  <script>
+    const APIS = [
+      { name: "文本识别 OCR",   endpoint: "POST /v1/ocr",        desc: "图片文字识别，支持中英文混排", free: 10000,  price: 1.50 },
+      { name: "图像标签",       endpoint: "POST /v1/image/tags", desc: "识别图片中的物体与场景",       free: 10000,  price: 2.00 },
+      { name: "文本翻译",       endpoint: "POST /v1/translate",  desc: "支持 100+ 语种互译",           free: 50000,  price: 0.80 },
+      { name: "情感分析",       endpoint: "POST /v1/sentiment",  desc: "判断文本正负面情绪倾向",       free: 100000, price: 0.50 },
+      { name: "语音转文字",     endpoint: "POST /v1/asr",        desc: "单次音频不超过 60 秒",         free: 5000,   price: 4.00 },
+      { name: "短信验证码",     endpoint: "POST /v1/sms/verify", desc: "国内手机号验证码发送",         free: 1000,   price: 45.00 },
+      { name: "IP 地理位置",    endpoint: "GET /v1/geoip",       desc: "IP 地址查询国家/城市/运营商",  free: 100000, price: 0.50 },
+    ];
+
+    const yuan = n => "¥" + n.toLocaleString("zh-CN", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const count = n => n >= 10000 ? (n / 10000).toLocaleString("zh-CN") + " 万次" : n.toLocaleString("zh-CN") + " 次";
+
+    document.getElementById("price-body").innerHTML = APIS.map(a => `
+      <tr>
+        <td><span class="api">${a.name}</span><span class="endpoint">${a.endpoint}</span></td>
+        <td>${a.desc}</td>
+        <td class="num"><span class="quota">${count(a.free)} / 月</span></td>
+        <td class="num"><span class="price">${yuan(a.price)}</span></td>
+      </tr>`).join("");
+
+    const sel = document.getElementById("calc-api");
+    sel.innerHTML = APIS.map((a, i) => `<option value="${i}">${a.name}</option>`).join("");
+    const input = document.getElementById("calc-calls");
+
+    // 阶梯：超出免费额度后，按当月累计调用量所在区间打折
+    const TIERS = [
+      { upTo: 1_000_000,  rate: 1.0 },
+      { upTo: 10_000_000, rate: 0.9 },
+      { upTo: Infinity,   rate: 0.8 },
+    ];
+
+    function estimate() {
+      const a = APIS[sel.value];
+      const calls = Math.max(0, Math.floor(Number(input.value) || 0));
+      let cost = 0, prev = 0;
+      for (const t of TIERS) {
+        const lo = Math.max(prev, a.free);
+        const hi = Math.min(calls, t.upTo);
+        if (hi > lo) cost += (hi - lo) / 1000 * a.price * t.rate;
+        prev = t.upTo;
+      }
+      cost = Math.round(cost * 100) / 100;
+      const billable = Math.max(0, calls - a.free);
+      document.getElementById("calc-total").textContent = yuan(cost) + " / 月";
+      document.getElementById("calc-detail").textContent = billable === 0
+        ? `${count(calls)}在免费额度（${count(a.free)}）内，无需付费。`
+        : `免费 ${count(a.free)}，计费 ${count(billable)}，标准单价 ${yuan(a.price)} / 千次（已含阶梯折扣）。`;
+    }
+    sel.addEventListener("change", estimate);
+    input.addEventListener("input", estimate);
+    estimate();
+  </script>
+</body>
+</html>

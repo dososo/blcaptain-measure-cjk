@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>睡前书单</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --night-1: #141b3a;
+    --night-2: #2a2f5e;
+    --night-3: #4a3f6e;
+    --moon: #fbe9b7;
+    --ink: #f5efe2;
+    --muted: rgba(245, 239, 226, .68);
+    --panel: rgba(255, 255, 255, .07);
+    --line: rgba(251, 233, 183, .22);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px 16px;
+    background: #0c1024;
+    font-family: "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  }
+
+  /* 3:4 竖版卡片，内部尺寸全部用 cqw，随宽度等比缩放 */
+  .card {
+    width: min(100%, 540px, calc((100vh - 48px) * 0.75));
+    aspect-ratio: 3 / 4;
+    container-type: inline-size;
+    position: relative;
+    overflow: hidden;
+    border-radius: 3cqw;
+    color: var(--ink);
+    background:
+      radial-gradient(circle at 80% 8%, rgba(251, 233, 183, .18), transparent 32%),
+      linear-gradient(170deg, var(--night-1) 0%, var(--night-2) 55%, var(--night-3) 100%);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .5);
+  }
+  .inner {
+    position: absolute;
+    inset: 0;
+    padding: 7cqw 7cqw 5cqw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 月亮与星星 */
+  .moon {
+    position: absolute;
+    top: 6cqw; right: 8cqw;
+    width: 13cqw; height: 13cqw;
+    border-radius: 50%;
+    background: var(--moon);
+    box-shadow: 0 0 6cqw rgba(251, 233, 183, .55);
+  }
+  .moon::after {
+    content: "";
+    position: absolute;
+    top: -2cqw; left: 3.6cqw;
+    width: 13cqw; height: 13cqw;
+    border-radius: 50%;
+    background: #1b2247;
+  }
+  .star {
+    position: absolute;
+    width: .8cqw; height: .8cqw;
+    border-radius: 50%;
+    background: #fff;
+    opacity: .8;
+    animation: twinkle 3s ease-in-out infinite;
+  }
+  @keyframes twinkle { 50% { opacity: .2; } }
+  @media (prefers-reduced-motion: reduce) { .star { animation: none; } }
+
+  /* 标题区 */
+  .tag {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 2.6cqw;
+    letter-spacing: .3em;
+    padding: .8cqw 2.4cqw;
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    color: var(--moon);
+  }
+  h1 {
+    margin: 3cqw 0 1.2cqw;
+    font-size: 9.6cqw;
+    font-weight: 900;
+    line-height: 1.15;
+    letter-spacing: .04em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--moon);
+  }
+  .sub {
+    margin: 0 0 4.5cqw;
+    font-size: 3.2cqw;
+    color: var(--muted);
+    letter-spacing: .08em;
+  }
+
+  /* 书单 */
+  ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2.2cqw;
+    flex: 1;
+  }
+  li {
+    display: flex;
+    align-items: center;
+    gap: 3.4cqw;
+    padding: 2.6cqw 3.4cqw;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 2.4cqw;
+    flex: 1;
+  }
+  .spine {
+    flex: none;
+    width: 8cqw; height: 11cqw;
+    border-radius: .8cqw 1.4cqw 1.4cqw .8cqw;
+    display: grid;
+    place-items: center;
+    font-size: 4cqw;
+    font-weight: 900;
+    color: #1b2247;
+    box-shadow: inset 1cqw 0 0 rgba(0, 0, 0, .12);
+  }
+  li:nth-child(1) .spine { background: #fbe9b7; }
+  li:nth-child(2) .spine { background: #c9dbc0; }
+  li:nth-child(3) .spine { background: #f1c6b8; }
+  li:nth-child(4) .spine { background: #c8cdec; }
+  li:nth-child(5) .spine { background: #e6d3ef; }
+  .info { min-width: 0; }
+  .title {
+    font-size: 4.2cqw;
+    font-weight: 600;
+    line-height: 1.3;
+  }
+  .title small {
+    font-size: 2.6cqw;
+    font-weight: 400;
+    color: var(--muted);
+    margin-left: 1.4cqw;
+  }
+  .why {
+    margin-top: .6cqw;
+    font-size: 2.85cqw;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* 底部 */
+  footer {
+    margin-top: 3.6cqw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.6cqw;
+    color: var(--muted);
+    letter-spacing: .1em;
+  }
+  footer b { color: var(--moon); font-weight: 600; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="moon" aria-hidden="true"></div>
+    <i class="star" style="top:5%;left:12%"></i>
+    <i class="star" style="top:11%;left:48%;animation-delay:.8s"></i>
+    <i class="star" style="top:3%;left:66%;animation-delay:1.6s"></i>
+    <i class="star" style="top:20%;left:88%;animation-delay:.4s"></i>
+    <i class="star" style="top:16%;left:30%;animation-delay:2.2s"></i>
+
+    <div class="inner">
+      <span class="tag">晚安书单 · NO.05</span>
+      <h1>睡前 <em>30</em> 分钟<br>读这 5 本就够了</h1>
+      <p class="sub">不烧脑 · 不焦虑 · 读着读着就困了</p>
+
+      <ol>
+        <li>
+          <div class="spine">1</div>
+          <div class="info">
+            <div class="title">《小王子》<small>圣埃克苏佩里</small></div>
+            <div class="why">篇幅短、句子轻，像一封写给大人的晚安信</div>
+          </div>
+        </li>
+        <li>
+          <div class="spine">2</div>
+          <div class="info">
+            <div class="title">《人间草木》<small>汪曾祺</small></div>
+            <div class="why">花草、吃食与旧事，读一篇心就静下来</div>
+          </div>
+        </li>
+        <li>
+          <div class="spine">3</div>
+          <div class="info">
+            <div class="title">《我们仨》<small>杨绛</small></div>
+            <div class="why">温柔克制的家常回忆，适合慢慢读几页</div>
+          </div>
+        </li>
+        <li>
+          <div class="spine">4</div>
+          <div class="info">
+            <div class="title">《浮生六记》<small>沈复</small></div>
+            <div class="why">闲情小趣的日常，古人的生活美学助眠</div>
+          </div>
+        </li>
+        <li>
+          <div class="spine">5</div>
+          <div class="info">
+            <div class="title">《瓦尔登湖》<small>梭罗</small></div>
+            <div class="why">湖光林间的独处，节奏缓慢，很快入眠</div>
+          </div>
+        </li>
+      </ol>
+
+      <footer>
+        <span>🌙 收藏起来，今晚就读</span>
+        <span>#睡前读物 <b>#书单推荐</b></span>
+      </footer>
+    </div>
+  </main>
+</body>
+</html>

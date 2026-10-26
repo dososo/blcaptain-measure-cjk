@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用户 API 文档</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+
+  <nav class="sidebar" aria-label="文档目录">
+    <p class="brand">用户 API</p>
+    <p class="version">v1 · REST · JSON</p>
+
+    <h4>开始</h4>
+    <ul>
+      <li><a href="#overview">概览</a></li>
+      <li><a href="#auth">鉴权方式</a></li>
+      <li><a href="#errors">错误响应</a></li>
+    </ul>
+
+    <h4>用户接口</h4>
+    <ul>
+      <li><a href="#list-users"><span class="method get">GET</span>获取用户列表</a></li>
+      <li><a href="#get-user"><span class="method get">GET</span>获取单个用户</a></li>
+      <li><a href="#create-user"><span class="method post">POST</span>创建用户</a></li>
+      <li><a href="#update-user"><span class="method patch">PATCH</span>更新用户</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- 概览 -->
+    <section id="overview">
+      <h1>用户 API 文档</h1>
+      <p class="lead">通过本 API 可以查询、创建和更新用户。所有请求与响应均使用 JSON，字符编码为 UTF-8，时间字段采用 ISO 8601（UTC）格式。</p>
+      <div class="base-url"><span class="label" style="margin:0">Base URL</span><code>https://api.example.com/v1</code></div>
+    </section>
+
+    <!-- 鉴权 -->
+    <section id="auth">
+      <h2>鉴权方式</h2>
+      <p>API 使用 <strong>Bearer Token</strong> 鉴权。先用控制台中生成的 <code>client_id</code> 与 <code>client_secret</code> 换取访问令牌（access token），之后每个请求都需在 <code>Authorization</code> 请求头中携带该令牌。</p>
+
+      <h3>1. 获取访问令牌</h3>
+      <p class="label">请求</p>
+<pre><code>POST /v1/oauth/token
+Content-Type: application/json
+
+{
+  "grant_type": "client_credentials",
+  "client_id": "cli_8f2a91c0",
+  "client_secret": "sk_live_xxxxxxxxxxxxxxxx",
+  "scope": "users:read users:write"
+}</code></pre>
+      <p class="label">响应 200</p>
+<pre><code>{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "Bearer",
+  "expires_in": 7200,
+  "scope": "users:read users:write"
+}</code></pre>
+
+      <h3>2. 在请求中携带令牌</h3>
+<pre><code>curl https://api.example.com/v1/users \
+  -H "Authorization: Bearer eyJhbGciOiJSUzI1NiIs..."</code></pre>
+
+      <h3>权限范围（scope）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Scope</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>users:read</code></td><td>读取用户列表与用户详情</td></tr>
+            <tr><td><code>users:write</code></td><td>创建、更新用户（不隐含读取权限）</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="note">令牌有效期为 2 小时（<code>expires_in</code> 单位为秒），过期后需重新获取。<code>client_secret</code> 只能在服务端使用，切勿写入前端代码或提交到代码仓库。</div>
+    </section>
+
+    <!-- 错误 -->
+    <section id="errors">
+      <h2>错误响应</h2>
+      <p>请求失败时返回对应的 HTTP 状态码，响应体格式统一如下：</p>
+<pre><code>{
+  "error": {
+    "code": "invalid_token",
+    "message": "访问令牌已过期",
+    "request_id": "req_5d1e7a"
+  }
+}</code></pre>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>状态码</th><th>code</th><th>含义</th></tr></thead>
+          <tbody>
+            <tr><td class="status s4">400</td><td><code>invalid_request</code></td><td>参数缺失或格式错误</td></tr>
+            <tr><td class="status s4">401</td><td><code>invalid_token</code></td><td>未携带令牌，或令牌无效、已过期</td></tr>
+            <tr><td class="status s4">403</td><td><code>insufficient_scope</code></td><td>令牌缺少该接口所需的 scope</td></tr>
+            <tr><td class="status s4">404</td><td><code>not_found</code></td><td>资源不存在</td></tr>
+            <tr><td class="status s4">409</td><td><code>conflict</code></td><td>资源冲突，例如邮箱已被注册</td></tr>
+            <tr><td class="status s4">429</td><td><code>rate_limited</code></td><td>请求过于频繁，请参考 <code>Retry-After</code> 头重试</td></tr>
+            <tr><td class="status s5">500</td><td><code>internal_error</code></td><td>服务端错误，请携带 <code>request_id</code> 联系支持</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 用户对象 -->
+    <h2>用户接口</h2>
+    <p>以下四个接口都操作同一个用户对象：</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+        <tbody>
+          <tr><td><code>id</code></td><td class="type">string</td><td>用户唯一 ID，以 <code>usr_</code> 开头</td></tr>
+          <tr><td><code>name</code></td><td class="type">string</td><td>显示名称</td></tr>
+          <tr><td><code>email</code></td><td class="type">string</td><td>邮箱，全局唯一</td></tr>
+          <tr><td><code>role</code></td><td class="type">string</td><td><code>admin</code> | <code>member</code> | <code>viewer</code></td></tr>
+          <tr><td><code>status</code></td><td class="type">string</td><td><code>active</code> | <code>disabled</code></td></tr>
+          <tr><td><code>created_at</code></td><td class="type">string</td><td>创建时间</td></tr>
+          <tr><td><code>updated_at</code></td><td class="type">string</td><td>最后更新时间</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 1. 列表 -->
+    <article class="endpoint" id="list-users">
+      <h2>获取用户列表</h2>
+      <div class="path"><span class="method get">GET</span>/users<span class="scope">需要 users:read</span></div>
+      <p>分页返回用户，按创建时间倒序排列。</p>
+
+      <h3>查询参数</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>page</code></td><td class="type">integer</td><td>页码，从 1 开始，默认 1</td></tr>
+            <tr><td><code>page_size</code></td><td class="type">integer</td><td>每页条数，1–100，默认 20</td></tr>
+            <tr><td><code>status</code></td><td class="type">string</td><td>按状态筛选：<code>active</code> 或 <code>disabled</code></td></tr>
+            <tr><td><code>q</code></td><td class="type">string</td><td>按名称或邮箱模糊搜索</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="label">请求示例</p>
+<pre><code>curl "https://api.example.com/v1/users?page=1&amp;page_size=2&amp;status=active" \
+  -H "Authorization: Bearer $TOKEN"</code></pre>
+      <p class="label">响应 200</p>
+<pre><code>{
+  "data": [
+    {
+      "id": "usr_01HZX3",
+      "name": "张三",
+      "email": "zhangsan@example.com",
+      "role": "admin",
+      "status": "active",
+      "created_at": "2026-09-12T08:30:00Z",
+      "updated_at": "2026-10-01T02:15:00Z"
+    },
+    {
+      "id": "usr_01HZW9",
+      "name": "李四",
+      "email": "lisi@example.com",
+      "role": "member",
+      "status": "active",
+      "created_at": "2026-09-10T03:12:00Z",
+      "updated_at": "2026-09-10T03:12:00Z"
+    }
+  ],
+  "pagination": { "page": 1, "page_size": 2, "total": 37 }
+}</code></pre>
+    </article>
+
+    <!-- 2. 详情 -->
+    <article class="endpoint" id="get-user">
+      <h2>获取单个用户</h2>
+      <div class="path"><span class="method get">GET</span>/users/{id}<span class="scope">需要 users:read</span></div>
+      <p>根据用户 ID 返回用户详情。用户不存在时返回 <span class="status s4">404</span>。</p>
+
+      <h3>路径参数</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>id</code><span class="req">必填</span></td><td class="type">string</td><td>用户 ID</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="label">请求示例</p>
+<pre><code>curl https://api.example.com/v1/users/usr_01HZX3 \
+  -H "Authorization: Bearer $TOKEN"</code></pre>
+      <p class="label">响应 200</p>
+<pre><code>{
+  "id": "usr_01HZX3",
+  "name": "张三",
+  "email": "zhangsan@example.com",
+  "role": "admin",
+  "status": "active",
+  "created_at": "2026-09-12T08:30:00Z",
+  "updated_at": "2026-10-01T02:15:00Z"
+}</code></pre>
+    </article>
+
+    <!-- 3. 创建 -->
+    <article class="endpoint" id="create-user">
+      <h2>创建用户</h2>
+      <div class="path"><span class="method post">POST</span>/users<span class="scope">需要 users:write</span></div>
+      <p>创建一个新用户，成功返回 <span class="status s2">201</span> 和完整用户对象。邮箱已存在时返回 <span class="status s4">409</span>。</p>
+
+      <h3>请求体</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>name</code><span class="req">必填</span></td><td class="type">string</td><td>1–64 个字符</td></tr>
+            <tr><td><code>email</code><span class="req">必填</span></td><td class="type">string</td><td>合法邮箱地址</td></tr>
+            <tr><td><code>role</code></td><td class="type">string</td><td>默认 <code>member</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="label">请求示例</p>
+<pre><code>curl -X POST https://api.example.com/v1/users \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "王五",
+    "email": "wangwu@example.com",
+    "role": "viewer"
+  }'</code></pre>
+      <p class="label">响应 201</p>
+<pre><code>{
+  "id": "usr_01HZY7",
+  "name": "王五",
+  "email": "wangwu@example.com",
+  "role": "viewer",
+  "status": "active",
+  "created_at": "2026-10-25T06:00:00Z",
+  "updated_at": "2026-10-25T06:00:00Z"
+}</code></pre>
+    </article>
+
+    <!-- 4. 更新 -->
+    <article class="endpoint" id="update-user">
+      <h2>更新用户</h2>
+      <div class="path"><span class="method patch">PATCH</span>/users/{id}<span class="scope">需要 users:write</span></div>
+      <p>部分更新：只修改请求体中出现的字段，未出现的字段保持不变。返回更新后的用户对象。</p>
+
+      <h3>路径参数</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>参数</th><th>类型</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>id</code><span class="req">必填</span></td><td class="type">string</td><td>用户 ID</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>请求体（至少包含一个字段）</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>字段</th><th>类型</th><th>说明</th></tr></thead>
+          <tbody>
+            <tr><td><code>name</code></td><td class="type">string</td><td>1–64 个字符</td></tr>
+            <tr><td><code>email</code></td><td class="type">string</td><td>新邮箱，不能与其他用户重复</td></tr>
+            <tr><td><code>role</code></td><td class="type">string</td><td><code>admin</code> | <code>member</code> | <code>viewer</code></td></tr>
+            <tr><td><code>status</code></td><td class="type">string</td><td>设为 <code>disabled</code> 可停用用户</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="label">请求示例</p>
+<pre><code>curl -X PATCH https://api.example.com/v1/users/usr_01HZY7 \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{ "role": "member" }'</code></pre>
+      <p class="label">响应 200</p>
+<pre><code>{
+  "id": "usr_01HZY7",
+  "name": "王五",
+  "email": "wangwu@example.com",
+  "role": "member",
+  "status": "active",
+  "created_at": "2026-10-25T06:00:00Z",
+  "updated_at": "2026-10-25T07:42:10Z"
+}</code></pre>
+    </article>
+  </main>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f3e9">
+  <title>周末两天一夜杭州路线 · 周末出逃计划</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 28px 16px; background: #dedfd6; color: #294a40; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; -webkit-font-smoothing: antialiased; }
+    .card { width: min(900px, 100%); aspect-ratio: 3 / 4; position: relative; overflow: hidden; container-type: inline-size; background: #f6f3e9; box-shadow: 0 16px 60px #31443a20; }
+    .card::after { content: ""; position: absolute; inset: 1.5cqw; border: 1px solid #788b6d30; pointer-events: none; }
+    .masthead { position: absolute; top: 4.7cqw; left: 5.5cqw; right: 5.5cqw; display: flex; justify-content: space-between; align-items: center; font-size: 1.45cqw; letter-spacing: .21cqw; }
+    .series { display: flex; gap: 1cqw; align-items: center; }
+    .spark { font-size: 2.4cqw; color: #b76243; line-height: 1; }
+    .issue { font-family: Georgia, serif; letter-spacing: .12cqw; }
+    .heading { position: absolute; top: 11cqw; left: 5.2cqw; }
+    h1 { margin: 0; font-family: "Songti SC", "STSong", "Noto Serif CJK SC", serif; font-size: 8.4cqw; line-height: 1.2; font-weight: 900; letter-spacing: -.32cqw; }
+    .subtitle { margin: 2cqw 0 0 .4cqw; font-size: 2.55cqw; letter-spacing: .35cqw; }
+    .subtitle em { font-style: normal; color: #ad5b3e; font-weight: 600; }
+    .stamp { position: absolute; top: 12cqw; right: 6cqw; width: 12cqw; height: 12cqw; border: .18cqw solid #b76243; border-radius: 50%; padding: .7cqw; transform: rotate(12deg); color: #b76243; }
+    .stamp-inner { border: 1px dashed #b7624380; border-radius: 50%; width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .3cqw; }
+    .stamp strong { font-family: Georgia, serif; font-size: 3.7cqw; font-weight: 500; line-height: 1; }
+    .stamp span { font-size: 1.35cqw; letter-spacing: .18cqw; }
+    .landscape { position: absolute; top: 31cqw; left: 0; width: 100%; height: 29cqw; margin: 0; }
+    .landscape svg { width: 100%; height: 100%; display: block; }
+    .landscape figcaption { position: absolute; right: 6cqw; bottom: 1.9cqw; font-family: "Songti SC", serif; font-size: 1.6cqw; letter-spacing: .18cqw; color: #526d60; }
+    .routes { position: absolute; top: 62.5cqw; left: 5.5cqw; right: 5.5cqw; display: grid; gap: 2.3cqw; }
+    .day { display: grid; grid-template-columns: 20cqw 1fr; min-height: 20.5cqw; border-top: 1px solid #a4b0a280; padding-top: 2.2cqw; }
+    .day-label { position: relative; }
+    .day-number { display: flex; align-items: baseline; gap: .75cqw; line-height: 1; color: #b76243; }
+    .day-number span { font-size: 1.55cqw; letter-spacing: .1cqw; }
+    .day-number strong { font-family: Georgia, serif; font-weight: 400; font-size: 5cqw; }
+    h2 { margin: 1.2cqw 0 .8cqw; font-family: "Songti SC", "STSong", serif; font-size: 2.5cqw; letter-spacing: .05cqw; }
+    .day-label p { margin: 0; font-size: 1.5cqw; color: #788074; }
+    .timeline { padding: .2cqw 0 0; margin: 0; list-style: none; display: grid; gap: 1.55cqw; }
+    .timeline li { display: grid; grid-template-columns: 5.6cqw 1fr; column-gap: 1.5cqw; position: relative; }
+    .timeline time { font-size: 1.65cqw; font-family: Georgia, serif; color: #7e8878; padding-top: .4cqw; }
+    .stop { border-left: 1px solid #b7c1af; padding-left: 1.9cqw; position: relative; }
+    .stop::before { content: ""; width: .65cqw; height: .65cqw; border-radius: 50%; background: #79927b; position: absolute; left: -.39cqw; top: .8cqw; }
+    .stop strong { font-size: 2.1cqw; line-height: 1.4; font-weight: 600; }
+    .arrow { color: #889980; margin: 0 .55cqw; font-weight: 400; }
+    .stop p { margin: .25cqw 0 0; font-size: 1.5cqw; color: #778073; line-height: 1.5; }
+    .tips { position: absolute; top: 109.8cqw; left: 5.5cqw; right: 5.5cqw; padding: 2.2cqw 2.5cqw; background: #e8ecdf; border-radius: .6cqw; }
+    .tips-title { font-size: 1.65cqw; letter-spacing: .15cqw; margin: 0 0 1.3cqw; font-weight: 600; display: flex; align-items: center; gap: .8cqw; }
+    .tips-title svg { width: 1.8cqw; height: 1.8cqw; }
+    .tips-grid { display: grid; grid-template-columns: 1fr 1.12fr 1fr; gap: 2cqw; }
+    .tip + .tip { border-left: 1px solid #afbaaa80; padding-left: 2cqw; }
+    .tip b { display: block; font-size: 1.65cqw; font-weight: 600; margin-bottom: .55cqw; }
+    .tip p { margin: 0; font-size: 1.4cqw; line-height: 1.65; color: #6e7b68; }
+    footer { position: absolute; left: 5.5cqw; right: 5.5cqw; top: 126.2cqw; display: flex; justify-content: space-between; align-items: center; }
+    .closing { font-size: 1.65cqw; letter-spacing: .12cqw; color: #a75e43; }
+    .source { text-align: right; color: #899080; font-size: 1.05cqw; line-height: 1.6; }
+    .source a { color: inherit; text-underline-offset: .2cqw; }
+    @media (max-width: 600px) { body { padding: 0; background: #f6f3e9; } .card { box-shadow: none; } }
+    @media print { @page { size: 180mm 240mm; margin: 0; } body { display: block; padding: 0; background: none; } .card { width: 180mm; height: 240mm; box-shadow: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+  </style>
+</head>
+<body>
+  <main class="card" aria-label="周末两天一夜杭州路线，小红书旅行卡片">
+    <header class="masthead">
+      <div class="series"><span class="spark" aria-hidden="true">✳</span> 周末出逃计划 <span>/</span> WEEKEND GETAWAY</div>
+      <span class="issue">VOL. 01 · HANGZHOU</span>
+    </header>
+
+    <div class="heading">
+      <h1>周末，去杭州。</h1>
+      <p class="subtitle"><em>两天一夜</em> &nbsp;把日子过成江南</p>
+    </div>
+    <div class="stamp" aria-label="两天一夜慢游"><div class="stamp-inner"><span>慢 游 杭 州</span><strong>2D1N</strong><span>湖山之间</span></div></div>
+
+    <figure class="landscape">
+      <svg viewBox="0 0 900 261" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="landscape-title">
+        <title id="landscape-title">西湖山水插画：远山、落日、拱桥与湖上一叶小舟</title>
+        <defs>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#cddccf"/><stop offset="1" stop-color="#edf0e3"/></linearGradient>
+          <linearGradient id="hill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#91aa93"/><stop offset="1" stop-color="#bccdbc"/></linearGradient>
+        </defs>
+        <text x="49" y="67" fill="#dce1d1" font-family="Georgia,serif" font-size="73" letter-spacing="13">HANGZHOU</text>
+        <circle cx="713" cy="67" r="34" fill="#dca07a" opacity=".8"/>
+        <path d="M0 132 Q42 111 81 121 Q126 76 167 104 Q207 65 249 101 Q300 76 346 120 Q389 103 436 125 Q480 96 515 110 Q547 78 598 110 Q638 78 669 100 Q718 83 752 121 Q803 88 848 117 L900 106 V202 H0Z" fill="#d6dfcc"/>
+        <path d="M0 147 Q51 110 97 140 Q148 113 207 143 Q251 120 293 146 Q343 140 374 156 Q420 129 450 143 Q493 110 527 138 Q577 91 615 119 Q646 88 689 120 Q724 102 764 132 Q823 104 900 143 V209 H0Z" fill="url(#hill)"/>
+        <path d="M0 174 Q211 160 409 174 Q637 151 900 167 V261 H0Z" fill="url(#water)"/>
+        <g fill="none" stroke="#8ea997" stroke-width="1.4" opacity=".5"><path d="M72 202h132m46 16h88m-203 18h134m330-25h109m-75 22h92m-296-41h54m236 1h81"/><path d="M481 243h83m-526 8h68m649-33h93"/></g>
+        <g fill="#5e7962">
+          <path d="M123 150h51v5h-51zM133 139h31v11h-31zM126 139q22-8 23-14 5 9 23 14zM137 122h24v3h-24zM141 112h16v10h-16zM135 112q12-6 14-11 3 6 14 11zM145 91h8v11h-8zM139 91q10-6 10-12 2 7 10 12z"/>
+          <path d="M148 72h2v9h-2z"/>
+        </g>
+        <path d="M591 175 Q696 122 825 175 L825 188 H775 Q764 152 739 154 Q716 154 706 186 H591Z" fill="#f3f0df" stroke="#798d75" stroke-width="2"/>
+        <path d="M591 169 Q696 116 825 169" fill="none" stroke="#697f6b" stroke-width="3"/>
+        <g stroke="#798d75" stroke-width="2"><path d="M606 162v13m18-20v13m18-20v13m18-18v12m19-16v12m19-14v12m20-11v12m20-9v12m20-6v12m20-5v13m20-4v13m18-5v13"/></g>
+        <path d="M568 185q23-6 47-1m204 3q26-8 54-4" fill="none" stroke="#6c886e" stroke-width="4"/>
+        <g transform="translate(389 205)">
+          <path d="M-30 0q36 6 75-2L31 10H-16Z" fill="#6c7760"/>
+          <path d="M-6-2q4-20 22-19 15 2 19 20" fill="#c9b794" stroke="#7d8065" stroke-width="1.5"/>
+          <path d="M5-18v16m11-17v18m10-12v11" fill="none" stroke="#9a9779"/>
+          <path d="M-18-12l-5 13m3-8 27 25" stroke="#64755f" stroke-width="2"/>
+          <circle cx="-17" cy="-16" r="3" fill="#64755f"/>
+        </g>
+        <g fill="none" stroke="#6d886c" stroke-linecap="round">
+          <path d="M0 24q42 6 92-22M14 27q18 17 39 20M30 24q10 37 10 68M55 18q16 27 18 56M77 8q21 20 27 52" stroke-width="2"/>
+          <path d="M36 44l-8 9m11 2 8 9m-7 5-8 10m9 0 6 9M67 36l-8 9m11 1 9 8m-7 5-7 9M92 26l-4 10m11 3 8 6m-6 7-5 9" stroke-width="3"/>
+        </g>
+        <g fill="none" stroke="#7e9177" stroke-width="1.5"><path d="M491 66q7-6 13 0 7-6 13 0m30-21q5-5 10 0 5-5 10 0"/></g>
+      </svg>
+      <figcaption>一半是湖，一半是慢生活。</figcaption>
+    </figure>
+
+    <section class="routes" aria-label="两日行程">
+      <article class="day">
+        <div class="day-label"><div class="day-number"><span>DAY</span><strong>01</strong></div><h2>把时间交给西湖</h2><p>沿湖散步 · 城市晚风</p></div>
+        <ol class="timeline">
+          <li><time>09:00</time><div class="stop"><strong>断桥<span class="arrow">→</span>白堤<span class="arrow">→</span>孤山</strong><p>沿着湖边慢慢走，在孤山找一张长椅发呆。</p></div></li>
+          <li><time>13:00</time><div class="stop"><strong>西泠桥<span class="arrow">→</span>曲院风荷</strong><p>午饭后继续漫步，收藏树影与湖面的倒影。</p></div></li>
+          <li><time>17:00</time><div class="stop"><strong>湖滨看晚霞<span class="arrow">→</span>吃一碗片儿川</strong><p>公交回湖滨，天气好就等一场日落。</p></div></li>
+        </ol>
+      </article>
+      <article class="day">
+        <div class="day-label"><div class="day-number"><span>DAY</span><strong>02</strong></div><h2>去山里吸点绿</h2><p>茶园喝茶 · 溪边漫步</p></div>
+        <ol class="timeline">
+          <li><time>09:00</time><div class="stop"><strong>龙井村<span class="arrow">/</span>一杯茶开启早晨</strong><p>乘车上山，看看茶园，再找家茶馆歇歇脚。</p></div></li>
+          <li><time>11:00</time><div class="stop"><strong>九溪十八涧<span class="arrow">→</span>九溪烟树</strong><p>从龙井村步行下山，午餐与散步一起慢慢来。</p></div></li>
+          <li><time>15:00</time><div class="stop"><strong>九溪路口<span class="arrow">→</span>取行李 · 返程</strong><p>乘车回城，按车次预留取行李与进站时间。</p></div></li>
+        </ol>
+      </article>
+    </section>
+
+    <aside class="tips" aria-label="出发小贴士">
+      <p class="tips-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M7 3h10v5l3 4v2H4v-2l3-4zM12 14v7M9 3h6"/></svg> 出发前，记住这 3 件事</p>
+      <div class="tips-grid">
+        <div class="tip"><b>住哪里</b><p>湖滨 / 龙翔桥附近<br>吃饭、乘地铁都方便</p></div>
+        <div class="tip"><b>怎么走</b><p>市区地铁 + 步行，山里乘车<br>西湖不必绕一整圈</p></div>
+        <div class="tip"><b>带什么</b><p>舒适防滑鞋、雨伞和水<br>九溪雨天留意湿滑路面</p></div>
+      </div>
+    </aside>
+    <footer>
+      <span class="closing">收藏这份路线，下个周末就出发 ↗</span>
+      <div class="source">时间为建议安排 · 按天气与体力调整<br>景点参考：<a href="https://z.hangzhou.com.cn/2021/syjy/content/content_8115764.html" target="_blank" rel="noopener noreferrer">杭州网 · 西湖十景</a></div>
+    </footer>
+  </main>
+</body>
+</html>

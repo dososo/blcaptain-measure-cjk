@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f1e9">
+  <title>《置身事内》｜三个读书收获</title>
+  <style>
+    :root { --paper:#f4f1e9; --ink:#272c29; --muted:#71766d; --line:#d4d5c9; --red:#ad4635; --green:#465447; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif; -webkit-font-smoothing:antialiased; }
+    a { color:inherit; text-decoration:none; }
+    a:focus-visible { outline:2px solid var(--red); outline-offset:6px; }
+    ::selection { background:#dbc3a9; }
+    .page { max-width:1320px; margin:auto; padding:0 64px; }
+    .masthead { min-height:92px; display:flex; justify-content:space-between; align-items:center; gap:20px; border-bottom:1px solid var(--ink); }
+    .brand { display:flex; gap:13px; align-items:center; font-size:15px; font-weight:600; letter-spacing:3px; }
+    .brand-mark { width:23px; height:23px; border:1px solid var(--red); display:grid; place-items:center; color:var(--red); font-family:serif; font-size:14px; letter-spacing:0; }
+    .masthead-note,.eyebrow,.micro { font-family:"Courier New",monospace; font-size:11px; letter-spacing:2px; }
+    .masthead-note { color:var(--muted); }
+    main { padding-top:57px; }
+    .hero { display:grid; grid-template-columns:1.3fr 1fr; gap:60px; padding-bottom:53px; }
+    .eyebrow { color:var(--red); display:flex; align-items:center; gap:13px; }
+    .eyebrow::before { content:""; width:24px; height:1px; background:var(--red); }
+    h1 { font-family:"Songti SC","STSong","SimSun",serif; font-size:clamp(54px,6.8vw,88px); font-weight:500; letter-spacing:8px; line-height:1.3; margin:28px 0 18px; }
+    .subtitle { font-family:"Songti SC","STSong","SimSun",serif; font-size:23px; letter-spacing:2px; margin:0 0 27px; }
+    .book-meta { display:flex; align-items:center; flex-wrap:wrap; gap:12px; font-size:12px; color:var(--muted); }
+    .book-meta span+span { padding-left:12px; border-left:1px solid var(--line); }
+    .intro { max-width:490px; font-size:14px; line-height:2; margin:27px 0 0; color:#5e655d; }
+    .diagram { position:relative; min-height:310px; display:flex; align-items:center; justify-content:center; background:radial-gradient(circle,#d4d5c8 .75px,transparent .85px); background-size:13px 13px; }
+    .diagram svg { width:100%; max-width:400px; height:auto; overflow:visible; }
+    .diagram-caption { position:absolute; bottom:0; right:0; font-size:10px; letter-spacing:2px; color:var(--muted); background:var(--paper); padding:7px 0 0 12px; }
+    .reading-layout { display:grid; grid-template-columns:220px 1fr; gap:65px; border-top:1px solid var(--ink); padding-top:33px; }
+    .sidebar-title { font-size:12px; color:var(--muted); margin:0 0 24px; letter-spacing:2px; }
+    .sidebar nav { display:grid; gap:20px; }
+    .sidebar nav a { display:flex; gap:15px; font-size:13px; line-height:1.6; transition:color .2s; }
+    .sidebar nav a:hover { color:var(--red); }
+    .nav-number { font-family:Georgia,serif; color:var(--red); font-style:italic; }
+    .side-note { margin-top:48px; border-left:2px solid var(--red); padding-left:15px; color:var(--muted); font-size:12px; line-height:1.9; }
+    .side-note strong { display:block; color:var(--ink); font-weight:500; margin-bottom:7px; }
+    .takeaway { display:grid; grid-template-columns:56px 1fr; gap:19px; padding:5px 0 30px; scroll-margin-top:25px; }
+    .takeaway+.takeaway { border-top:1px solid var(--line); padding-top:30px; }
+    .number { font-family:Georgia,"Times New Roman",serif; font-size:43px; font-style:italic; line-height:1; color:var(--red); }
+    .section-label { font-size:10px; letter-spacing:2px; color:var(--muted); margin:0 0 10px; }
+    h2 { font-family:"Songti SC","STSong","SimSun",serif; font-size:25px; font-weight:600; line-height:1.5; margin:0 0 16px; }
+    .takeaway p { font-size:14px; line-height:1.95; color:#5c635b; margin:0 0 15px; }
+    .reflection { background:#e9e9df; padding:13px 17px; display:flex; gap:15px; align-items:baseline; font-size:12px; line-height:1.85; color:var(--green); }
+    .reflection b { flex-shrink:0; font-size:10px; font-weight:600; letter-spacing:1px; }
+    .closing { margin-top:16px; padding:31px 35px; background:var(--green); color:var(--paper); display:flex; align-items:center; gap:35px; }
+    .closing .micro { flex-shrink:0; color:#c0c9ba; font-size:10px; line-height:1.9; }
+    .closing p { font-family:"Songti SC","STSong","SimSun",serif; font-size:21px; line-height:1.65; margin:0; letter-spacing:1px; }
+    footer { display:flex; justify-content:space-between; gap:15px; margin-top:45px; padding:22px 0 28px; border-top:1px solid var(--line); font-size:10px; letter-spacing:1px; color:var(--muted); }
+    footer a:hover { color:var(--red); }
+    @media(min-width:1000px) { .sidebar-inner { position:sticky; top:30px; } }
+    @media(max-width:900px) { .page { padding:0 32px; } .hero { gap:20px; } .reading-layout { grid-template-columns:170px 1fr; gap:30px; } h1 { letter-spacing:4px; } .subtitle { font-size:19px; } .closing { gap:23px; } }
+    @media(max-width:650px) { .page { padding:0 22px; } .masthead { min-height:72px; } .masthead-note { font-size:9px; letter-spacing:1px; } main { padding-top:35px; } .hero { grid-template-columns:1fr; gap:23px; padding-bottom:30px; } h1 { margin-top:22px; font-size:60px; } .subtitle { font-size:20px; } .intro { margin-top:22px; } .diagram { min-height:230px; } .diagram svg { max-width:300px; } .reading-layout { grid-template-columns:1fr; gap:30px; padding-top:24px; } .sidebar-title { margin-bottom:15px; } .sidebar nav { display:flex; flex-wrap:wrap; gap:14px 20px; } .sidebar nav a { font-size:12px; gap:7px; } .side-note { display:none; } .takeaway { grid-template-columns:38px 1fr; gap:13px; } .number { font-size:34px; } h2 { font-size:23px; } .reflection { display:block; } .reflection b { display:block; margin-bottom:4px; } .closing { display:block; padding:24px; } .closing .micro { margin-bottom:12px; } .closing p { font-size:20px; } footer { margin-top:30px; font-size:9px; line-height:1.8; } }
+    @media(prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+    @media print { .page { padding:0; } .sidebar { display:none; } .reading-layout { display:block; } .takeaway { break-inside:avoid; } .closing { background:transparent; color:var(--ink); border:1px solid var(--line); } footer a { display:none; } }
+  </style>
+</head>
+<body id="top">
+  <div class="page">
+    <header class="masthead">
+      <a class="brand" href="#top" aria-label="书间，返回顶部"><span class="brand-mark" aria-hidden="true">间</span>书间 · 阅读手记</a>
+      <span class="masthead-note">READING NOTES / 001</span>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="book-title">
+        <div>
+          <div class="eyebrow">经济与社会 / 三个主要收获</div>
+          <h1 id="book-title">置身事内</h1>
+          <p class="subtitle">从地方政府，看懂经济运行的逻辑。</p>
+          <div class="book-meta"><span>兰小欢 著</span><span>中国政府与经济发展</span><span>读书笔记</span></div>
+          <p class="intro">很多看似遥远的宏观问题，其实就在我们身边：一座城如何发展，一块地如何使用，一项投资为何发生。这本书给我的启发，是先走进事情内部，再理解它的结果。</p>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 400 310" role="img" aria-labelledby="diagram-title diagram-desc">
+            <title id="diagram-title">理解经济的三个观察层次</title>
+            <desc id="diagram-desc">三个嵌套的方框，依次标注宏观经济、地方政府和个体生活，表达不同层次之间的联系。</desc>
+            <path d="M24 51H354V264H24Z" fill="#f4f1e9" stroke="#9b9f90"/>
+            <path d="M70 95H313V264H70Z" fill="#e7e8dc" stroke="#7b8574"/>
+            <path d="M120 154H270V264H120Z" fill="#465447"/>
+            <text x="43" y="76" fill="#697160" font-size="11" letter-spacing="3">宏观经济</text>
+            <text x="88" y="122" fill="#465447" font-size="11" letter-spacing="3">地方政府</text>
+            <text x="195" y="211" fill="#f4f1e9" text-anchor="middle" font-size="15" letter-spacing="4">个体生活</text>
+            <path d="M195 37V181" stroke="#ad4635" stroke-width="1.4" stroke-dasharray="3 5"/>
+            <circle cx="195" cy="37" r="5" fill="#ad4635"/>
+            <path d="m191 175 4 6 4-6" fill="none" stroke="#ad4635" stroke-width="1.4"/>
+            <path d="M15 274H364" stroke="#9b9f90"/>
+            <text x="25" y="292" fill="#71766d" font-family="monospace" font-size="8" letter-spacing="2">A CLOSER LOOK AT THE SYSTEM</text>
+          </svg>
+          <span class="diagram-caption">由宏观，走向身边。</span>
+        </div>
+      </section>
+      <div class="reading-layout">
+        <aside class="sidebar" aria-label="笔记目录">
+          <div class="sidebar-inner">
+            <p class="sidebar-title">本次阅读留下的</p>
+            <nav>
+              <a href="#insight-1"><span class="nav-number">01</span>理解政府的角色</a>
+              <a href="#insight-2"><span class="nav-number">02</span>看见发展的代价</a>
+              <a href="#insight-3"><span class="nav-number">03</span>建立系统的视角</a>
+            </nav>
+            <div class="side-note"><strong>阅读的起点</strong>少一点抽象的判断，<br>多问一句：<br>事情为什么会这样发生？</div>
+          </div>
+        </aside>
+        <div class="notes">
+          <article class="takeaway" id="insight-1">
+            <div class="number" aria-hidden="true">01</div>
+            <div>
+              <div class="section-label">角色与激励 / INCENTIVES</div>
+              <h2>理解经济，要理解地方政府的行为</h2>
+              <p>地方政府不仅制定和执行政策，也参与基础设施建设、招商引资和公共服务供给。理解这些行为，不能只看某个决定本身，还要看它背后的职责、财力与激励。不同地区面对的条件不同，同一项政策在落地时也可能呈现不同的结果。</p>
+              <div class="reflection"><b>我的收获</b><span>看到一项地方政策时，先问：谁在决策，要完成什么目标，又受到哪些约束？</span></div>
+            </div>
+          </article>
+          <article class="takeaway" id="insight-2">
+            <div class="number" aria-hidden="true">02</div>
+            <div>
+              <div class="section-label">土地与财政 / TRADE-OFFS</div>
+              <h2>城市发展的背后，是资源与成本的安排</h2>
+              <p>土地、财政、融资与城市建设紧密相连。基础设施投资可以改善城市条件、带动经济活动，但投入需要资金，债务也需要未来的收入来偿还。由此再看城市扩张，我会同时关心它创造了什么，以及它留下的成本由谁承担。</p>
+              <div class="reflection"><b>我的收获</b><span>评价一个建设项目，除了看眼前的变化，还要追问资金来源、长期回报和持续运营的能力。</span></div>
+            </div>
+          </article>
+          <article class="takeaway" id="insight-3">
+            <div class="number" aria-hidden="true">03</div>
+            <div>
+              <div class="section-label">联系与反馈 / CONNECTIONS</div>
+              <h2>把孤立的现象，放回相互联系的系统</h2>
+              <p>房价、就业、地方债务与居民消费，往往不能各自单独解释。政府、企业和家庭的选择会彼此影响；一项措施带来的短期收益，也可能伴随长期压力。宏观经济因而不再只是几个指标，而是许多具体行动不断累积、相互作用的结果。</p>
+              <div class="reflection"><b>我的收获</b><span>面对经济新闻，试着沿着“条件—选择—影响”梳理因果，也为复杂性和不确定性留出空间。</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <section class="closing" aria-label="读后感">
+        <div class="micro">合上书之后<br>AFTER READING</div>
+        <p>理解世界的第一步，是看见每个选择背后的处境。</p>
+      </section>
+    </main>
+    <footer><span>《置身事内》阅读手记 · 以上为阅读归纳，非原文摘录</span><a href="#top">回到页首 ↑</a></footer>
+  </div>
+</body>
+</html>

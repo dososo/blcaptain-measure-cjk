@@ -1,0 +1,242 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-007-DiKiv7 <提示词>
+工作目录：<tmp>/measure-baseline-codex-007-DiKiv7
+退出码：0 信号：无 用时：209s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-007-DiKiv7
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17640-19a8-7d52-a15f-712968cefd86
+--------
+user
+做一个技术博客文章页，主题是用 Python 处理 Excel 报表的 5 个技巧，带代码示例。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会把文章做成可直接打开的中文技术博客页面，包含 5 个实用技巧、Python 代码示例和清晰的阅读导航。
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g 'README*' ." in <tmp>/measure-baseline-codex-007-DiKiv7
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-007-DiKiv7
+
+exec
+/bin/zsh -lc 'ls -la' in <tmp>/measure-baseline-codex-007-DiKiv7
+ succeeded in 0ms:
+total 0
+drwx------@     2 user  staff      64 Oct 26 11:27 .
+drwx------@ 13139 user  staff  420448 Oct 26 11:28 ..
+
+exec
+/bin/zsh -lc "cat > index.html <<'EOF'
+<"'!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f7f7f2">
+<meta name="description" content="从读取、清洗到汇总和美化，用 pandas 与 openpyxl 掌握 Python 处理 Excel 报表的 5 个实用技巧。">
+<title>用 Python 处理 Excel 报表的 5 个技巧 · 表格之外</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="reading-progress" id="reading-progress"></div>
+<header class="site-header"><div class="header-inner">
+<a href="#" class="brand" aria-label="表格之外首页"><span class="brand-icon"><i></i><i></i><i></i><i></i></span>表格之外<span class="brand-en">BEYOND CELLS</span></a>
+<nav aria-label="主导航"><a class="selected" href="#article">文章</a><a href="#tip-1">代码示例</a><a href="#checklist">速查清单</a></nav>
+<a class="header-note" href="#about">把重复交给代码 <span>↗</span></a>
+</div></header>
+<main id="article" class="page">
+<div class="breadcrumb"><a href="#">首页</a><span>/</span><a href="#article">效率工程</a><span>/</span><span>Python × Excel</span></div>
+<div class="article-layout">
+<article>
+<header class="article-header">
+<div class="eyebrow"><span class="category">PYTHON 实战</span><span class="series">AUTOMATE THE BORING WORK · 005</span></div>
+<h1>用 Python 处理 Excel<br>报表的 <span>5 个技巧</span></h1>
+<p class="dek">少一点复制粘贴，多一点自动化。<br>从读取数据到交付报表，让你的下一个月报准时下班。</p>
+<div class="byline"><div class="avatar">林</div><div class="author"><strong>林序</strong><span>数据与效率工具爱好者</span></div><span class="meta-divider"></span><span>2025.06.18</span><span class="meta-dot">·</span><span class="read-time"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>约 8 分钟</span></div>
+</header>
+<div class="cover" role="img" aria-label="Python 将 Excel 表格中的原始数据转换为整洁报表的插图">
+<div class="cover-grid"></div><div class="cover-label"><span></span> WORK SMARTER, NOT HARDER</div>
+<div class="cover-copy"><span class="cover-kicker">从单元格，到可能性。</span><div>Excel, meet<br><em>Python.</em><span class="spark">✳</span></div><p>READ. CLEAN. ANALYZE. REPEAT.</p></div>
+<div class="sheet-illustration"><div class="sheet-title"><span class="excel-icon">X</span>monthly_report.xlsx<span class="sheet-dots">•••</span></div><div class="sheet-columns"><span></span><span>A</span><span>B</span><span>C</span></div><div class="sheet-row sheet-head"><span>1</span><span>产品</span><span>销售额</span><span>增长率</span></div><div class="sheet-row"><span>2</span><span>轻量笔记本</span><span>24,800</span><span>↑ 18.6%</span></div><div class="sheet-row"><span>3</span><span>无线键盘</span><span>12,600</span><span>↑ 12.4%</span></div><div class="sheet-row"><span>4</span><span>桌面显示器</span><span class="cell-selected">38,900</span><span>↑ 24.8%</span></div><div class="sheet-row"><span>5</span><span></span><span></span><span></span></div></div>
+<div class="floating-code"><div><span class="code-prompt">❯</span> <span class="purple-light">import</span> pandas <span class="purple-light">as</span> pd</div><div>df.<span class="green-light">to_excel</span>(<span class="yellow-light">"report.xlsx"</span>)</div><p><span>✓</span> 报表已就绪 <span class="code-duration">0.8s</span></p></div><span class="cover-bottom">LESS MANUAL. MORE MEANINGFUL.</span>
+</div>
+<div class="intro"><p>每到月底，都要打开十几个 Excel 文件，筛选、求和、调格式，再重复一遍？这些工作，Python 可以帮你接手。</p><p>这篇文章用一份销售明细作为例子，串起 <strong>读取 → 清洗 → 汇总 → 美化 → 批量处理</strong> 的完整流程。每一个技巧都配有代码，你可以从最需要的那一步开始。</p></div>
+<div class="setup"><div class="setup-icon">⌘</div><div><strong>开始之前</strong><p>示例使用 Python 3、pandas 和 openpyxl。请在你的 Python 环境中准备好这两个库：</p><code>pip install pandas openpyxl</code><p class="setup-small">示例文件：sales.xlsx · 工作表：销售明细 · 字段：订单号、日期、地区、产品、销售额</p></div></div>
+<section class="tip" id="tip-1"><div class="section-heading"><span class="number">01</span><div><span class="section-kicker">READ WITH INTENTION</span><h2>精准读取，只取需要的数据</h2></div></div><p>别急着把整张工作表搬进内存。用 <code>sheet_name</code> 指定工作表，用 <code>usecols</code> 选择字段，并在读取时为订单号指定字符串类型，避免丢失前导零。</p>
+<div class="code-block"><div class="code-toolbar"><span><i></i>01_read.py</span><button class="copy-button" type="button" aria-label="复制精准读取代码">复制代码 <span>⧉</span></button></div><pre><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+<span class="comment"># 订单号应在源文件中以文本存储，例如 "00128"</span>
+df = pd.<span class="fn">read_excel</span>(
+    <span class="str">"sales.xlsx"</span>,
+    sheet_name=<span class="str">"销售明细"</span>,
+    usecols=[<span class="str">"订单号"</span>, <span class="str">"日期"</span>, <span class="str">"地区"</span>, <span class="str">"产品"</span>, <span class="str">"销售额"</span>],
+    dtype={<span class="str">"订单号"</span>: <span class="str">"string"</span>},
+    engine=<span class="str">"openpyxl"</span>,
+)
+
+<span class="fn">print</span>(df.<span class="fn">head</span>())</code></pre></div>
+<div class="takeaway"><span>↳</span><p><strong>一个小细节</strong>　如果 Excel 中的前导零仅来自显示格式，<code>dtype</code> 无法恢复它。已知订单号固定为 5 位时，可再用 <code>.str.zfill(5)</code> 补齐。</p></div></section>
+<section class="tip" id="tip-2"><div class="section-heading"><span class="number">02</span><div><span class="section-kicker">MAKE DATA RELIABLE</span><h2>先清洗，再开始计算</h2></div></div><p>多余空格、文本金额、重复行，往往是报表数字对不上的原因。先统一格式，再把无效数据单独保存，后面的汇总才有可靠的基础。</p><div class="code-block"><div class="code-toolbar"><span><i></i>02_clean.py</span><button class="copy-button" type="button" aria-label="复制数据清洗代码">复制代码 <span>⧉</span></button></div><pre><code><span class="comment"># 接续上一步的 df；只删除整行完全相同的记录</span>
+df = df.<span class="fn">drop_duplicates</span>().<span class="fn">copy</span>()
+<span class="kw">for</span> col <span class="kw">in</span> [<span class="str">"地区"</span>, <span class="str">"产品"</span>]:
+    df[col] = df[col].<span class="fn">astype</span>(<span class="str">"string"</span>).str.<span class="fn">strip</span>()
+    df[col] = df[col].<span class="fn">replace</span>(<span class="str">""</span>, pd.NA)
+
+amount = df[<span class="str">"销售额"</span>].<span class="fn">astype</span>(<span class="str">"string"</span>).str.<span class="fn">replace</span>(<span class="str">","</span>, <span class="str">""</span>, regex=<span class="kw">False</span>)
+df[<span class="str">"销售额"</span>] = pd.<span class="fn">to_numeric</span>(amount, errors=<span class="str">"coerce"</span>)
+df[<span class="str">"日期"</span>] = pd.<span class="fn">to_datetime</span>(df[<span class="str">"日期"</span>], errors=<span class="str">"coerce"</span>)
+
+invalid = df[[<span class="str">"日期"</span>, <span class="str">"地区"</span>, <span class="str">"产品"</span>, <span class="str">"销售额"</span>]].<span class="fn">isna</span>().<span class="fn">any</span>(axis=<span class="num">1</span>)
+df.loc[invalid].<span class="fn">to_excel</span>(<span class="str">"待核对.xlsx"</span>, index=<span class="kw">False</span>)
+clean = df.loc[~invalid].<span class="fn">copy</span>()</code></pre></div><div class="takeaway"><span>↳</span><p><strong>别急着填 0</strong>　缺失金额不等于零收入。保留异常记录，核对后再补充；日期列应为 Excel 日期或可解析文本，纯数字日期序号需要另外转换。</p></div></section>
+<section class="tip" id="tip-3"><div class="section-heading"><span class="number">03</span><div><span class="section-kicker">FIND THE BIG PICTURE</span><h2>用透视表，一次完成分类汇总</h2></div></div><p>想知道各地区每类产品卖了多少？<code>pivot_table</code> 就是代码里的数据透视表。只需指定行、列和聚合方式，明细便能变成一目了然的交叉报表。</p><div class="code-block"><div class="code-toolbar"><span><i></i>03_summarize.py</span><button class="copy-button" type="button" aria-label="复制分类汇总代码">复制代码 <span>⧉</span></button></div><pre><code>summary = clean.<span class="fn">pivot_table</span>(
+    index=<span class="str">"地区"</span>,
+    columns=<span class="str">"产品"</span>,
+    values=<span class="str">"销售额"</span>,
+    aggfunc=<span class="str">"sum"</span>,
+    fill_value=<span class="num">0</span>,
+    margins=<span class="kw">True</span>,
+    margins_name=<span class="str">"总计"</span>,
+)
+summary.<span class="fn">to_excel</span>(<span class="str">"地区销售汇总.xlsx"</span>)</code></pre></div>
+<div class="table-caption"><span class="mini-dot"></span>输出示意 <span>单位：元</span></div><div class="table-scroll"><table><thead><tr><th>地区</th><th>轻量笔记本</th><th>无线键盘</th><th>总计</th></tr></thead><tbody><tr><td>华东</td><td>24,800</td><td>12,600</td><td>37,400</td></tr><tr><td>华南</td><td>18,200</td><td>8,400</td><td>26,600</td></tr><tr class="total"><td>总计</td><td>43,000</td><td>21,000</td><td>64,000</td></tr></tbody></table></div><div class="takeaway"><span>↳</span><p><strong>让口径保持一致</strong>　这里的空组合填 0，表示清洗后的数据中没有对应销售记录。源数据中的无效金额，已在上一步单独隔离。</p></div></section>
+<section class="tip" id="tip-4"><div class="section-heading"><span class="number">04</span><div><span class="section-kicker">READY TO SHARE</span><h2>自动美化，让报表开箱即用</h2></div></div><p>数据算对了，交付也要顺手。借助 <code>openpyxl</code> 设置表头、列宽和金额格式，再冻结首行首列，让同事打开文件就能开始阅读。</p><div class="code-block"><div class="code-toolbar"><span><i></i>04_format.py</span><button class="copy-button" type="button" aria-label="复制报表美化代码">复制代码 <span>⧉</span></button></div><pre><code><span class="kw">from</span> openpyxl <span class="kw">import</span> load_workbook
+<span class="kw">from</span> openpyxl.styles <span class="kw">import</span> Font, PatternFill
+<span class="kw">from</span> openpyxl.utils <span class="kw">import</span> get_column_letter
+
+wb = <span class="fn">load_workbook</span>(<span class="str">"地区销售汇总.xlsx"</span>)
+ws = wb.active
+ws.freeze_panes = <span class="str">"B2"</span>
+
+<span class="kw">for</span> cell <span class="kw">in</span> ws[<span class="num">1</span>]:
+    cell.font = <span class="fn">Font</span>(bold=<span class="kw">True</span>, color=<span class="str">"FFFFFF"</span>)
+    cell.fill = <span class="fn">PatternFill</span>(<span class="str">"solid"</span>, fgColor=<span class="str">"7560C5"</span>)
+
+<span class="kw">for</span> col <span class="kw">in</span> <span class="fn">range</span>(<span class="num">1</span>, ws.max_column + <span class="num">1</span>):
+    ws.column_dimensions[<span class="fn">get_column_letter</span>(col)].width = <span class="num">18</span>
+<span class="kw">for</span> row <span class="kw">in</span> ws.<span class="fn">iter_rows</span>(min_row=<span class="num">2</span>, min_col=<span class="num">2</span>):
+    <span class="kw">for</span> cell <span class="kw">in</span> row:
+        cell.number_format = <span class="str">'"'#,##0.00'</span>
+
+wb.<span class=\"fn\">save</span>(<span class=\"str\">\"地区销售汇总_交付版.xlsx\"</span>)</code></pre></div><div class=\"takeaway\"><span>↳</span><p><strong>数值与显示分开</strong>　数字格式只改变显示方式，不会把金额转成文本。这样，接收报表的人依然可以继续计算。</p></div></section>
+<section class=\"tip\" id=\"tip-5\"><div class=\"section-heading\"><span class=\"number\">05</span><div><span class=\"section-kicker\">DO IT ONCE, SCALE IT UP</span><h2>批量合并，把重复工作交给循环</h2></div></div><p>当各区域的文件格式一致，就不用逐个打开。把原始文件放进 <code>data/</code>，统一读取并加上来源文件名，再一次导出；之后可复用前面的清洗和汇总流程。</p><div class=\"code-block\"><div class=\"code-toolbar\"><span><i></i>05_batch.py</span><button class=\"copy-button\" type=\"button\" aria-label=\"复制批量处理代码\">复制代码 <span>⧉</span></button></div><pre><code><span class=\"kw\">from</span> pathlib <span class=\"kw\">import</span> Path
+<span class=\"kw\">import</span> pandas <span class=\"kw\">as</span> pd
+
+files = <span class=\"fn\">sorted</span>(
+    p <span class=\"kw\">for</span> p <span class=\"kw\">in</span> <span class=\"fn\">Path</span>(<span class=\"str\">\"data\"</span>).<span class=\"fn\">glob</span>(<span class=\"str\">\"*.xlsx\"</span>)
+    <span class=\"kw\">if not</span> p.name.<span class=\"fn\">startswith</span>(<span class=\"str\">\"~"'$"</span>)
+)
+<span class="kw">if not</span> files:
+    <span class="kw">raise</span> <span class="fn">FileNotFoundError</span>(<span class="str">"data 目录中没有可合并的文件"</span>)
+
+frames = []
+<span class="kw">for</span> path <span class="kw">in</span> files:
+    part = pd.<span class="fn">read_excel</span>(
+        path, sheet_name=<span class="str">"销售明细"</span>, dtype={<span class="str">"订单号"</span>: <span class="str">"string"</span>}
+    )
+    part[<span class="str">"来源文件"</span>] = path.name
+    frames.<span class="fn">append</span>(part)
+
+merged = pd.<span class="fn">concat</span>(frames, ignore_index=<span class="kw">True</span>)
+<span class="comment"># 输出到原始文件目录之外，避免下次重复合并</span>
+<span class="kw">with</span> pd.<span class="fn">ExcelWriter</span>(<span class="str">"合并报表.xlsx"</span>, engine=<span class="str">"openpyxl"</span>) <span class="kw">as</span> writer:
+    merged.<span class="fn">to_excel</span>(writer, sheet_name=<span class="str">"全部明细"</span>, index=<span class="kw">False</span>)</code></pre></div><div class="takeaway"><span>↳</span><p><strong>保留数据的来处</strong>　“来源文件”列能帮你追溯异常。正式合并前，确认各文件的字段、单位和日期范围一致，并排除 Excel 自动生成的 <code>~$</code> 临时文件。</p></div></section>
+<section class="checklist" id="checklist"><span class="section-kicker">YOUR NEXT REPORT, SIMPLIFIED</span><h2>下次做报表，记住这 5 步</h2><div class="checklist-grid"><p><span>✓</span>按需读取，明确字段类型</p><p><span>✓</span>清洗异常，保留核对记录</p><p><span>✓</span>透视汇总，统一统计口径</p><p><span>✓</span>规范格式，让数据易读</p><p><span>✓</span>批量处理，保留来源信息</p></div><p class="closing">把流程写成代码，下一次报表就从“重新做一遍”变成“再运行一次”。</p></section>
+<div class="article-footer"><div class="tags"><span># Python</span><span># Excel</span><span># 数据分析</span><span># 办公自动化</span></div><button id="share" type="button">复制文章链接 ↗</button></div>
+<div class="author-card" id="about"><div class="avatar large">林</div><div><span class="section-kicker">WRITTEN BY</span><h3>林序</h3><p>记录数据、代码，以及让工作轻一点的方法。<br>相信好的工具，应该把时间还给人。</p></div><span class="author-flower">✳</span></div>
+</article>
+<aside><div class="sidebar-inner"><div class="toc"><div class="toc-label"><span>本文目录</span><span>ON THIS PAGE</span></div><a class="active" href="#tip-1"><span>01</span>精准读取数据</a><a href="#tip-2"><span>02</span>清洗与规范化</a><a href="#tip-3"><span>03</span>透视汇总分析</a><a href="#tip-4"><span>04</span>自动美化报表</a><a href="#tip-5"><span>05</span>批量处理文件</a><a class="toc-summary" href="#checklist"><span>↳</span>一份速查清单</a></div><div class="toolkit"><span class="toolkit-icon">{ }</span><h3>这次的工具箱</h3><p>两个库，搞定大部分报表工作。</p><div><span>pandas</span><small>数据处理与分析</small></div><div><span>openpyxl</span><small>Excel 读写与样式</small></div><footer><span class="mini-dot"></span>适合有 Python 基础的你</footer></div><div class="save-note"><span>留给下一次月报的自己</span><button id="bookmark" type="button" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 4h12v17l-6-4-6 4z"/></svg><span>收藏这篇文章</span></button><small id="bookmark-note">好方法，值得重复使用。</small></div><a class="back-top" href="#">↑ 返回顶部</a></div></aside>
+</div>
+</main>
+<footer class="site-footer"><a href="#" class="brand"><span class="brand-icon"><i></i><i></i><i></i><i></i></span>表格之外</a><p>让代码处理重复，让人专注创造。</p><span>© 2025 BEYOND CELLS</span></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+const toast = document.querySelector('"'#toast');
+let toastTimer;
+function notify(message) { toast.textContent = message; toast.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => toast.classList.remove('show'), 2400); }
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) { try { await navigator.clipboard.writeText(text); return; } catch (_) {} }
+  const field = document.createElement('textarea'); field.value = text; field.style.position = 'fixed'; field.style.opacity = '0'; document.body.appendChild(field); field.select();
+  const success = document.execCommand('copy'); field.remove(); if ("'!success) throw new Error('"'Copy unavailable');
+}
+document.querySelectorAll('.copy-button').forEach(button => button.addEventListener('click', async () => {
+  try { await copyText(button.closest('.code-block').querySelector('pre').textContent); button.textContent = '已复制 ✓'; setTimeout(() => button.innerHTML = '复制代码 <span>⧉</span>', 2000); } catch (_) { notify('暂时无法自动复制，请选中代码后复制。'); }
+}));
+document.querySelector('#share').addEventListener('click', async () => { try { await copyText(location.href.split('#')[0]); notify(location.protocol === 'file:' ? '已复制本地文件路径，分享时请一并发送页面文件。' : '文章链接已复制'); } catch (_) { notify('请从地址栏复制文章链接。'); } });
+const bookmark = document.querySelector('#bookmark'); let saved = false;
+try { saved = localStorage.getItem('beyond-cells-excel-saved') === 'true'; } catch (_) {}
+function renderBookmark() { bookmark.setAttribute('aria-pressed', String(saved)); bookmark.querySelector('span').textContent = saved ? '已收藏文章' : '收藏这篇文章'; }
+renderBookmark(); bookmark.addEventListener('click', () => { saved = "'!saved; renderBookmark(); try { localStorage.setItem('"'beyond-cells-excel-saved', String(saved)); notify(saved ? '已在此浏览器中标记收藏' : '已取消收藏'); } catch (_) { notify(saved ? '已收藏，本次打开期间有效' : '已取消收藏'); } });
+const sections = [...document.querySelectorAll('.tip, .checklist')];
+const tocLinks = [...document.querySelectorAll('.toc a')];
+function updateReading() { const max = document.documentElement.scrollHeight - innerHeight; document.querySelector('#reading-progress').style.width = (max > 0 ? scrollY / max * 100 : 0) + '%'; let current = sections[0]; sections.forEach(section => { if (section.getBoundingClientRect().top <= 180) current = section; }); tocLinks.forEach(link => { const active = link.hash === '#' + current.id; link.classList.toggle('active', active); if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current'); }); }
+let ticking = false; addEventListener('scroll', () => { if ("'!ticking) { requestAnimationFrame(() => { updateReading(); ticking = false; }); ticking = true; } }, {passive:true}); addEventListener('"'resize', updateReading); updateReading();
+</script>
+</body>
+</html>
+EOF
+cat > style.css <<'EOF'
+@import none;
+:root{--bg:#f8f8f4;--ink:#26282c;--muted:#82838b;--purple:#7960bd;--purple-dark:#6c50b2;--line:#e4e4df;--mono:\"SFMono-Regular\",Consolas,\"Liberation Mono\",monospace}*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:105px}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"PingFang SC\",\"Microsoft YaHei\",sans-serif;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button,a{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible{outline:3px solid #a38bda;outline-offset:5px}::selection{background:#dfd5f4}.reading-progress{position:fixed;top:0;left:0;height:3px;background:var(--purple);z-index:30;width:0}.site-header{height:88px;border-bottom:1px solid var(--line);background:rgba(248,248,244,.96)}.header-inner{max-width:1160px;margin:auto;height:100%;display:flex;align-items:center;justify-content:space-between}.brand{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:750;letter-spacing:1px}.brand-icon{display:grid;grid-template-columns:repeat(2,8px);grid-template-rows:repeat(2,8px);gap:3px;width:30px;height:30px;padding:4px;background:var(--purple);border-radius:7px;transform:rotate(-5deg)}.brand-icon i{border:1px solid #faf8ff;border-radius:1px}.brand-icon i:last-child{background:#f5efc6}.brand-en{font-family:var(--mono);font-size:9px;letter-spacing:1.2px;color:#92928d;margin:4px 0 0 6px;font-weight:400}.header-inner nav{display:flex;align-items:center;gap:35px;height:100%;font-size:13px}.header-inner nav a{height:100%;display:flex;align-items:center;position:relative;color:#727378}.header-inner nav .selected{color:var(--ink);font-weight:650}.header-inner nav .selected:after{content:\"\";position:absolute;width:16px;height:3px;background:var(--purple);bottom:19px;left:50%;transform:translateX(-50%);border-radius:3px}.header-note{font-size:12px;color:#797a7d}.header-note span{font-size:19px;margin-left:15px}.page{max-width:1100px;margin:0 auto}.breadcrumb{display:flex;gap:13px;color:#98999b;font-size:11px;padding:34px 0 36px}.breadcrumb span:last-child{color:#666971}.article-layout{display:grid;grid-template-columns:minmax(0,784px) 232px;gap:76px}.eyebrow{display:flex;align-items:center;gap:15px}.category{background:#ece7f5;color:var(--purple-dark);font-size:10px;font-weight:700;letter-spacing:1.1px;padding:6px 10px;border-radius:4px}.series{font-size:9px;color:#93939a;letter-spacing:1.3px;font-family:var(--mono)}h1{font-size:46px;letter-spacing:-1.5px;line-height:1.4;font-weight:780;margin:20px 0 17px}h1>span{color:var(--purple);position:relative}h1>span:after{content:\"\";height:7px;background:#e8e0f2;position:absolute;left:0;right:0;bottom:0;z-index:-1}.dek{font-size:15px;color:#7a7b81;line-height:1.95;margin:0}.byline{display:flex;align-items:center;gap:12px;margin:26px 0 32px;font-size:10px;color:#8c8d92}.avatar{width:36px;height:36px;background:#e5e8df;color:#5e6d5c;border-radius:50%;display:grid;place-items:center;font-size:15px;border:3px solid #eeefe8;font-family:serif}.author{display:flex;flex-direction:column;gap:4px}.author strong{font-size:12px;color:#45484b;font-weight:600}.author span{font-size:9px}.meta-divider{height:23px;width:1px;background:var(--line);margin:0 5px 0 8px}.meta-dot{color:#b4b4b4}.read-time{display:flex;align-items:center;gap:5px}.read-time svg{width:12px;height:12px}.cover{height:309px;background:#eeebf4;border:1px solid #e2dcec;border-radius:10px;position:relative;overflow:hidden}.cover-grid{position:absolute;inset:0;background-image:linear-gradient(#d8d0e63d 1px,transparent 1px),linear-gradient(90deg,#d8d0e63d 1px,transparent 1px);background-size:25px 25px;mask-image:linear-gradient(90deg,transparent,#000)}.cover-label{position:absolute;left:29px;top:23px;font-family:var(--mono);font-size:8px;letter-spacing:1.3px;color:#867d9a;display:flex;align-items:center;gap:7px}.cover-label>span{height:5px;width:5px;border-radius:50%;background:#a28db9}.cover-copy{position:absolute;top:73px;left:30px}.cover-kicker{font-size:11px;color:#8a7b9d;letter-spacing:2px}.cover-copy>div{font-size:42px;line-height:1.1;letter-spacing:-1.6px;font-weight:750;margin-top:13px}.cover-copy em{font-family:Georgia,serif;color:#7d65b2;font-size:48px;font-weight:400;letter-spacing:-1.5px}.cover-copy p{font:7px var(--mono);letter-spacing:1.3px;color:#9890a3;margin-top:21px}.spark{position:absolute;color:#8b73b9;font-weight:400;font-size:51px;left:196px;top:84px}.sheet-illustration{position:absolute;width:309px;right:30px;top:45px;background:#fff;border:1px solid #d3cbdc;border-radius:7px;box-shadow:0 10px 24px #63527a0c;transform:rotate(-6deg);overflow:hidden}.sheet-title{height:36px;display:flex;align-items:center;gap:8px;font:9px var(--mono);padding:0 11px;color:#66616e;border-bottom:1px solid #e7e4eb}.excel-icon{display:grid;place-items:center;background:#7c9a86;color:white;font:bold 11px var(--mono);width:19px;height:21px;border-radius:3px}.sheet-dots{margin-left:auto;color:#a59aaf;letter-spacing:2px}.sheet-columns,.sheet-row{display:grid;grid-template-columns:23px 1.3fr 1fr 1fr;font-size:8px;height:26px}.sheet-columns{height:21px;text-align:center;background:#f6f5f9;color:#a4a0ae}.sheet-row>span,.sheet-columns>span{padding:7px 7px;border-right:1px solid #eeebf2;border-bottom:1px solid #eeebf2;white-space:nowrap}.sheet-row>span:first-child{color:#a7a2af;background:#f6f5f9;padding:7px}.sheet-row>span:last-child{color:#819d87}.sheet-head>span{font-weight:600;background:#f0ecf6;color:#7e708e"'!important}.sheet-row .cell-selected{background:#f0eafc;border:1.5px solid #9a80cb;position:relative}.cell-selected:after{content:"";position:absolute;right:-2px;bottom:-2px;width:4px;height:4px;background:#9a80cb}.floating-code{position:absolute;right:18px;bottom:33px;width:285px;border-radius:7px;background:#2d2d37;box-shadow:0 12px 24px #50416520;transform:rotate(3deg);padding:15px 17px 0;color:#e5e3ed;font:10px/1.9 var(--mono);border:1px solid #46414f}.code-prompt{color:#9d87c7;margin-right:7px}.purple-light{color:#c4a4e8}.green-light{color:#b2d5be}.yellow-light{color:#dfd5ac}.floating-code p{margin:9px -17px 0;padding:6px 17px;background:#ffffff05;border-top:1px solid #ffffff0b;color:#9b9ba7;font:8px/1.8 var(--mono)}.floating-code p>span:first-child{color:#a5c5ac;margin-right:6px}.code-duration{float:right;color:#767780}.cover-bottom{position:absolute;bottom:15px;left:30px;font:6px var(--mono);letter-spacing:1.1px;color:#b0a5be}.intro{margin:30px 0 23px}.intro p,.tip>p{font-size:14px;line-height:2.05;color:#64666d;margin:0 0 13px}.intro strong{font-weight:550;color:#44464d}.setup{display:flex;gap:15px;padding:20px 21px;background:#f0f1eb;border:1px solid #e6e8de;border-radius:7px}.setup-icon{font-size:22px;color:#7d8972;line-height:24px}.setup strong{font-size:13px;font-weight:650;color:#51594d}.setup p{font-size:11px;line-height:1.9;color:#7b8176;margin:6px 0 9px}.setup code{font-family:var(--mono);font-size:11px;color:#606d58}.setup .setup-small{font-size:9px;color:#91948b;margin:10px 0 0}.tip{padding-top:43px;scroll-margin-top:24px}.section-heading{display:flex;gap:15px;align-items:center;margin-bottom:18px}.number{width:39px;height:43px;display:grid;place-items:center;color:var(--purple);background:#ece8f3;border-radius:6px;font:19px Georgia,serif}.section-kicker{font:8px var(--mono);letter-spacing:1.7px;color:#9b95a4}.section-heading h2{margin:6px 0 0;font-size:23px;letter-spacing:-.6px;font-weight:650;line-height:1.4}.tip p code,.takeaway code{background:#edeaf1;font-family:var(--mono);padding:2px 5px;border-radius:3px;color:#79688e;font-size:.88em}.code-block{margin-top:19px;background:#272831;border:1px solid #34343e;border-radius:8px;overflow:hidden}.code-toolbar{padding:11px 17px;background:#2e2f39;border-bottom:1px solid #3b3b45;display:flex;justify-content:space-between;align-items:center;font:10px var(--mono);color:#a8a6b6}.code-toolbar>span{display:flex;align-items:center;gap:8px}.code-toolbar i{width:6px;height:6px;background:#ad94d5;border-radius:50%}.copy-button{background:transparent;color:#a8a6b6;border:0;font-size:10px;padding:2px 0 2px 10px}.copy-button span{margin-left:7px;font-size:13px}.copy-button:hover{color:white}pre{margin:0;padding:22px 23px 24px;overflow:auto;tab-size:4}pre code{font:11px/1.95 var(--mono);color:#e0dee8}.kw{color:#c5a1e5}.fn{color:#a4c8e5}.str{color:#c0d5ac}.comment{color:#858493}.num{color:#e0b790}.takeaway{display:flex;gap:10px;margin-top:16px;padding:3px 0 3px 13px;border-left:2px solid #c8b9e1}.takeaway>span{color:#a490bc;font-size:17px}.takeaway p{font-size:11px;line-height:1.9;color:#8a8690;margin:0}.takeaway strong{color:#746982;font-weight:550}.table-caption{display:flex;gap:7px;align-items:center;font-size:10px;color:#8b8592;margin:23px 0 10px}.table-caption>span:last-child{margin-left:auto;color:#a09aa6}.mini-dot{width:5px;height:5px;display:inline-block;background:#aa96c6;border-radius:50%}.table-scroll{overflow:auto;border:1px solid #e4dfea;border-radius:6px}table{width:100%;border-collapse:collapse;font-size:11px;text-align:right}th,td{padding:12px 16px;border-bottom:1px solid #e8e3ed}th{background:#efebf5;color:#82728f;font-weight:500}th:first-child,td:first-child{text-align:left}td{color:#76717e;background:#fbfafc}.total td{background:#f2eff6;font-weight:600;color:#7f6b99;border:0}.checklist{margin-top:43px;background:#f0edf6;border:1px solid #e4ddec;padding:27px 28px;border-radius:8px}.checklist h2{font-size:22px;margin:10px 0 20px;letter-spacing:-.3px}.checklist-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px 14px}.checklist-grid p{font-size:12px;margin:0;color:#797083;display:flex;align-items:center;gap:8px}.checklist-grid span{background:#e3dbef;color:#8c73b2;width:16px;height:16px;border-radius:50%;display:grid;place-items:center;font-size:9px}.closing{padding-top:20px;border-top:1px solid #e0d9e9;margin:22px 0 0;font-size:12px;color:#8b8297;line-height:1.9}.article-footer{display:flex;align-items:center;justify-content:space-between;padding:26px 0;border-bottom:1px solid var(--line);gap:12px}.tags{display:flex;gap:6px;flex-wrap:wrap}.tags span{font-size:9px;background:#eeeef0;color:#8b8791;padding:5px 8px;border-radius:3px}.article-footer button{font-size:10px;color:#8c7c9e;border:0;background:transparent;white-space:nowrap}.author-card{display:flex;align-items:center;gap:19px;padding:30px 0 60px}.avatar.large{height:58px;width:58px;font-size:24px;flex-shrink:0}.author-card h3{font-size:15px;margin:6px 0}.author-card p{font-size:11px;color:#949298;line-height:1.8;margin:0}.author-flower{font-size:48px;color:#d5cbe3;margin-left:auto;padding:0 15px}aside{padding-top:17px}.sidebar-inner{position:sticky;top:35px}.toc-label{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:17px;margin-bottom:13px}.toc-label>span:first-child{font-size:12px;font-weight:600}.toc-label>span:last-child{font:7px var(--mono);letter-spacing:1px;color:#a5a4a7}.toc a{display:flex;align-items:center;gap:13px;font-size:11px;padding:12px 12px;color:#929097;position:relative;margin:1px 0;border-left:2px solid transparent;transition:background .2s,color .2s}.toc a>span{font:10px var(--mono);color:#b1aab9}.toc a.active{color:#8063b1;background:linear-gradient(90deg,#ebe5f4,transparent);border-left-color:#9374c5}.toc a.active>span{color:#987dbd}.toc a:hover{color:var(--purple)}.toc .toc-summary{margin-top:7px;font-size:10px}.toolkit{margin-top:28px;background:#eeebf4;border:1px solid #e3ddec;border-radius:7px;padding:20px 19px 0}.toolkit-icon{font:24px var(--mono);color:#a18bbb}.toolkit h3{font-size:14px;margin:15px 0 8px;font-weight:600}.toolkit>p{font-size:10px;color:#9a90a6;line-height:1.8;margin:0 0 18px}.toolkit>div{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}.toolkit>div>span{font:10px var(--mono);color:#8b729f;background:#e5dfee;padding:4px 6px;border-radius:3px}.toolkit small{color:#968b9f;font-size:9px}.toolkit footer{border-top:1px solid #dfd7e8;padding:13px 0;font-size:9px;color:#9a8fa6;display:flex;gap:6px;align-items:center}.save-note{margin-top:27px;text-align:center}.save-note>span{font-size:10px;color:#9d99a3}.save-note button{width:100%;margin:12px 0 10px;padding:11px;border:1px solid #d9d4df;border-radius:5px;background:transparent;display:flex;align-items:center;justify-content:center;gap:8px;color:#83738f;font-size:11px;transition:background .2s}.save-note button:hover,.save-note button[aria-pressed=true]{background:#ece6f5}.save-note svg{width:13px;height:13px}.save-note button[aria-pressed=true] svg{fill:#d4c4e9}.save-note small{font-size:9px;color:#b0aab4}.back-top{display:block;text-align:center;font-size:9px;color:#a6a2ac;margin-top:30px}.site-footer{max-width:1160px;margin:auto;border-top:1px solid var(--line);display:flex;align-items:center;padding:27px 0 34px;gap:23px}.site-footer .brand{font-size:14px;letter-spacing:.5px}.site-footer .brand-icon{transform:none;width:23px;height:23px;padding:4px;grid-template-columns:repeat(2,6px);grid-template-rows:repeat(2,6px);gap:2px;border-radius:5px;opacity:.75}.site-footer p{font-size:10px;color:#a3a1a6}.site-footer>span{margin-left:auto;font:8px var(--mono);color:#b0acb5;letter-spacing:1px}.toast{position:fixed;bottom:25px;left:50%;transform:translate(-50%,15px);background:#302e3a;color:#f5f2fa;padding:13px 21px;box-shadow:0 5px 25px #0002;border-radius:6px;font-size:12px;max-width:90vw;opacity:0;pointer-events:none;transition:.2s;z-index:50}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(min-width:1400px){.page{max-width:1100px}.article-layout{grid-template-columns:minmax(0,764px) 232px;gap:84px}}
+@media(max-width:1200px){.header-inner,.site-footer{margin-left:40px;margin-right:40px}.page{margin:0 55px}.article-layout{grid-template-columns:minmax(0,1fr) 205px;gap:45px}.brand-en{display:none}.cover-copy>div{font-size:37px}.cover-copy em{font-size:44px}.sheet-illustration{width:270px;right:24px}.floating-code{width:255px;right:16px}.spark{display:none}}
+@media(max-width:980px){.page{margin:0 40px}.article-layout{grid-template-columns:minmax(0,1fr) 190px;gap:32px}h1{font-size:37px}.series{font-size:7px;letter-spacing:.8px}.cover{height:285px}.cover-copy{left:22px;top:76px}.cover-copy>div{font-size:30px}.cover-copy em{font-size:36px}.cover-kicker{font-size:9px;letter-spacing:1px}.sheet-illustration{width:235px;right:-20px;top:40px}.floating-code{width:239px;right:10px;bottom:30px;font-size:9px}.cover-label{left:22px;font-size:7px}.cover-copy p{font-size:5px;letter-spacing:.8px}.cover-bottom{left:22px}.byline{gap:8px}.checklist-grid{grid-template-columns:1fr}.toolkit{padding-left:13px;padding-right:13px}.section-heading h2{font-size:21px}.intro p,.tip>p{font-size:13px}.site-footer{gap:15px}}
+@media(max-width:760px){.site-header{height:72px}.header-inner{margin:0 23px}.brand{font-size:18px}.header-inner nav{gap:20px;font-size:11px}.header-note{display:none}.header-inner nav .selected:after{bottom:13px}.page{margin:0 24px}.breadcrumb{padding:26px 0 28px;font-size:10px}.article-layout{display:block}aside{display:none}h1{font-size:40px;letter-spacing:-1.1px}.series{font-size:8px}.dek{font-size:14px}.byline{margin:24px 0 28px}.cover{height:297px}.cover-copy{left:28px}.cover-copy>div{font-size:38px}.cover-copy em{font-size:46px}.cover-kicker{font-size:10px}.sheet-illustration{width:280px;right:22px}.floating-code{width:270px;right:16px;bottom:29px;font-size:10px}.cover-copy p{font-size:6px}.intro p,.tip>p{font-size:14px}.site-footer{margin:0 24px;flex-wrap:wrap;gap:8px 20px}.site-footer p{margin-left:auto}.site-footer>span{width:100%;margin:8px 0 0;text-align:center}.tip{padding-top:36px}.checklist-grid{grid-template-columns:1fr 1fr}.article-footer{align-items:flex-start}.header-inner nav a:last-child{display:none}}
+@media(max-width:540px){h1{font-size:34px;line-height:1.45;margin-top:18px}.eyebrow{gap:10px}.series{font-size:6px;letter-spacing:.5px}.category{font-size:9px;padding:5px 7px}.dek{font-size:12px}.cover{height:270px}.cover-copy{left:21px;top:65px}.cover-copy>div{font-size:30px}.cover-copy em{font-size:37px}.cover-kicker{font-size:8px}.cover-label{font-size:6px;letter-spacing:.9px}.sheet-illustration{width:217px;right:-28px;top:42px;transform:rotate(-7deg);opacity:.88}.sheet-title{font-size:8px}.sheet-row{font-size:7px;grid-template-columns:17px 1.3fr 1fr 1fr}.sheet-columns{grid-template-columns:17px 1.3fr 1fr 1fr}.sheet-row>span{padding-left:4px;padding-right:4px}.sheet-row>span:first-child{padding-left:4px}.floating-code{width:226px;right:10px;bottom:25px;font-size:8px;padding-top:10px}.floating-code p{font-size:7px}.cover-copy p{font-size:5px;max-width:115px;line-height:1.8}.cover-bottom{font-size:5px;bottom:11px}.byline{font-size:9px;gap:7px}.author span{font-size:8px}.avatar{width:32px;height:32px}.meta-divider{margin:0 2px}.intro{margin-top:24px}.intro p,.tip>p{font-size:13px}.setup{padding:17px 14px;gap:10px}.setup-icon{font-size:18px}.setup p{font-size:10px}.setup .setup-small{font-size:8px}.section-heading{gap:12px}.section-heading h2{font-size:19px}.section-kicker{font-size:7px;letter-spacing:1.2px}.number{font-size:18px;width:34px;height:39px;flex-shrink:0}pre{padding:18px 16px}pre code{font-size:10px}.code-toolbar{padding:10px 14px}.takeaway p{font-size:10px}.checklist{padding:22px 20px}.checklist h2{font-size:20px}.checklist-grid{grid-template-columns:1fr}.article-footer{flex-direction:column;gap:18px}.article-footer button{align-self:flex-end}.author-card{gap:14px;padding-bottom:40px}.author-card p{font-size:10px}.author-flower{font-size:30px;padding:0}.site-footer p{font-size:8px}.site-footer .brand{font-size:12px}.site-footer{gap:8px}.site-footer>span{font-size:7px}.tags span{font-size:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}@media print{body{background:white}.site-header,aside,.copy-button,.article-footer button,.reading-progress,.toast{display:none}.page{margin:0;max-width:none}.article-layout{display:block}.cover{print-color-adjust:exact}.tip{break-inside:avoid}pre{white-space:pre-wrap}.code-block{print-color-adjust:exact}.site-footer{margin:0}h1{font-size:34px}}
+EOF' in <tmp>/measure-baseline-codex-007-DiKiv7
+ succeeded in 0ms:
+codex
+页面已写好，采用浅色阅读布局、紫色点缀和深色代码块，包含目录定位、代码复制及移动端适配。我正在检查页面结构和 5 段 Python 示例的语法。
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+import ast
+
+css = Path('style.css')
+css.write_text(css.read_text().replace('@import none;\\n', '', 1))
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids = []
+        self.links = []
+        self.codes = []
+        self.in_pre = False
+        self.current = ''
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if 'id' in attrs: self.ids.append(attrs['id'])
+        if tag == 'a': self.links.append(attrs.get('href', ''))
+        if tag == 'pre': self.in_pre = True; self.current = ''
+    def handle_endtag(self, tag):
+        if tag == 'pre': self.codes.append(self.current); self.in_pre = False
+    def handle_data(self, data):
+        if self.in_pre: self.current += data
+p = Check()
+p.feed(Path('index.html').read_text())
+assert len(p.ids) == len(set(p.ids)), 'Duplicate IDs'
+for link in p.links:
+    if link.startswith('#') and len(link) > 1: assert link[1:] in p.ids, link
+assert len(p.codes) == 5
+for i, code in enumerate(p.codes, 1): ast.parse(code, filename=f'example_{i}.py')
+assert Path('style.css').exists()
+print('PASS: five Python snippets parse; internal links and unique IDs verified; CSS exists.')
+print('Files: index.html, style.css')
+PY" in <tmp>/measure-baseline-codex-007-DiKiv7
+ succeeded in 0ms:
+PASS: five Python snippets parse; internal links and unique IDs verified; CSS exists.
+Files: index.html, style.css
+
+codex
+已生成 `index.html` 和 `style.css`，包含 5 个 Excel 处理技巧、Python 代码示例、目录导航与代码复制功能，并适配手机阅读。直接打开 `index.html` 即可查看，未启动服务器或安装依赖。
+tokens used
+17,316
+已生成 `index.html` 和 `style.css`，包含 5 个 Excel 处理技巧、Python 代码示例、目录导航与代码复制功能，并适配手机阅读。直接打开 `index.html` 即可查看，未启动服务器或安装依赖。

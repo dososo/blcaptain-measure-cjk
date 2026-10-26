@@ -1,0 +1,28 @@
+/* 分寸 · Measure 基础样式。全部放在 measure 层里：页面上任何不分层的样式，
+   以及后声明的层（例如 Tailwind v4 的 utilities），都会覆盖它。
+   要让 measure 成为第一个声明的层，请在入口 CSS 的第一行写：@layer measure; */
+@layer measure {
+  :where(:lang(zh)) {
+    line-break: strict;                    /* 广泛可用；写在每个中文元素上，中英混排页面也生效 */
+    font-synthesis-style: none;            /* 中文不出假斜体；西文真斜体不受影响 */
+    text-emphasis-position: under right;   /* 中文着重号在字下方 */
+  }
+
+  :where(:lang(zh)) :where(p, li) {
+    line-height: 1.75;
+  }
+
+  :where(:lang(zh)) :where(h1, h2, h3) {
+    line-height: 1.3;
+  }
+
+  /* 行长约束只在显式标记的正文容器里生效，避免挤坏卡片和表格 */
+  .measure-prose {
+    max-width: 36em;
+  }
+
+  /* 实现里的初始值是 no-autospace，必须显式开启；spacing: text 模式下由 init 命令删掉这一段 */
+  @supports (text-autospace: normal) {
+    :where(:lang(zh)) { text-autospace: normal; }
+  }
+}

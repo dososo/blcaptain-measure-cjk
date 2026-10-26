@@ -1,0 +1,64 @@
+$ node --test test/security.test.js
+# 退出码：0
+TAP version 13
+# Subtest: 直接指向工作区外的 symlink 被拒绝
+ok 1 - 直接指向工作区外的 symlink 被拒绝
+  ---
+  duration_ms: 1.659042
+  type: 'test'
+  ...
+# Subtest: 工作区外的绝对路径被拒绝
+ok 2 - 工作区外的绝对路径被拒绝
+  ---
+  duration_ms: 0.150583
+  type: 'test'
+  ...
+# Subtest: 相对路径用 .. 跳出工作区被拒绝
+ok 3 - 相对路径用 .. 跳出工作区被拒绝
+  ---
+  duration_ms: 0.150875
+  type: 'test'
+  ...
+# Subtest: 目录里指向工作区外的 symlink 被跳过并记录，超过 5 MB 的文件被跳过并记录
+ok 4 - 目录里指向工作区外的 symlink 被跳过并记录，超过 5 MB 的文件被跳过并记录
+  ---
+  duration_ms: 7.640041
+  type: 'test'
+  ...
+# Subtest: 超过 2000 个文件时报错（退出码 2）
+ok 5 - 超过 2000 个文件时报错（退出码 2）
+  ---
+  duration_ms: 67.413292
+  type: 'test'
+  ...
+# Subtest: --out 指向工作区外被拒绝（退出码 2），且不写任何文件
+ok 6 - --out 指向工作区外被拒绝（退出码 2），且不写任何文件
+  ---
+  duration_ms: 0.317875
+  type: 'test'
+  ...
+# Subtest: --out 指向悬空的 symlink 被拒绝（退出码 2），不会跟随链接写到工作区外
+ok 7 - --out 指向悬空的 symlink 被拒绝（退出码 2），不会跟随链接写到工作区外
+  ---
+  duration_ms: 0.431041
+  type: 'test'
+  ...
+# Subtest: --out 在工作区内：原子写入，不留临时文件
+ok 8 - --out 在工作区内：原子写入，不留临时文件
+  ---
+  duration_ms: 1.918667
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 381.285041
+
+
+# 判定：PASS
+# 时间：2026-10-25T12:29:43.676Z

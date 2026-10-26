@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0.0",
+  "note": "完整档需要用户拍板的事项。blocks_verdict 为 true 的事项，只有在 resolved 为 true 且附上 user_quote（用户原话）和 resolved_on（日期）时才算已拍板；否则 verify-w2-render.mjs 判「未达标」。执行方不得自行填写 user_quote。D-A1、D-A2 由审计方提出，执行方已按 PRD 原文 / 审计推荐实现，不阻塞结论，用户可以否决。D-6、D-7、D-8 仍未决，不影响本段结论，见 iter_4/open_decisions.json。 R-D1、R-D2 已由用户在对话中拍板（2026-10-26），user_quote 为用户原话摘录，user_message_verbatim 为整条原话。",
+  "items": [
+    {
+      "id": "R-D1",
+      "finding": "PRD_RENDER_PROPOSAL 改动 1–4（第 8 版）",
+      "question": "是否按 docs/verification/w2/PRD_RENDER_PROPOSAL.md 第 8 版的改动 1–4（playwright-core、实测口径与按规则按元素合并、网络策略、数据模型）修改 PRD，并新增附录 C23–C26？其中 T05 把全角标点也算作字，比只数汉字严。",
+      "recommendation": "同意",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "按 PRD_RENDER_PROPOSAL 第 8 版改动 1–4 修改 PRD，新增附录 C23–C26（我知道 T05 把全角标点也算字会更严）",
+      "resolved_on": "2026-10-26",
+      "user_message_verbatim": "R-D1 和 R-D2 都按推荐同意：按 PRD_RENDER_PROPOSAL 第 8 版改动 1–4 修改 PRD，新增附录 C23–C26（我知道 T05 把全角标点也算字会更严）；检查本地文件时不允许访问 localhost。"
+    },
+    {
+      "id": "R-D2",
+      "finding": "PRD_RENDER_PROPOSAL 改动 3",
+      "question": "检查本地文件时不允许访问 localhost（比 PRD 原文「除了 localhost 和 file://」更严，连 TCP 连接也不允许），是否同意？",
+      "recommendation": "同意",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "检查本地文件时不允许访问 localhost",
+      "resolved_on": "2026-10-26",
+      "user_message_verbatim": "R-D1 和 R-D2 都按推荐同意：按 PRD_RENDER_PROPOSAL 第 8 版改动 1–4 修改 PRD，新增附录 C23–C26（我知道 T05 把全角标点也算字会更严）；检查本地文件时不允许访问 localhost。"
+    },
+    {
+      "id": "D-A1",
+      "finding": "AUDIT_RENDER RA-11",
+      "question": "T05 的「每行字数」按 PRD 原文统计（汉字加全角标点），还是改成「行宽 ÷ 字号」？",
+      "recommendation": "按 PRD 原文（已这样实现）",
+      "blocks_verdict": false,
+      "resolved": false
+    },
+    {
+      "id": "D-A2",
+      "finding": "AUDIT_RENDER RA-02",
+      "question": "完整档对页面脚本：脚本照常执行、测量放进隔离环境（已这样实现），还是本地文件默认关掉 JavaScript？",
+      "recommendation": "照常执行 + 隔离环境（已这样实现）",
+      "blocks_verdict": false,
+      "resolved": false
+    }
+  ]
+}

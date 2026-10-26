@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>意见反馈</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <span class="seal" aria-hidden="true">言</span>
+      <h1>意见反馈</h1>
+      <p>遇到问题或有想法，都可以告诉我们。每一条都会有人认真读。</p>
+    </header>
+
+    <form id="feedback" novalidate>
+      <fieldset class="field">
+        <legend class="label">问题类型 <span class="req">*</span></legend>
+        <div class="types" role="radiogroup">
+          <label class="type"><input type="radio" name="type" value="bug"><span>功能异常</span></label>
+          <label class="type"><input type="radio" name="type" value="ui"><span>界面显示</span></label>
+          <label class="type"><input type="radio" name="type" value="perf"><span>卡顿闪退</span></label>
+          <label class="type"><input type="radio" name="type" value="suggestion"><span>功能建议</span></label>
+          <label class="type"><input type="radio" name="type" value="account"><span>账号支付</span></label>
+          <label class="type"><input type="radio" name="type" value="other"><span>其他</span></label>
+        </div>
+        <p class="error" id="type-error" aria-live="polite"></p>
+      </fieldset>
+
+      <div class="field">
+        <label class="label" for="desc">问题描述 <span class="req">*</span>
+          <span class="hint">至少 10 字</span>
+        </label>
+        <textarea id="desc" name="description" maxlength="500"
+          placeholder="请描述你遇到的情况：在哪个页面、做了什么操作、期望的结果和实际的结果。"
+          aria-describedby="desc-error desc-counter"></textarea>
+        <div class="counter" id="desc-counter"><span id="desc-count">0</span> / 500</div>
+        <p class="error" id="desc-error" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <span class="label" id="shot-label">截图
+          <span class="hint">选填，最多 3 张，单张不超过 5 MB</span>
+        </span>
+        <label class="drop" id="drop" aria-labelledby="shot-label">
+          <input type="file" id="shots" accept="image/png,image/jpeg,image/webp,image/gif" multiple>
+          <strong>点击选择，或将图片拖到这里</strong>
+          <small>支持 PNG / JPG / WebP / GIF，也可直接粘贴截图</small>
+        </label>
+        <ul class="thumbs" id="thumbs"></ul>
+        <p class="error" id="shot-error" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="contact">联系方式 <span class="hint">选填，便于我们回访</span></label>
+        <input type="text" id="contact" name="contact" maxlength="100" placeholder="邮箱或手机号">
+        <p class="error" id="contact-error" aria-live="polite"></p>
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="submit" id="submit">提交反馈</button>
+        <span class="note">提交即表示同意我们为改进产品使用这些信息</span>
+      </div>
+    </form>
+
+    <section class="done" id="done" hidden aria-live="polite">
+      <span class="seal" aria-hidden="true">收</span>
+      <h2>已收到，谢谢你</h2>
+      <p>我们会在 3 个工作日内处理。如留了联系方式，会有专人与你沟通。</p>
+      <dl id="summary"></dl>
+      <button type="button" class="link" id="again">再提交一条</button>
+    </section>
+  </main>
+
+  <script>
+  (function () {
+    var MAX_FILES = 3;
+    var MAX_SIZE = 5 * 1024 * 1024;
+    var MIN_DESC = 10;
+    var ACCEPT = ["image/png", "image/jpeg", "image/webp", "image/gif"];
+    var TYPE_LABEL = {
+      bug: "功能异常", ui: "界面显示", perf: "卡顿闪退",
+      suggestion: "功能建议", account: "账号支付", other: "其他"
+    };
+
+    var form = document.getElementById("feedback");
+    var desc = document.getElementById("desc");
+    var descCount = document.getElementById("desc-count");
+    var counter = document.getElementById("desc-counter");
+    var fileInput = document.getElementById("shots");
+    var drop = document.getElementById("drop");
+    var thumbs = document.getElementById("thumbs");
+    var contact = document.getElementById("contact");
+    var submitBtn = document.getElementById("submit");
+    var done = document.getElementById("done");
+    var summary = document.getElementById("summary");
+
+    var files = []; // { file, url }
+
+    function setError(id, msg) {
+      document.getElementById(id).textContent = msg || "";
+    }
+
+    function formatSize(bytes) {
+      return bytes < 1024 * 1024
+        ? Math.max(1, Math.round(bytes / 1024)) + " KB"
+        : (bytes / 1024 / 1024).toFixed(1) + " MB";
+    }
+
+    // 描述字数
+    desc.addEventListener("input", function () {
+      var n = desc.value.trim().length;
+      descCount.textContent = desc.value.length;
+      counter.classList.toggle("over", desc.value.length >= 500);
+      if (n >= MIN_DESC) { setError("desc-error"); desc.removeAttribute("aria-invalid"); }
+    });
+
+    form.addEventListener("change", function (e) {
+      if (e.target.name === "type") setError("type-error");
+    });
+
+    // 截图
+    function addFiles(list) {
+      var rejected = [];
+      Array.prototype.forEach.call(list, function (f) {
+        if (ACCEPT.indexOf(f.type) === -1) { rejected.push(f.name + "：格式不支持"); return; }
+        if (f.size > MAX_SIZE) { rejected.push(f.name + "：超过 5 MB"); return; }
+        if (files.length >= MAX_FILES) { rejected.push(f.name + "：最多 3 张"); return; }
+        files.push({ file: f, url: URL.createObjectURL(f) });
+      });
+      setError("shot-error", rejected.join("；"));
+      render();
+    }
+
+    function removeFile(i) {
+      URL.revokeObjectURL(files[i].url);
+      files.splice(i, 1);
+      setError("shot-error");
+      render();
+    }
+
+    function render() {
+      thumbs.textContent = "";
+      files.forEach(function (item, i) {
+        var li = document.createElement("li");
+        li.className = "thumb";
+        var img = document.createElement("img");
+        img.src = item.url;
+        img.alt = "截图预览：" + item.file.name;
+        var meta = document.createElement("span");
+        meta.className = "meta";
+        meta.textContent = (item.file.name || "粘贴的截图") + " · " + formatSize(item.file.size);
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = "×";
+        btn.setAttribute("aria-label", "移除 " + item.file.name);
+        btn.addEventListener("click", function () { removeFile(i); });
+        li.append(img, meta, btn);
+        thumbs.appendChild(li);
+      });
+      drop.hidden = files.length >= MAX_FILES;
+    }
+
+    fileInput.addEventListener("change", function () {
+      addFiles(fileInput.files);
+      fileInput.value = "";
+    });
+
+    ["dragenter", "dragover"].forEach(function (ev) {
+      drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("dragging"); });
+    });
+    ["dragleave", "drop"].forEach(function (ev) {
+      drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove("dragging"); });
+    });
+    drop.addEventListener("drop", function (e) {
+      if (e.dataTransfer && e.dataTransfer.files) addFiles(e.dataTransfer.files);
+    });
+
+    document.addEventListener("paste", function (e) {
+      if (!done.hidden || !e.clipboardData) return;
+      var imgs = Array.prototype.filter.call(e.clipboardData.files || [], function (f) {
+        return f.type.indexOf("image/") === 0;
+      });
+      if (imgs.length) { e.preventDefault(); addFiles(imgs); }
+    });
+
+    // 校验
+    function validate() {
+      var ok = true;
+      var first = null;
+
+      var type = form.querySelector('input[name="type"]:checked');
+      if (!type) {
+        setError("type-error", "请选择问题类型");
+        ok = false; first = first || form.querySelector('input[name="type"]');
+      }
+
+      var text = desc.value.trim();
+      if (text.length < MIN_DESC) {
+        setError("desc-error", text ? "再多写几句吧，至少 10 个字" : "请填写问题描述");
+        desc.setAttribute("aria-invalid", "true");
+        ok = false; first = first || desc;
+      }
+
+      var c = contact.value.trim();
+      var isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(c);
+      var isPhone = /^1\d{10}$/.test(c);
+      if (c && !isEmail && !isPhone) {
+        setError("contact-error", "请输入有效的邮箱或 11 位手机号");
+        contact.setAttribute("aria-invalid", "true");
+        ok = false; first = first || contact;
+      } else {
+        setError("contact-error");
+        contact.removeAttribute("aria-invalid");
+      }
+
+      if (first) first.focus();
+      return ok;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!validate()) return;
+
+      var data = new FormData();
+      data.append("type", form.querySelector('input[name="type"]:checked').value);
+      data.append("description", desc.value.trim());
+      data.append("contact", contact.value.trim());
+      files.forEach(function (item) { data.append("screenshots", item.file, item.file.name); });
+
+      // 接入后端时在此替换为：fetch("/api/feedback", { method: "POST", body: data })
+      // 当前为纯前端演示，数据不会离开浏览器。
+      submitBtn.disabled = true;
+      submitBtn.textContent = "提交中…";
+      setTimeout(function () { showDone(data); }, 500);
+    });
+
+    function showDone(data) {
+      summary.textContent = "";
+      var rows = [
+        ["类型", TYPE_LABEL[data.get("type")]],
+        ["描述", data.get("description")],
+        ["截图", files.length ? files.length + " 张" : "无"],
+        ["联系", data.get("contact") || "未填写"]
+      ];
+      rows.forEach(function (r) {
+        var dt = document.createElement("dt");
+        var dd = document.createElement("dd");
+        dt.textContent = r[0];
+        dd.textContent = r[1];
+        summary.append(dt, dd);
+      });
+      form.hidden = true;
+      done.hidden = false;
+      window.scrollTo(0, 0);
+    }
+
+    document.getElementById("again").addEventListener("click", function () {
+      files.forEach(function (item) { URL.revokeObjectURL(item.url); });
+      files = [];
+      form.reset();
+      descCount.textContent = "0";
+      counter.classList.remove("over");
+      ["type-error", "desc-error", "shot-error", "contact-error"].forEach(function (id) { setError(id); });
+      render();
+      submitBtn.disabled = false;
+      submitBtn.textContent = "提交反馈";
+      done.hidden = true;
+      form.hidden = false;
+    });
+  })();
+  </script>
+</body>
+</html>

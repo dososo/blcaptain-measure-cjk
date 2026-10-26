@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>杭州两天一夜路线</title>
+<style>
+  :root {
+    --bg: #efe9df;
+    --card: #fbf7f0;
+    --ink: #2b2b28;
+    --muted: #7a756b;
+    --green: #3f6b52;
+    --green-soft: #dfe8dc;
+    --orange: #d9734a;
+    --orange-soft: #f6e0d3;
+    --line: #e4dccd;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+    background: var(--bg);
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    color: var(--ink);
+  }
+
+  /* 3:4 卡片，宽度随屏幕缩放，所有尺寸基于卡片宽度 (cqw) */
+  .card {
+    width: min(600px, 100%, calc((100vh - 48px) * 0.75));
+    aspect-ratio: 3 / 4;
+    container-type: inline-size;
+    background: var(--card);
+    border-radius: 3cqw;
+    box-shadow: 0 2cqw 6cqw rgba(60, 50, 30, .12);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 6cqw 6.5cqw 5cqw;
+  }
+
+  /* 远山装饰 */
+  .card::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 34cqw;
+    background:
+      radial-gradient(60cqw 18cqw at 15% 100%, #e3ebe0 60%, transparent 61%),
+      radial-gradient(70cqw 22cqw at 85% 100%, #ebf0e6 60%, transparent 61%);
+    z-index: 0;
+  }
+  .card > * { position: relative; z-index: 1; }
+
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2.6cqw;
+    color: var(--muted);
+    letter-spacing: .1em;
+  }
+  .tag {
+    background: var(--green);
+    color: #fff;
+    padding: .6cqw 2cqw;
+    border-radius: 99px;
+    letter-spacing: .05em;
+  }
+
+  h1 {
+    margin-top: 4cqw;
+    font-size: 8.6cqw;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: .02em;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--green);
+    background: linear-gradient(transparent 62%, var(--orange-soft) 62%);
+  }
+  .sub {
+    margin-top: 2cqw;
+    font-size: 3.1cqw;
+    color: var(--muted);
+  }
+
+  .days {
+    margin-top: 3.6cqw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3cqw;
+    flex: 1;
+    min-height: 0;
+  }
+  .day {
+    background: #fff;
+    border: .3cqw solid var(--line);
+    border-radius: 2.4cqw;
+    padding: 3.2cqw 3cqw;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .day-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5cqw;
+    padding-bottom: 2cqw;
+    border-bottom: .3cqw dashed var(--line);
+  }
+  .day-num {
+    font-size: 5.4cqw;
+    font-weight: 800;
+    color: var(--green);
+  }
+  .day:nth-child(2) .day-num { color: var(--orange); }
+  .day-theme { font-size: 2.8cqw; color: var(--muted); }
+
+  .stops { list-style: none; margin-top: 2.2cqw; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+  .stop {
+    position: relative;
+    padding-left: 3.6cqw;
+  }
+  .stop::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 1.3cqw;
+    width: 1.6cqw; height: 1.6cqw;
+    border-radius: 50%;
+    background: var(--green);
+  }
+  .stop::after {
+    content: "";
+    position: absolute;
+    left: .65cqw; top: 3.4cqw; bottom: -2.4cqw;
+    border-left: .3cqw dotted #b9c7b6;
+  }
+  .stop:last-child::after { display: none; }
+  .day:nth-child(2) .stop::before { background: var(--orange); }
+  .day:nth-child(2) .stop::after { border-color: #e8bfa9; }
+
+  .time { font-size: 2.3cqw; color: var(--muted); letter-spacing: .05em; }
+  .place { font-size: 3.1cqw; font-weight: 700; line-height: 1.35; }
+  .note { font-size: 2.4cqw; color: #5d5950; line-height: 1.45; margin-top: .3cqw; }
+
+  .tips {
+    margin-top: 3.2cqw;
+    background: var(--green-soft);
+    border-radius: 2.4cqw;
+    padding: 2.8cqw 3.4cqw;
+    font-size: 2.55cqw;
+    line-height: 1.6;
+  }
+  .tips b { color: var(--green); }
+  .tips ul { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .4cqw 3cqw; margin-top: .8cqw; }
+  .tips li::before { content: "· "; color: var(--green); font-weight: 700; }
+
+  .foot {
+    margin-top: 2.8cqw;
+    display: flex;
+    justify-content: space-between;
+    font-size: 2.4cqw;
+    color: var(--muted);
+  }
+  .foot span:last-child { color: var(--orange); font-weight: 600; }
+</style>
+</head>
+<body>
+  <article class="card">
+    <div class="top">
+      <span>WEEKEND · HANGZHOU</span>
+      <span class="tag">收藏备用</span>
+    </div>
+
+    <h1>周末去<em>杭州</em><br>两天一夜这样走</h1>
+    <p class="sub">不赶路 · 不踩坑 · 人均约 ¥800（不含往返交通）</p>
+
+    <section class="days">
+      <div class="day">
+        <div class="day-head">
+          <span class="day-num">DAY 1</span>
+          <span class="day-theme">湖光与古寺</span>
+        </div>
+        <ul class="stops">
+          <li class="stop">
+            <div class="time">08:30</div>
+            <div class="place">断桥 → 白堤 → 孤山</div>
+            <div class="note">早去人少，沿湖慢走</div>
+          </li>
+          <li class="stop">
+            <div class="time">12:00</div>
+            <div class="place">湖滨午饭</div>
+            <div class="note">西湖醋鱼、东坡肉、片儿川</div>
+          </li>
+          <li class="stop">
+            <div class="time">14:00</div>
+            <div class="place">灵隐寺 · 飞来峰</div>
+            <div class="note">看石窟造像，留 3 小时</div>
+          </li>
+          <li class="stop">
+            <div class="time">18:30</div>
+            <div class="place">南宋御街 · 湖滨夜景</div>
+            <div class="note">住湖滨，步行可达</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="day">
+        <div class="day-head">
+          <span class="day-num">DAY 2</span>
+          <span class="day-theme">茶山与老街</span>
+        </div>
+        <ul class="stops">
+          <li class="stop">
+            <div class="time">08:30</div>
+            <div class="place">九溪十八涧</div>
+            <div class="note">溪水山径，徒步 1.5h</div>
+          </li>
+          <li class="stop">
+            <div class="time">11:30</div>
+            <div class="place">龙井村喝茶吃饭</div>
+            <div class="note">龙井虾仁配新茶</div>
+          </li>
+          <li class="stop">
+            <div class="time">14:00</div>
+            <div class="place">苏堤南段 · 花港观鱼</div>
+            <div class="note">骑单车穿过苏堤</div>
+          </li>
+          <li class="stop">
+            <div class="time">16:30</div>
+            <div class="place">小河直街 · 拱宸桥</div>
+            <div class="note">运河老街，逛完返程</div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="tips">
+      <b>📌 小贴士</b>
+      <ul>
+        <li>西湖周边易堵车，地铁最方便</li>
+        <li>穿好走的鞋，日均 2 万步+</li>
+        <li>灵隐、飞来峰门票分开购买</li>
+        <li>龙井茶认准正规茶庄再买</li>
+      </ul>
+    </div>
+
+    <div class="foot">
+      <span>#杭州旅行 #周末去哪儿 #西湖</span>
+      <span>❤️ 点赞收藏不迷路</span>
+    </div>
+  </article>
+</body>
+</html>

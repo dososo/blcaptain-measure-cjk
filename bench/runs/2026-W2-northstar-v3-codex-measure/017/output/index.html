@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="团队 Git 使用规范：统一分支命名、提交信息与代码评审流程，让每一次协作都有迹可循。">
+  <title>Git 使用规范 · 团队工程手册</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转到正文</a>
+  <aside class="sidebar" aria-label="文档导航">
+    <a class="brand" href="#overview" aria-label="团队工程手册首页"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="7" cy="5" r="2"/><circle cx="17" cy="6" r="2"/><circle cx="7" cy="19" r="2"/><path d="M7 7v10m10-9v1a5 5 0 0 1-5 5H7"/></svg></span><span>团队工程手册<small>ENGINEERING HANDBOOK</small></span></a>
+    <div class="nav-label">协作与交付</div>
+    <div class="document-label"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 2.5h7l3 3v12H5z"/><path d="M11.5 2.5v4H15M7.5 10h5M7.5 13h5"/></svg>Git 使用规范<span class="live-dot"></span></div>
+    <nav class="section-nav">
+      <a class="active" href="#overview" aria-current="location"><span>00</span>概览</a>
+      <a href="#branches"><span>01</span>分支命名</a>
+      <a href="#commits"><span>02</span>提交信息</a>
+      <a href="#review"><span>03</span>代码评审</a>
+      <a href="#checklist"><span>04</span>合并检查清单</a>
+    </nav>
+    <div class="sidebar-note"><span class="note-icon" aria-hidden="true">↳</span><p>好的协作，<br>从一致的约定开始。</p><span>让变更清晰，让交付可靠。</span></div>
+    <div class="sidebar-footer"><span class="version">v1.0</span><span>团队协作约定</span><span class="footer-dot"></span></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><div class="breadcrumb">工程手册<span>/</span>协作规范<span>/</span><strong>Git</strong></div><button class="print-button" type="button" onclick="window.print()"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 7V2.5h10V7M5 14H3V7h14v7h-2M5 11h10v6H5z"/><path d="M14 9h1"/></svg>打印文档</button></header>
+    <div class="page-layout">
+      <main id="main">
+        <section class="hero" id="overview" aria-labelledby="page-title">
+          <div class="eyebrow"><span></span>团队协作规范 <span class="eyebrow-divider">/</span> WORKFLOW</div>
+          <h1 id="page-title">Git 使用规范<span class="title-dot" aria-hidden="true"></span></h1>
+          <p class="hero-description measure-prose">把约定写下来，把精力留给创造。<br>统一分支、提交与评审方式，让每一次变更都清晰、可追溯。</p>
+          <div class="meta"><span><span class="meta-icon" aria-hidden="true">◎</span>适用范围：团队所有代码仓库</span><span><span class="meta-icon" aria-hidden="true">◷</span>阅读约 6 分钟</span></div>
+          <div class="principle"><span class="principle-symbol" aria-hidden="true">↗</span><div><strong>一个任务，一个分支，一次有意义的合并。</strong><p>主分支始终保持可发布；所有变更通过 Pull Request（PR）评审后合入。</p></div></div>
+        </section>
+
+        <section class="doc-section" id="branches" aria-labelledby="branches-title">
+          <div class="section-heading"><span class="section-number">01</span><h2 id="branches-title">分支命名</h2><span class="heading-caption">BRANCH NAMING</span></div>
+          <p class="measure-prose">从最新的 <code>main</code> 创建工作分支，使用小写英文与连字符。名称应说明变更目的，并关联任务编号，方便检索与追踪。</p>
+          <div class="code-block syntax"><div><span class="code-label">命名格式</span><code><span class="code-accent">&lt;type&gt;</span>/&lt;issue-id&gt;-&lt;short-description&gt;</code></div><button class="copy-button" type="button" data-copy="feat/128-user-login" aria-label="复制分支命名示例">复制示例 <span aria-hidden="true">⧉</span></button></div>
+          <div class="table-wrap"><table><caption class="sr-only">分支类型、使用场景和命名示例</caption><thead><tr><th scope="col">分支类型</th><th scope="col">使用场景</th><th scope="col">命名示例</th></tr></thead><tbody>
+            <tr><td><code class="type-pill">feat</code></td><td>新增功能</td><td><code>feat/128-user-login</code></td></tr>
+            <tr><td><code class="type-pill">fix</code></td><td>修复缺陷</td><td><code>fix/256-token-expiry</code></td></tr>
+            <tr><td><code class="type-pill">refactor</code></td><td>重构现有实现</td><td><code>refactor/312-auth-service</code></td></tr>
+            <tr><td><code class="type-pill">docs</code></td><td>更新文档</td><td><code>docs/108-api-guide</code></td></tr>
+            <tr><td><code class="type-pill">chore</code></td><td>构建、依赖与维护</td><td><code>chore/420-update-lint</code></td></tr>
+          </tbody></table></div>
+          <div class="inline-note"><span aria-hidden="true">ⓘ</span><p><strong>主分支保护</strong>：禁止直接推送或强制推送到 <code>main</code>。分支保持短期存活，合并完成后删除；没有任务编号时可省略编号。</p></div>
+          <details><summary>从一个干净的分支开始 <span aria-hidden="true">＋</span></summary><div class="detail-content"><p>确认工作区干净，再更新主分支并创建工作分支。</p><pre><code>git switch main
+git pull --ff-only origin main
+git switch -c feat/128-user-login</code></pre></div></details>
+        </section>
+
+        <section class="doc-section" id="commits" aria-labelledby="commits-title">
+          <div class="section-heading"><span class="section-number">02</span><h2 id="commits-title">提交信息</h2><span class="heading-caption">COMMIT MESSAGES</span></div>
+          <p class="measure-prose">一次提交只做一件事。使用统一的提交格式，让历史记录能直接回答“改了什么”，必要时在正文解释“为什么”。</p>
+          <div class="code-block syntax"><div><span class="code-label">提交格式 · scope 可选</span><code><span class="code-accent">&lt;type&gt;</span>(&lt;scope&gt;): &lt;description&gt;</code></div></div>
+          <div class="commit-example"><div class="example-header"><span><span class="example-dot"></span>一个清晰的提交</span><button type="button" class="copy-button" data-copy="feat(auth): 支持邮箱验证码登录&#10;&#10;为未设置密码的用户提供登录入口。&#10;新增验证码有效期与重试次数校验。&#10;&#10;Refs: #128">复制 <span aria-hidden="true">⧉</span></button></div><pre><code><span class="code-accent">feat</span>(auth): 支持邮箱验证码登录
+
+为未设置密码的用户提供登录入口。
+新增验证码有效期与重试次数校验。
+
+<span class="code-muted">Refs: #128</span></code></pre></div>
+          <div class="two-columns"><div><h3>写清楚变更</h3><ul class="plain-list"><li>类型沿用分支类型，测试使用 <code>test</code>，性能优化使用 <code>perf</code>。</li><li>描述以动作开头，如“修复”“新增”“移除”；标题建议控制在 72 字符内。</li><li>有不兼容变更时，在类型或作用域后加 <code>!</code>，并在正文说明迁移方式。</li></ul></div><div class="avoid-box"><h3><span aria-hidden="true">↘</span> 避免含糊的提交</h3><p><code>update</code><code>fix bug</code><code>修改一下</code></p><div class="avoid-divider"></div><p class="better-example">更好的写法</p><code>fix(auth): 修复令牌过期后无法退出的问题</code></div></div>
+        </section>
+
+        <section class="doc-section" id="review" aria-labelledby="review-title">
+          <div class="section-heading"><span class="section-number">03</span><h2 id="review-title">代码评审</h2><span class="heading-caption">CODE REVIEW</span></div>
+          <p class="measure-prose">作者对变更质量负责，评审者对合并质量把关。尽量让每个 PR 聚焦单一目标；大改动先拆分，或提前对齐设计。</p>
+          <ol class="workflow">
+            <li><span class="step-number">1</span><div><h3>先自查，再发起 PR <span class="role">作者</span></h3><p>检查差异，移除调试代码与敏感信息，运行相关测试。未准备好评审时，使用 Draft PR。</p></div></li>
+            <li><span class="step-number">2</span><div><h3>交代背景与验证方式 <span class="role">作者</span></h3><p>标题沿用提交格式；描述包含变更原因、主要改动、关联任务、测试结果与风险。界面变更附前后截图，必要时补充回滚方案。</p></div></li>
+            <li><span class="step-number">3</span><div><h3>邀请评审，逐项回应 <span class="role">作者 + 评审者</span></h3><p>至少邀请一位熟悉模块的同事，建议在一个工作日内首次响应。优先检查正确性、边界条件、可维护性与测试；明确区分必须修改的问题和可选建议。</p></div></li>
+            <li><span class="step-number">4</span><div><h3>通过检查后合并 <span class="role">合并负责人</span></h3><p>获得至少一位非作者的批准，所有必需 CI 检查通过，阻塞问题解决后，使用 Squash merge 合入。核对最终提交信息，删除工作分支。</p></div></li>
+          </ol>
+          <div class="review-note"><strong>评审后又有修改？</strong><p>推送修复后说明改动，并重新请求评审。新增实质性变更需要重新批准；发生冲突时，由作者解决并重新运行检查。</p></div>
+        </section>
+
+        <section class="doc-section" id="checklist" aria-labelledby="checklist-title">
+          <div class="section-heading"><span class="section-number">04</span><h2 id="checklist-title">合并前，再确认一次</h2></div>
+          <div class="checklist-header"><p>准备好把这次变更交给团队了吗？</p><output id="progress" aria-live="polite">0 / 5 已完成</output></div>
+          <div class="checklist">
+            <label><input type="checkbox"><span>分支命名和 PR 标题符合约定</span></label>
+            <label><input type="checkbox"><span>变更范围清晰，描述包含验证结果与关联任务</span></label>
+            <label><input type="checkbox"><span>相关测试与所有必需 CI 检查通过</span></label>
+            <label><input type="checkbox"><span>至少一位非作者批准，所有阻塞意见已解决</span></label>
+            <label><input type="checkbox"><span>最终提交信息准确，发布风险与回滚方式已明确</span></label>
+          </div>
+          <p class="checklist-hint">清单仅辅助本次自查，不替代仓库中的审批与自动检查。</p>
+        </section>
+        <footer class="page-footer"><span>让每一次提交，都成为可靠的协作记录。</span><a href="#overview">回到顶部 <span aria-hidden="true">↑</span></a></footer>
+      </main>
+      <aside class="page-toc" aria-label="本页目录"><div class="toc-title">本页内容</div><a href="#branches">分支命名</a><a href="#commits">提交信息</a><a href="#review">代码评审</a><a href="#checklist">合并检查清单</a><div class="toc-note"><span aria-hidden="true">↗</span><strong>小步提交<br>及时评审<br>持续交付</strong><p>简单的约定，<br>长期的默契。</p></div></aside>
+    </div>
+  </div>
+  <div class="sr-only" id="copy-status" role="status"></div>
+  <script>
+    const copyStatus = document.getElementById('copy-status');
+    document.querySelectorAll('[data-copy]').forEach(button => {
+      button.addEventListener('click', async () => {
+        const value = button.dataset.copy;
+        try {
+          if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(value);
+          else {
+            const field = document.createElement('textarea');
+            field.value = value; field.style.position = 'fixed'; field.style.opacity = '0';
+            document.body.appendChild(field); field.select();
+            const success = document.execCommand('copy'); field.remove(); button.focus();
+            if (!success) throw new Error('copy unavailable');
+          }
+          const original = button.innerHTML;
+          button.textContent = '已复制 ✓'; button.disabled = true;
+          copyStatus.textContent = '示例已复制到剪贴板';
+          setTimeout(() => { button.innerHTML = original; button.disabled = false; }, 1800);
+        } catch { copyStatus.textContent = '复制失败，请选中示例手动复制。'; button.textContent = '请手动复制'; }
+      });
+    });
+    const checks = [...document.querySelectorAll('.checklist input')];
+    checks.forEach(input => input.addEventListener('change', () => {
+      const count = checks.filter(item => item.checked).length;
+      document.getElementById('progress').textContent = `${count} / 5 已完成`;
+    }));
+    const links = [...document.querySelectorAll('.section-nav a')];
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          links.forEach(link => {
+            const active = link.hash === '#' + entry.target.id;
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'location'); else link.removeAttribute('aria-current');
+          });
+        });
+      }, { rootMargin: '-10% 0px -65% 0px', threshold: 0 });
+      document.querySelectorAll('main section').forEach(section => observer.observe(section));
+    }
+  </script>
+</body>
+</html>

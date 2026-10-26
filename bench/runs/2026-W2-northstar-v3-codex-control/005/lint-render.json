@@ -1,0 +1,401 @@
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w2-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-26T04:25:40.713Z",
+    "mode": "render",
+    "inputs": [
+      "."
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [
+      "https://images.unsplash.com/photo-1552053831-71594a27632d?w=80&h=80&fit=crop",
+      "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=80&h=80&fit=crop",
+      "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1100&q=85",
+      "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?w=80&h=80&fit=crop",
+      "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=650&q=80",
+      "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=650&q=80",
+      "https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=650&q=80"
+    ],
+    "sheet_errors": [],
+    "unsupported_selectors": [
+      "index.html：.skip-link:focus",
+      "index.html：:focus-visible"
+    ],
+    "threshold_overrides": {},
+    "render": {
+      "browser": "系统 Chrome 155.0.8059.86（playwright-core）",
+      "widths": [
+        360,
+        390,
+        768,
+        1024,
+        1280,
+        1440
+      ],
+      "evidence_dir": "_evidence",
+      "problems": []
+    }
+  },
+  "summary": {
+    "files": 1,
+    "cjk_files": 1,
+    "errors": 26,
+    "warns": 5,
+    "status": "fail"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "pingfang sc",
+      "tier": "system-only",
+      "usage": "system"
+    },
+    {
+      "family": "microsoft yahei",
+      "tier": "system-only",
+      "usage": "system"
+    }
+  ],
+  "findings": [
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.wrap > header.site-header > a.button:nth-of-type(2)",
+      "line": 39,
+      "viewport": 360,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。【出现在 360、390px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-001.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main#main > section.hero:nth-of-type(1) > div.hero-copy:nth-of-type(1) > div.eyebrow:nth-of-type(1)",
+      "line": 44,
+      "viewport": 360,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-002.png"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "main#main > section.hero:nth-of-type(1) > div.hero-copy:nth-of-type(1) > h1#hero-title",
+      "line": 45,
+      "viewport": 360,
+      "message": "中文字距为负（计算值 -1.5px），汉字会挤在一起。中文字距请用 0 到 0.05em。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07",
+      "evidence": "_evidence/T07-001.png"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section.hero:nth-of-type(1) > div.hero-copy:nth-of-type(1) > h1#hero-title > span.highlight",
+      "line": 45,
+      "viewport": 360,
+      "message": "中文字距为负（计算值 -1.5px），汉字会挤在一起。中文字距请用 0 到 0.05em。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07",
+      "evidence": "_evidence/T07-002.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#main > section.hero:nth-of-type(1) > div.hero-copy:nth-of-type(1) > p.hero-desc",
+      "line": 46,
+      "viewport": 360,
+      "message": "正文字号 13.0px，建议不小于 14px。【出现在 360、390、768px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section.hero:nth-of-type(1) > div.hero-copy:nth-of-type(1) > div.hero-proof:nth-of-type(3) > div.proof-text:nth-of-type(2)",
+      "line": 48,
+      "viewport": 360,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-003.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.hero-copy:nth-of-type(1) > div.hero-proof:nth-of-type(3) > div.proof-text:nth-of-type(2) > strong",
+      "line": 48,
+      "viewport": 360,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-004.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section.hero:nth-of-type(1) > div.hero-visual:nth-of-type(2) > div.care-sticker:nth-of-type(2) > span",
+      "line": 53,
+      "viewport": 360,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-005.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.hero-visual:nth-of-type(2) > div.photo-note:nth-of-type(3) > div > p",
+      "line": 54,
+      "viewport": 360,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-006.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.benefits:nth-of-type(1) > div.benefit:nth-of-type(1) > div > span",
+      "line": 58,
+      "viewport": 360,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-007.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.benefits:nth-of-type(1) > div.benefit:nth-of-type(2) > div > span",
+      "line": 59,
+      "viewport": 360,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-008.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.benefits:nth-of-type(1) > div.benefit:nth-of-type(3) > div > span",
+      "line": 60,
+      "viewport": 360,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-009.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.benefits:nth-of-type(1) > div.benefit:nth-of-type(4) > div > span",
+      "line": 61,
+      "viewport": 360,
+      "message": "中文字号 10.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-010.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#services:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.section-kicker",
+      "line": 64,
+      "viewport": 360,
+      "message": "中文字号 9.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-011.png"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#services:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > h2#services-title",
+      "line": 64,
+      "viewport": 360,
+      "message": "中文字距为负（计算值 -0.6px），汉字会挤在一起。中文字距请用 0 到 0.05em。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07",
+      "evidence": "_evidence/T07-003.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#services:nth-of-type(2) > div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(1) > p",
+      "line": 66,
+      "viewport": 360,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-012.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(1) > div.service-tags:nth-of-type(2) > span:nth-of-type(1)",
+      "line": 66,
+      "viewport": 360,
+      "message": "中文字号 9.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-013.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(1) > div.service-tags:nth-of-type(2) > span:nth-of-type(2)",
+      "line": 66,
+      "viewport": 360,
+      "message": "中文字号 9.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-014.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(1) > div.service-tags:nth-of-type(2) > span:nth-of-type(3)",
+      "line": 66,
+      "viewport": 360,
+      "message": "中文字号 9.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-015.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#services:nth-of-type(2) > div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(2) > p",
+      "line": 67,
+      "viewport": 360,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-016.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(2) > div.service-tags:nth-of-type(2) > span:nth-of-type(1)",
+      "line": 67,
+      "viewport": 360,
+      "message": "中文字号 9.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-017.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(2) > div.service-tags:nth-of-type(2) > span:nth-of-type(2)",
+      "line": 67,
+      "viewport": 360,
+      "message": "中文字号 9.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-018.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#services:nth-of-type(2) > div.service-grid:nth-of-type(2) > article.service-card:nth-of-type(3) > p",
+      "line": 68,
+      "viewport": 360,
+      "message": "中文字号 11.0px，小于 12px，笔画会糊成一团。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11",
+      "evidence": "_evidence/T11-019.png"
+    },
+    {
+      "rule": "T07",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "section#team:nth-of-type(3) > div.section-heading:nth-of-type(1) > div > h2#team-title",
+      "line": 73,
+      "viewport": 360,
+      "message": "中文字距为负（计算值 -0.6px），汉字会挤在一起。中文字距请用 0 到 0.05em。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t07",
+      "evidence": "_evidence/T07-004.png"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "main#main > section.hero:nth-of-type(1) > div.hero-copy:nth-of-type(1) > p.hero-desc",
+      "line": 46,
+      "viewport": 360,
+      "message": "正文行高 2.05，建议在 1.6–1.9 之间。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "div.hero-visual:nth-of-type(2) > div.photo-note:nth-of-type(3) > div > p",
+      "line": 54,
+      "viewport": 360,
+      "message": "这段中文没有设置行高（浏览器默认约 1.2），在 360px 宽度下只有一行。如果它会折行，请设为 1.6–1.9。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#services:nth-of-type(2) > div.section-heading:nth-of-type(1) > div > p.section-kicker",
+      "line": 64,
+      "viewport": 360,
+      "message": "这段中文没有设置行高（浏览器默认约 1.2），在 360px 宽度下只有一行。如果它会折行，请设为 1.6–1.9。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T06",
+      "severity": "warn",
+      "file": "index.html",
+      "selector": "section#team:nth-of-type(3) > div.section-heading:nth-of-type(1) > div > p.section-kicker",
+      "line": 73,
+      "viewport": 360,
+      "message": "这段中文没有设置行高（浏览器默认约 1.2），在 360px 宽度下只有一行。如果它会折行，请设为 1.6–1.9。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t06"
+    },
+    {
+      "rule": "T02",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "a.skip-link",
+      "line": 34,
+      "viewport": 360,
+      "message": "实测：有 71 个中文元素的 text-autospace 计算值是 no-autospace。必须显式写 text-autospace: normal（引入 measure.css 即可）；或者把配置改成 spacing: \"text\"，在文案里打空格。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t02",
+      "evidence": "_evidence/T02-001.png"
+    },
+    {
+      "rule": "T04",
+      "severity": "error",
+      "file": "index.html",
+      "selector": "a.skip-link",
+      "line": 34,
+      "viewport": 360,
+      "message": "有 71 个中文元素的 line-break 计算值不是 strict，标点可能出现在行首。【出现在 360、390、768、1024、1280、1440px 宽度下】",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t04",
+      "evidence": "_evidence/T04-001.png"
+    },
+    {
+      "rule": "T11",
+      "severity": "error",
+      "file": "index.html",
+      "message": "同一条规则在本页另有 30 处，已省略",
+      "evidence": "_evidence/T11-001.png",
+      "fix_hint": "见 skills/measure/references/typesetting.md#t11"
+    }
+  ]
+}

@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpeakUp 课程价格</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="#">Speak<span>Up</span> 英语口语</a>
+      <a class="header-link" href="#trial">免费试听 →</a>
+    </div>
+  </header>
+
+  <main class="wrap" id="main">
+    <section class="hero">
+      <h1>选一种适合你的上课方式</h1>
+      <p>外教实时在线授课，随时预约、随时上课。一对一专注个人突破，小班课在真实交流中练胆量、性价比更高。</p>
+    </section>
+
+    <div class="controls">
+      <div class="segmented" role="tablist" aria-label="课程类型" id="modeTabs">
+        <button role="tab" aria-selected="true" data-mode="one">一对一私教</button>
+        <button role="tab" aria-selected="false" data-mode="group">小班课（4–6 人）</button>
+      </div>
+      <div class="billing" role="group" aria-label="付费周期" id="billing">
+        <button aria-pressed="true" data-cycle="month">按月付</button>
+        <button aria-pressed="false" data-cycle="quarter">按季付 <span class="save-tag">省 15%</span></button>
+      </div>
+    </div>
+
+    <div class="mode-intro" id="modeIntro"></div>
+    <div class="plans" id="plans" aria-live="polite"></div>
+
+    <section class="trial" id="trial">
+      <div>
+        <h2>先试一节，再做决定</h2>
+        <p>新用户可免费体验 1 节 25 分钟一对一课 + 1 节小班课，并获得口语水平评估报告。</p>
+        <div class="trial-msg" id="trialMsg" hidden>已为你保留试听名额，课程顾问将在 24 小时内与你联系。</div>
+      </div>
+      <button class="btn" type="button" id="trialBtn">预约免费试听</button>
+    </section>
+
+    <section>
+      <h2 class="section-title">一对一 vs 小班课</h2>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th></th><th>一对一私教</th><th>小班课</th></tr>
+          </thead>
+          <tbody>
+            <tr><th>单节时长</th><td>25 分钟</td><td>50 分钟</td></tr>
+            <tr><th>班级人数</th><td>1 人</td><td>4–6 人，按水平分班</td></tr>
+            <tr><th>每节均价</th><td>¥85 起</td><td>¥41 起</td></tr>
+            <tr><th>开口时间</th><td>约占课堂 70%</td><td>约占课堂 35%</td></tr>
+            <tr><th>上课时间</th><td>7×24 小时自由预约</td><td>每天 6 个固定时段可选</td></tr>
+            <tr><th>教材内容</th><td>根据目标定制（面试、留学、商务等）</td><td>系统化主题课程，按级别进阶</td></tr>
+            <tr><th>适合人群</th><td>目标明确、需要快速提升、时间不固定</td><td>想多练开口、喜欢互动、预算有限</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="faq">
+      <h2 class="section-title">常见问题</h2>
+      <details>
+        <summary>课时当月用不完怎么办？</summary>
+        <p>未使用的课时可顺延至下一个周期，最多累计一个周期的课时量。取消订阅后剩余课时仍可在 60 天内使用。</p>
+      </details>
+      <details>
+        <summary>一对一和小班课可以切换吗？</summary>
+        <p>可以。在下一个付费周期开始前，随时在“我的订阅”中切换课程类型和套餐，差价按比例结算。</p>
+      </details>
+      <details>
+        <summary>临时有事可以取消课程吗？</summary>
+        <p>一对一课在开课前 4 小时取消、小班课在开课前 12 小时取消，课时都会自动退回。</p>
+      </details>
+      <details>
+        <summary>外教都是什么背景？</summary>
+        <p>所有外教均持有 TESOL/TEFL 等教学资格证，来自英、美、加、澳等国家，需通过试讲和背景审核才能上岗。</p>
+      </details>
+      <details>
+        <summary>支持退款吗？</summary>
+        <p>首次购买 7 天内且上课不超过 2 节，可全额退款；之后按剩余课时比例退款。</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">价格均为人民币含税价 · 按季付一次性支付 3 个月费用</div>
+  </footer>
+
+  <script>
+    const DATA = {
+      one: {
+        intro: {
+          title: "一对一私教 · 每节 25 分钟",
+          desc: "外教全程只关注你，按你的目标和节奏量身定制课程。",
+          points: ["随时预约", "专属学习顾问", "课后纠音报告", "可指定固定外教"]
+        },
+        plans: [
+          {
+            name: "入门", tagline: "每周 2 节，养成开口习惯", lessons: 8, monthly: 960,
+            features: ["每月 8 节一对一", "外教库任选", "课后文字反馈", ["指定固定外教", false], ["定制学习计划", false]]
+          },
+          {
+            name: "进阶", tagline: "每周 3 节，稳步提升", lessons: 12, monthly: 1320, featured: true,
+            features: ["每月 12 节一对一", "外教库任选", "课后文字 + 录音反馈", "指定固定外教", ["定制学习计划", false]]
+          },
+          {
+            name: "冲刺", tagline: "每周 5 节，面试 / 留学冲刺", lessons: 20, monthly: 2000,
+            features: ["每月 20 节一对一", "外教库任选", "课后文字 + 录音反馈", "指定固定外教", "定制学习计划 + 月度测评"]
+          }
+        ]
+      },
+      group: {
+        intro: {
+          title: "小班课 · 每节 50 分钟 · 4–6 人",
+          desc: "按水平分班，围绕真实场景话题讨论，在互动中练胆量。",
+          points: ["固定时段开课", "同级别分班", "小组角色扮演", "课程回放"]
+        },
+        plans: [
+          {
+            name: "轻享", tagline: "每周 2 节，低成本保持语感", lessons: 8, monthly: 480,
+            features: ["每月 8 节小班课", "全部主题课程", "课程回放 7 天", ["每月一对一测评", false], ["学习社群陪练", false]]
+          },
+          {
+            name: "标准", tagline: "每周 3 节，系统进阶", lessons: 12, monthly: 648, featured: true,
+            features: ["每月 12 节小班课", "全部主题课程", "课程回放 30 天", "每月 1 次一对一测评", ["学习社群陪练", false]]
+          },
+          {
+            name: "畅学", tagline: "每周 5 节，高频沉浸练习", lessons: 20, monthly: 960,
+            features: ["每月 20 节小班课", "全部主题课程", "课程回放永久", "每月 1 次一对一测评", "学习社群 + 每日陪练"]
+          }
+        ]
+      }
+    };
+
+    const QUARTER_DISCOUNT = 0.85;
+    const state = { mode: "one", cycle: "month" };
+
+    const $plans = document.getElementById("plans");
+    const $intro = document.getElementById("modeIntro");
+    const $tabs = document.getElementById("modeTabs");
+    const $billing = document.getElementById("billing");
+
+    const fmt = n => Math.round(n).toLocaleString("zh-CN");
+
+    function render() {
+      const { mode, cycle } = state;
+      const d = DATA[mode];
+      const isGroup = mode === "group";
+
+      document.getElementById("main").classList.toggle("group-mode", isGroup);
+      $tabs.classList.toggle("group", isGroup);
+      $intro.classList.toggle("group", isGroup);
+
+      $intro.innerHTML = `
+        <div>
+          <h2>${d.intro.title}</h2>
+          <p>${d.intro.desc}</p>
+          <ul>${d.intro.points.map(p => `<li>${p}</li>`).join("")}</ul>
+        </div>`;
+
+      $plans.innerHTML = d.plans.map(p => {
+        const monthPrice = cycle === "quarter" ? p.monthly * QUARTER_DISCOUNT : p.monthly;
+        const perLesson = monthPrice / p.lessons;
+        const basePerLesson = p.monthly / p.lessons;
+        const note = cycle === "quarter"
+          ? `季付 ¥${fmt(monthPrice * 3)}，每节 <strong>¥${fmt(perLesson)}</strong><s>¥${fmt(basePerLesson)}</s>`
+          : `每节仅 <strong>¥${fmt(perLesson)}</strong>`;
+        const features = p.features.map(f => Array.isArray(f)
+          ? `<li class="${f[1] ? "" : "no"}">${f[0]}</li>`
+          : `<li>${f}</li>`).join("");
+        return `
+          <article class="plan${p.featured ? " featured" : ""}">
+            ${p.featured ? '<span class="badge">最受欢迎</span>' : ""}
+            <h3>${p.name}</h3>
+            <p class="tagline">${p.tagline}</p>
+            <div class="price">
+              <span class="currency">¥</span>
+              <span class="amount">${fmt(monthPrice)}</span>
+              <span class="unit">/ 月</span>
+            </div>
+            <p class="per-lesson">${note}</p>
+            <ul class="features">${features}</ul>
+            <button class="btn" type="button">选择${p.name}套餐</button>
+          </article>`;
+      }).join("");
+    }
+
+    $tabs.addEventListener("click", e => {
+      const btn = e.target.closest("button[data-mode]");
+      if (!btn) return;
+      state.mode = btn.dataset.mode;
+      $tabs.querySelectorAll("button").forEach(b =>
+        b.setAttribute("aria-selected", String(b === btn)));
+      render();
+    });
+
+    $billing.addEventListener("click", e => {
+      const btn = e.target.closest("button[data-cycle]");
+      if (!btn) return;
+      state.cycle = btn.dataset.cycle;
+      $billing.querySelectorAll("button").forEach(b =>
+        b.setAttribute("aria-pressed", String(b === btn)));
+      render();
+    });
+
+    document.getElementById("trialBtn").addEventListener("click", () => {
+      document.getElementById("trialMsg").hidden = false;
+    });
+
+    render();
+  </script>
+</body>
+</html>

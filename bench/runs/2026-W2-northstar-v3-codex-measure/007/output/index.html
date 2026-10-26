@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="用 Python 与 pandas 读取、清洗、汇总、合并 Excel 报表，再用 openpyxl 美化导出。5 个实用技巧，附可复制代码。">
+  <title>用 Python 处理 Excel 报表的 5 个技巧 · 码间手记</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"><span id="progress"></span></div>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top" aria-label="码间手记，返回顶部"><span class="brand-icon">m<span>.</span></span><span>码间手记<span class="brand-sub">NOTES BETWEEN CODE</span></span></a>
+      <nav aria-label="主导航"><a class="nav-active" href="#article">技术文章</a><a href="#cheatsheet">实践清单</a><a href="#about">关于手记 <span aria-hidden="true">↗</span></a></nav>
+      <a class="header-link" href="#tip-1"><span aria-hidden="true">&lt;/&gt;</span> 开始实践</a>
+    </div>
+  </header>
+  <main id="top" class="page">
+    <div class="breadcrumb"><a href="#top">首页</a><span>/</span><a href="#article">技术文章</a><span>/</span><span>Python 自动化</span></div>
+    <div class="layout">
+      <article id="article">
+        <header class="article-header">
+          <div class="eyebrow"><span class="dot"></span> PYTHON 实践指南 <span class="issue">VOL. 005</span></div>
+          <h1>用 Python 处理 Excel 报表的 <span>5 个技巧</span></h1>
+          <p class="dek">把重复的表格工作交给代码，<br class="desktop-break">让每一份报表，都少一点手动，多一点从容。</p>
+          <div class="article-meta"><span class="avatar" aria-hidden="true">码</span><span class="author">码间编辑部</span><span class="meta-divider"></span><time datetime="2026-10-26">2026 年 10 月 26 日</time><span class="reading-time"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7"/><path d="M10 5.5V10l3 2"/></svg>约 8 分钟</span></div>
+          <div class="tags"><a href="#tip-1">Python</a><a href="#tip-2">pandas</a><a href="#tip-5">Excel 自动化</a><span>从入门到实用</span></div>
+        </header>
+
+        <div class="hero-art" aria-label="将 Excel 数据转化为 Python 自动化报表的示意图" role="img">
+          <div class="hero-label">LESS REPETITION. MORE CREATION.</div>
+          <div class="sheet-art"><div class="sheet-bar"><i></i><i></i><i></i><span>monthly_report.xlsx</span></div><div class="sheet-grid"><span></span><b>A</b><b>B</b><b>C</b><b>1</b><span>产品</span><span>销量</span><span>销售额</span><b>2</b><span>键盘</span><span>128</span><span>25,600</span><b>3</b><span>鼠标</span><span>256</span><span>12,800</span><b>4</b><span>显示器</span><span>64</span><span class="selected">76,800</span></div></div>
+          <div class="flow-arrow" aria-hidden="true">⟶</div>
+          <div class="python-art"><span class="terminal-dots">● ● ●</span><span class="py-badge">.py</span><div><span class="code-purple">import</span> pandas <span class="code-purple">as</span> pd<br><br><span class="code-gray"># 让报表自己完成</span><br>df.<span class="code-yellow">to_excel</span>(<span class="code-green">"done.xlsx"</span>)<br><span class="terminal-cursor"></span></div></div>
+          <div class="art-footer"><span>EXCEL × PYTHON</span><span>重复工作，至此结束 <span aria-hidden="true">↗</span></span></div>
+        </div>
+
+        <div class="article-body measure-prose">
+          <p class="intro">每到月底，复制、粘贴、筛选、求和……熟悉的流程又来一遍。其实，只需要几行 Python，就能把这些重复操作变成一套可复用的报表流程。</p>
+          <p>这篇文章以一份销售明细为例，分享 5 个可以直接用到日常工作中的技巧。我们会从读取数据开始，一步步得到一份整洁的汇总报表。</p>
+          <aside class="setup"><span class="setup-icon" aria-hidden="true">⌘</span><div><strong>开始之前</strong><p>示例使用 Python 3、pandas 和 openpyxl。运行环境需已安装这两个库；下方代码按顺序执行。</p><code>import pandas as pd</code></div></aside>
+          <div class="sample"><span class="mini-label">示例数据</span><p>准备 <code>sales.xlsx</code>，工作表命名为 <code>销售明细</code>，首行为列名。</p><div class="table-scroll"><table><thead><tr><th>订单号</th><th>日期</th><th>地区</th><th>销售额</th></tr></thead><tbody><tr><td>001</td><td>2026-09-01</td><td>华东</td><td>1280</td></tr><tr><td>002</td><td>2026-09-02</td><td>华南</td><td>960</td></tr><tr><td>003</td><td>2026-09-03</td><td>华东</td><td>2400</td></tr></tbody></table></div><p class="table-note">订单号列请在 Excel 中存为文本，以保留前导零。</p></div>
+
+          <section id="tip-1" class="tip"><div class="section-heading"><span class="number">01</span><h2>精准读取，只取需要的数据</h2></div><p>不用把整张工作簿都搬进内存。指定工作表、列名和数据类型，读取的第一步就能更准确，也能减少后续清洗的工作量。</p>
+            <div class="code-block"><div class="code-toolbar"><span><i></i> Python <span class="code-filename">01_read.py</span></span><button class="copy-button" type="button">复制代码</button></div><pre><code><span class="kw">import</span> pandas <span class="kw">as</span> pd
+
+df = pd.<span class="fn">read_excel</span>(
+    <span class="str">"sales.xlsx"</span>,
+    sheet_name=<span class="str">"销售明细"</span>,
+    usecols=[<span class="str">"订单号"</span>, <span class="str">"日期"</span>, <span class="str">"地区"</span>, <span class="str">"销售额"</span>],
+    dtype={<span class="str">"订单号"</span>: <span class="str">"string"</span>},
+    engine=<span class="str">"openpyxl"</span>,
+)
+<span class="fn">print</span>(df.<span class="fn">head</span>())</code></pre></div>
+            <p class="takeaway"><span>小提示</span><code>dtype</code> 能保留文本订单号的前导零；已被 Excel 存成数字的零，无法靠读取时指定类型恢复。</p>
+          </section>
+          <section id="tip-2" class="tip"><div class="section-heading"><span class="number">02</span><h2>统一格式，让脏数据无处藏身</h2></div><p>空值、重复订单、带千位分隔符的金额，都可能影响统计结果。先规范格式，再把无效记录单独保留，方便回溯和核对。</p>
+            <div class="code-block"><div class="code-toolbar"><span><i></i> Python <span class="code-filename">02_clean.py</span></span><button class="copy-button" type="button">复制代码</button></div><pre><code><span class="comment"># 清理空格，统一金额和日期格式</span>
+df[<span class="str">"订单号"</span>] = df[<span class="str">"订单号"</span>].str.<span class="fn">strip</span>().<span class="fn">replace</span>(<span class="str">""</span>, pd.NA)
+df[<span class="str">"地区"</span>] = df[<span class="str">"地区"</span>].<span class="fn">astype</span>(<span class="str">"string"</span>).str.<span class="fn">strip</span>()
+df[<span class="str">"地区"</span>] = df[<span class="str">"地区"</span>].<span class="fn">replace</span>(<span class="str">""</span>, pd.NA)
+amount = df[<span class="str">"销售额"</span>].<span class="fn">astype</span>(<span class="str">"string"</span>).str.<span class="fn">replace</span>(<span class="str">","</span>, <span class="str">""</span>, regex=<span class="kw">False</span>)
+df[<span class="str">"销售额"</span>] = pd.<span class="fn">to_numeric</span>(amount, errors=<span class="str">"coerce"</span>)
+df[<span class="str">"日期"</span>] = pd.<span class="fn">to_datetime</span>(df[<span class="str">"日期"</span>], errors=<span class="str">"coerce"</span>)
+
+invalid = df.<span class="fn">isna</span>().<span class="fn">any</span>(axis=<span class="num">1</span>)
+rejected = df.loc[invalid].<span class="fn">copy</span>()
+valid = df.loc[~invalid].<span class="fn">copy</span>()
+duplicates = valid.loc[valid.<span class="fn">duplicated</span>(<span class="str">"订单号"</span>, keep=<span class="str">"last"</span>)]
+clean = valid.<span class="fn">drop_duplicates</span>(<span class="str">"订单号"</span>, keep=<span class="str">"last"</span>)</code></pre></div>
+            <p class="takeaway"><span>注意边界</span>示例假设一笔订单只有一行，并保留文件中最后一条有效记录。若订单包含多个商品，请使用订单号与商品编号等组合键。</p>
+          </section>
+          <section id="tip-3" class="tip"><div class="section-heading"><span class="number">03</span><h2>一张透视表，看清每月销售表现</h2></div><p>想同时比较月份和地区？用 <code>pivot_table</code> 把明细转换为二维汇总表，省去手动拖拽字段的步骤。</p>
+            <div class="code-block"><div class="code-toolbar"><span><i></i> Python <span class="code-filename">03_pivot.py</span></span><button class="copy-button" type="button">复制代码</button></div><pre><code>clean = clean.<span class="fn">copy</span>()
+clean[<span class="str">"月份"</span>] = clean[<span class="str">"日期"</span>].dt.<span class="fn">strftime</span>(<span class="str">"%Y-%m"</span>)
+
+summary = clean.<span class="fn">pivot_table</span>(
+    index=<span class="str">"月份"</span>,
+    columns=<span class="str">"地区"</span>,
+    values=<span class="str">"销售额"</span>,
+    aggfunc=<span class="str">"sum"</span>,
+    fill_value=<span class="num">0</span>,
+    margins=<span class="kw">True</span>,
+    margins_name=<span class="str">"合计"</span>,
+)
+<span class="fn">print</span>(summary)</code></pre></div>
+            <div class="result"><span class="mini-label">运行结果 · 销售额</span><div class="table-scroll"><table><thead><tr><th>月份</th><th>华东</th><th>华南</th><th>合计</th></tr></thead><tbody><tr><td>2026-09</td><td>3,680</td><td>960</td><td>4,640</td></tr><tr class="total"><td>合计</td><td>3,680</td><td>960</td><td>4,640</td></tr></tbody></table></div></div>
+          </section>
+          <section id="tip-4" class="tip"><div class="section-heading"><span class="number">04</span><h2>合并多张表，补齐业务信息</h2></div><p>销售明细里只有地区，负责人却在另一张表里。使用左连接，为每一条销售记录补充对应负责人，同时保留所有销售明细。</p>
+            <div class="code-block"><div class="code-toolbar"><span><i></i> Python <span class="code-filename">04_merge.py</span></span><button class="copy-button" type="button">复制代码</button></div><pre><code><span class="comment"># 也可以从另一份 Excel 中读取这张对应表</span>
+owners = pd.<span class="fn">DataFrame</span>({
+    <span class="str">"地区"</span>: [<span class="str">"华东"</span>, <span class="str">"华南"</span>],
+    <span class="str">"负责人"</span>: [<span class="str">"林晨"</span>, <span class="str">"陈悦"</span>],
+})
+report = clean.<span class="fn">merge</span>(
+    owners, on=<span class="str">"地区"</span>, how=<span class="str">"left"</span>, validate=<span class="str">"many_to_one"</span>
+)
+report[<span class="str">"负责人"</span>] = report[<span class="str">"负责人"</span>].<span class="fn">fillna</span>(<span class="str">"待确认"</span>)</code></pre></div>
+            <p class="takeaway"><span>少踩一个坑</span><code>validate="many_to_one"</code> 会检查对应表的地区是否唯一，避免重复匹配导致明细行数和销售总额膨胀。</p>
+          </section>
+          <section id="tip-5" class="tip"><div class="section-heading"><span class="number">05</span><h2>一次导出，交付一份好读的报表</h2></div><p>把明细、汇总和待核对数据写进同一个工作簿，再加上表头颜色、冻结窗格与金额格式。让自动化的最后一步，也照顾到阅读体验。</p>
+            <div class="code-block"><div class="code-toolbar"><span><i></i> Python <span class="code-filename">05_export.py</span></span><button class="copy-button" type="button">复制代码</button></div><pre><code><span class="kw">from</span> openpyxl.styles <span class="kw">import</span> Font, PatternFill
+<span class="kw">from</span> openpyxl.utils <span class="kw">import</span> get_column_letter
+
+<span class="kw">with</span> pd.<span class="fn">ExcelWriter</span>(<span class="str">"sales_report.xlsx"</span>, engine=<span class="str">"openpyxl"</span>) <span class="kw">as</span> writer:
+    report.<span class="fn">to_excel</span>(writer, sheet_name=<span class="str">"销售明细"</span>, index=<span class="kw">False</span>)
+    summary.<span class="fn">to_excel</span>(writer, sheet_name=<span class="str">"月度汇总"</span>)
+    rejected.<span class="fn">to_excel</span>(writer, sheet_name=<span class="str">"无效记录"</span>, index=<span class="kw">False</span>)
+    duplicates.<span class="fn">to_excel</span>(writer, sheet_name=<span class="str">"重复记录"</span>, index=<span class="kw">False</span>)
+
+    <span class="kw">for</span> ws <span class="kw">in</span> writer.book.worksheets:
+        ws.freeze_panes = <span class="str">"B2"</span>
+        <span class="kw">for</span> cell <span class="kw">in</span> ws[<span class="num">1</span>]:
+            cell.font = <span class="fn">Font</span>(bold=<span class="kw">True</span>, color=<span class="str">"FFFFFF"</span>)
+            cell.fill = <span class="fn">PatternFill</span>(<span class="str">"solid"</span>, fgColor=<span class="str">"7060AE"</span>)
+            letter = <span class="fn">get_column_letter</span>(cell.column)
+            ws.column_dimensions[letter].width = <span class="num">20</span>
+
+        <span class="kw">for</span> row <span class="kw">in</span> ws.<span class="fn">iter_rows</span>(min_row=<span class="num">2</span>):
+            <span class="kw">for</span> cell <span class="kw">in</span> row:
+                header = ws.<span class="fn">cell</span>(<span class="num">1</span>, cell.column).value
+                <span class="kw">if</span> header == <span class="str">"销售额"</span> <span class="kw">or</span> (
+                    ws.title == <span class="str">"月度汇总"</span> <span class="kw">and</span> cell.column &gt; <span class="num">1</span>
+                ):
+                    cell.number_format = <span class="str">"#,##0.00"</span>
+                <span class="kw">elif</span> header == <span class="str">"日期"</span>:
+                    cell.number_format = <span class="str">"yyyy-mm-dd"</span></code></pre></div>
+            <p class="takeaway"><span>交付前检查</span>运行后会生成 <code>sales_report.xlsx</code>，同名文件会被覆盖。先核对汇总金额，再处理无效记录与重复记录。</p>
+          </section>
+          <section id="cheatsheet" class="cheatsheet"><span class="mini-label">TAKE IT WITH YOU</span><h2>下次做报表，从这 5 步开始</h2><ol><li><span>读取</span>只选所需列，明确数据类型。</li><li><span>清洗</span>统一格式，保留异常与重复记录。</li><li><span>汇总</span>按业务维度生成透视表。</li><li><span>合并</span>校验关联关系，补齐信息。</li><li><span>导出</span>核对结果，再优化阅读体验。</li></ol><p>让代码接手重复，把时间留给分析。</p></section>
+          <div class="article-end"><span>— END —</span><a href="#top">回到顶部 ↑</a></div>
+        </div>
+      </article>
+      <aside class="sidebar" aria-label="文章导航"><div class="sidebar-sticky"><div class="toc-title">本篇目录 <span>ON THIS PAGE</span></div><nav class="toc" aria-label="文章目录"><a class="active" href="#tip-1"><span>01</span>精准读取数据</a><a href="#tip-2"><span>02</span>清洗与规范格式</a><a href="#tip-3"><span>03</span>快速生成透视表</a><a href="#tip-4"><span>04</span>合并多张数据表</a><a href="#tip-5"><span>05</span>美化并导出报表</a></nav><a class="toc-summary" href="#cheatsheet">实践清单 <span>↗</span></a><div class="sidebar-note"><span class="note-icon" aria-hidden="true">{ }</span><h3>写一次，用很多次。</h3><p>好的自动化，<br>从省下第一个 10 分钟开始。</p><div class="note-line"></div><span>KEEP LEARNING. KEEP BUILDING.</span></div><div class="tools-note"><span class="mini-label">本文工具箱</span><p><span class="tool-dot"></span>Python <span class="tool-dot"></span>pandas <span class="tool-dot"></span>openpyxl</p></div></div></aside>
+    </div>
+  </main>
+  <footer id="about"><div><a class="footer-brand" href="#top">码间手记<span>记录代码，也记录思考。</span></a><p>面向日常工作的技术笔记。<span>© 2026 码间手记</span></p></div></footer>
+  <div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+  <script>
+    const copyStatus = document.querySelector('#copy-status');
+    document.querySelectorAll('.copy-button').forEach(button => {
+      button.addEventListener('click', async () => {
+        const code = button.closest('.code-block').querySelector('code').textContent;
+        let copied = false;
+        try {
+          if (navigator.clipboard && window.isSecureContext) {
+            await navigator.clipboard.writeText(code);
+            copied = true;
+          } else {
+            const area = document.createElement('textarea');
+            area.value = code;
+            area.style.cssText = 'position:fixed;left:-9999px;top:0';
+            document.body.appendChild(area);
+            area.select();
+            copied = document.execCommand('copy');
+            area.remove();
+            button.focus();
+          }
+        } catch (error) { copied = false; }
+        button.textContent = copied ? '已复制 ✓' : '请手动选择复制';
+        copyStatus.textContent = copied ? '代码已复制到剪贴板' : '复制失败，请选择代码手动复制';
+        setTimeout(() => { button.textContent = '复制代码'; }, 2400);
+      });
+    });
+    const sections = [...document.querySelectorAll('.tip')];
+    const links = [...document.querySelectorAll('.toc a')];
+    const progress = document.querySelector('#progress');
+    function updateReading() {
+      const maxScroll = document.documentElement.scrollHeight - innerHeight;
+      progress.style.width = (maxScroll > 0 ? scrollY / maxScroll * 100 : 0) + '%';
+      let active = sections[0];
+      for (const section of sections) if (section.getBoundingClientRect().top <= 180) active = section;
+      links.forEach(link => {
+        const selected = link.hash === '#' + active.id;
+        link.classList.toggle('active', selected);
+        if (selected) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    }
+    addEventListener('scroll', updateReading, { passive: true });
+    addEventListener('resize', updateReading);
+    updateReading();
+  </script>
+</body>
+</html>

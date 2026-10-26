@@ -1,0 +1,216 @@
+/*
+ * 拾豆烘焙所 · 首页样式
+ * 色板取自烘焙现场：牛皮纸豆袋、深烘豆表面、中烘豆色、生豆青、印章朱砂。
+ * 强调色只用两个：--roast（中烘棕）与 --seal（朱砂）。
+ * 标题字体统一宋体系，正文黑体系。
+ */
+
+:root {
+  --paper: #F1E9DC;        /* 牛皮纸豆袋 */
+  --paper-deep: #E7DCCB;   /* 牛皮纸折痕处 */
+  --ink: #2B1E17;          /* 深烘豆表面 */
+  --ink-soft: #5E5047;
+  --muted: #8C7F74;
+  --line: #D6C9B6;
+  --roast: #8A5A3B;        /* 中烘豆色 */
+  --green-bean: #8C8F6E;   /* 生豆青，仅用于烘焙度刻度底色 */
+  --seal: #9E4B3B;         /* 朱砂印 */
+
+  --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+
+  --gutter: clamp(16px, 6vw, 96px);
+  --section-gap: clamp(96px, 14vw, 176px);
+  --measure: 34em;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3 { font-family: var(--serif); color: var(--ink); }
+
+.muted { color: var(--muted); }
+
+/* 印章 */
+.seal {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 1.5px solid var(--seal);
+  border-radius: 3px;
+  color: var(--seal);
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+}
+.seal-sm { width: 24px; height: 24px; font-size: 13px; }
+
+/* 页眉 */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px var(--gutter);
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-name { font-family: var(--serif); font-size: 17px; font-weight: 600; letter-spacing: 0.12em; }
+.nav { display: flex; gap: clamp(20px, 4vw, 48px); font-size: 14px; letter-spacing: 0.2em; }
+.nav a { color: var(--ink-soft); padding: 4px 0; border-bottom: 1px solid transparent; transition: border-color .3s, color .3s; }
+.nav a:hover { color: var(--ink); border-color: var(--roast); }
+
+/* 首屏：字越大，字重越轻 */
+.hero {
+  padding: clamp(96px, 16vw, 200px) var(--gutter) var(--section-gap);
+  max-width: 1200px;
+}
+.eyebrow { font-size: 13px; letter-spacing: 0.3em; color: var(--roast); margin-bottom: 40px; }
+.hero h1 {
+  font-size: clamp(40px, 7vw, 88px);
+  font-weight: 300;
+  line-height: 1.3;
+  letter-spacing: 0.04em;
+}
+.lead { margin-top: 40px; max-width: var(--measure); font-size: 17px; color: var(--ink-soft); }
+.link-arrow {
+  display: inline-block;
+  margin-top: 56px;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--ink);
+}
+.link-arrow::after { content: " →"; transition: margin .3s; }
+.link-arrow:hover::after { margin-left: 6px; }
+
+/* 通用区块 */
+.section { padding: var(--section-gap) var(--gutter); border-top: 1px solid var(--line); }
+.section-tinted { background: var(--paper-deep); border-top: none; }
+.section-head { max-width: 1200px; margin-bottom: clamp(56px, 8vw, 96px); }
+.index { display: block; font-family: var(--serif); font-size: 14px; color: var(--seal); letter-spacing: 0.2em; margin-bottom: 20px; }
+.section-head h2 { font-size: clamp(30px, 4.4vw, 48px); font-weight: 400; letter-spacing: 0.08em; }
+.section-note { margin-top: 20px; color: var(--ink-soft); max-width: var(--measure); }
+
+/* 豆单 */
+.bean-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 0;
+  max-width: 1200px;
+  border-top: 1px solid var(--ink);
+}
+.bean {
+  padding: 40px 32px 48px 0;
+  border-bottom: 1px solid var(--line);
+}
+.bean-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin-bottom: 28px; }
+.origin { font-size: 13px; letter-spacing: 0.08em; color: var(--ink-soft); }
+.bean h3 { font-size: 22px; font-weight: 500; letter-spacing: 0.04em; margin-bottom: 16px; }
+.bean p { font-size: 15px; color: var(--ink-soft); }
+
+/* 烘焙度刻度：三格，填色表示深浅 */
+.roast-level { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; color: var(--roast); white-space: nowrap; }
+.roast-level::before {
+  content: "";
+  width: 36px;
+  height: 4px;
+  background:
+    linear-gradient(var(--roast), var(--roast)) left / var(--fill) 100% no-repeat,
+    var(--green-bean);
+  opacity: .85;
+}
+.roast-level[data-level="1"] { --fill: 33.3%; }
+.roast-level[data-level="2"] { --fill: 66.6%; }
+.roast-level[data-level="3"] { --fill: 100%; }
+
+.bean-spec { display: flex; flex-wrap: wrap; gap: 8px 28px; margin-top: 28px; font-size: 13px; }
+.bean-spec div { display: flex; gap: 8px; }
+.bean-spec dt { color: var(--muted); }
+.bean-spec dd { color: var(--ink); }
+
+/* 理念 */
+.principles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: clamp(48px, 6vw, 96px);
+  max-width: 1200px;
+}
+.principle h3 { font-size: clamp(48px, 6vw, 72px); font-weight: 300; line-height: 1; margin-bottom: 28px; }
+.principle p { color: var(--ink-soft); max-width: 22em; }
+
+.quote {
+  margin-top: var(--section-gap);
+  padding-left: 28px;
+  border-left: 2px solid var(--seal);
+  max-width: 1200px;
+}
+.quote p { font-family: var(--serif); font-size: clamp(20px, 2.6vw, 28px); font-weight: 300; line-height: 1.8; letter-spacing: 0.04em; }
+
+/* 到店 */
+.visit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(48px, 8vw, 120px);
+  max-width: 1200px;
+  align-items: start;
+}
+.visit-info { border-top: 1px solid var(--ink); }
+.visit-info div { display: grid; grid-template-columns: 4.5em 1fr; gap: 16px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.visit-info dt { font-size: 13px; letter-spacing: 0.2em; color: var(--muted); padding-top: 2px; }
+.visit-info dd { font-size: 16px; }
+
+.map { border: 1px solid var(--line); padding: 24px; }
+.map svg { display: block; width: 100%; height: auto; }
+.map .road { stroke: var(--ink-soft); stroke-width: 10; fill: none; opacity: .18; }
+.map .lane { stroke: var(--ink-soft); stroke-width: 3; fill: none; opacity: .2; }
+.map .pin { fill: var(--seal); }
+.map .map-label { font-family: var(--serif); font-size: 13px; fill: var(--ink); }
+.map .map-road { font-size: 10px; fill: var(--muted); letter-spacing: .1em; }
+.map figcaption { margin-top: 16px; font-size: 12px; color: var(--muted); }
+
+/* 页脚 */
+.site-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 56px var(--gutter);
+  border-top: 1px solid var(--line);
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.site-footer .muted { margin-left: auto; }
+
+/* 进场：错峰淡入，克制 */
+@media (prefers-reduced-motion: no-preference) {
+  .hero > * { opacity: 0; transform: translateY(8px); animation: rise .9s ease forwards; }
+  .hero > :nth-child(2) { animation-delay: .12s; }
+  .hero > :nth-child(3) { animation-delay: .24s; }
+  .hero > :nth-child(4) { animation-delay: .36s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+}
+
+/* 窄屏 */
+@media (max-width: 760px) {
+  .site-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+  .nav { gap: 28px; }
+  .visit { grid-template-columns: 1fr; }
+  .bean { padding-right: 0; }
+  .site-footer .muted { margin-left: 0; }
+}

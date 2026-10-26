@@ -1,0 +1,137 @@
+:root {
+  --bg: #f4f6fa;
+  --card: #ffffff;
+  --fg: #1d2433;
+  --muted: #6b7486;
+  --border: #dde2ea;
+  --accent: #2f6fed;
+  --accent-soft: #e8f0ff;
+  --danger: #d93a3a;
+  --danger-soft: #fdeeee;
+  --success: #1f9d61;
+  --shadow: 0 1px 3px rgba(20, 30, 50, .06), 0 6px 20px rgba(20, 30, 50, .05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12151c; --card: #1b2029; --fg: #e6e9ef; --muted: #98a1b3; --border: #2e3542;
+    --accent: #5b8ff9; --accent-soft: #1f2b45; --danger: #f06a6a; --danger-soft: #3a1f22;
+    --success: #3cc485; --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12151c; --card: #1b2029; --fg: #e6e9ef; --muted: #98a1b3; --border: #2e3542;
+  --accent: #5b8ff9; --accent-soft: #1f2b45; --danger: #f06a6a; --danger-soft: #3a1f22;
+  --success: #3cc485; --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 15px/1.6 -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+}
+.wrap { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+
+header.page { margin-bottom: 24px; }
+header.page h1 { margin: 0 0 4px; font-size: 1.75rem; }
+header.page p { margin: 0; color: var(--muted); }
+
+.steps { display: flex; gap: 8px; flex-wrap: wrap; margin: 20px 0 0; padding: 0; list-style: none; }
+.steps a {
+  display: inline-block; padding: 4px 12px; border-radius: 999px;
+  background: var(--accent-soft); color: var(--accent); text-decoration: none; font-size: .875rem;
+}
+
+.card {
+  background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px; margin-bottom: 20px; box-shadow: var(--shadow);
+}
+.card > h2 {
+  margin: 0 0 20px; font-size: 1.125rem; display: flex; align-items: center; gap: 10px;
+}
+.card > h2 .num {
+  width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff;
+  display: inline-grid; place-items: center; font-size: .8rem;
+}
+
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
+.grid .full { grid-column: 1 / -1; }
+@media (max-width: 600px) { .grid { grid-template-columns: minmax(0, 1fr); } .card { padding: 18px; } }
+
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field > label, .field > .label { font-size: .875rem; font-weight: 600; }
+.req::after { content: " *"; color: var(--danger); }
+.hint { font-size: .8rem; color: var(--muted); }
+
+input[type="text"], input[type="email"], input[type="tel"], input[type="number"],
+input[type="date"], input[type="month"], select, textarea {
+  width: 100%; padding: 9px 12px; font: inherit; color: var(--fg);
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  transition: border-color .15s, box-shadow .15s;
+}
+textarea { resize: vertical; min-height: 90px; }
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.invalid input, .invalid select, .invalid textarea { border-color: var(--danger); }
+.err { font-size: .8rem; color: var(--danger); min-height: 0; }
+.err:empty { display: none; }
+
+.radios { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 4px; }
+.radios label { display: inline-flex; align-items: center; gap: 6px; font-weight: 400; cursor: pointer; }
+
+.range { display: flex; align-items: center; gap: 8px; }
+.range span { color: var(--muted); }
+.input-suffix { position: relative; flex: 1; min-width: 0; }
+.input-suffix input { padding-right: 36px; }
+.input-suffix em {
+  position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+  font-style: normal; color: var(--muted); font-size: .85rem; pointer-events: none;
+}
+
+/* 工作经历 */
+.job {
+  border: 1px dashed var(--border); border-radius: 10px; padding: 18px; margin-bottom: 16px;
+  position: relative;
+}
+.job-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 8px; }
+.job-head strong { font-size: .95rem; }
+.inline-check { display: inline-flex; align-items: center; gap: 6px; font-size: .85rem; font-weight: 400; margin-top: 2px; cursor: pointer; }
+.empty { text-align: center; color: var(--muted); padding: 20px; border: 1px dashed var(--border); border-radius: 10px; margin-bottom: 16px; }
+
+.btn {
+  font: inherit; cursor: pointer; border-radius: 8px; padding: 9px 18px;
+  border: 1px solid var(--border); background: var(--card); color: var(--fg);
+}
+.btn:hover { border-color: var(--accent); color: var(--accent); }
+.btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.btn-primary:hover { color: #fff; filter: brightness(1.08); }
+.btn-dashed { width: 100%; border-style: dashed; color: var(--accent); }
+.btn-link {
+  background: none; border: none; padding: 2px 6px; color: var(--danger); cursor: pointer; font: inherit; font-size: .85rem;
+}
+.btn-link:hover { text-decoration: underline; }
+
+.agree { display: flex; gap: 8px; align-items: flex-start; font-size: .9rem; }
+.agree input { margin-top: 4px; }
+
+.actions { display: flex; gap: 12px; justify-content: flex-end; flex-wrap: wrap; align-items: center; }
+.actions .status { margin-right: auto; color: var(--muted); font-size: .85rem; }
+
+/* 提交结果 */
+.result { text-align: center; }
+.result .ok {
+  width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 12px; background: var(--success); color: #fff;
+  display: grid; place-items: center; font-size: 28px;
+}
+.summary { text-align: left; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 16px; }
+.summary dl { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 6px 16px; margin: 0 0 16px; }
+.summary dt { color: var(--muted); }
+.summary dd { margin: 0; overflow-wrap: anywhere; }
+.summary h3 { font-size: 1rem; margin: 16px 0 8px; }
+.summary .sjob { padding: 10px 0; border-bottom: 1px solid var(--border); }
+.summary .sjob:last-child { border-bottom: none; }
+.summary .sjob p { margin: 4px 0 0; color: var(--muted); white-space: pre-wrap; }

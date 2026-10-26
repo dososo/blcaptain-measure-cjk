@@ -1,0 +1,284 @@
+:root {
+  --paper: #f4efe4;
+  --paper-2: #ebe4d4;
+  --ink: #2b2622;
+  --ink-2: #5c544c;
+  --ink-3: #8a8178;
+  --line: #d6ccb8;
+  --seal: #a8382b;
+  --celadon: #5f7d6e;
+  --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+  --sans: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  --mono: "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1d1b18;
+    --paper-2: #262320;
+    --ink: #e8e1d4;
+    --ink-2: #b8afa2;
+    --ink-3: #847b70;
+    --line: #3a3530;
+    --seal: #d0604f;
+    --celadon: #8fae9e;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* 页首 */
+header.masthead {
+  padding: 96px 0 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.seal {
+  display: inline-block;
+  border: 1.5px solid var(--seal);
+  color: var(--seal);
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  padding: 2px 6px 2px 10px;
+  margin-bottom: 28px;
+}
+
+h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(36px, 7vw, 56px);
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  margin: 0 0 20px;
+}
+
+.lede {
+  color: var(--ink-2);
+  max-width: 34em;
+  margin: 0;
+}
+
+nav.toc {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin-top: 40px;
+  font-size: 14px;
+}
+
+nav.toc a {
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+nav.toc a:hover { color: var(--seal); border-bottom-color: var(--seal); }
+
+/* 章节 */
+section { padding: 72px 0 24px; }
+
+.sec-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.sec-no {
+  font-family: var(--serif);
+  color: var(--seal);
+  font-size: 15px;
+  letter-spacing: 0.2em;
+}
+
+h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+
+.note {
+  color: var(--ink-3);
+  font-size: 14px;
+  margin: -16px 0 32px;
+}
+
+/* 第一周 */
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-bottom: 40px;
+}
+
+.bar {
+  flex: 1;
+  height: 2px;
+  background: var(--line);
+  position: relative;
+}
+
+.bar i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--seal);
+  transition: width 0.3s ease;
+}
+
+.day {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+}
+
+.day-label { font-family: var(--serif); }
+.day-label b { display: block; font-weight: 400; font-size: 22px; letter-spacing: 0.1em; }
+.day-label span { color: var(--ink-3); font-size: 13px; }
+
+.day ul { list-style: none; margin: 0; padding: 0; }
+.day li + li { margin-top: 10px; }
+
+.day label {
+  display: flex;
+  gap: 12px;
+  cursor: pointer;
+  align-items: flex-start;
+}
+
+.day input[type="checkbox"] {
+  appearance: none;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 6px 0 0;
+  border: 1px solid var(--ink-3);
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+}
+
+.day input[type="checkbox"]:checked { border-color: var(--seal); background: var(--seal); }
+.day input[type="checkbox"]:checked::after {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border: 1.5px solid var(--paper);
+  border-top: 0;
+  border-right: 0;
+  transform: translate(0, -1px) rotate(-45deg);
+}
+.day input[type="checkbox"]:focus-visible { outline: 2px solid var(--celadon); outline-offset: 2px; }
+
+.day input:checked + span { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--line); }
+
+.who { color: var(--ink-3); font-size: 13px; margin-left: 6px; }
+
+/* 账号表 */
+.table-scroll { overflow-x: auto; margin: 0 -16px; padding: 0 16px; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 620px;
+}
+
+th {
+  text-align: left;
+  font-weight: 400;
+  color: var(--ink-3);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  padding: 0 12px 12px 0;
+  border-bottom: 1px solid var(--ink);
+}
+
+td {
+  padding: 16px 12px 16px 0;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+td.sys { font-family: var(--serif); font-size: 17px; white-space: nowrap; }
+td code { font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  color: var(--celadon);
+  border: 1px solid var(--celadon);
+  padding: 0 6px;
+  white-space: nowrap;
+}
+
+.tag.must { color: var(--seal); border-color: var(--seal); }
+
+/* 安全须知 */
+.rules {
+  background: var(--paper-2);
+  padding: 32px;
+  margin-top: 40px;
+  border-left: 2px solid var(--seal);
+}
+
+.rules h3 { font-family: var(--serif); font-weight: 400; font-size: 18px; margin: 0 0 12px; letter-spacing: 0.08em; }
+.rules ol { margin: 0; padding-left: 20px; color: var(--ink-2); }
+.rules li + li { margin-top: 6px; }
+
+/* 联系人 */
+.contacts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+
+.contact { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--line); }
+.contact b { display: block; font-family: var(--serif); font-weight: 400; font-size: 18px; }
+.contact span { color: var(--ink-3); font-size: 14px; }
+
+footer {
+  padding: 72px 0 56px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+@media (max-width: 600px) {
+  header.masthead { padding: 56px 0 40px; }
+  section { padding: 56px 0 16px; }
+  .day { grid-template-columns: 1fr; gap: 12px; }
+  .day-label b { display: inline; margin-right: 10px; }
+  .rules { padding: 24px 20px; }
+}
+
+@media print {
+  nav.toc, .progress { display: none; }
+  body { background: #fff; }
+}

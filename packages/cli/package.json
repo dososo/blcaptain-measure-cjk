@@ -1,0 +1,74 @@
+{
+  "name": "measure-cjk",
+  "version": "0.1.0",
+  "description": "分寸 · Measure：给编码 Agent 用的中文排版与字体授权校验器",
+  "keywords": [
+    "cjk",
+    "chinese",
+    "typography",
+    "lint",
+    "agent-skill",
+    "claude-code",
+    "codex",
+    "font-license",
+    "xiaohongshu"
+  ],
+  "homepage": "https://dososo.github.io/blcaptain-measure-cjk/site/",
+  "bugs": {
+    "url": "https://github.com/dososo/blcaptain-measure-cjk/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dososo/blcaptain-measure-cjk.git",
+    "directory": "packages/cli"
+  },
+  "author": "爆裂队长NEXT（BLCaptain） (https://github.com/dososo)",
+  "type": "module",
+  "license": "Apache-2.0 AND CC-BY-4.0",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "bin": {
+    "measure-cjk": "bin/measure-cjk.js"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "bin",
+    "dist",
+    "assets",
+    "data",
+    "README.md",
+    "LICENSE",
+    "LICENSE-docs",
+    "NOTICE",
+    "npm-shrinkwrap.json"
+  ],
+  "scripts": {
+    "build": "node ../../scripts/sync-assets.mjs && tsc -p tsconfig.json",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "css-select": "7.0.0",
+    "domhandler": "6.0.1",
+    "domutils": "4.0.2",
+    "htmlparser2": "12.0.0",
+    "postcss": "8.5.31"
+  },
+  "peerDependencies": {
+    "playwright": ">=1.48.0",
+    "playwright-core": ">=1.48.0"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    },
+    "playwright-core": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "playwright-core": "^1.64.1",
+    "typescript": "5.9.3"
+  }
+}

@@ -1,0 +1,9 @@
+# CB-01 复现扫描（整改前，HEAD 7c2780a）：node scripts/sweep-card-late-change.mjs . 50 80 1，跑 3 次
+## 第 1 次
+50ms:rejected 51ms:rejected 52ms:rejected 53ms:rejected 54ms:rejected 55ms:rejected 56ms:rejected 57ms:rejected 58ms:rejected 59ms:rejected 60ms:rejected 61ms:rejected 62ms:rejected 63ms:rejected 64ms:rejected 65ms:rejected 66ms:rejected 67ms:rejected 68ms:rejected 69ms:rejected 70ms:exported✗ 71ms:rejected 72ms:rejected 73ms:exported✗ 74ms:rejected 75ms:incomplete 76ms:incomplete 77ms:incomplete 78ms:rejected 79ms:rejected 80ms:exported✗
+## 第 2 次
+50ms:rejected 51ms:rejected 52ms:rejected 53ms:rejected 54ms:rejected 55ms:rejected 56ms:exported✗ 57ms:incomplete 58ms:rejected 59ms:rejected 60ms:rejected 61ms:rejected 62ms:rejected 63ms:rejected 64ms:exported✗ 65ms:rejected 66ms:rejected 67ms:rejected 68ms:rejected 69ms:exported✗ 70ms:rejected 71ms:rejected 72ms:rejected 73ms:rejected 74ms:rejected 75ms:rejected 76ms:exported✗ 77ms:rejected 78ms:exported✗ 79ms:incomplete 80ms:rejected
+## 第 3 次
+50ms:rejected 51ms:rejected 52ms:rejected 53ms:rejected 54ms:rejected 55ms:rejected 56ms:rejected 57ms:rejected 58ms:rejected 59ms:rejected 60ms:rejected 61ms:rejected 62ms:rejected 63ms:rejected 64ms:rejected 65ms:incomplete 66ms:exported✗ 67ms:exported✗ 68ms:exported✗ 69ms:exported✗ 70ms:exported✗ 71ms:incomplete 72ms:rejected 73ms:incomplete 74ms:exported✗ 75ms:rejected 76ms:incomplete 77ms:incomplete 78ms:incomplete 79ms:rejected 80ms:incomplete
+
+# 更正（AUDIT_CARD_r3 CC-03）：上面的标题写的命令是「node scripts/sweep-card-late-change.mjs . 50 80 1」，实际运行时第一个参数是仓库的绝对路径（$PWD）。那时的脚本把「.」当成包名，用「.」跑不起来，直到 610ed1b 才修好。

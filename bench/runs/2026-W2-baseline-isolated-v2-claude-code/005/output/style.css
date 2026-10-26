@@ -1,0 +1,397 @@
+:root {
+  --bg: #fdfaf5;
+  --surface: #ffffff;
+  --fg: #2d3436;
+  --muted: #6b7378;
+  --accent: #2a9d8f;
+  --accent-dark: #1f7a6f;
+  --warm: #f4a261;
+  --soft: #e8f5f3;
+  --border: #ece6dc;
+  --radius: 16px;
+  --shadow: 0 6px 24px rgba(45, 52, 54, 0.08);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+/* 顶部导航 */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(253, 250, 245, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 14px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.logo-mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a { color: var(--muted); font-size: 0.95rem; }
+.nav-links a:hover { color: var(--accent); }
+
+.btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn:hover { background: var(--accent-dark); }
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+
+.btn-outline:hover { background: var(--soft); }
+
+/* 首屏 */
+.hero {
+  padding-block: 72px 56px;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 999px;
+  background: var(--soft);
+  color: var(--accent-dark);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.25;
+  margin: 16px 0;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 34em;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.hero-card {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.hero-card .paws {
+  font-size: 3.2rem;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.hours {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.hours li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 10px;
+  border-bottom: 1px dashed var(--border);
+}
+
+.hours li:last-child { border-bottom: none; }
+.hours span:last-child { font-weight: 600; }
+.hours .emergency { color: #d1495b; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-top: 56px;
+}
+
+.stat {
+  text-align: center;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 20px 12px;
+  border: 1px solid var(--border);
+}
+
+.stat strong {
+  display: block;
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+
+.stat span { color: var(--muted); font-size: 0.9rem; }
+
+/* 通用区块 */
+.section { padding-block: 72px; }
+.section-alt { background: var(--soft); }
+
+.section-head {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.section-head h2 {
+  font-size: clamp(1.6rem, 3.5vw, 2.1rem);
+  margin: 8px 0;
+}
+
+.section-head p { color: var(--muted); margin: 0; }
+
+/* 科室 */
+.dept-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.dept {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 26px;
+  border: 1px solid var(--border);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.dept:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow);
+}
+
+.dept-icon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: var(--soft);
+  font-size: 1.6rem;
+  margin-bottom: 14px;
+}
+
+.dept h3 { margin: 0 0 6px; font-size: 1.15rem; }
+.dept p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+/* 医生 */
+.doctor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.doctor {
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 28px 24px;
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 88px;
+  height: 88px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+}
+
+.avatar.c2 { background: var(--warm); }
+.avatar.c3 { background: #6c8ebf; }
+.avatar.c4 { background: #b07cc6; }
+
+.doctor h3 { margin: 0; font-size: 1.2rem; }
+.doctor .title { color: var(--accent-dark); font-size: 0.9rem; font-weight: 600; }
+.doctor p { color: var(--muted); font-size: 0.92rem; margin: 10px 0 0; }
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.skills span {
+  font-size: 0.78rem;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #fdf0e4;
+  color: #a35a1c;
+}
+
+/* 预约 */
+.booking {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+.phone-card {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 24px;
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.phone-card h2 { margin: 0 0 8px; }
+.phone-card p { margin: 0; opacity: 0.9; }
+
+.phone-number {
+  display: block;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: 1px;
+  margin: 18px 0 6px;
+  user-select: all;
+}
+
+.phone-card .btn {
+  background: #fff;
+  color: var(--accent-dark);
+  margin-top: 18px;
+  align-self: flex-start;
+}
+
+.phone-card .emergency-line {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.info-card {
+  background: var(--surface);
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid var(--border);
+}
+
+.info-card h3 { margin-top: 0; }
+
+.steps {
+  margin: 0;
+  padding-left: 1.2em;
+  color: var(--muted);
+}
+
+.steps li { margin-bottom: 8px; }
+.steps strong { color: var(--fg); }
+
+.address {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+/* 页脚 */
+.site-footer {
+  background: #26302f;
+  color: #c9d1cf;
+  padding-block: 32px;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.site-footer p { margin: 4px 0; }
+
+/* 响应式 */
+@media (max-width: 860px) {
+  .hero-grid,
+  .booking { grid-template-columns: 1fr; }
+  .stats { grid-template-columns: repeat(2, 1fr); }
+  .nav-links { display: none; }
+}
+
+@media (max-width: 420px) {
+  .nav .btn { padding: 8px 14px; font-size: 0.9rem; }
+  .phone-card, .info-card { padding: 26px 22px; }
+}

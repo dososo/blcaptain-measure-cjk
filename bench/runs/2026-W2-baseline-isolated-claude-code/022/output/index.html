@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>意见反馈</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="card">
+  <header>
+    <h1>意见反馈</h1>
+    <p class="sub">告诉我们你遇到的问题或建议，我们会认真阅读每一条反馈。</p>
+  </header>
+
+  <form id="feedback" novalidate>
+    <fieldset class="field">
+      <legend>问题类型 <span class="req">*</span></legend>
+      <div class="types" role="radiogroup">
+        <label class="type"><input type="radio" name="type" value="bug" required><span>🐞 功能异常</span></label>
+        <label class="type"><input type="radio" name="type" value="ui"><span>🎨 界面体验</span></label>
+        <label class="type"><input type="radio" name="type" value="perf"><span>⚡ 性能问题</span></label>
+        <label class="type"><input type="radio" name="type" value="feature"><span>💡 功能建议</span></label>
+        <label class="type"><input type="radio" name="type" value="account"><span>👤 账号相关</span></label>
+        <label class="type"><input type="radio" name="type" value="other"><span>💬 其他</span></label>
+      </div>
+      <p class="error" id="type-error" hidden>请选择一个问题类型</p>
+    </fieldset>
+
+    <div class="field">
+      <label for="desc">问题描述 <span class="req">*</span></label>
+      <textarea id="desc" name="desc" rows="6" maxlength="500" required
+        placeholder="请描述你遇到的问题：发生了什么、你期望的结果、复现步骤等"></textarea>
+      <div class="meta">
+        <p class="error" id="desc-error" hidden>描述至少需要 10 个字</p>
+        <span class="count"><span id="count">0</span>/500</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>截图 <span class="hint">（选填，最多 4 张，每张不超过 5MB）</span></label>
+      <div class="uploads" id="uploads">
+        <label class="drop" id="drop" tabindex="0">
+          <input type="file" id="file" accept="image/*" multiple hidden>
+          <span class="plus">+</span>
+          <span class="drop-text">点击或拖拽上传</span>
+        </label>
+      </div>
+      <p class="error" id="file-error" hidden></p>
+    </div>
+
+    <div class="field">
+      <label for="contact">联系方式 <span class="hint">（选填，便于我们回复你）</span></label>
+      <input type="text" id="contact" name="contact" placeholder="邮箱或手机号">
+    </div>
+
+    <button type="submit" class="submit">提交反馈</button>
+  </form>
+
+  <section class="done" id="done" hidden>
+    <div class="check">✓</div>
+    <h2>感谢你的反馈！</h2>
+    <p>我们已收到你的意见，会尽快处理。</p>
+    <button type="button" class="submit ghost" id="again">再提交一条</button>
+  </section>
+</main>
+
+<script>
+(() => {
+  const MAX_FILES = 4, MAX_SIZE = 5 * 1024 * 1024;
+  const form = document.getElementById('feedback');
+  const desc = document.getElementById('desc');
+  const count = document.getElementById('count');
+  const fileInput = document.getElementById('file');
+  const drop = document.getElementById('drop');
+  const uploads = document.getElementById('uploads');
+  const fileError = document.getElementById('file-error');
+  let files = [];
+
+  desc.addEventListener('input', () => {
+    count.textContent = desc.value.length;
+    if (desc.value.trim().length >= 10) toggle('desc-error', false);
+  });
+  form.addEventListener('change', e => {
+    if (e.target.name === 'type') toggle('type-error', false);
+  });
+
+  function toggle(id, show, msg) {
+    const el = document.getElementById(id);
+    if (msg) el.textContent = msg;
+    el.hidden = !show;
+  }
+
+  function addFiles(list) {
+    const errs = [];
+    for (const f of list) {
+      if (!f.type.startsWith('image/')) { errs.push(`${f.name} 不是图片`); continue; }
+      if (f.size > MAX_SIZE) { errs.push(`${f.name} 超过 5MB`); continue; }
+      if (files.length >= MAX_FILES) { errs.push(`最多上传 ${MAX_FILES} 张`); break; }
+      files.push({ file: f, url: URL.createObjectURL(f) });
+    }
+    toggle('file-error', errs.length > 0, errs.join('；'));
+    render();
+  }
+
+  function render() {
+    uploads.querySelectorAll('.thumb').forEach(n => n.remove());
+    files.forEach((item, i) => {
+      const div = document.createElement('div');
+      div.className = 'thumb';
+      div.innerHTML = `<img alt=""><button type="button" class="remove" aria-label="删除">×</button>`;
+      div.querySelector('img').src = item.url;
+      div.querySelector('img').alt = item.file.name;
+      div.querySelector('.remove').onclick = () => {
+        URL.revokeObjectURL(item.url);
+        files.splice(i, 1);
+        toggle('file-error', false);
+        render();
+      };
+      uploads.insertBefore(div, drop);
+    });
+    drop.hidden = files.length >= MAX_FILES;
+  }
+
+  fileInput.addEventListener('change', () => { addFiles(fileInput.files); fileInput.value = ''; });
+  drop.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+  ['dragenter', 'dragover'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove('over'); }));
+  drop.addEventListener('drop', e => addFiles(e.dataTransfer.files));
+  document.addEventListener('paste', e => {
+    const imgs = [...e.clipboardData.files].filter(f => f.type.startsWith('image/'));
+    if (imgs.length) addFiles(imgs);
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const type = form.querySelector('input[name=type]:checked');
+    const okType = !!type, okDesc = desc.value.trim().length >= 10;
+    toggle('type-error', !okType);
+    toggle('desc-error', !okDesc);
+    if (!okType || !okDesc) return;
+
+    const data = new FormData();
+    data.append('type', type.value);
+    data.append('description', desc.value.trim());
+    data.append('contact', document.getElementById('contact').value.trim());
+    files.forEach(f => data.append('screenshots', f.file));
+    // TODO: 替换为真实接口，例如 fetch('/api/feedback', { method: 'POST', body: data })
+    console.log('feedback', Object.fromEntries([...data.keys()].map(k => [k, data.getAll(k)])));
+
+    const btn = form.querySelector('.submit');
+    btn.disabled = true; btn.textContent = '提交中…';
+    setTimeout(() => {
+      form.hidden = true;
+      document.getElementById('done').hidden = false;
+      btn.disabled = false; btn.textContent = '提交反馈';
+    }, 600);
+  });
+
+  document.getElementById('again').addEventListener('click', () => {
+    form.reset();
+    files.forEach(f => URL.revokeObjectURL(f.url));
+    files = []; render();
+    count.textContent = '0';
+    document.getElementById('done').hidden = true;
+    form.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

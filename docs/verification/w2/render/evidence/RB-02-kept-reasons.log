@@ -1,0 +1,21 @@
+# 【已被取代】这份统计只看了保留原因的文字，没有核对原因是否属实（AUDIT_RENDER_r3 RC-04）。新的统计见 RC-04-kept-reasons.log。
+# 对照组 v2 的 60 页在完整档下，按元素合并后保留下来的基础档 error，按保留原因统计（commit 8982d60 的构建）
+# 统计脚本：
+import { runRender } from "<仓库>/packages/cli/dist/index.js";
+import { mkdtempSync, rmSync } from "node:fs";
+const repo = "<仓库>";
+for (const a of ["codex", "claude-code"]) {
+  const ev = mkdtempSync(`${repo}/test/tmp-notes-`);
+  const r = await runRender({ inputs: [`bench/runs/2026-W2-baseline-isolated-v2-${a}`], root: repo, cwd: repo, evidenceDir: ev });
+  rmSync(ev, { recursive: true, force: true });
+  const c = {};
+  for (const f of r.findings.filter(f => f.severity === "error")) {
+    const m = f.message.match(/（基础档结果：([^，（]{0,14})/) ?? (f.message.includes("脚本渲染") ? [0, "DOM 快照新增"] : null);
+    if (m) { const k = f.rule + " " + m[1]; c[k] = (c[k] ?? 0) + 1; }
+  }
+  console.log(a, JSON.stringify(c));
+}
+
+# 输出：
+codex {"T07 完整档没有对这个元素检查这条":6,"T11 完整档没有对这个元素检查这条":9,"T11 完整档没能在浏览器里对应到这":2,"T11 选择器对应到多个元素":4,"T02 完整档没有对这个元素检查这条":2,"T04 完整档没有对这个元素检查这条":2}
+claude-code {}

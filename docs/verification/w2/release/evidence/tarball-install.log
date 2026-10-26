@@ -1,0 +1,188 @@
+$ npm install -g --prefix '<tmp>/global' '<tmp>/measure-cjk-0.1.0.tgz' --no-audit --no-fund
+# 退出码：0
+
+added 15 packages in 3s
+
+
+$ '<tmp>/global/bin/measure-cjk' --version
+# 退出码：0
+0.1.0
+
+
+$ node -e 'const s=require("<仓库>/packages/cli/npm-shrinkwrap.json");const base="<tmp>/global/lib/node_modules/measure-cjk";const bad=[];for(const [k,v] of Object.entries(s.packages)){if(!k)continue;let p;try{p=require(base+"/"+k+"/package.json")}catch{p=null}if(!p||p.version!==v.version)bad.push(k+" 期望 "+v.version+" 实际 "+(p&&p.version))}console.log(bad.length?"不一致：\n"+bad.join("\n"):"依赖版本和 npm-shrinkwrap.json 一致："+(Object.keys(s.packages).length-1)+" 个")'
+# 退出码：0
+依赖版本和 npm-shrinkwrap.json 一致：14 个
+
+
+$ '<tmp>/global/bin/measure-cjk' lint page.html --format json
+# 退出码：0
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w2-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-26T09:08:50.350Z",
+    "mode": "static",
+    "inputs": [
+      "page.html"
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {}
+  },
+  "summary": {
+    "files": 1,
+    "cjk_files": 1,
+    "errors": 0,
+    "warns": 0,
+    "status": "pass"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "noto sans sc",
+      "tier": "embeddable",
+      "usage": "system"
+    }
+  ],
+  "findings": []
+}
+
+
+$ '<tmp>/global/bin/measure-cjk' lint page.html --render
+# 退出码：2
+
+[stderr]
+错误：用了 --render，但没有找到 Playwright。完整档需要它来驱动浏览器，不会静默降级成基础档。
+请在运行 measure-cjk 的项目目录里安装：npm install -D playwright && npx playwright install chromium
+（本机已有 Chrome 或 Edge 时，只装 npm install -D playwright-core 也可以。）
+measure-cjk 是全局安装的、又不想改项目时，也可以全局安装：npm install -g playwright-core
+
+
+$ ln -s '<仓库>/node_modules/playwright-core' '<tmp>/proj/node_modules/playwright-core'
+# 退出码：0
+
+
+$ '<tmp>/global/bin/measure-cjk' lint page.html --render --format json --evidence ev
+# 退出码：0
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w2-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-26T09:08:50.539Z",
+    "mode": "render",
+    "inputs": [
+      "page.html"
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {},
+    "render": {
+      "browser": "系统 Chrome 155.0.8059.86（playwright-core）",
+      "widths": [
+        360,
+        390,
+        768,
+        1024,
+        1280,
+        1440
+      ],
+      "evidence_dir": "ev",
+      "problems": []
+    }
+  },
+  "summary": {
+    "files": 1,
+    "cjk_files": 1,
+    "errors": 0,
+    "warns": 0,
+    "status": "pass"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "noto sans sc",
+      "tier": "embeddable",
+      "usage": "system"
+    }
+  ],
+  "findings": []
+}
+
+
+$ rm '<tmp>/proj/node_modules/playwright-core' && ln -s '<仓库>/node_modules/playwright-core' '<tmp>/global/lib/node_modules/playwright-core'
+# 退出码：0
+
+
+$ '<tmp>/global/bin/measure-cjk' lint page.html --render --format json --evidence ev
+# 退出码：0
+{
+  "schema_version": "1.0.0",
+  "tool": {
+    "name": "measure-cjk",
+    "version": "0.1.0",
+    "ruleset_version": "w2-2026.10.25"
+  },
+  "run": {
+    "started_at": "2026-10-26T09:08:52.823Z",
+    "mode": "render",
+    "inputs": [
+      "page.html"
+    ],
+    "config_sha256": "aaada75ef6934a2db59d93961bee5bcd8f72a633af23ce67f6d540d9e208231c",
+    "network": "offline",
+    "skipped_inputs": [],
+    "remote_refs": [],
+    "sheet_errors": [],
+    "unsupported_selectors": [],
+    "threshold_overrides": {},
+    "render": {
+      "browser": "系统 Chrome 155.0.8059.86（playwright-core）",
+      "widths": [
+        360,
+        390,
+        768,
+        1024,
+        1280,
+        1440
+      ],
+      "evidence_dir": "ev",
+      "problems": []
+    }
+  },
+  "summary": {
+    "files": 1,
+    "cjk_files": 1,
+    "errors": 0,
+    "warns": 0,
+    "status": "pass"
+  },
+  "disabled_rules": [],
+  "fonts": [
+    {
+      "family": "noto sans sc",
+      "tier": "embeddable",
+      "usage": "system"
+    }
+  ],
+  "findings": []
+}
+
+
+# 判定：PASS（7 项都通过；完整档 errors=0）
+# 时间：2026-10-26T09:08:53.890Z

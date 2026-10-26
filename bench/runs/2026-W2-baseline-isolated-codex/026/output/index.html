@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6eddb">
+  <title>上班族 10 分钟早餐 · 4 款快手做法</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #e6dfd2; color: #302f25; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .canvas { width: min(100%, 900px); margin: 32px auto; container-type: inline-size; box-shadow: 0 12px 60px #453b2520; }
+    .poster { aspect-ratio: 3 / 4; overflow: hidden; padding: 4.8cqw 5.6cqw 3.6cqw; background: #fbf5e8; position: relative; display: flex; flex-direction: column; }
+    .poster::before { content: ""; position: absolute; inset: 0; opacity: .18; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23988663' opacity='.25' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+    header, main, footer { position: relative; }
+    .eyebrow { display: flex; justify-content: space-between; align-items: center; font-size: 1.45cqw; font-weight: 700; letter-spacing: .19cqw; padding-bottom: 1.6cqw; border-bottom: 1px solid #39392b; }
+    .edition { color: #a34a31; }
+    .heading { position: relative; padding-top: 2.8cqw; }
+    .pretitle { font-size: 3.7cqw; font-weight: 800; letter-spacing: .3cqw; }
+    h1 { margin: .1cqw 0 1.3cqw; font-size: 8.6cqw; line-height: 1.17; letter-spacing: -.45cqw; font-weight: 900; }
+    h1 em { color: #b94d30; font-style: normal; }
+    .subtitle { margin: 0; font-size: 1.85cqw; letter-spacing: .12cqw; color: #6e6b58; }
+    .stamp { position: absolute; right: .5cqw; top: 3.7cqw; width: 12cqw; height: 12cqw; border: 1.5px solid #a34a31; border-radius: 50%; color: #a34a31; display: flex; flex-direction: column; justify-content: center; align-items: center; transform: rotate(12deg); outline: 1px solid #a34a31; outline-offset: -.8cqw; background: #f3e8cf; }
+    .stamp strong { font-size: 3.8cqw; line-height: 1.2; }
+    .stamp span { font-size: 1.4cqw; letter-spacing: .15cqw; }
+    .section-label { display: flex; align-items: center; gap: 1.3cqw; margin: 3.2cqw 0 1.7cqw; font-size: 1.45cqw; font-weight: 700; letter-spacing: .15cqw; }
+    .section-label::after { content: ""; height: 1px; background: #d8cfbb; flex: 1; }
+    .recipes { display: grid; grid-template-columns: 1fr 1fr; gap: 2cqw; }
+    .recipe { background: #fffdf5; border: 1px solid #ded6c4; border-radius: 1.5cqw; padding: 1.8cqw 2.3cqw 2.1cqw; position: relative; }
+    .recipe-top { display: flex; justify-content: space-between; align-items: center; }
+    .number { font-family: Georgia, serif; color: #a34a31; font-size: 2.7cqw; font-style: italic; }
+    .time { border-radius: 10cqw; background: #efe8d7; padding: .55cqw 1.2cqw; font-size: 1.35cqw; font-weight: 600; }
+    .food { display: block; width: 100%; height: 15.3cqw; margin: -.5cqw 0 .6cqw; }
+    h2 { font-size: 2.65cqw; letter-spacing: -.05cqw; margin: 0 0 .8cqw; line-height: 1.3; }
+    .ingredients { font-size: 1.5cqw; line-height: 1.7; color: #7c715c; margin: 0 0 1.3cqw; padding-bottom: 1.1cqw; border-bottom: 1px dashed #ded6c4; white-space: nowrap; }
+    .steps { margin: 0; padding: 0; list-style: none; display: grid; gap: .65cqw; }
+    .steps li { display: flex; align-items: baseline; gap: .75cqw; font-size: 1.65cqw; line-height: 1.65; }
+    .steps b { flex-shrink: 0; display: inline-flex; width: 1.75cqw; height: 1.75cqw; justify-content: center; align-items: center; border-radius: 50%; background: #e9eddf; color: #606b47; font-size: 1.15cqw; }
+    .tip { margin: 2.2cqw 0 0; padding: 1.25cqw 1.6cqw; background: #edeedc; border-radius: .7cqw; font-size: 1.5cqw; color: #606447; line-height: 1.6; }
+    .tip strong { color: #424b31; margin-right: .7cqw; }
+    footer { margin-top: auto; padding-top: 1.5cqw; display: flex; align-items: center; justify-content: space-between; }
+    .closing { font-size: 2.15cqw; font-weight: 800; letter-spacing: .12cqw; }
+    .save { color: #a34a31; font-size: 1.4cqw; border-bottom: 1px solid #a34a31; padding-bottom: .4cqw; }
+    .defs { position: absolute; width: 0; height: 0; overflow: hidden; }
+    @media (max-width: 600px) { .canvas { margin: 0 auto; box-shadow: none; } }
+    @media print { @page { size: 180mm 240mm; margin: 0; } body { background: none; } .canvas { width: 180mm; margin: 0; box-shadow: none; } * { print-color-adjust: exact; -webkit-print-color-adjust: exact; } }
+  </style>
+</head>
+<body>
+  <svg class="defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <filter id="shadow" x="-25%" y="-30%" width="150%" height="170%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#655136" flood-opacity=".13"/></filter>
+      <symbol id="toast" viewBox="0 0 320 150">
+        <ellipse cx="161" cy="131" rx="108" ry="9" fill="#eae4d3"/>
+        <ellipse cx="160" cy="84" rx="115" ry="57" fill="#eeeee0" stroke="#d7d9c7" stroke-width="2"/>
+        <ellipse cx="160" cy="84" rx="99" ry="46" fill="#fafbf0" stroke="#e0e1d2"/>
+        <g transform="rotate(-9 159 81)" filter="url(#shadow)">
+          <path d="M103 54C89 29 115 19 136 25C153 17 186 21 193 37C205 38 216 48 207 61L207 121Q157 134 106 120Z" fill="#bc783c" stroke="#9b602e" stroke-width="2"/>
+          <path d="M110 55C98 36 120 28 138 33C155 25 184 28 187 44C198 42 208 51 198 60L199 113Q157 124 114 113Z" fill="#f0ce86"/>
+          <path d="M116 72L147 43L196 63L187 109L136 117Z" fill="#88a35c"/>
+          <path d="M120 73L150 47M129 82L161 50M139 92L173 54M150 101L185 60M164 110L192 73" stroke="#b2c57c" stroke-width="8" stroke-linecap="round"/>
+          <path d="M139 54C156 40 174 48 178 57C200 57 205 77 191 86C198 100 179 108 166 102C151 116 134 103 135 93C117 85 120 65 139 54Z" fill="#fffdf0"/>
+          <circle cx="162" cy="77" r="18" fill="#edab30"/><circle cx="160" cy="73" r="12" fill="#f8be37"/>
+          <path d="M145 58l3 1m29 36l3-2m-42-8l2 2m43-18l2 1" stroke="#626044" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <path d="M235 111q14-26 29-22q-3 22-29 22m0 0q18-6 27 4q-15 12-27-4" fill="#7d9560"/>
+      </symbol>
+      <symbol id="yogurt" viewBox="0 0 320 150">
+        <ellipse cx="158" cy="133" rx="91" ry="9" fill="#eae4d3"/>
+        <path d="M76 57Q78 130 157 137Q231 131 241 57Z" fill="#b96c50" stroke="#9f593f" stroke-width="2"/>
+        <path d="M88 82Q101 119 137 125" fill="none" stroke="#ce8c6f" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="158" cy="57" rx="83" ry="40" fill="#edd5b5" stroke="#a85f44" stroke-width="3"/>
+        <ellipse cx="158" cy="57" rx="74" ry="32" fill="#fffaf0"/>
+        <g fill="#d4a768" stroke="#b58a50" stroke-width="1.5"><path d="M104 42l10-3 5 6-11 4zM111 57l12-4 5 7-12 3zM99 59l7 3-3 6-9-3zM123 39l12 2-2 7-10-1zM133 52l9 1 1 7-12-2zM111 73l12-5 4 7-11 5zM130 69l7-2 5 8-9 3zM92 48l8-3 4 7-10 2z"/></g>
+        <g fill="#f5e5a9" stroke="#dcc88e" stroke-width="1.5"><ellipse cx="155" cy="37" rx="15" ry="10" transform="rotate(18 155 37)"/><ellipse cx="166" cy="52" rx="15" ry="10" transform="rotate(18 166 52)"/><ellipse cx="176" cy="67" rx="15" ry="10" transform="rotate(18 176 67)"/><ellipse cx="186" cy="81" rx="15" ry="10" transform="rotate(18 186 81)"/></g>
+        <g fill="#bda16d"><circle cx="155" cy="37" r="2"/><circle cx="166" cy="52" r="2"/><circle cx="176" cy="67" r="2"/><circle cx="186" cy="81" r="2"/></g>
+        <g fill="#4f587b" stroke="#3e4767" stroke-width="1.5"><circle cx="192" cy="38" r="8"/><circle cx="208" cy="48" r="8"/><circle cx="197" cy="59" r="8"/><circle cx="218" cy="61" r="7"/></g>
+        <g fill="#8b96af"><circle cx="190" cy="36" r="2.5"/><circle cx="206" cy="46" r="2.5"/><circle cx="195" cy="57" r="2.5"/></g>
+        <path d="M235 108l43-63" stroke="#b5a68c" stroke-width="6" stroke-linecap="round"/><ellipse cx="278" cy="42" rx="9" ry="15" transform="rotate(35 278 42)" fill="#d5c9b3"/>
+      </symbol>
+      <symbol id="wrap" viewBox="0 0 320 150">
+        <ellipse cx="160" cy="124" rx="111" ry="12" fill="#eae4d3"/>
+        <ellipse cx="160" cy="91" rx="113" ry="43" fill="#e9ecdd" stroke="#d4d8c4" stroke-width="2"/>
+        <ellipse cx="160" cy="91" rx="98" ry="33" fill="#f6f7eb"/>
+        <g transform="rotate(-18 153 77)" filter="url(#shadow)">
+          <path d="M77 54L161 45L185 93L100 108Q79 94 77 54Z" fill="#e9cb91" stroke="#c6a16a" stroke-width="2"/>
+          <path d="M88 59L156 52L170 84L100 96Z" fill="#f4dfb4"/>
+          <ellipse cx="174" cy="69" rx="18" ry="28" fill="#f8e5b8" stroke="#bc9661" stroke-width="2"/>
+          <path d="M166 48l8 4 9-1-1 13 5 8-9 15-9-4-8 1 2-14-4-10z" fill="#7d9b55"/>
+          <path d="M169 55l7 1 4 19-8 7-7-13z" fill="#e6b639"/><path d="M175 57l5 6-1 12-4 3z" fill="#ca6450"/>
+          <path d="M94 66l8 2m10 16l7 0m15-24l8 2m-9 30l5 1" stroke="#c29e66" stroke-width="3" stroke-linecap="round"/>
+          <path d="M200 48L236 66L216 112L180 95Z" fill="#edcf98" stroke="#c6a16a" stroke-width="2"/>
+          <ellipse cx="208" cy="56" rx="20" ry="15" transform="rotate(26 208 56)" fill="#fae8c0" stroke="#c6a16a" stroke-width="2"/>
+          <path d="M194 50l9-4 15 6 4 10-13 3-11-6z" fill="#7c9956"/><path d="M201 51l9-1 8 8-8 3-9-5z" fill="#edbb37"/><path d="M207 52l8 4-3 4-8-4z" fill="#c76550"/>
+          <path d="M200 81l7 3m4 10l5 2" stroke="#c29e66" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <circle cx="76" cy="105" r="11" fill="#c66549"/><path d="M72 95l4 5 5-4" fill="none" stroke="#71844c" stroke-width="2"/>
+      </symbol>
+      <symbol id="oats" viewBox="0 0 320 150">
+        <ellipse cx="158" cy="132" rx="93" ry="9" fill="#eae4d3"/>
+        <path d="M78 59Q84 130 159 136Q230 128 239 59Z" fill="#8e9f7a" stroke="#738566" stroke-width="2"/>
+        <path d="M93 86Q107 116 137 123" fill="none" stroke="#b3bea0" stroke-width="4" stroke-linecap="round"/>
+        <ellipse cx="159" cy="59" rx="81" ry="38" fill="#d9dfcb" stroke="#738566" stroke-width="3"/>
+        <ellipse cx="159" cy="60" rx="72" ry="30" fill="#e8d3aa"/>
+        <g stroke="#bca075" stroke-width="2" stroke-linecap="round"><path d="M105 55l6 2m9-14l5 1m-18 27l5-2m18 9l6 1m44-39l5 2m19 17l5-1m-11 24l5-2m-42 8l5 1m40-19l5 1m-73-34l5 2"/></g>
+        <path d="M133 47C137 35 155 34 164 41C179 36 194 49 187 62C196 76 174 83 165 77C150 89 130 77 132 67C122 62 124 52 133 47Z" fill="#fff9e5"/>
+        <ellipse cx="158" cy="59" rx="17" ry="15" fill="#edb23e"/>
+        <g fill="#67844d"><path d="M116 50l7 3-2 5-7-3zM179 44l7-2 1 5-7 2zM187 71l7 3-2 5-7-3zM138 77l7 1-1 5-7-1zM166 36l5 1-1 4-5-1z"/></g>
+        <path d="M109 15q-7-8 0-16M142 18q-7-8 0-16M174 16q-7-8 0-16" fill="none" stroke="#cfc7b6" stroke-width="2.5" stroke-linecap="round"/>
+      </symbol>
+    </defs>
+  </svg>
+  <article class="canvas" aria-label="上班族十分钟早餐食谱卡片">
+    <div class="poster">
+      <header>
+        <div class="eyebrow"><span>THE MORNING CLUB / 早八食堂</span><span class="edition">VOL. 01 · 早餐提案</span></div>
+        <div class="heading">
+          <div class="pretitle">上班族的</div>
+          <h1><em>10 分钟</em>早餐</h1>
+          <p class="subtitle">不慌不忙吃好饭，再去认真上班。</p>
+          <div class="stamp"><strong>4 款</strong><span>快手 · 好吃</span></div>
+        </div>
+        <div class="section-label">一人份食谱 / 跟着做就好</div>
+      </header>
+      <main>
+        <div class="recipes">
+          <section class="recipe">
+            <div class="recipe-top"><span class="number">01</span><span class="time">8 MIN · 平底锅</span></div>
+            <svg class="food" role="img" aria-label="牛油果煎蛋铺在金黄吐司上"><use href="#toast"/></svg>
+            <h2>牛油果鸡蛋吐司</h2>
+            <p class="ingredients">吐司 1 片 · 鸡蛋 1 个 · 牛油果 ½ 个</p>
+            <ol class="steps"><li><b>1</b><span>吐司两面烘脆，牛油果压泥铺上。</span></li><li><b>2</b><span>少油煎熟鸡蛋，叠上撒盐和黑胡椒。</span></li></ol>
+          </section>
+          <section class="recipe">
+            <div class="recipe-top"><span class="number">02</span><span class="time">3 MIN · 免开火</span></div>
+            <svg class="food" role="img" aria-label="搭配香蕉、蓝莓和燕麦的酸奶碗"><use href="#yogurt"/></svg>
+            <h2>香蕉燕麦酸奶碗</h2>
+            <p class="ingredients">酸奶 150g · 即食燕麦 20g · 香蕉 1 根</p>
+            <ol class="steps"><li><b>1</b><span>酸奶倒入碗中，拌入即食燕麦。</span></li><li><b>2</b><span>铺上香蕉片，有蓝莓就加几颗。</span></li></ol>
+          </section>
+          <section class="recipe">
+            <div class="recipe-top"><span class="number">03</span><span class="time">10 MIN · 平底锅</span></div>
+            <svg class="food" role="img" aria-label="切开的鸡蛋蔬菜卷饼"><use href="#wrap"/></svg>
+            <h2>鸡蛋蔬菜卷饼</h2>
+            <p class="ingredients">即食饼皮 1 张 · 鸡蛋 1 个 · 生菜番茄</p>
+            <ol class="steps"><li><b>1</b><span>蔬菜洗净切好；鸡蛋加盐炒熟。</span></li><li><b>2</b><span>饼皮热 30 秒，放入蛋和菜卷紧。</span></li></ol>
+          </section>
+          <section class="recipe">
+            <div class="recipe-top"><span class="number">04</span><span class="time">6 MIN · 小煮锅</span></div>
+            <svg class="food" role="img" aria-label="撒上葱花的热燕麦鸡蛋粥"><use href="#oats"/></svg>
+            <h2>暖胃鸡蛋燕麦粥</h2>
+            <p class="ingredients">即食燕麦 30g · 鸡蛋 1 个 · 水 250ml</p>
+            <ol class="steps"><li><b>1</b><span>水煮开，加入燕麦小火煮 2 分钟。</span></li><li><b>2</b><span>淋入蛋液煮熟，加盐、葱花拌匀。</span></li></ol>
+          </section>
+        </div>
+        <p class="tip"><strong>早八小窍门</strong>前一晚备好食材和餐具，早上更从容。调味按口味少量加。</p>
+      </main>
+      <footer><span class="closing">早餐有着落，今天有盼头。</span><span class="save">收藏这张 · 明早照着做 ↗</span></footer>
+    </div>
+  </article>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!doctype html>
+<!--
+  分寸 · Measure 小红书 3:4 卡片模板：引语卡（1080×1440）
+  - 字体：霞鹜文楷（LXGW WenKai，OFL-1.1，🟢 可以商用出图）。把字体文件放进 font_dir，然后运行：
+      measure-cjk card quote.html --out card.png --font-dir <你的字体目录>
+    card 命令只用 font_dir 里、授权表允许商用出图的字体；缺字时回退到的系统字体也要过授权表（F06）。
+  - 只改文字，保持留白：标题不超过两行，正文每行不超过 26 个字。
+  - 引号用 “”（measure.config.json 默认 quotes: curly），标点用全角。
+-->
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>引语卡</title>
+<style>
+:where(:lang(zh)) { line-break: strict; font-synthesis-style: none; text-autospace: normal; }
+:root {
+  --paper: #f4e9dc;   /* 米纸暖底 */
+  --ink: #1f1b16;     /* 墨 */
+  --ink-soft: #5a5148;
+  --celadon: #7e8c6b; /* 青瓷 */
+  --cinnabar: #9e4b3b; /* 朱砂 */
+}
+html, body { margin: 0; }
+body {
+  width: 1080px; height: 1440px; overflow: hidden;
+  background: var(--paper); color: var(--ink);
+  font-family: "LXGW WenKai", "霞鹜文楷", serif;
+  font-weight: 400;
+}
+.card { box-sizing: border-box; width: 1080px; height: 1440px; padding: 120px 96px 96px; display: flex; flex-direction: column; }
+.card { justify-content: center; padding: 96px 120px; }
+.mark { font-size: 220px; line-height: 1; height: 80px; color: var(--celadon); margin: 0 0 8px; } /* 文楷的引号只占字身上部：限高，让它贴近引文（AUDIT_CARD CA-14） */
+.quote { font-size: 46px; line-height: 1.75; margin: 0 0 64px; }
+.who { font-size: 32px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+.seal { margin-top: 96px; align-self: flex-start; font-size: 28px; line-height: 1.6; color: var(--cinnabar); border: 2px solid var(--cinnabar); padding: 8px 16px; }
+</style>
+</head>
+<body>
+<div class="card">
+<p class="mark">“</p>
+<p class="quote">排版的分寸，在于让读者忘记排版本身，只留下内容与节奏。</p>
+<p class="who">—— 写给每一张中文卡片</p>
+<p class="seal">分寸</p>
+</div>
+</body>
+</html>

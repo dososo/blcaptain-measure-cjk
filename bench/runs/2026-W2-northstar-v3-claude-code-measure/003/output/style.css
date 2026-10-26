@@ -1,0 +1,370 @@
+@layer measure;
+
+:root {
+  --bg: #f6f3ec;
+  --surface: #ffffff;
+  --fg: #1d2420;
+  --muted: #5b625d;
+  --line: #ddd6c8;
+  --green: #1f4d3a;
+  --green-soft: #e3ece6;
+  --orange: #d9541e;
+  --orange-soft: #fbe6dc;
+  --yellow: #c98a0b;
+  --radius: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141816;
+    --surface: #1c221f;
+    --fg: #e8ebe8;
+    --muted: #a3aba6;
+    --line: #313a35;
+    --green: #8fc6a8;
+    --green-soft: #22332b;
+    --orange: #f07a45;
+    --orange-soft: #3a2519;
+    --yellow: #e2b04a;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", "Helvetica Neue", "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+}
+
+a { color: var(--green); }
+
+.wrap {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+/* 顶栏 */
+.topbar {
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.topbar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 12px;
+}
+.logo {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--fg);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.logo svg { flex: none; }
+.topbar nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.topbar nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 15px;
+}
+.topbar nav a:hover { color: var(--fg); }
+
+/* 首屏 */
+.hero { padding-block: 72px 56px; }
+.hero h1 {
+  font-size: clamp(32px, 6vw, 52px);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  margin: 0 0 20px;
+  max-width: 14em;
+}
+.hero h1 span { color: var(--orange); }
+.hero .lead {
+  font-size: 18px;
+  color: var(--muted);
+  margin: 0 0 32px;
+}
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 2px solid var(--green);
+  cursor: pointer;
+  font-family: inherit;
+}
+.btn-primary { background: var(--green); color: var(--bg); }
+.btn-primary:hover { opacity: 0.9; }
+.btn-ghost { background: transparent; color: var(--green); }
+
+.facts {
+  margin: 48px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border-top: 1px solid var(--line);
+}
+.facts li {
+  padding: 20px 16px 0 0;
+  line-height: 1.5;
+}
+.facts strong {
+  display: block;
+  font-size: 28px;
+  color: var(--fg);
+}
+.facts span { color: var(--muted); font-size: 14px; }
+
+/* 通用区块 */
+section.block {
+  padding-block: 64px;
+  border-top: 1px solid var(--line);
+}
+.block h2 {
+  font-size: clamp(24px, 4vw, 32px);
+  letter-spacing: 0.02em;
+  margin: 0 0 12px;
+}
+.block .intro {
+  color: var(--muted);
+  margin: 0 0 36px;
+}
+
+/* 活动频率 */
+.schedule {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  overflow: hidden;
+}
+.schedule article {
+  padding: 24px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  min-width: 0;
+}
+.schedule .when {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--orange);
+  margin: 0 0 6px;
+}
+.schedule h3 { font-size: 20px; margin: 0 0 10px; }
+.schedule p { margin: 0; color: var(--muted); font-size: 15px; }
+.schedule .meta {
+  margin-top: 14px;
+  font-size: 14px;
+  color: var(--fg);
+}
+.note {
+  margin: 20px 0 0;
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* 路线难度 */
+.table-scroll { overflow-x: auto; }
+table.levels {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  font-size: 15px;
+}
+.levels th, .levels td {
+  text-align: left;
+  padding: 16px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.levels thead th {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  background: var(--bg);
+}
+.levels tbody th { white-space: nowrap; }
+.tag {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 99px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.tag-1 { background: var(--green-soft); color: var(--green); }
+.tag-2 { background: #f6ecd2; color: #7a5300; }
+.tag-3 { background: var(--orange-soft); color: var(--orange); }
+@media (prefers-color-scheme: dark) {
+  .tag-2 { background: #352c17; color: var(--yellow); }
+}
+.dots { display: inline-flex; gap: 3px; margin-left: 6px; vertical-align: middle; }
+.dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.dots i.on { background: currentColor; }
+
+.rules {
+  margin: 32px 0 0;
+  padding: 20px 24px;
+  background: var(--green-soft);
+  border-radius: var(--radius);
+}
+.rules h3 { margin: 0 0 8px; font-size: 17px; }
+.rules ul { margin: 0; padding-left: 1.2em; }
+.rules li { margin: 4px 0; }
+
+/* 报名方式 */
+.signup {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 760px) {
+  .signup { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+}
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: step;
+}
+.steps li {
+  counter-increment: step;
+  position: relative;
+  padding: 0 0 24px 48px;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--bg);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+.steps h3 { margin: 2px 0 4px; font-size: 18px; }
+.steps p { margin: 0; color: var(--muted); }
+.contact {
+  margin-top: 8px;
+  padding: 16px 20px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  line-height: 1.8;
+}
+.contact code {
+  font-family: "SF Mono", Menlo, Consolas, monospace;
+  font-size: 15px;
+  background: var(--green-soft);
+  padding: 1px 6px;
+  border-radius: 4px;
+  user-select: all;
+}
+
+form.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+form h3 { margin: 0 0 4px; font-size: 20px; }
+form .hint { margin: 0 0 20px; color: var(--muted); font-size: 14px; line-height: 1.6; }
+.field { margin-bottom: 16px; }
+.field label, .field legend {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  padding: 0;
+}
+fieldset.field { border: 0; padding: 0; margin: 0 0 16px; min-width: 0; }
+.field input[type="text"], .field input[type="tel"], .field select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 16px;
+  font-family: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.field input:focus, .field select:focus { outline: 2px solid var(--green); outline-offset: 1px; }
+.radios { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.radios label { font-weight: 400; display: flex; gap: 6px; align-items: center; margin: 0; }
+.check { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; color: var(--muted); margin: 4px 0 20px; line-height: 1.6; }
+.check input { margin-top: 4px; }
+form .btn { width: 100%; }
+.error { color: var(--orange); font-size: 14px; margin: 10px 0 0; }
+
+.result {
+  margin-top: 20px;
+  padding: 16px;
+  background: var(--green-soft);
+  border-radius: var(--radius);
+}
+.result p { margin: 0 0 8px; font-size: 15px; }
+.result pre {
+  margin: 0 0 12px;
+  white-space: pre-wrap;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.7;
+  background: var(--surface);
+  padding: 12px;
+  border-radius: 4px;
+}
+.result .btn { padding: 8px 16px; font-size: 15px; width: auto; }
+
+/* 常见问题 */
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding: 16px 0;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 17px;
+}
+.faq details p { margin: 10px 0 0; color: var(--muted); }
+
+footer {
+  border-top: 1px solid var(--line);
+  padding-block: 32px 48px;
+  color: var(--muted);
+  font-size: 14px;
+}
+footer p { margin: 0 0 4px; line-height: 1.7; }
+
+@media (max-width: 560px) {
+  .topbar nav { display: none; }
+  .hero { padding-block: 48px 40px; }
+  section.block { padding-block: 48px; }
+  form.card { padding: 20px; }
+}

@@ -1,0 +1,643 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-023-mxDUI3 <提示词>
+工作目录：<tmp>/measure-baseline-codex-023-mxDUI3
+退出码：0 信号：无 用时：147s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-023-mxDUI3
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17652-6de6-7fc0-b0c2-e82983a86cb0
+--------
+user
+做一个线上问卷页面，调查大家每天通勤时间和交通方式，共 6 道题。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会做一个包含 6 道题的通勤调查页面，加入进度提示和填写校验，并保存为当前目录下的 `index.html`。
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-023-mxDUI3
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-023-mxDUI3
+
+exec
+/bin/zsh -lc 'ls -la' in <tmp>/measure-baseline-codex-023-mxDUI3
+ succeeded in 0ms:
+total 0
+drwx------@     2 user  staff      64 Oct 26 11:47 .
+drwx------@ 14757 user  staff  472224 Oct 26 11:49 ..
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-023-mxDUI3/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8d7241787775f941c329d2f900c8ecb25528a09
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,136 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f2">
++  <title>在路上 · 城市通勤小调查</title>
++  <style>
++    :root{--ink:#283d35;--muted:#7b857d;--green:#42664c;--lime:#d9eb98;--line:#e3e7dc;--paper:#f7f8f2;--white:#fff;--red:#a04435}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65}button,input,textarea{font:inherit}button,a,label{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}svg{display:block}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.symbols{position:absolute;width:0;height:0;overflow:hidden}
++    .header{height:86px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;max-width:1184px;margin:auto;padding:0 30px}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:750;letter-spacing:1px}.brandmark{width:33px;height:33px;background:var(--green);color:var(--lime);border-radius:10px;display:grid;place-items:center}.brand small{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:500;margin-left:9px}.header-note{display:flex;gap:8px;align-items:center;color:#788477;font-size:12px}.dot{width:6px;height:6px;border-radius:50%;background:#75985d;display:inline-block}
++    .layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:76px;max-width:1124px;margin:54px auto 70px;padding:0 30px}.intro{position:sticky;top:35px;align-self:start}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:650;color:var(--green);display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:23px;height:1px;background:var(--green)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;font-weight:750;margin:24px 0 19px}h1 span{position:relative;z-index:0}h1 span:after{content:"";position:absolute;left:0;right:0;bottom:3px;height:12px;background:var(--lime);z-index:-1;border-radius:2px}.lead{color:#7a8379;line-height:1.95;font-size:14px;margin:0;max-width:290px}.meta{display:flex;gap:19px;margin-top:25px;font-size:12px;color:#657260}.meta span{display:flex;align-items:center;gap:6px}.meta .icon{width:15px;height:15px}
++    .illustration{margin:28px -8px 14px;height:253px;position:relative}.illustration svg{width:100%;height:100%}.side-note{border-top:1px solid var(--line);padding-top:21px;margin-top:14px;display:flex;gap:10px;color:#8a9286;font-size:12px;line-height:1.85}.side-note .icon{flex-shrink:0;width:17px;margin-top:3px}.side-note p{margin:0}.side-note strong{display:block;color:#67745e;font-weight:500;margin-bottom:3px}
++    .survey-top{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}.survey-top h2{margin:0;font-size:16px;font-weight:650}.progress-label{font-size:12px;color:#88917f}.progress-label strong{color:var(--green);font-weight:600}.progress-track{height:4px;background:#e6eadd;border-radius:10px;margin-bottom:24px;overflow:hidden}.progress-fill{height:100%;width:0;background:#8ba65f;border-radius:10px;transition:width .3s}.question{min-width:0;padding:26px 28px 28px;margin:0 0 18px;background:var(--white);border:1px solid var(--line);border-radius:15px;transition:border-color .2s}.question.invalid{border-color:var(--red)}.q-heading{display:flex;gap:13px;align-items:flex-start;margin-bottom:20px}.number{font-size:11px;font-weight:600;width:28px;height:28px;display:grid;place-items:center;color:var(--green);background:#eff3e7;border-radius:8px;flex-shrink:0}.q-heading h3{font-size:16px;margin:0;font-weight:650;line-height:1.8;letter-spacing:.1px}.required{color:#97a47f;margin-left:5px;font-size:13px}.q-heading p{color:#959a90;font-size:11px;margin:3px 0 0}.options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.option{position:relative;cursor:pointer;min-width:0}.option input{position:absolute;opacity:0;width:1px;height:1px}.choice{height:46px;border:1px solid #e5e8df;border-radius:8px;display:flex;align-items:center;gap:8px;padding:0 13px;color:#687261;font-size:12px;background:#fff;transition:background .15s,border-color .15s}.radio-dot{width:14px;height:14px;border:1px solid #ccd3c5;border-radius:50%;flex-shrink:0;position:relative}.option input:checked+.choice{background:#f1f6e7;border-color:#829b61;color:#3f5d35}.option input:checked+.choice .radio-dot{border:4px solid #68844f}.option input:focus-visible+.choice{outline:2px solid var(--green);outline-offset:3px}.option:hover .choice{border-color:#9eae8e;background:#fafbf7}.transport .choice{height:85px;flex-direction:column;gap:8px;justify-content:center;position:relative}.transport .icon{width:25px;height:25px;color:#788567}.checkmark{display:none;position:absolute;right:8px;top:4px;font-size:12px;color:var(--green)}.option input:checked+.choice .checkmark{display:block}.question.compact .options{grid-template-columns:repeat(2,1fr)}.satisfaction{grid-template-columns:repeat(5,1fr)}.satisfaction .choice{height:75px;flex-direction:column;justify-content:center;gap:5px;padding:7px 2px;font-size:11px}.face{font-size:24px;line-height:1.1;font-family:Arial,sans-serif}.checkbox .radio-dot{border-radius:4px}.checkbox input:checked+.choice .radio-dot{border:0;background:#68844f}.checkbox input:checked+.choice .radio-dot:after{content:"✓";position:absolute;inset:0;color:white;line-height:14px;text-align:center;font-size:11px}.error{display:none;font-size:12px;margin:12px 0 0;color:var(--red)}.invalid .error{display:block}.form-bottom{padding:7px 0 0}.submit{width:100%;border:0;background:var(--green);color:white;border-radius:10px;height:52px;display:flex;justify-content:center;align-items:center;gap:14px;font-weight:600;transition:background .2s,transform .2s}.submit:hover{background:#34553d;transform:translateY(-1px)}.submit .icon{width:18px}.privacy{font-size:11px;text-align:center;color:#92998b;margin:12px 0}.footer{border-top:1px solid var(--line);max-width:1124px;margin:0 auto;padding:22px 30px 27px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.5px;color:#929a8c}.footer span:last-child{letter-spacing:1.5px}.success{padding:48px 30px;text-align:center;border:1px solid var(--line);border-radius:16px;background:white}.success[hidden]{display:none}.success-icon{width:64px;height:64px;border-radius:50%;background:#edf4dd;color:var(--green);margin:0 auto 20px;display:grid;place-items:center}.success-icon .icon{width:30px;height:30px}.success h2{font-size:25px;margin:0 0 10px}.success p{color:var(--muted);font-size:13px}.summary{margin:25px 0;text-align:left;background:#f7f8f2;border-radius:10px;padding:12px 18px}.summary div{display:flex;justify-content:space-between;gap:20px;padding:9px 0;font-size:12px}.summary div+div{border-top:1px solid var(--line)}.summary dt{color:var(--muted);flex-shrink:0}.summary dd{margin:0;text-align:right}.secondary{background:transparent;border:0;color:var(--green);margin-top:14px;padding:8px 20px;font-size:12px;text-decoration:underline;text-underline-offset:4px}button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:4px} @media(min-width:1250px){.layout{gap:90px;grid-template-columns:310px minmax(0,1fr)}}@media(max-width:900px){.layout{gap:35px;grid-template-columns:245px minmax(0,1fr);padding:0 24px}.header{padding:0 24px}h1{font-size:36px}.question{padding:22px 20px}.choice{padding:0 9px}.options{gap:8px}.illustration{height:220px}.brand small{display:none}}@media(max-width:700px){.header{height:72px;padding:0 22px}.brand{font-size:19px}.layout{display:block;margin:30px auto 40px;padding:0 20px;max-width:560px}.intro{position:relative;top:0;margin-bottom:32px}.eyebrow{font-size:10px}h1{font-size:35px;line-height:1.4;margin:15px 0 12px}h1 br{display:none}.lead{max-width:100%;font-size:13px}.meta{margin-top:17px}.illustration,.side-note{display:none}.question{padding:21px 18px;margin-bottom:14px;border-radius:12px}.q-heading h3{font-size:15px}.q-heading{gap:10px}.choice{font-size:11px;padding:0 9px;gap:6px}.options{gap:8px}.footer{padding:20px;gap:10px;font-size:9px}.header-note{font-size:10px}.satisfaction .choice{font-size:10px;padding:7px 0}.survey-top h2{font-size:14px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h8a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8M6 8v4M18 16v-4"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 15h6"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></symbol>
++    <symbol id="train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="16" rx="4"/><path d="M5 10h14M12 3v7M8 19l-2 3M16 19l2 3M8 15h1M15 15h1"/></symbol>
++    <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 11h16M8 15h1M15 15h1M7 19v3M17 19v3M9 6h6"/></symbol>
++    <symbol id="car" viewBox="0 0 24 24"><path d="m4 10 2-6h12l2 6M3 17V11l2-1h14l2 1v6H3ZM5 17v3M19 17v3M6 14h2M16 14h2"/></symbol>
++    <symbol id="bike" viewBox="0 0 24 24"><circle cx="5" cy="16" r="4"/><circle cx="19" cy="16" r="4"/><path d="m5 16 5-9 5 9H5M10 7h7l2 9M15 4h3l1 3M8 4h4"/></symbol>
++    <symbol id="walk" viewBox="0 0 24 24"><circle cx="14" cy="4" r="2"/><path d="m7 22 4-8 4 3v5M4 12l5-4h5l2 5h4M12 8l-1 6"/></symbol>
++    <symbol id="more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
++    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
++  </defs></svg>
++  <header class="header"><a class="brand" href="./index.html" aria-label="在路上，问卷首页"><span class="brandmark"><svg class="icon"><use href="#route"/></svg></span>在路上<small>ON THE WAY</small></a><div class="header-note"><span class="dot"></span>城市生活观察计划</div></header>
++  <main class="layout">
++    <aside class="intro">
++      <div class="eyebrow">THE DAILY COMMUTE</div>
++      <h1>你的每一天，<br>有多久<span>在路上</span>？</h1>
++      <p class="lead">从家门到目的地，每一段路都有自己的节奏。聊聊你的日常通勤，让城市生活的轮廓更清晰一点。</p>
++      <div class="meta"><span><svg class="icon"><use href="#clock"/></svg>约 2 分钟</span><span><svg class="icon"><use href="#list"/></svg>6 道小问题</span></div>
++      <div class="illustration">
++        <svg viewBox="0 0 330 260" fill="none" role="img" aria-label="一条连接家与办公楼的绿色城市通勤路线">
++          <ellipse cx="165" cy="142" rx="139" ry="103" fill="#eef1e3"/>
++          <path d="M18 192h294M36 220h265" stroke="#d9dfcc" stroke-width="1"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#b4c88b" stroke-width="20" stroke-linecap="round"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#fcfff5" stroke-width="1.5" stroke-dasharray="5 7"/>
++          <path d="M30 118 65 90l35 28" fill="#dee7c7" stroke="#677e53" stroke-width="2" stroke-linejoin="round"/><path d="M38 115v52h54v-52" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M57 167v-26h16v26M47 123h10v10H47M74 123h10v10H74" stroke="#677e53" stroke-width="1.5"/><path d="M83 103V89h9v21" stroke="#677e53" stroke-width="2"/>
++          <rect x="219" y="63" width="64" height="95" rx="3" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M230 77h11v11h-11zM258 77h11v11h-11zM230 99h11v11h-11zM258 99h11v11h-11zM230 121h11v11h-11zM258 121h11v11h-11z" fill="#dce8c6"/><path d="M244 158v-16h14v16" stroke="#677e53" stroke-width="1.5"/><path d="M236 63V53h30v10" stroke="#677e53" stroke-width="2"/>
++          <rect x="128" y="181" width="64" height="28" rx="7" fill="#486b48"/><path d="M135 188h11v9h-11zM151 188h11v9h-11zM167 188h17v9h-17z" fill="#dceba9"/><circle cx="140" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/><circle cx="181" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/>
++          <path d="M112 157v23M294 137v33" stroke="#8c9d6f" stroke-width="2"/><ellipse cx="112" cy="152" rx="10" ry="16" fill="#cadba6"/><ellipse cx="294" cy="132" rx="12" ry="21" fill="#cadba6"/>
++          <path d="M104 83c27-30 61-35 92-17" stroke="#97ab76" stroke-width="1.5" stroke-dasharray="4 5"/><path d="m190 59 8 8-11 2" stroke="#97ab76" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
++          <rect x="26" y="54" width="67" height="24" rx="12" fill="#fff"/><text x="59.5" y="70" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">从家出发</text><rect x="228" y="178" width="76" height="24" rx="12" fill="#fff"/><text x="266" y="194" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">抵达日常</text>
++          <circle cx="164" cy="103" r="20" fill="#e1ebc9"/><path d="M164 93v11l7 4" stroke="#8a9d67" stroke-width="1.7" stroke-linecap="round"/>
++        </svg>
++      </div>
++      <div class="side-note"><svg class="icon"><use href="#shield"/></svg><p><strong>关于这份小调查</strong>无需姓名和联系方式。请以最近一个月的通常情况作答，单程时间包含步行和候车。</p></div>
++    </aside>
++    <section aria-label="通勤调查问卷">
++      <div class="survey-top"><h2>记录你的通勤日常</h2><span class="progress-label" aria-live="polite">已完成 <strong id="completed">0</strong> / 6</span></div>
++      <div class="progress-track" role="progressbar" aria-label="问卷完成进度" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><div class="progress-fill"></div></div>
++      <form id="survey" novalidate>
++        <section class="question" role="group" aria-labelledby="q1-title" data-name="duration"><div class="q-heading"><span class="number">01</span><div><h3 id="q1-title">你通常的单程通勤时间是？<span class="required">*</span></h3><p>从出发到抵达，选择最接近的时间 · 单选</p></div></div><div class="options" id="duration-options"></div><p class="error">请选择一个通勤时间。</p></section>
++        <section class="question" role="group" aria-labelledby="q2-title" data-name="transport"><div class="q-heading"><span class="number">02</span><div><h3 id="q2-title">你最主要的通勤方式是？<span class="required">*</span></h3><p>如果需要换乘，请选择花费时间最长的方式 · 单选</p></div></div><div class="options transport" id="transport-options"></div><p class="error">请选择一种主要交通方式。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q3-title" data-name="distance"><div class="q-heading"><span class="number">03</span><div><h3 id="q3-title">你的单程通勤距离大约是？<span class="required">*</span></h3><p>估算日常路线的距离即可 · 单选</p></div></div><div class="options" id="distance-options"></div><p class="error">请选择一个通勤距离。</p></section>
++        <section class="question" role="group" aria-labelledby="q4-title" data-name="frequency"><div class="q-heading"><span class="number">04</span><div><h3 id="q4-title">你平均每周有几天需要通勤？<span class="required">*</span></h3><p>包括上班或上学的往返出行 · 单选</p></div></div><div class="options" id="frequency-options"></div><p class="error">请选择每周通勤天数。</p></section>
++        <section class="question" role="group" aria-labelledby="q5-title" data-name="satisfaction"><div class="q-heading"><span class="number">05</span><div><h3 id="q5-title">你对目前的通勤体验满意吗？<span class="required">*</span></h3><p>跟随你的真实感受 · 单选</p></div></div><div class="options satisfaction" id="satisfaction-options"></div><p class="error">请选择一个满意程度。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q6-title" data-name="improvement"><div class="q-heading"><span class="number">06</span><div><h3 id="q6-title">你最希望通勤有哪些改善？<span class="required">*</span></h3><p>选出对你有帮助的改变 · 可多选</p></div></div><div class="options" id="improvement-options"></div><p class="error">请至少选择一项。</p></section>
++        <div class="form-bottom"><button class="submit" type="submit">完成问卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="privacy">本页为本地问卷，答案仅在当前页面中处理，不会上传。</p></div>
++      </form>
++      <section class="success" id="success" hidden tabindex="-1" aria-labelledby="success-title"><div class="success-icon"><svg class="icon" aria-hidden="true"><use href="#check"/></svg></div><h2 id="success-title">每一段路，都有了记录。</h2><p>感谢你分享通勤日常！6 道题已全部完成。<br>答卷尚未上传，你可以下载保存自己的记录。</p><dl class="summary" id="summary"></dl><button class="submit" type="button" id="download">下载我的答卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><button class="secondary" type="button" id="edit">返回修改答案</button><p id="download-status" role="status"></p></section>
++      <noscript><p>请启用 JavaScript 以显示问卷选项并填写这 6 道题。</p></noscript>
++    </section>
++  </main>
++  <footer class="footer"><span>在路上 · 关注每一段日常出行</span><span>A LITTLE SURVEY, A BETTER EVERYDAY.</span></footer>
++  <script>
++    const questions = [
++      {name:'duration',label:'单程通勤时间',options:['15 分钟以内','15–29 分钟','30–44 分钟','45–59 分钟','60 分钟及以上','无需通勤']},
++      {name:'transport',label:'主要交通方式',options:['地铁 / 轻轨','公交 / 班车','私家车 / 打车','自行车 / 电动车','步行','其他 / 无需通勤'],icons:['train','bus','car','bike','walk','more']},
++      {name:'distance',label:'单程通勤距离',options:['不足 3 公里','3–9 公里','10–19 公里','20–39 公里','40 公里及以上','不确定 / 无需通勤']},
++      {name:'frequency',label:'每周通勤天数',options:['0 天','1–2 天','3–4 天','5 天','6 天','7 天']},
++      {name:'satisfaction',label:'通勤满意度',options:['很不满意','不太满意','一般','比较满意','非常满意']},
++      {name:'improvement',label:'希望改善的方面',multiple:true,options:['缩短通勤时间','减少拥挤和堵车','降低出行费用','减少换乘次数','提高准点率','改善步行 / 骑行环境','其他','暂无改善需求']}
++    ];
++    const form=document.querySelector('#survey');
++    questions.forEach(q=>{
++      const container=document.getElementById(q.name+'-options');
++      q.options.forEach((value,i)=>{
++        const label=document.createElement('label');label.className='option'+(q.multiple?' checkbox':'');
++        const input=document.createElement('input');input.type=q.multiple?'checkbox':'radio';input.name=q.name;input.value=value;
++        if(!q.multiple) input.required=true;
++        const choice=document.createElement('span');choice.className='choice';
++        if(q.icons){choice.innerHTML='<svg class="icon" aria-hidden="true"><use href="#'+q.icons[i]+'"/></svg><span class="checkmark" aria-hidden="true">✓</span>';}
++        else if(q.name==='satisfaction'){
++          const paths=['M7 16q5-7 10 0','M7 15q5-4 10 0','M8 15h8','M7 13q5 6 10 0','M7 12q5 9 10 0'];
++          choice.innerHTML='<svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8h.01M16 8h.01'+paths[i]+'"/></svg>';
++        }else{const dot=document.createElement('span');dot.className='radio-dot';dot.setAttribute('aria-hidden','true');choice.append(dot);}
++        const text=document.createElement('span');text.textContent=value;choice.append(text);label.append(input,choice);container.append(label);
++      });
++    });
++    function answers(){return Object.fromEntries(questions.map(q=>[q.name,Array.from(form.querySelectorAll('input[name="'+q.name+'"]:checked'),input=>input.value)]));}
++    function updateProgress(){
++      const values=answers();const count=questions.filter(q=>values[q.name].length).length;
++      document.querySelector('#completed').textContent=count;
++      document.querySelector('.progress-fill').style.width=(count/6*100)+'%';
++      document.querySelector('.progress-track').setAttribute('aria-valuenow',count);
++      questions.forEach(q=>{if(values[q.name].length){const group=form.querySelector('[data-name="'+q.name+'"]');group.classList.remove('invalid');group.querySelectorAll('input').forEach(input=>{input.removeAttribute('aria-invalid');input.removeAttribute('aria-describedby');});}});
++    }
++    form.addEventListener('change',event=>{
++      const input=event.target;
++      if(input.name==='improvement'&&input.checked){
++        const none='暂无改善需求';
++        form.querySelectorAll('input[name="improvement"]').forEach(other=>{if(other!==input&&(input.value===none||other.value===none))other.checked=false;});
++      }
++      updateProgress();
++    });
++    form.addEventListener('submit',event=>{
++      event.preventDefault();const values=answers();let firstMissing=null;
++      questions.forEach(q=>{
++        const group=form.querySelector('[data-name="'+q.name+'"]');const missing=!values[q.name].length;
++        group.classList.toggle('invalid',missing);
++        if(missing){const error=group.querySelector('.error');error.id=q.name+'-error';group.querySelectorAll('input').forEach(input=>{input.setAttribute('aria-invalid','true');input.setAttribute('aria-describedby',error.id);});if(!firstMissing)firstMissing=group;}
++      });
++      if(firstMissing){firstMissing.querySelector('input').focus({preventScroll:true});firstMissing.scrollIntoView({behavior:'smooth',block:'center'});return;}
++      const summary=document.querySelector('#summary');summary.replaceChildren();
++      questions.forEach(q=>{const row=document.createElement('div');const dt=document.createElement('dt');dt.textContent=q.label;const dd=document.createElement('dd');dd.textContent=values[q.name].join('、');row.append(dt,dd);summary.append(row);});
++      form.hidden=true;const success=document.querySelector('#success');success.hidden=false;success.focus({preventScroll:true});success.scrollIntoView({behavior:'smooth',block:'start'});
++    });
++    document.querySelector('#edit').addEventListener('click',()=>{document.querySelector('#success').hidden=true;form.hidden=false;form.querySelector('input').focus({preventScroll:true});form.scrollIntoView({behavior:'smooth',block:'start'});});
++    document.querySelector('#download').addEventListener('click',()=>{
++      const values=answers();const record={问卷:'在路上 · 城市通勤小调查',填写时间:new Date().toISOString(),答案:Object.fromEntries(questions.map(q=>[q.label,q.multiple?values[q.name]:values[q.name][0]]))};
++      const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json;charset=utf-8'}));
++      const link=document.createElement('a');link.href=url;link.download='我的通勤答卷.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
++      document.querySelector('#download-status').textContent='已发起答卷下载，请查看浏览器的下载记录。';
++    });
++    updateProgress();
++  </script>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8d7241787775f941c329d2f900c8ecb25528a09
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,136 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f2">
++  <title>在路上 · 城市通勤小调查</title>
++  <style>
++    :root{--ink:#283d35;--muted:#7b857d;--green:#42664c;--lime:#d9eb98;--line:#e3e7dc;--paper:#f7f8f2;--white:#fff;--red:#a04435}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65}button,input,textarea{font:inherit}button,a,label{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}svg{display:block}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.symbols{position:absolute;width:0;height:0;overflow:hidden}
++    .header{height:86px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;max-width:1184px;margin:auto;padding:0 30px}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:750;letter-spacing:1px}.brandmark{width:33px;height:33px;background:var(--green);color:var(--lime);border-radius:10px;display:grid;place-items:center}.brand small{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:500;margin-left:9px}.header-note{display:flex;gap:8px;align-items:center;color:#788477;font-size:12px}.dot{width:6px;height:6px;border-radius:50%;background:#75985d;display:inline-block}
++    .layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:76px;max-width:1124px;margin:54px auto 70px;padding:0 30px}.intro{position:sticky;top:35px;align-self:start}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:650;color:var(--green);display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:23px;height:1px;background:var(--green)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;font-weight:750;margin:24px 0 19px}h1 span{position:relative;z-index:0}h1 span:after{content:"";position:absolute;left:0;right:0;bottom:3px;height:12px;background:var(--lime);z-index:-1;border-radius:2px}.lead{color:#7a8379;line-height:1.95;font-size:14px;margin:0;max-width:290px}.meta{display:flex;gap:19px;margin-top:25px;font-size:12px;color:#657260}.meta span{display:flex;align-items:center;gap:6px}.meta .icon{width:15px;height:15px}
++    .illustration{margin:28px -8px 14px;height:253px;position:relative}.illustration svg{width:100%;height:100%}.side-note{border-top:1px solid var(--line);padding-top:21px;margin-top:14px;display:flex;gap:10px;color:#8a9286;font-size:12px;line-height:1.85}.side-note .icon{flex-shrink:0;width:17px;margin-top:3px}.side-note p{margin:0}.side-note strong{display:block;color:#67745e;font-weight:500;margin-bottom:3px}
++    .survey-top{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}.survey-top h2{margin:0;font-size:16px;font-weight:650}.progress-label{font-size:12px;color:#88917f}.progress-label strong{color:var(--green);font-weight:600}.progress-track{height:4px;background:#e6eadd;border-radius:10px;margin-bottom:24px;overflow:hidden}.progress-fill{height:100%;width:0;background:#8ba65f;border-radius:10px;transition:width .3s}.question{min-width:0;padding:26px 28px 28px;margin:0 0 18px;background:var(--white);border:1px solid var(--line);border-radius:15px;transition:border-color .2s}.question.invalid{border-color:var(--red)}.q-heading{display:flex;gap:13px;align-items:flex-start;margin-bottom:20px}.number{font-size:11px;font-weight:600;width:28px;height:28px;display:grid;place-items:center;color:var(--green);background:#eff3e7;border-radius:8px;flex-shrink:0}.q-heading h3{font-size:16px;margin:0;font-weight:650;line-height:1.8;letter-spacing:.1px}.required{color:#97a47f;margin-left:5px;font-size:13px}.q-heading p{color:#959a90;font-size:11px;margin:3px 0 0}.options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.option{position:relative;cursor:pointer;min-width:0}.option input{position:absolute;opacity:0;width:1px;height:1px}.choice{height:46px;border:1px solid #e5e8df;border-radius:8px;display:flex;align-items:center;gap:8px;padding:0 13px;color:#687261;font-size:12px;background:#fff;transition:background .15s,border-color .15s}.radio-dot{width:14px;height:14px;border:1px solid #ccd3c5;border-radius:50%;flex-shrink:0;position:relative}.option input:checked+.choice{background:#f1f6e7;border-color:#829b61;color:#3f5d35}.option input:checked+.choice .radio-dot{border:4px solid #68844f}.option input:focus-visible+.choice{outline:2px solid var(--green);outline-offset:3px}.option:hover .choice{border-color:#9eae8e;background:#fafbf7}.transport .choice{height:85px;flex-direction:column;gap:8px;justify-content:center;position:relative}.transport .icon{width:25px;height:25px;color:#788567}.checkmark{display:none;position:absolute;right:8px;top:4px;font-size:12px;color:var(--green)}.option input:checked+.choice .checkmark{display:block}.question.compact .options{grid-template-columns:repeat(2,1fr)}.satisfaction{grid-template-columns:repeat(5,1fr)}.satisfaction .choice{height:75px;flex-direction:column;justify-content:center;gap:5px;padding:7px 2px;font-size:11px}.face{font-size:24px;line-height:1.1;font-family:Arial,sans-serif}.checkbox .radio-dot{border-radius:4px}.checkbox input:checked+.choice .radio-dot{border:0;background:#68844f}.checkbox input:checked+.choice .radio-dot:after{content:"✓";position:absolute;inset:0;color:white;line-height:14px;text-align:center;font-size:11px}.error{display:none;font-size:12px;margin:12px 0 0;color:var(--red)}.invalid .error{display:block}.form-bottom{padding:7px 0 0}.submit{width:100%;border:0;background:var(--green);color:white;border-radius:10px;height:52px;display:flex;justify-content:center;align-items:center;gap:14px;font-weight:600;transition:background .2s,transform .2s}.submit:hover{background:#34553d;transform:translateY(-1px)}.submit .icon{width:18px}.privacy{font-size:11px;text-align:center;color:#92998b;margin:12px 0}.footer{border-top:1px solid var(--line);max-width:1124px;margin:0 auto;padding:22px 30px 27px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.5px;color:#929a8c}.footer span:last-child{letter-spacing:1.5px}.success{padding:48px 30px;text-align:center;border:1px solid var(--line);border-radius:16px;background:white}.success[hidden]{display:none}.success-icon{width:64px;height:64px;border-radius:50%;background:#edf4dd;color:var(--green);margin:0 auto 20px;display:grid;place-items:center}.success-icon .icon{width:30px;height:30px}.success h2{font-size:25px;margin:0 0 10px}.success p{color:var(--muted);font-size:13px}.summary{margin:25px 0;text-align:left;background:#f7f8f2;border-radius:10px;padding:12px 18px}.summary div{display:flex;justify-content:space-between;gap:20px;padding:9px 0;font-size:12px}.summary div+div{border-top:1px solid var(--line)}.summary dt{color:var(--muted);flex-shrink:0}.summary dd{margin:0;text-align:right}.secondary{background:transparent;border:0;color:var(--green);margin-top:14px;padding:8px 20px;font-size:12px;text-decoration:underline;text-underline-offset:4px}button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:4px} @media(min-width:1250px){.layout{gap:90px;grid-template-columns:310px minmax(0,1fr)}}@media(max-width:900px){.layout{gap:35px;grid-template-columns:245px minmax(0,1fr);padding:0 24px}.header{padding:0 24px}h1{font-size:36px}.question{padding:22px 20px}.choice{padding:0 9px}.options{gap:8px}.illustration{height:220px}.brand small{display:none}}@media(max-width:700px){.header{height:72px;padding:0 22px}.brand{font-size:19px}.layout{display:block;margin:30px auto 40px;padding:0 20px;max-width:560px}.intro{position:relative;top:0;margin-bottom:32px}.eyebrow{font-size:10px}h1{font-size:35px;line-height:1.4;margin:15px 0 12px}h1 br{display:none}.lead{max-width:100%;font-size:13px}.meta{margin-top:17px}.illustration,.side-note{display:none}.question{padding:21px 18px;margin-bottom:14px;border-radius:12px}.q-heading h3{font-size:15px}.q-heading{gap:10px}.choice{font-size:11px;padding:0 9px;gap:6px}.options{gap:8px}.footer{padding:20px;gap:10px;font-size:9px}.header-note{font-size:10px}.satisfaction .choice{font-size:10px;padding:7px 0}.survey-top h2{font-size:14px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h8a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8M6 8v4M18 16v-4"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 15h6"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></symbol>
++    <symbol id="train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="16" rx="4"/><path d="M5 10h14M12 3v7M8 19l-2 3M16 19l2 3M8 15h1M15 15h1"/></symbol>
++    <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 11h16M8 15h1M15 15h1M7 19v3M17 19v3M9 6h6"/></symbol>
++    <symbol id="car" viewBox="0 0 24 24"><path d="m4 10 2-6h12l2 6M3 17V11l2-1h14l2 1v6H3ZM5 17v3M19 17v3M6 14h2M16 14h2"/></symbol>
++    <symbol id="bike" viewBox="0 0 24 24"><circle cx="5" cy="16" r="4"/><circle cx="19" cy="16" r="4"/><path d="m5 16 5-9 5 9H5M10 7h7l2 9M15 4h3l1 3M8 4h4"/></symbol>
++    <symbol id="walk" viewBox="0 0 24 24"><circle cx="14" cy="4" r="2"/><path d="m7 22 4-8 4 3v5M4 12l5-4h5l2 5h4M12 8l-1 6"/></symbol>
++    <symbol id="more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
++    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
++  </defs></svg>
++  <header class="header"><a class="brand" href="./index.html" aria-label="在路上，问卷首页"><span class="brandmark"><svg class="icon"><use href="#route"/></svg></span>在路上<small>ON THE WAY</small></a><div class="header-note"><span class="dot"></span>城市生活观察计划</div></header>
++  <main class="layout">
++    <aside class="intro">
++      <div class="eyebrow">THE DAILY COMMUTE</div>
++      <h1>你的每一天，<br>有多久<span>在路上</span>？</h1>
++      <p class="lead">从家门到目的地，每一段路都有自己的节奏。聊聊你的日常通勤，让城市生活的轮廓更清晰一点。</p>
++      <div class="meta"><span><svg class="icon"><use href="#clock"/></svg>约 2 分钟</span><span><svg class="icon"><use href="#list"/></svg>6 道小问题</span></div>
++      <div class="illustration">
++        <svg viewBox="0 0 330 260" fill="none" role="img" aria-label="一条连接家与办公楼的绿色城市通勤路线">
++          <ellipse cx="165" cy="142" rx="139" ry="103" fill="#eef1e3"/>
++          <path d="M18 192h294M36 220h265" stroke="#d9dfcc" stroke-width="1"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#b4c88b" stroke-width="20" stroke-linecap="round"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#fcfff5" stroke-width="1.5" stroke-dasharray="5 7"/>
++          <path d="M30 118 65 90l35 28" fill="#dee7c7" stroke="#677e53" stroke-width="2" stroke-linejoin="round"/><path d="M38 115v52h54v-52" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M57 167v-26h16v26M47 123h10v10H47M74 123h10v10H74" stroke="#677e53" stroke-width="1.5"/><path d="M83 103V89h9v21" stroke="#677e53" stroke-width="2"/>
++          <rect x="219" y="63" width="64" height="95" rx="3" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M230 77h11v11h-11zM258 77h11v11h-11zM230 99h11v11h-11zM258 99h11v11h-11zM230 121h11v11h-11zM258 121h11v11h-11z" fill="#dce8c6"/><path d="M244 158v-16h14v16" stroke="#677e53" stroke-width="1.5"/><path d="M236 63V53h30v10" stroke="#677e53" stroke-width="2"/>
++          <rect x="128" y="181" width="64" height="28" rx="7" fill="#486b48"/><path d="M135 188h11v9h-11zM151 188h11v9h-11zM167 188h17v9h-17z" fill="#dceba9"/><circle cx="140" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/><circle cx="181" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/>
++          <path d="M112 157v23M294 137v33" stroke="#8c9d6f" stroke-width="2"/><ellipse cx="112" cy="152" rx="10" ry="16" fill="#cadba6"/><ellipse cx="294" cy="132" rx="12" ry="21" fill="#cadba6"/>
++          <path d="M104 83c27-30 61-35 92-17" stroke="#97ab76" stroke-width="1.5" stroke-dasharray="4 5"/><path d="m190 59 8 8-11 2" stroke="#97ab76" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
++          <rect x="26" y="54" width="67" height="24" rx="12" fill="#fff"/><text x="59.5" y="70" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">从家出发</text><rect x="228" y="178" width="76" height="24" rx="12" fill="#fff"/><text x="266" y="194" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">抵达日常</text>
++          <circle cx="164" cy="103" r="20" fill="#e1ebc9"/><path d="M164 93v11l7 4" stroke="#8a9d67" stroke-width="1.7" stroke-linecap="round"/>
++        </svg>
++      </div>
++      <div class="side-note"><svg class="icon"><use href="#shield"/></svg><p><strong>关于这份小调查</strong>无需姓名和联系方式。请以最近一个月的通常情况作答，单程时间包含步行和候车。</p></div>
++    </aside>
++    <section aria-label="通勤调查问卷">
++      <div class="survey-top"><h2>记录你的通勤日常</h2><span class="progress-label" aria-live="polite">已完成 <strong id="completed">0</strong> / 6</span></div>
++      <div class="progress-track" role="progressbar" aria-label="问卷完成进度" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><div class="progress-fill"></div></div>
++      <form id="survey" novalidate>
++        <section class="question" role="group" aria-labelledby="q1-title" data-name="duration"><div class="q-heading"><span class="number">01</span><div><h3 id="q1-title">你通常的单程通勤时间是？<span class="required">*</span></h3><p>从出发到抵达，选择最接近的时间 · 单选</p></div></div><div class="options" id="duration-options"></div><p class="error">请选择一个通勤时间。</p></section>
++        <section class="question" role="group" aria-labelledby="q2-title" data-name="transport"><div class="q-heading"><span class="number">02</span><div><h3 id="q2-title">你最主要的通勤方式是？<span class="required">*</span></h3><p>如果需要换乘，请选择花费时间最长的方式 · 单选</p></div></div><div class="options transport" id="transport-options"></div><p class="error">请选择一种主要交通方式。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q3-title" data-name="distance"><div class="q-heading"><span class="number">03</span><div><h3 id="q3-title">你的单程通勤距离大约是？<span class="required">*</span></h3><p>估算日常路线的距离即可 · 单选</p></div></div><div class="options" id="distance-options"></div><p class="error">请选择一个通勤距离。</p></section>
++        <section class="question" role="group" aria-labelledby="q4-title" data-name="frequency"><div class="q-heading"><span class="number">04</span><div><h3 id="q4-title">你平均每周有几天需要通勤？<span class="required">*</span></h3><p>包括上班或上学的往返出行 · 单选</p></div></div><div class="options" id="frequency-options"></div><p class="error">请选择每周通勤天数。</p></section>
++        <section class="question" role="group" aria-labelledby="q5-title" data-name="satisfaction"><div class="q-heading"><span class="number">05</span><div><h3 id="q5-title">你对目前的通勤体验满意吗？<span class="required">*</span></h3><p>跟随你的真实感受 · 单选</p></div></div><div class="options satisfaction" id="satisfaction-options"></div><p class="error">请选择一个满意程度。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q6-title" data-name="improvement"><div class="q-heading"><span class="number">06</span><div><h3 id="q6-title">你最希望通勤有哪些改善？<span class="required">*</span></h3><p>选出对你有帮助的改变 · 可多选</p></div></div><div class="options" id="improvement-options"></div><p class="error">请至少选择一项。</p></section>
++        <div class="form-bottom"><button class="submit" type="submit">完成问卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="privacy">本页为本地问卷，答案仅在当前页面中处理，不会上传。</p></div>
++      </form>
++      <section class="success" id="success" hidden tabindex="-1" aria-labelledby="success-title"><div class="success-icon"><svg class="icon" aria-hidden="true"><use href="#check"/></svg></div><h2 id="success-title">每一段路，都有了记录。</h2><p>感谢你分享通勤日常！6 道题已全部完成。<br>答卷尚未上传，你可以下载保存自己的记录。</p><dl class="summary" id="summary"></dl><button class="submit" type="button" id="download">下载我的答卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><button class="secondary" type="button" id="edit">返回修改答案</button><p id="download-status" role="status"></p></section>
++      <noscript><p>请启用 JavaScript 以显示问卷选项并填写这 6 道题。</p></noscript>
++    </section>
++  </main>
++  <footer class="footer"><span>在路上 · 关注每一段日常出行</span><span>A LITTLE SURVEY, A BETTER EVERYDAY.</span></footer>
++  <script>
++    const questions = [
++      {name:'duration',label:'单程通勤时间',options:['15 分钟以内','15–29 分钟','30–44 分钟','45–59 分钟','60 分钟及以上','无需通勤']},
++      {name:'transport',label:'主要交通方式',options:['地铁 / 轻轨','公交 / 班车','私家车 / 打车','自行车 / 电动车','步行','其他 / 无需通勤'],icons:['train','bus','car','bike','walk','more']},
++      {name:'distance',label:'单程通勤距离',options:['不足 3 公里','3–9 公里','10–19 公里','20–39 公里','40 公里及以上','不确定 / 无需通勤']},
++      {name:'frequency',label:'每周通勤天数',options:['0 天','1–2 天','3–4 天','5 天','6 天','7 天']},
++      {name:'satisfaction',label:'通勤满意度',options:['很不满意','不太满意','一般','比较满意','非常满意']},
++      {name:'improvement',label:'希望改善的方面',multiple:true,options:['缩短通勤时间','减少拥挤和堵车','降低出行费用','减少换乘次数','提高准点率','改善步行 / 骑行环境','其他','暂无改善需求']}
++    ];
++    const form=document.querySelector('#survey');
++    questions.forEach(q=>{
++      const container=document.getElementById(q.name+'-options');
++      q.options.forEach((value,i)=>{
++        const label=document.createElement('label');label.className='option'+(q.multiple?' checkbox':'');
++        const input=document.createElement('input');input.type=q.multiple?'checkbox':'radio';input.name=q.name;input.value=value;
++        if(!q.multiple) input.required=true;
++        const choice=document.createElement('span');choice.className='choice';
++        if(q.icons){choice.innerHTML='<svg class="icon" aria-hidden="true"><use href="#'+q.icons[i]+'"/></svg><span class="checkmark" aria-hidden="true">✓</span>';}
++        else if(q.name==='satisfaction'){
++          const paths=['M7 16q5-7 10 0','M7 15q5-4 10 0','M8 15h8','M7 13q5 6 10 0','M7 12q5 9 10 0'];
++          choice.innerHTML='<svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8h.01M16 8h.01'+paths[i]+'"/></svg>';
++        }else{const dot=document.createElement('span');dot.className='radio-dot';dot.setAttribute('aria-hidden','true');choice.append(dot);}
++        const text=document.createElement('span');text.textContent=value;choice.append(text);label.append(input,choice);container.append(label);
++      });
++    });
++    function answers(){return Object.fromEntries(questions.map(q=>[q.name,Array.from(form.querySelectorAll('input[name="'+q.name+'"]:checked'),input=>input.value)]));}
++    function updateProgress(){
++      const values=answers();const count=questions.filter(q=>values[q.name].length).length;
++      document.querySelector('#completed').textContent=count;
++      document.querySelector('.progress-fill').style.width=(count/6*100)+'%';
++      document.querySelector('.progress-track').setAttribute('aria-valuenow',count);
++      questions.forEach(q=>{if(values[q.name].length){const group=form.querySelector('[data-name="'+q.name+'"]');group.classList.remove('invalid');group.querySelectorAll('input').forEach(input=>{input.removeAttribute('aria-invalid');input.removeAttribute('aria-describedby');});}});
++    }
++    form.addEventListener('change',event=>{
++      const input=event.target;
++      if(input.name==='improvement'&&input.checked){
++        const none='暂无改善需求';
++        form.querySelectorAll('input[name="improvement"]').forEach(other=>{if(other!==input&&(input.value===none||other.value===none))other.checked=false;});
++      }
++      updateProgress();
++    });
++    form.addEventListener('submit',event=>{
++      event.preventDefault();const values=answers();let firstMissing=null;
++      questions.forEach(q=>{
++        const group=form.querySelector('[data-name="'+q.name+'"]');const missing=!values[q.name].length;
++        group.classList.toggle('invalid',missing);
++        if(missing){const error=group.querySelector('.error');error.id=q.name+'-error';group.querySelectorAll('input').forEach(input=>{input.setAttribute('aria-invalid','true');input.setAttribute('aria-describedby',error.id);});if(!firstMissing)firstMissing=group;}
++      });
++      if(firstMissing){firstMissing.querySelector('input').focus({preventScroll:true});firstMissing.scrollIntoView({behavior:'smooth',block:'center'});return;}
++      const summary=document.querySelector('#summary');summary.replaceChildren();
++      questions.forEach(q=>{const row=document.createElement('div');const dt=document.createElement('dt');dt.textContent=q.label;const dd=document.createElement('dd');dd.textContent=values[q.name].join('、');row.append(dt,dd);summary.append(row);});
++      form.hidden=true;const success=document.querySelector('#success');success.hidden=false;success.focus({preventScroll:true});success.scrollIntoView({behavior:'smooth',block:'start'});
++    });
++    document.querySelector('#edit').addEventListener('click',()=>{document.querySelector('#success').hidden=true;form.hidden=false;form.querySelector('input').focus({preventScroll:true});form.scrollIntoView({behavior:'smooth',block:'start'});});
++    document.querySelector('#download').addEventListener('click',()=>{
++      const values=answers();const record={问卷:'在路上 · 城市通勤小调查',填写时间:new Date().toISOString(),答案:Object.fromEntries(questions.map(q=>[q.label,q.multiple?values[q.name]:values[q.name][0]]))};
++      const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json;charset=utf-8'}));
++      const link=document.createElement('a');link.href=url;link.download='我的通勤答卷.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
++      document.querySelector('#download-status').textContent='已发起答卷下载，请查看浏览器的下载记录。';
++    });
++    updateProgress();
++  </script>
++</body>
++</html>
+
+codex
+页面已生成，包含 6 道题、填写进度、必填校验和答卷下载功能。我会再检查文件和脚本；页面无需依赖，答案仅在本地处理。
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from pathlib import Path
+from html.parser import HTMLParser
+import subprocess
+html = Path('index.html').read_text()
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__(); self.ids=[]; self.questions=0
+    def handle_starttag(self, tag, attrs):
+        attrs=dict(attrs)
+        if 'id' in attrs: self.ids.append(attrs['id'])
+        if 'data-name' in attrs: self.questions+=1
+parser=Check(); parser.feed(html)
+assert parser.questions == 6
+assert len(parser.ids) == len(set(parser.ids))
+script=html.split('<script>')[1].split('</script>')[0]
+result=subprocess.run(['node','--check'],input=script,text=True,capture_output=True)
+assert result.returncode == 0, result.stderr
+assert 'https://' not in html and 'http://' not in html.replace('http://www.w3.org/2000/svg', '')
+print('通过检查：6 道题、无重复 ID、JavaScript 语法正确、无外部资源依赖。')
+PY" in <tmp>/measure-baseline-codex-023-mxDUI3
+ succeeded in 120ms:
+通过检查：6 道题、无重复 ID、JavaScript 语法正确、无外部资源依赖。
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8d7241787775f941c329d2f900c8ecb25528a09
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,136 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f2">
++  <title>在路上 · 城市通勤小调查</title>
++  <style>
++    :root{--ink:#283d35;--muted:#7b857d;--green:#42664c;--lime:#d9eb98;--line:#e3e7dc;--paper:#f7f8f2;--white:#fff;--red:#a04435}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65}button,input,textarea{font:inherit}button,a,label{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}svg{display:block}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.symbols{position:absolute;width:0;height:0;overflow:hidden}
++    .header{height:86px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;max-width:1184px;margin:auto;padding:0 30px}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:750;letter-spacing:1px}.brandmark{width:33px;height:33px;background:var(--green);color:var(--lime);border-radius:10px;display:grid;place-items:center}.brand small{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:500;margin-left:9px}.header-note{display:flex;gap:8px;align-items:center;color:#788477;font-size:12px}.dot{width:6px;height:6px;border-radius:50%;background:#75985d;display:inline-block}
++    .layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:76px;max-width:1124px;margin:54px auto 70px;padding:0 30px}.intro{position:sticky;top:35px;align-self:start}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:650;color:var(--green);display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:23px;height:1px;background:var(--green)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;font-weight:750;margin:24px 0 19px}h1 span{position:relative;z-index:0}h1 span:after{content:"";position:absolute;left:0;right:0;bottom:3px;height:12px;background:var(--lime);z-index:-1;border-radius:2px}.lead{color:#7a8379;line-height:1.95;font-size:14px;margin:0;max-width:290px}.meta{display:flex;gap:19px;margin-top:25px;font-size:12px;color:#657260}.meta span{display:flex;align-items:center;gap:6px}.meta .icon{width:15px;height:15px}
++    .illustration{margin:28px -8px 14px;height:253px;position:relative}.illustration svg{width:100%;height:100%}.side-note{border-top:1px solid var(--line);padding-top:21px;margin-top:14px;display:flex;gap:10px;color:#8a9286;font-size:12px;line-height:1.85}.side-note .icon{flex-shrink:0;width:17px;margin-top:3px}.side-note p{margin:0}.side-note strong{display:block;color:#67745e;font-weight:500;margin-bottom:3px}
++    .survey-top{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}.survey-top h2{margin:0;font-size:16px;font-weight:650}.progress-label{font-size:12px;color:#88917f}.progress-label strong{color:var(--green);font-weight:600}.progress-track{height:4px;background:#e6eadd;border-radius:10px;margin-bottom:24px;overflow:hidden}.progress-fill{height:100%;width:0;background:#8ba65f;border-radius:10px;transition:width .3s}.question{min-width:0;padding:26px 28px 28px;margin:0 0 18px;background:var(--white);border:1px solid var(--line);border-radius:15px;transition:border-color .2s}.question.invalid{border-color:var(--red)}.q-heading{display:flex;gap:13px;align-items:flex-start;margin-bottom:20px}.number{font-size:11px;font-weight:600;width:28px;height:28px;display:grid;place-items:center;color:var(--green);background:#eff3e7;border-radius:8px;flex-shrink:0}.q-heading h3{font-size:16px;margin:0;font-weight:650;line-height:1.8;letter-spacing:.1px}.required{color:#97a47f;margin-left:5px;font-size:13px}.q-heading p{color:#959a90;font-size:11px;margin:3px 0 0}.options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.option{position:relative;cursor:pointer;min-width:0}.option input{position:absolute;opacity:0;width:1px;height:1px}.choice{height:46px;border:1px solid #e5e8df;border-radius:8px;display:flex;align-items:center;gap:8px;padding:0 13px;color:#687261;font-size:12px;background:#fff;transition:background .15s,border-color .15s}.radio-dot{width:14px;height:14px;border:1px solid #ccd3c5;border-radius:50%;flex-shrink:0;position:relative}.option input:checked+.choice{background:#f1f6e7;border-color:#829b61;color:#3f5d35}.option input:checked+.choice .radio-dot{border:4px solid #68844f}.option input:focus-visible+.choice{outline:2px solid var(--green);outline-offset:3px}.option:hover .choice{border-color:#9eae8e;background:#fafbf7}.transport .choice{height:85px;flex-direction:column;gap:8px;justify-content:center;position:relative}.transport .icon{width:25px;height:25px;color:#788567}.checkmark{display:none;position:absolute;right:8px;top:4px;font-size:12px;color:var(--green)}.option input:checked+.choice .checkmark{display:block}.question.compact .options{grid-template-columns:repeat(2,1fr)}.satisfaction{grid-template-columns:repeat(5,1fr)}.satisfaction .choice{height:75px;flex-direction:column;justify-content:center;gap:5px;padding:7px 2px;font-size:11px}.face{font-size:24px;line-height:1.1;font-family:Arial,sans-serif}.checkbox .radio-dot{border-radius:4px}.checkbox input:checked+.choice .radio-dot{border:0;background:#68844f}.checkbox input:checked+.choice .radio-dot:after{content:"✓";position:absolute;inset:0;color:white;line-height:14px;text-align:center;font-size:11px}.error{display:none;font-size:12px;margin:12px 0 0;color:var(--red)}.invalid .error{display:block}.form-bottom{padding:7px 0 0}.submit{width:100%;border:0;background:var(--green);color:white;border-radius:10px;height:52px;display:flex;justify-content:center;align-items:center;gap:14px;font-weight:600;transition:background .2s,transform .2s}.submit:hover{background:#34553d;transform:translateY(-1px)}.submit .icon{width:18px}.privacy{font-size:11px;text-align:center;color:#92998b;margin:12px 0}.footer{border-top:1px solid var(--line);max-width:1124px;margin:0 auto;padding:22px 30px 27px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.5px;color:#929a8c}.footer span:last-child{letter-spacing:1.5px}.success{padding:48px 30px;text-align:center;border:1px solid var(--line);border-radius:16px;background:white}.success[hidden]{display:none}.success-icon{width:64px;height:64px;border-radius:50%;background:#edf4dd;color:var(--green);margin:0 auto 20px;display:grid;place-items:center}.success-icon .icon{width:30px;height:30px}.success h2{font-size:25px;margin:0 0 10px}.success p{color:var(--muted);font-size:13px}.summary{margin:25px 0;text-align:left;background:#f7f8f2;border-radius:10px;padding:12px 18px}.summary div{display:flex;justify-content:space-between;gap:20px;padding:9px 0;font-size:12px}.summary div+div{border-top:1px solid var(--line)}.summary dt{color:var(--muted);flex-shrink:0}.summary dd{margin:0;text-align:right}.secondary{background:transparent;border:0;color:var(--green);margin-top:14px;padding:8px 20px;font-size:12px;text-decoration:underline;text-underline-offset:4px}button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:4px} @media(min-width:1250px){.layout{gap:90px;grid-template-columns:310px minmax(0,1fr)}}@media(max-width:900px){.layout{gap:35px;grid-template-columns:245px minmax(0,1fr);padding:0 24px}.header{padding:0 24px}h1{font-size:36px}.question{padding:22px 20px}.choice{padding:0 9px}.options{gap:8px}.illustration{height:220px}.brand small{display:none}}@media(max-width:700px){.header{height:72px;padding:0 22px}.brand{font-size:19px}.layout{display:block;margin:30px auto 40px;padding:0 20px;max-width:560px}.intro{position:relative;top:0;margin-bottom:32px}.eyebrow{font-size:10px}h1{font-size:35px;line-height:1.4;margin:15px 0 12px}h1 br{display:none}.lead{max-width:100%;font-size:13px}.meta{margin-top:17px}.illustration,.side-note{display:none}.question{padding:21px 18px;margin-bottom:14px;border-radius:12px}.q-heading h3{font-size:15px}.q-heading{gap:10px}.choice{font-size:11px;padding:0 9px;gap:6px}.options{gap:8px}.footer{padding:20px;gap:10px;font-size:9px}.header-note{font-size:10px}.satisfaction .choice{font-size:10px;padding:7px 0}.survey-top h2{font-size:14px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h8a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8M6 8v4M18 16v-4"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 15h6"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></symbol>
++    <symbol id="train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="16" rx="4"/><path d="M5 10h14M12 3v7M8 19l-2 3M16 19l2 3M8 15h1M15 15h1"/></symbol>
++    <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 11h16M8 15h1M15 15h1M7 19v3M17 19v3M9 6h6"/></symbol>
++    <symbol id="car" viewBox="0 0 24 24"><path d="m4 10 2-6h12l2 6M3 17V11l2-1h14l2 1v6H3ZM5 17v3M19 17v3M6 14h2M16 14h2"/></symbol>
++    <symbol id="bike" viewBox="0 0 24 24"><circle cx="5" cy="16" r="4"/><circle cx="19" cy="16" r="4"/><path d="m5 16 5-9 5 9H5M10 7h7l2 9M15 4h3l1 3M8 4h4"/></symbol>
++    <symbol id="walk" viewBox="0 0 24 24"><circle cx="14" cy="4" r="2"/><path d="m7 22 4-8 4 3v5M4 12l5-4h5l2 5h4M12 8l-1 6"/></symbol>
++    <symbol id="more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
++    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
++  </defs></svg>
++  <header class="header"><a class="brand" href="./index.html" aria-label="在路上，问卷首页"><span class="brandmark"><svg class="icon"><use href="#route"/></svg></span>在路上<small>ON THE WAY</small></a><div class="header-note"><span class="dot"></span>城市生活观察计划</div></header>
++  <main class="layout">
++    <aside class="intro">
++      <div class="eyebrow">THE DAILY COMMUTE</div>
++      <h1>你的每一天，<br>有多久<span>在路上</span>？</h1>
++      <p class="lead">从家门到目的地，每一段路都有自己的节奏。聊聊你的日常通勤，让城市生活的轮廓更清晰一点。</p>
++      <div class="meta"><span><svg class="icon"><use href="#clock"/></svg>约 2 分钟</span><span><svg class="icon"><use href="#list"/></svg>6 道小问题</span></div>
++      <div class="illustration">
++        <svg viewBox="0 0 330 260" fill="none" role="img" aria-label="一条连接家与办公楼的绿色城市通勤路线">
++          <ellipse cx="165" cy="142" rx="139" ry="103" fill="#eef1e3"/>
++          <path d="M18 192h294M36 220h265" stroke="#d9dfcc" stroke-width="1"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#b4c88b" stroke-width="20" stroke-linecap="round"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#fcfff5" stroke-width="1.5" stroke-dasharray="5 7"/>
++          <path d="M30 118 65 90l35 28" fill="#dee7c7" stroke="#677e53" stroke-width="2" stroke-linejoin="round"/><path d="M38 115v52h54v-52" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M57 167v-26h16v26M47 123h10v10H47M74 123h10v10H74" stroke="#677e53" stroke-width="1.5"/><path d="M83 103V89h9v21" stroke="#677e53" stroke-width="2"/>
++          <rect x="219" y="63" width="64" height="95" rx="3" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M230 77h11v11h-11zM258 77h11v11h-11zM230 99h11v11h-11zM258 99h11v11h-11zM230 121h11v11h-11zM258 121h11v11h-11z" fill="#dce8c6"/><path d="M244 158v-16h14v16" stroke="#677e53" stroke-width="1.5"/><path d="M236 63V53h30v10" stroke="#677e53" stroke-width="2"/>
++          <rect x="128" y="181" width="64" height="28" rx="7" fill="#486b48"/><path d="M135 188h11v9h-11zM151 188h11v9h-11zM167 188h17v9h-17z" fill="#dceba9"/><circle cx="140" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/><circle cx="181" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/>
++          <path d="M112 157v23M294 137v33" stroke="#8c9d6f" stroke-width="2"/><ellipse cx="112" cy="152" rx="10" ry="16" fill="#cadba6"/><ellipse cx="294" cy="132" rx="12" ry="21" fill="#cadba6"/>
++          <path d="M104 83c27-30 61-35 92-17" stroke="#97ab76" stroke-width="1.5" stroke-dasharray="4 5"/><path d="m190 59 8 8-11 2" stroke="#97ab76" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
++          <rect x="26" y="54" width="67" height="24" rx="12" fill="#fff"/><text x="59.5" y="70" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">从家出发</text><rect x="228" y="178" width="76" height="24" rx="12" fill="#fff"/><text x="266" y="194" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">抵达日常</text>
++          <circle cx="164" cy="103" r="20" fill="#e1ebc9"/><path d="M164 93v11l7 4" stroke="#8a9d67" stroke-width="1.7" stroke-linecap="round"/>
++        </svg>
++      </div>
++      <div class="side-note"><svg class="icon"><use href="#shield"/></svg><p><strong>关于这份小调查</strong>无需姓名和联系方式。请以最近一个月的通常情况作答，单程时间包含步行和候车。</p></div>
++    </aside>
++    <section aria-label="通勤调查问卷">
++      <div class="survey-top"><h2>记录你的通勤日常</h2><span class="progress-label" aria-live="polite">已完成 <strong id="completed">0</strong> / 6</span></div>
++      <div class="progress-track" role="progressbar" aria-label="问卷完成进度" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><div class="progress-fill"></div></div>
++      <form id="survey" novalidate>
++        <section class="question" role="group" aria-labelledby="q1-title" data-name="duration"><div class="q-heading"><span class="number">01</span><div><h3 id="q1-title">你通常的单程通勤时间是？<span class="required">*</span></h3><p>从出发到抵达，选择最接近的时间 · 单选</p></div></div><div class="options" id="duration-options"></div><p class="error">请选择一个通勤时间。</p></section>
++        <section class="question" role="group" aria-labelledby="q2-title" data-name="transport"><div class="q-heading"><span class="number">02</span><div><h3 id="q2-title">你最主要的通勤方式是？<span class="required">*</span></h3><p>如果需要换乘，请选择花费时间最长的方式 · 单选</p></div></div><div class="options transport" id="transport-options"></div><p class="error">请选择一种主要交通方式。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q3-title" data-name="distance"><div class="q-heading"><span class="number">03</span><div><h3 id="q3-title">你的单程通勤距离大约是？<span class="required">*</span></h3><p>估算日常路线的距离即可 · 单选</p></div></div><div class="options" id="distance-options"></div><p class="error">请选择一个通勤距离。</p></section>
++        <section class="question" role="group" aria-labelledby="q4-title" data-name="frequency"><div class="q-heading"><span class="number">04</span><div><h3 id="q4-title">你平均每周有几天需要通勤？<span class="required">*</span></h3><p>包括上班或上学的往返出行 · 单选</p></div></div><div class="options" id="frequency-options"></div><p class="error">请选择每周通勤天数。</p></section>
++        <section class="question" role="group" aria-labelledby="q5-title" data-name="satisfaction"><div class="q-heading"><span class="number">05</span><div><h3 id="q5-title">你对目前的通勤体验满意吗？<span class="required">*</span></h3><p>跟随你的真实感受 · 单选</p></div></div><div class="options satisfaction" id="satisfaction-options"></div><p class="error">请选择一个满意程度。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q6-title" data-name="improvement"><div class="q-heading"><span class="number">06</span><div><h3 id="q6-title">你最希望通勤有哪些改善？<span class="required">*</span></h3><p>选出对你有帮助的改变 · 可多选</p></div></div><div class="options" id="improvement-options"></div><p class="error">请至少选择一项。</p></section>
++        <div class="form-bottom"><button class="submit" type="submit">完成问卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="privacy">本页为本地问卷，答案仅在当前页面中处理，不会上传。</p></div>
++      </form>
++      <section class="success" id="success" hidden tabindex="-1" aria-labelledby="success-title"><div class="success-icon"><svg class="icon" aria-hidden="true"><use href="#check"/></svg></div><h2 id="success-title">每一段路，都有了记录。</h2><p>感谢你分享通勤日常！6 道题已全部完成。<br>答卷尚未上传，你可以下载保存自己的记录。</p><dl class="summary" id="summary"></dl><button class="submit" type="button" id="download">下载我的答卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><button class="secondary" type="button" id="edit">返回修改答案</button><p id="download-status" role="status"></p></section>
++      <noscript><p>请启用 JavaScript 以显示问卷选项并填写这 6 道题。</p></noscript>
++    </section>
++  </main>
++  <footer class="footer"><span>在路上 · 关注每一段日常出行</span><span>A LITTLE SURVEY, A BETTER EVERYDAY.</span></footer>
++  <script>
++    const questions = [
++      {name:'duration',label:'单程通勤时间',options:['15 分钟以内','15–29 分钟','30–44 分钟','45–59 分钟','60 分钟及以上','无需通勤']},
++      {name:'transport',label:'主要交通方式',options:['地铁 / 轻轨','公交 / 班车','私家车 / 打车','自行车 / 电动车','步行','其他 / 无需通勤'],icons:['train','bus','car','bike','walk','more']},
++      {name:'distance',label:'单程通勤距离',options:['不足 3 公里','3–9 公里','10–19 公里','20–39 公里','40 公里及以上','不确定 / 无需通勤']},
++      {name:'frequency',label:'每周通勤天数',options:['0 天','1–2 天','3–4 天','5 天','6 天','7 天']},
++      {name:'satisfaction',label:'通勤满意度',options:['很不满意','不太满意','一般','比较满意','非常满意']},
++      {name:'improvement',label:'希望改善的方面',multiple:true,options:['缩短通勤时间','减少拥挤和堵车','降低出行费用','减少换乘次数','提高准点率','改善步行 / 骑行环境','其他','暂无改善需求']}
++    ];
++    const form=document.querySelector('#survey');
++    questions.forEach(q=>{
++      const container=document.getElementById(q.name+'-options');
++      q.options.forEach((value,i)=>{
++        const label=document.createElement('label');label.className='option'+(q.multiple?' checkbox':'');
++        const input=document.createElement('input');input.type=q.multiple?'checkbox':'radio';input.name=q.name;input.value=value;
++        if(!q.multiple) input.required=true;
++        const choice=document.createElement('span');choice.className='choice';
++        if(q.icons){choice.innerHTML='<svg class="icon" aria-hidden="true"><use href="#'+q.icons[i]+'"/></svg><span class="checkmark" aria-hidden="true">✓</span>';}
++        else if(q.name==='satisfaction'){
++          const paths=['M7 16q5-7 10 0','M7 15q5-4 10 0','M8 15h8','M7 13q5 6 10 0','M7 12q5 9 10 0'];
++          choice.innerHTML='<svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8h.01M16 8h.01'+paths[i]+'"/></svg>';
++        }else{const dot=document.createElement('span');dot.className='radio-dot';dot.setAttribute('aria-hidden','true');choice.append(dot);}
++        const text=document.createElement('span');text.textContent=value;choice.append(text);label.append(input,choice);container.append(label);
++      });
++    });
++    function answers(){return Object.fromEntries(questions.map(q=>[q.name,Array.from(form.querySelectorAll('input[name="'+q.name+'"]:checked'),input=>input.value)]));}
++    function updateProgress(){
++      const values=answers();const count=questions.filter(q=>values[q.name].length).length;
++      document.querySelector('#completed').textContent=count;
++      document.querySelector('.progress-fill').style.width=(count/6*100)+'%';
++      document.querySelector('.progress-track').setAttribute('aria-valuenow',count);
++      questions.forEach(q=>{if(values[q.name].length){const group=form.querySelector('[data-name="'+q.name+'"]');group.classList.remove('invalid');group.querySelectorAll('input').forEach(input=>{input.removeAttribute('aria-invalid');input.removeAttribute('aria-describedby');});}});
++    }
++    form.addEventListener('change',event=>{
++      const input=event.target;
++      if(input.name==='improvement'&&input.checked){
++        const none='暂无改善需求';
++        form.querySelectorAll('input[name="improvement"]').forEach(other=>{if(other!==input&&(input.value===none||other.value===none))other.checked=false;});
++      }
++      updateProgress();
++    });
++    form.addEventListener('submit',event=>{
++      event.preventDefault();const values=answers();let firstMissing=null;
++      questions.forEach(q=>{
++        const group=form.querySelector('[data-name="'+q.name+'"]');const missing=!values[q.name].length;
++        group.classList.toggle('invalid',missing);
++        if(missing){const error=group.querySelector('.error');error.id=q.name+'-error';group.querySelectorAll('input').forEach(input=>{input.setAttribute('aria-invalid','true');input.setAttribute('aria-describedby',error.id);});if(!firstMissing)firstMissing=group;}
++      });
++      if(firstMissing){firstMissing.querySelector('input').focus({preventScroll:true});firstMissing.scrollIntoView({behavior:'smooth',block:'center'});return;}
++      const summary=document.querySelector('#summary');summary.replaceChildren();
++      questions.forEach(q=>{const row=document.createElement('div');const dt=document.createElement('dt');dt.textContent=q.label;const dd=document.createElement('dd');dd.textContent=values[q.name].join('、');row.append(dt,dd);summary.append(row);});
++      form.hidden=true;const success=document.querySelector('#success');success.hidden=false;success.focus({preventScroll:true});success.scrollIntoView({behavior:'smooth',block:'start'});
++    });
++    document.querySelector('#edit').addEventListener('click',()=>{document.querySelector('#success').hidden=true;form.hidden=false;form.querySelector('input').focus({preventScroll:true});form.scrollIntoView({behavior:'smooth',block:'start'});});
++    document.querySelector('#download').addEventListener('click',()=>{
++      const values=answers();const record={问卷:'在路上 · 城市通勤小调查',填写时间:new Date().toISOString(),答案:Object.fromEntries(questions.map(q=>[q.label,q.multiple?values[q.name]:values[q.name][0]]))};
++      const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json;charset=utf-8'}));
++      const link=document.createElement('a');link.href=url;link.download='我的通勤答卷.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
++      document.querySelector('#download-status').textContent='已发起答卷下载，请查看浏览器的下载记录。';
++    });
++    updateProgress();
++  </script>
++</body>
++</html>
+
+codex
+已生成 [index.html](index.html)，包含 6 道通勤调查题、填写进度、必填校验和本地答卷下载，适配手机与电脑。样式与脚本均已内置，无需安装依赖，直接用浏览器打开即可。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..c8d7241787775f941c329d2f900c8ecb25528a09
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,136 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#f7f8f2">
++  <title>在路上 · 城市通勤小调查</title>
++  <style>
++    :root{--ink:#283d35;--muted:#7b857d;--green:#42664c;--lime:#d9eb98;--line:#e3e7dc;--paper:#f7f8f2;--white:#fff;--red:#a04435}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;line-height:1.65}button,input,textarea{font:inherit}button,a,label{-webkit-tap-highlight-color:transparent}button{cursor:pointer}a{color:inherit;text-decoration:none}svg{display:block}.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}.symbols{position:absolute;width:0;height:0;overflow:hidden}
++    .header{height:86px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;max-width:1184px;margin:auto;padding:0 30px}.brand{display:flex;align-items:center;gap:11px;font-size:20px;font-weight:750;letter-spacing:1px}.brandmark{width:33px;height:33px;background:var(--green);color:var(--lime);border-radius:10px;display:grid;place-items:center}.brand small{font-size:10px;letter-spacing:2px;color:var(--muted);font-weight:500;margin-left:9px}.header-note{display:flex;gap:8px;align-items:center;color:#788477;font-size:12px}.dot{width:6px;height:6px;border-radius:50%;background:#75985d;display:inline-block}
++    .layout{display:grid;grid-template-columns:310px minmax(0,1fr);gap:76px;max-width:1124px;margin:54px auto 70px;padding:0 30px}.intro{position:sticky;top:35px;align-self:start}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:650;color:var(--green);display:flex;align-items:center;gap:9px}.eyebrow:before{content:"";width:23px;height:1px;background:var(--green)}h1{font-size:43px;line-height:1.35;letter-spacing:-1.5px;font-weight:750;margin:24px 0 19px}h1 span{position:relative;z-index:0}h1 span:after{content:"";position:absolute;left:0;right:0;bottom:3px;height:12px;background:var(--lime);z-index:-1;border-radius:2px}.lead{color:#7a8379;line-height:1.95;font-size:14px;margin:0;max-width:290px}.meta{display:flex;gap:19px;margin-top:25px;font-size:12px;color:#657260}.meta span{display:flex;align-items:center;gap:6px}.meta .icon{width:15px;height:15px}
++    .illustration{margin:28px -8px 14px;height:253px;position:relative}.illustration svg{width:100%;height:100%}.side-note{border-top:1px solid var(--line);padding-top:21px;margin-top:14px;display:flex;gap:10px;color:#8a9286;font-size:12px;line-height:1.85}.side-note .icon{flex-shrink:0;width:17px;margin-top:3px}.side-note p{margin:0}.side-note strong{display:block;color:#67745e;font-weight:500;margin-bottom:3px}
++    .survey-top{display:flex;align-items:center;justify-content:space-between;margin:0 0 12px}.survey-top h2{margin:0;font-size:16px;font-weight:650}.progress-label{font-size:12px;color:#88917f}.progress-label strong{color:var(--green);font-weight:600}.progress-track{height:4px;background:#e6eadd;border-radius:10px;margin-bottom:24px;overflow:hidden}.progress-fill{height:100%;width:0;background:#8ba65f;border-radius:10px;transition:width .3s}.question{min-width:0;padding:26px 28px 28px;margin:0 0 18px;background:var(--white);border:1px solid var(--line);border-radius:15px;transition:border-color .2s}.question.invalid{border-color:var(--red)}.q-heading{display:flex;gap:13px;align-items:flex-start;margin-bottom:20px}.number{font-size:11px;font-weight:600;width:28px;height:28px;display:grid;place-items:center;color:var(--green);background:#eff3e7;border-radius:8px;flex-shrink:0}.q-heading h3{font-size:16px;margin:0;font-weight:650;line-height:1.8;letter-spacing:.1px}.required{color:#97a47f;margin-left:5px;font-size:13px}.q-heading p{color:#959a90;font-size:11px;margin:3px 0 0}.options{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.option{position:relative;cursor:pointer;min-width:0}.option input{position:absolute;opacity:0;width:1px;height:1px}.choice{height:46px;border:1px solid #e5e8df;border-radius:8px;display:flex;align-items:center;gap:8px;padding:0 13px;color:#687261;font-size:12px;background:#fff;transition:background .15s,border-color .15s}.radio-dot{width:14px;height:14px;border:1px solid #ccd3c5;border-radius:50%;flex-shrink:0;position:relative}.option input:checked+.choice{background:#f1f6e7;border-color:#829b61;color:#3f5d35}.option input:checked+.choice .radio-dot{border:4px solid #68844f}.option input:focus-visible+.choice{outline:2px solid var(--green);outline-offset:3px}.option:hover .choice{border-color:#9eae8e;background:#fafbf7}.transport .choice{height:85px;flex-direction:column;gap:8px;justify-content:center;position:relative}.transport .icon{width:25px;height:25px;color:#788567}.checkmark{display:none;position:absolute;right:8px;top:4px;font-size:12px;color:var(--green)}.option input:checked+.choice .checkmark{display:block}.question.compact .options{grid-template-columns:repeat(2,1fr)}.satisfaction{grid-template-columns:repeat(5,1fr)}.satisfaction .choice{height:75px;flex-direction:column;justify-content:center;gap:5px;padding:7px 2px;font-size:11px}.face{font-size:24px;line-height:1.1;font-family:Arial,sans-serif}.checkbox .radio-dot{border-radius:4px}.checkbox input:checked+.choice .radio-dot{border:0;background:#68844f}.checkbox input:checked+.choice .radio-dot:after{content:"✓";position:absolute;inset:0;color:white;line-height:14px;text-align:center;font-size:11px}.error{display:none;font-size:12px;margin:12px 0 0;color:var(--red)}.invalid .error{display:block}.form-bottom{padding:7px 0 0}.submit{width:100%;border:0;background:var(--green);color:white;border-radius:10px;height:52px;display:flex;justify-content:center;align-items:center;gap:14px;font-weight:600;transition:background .2s,transform .2s}.submit:hover{background:#34553d;transform:translateY(-1px)}.submit .icon{width:18px}.privacy{font-size:11px;text-align:center;color:#92998b;margin:12px 0}.footer{border-top:1px solid var(--line);max-width:1124px;margin:0 auto;padding:22px 30px 27px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.5px;color:#929a8c}.footer span:last-child{letter-spacing:1.5px}.success{padding:48px 30px;text-align:center;border:1px solid var(--line);border-radius:16px;background:white}.success[hidden]{display:none}.success-icon{width:64px;height:64px;border-radius:50%;background:#edf4dd;color:var(--green);margin:0 auto 20px;display:grid;place-items:center}.success-icon .icon{width:30px;height:30px}.success h2{font-size:25px;margin:0 0 10px}.success p{color:var(--muted);font-size:13px}.summary{margin:25px 0;text-align:left;background:#f7f8f2;border-radius:10px;padding:12px 18px}.summary div{display:flex;justify-content:space-between;gap:20px;padding:9px 0;font-size:12px}.summary div+div{border-top:1px solid var(--line)}.summary dt{color:var(--muted);flex-shrink:0}.summary dd{margin:0;text-align:right}.secondary{background:transparent;border:0;color:var(--green);margin-top:14px;padding:8px 20px;font-size:12px;text-decoration:underline;text-underline-offset:4px}button:focus-visible,a:focus-visible{outline:2px solid var(--green);outline-offset:4px} @media(min-width:1250px){.layout{gap:90px;grid-template-columns:310px minmax(0,1fr)}}@media(max-width:900px){.layout{gap:35px;grid-template-columns:245px minmax(0,1fr);padding:0 24px}.header{padding:0 24px}h1{font-size:36px}.question{padding:22px 20px}.choice{padding:0 9px}.options{gap:8px}.illustration{height:220px}.brand small{display:none}}@media(max-width:700px){.header{height:72px;padding:0 22px}.brand{font-size:19px}.layout{display:block;margin:30px auto 40px;padding:0 20px;max-width:560px}.intro{position:relative;top:0;margin-bottom:32px}.eyebrow{font-size:10px}h1{font-size:35px;line-height:1.4;margin:15px 0 12px}h1 br{display:none}.lead{max-width:100%;font-size:13px}.meta{margin-top:17px}.illustration,.side-note{display:none}.question{padding:21px 18px;margin-bottom:14px;border-radius:12px}.q-heading h3{font-size:15px}.q-heading{gap:10px}.choice{font-size:11px;padding:0 9px;gap:6px}.options{gap:8px}.footer{padding:20px;gap:10px;font-size:9px}.header-note{font-size:10px}.satisfaction .choice{font-size:10px;padding:7px 0}.survey-top h2{font-size:14px}}@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
++  </style>
++</head>
++<body>
++  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
++    <symbol id="route" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="18" r="2"/><path d="M8 6h8a4 4 0 0 1 0 8H8a4 4 0 0 0 0 8M6 8v4M18 16v-4"/></symbol>
++    <symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
++    <symbol id="list" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 10h6M9 15h6"/></symbol>
++    <symbol id="shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6zM8 12l3 3 5-6"/></symbol>
++    <symbol id="train" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="16" rx="4"/><path d="M5 10h14M12 3v7M8 19l-2 3M16 19l2 3M8 15h1M15 15h1"/></symbol>
++    <symbol id="bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="16" rx="3"/><path d="M4 11h16M8 15h1M15 15h1M7 19v3M17 19v3M9 6h6"/></symbol>
++    <symbol id="car" viewBox="0 0 24 24"><path d="m4 10 2-6h12l2 6M3 17V11l2-1h14l2 1v6H3ZM5 17v3M19 17v3M6 14h2M16 14h2"/></symbol>
++    <symbol id="bike" viewBox="0 0 24 24"><circle cx="5" cy="16" r="4"/><circle cx="19" cy="16" r="4"/><path d="m5 16 5-9 5 9H5M10 7h7l2 9M15 4h3l1 3M8 4h4"/></symbol>
++    <symbol id="walk" viewBox="0 0 24 24"><circle cx="14" cy="4" r="2"/><path d="m7 22 4-8 4 3v5M4 12l5-4h5l2 5h4M12 8l-1 6"/></symbol>
++    <symbol id="more" viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/></symbol>
++    <symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h16m-6-6 6 6-6 6"/></symbol>
++    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 5 5L20 7"/></symbol>
++  </defs></svg>
++  <header class="header"><a class="brand" href="./index.html" aria-label="在路上，问卷首页"><span class="brandmark"><svg class="icon"><use href="#route"/></svg></span>在路上<small>ON THE WAY</small></a><div class="header-note"><span class="dot"></span>城市生活观察计划</div></header>
++  <main class="layout">
++    <aside class="intro">
++      <div class="eyebrow">THE DAILY COMMUTE</div>
++      <h1>你的每一天，<br>有多久<span>在路上</span>？</h1>
++      <p class="lead">从家门到目的地，每一段路都有自己的节奏。聊聊你的日常通勤，让城市生活的轮廓更清晰一点。</p>
++      <div class="meta"><span><svg class="icon"><use href="#clock"/></svg>约 2 分钟</span><span><svg class="icon"><use href="#list"/></svg>6 道小问题</span></div>
++      <div class="illustration">
++        <svg viewBox="0 0 330 260" fill="none" role="img" aria-label="一条连接家与办公楼的绿色城市通勤路线">
++          <ellipse cx="165" cy="142" rx="139" ry="103" fill="#eef1e3"/>
++          <path d="M18 192h294M36 220h265" stroke="#d9dfcc" stroke-width="1"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#b4c88b" stroke-width="20" stroke-linecap="round"/>
++          <path d="M64 159v31q0 17 18 17h153q19 0 19-20v-56" stroke="#fcfff5" stroke-width="1.5" stroke-dasharray="5 7"/>
++          <path d="M30 118 65 90l35 28" fill="#dee7c7" stroke="#677e53" stroke-width="2" stroke-linejoin="round"/><path d="M38 115v52h54v-52" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M57 167v-26h16v26M47 123h10v10H47M74 123h10v10H74" stroke="#677e53" stroke-width="1.5"/><path d="M83 103V89h9v21" stroke="#677e53" stroke-width="2"/>
++          <rect x="219" y="63" width="64" height="95" rx="3" fill="#f8faef" stroke="#677e53" stroke-width="2"/><path d="M230 77h11v11h-11zM258 77h11v11h-11zM230 99h11v11h-11zM258 99h11v11h-11zM230 121h11v11h-11zM258 121h11v11h-11z" fill="#dce8c6"/><path d="M244 158v-16h14v16" stroke="#677e53" stroke-width="1.5"/><path d="M236 63V53h30v10" stroke="#677e53" stroke-width="2"/>
++          <rect x="128" y="181" width="64" height="28" rx="7" fill="#486b48"/><path d="M135 188h11v9h-11zM151 188h11v9h-11zM167 188h17v9h-17z" fill="#dceba9"/><circle cx="140" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/><circle cx="181" cy="211" r="5" fill="#3f513b" stroke="#f7f8f2" stroke-width="2"/>
++          <path d="M112 157v23M294 137v33" stroke="#8c9d6f" stroke-width="2"/><ellipse cx="112" cy="152" rx="10" ry="16" fill="#cadba6"/><ellipse cx="294" cy="132" rx="12" ry="21" fill="#cadba6"/>
++          <path d="M104 83c27-30 61-35 92-17" stroke="#97ab76" stroke-width="1.5" stroke-dasharray="4 5"/><path d="m190 59 8 8-11 2" stroke="#97ab76" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
++          <rect x="26" y="54" width="67" height="24" rx="12" fill="#fff"/><text x="59.5" y="70" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">从家出发</text><rect x="228" y="178" width="76" height="24" rx="12" fill="#fff"/><text x="266" y="194" text-anchor="middle" fill="#7f8c6f" font-size="10" font-family="sans-serif">抵达日常</text>
++          <circle cx="164" cy="103" r="20" fill="#e1ebc9"/><path d="M164 93v11l7 4" stroke="#8a9d67" stroke-width="1.7" stroke-linecap="round"/>
++        </svg>
++      </div>
++      <div class="side-note"><svg class="icon"><use href="#shield"/></svg><p><strong>关于这份小调查</strong>无需姓名和联系方式。请以最近一个月的通常情况作答，单程时间包含步行和候车。</p></div>
++    </aside>
++    <section aria-label="通勤调查问卷">
++      <div class="survey-top"><h2>记录你的通勤日常</h2><span class="progress-label" aria-live="polite">已完成 <strong id="completed">0</strong> / 6</span></div>
++      <div class="progress-track" role="progressbar" aria-label="问卷完成进度" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><div class="progress-fill"></div></div>
++      <form id="survey" novalidate>
++        <section class="question" role="group" aria-labelledby="q1-title" data-name="duration"><div class="q-heading"><span class="number">01</span><div><h3 id="q1-title">你通常的单程通勤时间是？<span class="required">*</span></h3><p>从出发到抵达，选择最接近的时间 · 单选</p></div></div><div class="options" id="duration-options"></div><p class="error">请选择一个通勤时间。</p></section>
++        <section class="question" role="group" aria-labelledby="q2-title" data-name="transport"><div class="q-heading"><span class="number">02</span><div><h3 id="q2-title">你最主要的通勤方式是？<span class="required">*</span></h3><p>如果需要换乘，请选择花费时间最长的方式 · 单选</p></div></div><div class="options transport" id="transport-options"></div><p class="error">请选择一种主要交通方式。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q3-title" data-name="distance"><div class="q-heading"><span class="number">03</span><div><h3 id="q3-title">你的单程通勤距离大约是？<span class="required">*</span></h3><p>估算日常路线的距离即可 · 单选</p></div></div><div class="options" id="distance-options"></div><p class="error">请选择一个通勤距离。</p></section>
++        <section class="question" role="group" aria-labelledby="q4-title" data-name="frequency"><div class="q-heading"><span class="number">04</span><div><h3 id="q4-title">你平均每周有几天需要通勤？<span class="required">*</span></h3><p>包括上班或上学的往返出行 · 单选</p></div></div><div class="options" id="frequency-options"></div><p class="error">请选择每周通勤天数。</p></section>
++        <section class="question" role="group" aria-labelledby="q5-title" data-name="satisfaction"><div class="q-heading"><span class="number">05</span><div><h3 id="q5-title">你对目前的通勤体验满意吗？<span class="required">*</span></h3><p>跟随你的真实感受 · 单选</p></div></div><div class="options satisfaction" id="satisfaction-options"></div><p class="error">请选择一个满意程度。</p></section>
++        <section class="question compact" role="group" aria-labelledby="q6-title" data-name="improvement"><div class="q-heading"><span class="number">06</span><div><h3 id="q6-title">你最希望通勤有哪些改善？<span class="required">*</span></h3><p>选出对你有帮助的改变 · 可多选</p></div></div><div class="options" id="improvement-options"></div><p class="error">请至少选择一项。</p></section>
++        <div class="form-bottom"><button class="submit" type="submit">完成问卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><p class="privacy">本页为本地问卷，答案仅在当前页面中处理，不会上传。</p></div>
++      </form>
++      <section class="success" id="success" hidden tabindex="-1" aria-labelledby="success-title"><div class="success-icon"><svg class="icon" aria-hidden="true"><use href="#check"/></svg></div><h2 id="success-title">每一段路，都有了记录。</h2><p>感谢你分享通勤日常！6 道题已全部完成。<br>答卷尚未上传，你可以下载保存自己的记录。</p><dl class="summary" id="summary"></dl><button class="submit" type="button" id="download">下载我的答卷<svg class="icon" aria-hidden="true"><use href="#arrow"/></svg></button><button class="secondary" type="button" id="edit">返回修改答案</button><p id="download-status" role="status"></p></section>
++      <noscript><p>请启用 JavaScript 以显示问卷选项并填写这 6 道题。</p></noscript>
++    </section>
++  </main>
++  <footer class="footer"><span>在路上 · 关注每一段日常出行</span><span>A LITTLE SURVEY, A BETTER EVERYDAY.</span></footer>
++  <script>
++    const questions = [
++      {name:'duration',label:'单程通勤时间',options:['15 分钟以内','15–29 分钟','30–44 分钟','45–59 分钟','60 分钟及以上','无需通勤']},
++      {name:'transport',label:'主要交通方式',options:['地铁 / 轻轨','公交 / 班车','私家车 / 打车','自行车 / 电动车','步行','其他 / 无需通勤'],icons:['train','bus','car','bike','walk','more']},
++      {name:'distance',label:'单程通勤距离',options:['不足 3 公里','3–9 公里','10–19 公里','20–39 公里','40 公里及以上','不确定 / 无需通勤']},
++      {name:'frequency',label:'每周通勤天数',options:['0 天','1–2 天','3–4 天','5 天','6 天','7 天']},
++      {name:'satisfaction',label:'通勤满意度',options:['很不满意','不太满意','一般','比较满意','非常满意']},
++      {name:'improvement',label:'希望改善的方面',multiple:true,options:['缩短通勤时间','减少拥挤和堵车','降低出行费用','减少换乘次数','提高准点率','改善步行 / 骑行环境','其他','暂无改善需求']}
++    ];
++    const form=document.querySelector('#survey');
++    questions.forEach(q=>{
++      const container=document.getElementById(q.name+'-options');
++      q.options.forEach((value,i)=>{
++        const label=document.createElement('label');label.className='option'+(q.multiple?' checkbox':'');
++        const input=document.createElement('input');input.type=q.multiple?'checkbox':'radio';input.name=q.name;input.value=value;
++        if(!q.multiple) input.required=true;
++        const choice=document.createElement('span');choice.className='choice';
++        if(q.icons){choice.innerHTML='<svg class="icon" aria-hidden="true"><use href="#'+q.icons[i]+'"/></svg><span class="checkmark" aria-hidden="true">✓</span>';}
++        else if(q.name==='satisfaction'){
++          const paths=['M7 16q5-7 10 0','M7 15q5-4 10 0','M8 15h8','M7 13q5 6 10 0','M7 12q5 9 10 0'];
++          choice.innerHTML='<svg class="icon" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 8h.01M16 8h.01'+paths[i]+'"/></svg>';
++        }else{const dot=document.createElement('span');dot.className='radio-dot';dot.setAttribute('aria-hidden','true');choice.append(dot);}
++        const text=document.createElement('span');text.textContent=value;choice.append(text);label.append(input,choice);container.append(label);
++      });
++    });
++    function answers(){return Object.fromEntries(questions.map(q=>[q.name,Array.from(form.querySelectorAll('input[name="'+q.name+'"]:checked'),input=>input.value)]));}
++    function updateProgress(){
++      const values=answers();const count=questions.filter(q=>values[q.name].length).length;
++      document.querySelector('#completed').textContent=count;
++      document.querySelector('.progress-fill').style.width=(count/6*100)+'%';
++      document.querySelector('.progress-track').setAttribute('aria-valuenow',count);
++      questions.forEach(q=>{if(values[q.name].length){const group=form.querySelector('[data-name="'+q.name+'"]');group.classList.remove('invalid');group.querySelectorAll('input').forEach(input=>{input.removeAttribute('aria-invalid');input.removeAttribute('aria-describedby');});}});
++    }
++    form.addEventListener('change',event=>{
++      const input=event.target;
++      if(input.name==='improvement'&&input.checked){
++        const none='暂无改善需求';
++        form.querySelectorAll('input[name="improvement"]').forEach(other=>{if(other!==input&&(input.value===none||other.value===none))other.checked=false;});
++      }
++      updateProgress();
++    });
++    form.addEventListener('submit',event=>{
++      event.preventDefault();const values=answers();let firstMissing=null;
++      questions.forEach(q=>{
++        const group=form.querySelector('[data-name="'+q.name+'"]');const missing=!values[q.name].length;
++        group.classList.toggle('invalid',missing);
++        if(missing){const error=group.querySelector('.error');error.id=q.name+'-error';group.querySelectorAll('input').forEach(input=>{input.setAttribute('aria-invalid','true');input.setAttribute('aria-describedby',error.id);});if(!firstMissing)firstMissing=group;}
++      });
++      if(firstMissing){firstMissing.querySelector('input').focus({preventScroll:true});firstMissing.scrollIntoView({behavior:'smooth',block:'center'});return;}
++      const summary=document.querySelector('#summary');summary.replaceChildren();
++      questions.forEach(q=>{const row=document.createElement('div');const dt=document.createElement('dt');dt.textContent=q.label;const dd=document.createElement('dd');dd.textContent=values[q.name].join('、');row.append(dt,dd);summary.append(row);});
++      form.hidden=true;const success=document.querySelector('#success');success.hidden=false;success.focus({preventScroll:true});success.scrollIntoView({behavior:'smooth',block:'start'});
++    });
++    document.querySelector('#edit').addEventListener('click',()=>{document.querySelector('#success').hidden=true;form.hidden=false;form.querySelector('input').focus({preventScroll:true});form.scrollIntoView({behavior:'smooth',block:'start'});});
++    document.querySelector('#download').addEventListener('click',()=>{
++      const values=answers();const record={问卷:'在路上 · 城市通勤小调查',填写时间:new Date().toISOString(),答案:Object.fromEntries(questions.map(q=>[q.label,q.multiple?values[q.name]:values[q.name][0]]))};
++      const url=URL.createObjectURL(new Blob([JSON.stringify(record,null,2)],{type:'application/json;charset=utf-8'}));
++      const link=document.createElement('a');link.href=url;link.download='我的通勤答卷.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
++      document.querySelector('#download-status').textContent='已发起答卷下载，请查看浏览器的下载记录。';
++    });
++    updateProgress();
++  </script>
++</body>
++</html>
+
+tokens used
+14,621
+已生成 [index.html](index.html)，包含 6 道通勤调查题、填写进度、必填校验和本地答卷下载，适配手机与电脑。样式与脚本均已内置，无需安装依赖，直接用浏览器打开即可。

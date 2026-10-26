@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>通勤问卷</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+  <header class="masthead">
+    <p class="seal">问</p>
+    <h1>每日通勤调查</h1>
+    <p class="lede">共 6 题，约 1 分钟。匿名填写，仅用于了解大家的通勤时间与出行方式。</p>
+  </header>
+
+  <form id="survey" novalidate>
+    <fieldset class="q" data-required="radio" data-name="mode">
+      <legend><span class="no">一</span>你最主要的通勤方式是？</legend>
+      <label><input type="radio" name="mode" value="地铁"> 地铁</label>
+      <label><input type="radio" name="mode" value="公交"> 公交</label>
+      <label><input type="radio" name="mode" value="自驾"> 自驾</label>
+      <label><input type="radio" name="mode" value="骑行（含电动车）"> 骑行（含电动车）</label>
+      <label><input type="radio" name="mode" value="步行"> 步行</label>
+      <label><input type="radio" name="mode" value="打车 / 网约车"> 打车 / 网约车</label>
+      <label><input type="radio" name="mode" value="班车"> 班车</label>
+      <label><input type="radio" name="mode" value="居家办公，不通勤"> 居家办公，不通勤</label>
+      <p class="err">请选择一项</p>
+    </fieldset>
+
+    <fieldset class="q" data-required="radio" data-name="time">
+      <legend><span class="no">二</span>单程通勤大约需要多长时间？</legend>
+      <label><input type="radio" name="time" value="15 分钟以内"> 15 分钟以内</label>
+      <label><input type="radio" name="time" value="15–30 分钟"> 15–30 分钟</label>
+      <label><input type="radio" name="time" value="30–45 分钟"> 30–45 分钟</label>
+      <label><input type="radio" name="time" value="45–60 分钟"> 45–60 分钟</label>
+      <label><input type="radio" name="time" value="60–90 分钟"> 60–90 分钟</label>
+      <label><input type="radio" name="time" value="90 分钟以上"> 90 分钟以上</label>
+      <p class="err">请选择一项</p>
+    </fieldset>
+
+    <fieldset class="q" data-required="checkbox" data-name="combo">
+      <legend><span class="no">三</span>一趟通勤中会用到哪些方式？<em>可多选</em></legend>
+      <label><input type="checkbox" name="combo" value="地铁"> 地铁</label>
+      <label><input type="checkbox" name="combo" value="公交"> 公交</label>
+      <label><input type="checkbox" name="combo" value="共享单车"> 共享单车</label>
+      <label><input type="checkbox" name="combo" value="私家车"> 私家车</label>
+      <label><input type="checkbox" name="combo" value="步行"> 步行</label>
+      <label><input type="checkbox" name="combo" value="打车"> 打车</label>
+      <label><input type="checkbox" name="combo" value="其他"> 其他</label>
+      <p class="err">至少选择一项</p>
+    </fieldset>
+
+    <fieldset class="q" data-required="radio" data-name="days">
+      <legend><span class="no">四</span>每周到岗通勤几天？</legend>
+      <div class="row">
+        <label class="chip"><input type="radio" name="days" value="0"><span>0</span></label>
+        <label class="chip"><input type="radio" name="days" value="1–2"><span>1–2</span></label>
+        <label class="chip"><input type="radio" name="days" value="3–4"><span>3–4</span></label>
+        <label class="chip"><input type="radio" name="days" value="5"><span>5</span></label>
+        <label class="chip"><input type="radio" name="days" value="6–7"><span>6–7</span></label>
+      </div>
+      <p class="err">请选择一项</p>
+    </fieldset>
+
+    <fieldset class="q" data-required="radio" data-name="score">
+      <legend><span class="no">五</span>你对目前的通勤满意吗？</legend>
+      <div class="row scale">
+        <span class="end">很不满意</span>
+        <label class="chip"><input type="radio" name="score" value="1"><span>1</span></label>
+        <label class="chip"><input type="radio" name="score" value="2"><span>2</span></label>
+        <label class="chip"><input type="radio" name="score" value="3"><span>3</span></label>
+        <label class="chip"><input type="radio" name="score" value="4"><span>4</span></label>
+        <label class="chip"><input type="radio" name="score" value="5"><span>5</span></label>
+        <span class="end">很满意</span>
+      </div>
+      <p class="err">请打分</p>
+    </fieldset>
+
+    <fieldset class="q" data-name="wish">
+      <legend><span class="no">六</span>最希望通勤哪方面得到改善？<em>选填</em></legend>
+      <textarea name="wish" rows="4" maxlength="300" placeholder="例如：地铁太挤、换乘太远、停车难……"></textarea>
+      <p class="count"><span id="wishCount">0</span> / 300</p>
+    </fieldset>
+
+    <div class="actions">
+      <button type="submit">提交问卷</button>
+    </div>
+  </form>
+
+  <section id="done" class="done" hidden>
+    <h2>谢谢参与</h2>
+    <p>你的回答如下：</p>
+    <dl id="summary"></dl>
+    <button type="button" id="again" class="ghost">重新填写</button>
+  </section>
+
+  <footer class="foot">本页面为纯前端问卷，回答仅保存在你的浏览器本地，未上传至服务器。</footer>
+</main>
+
+<script>
+(function () {
+  var form = document.getElementById('survey');
+  var done = document.getElementById('done');
+  var summary = document.getElementById('summary');
+  var wish = form.elements.wish;
+  var wishCount = document.getElementById('wishCount');
+  var labels = {
+    mode: '主要通勤方式', time: '单程时长', combo: '使用的方式',
+    days: '每周通勤天数', score: '满意度', wish: '希望改善'
+  };
+
+  wish.addEventListener('input', function () { wishCount.textContent = wish.value.length; });
+
+  form.addEventListener('change', function (e) {
+    var fs = e.target.closest('fieldset');
+    if (fs) fs.classList.remove('invalid');
+  });
+
+  function collect() {
+    var fd = new FormData(form);
+    return {
+      mode: fd.get('mode'),
+      time: fd.get('time'),
+      combo: fd.getAll('combo'),
+      days: fd.get('days'),
+      score: fd.get('score'),
+      wish: (fd.get('wish') || '').trim()
+    };
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var data = collect();
+    var firstBad = null;
+    form.querySelectorAll('fieldset[data-required]').forEach(function (fs) {
+      var v = data[fs.dataset.name];
+      var ok = Array.isArray(v) ? v.length > 0 : !!v;
+      fs.classList.toggle('invalid', !ok);
+      if (!ok && !firstBad) firstBad = fs;
+    });
+    if (firstBad) {
+      firstBad.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    data.submittedAt = new Date().toISOString();
+    try {
+      var all = JSON.parse(localStorage.getItem('commute-survey') || '[]');
+      all.push(data);
+      localStorage.setItem('commute-survey', JSON.stringify(all));
+    } catch (err) { /* 存储不可用时忽略，不影响展示 */ }
+
+    summary.innerHTML = '';
+    Object.keys(labels).forEach(function (k) {
+      var dt = document.createElement('dt');
+      var dd = document.createElement('dd');
+      var v = data[k];
+      dt.textContent = labels[k];
+      dd.textContent = Array.isArray(v) ? v.join('、') : (v || '—') + (k === 'score' ? ' / 5' : k === 'days' ? ' 天' : '');
+      summary.append(dt, dd);
+    });
+    form.hidden = true;
+    done.hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  document.getElementById('again').addEventListener('click', function () {
+    form.reset();
+    wishCount.textContent = '0';
+    done.hidden = true;
+    form.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>

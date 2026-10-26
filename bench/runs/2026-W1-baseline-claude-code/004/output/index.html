@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>润笔 · AI 写作助手</title>
+  <meta name="description" content="润笔是一款 AI 写作助手，帮你把零散的工作记录改成清楚的周报，把难开口的话写成得体的邮件。">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="#top" aria-label="润笔 首页">
+        <span class="seal" aria-hidden="true">润</span>
+        <span class="logo-text">润笔</span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#weekly">周报</a>
+        <a href="#email">邮件</a>
+        <a href="#how">用法</a>
+        <a class="nav-cta" href="#start">免费试用</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- 首屏 -->
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <p class="eyebrow">AI 写作助手</p>
+        <h1 class="hero-title">事做完了，<br>话也该说清楚。</h1>
+        <p class="hero-lede">
+          润笔帮你把一周的零碎记录理成一份像样的周报，
+          把难开口的话写成一封得体的邮件。你只管说重点，措辞交给它。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#start">开始免费试用</a>
+          <a class="btn btn-ghost" href="#weekly">看看改写效果</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 周报 -->
+    <section class="feature" id="weekly">
+      <div class="wrap">
+        <div class="feature-head">
+          <span class="feature-no" aria-hidden="true">壹</span>
+          <div>
+            <h2 class="section-title">改周报</h2>
+            <p class="section-lede">
+              粘贴你的流水账，润笔按「进展 · 问题 · 下周计划」重新组织，
+              补上数字和结论，删掉没人想看的过程。
+            </p>
+          </div>
+        </div>
+
+        <div class="compare">
+          <article class="pane pane-before">
+            <header class="pane-label">改写前</header>
+            <div class="pane-body">
+              <p>周一开会讨论了登录页的事情，然后改了一些 bug。周二继续改 bug，和后端对了接口，有个字段他们没给。周三写了点文档。周四上线了，有点小问题后来修了。周五做了下周的排期，另外数据看板那个还没弄完。</p>
+            </div>
+          </article>
+
+          <article class="pane pane-after">
+            <header class="pane-label">润笔改写后</header>
+            <div class="pane-body">
+              <h3 class="doc-h">本周进展</h3>
+              <ul class="doc-list">
+                <li>登录页改版已于周四上线，上线后发现的 1 个样式问题已当天修复。</li>
+                <li>修复登录相关缺陷 6 个，补齐接口文档 1 份。</li>
+              </ul>
+              <h3 class="doc-h">风险与问题</h3>
+              <ul class="doc-list">
+                <li>后端接口缺少 <code>user_level</code> 字段，影响会员标识展示，已同步后端，待其排期。</li>
+              </ul>
+              <h3 class="doc-h">下周计划</h3>
+              <ul class="doc-list">
+                <li>完成数据看板开发（当前进度约 60%），周三前提测。</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <ul class="points">
+          <li><strong>自动分段</strong>按进展、风险、计划归类，领导扫一眼就懂。</li>
+          <li><strong>追问缺口</strong>发现「改了一些 bug」这类模糊说法，会提醒你补上数字。</li>
+          <li><strong>沿用模板</strong>上传团队现有的周报格式，以后都照着写。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 邮件 -->
+    <section class="feature feature-alt" id="email">
+      <div class="wrap">
+        <div class="feature-head">
+          <span class="feature-no" aria-hidden="true">贰</span>
+          <div>
+            <h2 class="section-title">写邮件</h2>
+            <p class="section-lede">
+              催进度、婉拒、道歉、跟进，最难的往往是第一句。
+              写下你想表达的意思，选一种语气，润笔给出一版可以直接发的邮件。
+            </p>
+          </div>
+        </div>
+
+        <div class="email-demo">
+          <div class="email-input">
+            <p class="pane-label">你想说的</p>
+            <p class="intent">“设计稿已经晚了三天，这周五之前必须给我，不然赶不上发版。”</p>
+          </div>
+
+          <div class="email-output">
+            <div class="tone-switch" role="tablist" aria-label="选择语气">
+              <button type="button" role="tab" class="tone is-active" aria-selected="true" data-tone="formal">正式</button>
+              <button type="button" role="tab" class="tone" aria-selected="false" data-tone="gentle">委婉</button>
+              <button type="button" role="tab" class="tone" aria-selected="false" data-tone="brief">简洁</button>
+            </div>
+
+            <div class="mail" aria-live="polite">
+              <p class="mail-meta"><span>主题</span><span id="mail-subject">关于登录页设计稿交付时间的确认</span></p>
+              <div class="mail-body" id="mail-body">
+                <p>王老师您好：</p>
+                <p>登录页设计稿原定于上周五交付，目前尚未收到。由于本次发版时间已经确定，开发需要至少一周的实现周期，稿件最晚需在本周五（10 月 31 日）前交付，才能保证按期上线。</p>
+                <p>如交付存在困难，请您今天告知具体原因和可行的时间，我们一起评估调整方案。</p>
+                <p>谢谢！</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="points">
+          <li><strong>多种语气</strong>同一个意思，正式、委婉、简洁一键切换。</li>
+          <li><strong>中英双语</strong>写中文，也能直接出一版地道的英文邮件。</li>
+          <li><strong>读懂来信</strong>粘贴对方的长邮件，先帮你提炼要点，再起草回复。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 用法 -->
+    <section class="how" id="how">
+      <div class="wrap">
+        <h2 class="section-title center">三步写完</h2>
+        <ol class="steps">
+          <li>
+            <span class="step-no">一</span>
+            <h3>贴进来</h3>
+            <p>工作记录、聊天截图里的文字、一句话的想法都行，不用整理。</p>
+          </li>
+          <li>
+            <span class="step-no">二</span>
+            <h3>选场景</h3>
+            <p>周报、日报、邮件、通知，选好场景和语气。</p>
+          </li>
+          <li>
+            <span class="step-no">三</span>
+            <h3>改一改，发出去</h3>
+            <p>逐句可改，哪句不满意就让它换个说法。</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- 行动 -->
+    <section class="cta" id="start">
+      <div class="wrap cta-inner">
+        <h2 class="cta-title">这周的周报，让润笔先写一版。</h2>
+        <p class="cta-lede">注册即可免费试用，无需绑定支付方式。</p>
+        <form class="cta-form" onsubmit="event.preventDefault(); this.querySelector('.form-note').textContent = '已收到，我们会把试用链接发到这个邮箱。';">
+          <label class="visually-hidden" for="email-field">工作邮箱</label>
+          <input id="email-field" type="email" required placeholder="输入你的工作邮箱">
+          <button class="btn btn-primary" type="submit">免费试用</button>
+          <p class="form-note" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>润笔 · AI 写作助手</span>
+      <span>你的内容只用于为你生成文本，不用于训练模型。</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var mails = {
+        formal: {
+          subject: '关于登录页设计稿交付时间的确认',
+          body: [
+            '王老师您好：',
+            '登录页设计稿原定于上周五交付，目前尚未收到。由于本次发版时间已经确定，开发需要至少一周的实现周期，稿件最晚需在本周五（10 月 31 日）前交付，才能保证按期上线。',
+            '如交付存在困难，请您今天告知具体原因和可行的时间，我们一起评估调整方案。',
+            '谢谢！'
+          ]
+        },
+        gentle: {
+          subject: '登录页设计稿进展想跟您同步一下',
+          body: [
+            '王老师好：',
+            '知道您最近手上事情比较多，辛苦了。想跟您同步一下登录页设计稿的进展——这边发版时间比较紧，开发大概需要一周来实现。',
+            '如果本周五（10 月 31 日）前能拿到稿子，我们就能稳稳赶上这次发版。中间有任何需要我们配合的地方，随时告诉我。',
+            '再次感谢！'
+          ]
+        },
+        brief: {
+          subject: '登录页设计稿：请于本周五前交付',
+          body: [
+            '王老师好：',
+            '登录页设计稿已延期三天。为赶上发版，请于本周五（10 月 31 日）前交付。如有困难请今天回复。',
+            '谢谢。'
+          ]
+        }
+      };
+
+      var tabs = document.querySelectorAll('.tone');
+      var subject = document.getElementById('mail-subject');
+      var body = document.getElementById('mail-body');
+
+      function render(key) {
+        var m = mails[key];
+        subject.textContent = m.subject;
+        body.innerHTML = '';
+        m.body.forEach(function (t) {
+          var p = document.createElement('p');
+          p.textContent = t;
+          body.appendChild(p);
+        });
+        body.classList.remove('fade');
+        void body.offsetWidth;
+        body.classList.add('fade');
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          tabs.forEach(function (t) {
+            t.classList.remove('is-active');
+            t.setAttribute('aria-selected', 'false');
+          });
+          tab.classList.add('is-active');
+          tab.setAttribute('aria-selected', 'true');
+          render(tab.dataset.tone);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

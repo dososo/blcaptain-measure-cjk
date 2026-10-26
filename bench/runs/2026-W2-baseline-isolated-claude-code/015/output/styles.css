@@ -1,0 +1,239 @@
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --text: #1c1c1e;
+  --muted: #6b6b70;
+  --border: #e3e3e0;
+  --accent: #2f5bea;
+  --accent-soft: #eaf0ff;
+  --free: #1f8a4c;
+  --free-soft: #e6f5ec;
+  --radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #121214;
+    --surface: #1c1c1f;
+    --text: #ededee;
+    --muted: #9a9aa1;
+    --border: #2e2e33;
+    --accent: #7c9cff;
+    --accent-soft: #1e2640;
+    --free: #5cc98a;
+    --free-soft: #17301f;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Segoe UI", sans-serif;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 16px 72px;
+}
+
+header h1 {
+  font-size: 2rem;
+  margin: 0 0 8px;
+  letter-spacing: -0.01em;
+}
+
+header p {
+  margin: 0;
+  color: var(--muted);
+  max-width: 40em;
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 32px 0 40px;
+}
+
+.highlight {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+}
+
+.highlight strong {
+  display: block;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.highlight span {
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 40px 0 12px;
+}
+
+.table-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 560px;
+}
+
+th, td {
+  text-align: left;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+th {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: var(--bg);
+}
+
+td.num, th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.api-name { font-weight: 600; }
+
+.api-desc {
+  display: block;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.8125rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+.price { font-weight: 600; }
+
+.free {
+  display: inline-block;
+  background: var(--free-soft);
+  color: var(--free);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.note {
+  color: var(--muted);
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+/* 费用估算器 */
+.calc {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.calc-inputs { display: grid; gap: 14px; }
+
+.calc label {
+  display: grid;
+  gap: 4px;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.calc input {
+  font: inherit;
+  color: var(--text);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  width: 100%;
+  font-variant-numeric: tabular-nums;
+}
+
+.calc input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.calc-result {
+  background: var(--accent-soft);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.calc-result ul {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+.calc-result li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.total-label { color: var(--muted); font-size: 0.875rem; }
+
+.total {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.faq dt { font-weight: 600; margin-top: 16px; }
+.faq dd { margin: 4px 0 0; color: var(--muted); }
+
+footer {
+  margin-top: 56px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 640px) {
+  .wrap { padding-top: 36px; }
+  header h1 { font-size: 1.6rem; }
+  .calc { grid-template-columns: 1fr; }
+}

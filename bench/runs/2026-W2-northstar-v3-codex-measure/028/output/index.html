@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080">
+  <meta name="description" content="用一个简单例子，认识本金、收益率和复利。1080 × 1440 小红书理财知识卡片。">
+  <title>理财新手先搞懂这 3 个词</title>
+  <link rel="stylesheet" href="./measure.css">
+  <style>
+    @layer measure;
+    :root {
+      color-scheme: light;
+      --paper: #f5f1e7;
+      --ink: #243c34;
+      --muted: #647169;
+      --accent: #af513a;
+      --line: #d0d6c9;
+    }
+    * { box-sizing: border-box; }
+    html { margin: 0; background: #e3e6de; }
+    body {
+      margin: 0 auto;
+      width: 1080px;
+      height: 1440px;
+      overflow: hidden;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Noto Sans SC", sans-serif;
+      font-weight: 400;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    :lang(zh) { line-break: strict; text-autospace: normal; }
+    .card {
+      width: 1080px;
+      height: 1440px;
+      padding: 72px 76px 64px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .masthead { display: flex; align-items: center; justify-content: space-between; font-size: 23px; line-height: 1.6; }
+    .series { display: flex; align-items: center; gap: 16px; }
+    .mark { width: 15px; height: 15px; border-radius: 50%; background: var(--accent); }
+    .edition { color: var(--muted); font-size: 21px; font-variant-numeric: tabular-nums; }
+    header { padding-top: 24px; padding-bottom: 24px; }
+    h1 { margin: 0; font-size: 76px; line-height: 1.23; font-weight: 800; letter-spacing: 1px; }
+    .title-line { display: block; }
+    .title-number { color: var(--accent); }
+    .intro { margin: 20px 0 0; color: var(--muted); font-size: 29px; line-height: 1.7; }
+    .terms { list-style: none; padding: 0; margin: 0; }
+    .term { display: grid; grid-template-columns: 92px 1fr; gap: 20px; border-top: 2px solid var(--line); padding: 20px 0 18px; }
+    .number { padding-top: 2px; color: var(--accent); font-size: 51px; line-height: 1.3; font-weight: 500; font-variant-numeric: tabular-nums; }
+    .term-heading { display: flex; align-items: center; gap: 22px; }
+    h2 { margin: 0; font-size: 39px; font-weight: 750; line-height: 1.3; }
+    .translation { font-size: 22px; line-height: 1.6; color: var(--muted); }
+    .definition { margin: 6px 0 10px; font-size: 28px; line-height: 1.6; }
+    .example { margin: 0; padding: 10px 20px; background: #e8ebdf; border-radius: 4px; font-size: 25px; line-height: 1.6; }
+    .example strong { font-weight: 750; }
+    .example-label { font-size: 21px; margin-right: 15px; color: var(--muted); }
+    .memory { margin-top: 23px; padding: 25px 30px 28px; background: var(--ink); color: var(--paper); border-radius: 5px; }
+    .memory-label { margin: 0 0 13px; font-size: 22px; line-height: 1.6; color: #c9d3c2; }
+    .memory-line { margin: 0; display: flex; align-items: center; justify-content: space-between; font-size: 30px; line-height: 1.6; font-weight: 600; }
+    .divider { width: 1px; height: 28px; background: #819087; }
+    .notes { margin: 19px 0 0; max-width: 36em; font-size: 21px; line-height: 1.65; color: var(--muted); }
+    footer { margin-top: auto; padding-top: 19px; display: flex; justify-content: space-between; border-top: 1px solid var(--line); color: var(--muted); font-size: 20px; line-height: 1.6; }
+    @page { size: 1080px 1440px; margin: 0; }
+    @media print { html { background: var(--paper); } body { margin: 0; } }
+  </style>
+</head>
+<body>
+  <main class="card" aria-labelledby="card-title">
+    <div class="masthead">
+      <span class="series"><span class="mark" aria-hidden="true"></span>钱袋子入门课</span>
+      <span class="edition">基础概念 / 01</span>
+    </div>
+    <header>
+      <h1 id="card-title"><span class="title-line">理财新手</span><span class="title-line">先搞懂这 <span class="title-number">3</span> 个词</span></h1>
+      <p class="intro">从一笔 10,000 元开始，把概念变简单。</p>
+    </header>
+
+    <ol class="terms measure-prose">
+      <li class="term">
+        <span class="number" aria-hidden="true">01</span>
+        <section aria-labelledby="principal">
+          <div class="term-heading"><h2 id="principal">本金</h2><span class="translation">最初投入的钱</span></div>
+          <p class="definition">你拿来投资的原始金额，不含后来的收益。</p>
+          <p class="example"><span class="example-label">举个例子</span>投入 10,000 元，本金就是 <strong>10,000 元</strong>。</p>
+        </section>
+      </li>
+      <li class="term">
+        <span class="number" aria-hidden="true">02</span>
+        <section aria-labelledby="return">
+          <div class="term-heading"><h2 id="return">收益率</h2><span class="translation">赚或亏的比例</span></div>
+          <p class="definition">这段时间的收益，占投入本金的多少。</p>
+          <p class="example"><span class="example-label">持有一年</span>赚 500 元，收益率＝500 ÷ 10,000＝<strong>5%</strong>。</p>
+        </section>
+      </li>
+      <li class="term">
+        <span class="number" aria-hidden="true">03</span>
+        <section aria-labelledby="compound">
+          <div class="term-heading"><h2 id="compound">复利</h2><span class="translation">收益也参与计算</span></div>
+          <p class="definition">把收益继续投入，下一期一起计算收益。</p>
+          <p class="example"><span class="example-label">次年仍为 5%</span>10,500 × 5%＝<strong>525 元</strong>，多出 25 元。</p>
+        </section>
+      </li>
+    </ol>
+
+    <aside class="memory" aria-label="一句话记住">
+      <p class="memory-label">一句话记住</p>
+      <p class="memory-line"><span>本金看投入</span><span class="divider" aria-hidden="true"></span><span>收益率看比例</span><span class="divider" aria-hidden="true"></span><span>复利看再投入</span></p>
+    </aside>
+    <p class="notes">例子假设每年收益率均为 5%，收益全部再投入，未计费用与税费。<br>实际收益会波动，也可能亏损；示例不代表收益承诺。</p>
+    <footer><span>先理解，再做决定。</span><span>理财知识笔记 · 001</span></footer>
+  </main>
+</body>
+</html>

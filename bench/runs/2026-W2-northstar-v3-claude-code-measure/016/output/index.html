@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>logq 快速上手</title>
+  <!-- measure.css 放在第一个：它声明的 measure 层排在最前，下面的样式都会优先于它 -->
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layout">
+    <nav class="toc" aria-label="本页目录">
+      <p class="toc-title">本页目录</p>
+      <ol>
+        <li><a href="#install">安装</a></li>
+        <li><a href="#config">配置</a></li>
+        <li><a href="#commands">常用命令</a></li>
+        <li class="sub"><a href="#cmd-search">logq search</a></li>
+        <li class="sub"><a href="#cmd-tail">logq tail</a></li>
+        <li class="sub"><a href="#cmd-stats">logq stats</a></li>
+        <li><a href="#next">下一步</a></li>
+      </ol>
+    </nav>
+
+    <main>
+      <header class="hero">
+        <h1><code>logq</code> 快速上手</h1>
+        <p class="lead measure-prose">logq 是一个开源的日志查询工具。它能直接在本地或远程服务器的日志文件里按条件搜索、实时跟踪和做简单统计，不需要先把日志导入数据库。</p>
+        <ul class="meta" aria-label="项目信息">
+          <li>当前版本 v2.3.0</li>
+          <li>MIT 许可证</li>
+          <li>支持 macOS、Linux、Windows</li>
+        </ul>
+      </header>
+
+      <section id="install" aria-labelledby="h-install">
+        <h2 id="h-install"><span class="num">1</span>安装</h2>
+        <div class="measure-prose">
+          <p>logq 是一个单独的可执行文件，没有运行时依赖。选一种适合你系统的方式安装即可。</p>
+        </div>
+
+        <div class="tabs">
+          <div class="tab-list" role="tablist" aria-label="安装方式">
+            <button role="tab" id="tab-brew" aria-selected="true" aria-controls="panel-brew">Homebrew</button>
+            <button role="tab" id="tab-script" aria-selected="false" aria-controls="panel-script" tabindex="-1">安装脚本</button>
+            <button role="tab" id="tab-cargo" aria-selected="false" aria-controls="panel-cargo" tabindex="-1">Cargo</button>
+            <button role="tab" id="tab-win" aria-selected="false" aria-controls="panel-win" tabindex="-1">Windows</button>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-brew" aria-labelledby="tab-brew">
+<pre><code><span class="prompt">$ </span>brew install logq</code></pre>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-script" aria-labelledby="tab-script" hidden>
+<pre><code><span class="prompt">$ </span>curl -fsSL https://logq.dev/install.sh | sh</code></pre>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-cargo" aria-labelledby="tab-cargo" hidden>
+<pre><code><span class="prompt">$ </span>cargo install logq --locked</code></pre>
+          </div>
+          <div class="tab-panel" role="tabpanel" id="panel-win" aria-labelledby="tab-win" hidden>
+<pre><code><span class="prompt">&gt; </span>winget install logq.logq</code></pre>
+          </div>
+        </div>
+
+        <div class="measure-prose">
+          <p>装好后检查一下版本号，能看到输出就说明安装成功：</p>
+        </div>
+<pre><code><span class="prompt">$ </span>logq --version
+<span class="out">logq 2.3.0</span></code></pre>
+
+        <div class="note measure-prose">
+          <p>用安装脚本时，建议先打开脚本看一遍内容再执行。脚本默认装到 <code>~/.local/bin</code>，请确认这个目录在你的 <code>PATH</code> 里。</p>
+        </div>
+      </section>
+
+      <section id="config" aria-labelledby="h-config">
+        <h2 id="h-config"><span class="num">2</span>配置</h2>
+        <div class="measure-prose">
+          <p>不写配置文件也能用 logq，但每次都要在命令里写日志路径。第一次使用时，建议运行下面的命令生成一份默认配置：</p>
+        </div>
+<pre><code><span class="prompt">$ </span>logq init
+<span class="out">已创建配置文件：~/.config/logq/config.toml</span></code></pre>
+
+        <div class="measure-prose">
+          <p>配置文件用 TOML 格式。最常改的是“数据源”：给每组日志起一个名字，之后在命令里用 <code>-s 名字</code> 就能指定它。</p>
+        </div>
+        <p class="label">~/.config/logq/config.toml</p>
+<pre><code><span class="c"># 默认使用的数据源</span>
+default_source = "web"
+
+<span class="c"># 输出格式：pretty（带颜色）、json、plain</span>
+output = "pretty"
+
+<span class="c"># 时间显示的时区</span>
+timezone = "Asia/Shanghai"
+
+[sources.web]
+paths = ["/var/log/nginx/access.log*"]
+format = "nginx"
+
+[sources.api]
+host = "deploy@10.0.3.12"           <span class="c"># 通过 SSH 读取远程日志</span>
+paths = ["/srv/api/logs/*.jsonl"]
+format = "json"</code></pre>
+
+        <div class="measure-prose">
+          <p>常用配置项：</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">配置项</th><th scope="col">默认值</th><th scope="col">说明</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>default_source</code></td><td>无</td><td>命令里没写 <code>-s</code> 时使用的数据源</td></tr>
+              <tr><td><code>output</code></td><td><code>pretty</code></td><td>输出到终端时的格式；接管道时会自动改成 <code>plain</code></td></tr>
+              <tr><td><code>timezone</code></td><td>系统时区</td><td>解析和显示时间时使用的时区</td></tr>
+              <tr><td><code>format</code></td><td><code>auto</code></td><td>日志格式，可选 <code>nginx</code>、<code>json</code>、<code>syslog</code>、<code>auto</code></td></tr>
+              <tr><td><code>host</code></td><td>无</td><td>填写后通过 SSH 读取远程机器上的日志</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="tip measure-prose">
+          <p>配置写好后可以运行 <code>logq config check</code>，它会逐个检查数据源的路径是否存在、格式能否识别。</p>
+        </div>
+      </section>
+
+      <section id="commands" aria-labelledby="h-commands">
+        <h2 id="h-commands"><span class="num">3</span>常用命令</h2>
+        <div class="measure-prose">
+          <p>logq 的子命令不少，日常用得最多的是下面三个。所有命令都支持 <code>--help</code> 查看完整参数。</p>
+        </div>
+
+        <h3 id="cmd-search"><code>logq search</code>：按条件搜索</h3>
+        <div class="measure-prose">
+          <p>在数据源里查找符合条件的日志行。条件可以是关键词，也可以是 <code>字段=值</code> 的形式；多个条件之间是“并且”的关系。</p>
+        </div>
+<pre><code><span class="c"># 查找最近 1 小时内状态码为 500 的请求</span>
+<span class="prompt">$ </span>logq search status=500 --since 1h
+
+<span class="c"># 在 api 数据源里搜关键词 timeout，只看前 20 条</span>
+<span class="prompt">$ </span>logq search -s api timeout --limit 20</code></pre>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">参数</th><th scope="col">说明</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>--since</code> / <code>--until</code></td><td>时间范围，支持 <code>30m</code>、<code>2h</code>、<code>2026-10-01</code> 等写法</td></tr>
+              <tr><td><code>--limit</code></td><td>最多返回多少条，默认 100</td></tr>
+              <tr><td><code>-s</code>, <code>--source</code></td><td>指定数据源，覆盖配置里的 <code>default_source</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="cmd-tail"><code>logq tail</code>：实时跟踪</h3>
+        <div class="measure-prose">
+          <p>和 <code>tail -f</code> 类似，持续输出新写入的日志，但可以同时加过滤条件，还能一次跟踪多个文件。按 <kbd>Ctrl</kbd> + <kbd>C</kbd> 退出。</p>
+        </div>
+<pre><code><span class="c"># 实时查看 web 数据源里的 4xx 和 5xx 请求</span>
+<span class="prompt">$ </span>logq tail "status&gt;=400"
+
+<span class="c"># 跟踪远程 api 日志，并高亮 user_id 字段</span>
+<span class="prompt">$ </span>logq tail -s api --highlight user_id</code></pre>
+
+        <h3 id="cmd-stats"><code>logq stats</code>：快速统计</h3>
+        <div class="measure-prose">
+          <p>按某个字段分组计数，适合排查问题时先看个大概，比如哪个接口报错最多、哪个 IP 请求最频繁。</p>
+        </div>
+<pre><code><span class="c"># 统计今天每个接口的 500 错误次数，取前 5 名</span>
+<span class="prompt">$ </span>logq stats status=500 --by path --since today --top 5
+<span class="out">PATH                 COUNT
+/api/orders            412
+/api/login              87
+/api/upload             31
+/api/search             12
+/api/profile             4</span></code></pre>
+        <div class="measure-prose">
+          <p>加上 <code>--output json</code> 可以把结果交给其他脚本处理。</p>
+        </div>
+      </section>
+
+      <section id="next" aria-labelledby="h-next">
+        <h2 id="h-next"><span class="num">4</span>下一步</h2>
+        <ul class="measure-prose">
+          <li>查询语法的完整说明：运行 <code>logq help query</code>。</li>
+          <li>遇到问题或想提需求：在项目的 GitHub 仓库里提 Issue。</li>
+          <li>想参与开发：先读仓库里的 <code>CONTRIBUTING.md</code>。</li>
+        </ul>
+      </section>
+
+      <footer class="measure-prose">
+        <p>logq 以 MIT 许可证开源。本文档适用于 v2.3 及以上版本。</p>
+      </footer>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+      function select(tab) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+      }
+      tabs.forEach(function (tab, i) {
+        tab.addEventListener('click', function () { select(tab); });
+        tab.addEventListener('keydown', function (e) {
+          var next = null;
+          if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
+          if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
+          if (next) { e.preventDefault(); select(next); next.focus(); }
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

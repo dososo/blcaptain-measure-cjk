@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="栈桥 API 按量计费示例：清晰的每千次调用价格、每月免费额度与实时费用估算。">
+  <title>价格 · 栈桥 API</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="#" class="brand" aria-label="栈桥 API 首页"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>栈桥 <span class="brand-api">API</span></span></a>
+    <nav aria-label="主导航"><a href="#pricing">API 服务</a><a href="#pricing" class="active" aria-current="page">价格</a><button class="text-button" data-guide>开发文档 <span aria-hidden="true">↗</span></button></nav>
+    <button class="header-button" data-guide>接入指南 <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="eyebrow"><span></span> 简单计费，自由构建</div>
+      <h1 id="hero-title">每一次调用，<br>都明明白白。</h1>
+      <p class="hero-description measure-prose">从第一个想法，到下一次规模化。<br>只为实际用量付费，让成本跟着业务一起成长。</p>
+      <a class="primary-button" href="#calculator">算算我的费用 <span aria-hidden="true">↗</span></a>
+      <div class="hero-benefits"><span><b>✓</b> 无订阅费用</span><span><b>✓</b> 每月免费额度</span><span><b>✓</b> 无最低消费</span></div>
+      <div class="hero-decoration" aria-hidden="true"><span>{</span><i>↗</i><span>}</span></div>
+    </section>
+
+    <section id="pricing" class="pricing-section" aria-labelledby="pricing-title">
+      <div class="section-heading"><div><div class="section-kicker">BUILT FOR YOUR NEXT IDEA</div><h2 id="pricing-title">小步开始，按需扩展</h2></div><div class="currency"><span class="currency-dot"></span> 人民币 CNY <span class="separator">/</span> 按月结算</div></div>
+      <div class="price-grid">
+        <article class="price-card">
+          <div class="card-top"><span class="service-icon" aria-hidden="true">⌘</span><span class="service-tag">基础能力</span></div>
+          <h3>通用 API</h3><p class="card-description">把重复工作交给接口，专注产品本身。</p>
+          <div class="price"><span class="yuan">¥</span><strong>0.50</strong><span class="price-unit">/ 千次调用</span></div>
+          <div class="free-quota"><span>每月免费额度</span><strong>10,000 <small>次</small></strong></div>
+          <button class="card-button" data-calculate="general">估算费用 <span aria-hidden="true">↗</span></button>
+          <div class="card-divider"></div><p class="includes">为日常开发准备好</p>
+          <ul class="features"><li>地理编码、天气与汇率查询</li><li>数据校验与格式转换</li><li>每秒最多 50 次请求</li><li>用量统计与预算提醒</li></ul>
+        </article>
+        <article class="price-card featured">
+          <div class="recommendation">为智能应用而生 <span aria-hidden="true">✧</span></div>
+          <div class="card-top"><span class="service-icon" aria-hidden="true">✧</span><span class="service-tag">智能能力</span></div>
+          <h3>智能 API</h3><p class="card-description">让理解、识别与分析，成为产品的日常。</p>
+          <div class="price"><span class="yuan">¥</span><strong>2.00</strong><span class="price-unit">/ 千次调用</span></div>
+          <div class="free-quota"><span>每月免费额度</span><strong>5,000 <small>次</small></strong></div>
+          <button class="card-button" data-calculate="smart">估算费用 <span aria-hidden="true">↗</span></button>
+          <div class="card-divider"></div><p class="includes">为更聪明的体验准备好</p>
+          <ul class="features"><li>文本分类与情感分析</li><li>图像识别与 OCR 文字提取</li><li>每秒最多 20 次请求</li><li>用量统计与预算提醒</li></ul>
+        </article>
+        <article class="price-card">
+          <div class="card-top"><span class="service-icon database-icon" aria-hidden="true">▤</span><span class="service-tag">数据能力</span></div>
+          <h3>数据 API</h3><p class="card-description">连接可靠数据，为每一个决策提供依据。</p>
+          <div class="price"><span class="yuan">¥</span><strong>1.00</strong><span class="price-unit">/ 千次调用</span></div>
+          <div class="free-quota"><span>每月免费额度</span><strong>8,000 <small>次</small></strong></div>
+          <button class="card-button" data-calculate="data">估算费用 <span aria-hidden="true">↗</span></button>
+          <div class="card-divider"></div><p class="includes">为数据驱动的业务准备好</p>
+          <ul class="features"><li>企业信息与公开数据检索</li><li>结构化数据查询与聚合</li><li>每秒最多 30 次请求</li><li>用量统计与预算提醒</li></ul>
+        </article>
+      </div>
+      <div class="pricing-note"><span aria-hidden="true">ⓘ</span> 免费额度按 API 类别独立计算，每月重置。仅成功请求计费，超出额度后按实际调用次数计算。</div>
+    </section>
+
+    <section id="calculator" class="calculator" aria-labelledby="calculator-title">
+      <div class="calculator-content"><div class="section-kicker">NO SURPRISES</div><h2 id="calculator-title">下个月，大概花多少？</h2><p class="calculator-description">选一个服务，拖动滑块，让预算心里有数。</p>
+        <div class="calculator-fields"><label for="service">API 服务<select id="service"><option value="general">通用 API</option><option value="smart">智能 API</option><option value="data">数据 API</option></select></label><label for="calls">预计月调用次数<div class="number-field"><input id="calls" type="number" min="0" max="10000000" step="1000" value="100000" inputmode="numeric"><span>次 / 月</span></div></label></div>
+        <label class="sr-only" for="usage">调整预计月调用次数</label><input id="usage" type="range" min="0" max="1000000" step="1000" value="100000"><div class="range-labels"><span>0 次</span><span>50 万次</span><span>100 万次</span></div>
+      </div>
+      <div class="estimate" aria-live="polite"><div class="estimate-label">预估月度费用 <span>已扣除免费额度</span></div><div class="estimate-price"><span>¥</span><output id="total">45.00</output><small>/ 月</small></div><div class="estimate-lines"><div><span>每月免费调用</span><strong id="free-count">10,000 次</strong></div><div><span>超额调用</span><strong id="billable-count">90,000 次</strong></div><div><span>每千次单价</span><strong id="unit-price">¥0.50</strong></div></div><p>按次精确计费，不足千次也无需补齐。</p></div>
+    </section>
+
+    <section class="faq-section" aria-labelledby="faq-title"><div><div class="section-kicker">GOOD TO KNOW</div><h2 id="faq-title">还有一些，你可能想了解的</h2><p>把计费规则说清楚，安心写下每一行代码。</p></div><div class="faq-list"><details><summary>免费额度用完后，会停止服务吗？<span aria-hidden="true">+</span></summary><p class="measure-prose">示例方案中，账户余额充足时将继续服务，超出免费额度的部分按页面单价计费。你可以设置预算提醒，及时了解用量变化。</p></details><details><summary>不足一千次调用，怎么计费？<span aria-hidden="true">+</span></summary><p class="measure-prose">按实际调用次数计算，不向上取整到千次。例如通用 API 超出免费额度 200 次，费用为 200 ÷ 1,000 × 0.50，即 0.10 元。</p></details><details><summary>免费额度可以累积到下个月吗？<span aria-hidden="true">+</span></summary><p class="measure-prose">免费额度在每个自然月首日重置，未使用部分不结转。三类 API 的额度独立计算，不互相抵扣。</p></details><details><summary>调用失败也会收费吗？<span aria-hidden="true">+</span></summary><p class="measure-prose">只对成功返回结果的请求计费。鉴权失败、限流和服务端错误请求均不扣除免费额度，也不产生费用。</p></details></div></section>
+    <section class="bottom-cta"><div><h2>让下一个想法，开始运行。</h2><p>从每月免费额度开始，把更多精力留给创造。</p></div><button class="primary-button" data-guide>查看接入示例 <span aria-hidden="true">↗</span></button></section>
+  </main>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>栈桥 <span class="brand-api">API</span></span></a><p>© 2026 栈桥 API · 为每一个想法搭桥</p><span>演示页面 · 价格与服务均为示例</span></footer>
+  <dialog id="guide"><div class="dialog-heading"><h2>从一次调用开始</h2><button id="close-guide" aria-label="关闭接入指南">×</button></div><p class="measure-prose">这是演示接入示例。正式接入时，请替换服务地址和你的 API 密钥。</p><pre><code id="code-example">curl https://api.example.com/v1/weather \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -G --data-urlencode "city=Shanghai"</code></pre><div class="dialog-bottom"><span id="copy-status" role="status">示例地址不提供实际 API 服务。</span><button class="primary-button" id="copy-code">复制示例</button></div></dialog>
+  <script>
+    const plans = { general: { price: .5, free: 10000 }, smart: { price: 2, free: 5000 }, data: { price: 1, free: 8000 } };
+    const service = document.querySelector('#service');
+    const calls = document.querySelector('#calls');
+    const usage = document.querySelector('#usage');
+    const format = new Intl.NumberFormat('zh-CN');
+    function calculate() {
+      const amount = Math.max(0, Math.min(10000000, Math.floor(Number(calls.value) || 0)));
+      const plan = plans[service.value];
+      const billable = Math.max(0, amount - plan.free);
+      usage.value = Math.min(amount, 1000000);
+      usage.style.setProperty('--progress', `${Number(usage.value) / 10000}%`);
+      document.querySelector('#total').textContent = (billable * plan.price / 1000).toFixed(2);
+      document.querySelector('#free-count').textContent = `${format.format(plan.free)} 次`;
+      document.querySelector('#billable-count').textContent = `${format.format(billable)} 次`;
+      document.querySelector('#unit-price').textContent = `¥${plan.price.toFixed(2)}`;
+    }
+    service.addEventListener('change', calculate);
+    calls.addEventListener('input', calculate);
+    calls.addEventListener('change', () => { calls.value = Math.max(0, Math.min(10000000, Math.floor(Number(calls.value) || 0))); calculate(); });
+    usage.addEventListener('input', () => { calls.value = usage.value; calculate(); });
+    document.querySelectorAll('[data-calculate]').forEach(button => button.addEventListener('click', () => { service.value = button.dataset.calculate; calculate(); document.querySelector('#calculator').scrollIntoView({ behavior: 'smooth' }); service.focus({ preventScroll: true }); }));
+    const guide = document.querySelector('#guide');
+    document.querySelectorAll('[data-guide]').forEach(button => button.addEventListener('click', () => guide.showModal()));
+    document.querySelector('#close-guide').addEventListener('click', () => guide.close());
+    guide.addEventListener('click', event => { if (event.target === guide) { const box = guide.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) guide.close(); } });
+    document.querySelector('#copy-code').addEventListener('click', async () => { try { await navigator.clipboard.writeText(document.querySelector('#code-example').textContent); document.querySelector('#copy-status').textContent = '已复制，可粘贴到终端修改。'; } catch { const range = document.createRange(); range.selectNodeContents(document.querySelector('#code-example')); const selection = window.getSelection(); selection.removeAllRanges(); selection.addRange(range); document.querySelector('#copy-status').textContent = '代码已选中，请按 Ctrl+C 或 ⌘C 复制。'; } });
+    calculate();
+  </script>
+</body>
+</html>

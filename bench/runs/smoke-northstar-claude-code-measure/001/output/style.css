@@ -1,0 +1,347 @@
+/* 山隅烘焙室 首页样式。measure.css 先于本文件引入，measure 层排在最前，这里的规则都会优先于它。 */
+
+:root {
+  --bg: #f6f1e9;
+  --surface: #efe7da;
+  --fg: #2a211b;
+  --muted: #6d5f53;
+  --line: #d9cdbb;
+  --accent: #a4472b;
+  --bean: #4a3326;
+  --bean-off: #d6c8b4;
+
+  --serif: "Source Serif 4", "Noto Serif SC", "Songti SC", "STSong", "SimSun", serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Noto Serif SC", "Songti SC", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1714;
+    --surface: #251f1b;
+    --fg: #ece3d6;
+    --muted: #a8998a;
+    --line: #3b322b;
+    --accent: #e0805f;
+    --bean: #d9b48f;
+    --bean-off: #3f352d;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1c1714;
+  --surface: #251f1b;
+  --fg: #ece3d6;
+  --muted: #a8998a;
+  --line: #3b322b;
+  --accent: #e0805f;
+  --bean: #d9b48f;
+  --bean-off: #3f352d;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--serif);
+  font-size: 17px;
+}
+
+a { color: inherit; text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
+a:hover { color: var(--accent); }
+
+.wrap {
+  max-width: 68rem;
+  margin: 0 auto;
+  padding-inline: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* 顶栏 */
+.site-head {
+  border-bottom: 1px solid var(--line);
+}
+.site-head .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  padding-block: 1.25rem;
+}
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+}
+.logo small {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--muted);
+  margin-left: 0.5em;
+  letter-spacing: 0.08em;
+}
+.site-head nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.95rem;
+}
+.site-head nav a { text-decoration: none; }
+
+/* 首屏 */
+.hero {
+  padding-block: clamp(3.5rem, 10vw, 7rem) clamp(3rem, 8vw, 5.5rem);
+  border-bottom: 1px solid var(--line);
+}
+.hero h1 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  max-width: 14em;
+}
+.hero .lead {
+  margin: 0;
+  font-size: 1.15rem;
+  color: var(--muted);
+}
+.hero .meta {
+  margin: 2.25rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  font-size: 0.95rem;
+}
+.hero .meta li { line-height: 1.6; }
+.hero .meta b { color: var(--accent); font-weight: 600; margin-right: 0.4em; }
+
+/* 区块通用 */
+section.block {
+  padding-block: clamp(3rem, 8vw, 5rem);
+  border-bottom: 1px solid var(--line);
+}
+.block-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+.block-head .num {
+  font-family: var(--mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+}
+.block-head h2 {
+  margin: 0;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.block-head p { margin: 0; color: var(--muted); }
+
+/* 豆单 */
+.beans {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--fg);
+}
+.bean {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr) auto;
+  gap: 0.75rem 2.5rem;
+  padding-block: 1.75rem;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.6;
+}
+.bean h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.bean .origin {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.bean .notes { margin: 0; min-width: 0; }
+.bean .notes p { margin: 0 0 0.5rem; }
+.bean .tags {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+.bean .side {
+  text-align: right;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.bean .price {
+  display: block;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+}
+.bean .price + span { color: var(--muted); font-size: 0.85rem; }
+
+/* 烘焙度：五格刻度，不用图标 */
+.roast {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.roast .bar {
+  display: inline-flex;
+  gap: 3px;
+}
+.roast .bar::before {
+  content: "";
+  width: calc(var(--lv) * 14px + (var(--lv) - 1) * 3px);
+  height: 8px;
+  background: var(--bean);
+  border-radius: 1px;
+}
+.roast .bar::after {
+  content: "";
+  width: calc((5 - var(--lv)) * 14px + (4 - var(--lv)) * 3px);
+  height: 8px;
+  background: var(--bean-off);
+  border-radius: 1px;
+}
+
+.beans-foot {
+  margin: 1.5rem 0 0;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* 理念 */
+.philo {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
+  gap: 3rem;
+  align-items: start;
+}
+.philo .measure-prose { min-width: 0; }
+.philo .measure-prose p { margin: 0 0 1.25em; }
+.philo .measure-prose h3 {
+  margin: 2em 0 0.6em;
+  font-size: 1.2rem;
+}
+.philo .measure-prose h3:first-child { margin-top: 0; }
+.philo strong { font-weight: 700; }
+.philo .dot { text-emphasis: dot; }
+
+.log {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 1.5rem;
+}
+.log h3 {
+  margin: 0 0 1rem;
+  font-size: 1rem;
+}
+.log dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.6rem 1rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.log dt { color: var(--muted); }
+.log dd { margin: 0; font-family: var(--mono); }
+.log p {
+  margin: 1.25rem 0 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* 到店 */
+.visit {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 3rem;
+}
+.visit address {
+  font-style: normal;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+.visit address span {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+.visit .measure-prose p { margin: 0 0 1em; }
+.hours {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.hours th,
+.hours td {
+  text-align: left;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.6;
+  font-weight: 400;
+}
+.hours td { text-align: right; font-family: var(--mono); }
+.hours tr.off td { color: var(--muted); font-family: var(--serif); }
+.visit h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1.05rem;
+}
+.visit ul {
+  margin: 0;
+  padding-left: 1.2em;
+}
+.visit ul li { margin-bottom: 0.35rem; }
+.copy {
+  margin-top: 0.75rem;
+  font: inherit;
+  font-size: 0.9rem;
+  padding: 0.45rem 1rem;
+  background: transparent;
+  color: var(--fg);
+  border: 1px solid var(--fg);
+  border-radius: 3px;
+  cursor: pointer;
+}
+.copy:hover { background: var(--fg); color: var(--bg); }
+
+/* 页脚 */
+.site-foot {
+  padding-block: 2.5rem 3rem;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.site-foot .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+}
+.site-foot p { margin: 0; line-height: 1.6; }
+
+@media (max-width: 760px) {
+  .bean { grid-template-columns: minmax(0, 1fr); gap: 0.75rem; }
+  .bean .side { text-align: left; }
+  .philo,
+  .visit { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
+}

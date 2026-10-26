@@ -1,0 +1,240 @@
+@layer measure;
+
+:root {
+  --bg: #f7f7f4;
+  --surface: #ffffff;
+  --fg: #1d1f1c;
+  --muted: #5d625b;
+  --line: #e2e3dd;
+  --accent: #1f6f4a;
+  --accent-soft: #e5f1ea;
+  --highlight: #fff6d8;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #141614;
+    --surface: #1c1f1c;
+    --fg: #ebede8;
+    --muted: #a3a99f;
+    --line: #2f332e;
+    --accent: #6fcf9c;
+    --accent-soft: #1f3328;
+    --highlight: #2e2a1a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #141614;
+  --surface: #1c1f1c;
+  --fg: #ebede8;
+  --muted: #a3a99f;
+  --line: #2f332e;
+  --accent: #6fcf9c;
+  --accent-soft: #1f3328;
+  --highlight: #2e2a1a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "Helvetica Neue", Arial, "PingFang SC", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+  font-size: 16px;
+}
+
+.wrap {
+  max-width: 64rem;
+  margin: 0 auto;
+  padding-inline: 1.25rem;
+}
+
+header.top {
+  padding-block: 3.5rem 2rem;
+}
+.eyebrow {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 0.75rem;
+}
+h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  margin: 0 0 1rem;
+  letter-spacing: 0;
+}
+.lead {
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.75;
+}
+
+section { padding-block: 1.5rem; }
+h2 {
+  font-size: 1.375rem;
+  margin: 0 0 1rem;
+}
+.note {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0.75rem 0 0;
+}
+
+/* 免费额度卡片 */
+.free {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+}
+.free-card {
+  background: var(--accent-soft);
+  border-radius: 12px;
+  padding: 1.25rem;
+  min-width: 0;
+}
+.free-card .num {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+.free-card p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+/* 价格表 */
+.table-box {
+  overflow-x: auto;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 40rem;
+}
+th, td {
+  text-align: left;
+  padding: 0.875rem 1rem;
+  border-bottom: 1px solid var(--line);
+  line-height: 1.6;
+  vertical-align: top;
+}
+thead th {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 600;
+  background: var(--bg);
+}
+tbody tr:last-child td { border-bottom: 0; }
+td.price, th.price {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+td.price strong { font-size: 1.0625rem; }
+.api-name { font-weight: 600; display: block; }
+.api-desc { color: var(--muted); font-size: 14px; }
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 0.875em;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 0 0.3em;
+}
+
+/* 阶梯折扣 */
+.tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+}
+.tier {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem;
+  min-width: 0;
+}
+.tier h3 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+  line-height: 1.5;
+}
+.tier .off {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--accent);
+}
+.tier p { margin: 0; line-height: 1.7; }
+
+/* 计算器 */
+.calc {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.25rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  align-items: end;
+}
+.calc label {
+  display: block;
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 0.375rem;
+}
+.calc select, .calc input {
+  width: 100%;
+  font: inherit;
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+}
+.result {
+  grid-column: 1 / -1;
+  background: var(--highlight);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+.result .total {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 0;
+  font-variant-numeric: tabular-nums;
+}
+.result p { margin: 0; line-height: 1.7; }
+.result .detail { color: var(--muted); font-size: 14px; }
+
+/* 常见问题 */
+.faq { max-width: 36em; }
+.faq details {
+  border-bottom: 1px solid var(--line);
+  padding-block: 0.875rem;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 1.6;
+}
+.faq details p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+footer {
+  padding-block: 2rem 3rem;
+  color: var(--muted);
+  font-size: 14px;
+}

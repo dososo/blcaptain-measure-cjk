@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4eee3">
+  <title>今晚，把心事翻轻一点｜睡前书单</title>
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; padding: 32px 16px; display: grid; place-items: center; background: #ded8cf; color: #383b32; font-family: "PingFang SC", "Microsoft YaHei", sans-serif; -webkit-font-smoothing: antialiased; }
+    .frame { width: min(900px, 100%); container-type: inline-size; }
+    .card { position: relative; isolation: isolate; width: 100%; aspect-ratio: 3 / 4; padding: 5.8cqw 6.6cqw 4.7cqw; display: flex; flex-direction: column; overflow: hidden; background: #f5efe3; box-shadow: 0 18px 65px #3f352721; }
+    .card::before { content: ""; position: absolute; z-index: -1; inset: 0; opacity: .22; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23887962' opacity='.24' filter='url(%23n)' d='M0 0h180v180H0z'/%3E%3C/svg%3E"); }
+    .masthead { display: flex; justify-content: space-between; align-items: center; font-size: 1.34cqw; letter-spacing: .23cqw; color: #767568; }
+    .series { display: flex; align-items: center; gap: 1cqw; }
+    .mark { width: 1.6cqw; height: 1.6cqw; background: #834b42; border-radius: 50% 50% 0 50%; transform: rotate(-35deg); }
+    .issue { font-family: Georgia, serif; letter-spacing: .12cqw; }
+    .hero { position: relative; margin-top: 4.3cqw; min-height: 21.7cqw; }
+    h1 { position: relative; z-index: 1; margin: 0; font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "SimSun", serif; font-size: 6.4cqw; font-weight: 700; line-height: 1.42; letter-spacing: -.15cqw; color: #773e38; }
+    h1 span { display: block; }
+    .hero-note { margin: 1.2cqw 0 0; font-size: 1.65cqw; color: #7b796a; letter-spacing: .2cqw; }
+    .night { position: absolute; right: -.5cqw; top: -2.2cqw; width: 23.8cqw; height: 24cqw; }
+    .intro { display: flex; align-items: center; gap: 1.7cqw; padding: 1.8cqw 0 2.2cqw; border-bottom: 1px solid #bdb6a8; font-size: 1.6cqw; letter-spacing: .06cqw; }
+    .intro strong { font-weight: 500; color: #773e38; }
+    .intro .line { height: 1.3cqw; width: 1px; background: #c3bbac; }
+    .intro .english { margin-left: auto; font: italic 1.5cqw Georgia, serif; color: #827c6d; }
+    .books { list-style: none; margin: 0; padding: 0; flex: 1; display: flex; flex-direction: column; }
+    .book { flex: 1; display: grid; grid-template-columns: 4.6cqw 8.4cqw 1fr; column-gap: 2.7cqw; align-items: center; border-bottom: 1px solid #d7cfc0; }
+    .number { align-self: center; font: italic 2.8cqw Georgia, serif; color: #9a8d78; }
+    .cover { position: relative; height: 10.5cqw; width: 7.6cqw; border-radius: .15cqw .35cqw .35cqw .15cqw; box-shadow: .35cqw .5cqw .7cqw #4b40291c; overflow: hidden; transform: rotate(-4deg); }
+    .cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, #0002, transparent 5%, #fff3 7%, transparent 12%); border: 1px solid #0000000c; border-radius: inherit; }
+    .cover svg { position: absolute; width: 100%; height: 100%; inset: 0; }
+    .cover-title { position: absolute; top: 1.1cqw; left: .8cqw; right: .6cqw; text-align: center; font-family: "Songti SC", "SimSun", serif; font-size: 1.1cqw; font-weight: 600; letter-spacing: .15cqw; }
+    .cover-one { background: #536655; color: #f4e7c5; }
+    .cover-two { background: #b96c52; color: #fff2dc; transform: rotate(3deg); }
+    .cover-three { background: #e7d9b5; color: #58634e; transform: rotate(-2deg); }
+    .cover-four { background: #8d9c9c; color: #fff9e8; transform: rotate(3deg); }
+    .cover-five { background: #d9cfb9; color: #695c47; transform: rotate(-3deg); }
+    .book-heading { display: flex; justify-content: space-between; align-items: center; gap: 1cqw; }
+    h2 { margin: 0; font-family: "Songti SC", "STSong", "Noto Serif CJK SC", "SimSun", serif; font-size: 2.7cqw; font-weight: 700; letter-spacing: .1cqw; line-height: 1.3; }
+    a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 2px solid #834b42; outline-offset: 4px; }
+    a:hover { color: #914e43; }
+    .tag { flex-shrink: 0; padding: .4cqw .95cqw; border: 1px solid #c7c6b6; border-radius: 2cqw; font-size: 1.15cqw; letter-spacing: .09cqw; color: #73745f; }
+    .author { margin: .65cqw 0 1.05cqw; font-size: 1.35cqw; color: #8a8171; letter-spacing: .1cqw; }
+    .description { margin: 0; font-size: 1.65cqw; line-height: 1.7; color: #57584b; letter-spacing: .025cqw; }
+    .footer { padding-top: 2.8cqw; }
+    .ritual { display: flex; align-items: center; gap: 1.4cqw; }
+    .ritual svg { width: 3.7cqw; height: 3.7cqw; flex-shrink: 0; }
+    .ritual p { margin: 0; font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 2.1cqw; letter-spacing: .12cqw; }
+    .bottom { margin-top: 2.5cqw; display: flex; justify-content: space-between; color: #8a8171; font-size: 1.2cqw; letter-spacing: .1cqw; }
+    .goodnight { font-family: Georgia, serif; font-style: italic; font-size: 1.5cqw; }
+    @media (max-width: 600px) { body { padding: 0; background: #f5efe3; } .card { box-shadow: none; } }
+    @media print { @page { size: 180mm 240mm; margin: 0; } body { padding: 0; background: none; } .frame { width: 180mm; } .card { box-shadow: none; } * { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+  </style>
+</head>
+<body>
+  <main class="frame">
+    <article class="card" aria-label="睡前阅读推荐，五本温柔的枕边书">
+      <div class="masthead"><div class="series"><i class="mark" aria-hidden="true"></i> 枕边阅读计划</div><span class="issue">NIGHT READING &nbsp; / &nbsp; VOL. 01</span></div>
+      <header class="hero">
+        <h1><span>今晚，</span><span>把心事翻轻一点</span></h1>
+        <p class="hero-note">留一盏小灯，读几页喜欢的文字。</p>
+        <svg class="night" viewBox="0 0 240 240" fill="none" aria-hidden="true">
+          <path d="M60 160V75a66 66 0 0 1 132 0v85" fill="#e8e2d2"/>
+          <path d="M72 158V76a54 54 0 0 1 108 0v82" fill="#59685e"/>
+          <path d="M147 39a22 22 0 1 0 22 30 19 19 0 0 1-22-30Z" fill="#e7d9a8"/>
+          <path d="M98 56v8m-4-4h8m60 39v6m-3-3h6m-72 21v5m-2.5-2.5h5" stroke="#e6dec3" stroke-width="1.5"/>
+          <path d="M126 87v72m-53-48h106M59 160h134" stroke="#b3ad94" stroke-width="3"/>
+          <path d="M62 181c32-12 63-10 91 1l-18 28c-29-12-59-12-90-5Z" fill="#a36250"/>
+          <path d="m50 196 79 9 40-21-78-11Z" fill="#e7d8ba" stroke="#a8997b" stroke-width="1.4"/>
+          <path d="M49 190c21-12 47-13 73-4 17-17 40-19 62-14l-21 28c-19-4-32-1-43 9-22-10-48-12-72-7Z" fill="#faf3df" stroke="#b9ac8e" stroke-width="1.3"/>
+          <path d="m122 186-2 23m-59-18c16-4 32-3 46 2m-48 3c16-3 31-2 45 3m29-12c11-7 23-9 36-8m-39 14c10-6 20-8 31-7" stroke="#c9bca0" stroke-width="1.1"/>
+          <path d="m140 184-9 17 6 6 8-20" fill="#8f4940"/>
+          <path d="M192 180c-2-15 0-26 10-40m-9 30c-12-1-16-7-16-14 10 0 15 5 16 14Zm3-15c-1-11 3-18 11-20 2 9-2 16-11 20Zm-3 22c8-9 17-11 23-7-4 8-12 10-23 7Z" stroke="#78816a" stroke-width="1.5" fill="#a0a48a"/>
+        </svg>
+      </header>
+      <div class="intro"><strong>5 本适合睡前读的书</strong><span class="line" aria-hidden="true"></span><span>每天 10 分钟 · 慢慢读就好</span><span class="english">A little reading, a softer night.</span></div>
+      <ol class="books">
+        <li class="book">
+          <span class="number" aria-hidden="true">01</span>
+          <div class="cover cover-one" aria-hidden="true"><span class="cover-title">人间草木</span><svg viewBox="0 0 76 105"><g stroke="#d6d3a6" stroke-width="1.2" fill="none"><path d="M39 94c-6-21-4-37 6-58M38 78 21 61m16 5 17-17m-16 5-7-10"/><path d="M22 62c-11-1-14-8-12-14 10 0 14 6 12 14Zm29-10c-3-10 0-16 9-20 3 10-1 17-9 20ZM33 47c-8-2-12-9-8-16 8 3 11 9 8 16Z" fill="#b4bd8c"/></g></svg></div>
+          <div><div class="book-heading"><h2><a href="https://se.zhangyue.com/book/detail?appId=088f282a&amp;bookId=12493643&amp;bookType=1" target="_blank" rel="noopener noreferrer">人间草木</a></h2><span class="tag">烟火日常</span></div><p class="author">汪曾祺 / 散文</p><p class="description">花草、吃食与旧日小事，平凡日子也有滋味。<br>睡前随手读一篇，把一天收进人间烟火里。</p></div>
+        </li>
+        <li class="book">
+          <span class="number" aria-hidden="true">02</span>
+          <div class="cover cover-two" aria-hidden="true"><span class="cover-title">山茶文具店</span><svg viewBox="0 0 76 105"><path d="m16 58 44-5 4 31-44 5Z" fill="#f1e3c5"/><path d="m17 59 24 16 19-21M20 87l15-19m28 16L47 67" stroke="#b99579" fill="none"/><path d="M43 53c3-14 10-20 17-22" stroke="#e2cea6"/><g fill="#eed2b5"><circle cx="56" cy="34" r="5"/><circle cx="63" cy="35" r="5"/><circle cx="60" cy="41" r="5"/></g><circle cx="59" cy="36" r="2" fill="#ac7c48"/></svg></div>
+          <div><div class="book-heading"><h2><a href="https://lib.cidp.edu.cn/__local/A/16/9D/9B7BC64EAF00749F24A13EEF8E1_0F942DDA_164B95.pdf" target="_blank" rel="noopener noreferrer">山茶文具店</a></h2><span class="tag">温柔来信</span></div><p class="author">［日］小川糸 / 小说</p><p class="description">在镰仓的小店里，读一封替人写下的信。<br>让那些认真表达的心意，陪你缓缓放松。</p></div>
+        </li>
+        <li class="book">
+          <span class="number" aria-hidden="true">03</span>
+          <div class="cover cover-three" aria-hidden="true"><span class="cover-title">枕草子</span><svg viewBox="0 0 76 105"><circle cx="48" cy="46" r="14" fill="#c9a170" opacity=".55"/><path d="M11 85c24-2 36-20 47-38M25 80c-8-8-7-15-2-19 6 6 7 12 2 19m16-13c-1-10 4-15 11-16 0 8-4 13-11 16m-8 8c10 2 17-1 20-8-9-3-16 1-20 8" fill="#8b9676" stroke="#718365" stroke-width="1"/></svg></div>
+          <div><div class="book-heading"><h2><a href="https://read.douban.com/ebook/394869184/" target="_blank" rel="noopener noreferrer">枕草子</a></h2><span class="tag">四季闲趣</span></div><p class="author">［日］清少纳言 / 随笔</p><p class="description">四时风物与细碎心情，被写成短短的片段。<br>挑几则喜欢的读，让心停在微小的美好上。</p></div>
+        </li>
+        <li class="book">
+          <span class="number" aria-hidden="true">04</span>
+          <div class="cover cover-four" aria-hidden="true"><span class="cover-title">夏日书</span><svg viewBox="0 0 76 105"><circle cx="53" cy="40" r="9" fill="#e9dfbc"/><path d="M0 67q19-7 38 0t38 0v38H0Z" fill="#526f72"/><path d="M6 77q12-4 24 0m11 9q15-5 29 0M4 96q16-4 32 0" stroke="#bcc8b8" fill="none"/><path d="m17 68 16-22 22 24Z" fill="#58634d"/><path d="m28 58 5-12 9 14Z" fill="#d6d0b4"/></svg></div>
+          <div><div class="book-heading"><h2><a href="https://book.douban.com/subject/37276357/" target="_blank" rel="noopener noreferrer">夏日书</a></h2><span class="tag">海岛慢时光</span></div><p class="author">［芬兰］托芙·扬松 / 小说</p><p class="description">跟着祖母与小女孩，在北欧小岛上散步。<br>读一小节，让海风把白天的匆忙吹远。</p></div>
+        </li>
+        <li class="book">
+          <span class="number" aria-hidden="true">05</span>
+          <div class="cover cover-five" aria-hidden="true"><span class="cover-title">缘缘堂随笔</span><svg viewBox="0 0 76 105"><g fill="none" stroke="#706e59" stroke-width="1.2"><path d="M13 87h49M22 87V54h33v33M19 55l19-15 20 15M29 61h18v13H29Zm9 0v13m-9-6h18M8 48c10-3 13-11 12-20M11 39l8 3m0-9 8-5"/><path d="M49 90c9-8 15-10 22-9"/></g><circle cx="60" cy="33" r="7" fill="#ae7157" opacity=".7"/></svg></div>
+          <div><div class="book-heading"><h2><a href="https://read.douban.com/ebook/163959878/" target="_blank" rel="noopener noreferrer">缘缘堂随笔</a></h2><span class="tag">童心与从容</span></div><p class="author">丰子恺 / 散文</p><p class="description">从孩子、旧事与生活小景里，找回一点童心。<br>读完一篇便合上书，留一点余味给明天。</p></div>
+        </li>
+      </ol>
+      <footer class="footer">
+        <div class="ritual"><svg viewBox="0 0 36 36" fill="none" aria-hidden="true"><path d="M21 5A13 13 0 1 0 31 24 12 12 0 0 1 21 5Z" stroke="#8c7554" stroke-width="1.4"/><path d="M29 5v8m-4-4h8" stroke="#8c7554" stroke-width="1.2"/></svg><p>不必读完一章，困了，就安心合上。</p></div>
+        <div class="bottom"><span>#睡前阅读 &nbsp; #治愈系书单 &nbsp; #把日子过慢一点</span><span class="goodnight">Good night, dear reader.</span></div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>

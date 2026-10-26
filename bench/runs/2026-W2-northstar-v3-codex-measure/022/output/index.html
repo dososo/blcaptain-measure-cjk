@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f6f7f3">
+  <title>意见反馈 · 留白</title>
+  <link rel="stylesheet" href="measure.css">
+  <style>
+    :root{--ink:#263b33;--muted:#7c857e;--green:#345d49;--line:#e4e8e1;--paper:#f6f7f3;--accent:#dbe9bc}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:system-ui,"PingFang SC","Noto Sans SC",sans-serif;font-size:14px;line-height:1.75}button,input,textarea{font:inherit}button,label,input,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button:disabled{cursor:wait;opacity:.6}button,input,textarea{outline-offset:4px}button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--green)}svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}.sprite{display:none}header{height:88px;max-width:1320px;margin:auto;padding:0 48px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:11px}.brand-icon{width:31px;height:31px;border-radius:9px;background:var(--green);display:grid;place-items:center;color:white}.brand-icon svg{width:22px;height:22px}.brand-name{font-size:21px;font-weight:650;letter-spacing:3px}.brand-divider{height:18px;width:1px;background:#d5dbd2;margin:0 8px}.brand-sub{color:var(--muted);font-size:13px}.header-note{display:flex;align-items:center;gap:8px;color:#667369;font-size:13px}.status-dot{width:6px;height:6px;border-radius:50%;background:#71926b}
+    main{max-width:1140px;margin:43px auto 32px;padding:0 30px}.breadcrumb{display:flex;gap:11px;align-items:center;color:#90988f;font-size:12px;margin-bottom:21px}.breadcrumb svg{width:14px;height:14px}.breadcrumb span:last-child{color:#48594d}.layout{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:start}.intro{padding-top:10px}.eyebrow{color:#68816b;font-size:12px;font-weight:600;letter-spacing:2.8px;margin-bottom:15px}.intro h1{font-size:36px;font-weight:600;line-height:1.5;margin:0 0 16px;letter-spacing:1px}.intro h1 span{color:#708663}.intro-copy{color:#7b857b;font-size:14px;margin:0;max-width:24em;line-height:1.9}.illustration{height:248px;margin-top:29px;position:relative;overflow:hidden}.orbit{position:absolute;border:1px solid #dfe5d7;border-radius:50%;width:226px;height:226px;left:39px;top:8px}.orbit:after{content:"";position:absolute;inset:22px;border:1px dashed #dce3d5;border-radius:50%}.note-back{position:absolute;background:#d9e3c9;width:167px;height:131px;border-radius:13px;left:90px;top:48px;transform:rotate(12deg)}.note-card{position:absolute;left:55px;top:46px;width:179px;height:143px;background:#fff;border:1px solid #e3e7dd;border-radius:12px;transform:rotate(-8deg);box-shadow:0 14px 25px #354a3310;padding:23px}.note-card svg{color:#7b9471;width:29px;height:29px;margin-bottom:8px}.note-line{height:5px;background:#e7ebe1;border-radius:5px;margin:10px 0;width:100%}.note-line.short{width:65%}.bubble{position:absolute;left:201px;top:128px;background:#365b47;width:64px;height:57px;display:grid;place-items:center;border-radius:17px 17px 17px 3px;transform:rotate(7deg);color:#d9e9bd;box-shadow:0 8px 14px #355b4715}.bubble svg{width:29px;height:29px}.spark{position:absolute;left:268px;top:53px;color:#91a47c;font-size:27px}.small-dot{position:absolute;left:36px;top:170px;width:7px;height:7px;background:#c6d2b6;border-radius:50%}.guidance{border-top:1px solid #dce2d6;margin-top:8px;padding-top:24px}.guidance-title{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;margin-bottom:10px}.guidance-title svg{width:17px;height:17px}.guidance p{margin:0;color:#899084;font-size:14px;max-width:23em;line-height:1.9}.aside-bottom{display:flex;align-items:center;gap:8px;color:#8d9588;font-size:12px;margin-top:26px}.aside-bottom svg{width:15px;height:15px}
+    .form-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:30px 33px 27px;box-shadow:0 8px 35px #263b3303}.form-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:27px}.form-heading h2{font-size:19px;font-weight:600;margin:0}.required-hint{font-size:12px;color:#92988f}.required{color:#7c9866;margin-left:3px}fieldset{border:0;padding:0;margin:0 0 25px;min-width:0}legend,.field-label{display:block;font-weight:550;font-size:14px;margin-bottom:11px;padding:0}.types{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.type{position:relative;cursor:pointer}.type input{position:absolute;opacity:0;width:1px;height:1px}.type-content{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;border:1px solid var(--line);border-radius:9px;padding:16px 3px 12px;color:#7c847b;transition:background .15s,border-color .15s}.type-content span{font-size:13px}.type:hover .type-content{background:#fafbf7;border-color:#b4c3a8}.type input:checked+.type-content{background:#f0f5e9;border-color:#8da27b;color:#42613e;box-shadow:0 0 0 1px #8da27b15}.type input:focus-visible+.type-content{outline:2px solid var(--green);outline-offset:3px}.selected-mark{display:none;position:absolute;right:6px;top:6px;width:12px;height:12px;border-radius:50%;background:#72905f;color:white}.selected-mark svg{width:10px;height:10px;stroke-width:2.6}.type input:checked~.selected-mark{display:grid;place-items:center}.field{margin-bottom:24px}.description-wrap{position:relative}textarea{width:100%;resize:vertical;min-height:151px;max-height:400px;border:1px solid var(--line);border-radius:9px;padding:13px 14px 32px;line-height:1.8;color:var(--ink);background:#fdfefc;font-size:14px}textarea::placeholder,input::placeholder{color:#a3a99f}textarea:focus,input[type=email]:focus{border-color:#8da27b;outline:2px solid #eaf0e3;outline-offset:0}.counter{position:absolute;bottom:12px;right:13px;color:#969e91;font-size:12px;background:#fdfefc;padding-left:5px;font-variant-numeric:tabular-nums}.optional{font-size:12px;color:#969d91;font-weight:400;margin-left:6px}.dropzone{position:relative;border:1px dashed #cdd6c6;border-radius:9px;background:#fbfcf9;padding:21px 12px 19px;text-align:center;transition:background .15s,border-color .15s;cursor:pointer}.dropzone:hover,.dropzone.dragover{background:#f0f5e9;border-color:#7e996c}.upload-icon{width:35px;height:35px;margin:0 auto 8px;border-radius:9px;background:#eff3e9;color:#7c9270;display:grid;place-items:center}.dropzone p{margin:0;font-size:14px;color:#8d9487}.dropzone strong{color:#56744a;font-weight:500}.dropzone .upload-hint{font-size:14px;color:#9ba292;margin-top:5px}.upload-input{position:absolute;opacity:0;inset:0;width:100%;height:100%;cursor:pointer}.dropzone:focus-within{outline:2px solid var(--green);outline-offset:3px}.previews{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}.previews:empty{display:none}.preview{position:relative;width:85px;height:70px;border:1px solid var(--line);border-radius:7px;background:#f4f6f1}.preview img{width:100%;height:100%;object-fit:cover;border-radius:7px}.remove-image{position:absolute;right:-6px;top:-6px;background:#fff;border:1px solid #dce1d5;border-radius:50%;width:23px;height:23px;display:grid;place-items:center;padding:0;color:#59684f}.remove-image svg{width:12px;height:12px}.email-input{border:1px solid var(--line);border-radius:8px;background:#fdfefc;width:100%;height:43px;padding:0 13px;font-size:13px;color:var(--ink)}.field-note{max-width:36em;color:#92998e;font-size:14px;margin:7px 0 0}.submit-row{border-top:1px solid #edf0e9;padding-top:23px;display:flex;align-items:center;justify-content:space-between;gap:15px}.local-note{font-size:12px;color:#969d91;display:flex;align-items:center;gap:6px}.local-note svg{width:13px;height:13px}.submit-button,.download{border:none;background:var(--green);color:white;border-radius:8px;padding:11px 23px;display:flex;align-items:center;justify-content:center;gap:16px;font-size:13px;font-weight:500;transition:background .15s}.submit-button:hover,.download:hover{background:#244634}.submit-button svg{width:16px;height:16px}.error{color:#b24c3e;font-size:12px;margin:7px 0 0}.error:empty{display:none}footer{max-width:1080px;margin:34px auto 0;padding:20px 0 27px;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#9ca397;font-size:12px;letter-spacing:.3px}.footer-right{display:flex;gap:7px;align-items:center}.footer-right svg{width:13px;height:13px}dialog{border:1px solid var(--line);border-radius:18px;padding:32px;max-width:440px;width:calc(100% - 40px);color:var(--ink);box-shadow:0 20px 90px #243a3325}dialog::backdrop{background:#213a3355;backdrop-filter:blur(4px)}dialog h2{font-size:22px;margin:0 0 12px}dialog p{font-size:14px;color:#7c857e}.dialog-actions{display:flex;gap:10px;margin-top:24px}.close-dialog{border:1px solid var(--line);background:#fff;color:#65715e;border-radius:8px;padding:10px 18px}.success-icon{width:43px;height:43px;border-radius:50%;background:#edf3e4;display:grid;place-items:center;color:#5b7b44;margin-bottom:18px}
+    @media(min-width:1400px){main{margin-top:62px}.layout{gap:72px;grid-template-columns:340px 1fr}}
+    @media(max-width:900px){main{padding:0 25px}.layout{grid-template-columns:260px 1fr;gap:28px}.intro h1{font-size:30px}.form-card{padding:25px 22px}.illustration{transform:scale(.85);transform-origin:left center}.types{grid-template-columns:repeat(2,1fr)}.type-content{flex-direction:row;padding:12px 6px}.submit-row{align-items:flex-start;flex-direction:column}.submit-button{width:100%}footer{margin-left:25px;margin-right:25px}}
+    @media(max-width:650px){header{height:72px;padding:0 23px}.brand-sub,.brand-divider{display:none}.header-note{font-size:12px}main{margin-top:22px;padding:0 20px}.breadcrumb{margin-bottom:18px}.layout{grid-template-columns:1fr;gap:26px}.intro{padding:0}.intro h1{font-size:29px;line-height:1.45;margin-bottom:12px}.intro h1 br{display:none}.intro h1 span{margin-left:8px}.intro-copy{max-width:36em}.illustration,.guidance,.aside-bottom,.eyebrow{display:none}.form-card{padding:25px 20px;border-radius:14px}.types{grid-template-columns:repeat(4,1fr);gap:7px}.type-content{flex-direction:column;padding:14px 2px 10px}.type-content span{font-size:12px}.submit-row{flex-direction:column-reverse;align-items:center}.form-heading{margin-bottom:24px}footer{margin:25px 20px 0;gap:10px;flex-wrap:wrap;font-size:12px}.field{margin-bottom:23px}}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+  </style>
+</head>
+<body>
+  <svg class="sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+    <symbol id="leaf" viewBox="0 0 24 24"><path d="M6 19V8a3 3 0 0 1 3-3h9v11a3 3 0 0 1-3 3H6Z"/><path d="M10 15l5-6M10 10v5h5"/></symbol>
+    <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="bug" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="13" rx="5"/><path d="M9 7V5a3 3 0 0 1 6 0v2M3 10h4m10 0h4M3 16h4m10 0h4M5 4l3 4m8 0 3-4M12 12v4"/></symbol>
+    <symbol id="bulb" viewBox="0 0 24 24"><path d="M9 17v-2a6 6 0 1 1 6 0v2M9 18h6m-5 3h4M10 10l2 2 2-2m-2 2v5"/></symbol>
+    <symbol id="smile" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14a4.5 4.5 0 0 0 8 0M8 9h.01M16 9h.01"/></symbol>
+    <symbol id="chat" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 1-8 8H4l1-5a8 8 0 1 1 15-3Z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></symbol>
+    <symbol id="upload" viewBox="0 0 24 24"><path d="M12 16V4m-4 4 4-4 4 4M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M12 20 4 12C-2 5 8 0 12 7c4-7 14-2 8 5Z"/></symbol>
+    <symbol id="x" viewBox="0 0 24 24"><path d="m6 6 12 12M6 18 18 6"/></symbol>
+  </defs></svg>
+  <header>
+    <div class="brand"><span class="brand-icon"><svg aria-hidden="true"><use href="#leaf"/></svg></span><span class="brand-name">留白</span><span class="brand-divider"></span><span class="brand-sub">让工作，多一点从容</span></div>
+    <div class="header-note"><span class="status-dot"></span>每个声音，都有回响</div>
+  </header>
+  <main>
+    <nav class="breadcrumb" aria-label="当前位置"><span>留白</span><svg aria-hidden="true" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></svg><span>意见反馈</span></nav>
+    <div class="layout">
+      <aside class="intro">
+        <div class="eyebrow" lang="en">BETTER, TOGETHER</div>
+        <h1>好产品，<br><span>从倾听开始。</span></h1>
+        <p class="intro-copy measure-prose">一个小问题，一个新想法，<br>或是一点使用感受，我们都想听听。<br>你的每一次反馈，都让留白更好一点。</p>
+        <div class="illustration" aria-hidden="true"><div class="orbit"></div><div class="note-back"></div><div class="note-card"><svg><use href="#chat"/></svg><div class="note-line"></div><div class="note-line short"></div></div><div class="bubble"><svg><use href="#check"/></svg></div><span class="spark">✧</span><span class="small-dot"></span></div>
+        <div class="guidance"><div class="guidance-title"><svg aria-hidden="true"><use href="#bulb"/></svg>一点小提示</div><p class="measure-prose">如果遇到了问题，可以告诉我们发生的场景和操作步骤。附上一张截图，会让问题更容易被理解。</p></div>
+        <div class="aside-bottom"><svg aria-hidden="true"><use href="#heart"/></svg>谢谢你，和我们一起打磨留白。</div>
+      </aside>
+      <section class="form-card" aria-labelledby="form-title">
+        <div class="form-heading"><h2 id="form-title">分享你的反馈</h2><span class="required-hint"><span class="required">*</span> 为必填项</span></div>
+        <form id="feedback-form">
+          <fieldset><legend>问题类型<span class="required">*</span></legend><div class="types">
+            <label class="type"><input type="radio" name="type" value="功能异常" checked required><span class="type-content"><svg aria-hidden="true"><use href="#bug"/></svg><span>功能异常</span></span><span class="selected-mark"><svg aria-hidden="true"><use href="#check"/></svg></span></label>
+            <label class="type"><input type="radio" name="type" value="功能建议"><span class="type-content"><svg aria-hidden="true"><use href="#bulb"/></svg><span>功能建议</span></span><span class="selected-mark"><svg aria-hidden="true"><use href="#check"/></svg></span></label>
+            <label class="type"><input type="radio" name="type" value="体验反馈"><span class="type-content"><svg aria-hidden="true"><use href="#smile"/></svg><span>体验反馈</span></span><span class="selected-mark"><svg aria-hidden="true"><use href="#check"/></svg></span></label>
+            <label class="type"><input type="radio" name="type" value="其他问题"><span class="type-content"><svg aria-hidden="true"><use href="#chat"/></svg><span>其他问题</span></span><span class="selected-mark"><svg aria-hidden="true"><use href="#check"/></svg></span></label>
+          </div></fieldset>
+          <div class="field"><label class="field-label" for="description">详细描述<span class="required">*</span></label><div class="description-wrap"><textarea id="description" name="description" maxlength="1000" minlength="10" required placeholder="请告诉我们具体发生了什么，或你期待的改进……&#10;例如：在什么页面、进行了什么操作、遇到了什么问题。" aria-describedby="description-error description-count"></textarea><span class="counter" id="description-count"><span id="count">0</span> / 1000</span></div><p class="error" id="description-error" aria-live="polite"></p></div>
+          <div class="field"><label class="field-label" for="screenshots">上传截图<span class="optional">选填</span></label><div class="dropzone" id="dropzone"><div class="upload-icon"><svg aria-hidden="true"><use href="#upload"/></svg></div><p><strong>点击上传</strong>，或将截图拖到这里</p><p class="upload-hint" id="upload-hint">支持 JPG、PNG、WebP，单张不超过 5 MB，最多 3 张</p><input class="upload-input" id="screenshots" type="file" accept="image/jpeg,image/png,image/webp" multiple aria-describedby="upload-hint upload-error"></div><div class="previews" id="previews" aria-label="已选择的截图"></div><p class="error" id="upload-error" aria-live="polite"></p></div>
+          <div class="field"><label class="field-label" for="email">联系邮箱<span class="optional">选填</span></label><input class="email-input" id="email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com"><p class="field-note">留下邮箱，方便我们进一步了解问题。</p></div>
+          <div class="submit-row"><span class="local-note"><svg aria-hidden="true"><use href="#lock"/></svg>本地演示，提交后可下载反馈</span><button class="submit-button" type="submit" id="submit">提交反馈<svg aria-hidden="true"><use href="#arrow"/></svg></button></div>
+        </form>
+      </section>
+    </div>
+  </main>
+  <footer><span>© 2026 留白 · 把时间留给重要的事</span><span class="footer-right">用心倾听，持续生长<svg aria-hidden="true"><use href="#leaf"/></svg></span></footer>
+  <dialog id="result" aria-labelledby="result-title"><div class="success-icon"><svg aria-hidden="true"><use href="#check"/></svg></div><h2 id="result-title">反馈已准备好</h2><p class="measure-prose">感谢你认真分享。当前为本地演示，反馈尚未发送。你可以下载包含描述和截图的反馈文件，交给产品团队。</p><p id="result-summary"></p><div class="dialog-actions"><button class="download" id="download" type="button">下载反馈文件</button><button class="close-dialog" id="close-dialog" type="button">返回编辑</button></div></dialog>
+  <script>
+    const form = document.querySelector('#feedback-form');
+    const description = document.querySelector('#description');
+    const upload = document.querySelector('#screenshots');
+    const zone = document.querySelector('#dropzone');
+    const previews = document.querySelector('#previews');
+    const uploadError = document.querySelector('#upload-error');
+    const dialog = document.querySelector('#result');
+    const submit = document.querySelector('#submit');
+    let screenshots = [];
+    let feedback = null;
+    let pending = 0;
+    function validateDescription() {
+      const valid = description.value.trim().length >= 10;
+      description.setCustomValidity(valid ? '' : '请至少填写 10 个字，帮助我们了解你的反馈。');
+      return valid;
+    }
+    description.addEventListener('input', () => {
+      document.querySelector('#count').textContent = description.value.length;
+      validateDescription();
+      document.querySelector('#description-error').textContent = '';
+      description.removeAttribute('aria-invalid');
+    });
+    description.addEventListener('invalid', () => {
+      document.querySelector('#description-error').textContent = '请至少填写 10 个字，帮助我们了解你的反馈。';
+      description.setAttribute('aria-invalid', 'true');
+    });
+    function renderPreviews() {
+      previews.replaceChildren();
+      screenshots.forEach((item) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'preview';
+        const img = document.createElement('img');
+        img.src = item.data;
+        img.alt = item.name;
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'remove-image';
+        remove.setAttribute('aria-label', '删除截图：' + item.name);
+        remove.innerHTML = '<svg aria-hidden="true"><use href="#x"/></svg>';
+        remove.addEventListener('click', () => {
+          screenshots = screenshots.filter(file => file !== item);
+          renderPreviews();
+          uploadError.textContent = '';
+          upload.focus();
+        });
+        wrapper.append(img, remove);
+        previews.append(wrapper);
+      });
+    }
+    async function addFiles(files) {
+      const errors = [];
+      for (const file of files) {
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type)) { errors.push('仅支持 JPG、PNG 和 WebP 图片。'); continue; }
+        if (file.size > 5 * 1024 * 1024) { errors.push('单张截图不能超过 5 MB。'); continue; }
+        if (screenshots.length + pending >= 3) { errors.push('最多可上传 3 张截图。'); continue; }
+        if (screenshots.some(item => item.name === file.name && item.size === file.size)) continue;
+        pending++;
+        submit.disabled = true;
+        try {
+          const data = await new Promise((resolve, reject) => { const reader = new FileReader(); reader.onload = () => resolve(reader.result); reader.onerror = reject; reader.readAsDataURL(file); });
+          await new Promise((resolve, reject) => { const img = new Image(); img.onload = resolve; img.onerror = reject; img.src = data; });
+          screenshots.push({name:file.name, size:file.size, type:file.type, data});
+          renderPreviews();
+        } catch { errors.push('有一张图片无法读取，请重新选择。'); }
+        finally { pending--; submit.disabled = pending > 0; }
+      }
+      uploadError.textContent = [...new Set(errors)].join(' ');
+      upload.value = '';
+    }
+    upload.addEventListener('change', () => addFiles(Array.from(upload.files)));
+    ['dragenter', 'dragover'].forEach(event => zone.addEventListener(event, e => { e.preventDefault(); zone.classList.add('dragover'); }));
+    zone.addEventListener('dragleave', e => { if (!zone.contains(e.relatedTarget)) zone.classList.remove('dragover'); });
+    zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('dragover'); addFiles(Array.from(e.dataTransfer.files)); });
+    window.addEventListener('dragover', e => e.preventDefault());
+    window.addEventListener('drop', e => e.preventDefault());
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!validateDescription()) { description.reportValidity(); return; }
+      if (pending) return;
+      feedback = {type:new FormData(form).get('type'), description:description.value.trim(), email:document.querySelector('#email').value.trim(), screenshots:[...screenshots], createdAt:new Date().toISOString()};
+      document.querySelector('#result-summary').textContent = feedback.type + ' · ' + screenshots.length + ' 张截图';
+      dialog.showModal();
+    });
+    document.querySelector('#close-dialog').addEventListener('click', () => dialog.close());
+    document.querySelector('#download').addEventListener('click', () => {
+      if (!feedback) return;
+      const url = URL.createObjectURL(new Blob([JSON.stringify(feedback, null, 2)], {type:'application/json'}));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = '留白反馈-' + new Date().toISOString().slice(0,10) + '.json';
+      document.body.append(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+  </script>
+</body>
+</html>

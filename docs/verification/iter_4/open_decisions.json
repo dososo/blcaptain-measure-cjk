@@ -1,0 +1,113 @@
+{
+  "schema_version": "1.0.0",
+  "note": "需要用户拍板的事项。blocks_verdict 为 true 的事项，只有在 resolved 为 true 且附上 user_quote（用户原话）和 resolved_on（日期）时才算已拍板；否则 verify.mjs 判「未达标」。执行方不得自行填写 user_quote。 D-10 已由审计方澄清关闭（不需要用户拍板）。 D-1 至 D-5、D-9 已由用户在对话中拍板（user_quote 为用户原话摘录，user_message_verbatim 为整条原话）。D-6、D-7、D-8 用户没有单独表态，保持未决（不影响结论）。",
+  "items": [
+    {
+      "id": "D-1",
+      "finding": "A-05",
+      "question": "Claude Code 以需求方身份在 PRD 里写入附录 C1–C9（iter1），是否得到授权？依据是用户 2026-10-25 的指示「全部都由你闭环完成」。另外，docs/verification/PRD_CHANGE_PROPOSALS.md 里的 C10–C19 是否并入 PRD？",
+      "recommendation": "追认",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "D-1 追认 PRD 修改并并入 C10–C19",
+      "resolved_on": "2026-10-25",
+      "user_message_verbatim": "D-1 到 D-5 全部按推荐：D-1 追认 PRD 修改并并入 C10–C19；D-2 追认 RULING-01；D-3 保留用户环境基线，W2 前隔离重跑；D-4 追认；D-5 放宽 H10，会话目录保留不删。D-9 也按推荐改为 ＠layer measure，放到 W2 做。"
+    },
+    {
+      "id": "D-2",
+      "finding": "A-06",
+      "question": "RULING-01：追认修改后的夹具内容（独立审计已认可内容），还是恢复原夹具？",
+      "recommendation": "追认内容，保留台账记录",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "D-2 追认 RULING-01",
+      "resolved_on": "2026-10-25",
+      "user_message_verbatim": "D-1 到 D-5 全部按推荐：D-1 追认 PRD 修改并并入 C10–C19；D-2 追认 RULING-01；D-3 保留用户环境基线，W2 前隔离重跑；D-4 追认；D-5 放宽 H10，会话目录保留不删。D-9 也按推荐改为 ＠layer measure，放到 W2 做。"
+    },
+    {
+      "id": "D-3",
+      "finding": "A-17",
+      "question": "当前基线标注为「用户环境基线」后保留，还是在隔离环境（不加载其他 skill 和全局指令）下重跑，作为正式的「不装 skill」对照组？",
+      "recommendation": "W1 保留并标注；W2 跑北极星对比前在隔离环境重跑一次",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "D-3 保留用户环境基线，W2 前隔离重跑",
+      "resolved_on": "2026-10-25",
+      "user_message_verbatim": "D-1 到 D-5 全部按推荐：D-1 追认 PRD 修改并并入 C10–C19；D-2 追认 RULING-01；D-3 保留用户环境基线，W2 前隔离重跑；D-4 追认；D-5 放宽 H10，会话目录保留不删。D-9 也按推荐改为 ＠layer measure，放到 W2 做。"
+    },
+    {
+      "id": "D-4",
+      "finding": "A-02",
+      "question": "claude-code 基线由 Claude Code 代跑（契约原定审计方执行），是否追认？",
+      "recommendation": "追认",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "D-4 追认",
+      "resolved_on": "2026-10-25",
+      "user_message_verbatim": "D-1 到 D-5 全部按推荐：D-1 追认 PRD 修改并并入 C10–C19；D-2 追认 RULING-01；D-3 保留用户环境基线，W2 前隔离重跑；D-4 追认；D-5 放宽 H10，会话目录保留不删。D-9 也按推荐改为 ＠layer measure，放到 W2 做。"
+    },
+    {
+      "id": "D-5",
+      "finding": "A-17 / H10",
+      "question": "H10 规定不得往 ~/.claude/ 写任何东西，但 claude -p 跑基线时在 ~/.claude/projects/ 留下了 31 个会话目录。是否追认（放宽 H10：只禁止安装 skill，允许 Agent 写自己的会话状态）？这些目录要不要删除？",
+      "recommendation": "放宽 H10；目录由你决定是否删除，执行方不擅自删除",
+      "blocks_verdict": true,
+      "resolved": true,
+      "user_quote": "D-5 放宽 H10，会话目录保留不删",
+      "resolved_on": "2026-10-25",
+      "user_message_verbatim": "D-1 到 D-5 全部按推荐：D-1 追认 PRD 修改并并入 C10–C19；D-2 追认 RULING-01；D-3 保留用户环境基线，W2 前隔离重跑；D-4 追认；D-5 放宽 H10，会话目录保留不删。D-9 也按推荐改为 ＠layer measure，放到 W2 做。"
+    },
+    {
+      "id": "D-6",
+      "finding": "A-20",
+      "question": "T06「没设行高」按长度分级（≥30 字 error，短文 warn）、T01 看实际继承的 lang，是否认可？",
+      "recommendation": "认可",
+      "blocks_verdict": false,
+      "resolved": false,
+      "user_quote": "",
+      "resolved_on": ""
+    },
+    {
+      "id": "D-7",
+      "finding": "A-19",
+      "question": "g02 的列表行高 2.0 超出 PRD 建议的 1.6–1.9（当前只报 warn）。golden 页面锁定，不修改；是否认可这个 warn？",
+      "recommendation": "认可为 warn，W2 补充多样化的 golden 页面",
+      "blocks_verdict": false,
+      "resolved": false,
+      "user_quote": "",
+      "resolved_on": ""
+    },
+    {
+      "id": "D-8",
+      "finding": "全局 CLAUDE.md",
+      "question": "全局 CLAUDE.md 里「Codex skill 路径只有 $CODEX_HOME/skills」的记录与 openai/codex 源码不符（~/.agents/skills 是当前路径），是否修改？",
+      "recommendation": "修改",
+      "blocks_verdict": false,
+      "resolved": false,
+      "user_quote": "",
+      "resolved_on": ""
+    },
+    {
+      "id": "D-9",
+      "finding": "AUDIT_iter2 A-38",
+      "question": "measure.css 不分层，会盖过 Tailwind v4 等放在 @layer 里的样式。是否改为包进一个最先声明的 @layer measure（会改动 PRD §7.4 的锁定代码块，V-10 同步更新）？",
+      "recommendation": "改为 @layer measure，W2 开始前处理",
+      "blocks_verdict": false,
+      "resolved": true,
+      "user_quote": "D-9 也按推荐改为 ＠layer measure，放到 W2 做",
+      "resolved_on": "2026-10-25",
+      "user_message_verbatim": "D-1 到 D-5 全部按推荐：D-1 追认 PRD 修改并并入 C10–C19；D-2 追认 RULING-01；D-3 保留用户环境基线，W2 前隔离重跑；D-4 追认；D-5 放宽 H10，会话目录保留不删。D-9 也按推荐改为 ＠layer measure，放到 W2 做。"
+    },
+    {
+      "id": "D-10",
+      "finding": "AUDIT_iter2 A-42",
+      "question": "（已关闭）AUDIT_iter1.md 的出处问题",
+      "recommendation": "不追查；以后审计报告由审计方直接提交，执行方不经手",
+      "blocks_verdict": false,
+      "resolved": false,
+      "user_quote": "",
+      "resolved_on": "",
+      "closed_by_auditor": "AUDIT_iter3：仓库里的 AUDIT_iter1.md 就是审计方最后写入的版本，没有第三方改动"
+    }
+  ]
+}

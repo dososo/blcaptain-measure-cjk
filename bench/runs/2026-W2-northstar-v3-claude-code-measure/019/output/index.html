@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>用户服务 API 文档</title>
+  <!-- measure.css 必须第一个引入：它声明的 measure 层排在最前，styles.css 会优先于它 -->
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="layout">
+
+  <aside class="sidebar">
+    <p class="brand">用户服务 API</p>
+    <p class="version">v1 · 2026-10 更新</p>
+
+    <nav aria-label="文档目录">
+      <p class="nav-group">入门</p>
+      <ul class="nav">
+        <li><a href="#overview">概述</a></li>
+        <li><a href="#auth">鉴权</a></li>
+        <li><a href="#errors">错误格式</a></li>
+      </ul>
+
+      <p class="nav-group">用户</p>
+      <ul class="nav">
+        <li><a href="#create-user"><span class="method post">POST</span>创建用户</a></li>
+        <li><a href="#get-user"><span class="method get">GET</span>查询用户</a></li>
+        <li><a href="#update-user"><span class="method patch">PATCH</span>更新用户</a></li>
+        <li><a href="#delete-user"><span class="method delete">DELETE</span>删除用户</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <main>
+
+    <!-- 概述 -->
+    <section id="overview">
+      <h1>用户服务 API</h1>
+      <p class="lead measure-prose">通过这组接口，你可以在自己的系统里创建、查询、修改和删除用户账号。所有接口都基于 HTTPS，请求和响应的正文都使用 JSON。</p>
+
+      <h3>基础地址</h3>
+      <div class="endpoint">https://api.example.com/v1</div>
+
+      <h3>通用约定</h3>
+      <ul class="plain measure-prose">
+        <li>请求正文的 <code>Content-Type</code> 必须是 <code>application/json</code>，字符编码为 UTF-8。</li>
+        <li>时间字段统一使用 ISO 8601 格式的 UTC 时间，例如 <code>2026-10-26T03:12:45Z</code>。</li>
+        <li>用户 ID 是以 <code>usr_</code> 开头的字符串，长度固定为 24 位，请不要按数字解析。</li>
+        <li>每个响应都带有 <code>X-Request-Id</code> 头。联系技术支持时附上它，可以更快定位问题。</li>
+      </ul>
+    </section>
+
+    <!-- 鉴权 -->
+    <section id="auth">
+      <h2>鉴权</h2>
+      <p class="measure-prose">所有接口都需要鉴权。流程分两步：先用控制台里拿到的 API 密钥换取访问令牌，再在每次请求里携带这个令牌。</p>
+
+      <h3>第一步：获取访问令牌</h3>
+      <p class="measure-prose">在控制台的“开发者设置”页面创建应用，会得到 <code>client_id</code> 和 <code>client_secret</code>。用它们调用令牌接口：</p>
+
+      <div class="endpoint">
+        <span class="method post">POST</span>
+        <span>/oauth/token</span>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>请求示例 · curl</span><button class="copy" type="button">复制</button></div>
+<pre><code>curl -X POST https://api.example.com/v1/oauth/token \
+  -H "Content-Type: application/json" \
+  -d '{
+    "grant_type": "client_credentials",
+    "client_id": "app_7f3k2m9q",
+    "client_secret": "sk_live_••••••••",
+    "scope": "users:read users:write"
+  }'</code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>响应 · 200 OK</span><button class="copy" type="button">复制</button></div>
+<pre><code>{
+  "access_token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "Bearer",
+  "expires_in": 7200,
+  "scope": "users:read users:write"
+}</code></pre>
+      </div>
+
+      <h3>第二步：在请求头里携带令牌</h3>
+      <p class="measure-prose">把令牌放进 <code>Authorization</code> 请求头，前面加上 <code>Bearer</code> 和一个空格：</p>
+
+      <div class="code">
+        <div class="code-head"><span>请求头</span><button class="copy" type="button">复制</button></div>
+<pre><code>Authorization: Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9...</code></pre>
+      </div>
+
+      <h3>权限范围</h3>
+      <p class="measure-prose">申请令牌时用 <code>scope</code> 声明需要的权限，多个权限之间用空格分隔。只申请业务真正用到的权限。</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>scope</th><th>允许的操作</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>users:read</code></td><td>查询用户</td></tr>
+            <tr><td><code>users:write</code></td><td>创建、更新用户</td></tr>
+            <tr><td><code>users:delete</code></td><td>删除用户。需要在控制台单独开通</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>令牌有效期</h3>
+      <p class="measure-prose">访问令牌有效期为 2 小时（<code>expires_in</code> 的单位是秒）。过期后接口返回 <code>401</code>，错误码为 <code>token_expired</code>，此时重新执行第一步即可。建议在过期前 5 分钟主动刷新，避免请求失败。</p>
+
+      <div class="note">
+        <p class="measure-prose"><strong>安全提示：</strong><span class="emph">不要</span>把 <code>client_secret</code> 写进浏览器或手机客户端的代码里。令牌接口只应由你的服务端调用。</p>
+      </div>
+    </section>
+
+    <!-- 错误格式 -->
+    <section id="errors">
+      <h2>错误格式</h2>
+      <p class="measure-prose">请求失败时，接口返回 4xx 或 5xx 状态码，响应正文统一为下面的结构。程序里请根据 <code>code</code> 判断错误类型，<code>message</code> 只用于排查，内容可能调整。</p>
+
+      <div class="code">
+        <div class="code-head"><span>错误响应 · 422 Unprocessable Entity</span><button class="copy" type="button">复制</button></div>
+<pre><code>{
+  "error": {
+    "code": "invalid_field",
+    "message": "email 格式不正确",
+    "field": "email",
+    "request_id": "req_01HF8Z3K2Q9V"
+  }
+}</code></pre>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>状态码</th><th>code</th><th>含义</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>400</td><td><code>bad_request</code></td><td>请求正文不是合法的 JSON</td></tr>
+            <tr><td>401</td><td><code>unauthorized</code></td><td>没有携带令牌，或令牌无效</td></tr>
+            <tr><td>401</td><td><code>token_expired</code></td><td>令牌已过期，需要重新获取</td></tr>
+            <tr><td>403</td><td><code>insufficient_scope</code></td><td>令牌缺少该接口需要的权限范围</td></tr>
+            <tr><td>404</td><td><code>user_not_found</code></td><td>用户不存在，或已被删除</td></tr>
+            <tr><td>409</td><td><code>email_taken</code></td><td>邮箱已被其他用户使用</td></tr>
+            <tr><td>422</td><td><code>invalid_field</code></td><td>字段校验失败，<code>field</code> 指出是哪个字段</td></tr>
+            <tr><td>429</td><td><code>rate_limited</code></td><td>请求过于频繁，按 <code>Retry-After</code> 头等待后重试</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 创建用户 -->
+    <section id="create-user">
+      <h2>创建用户</h2>
+      <div class="endpoint">
+        <span class="method post">POST</span>
+        <span>/users</span>
+        <span class="scope">需要 users:write</span>
+      </div>
+      <p class="measure-prose">新建一个用户。邮箱在整个应用内唯一，重复创建会返回 <code>409</code>。</p>
+
+      <h3>请求正文</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>字段</th><th>类型</th><th>必填</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>email</code></td><td>string</td><td><span class="req">必填</span></td><td>登录邮箱，最长 254 个字符</td></tr>
+            <tr><td><code>name</code></td><td>string</td><td><span class="req">必填</span></td><td>显示名称，1 到 64 个字符</td></tr>
+            <tr><td><code>phone</code></td><td>string</td><td><span class="opt">可选</span></td><td>手机号，E.164 格式，例如 <code>+8613800138000</code></td></tr>
+            <tr><td><code>role</code></td><td>string</td><td><span class="opt">可选</span></td><td><code>member</code> 或 <code>admin</code>，默认 <code>member</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>请求示例 · curl</span><button class="copy" type="button">复制</button></div>
+<pre><code>curl -X POST https://api.example.com/v1/users \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "lin.wei@example.com",
+    "name": "林薇",
+    "role": "member"
+  }'</code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>响应 · 201 Created</span><button class="copy" type="button">复制</button></div>
+<pre><code>{
+  "id": "usr_9Kx2Lm7Qp4Rt8Vw1Yz3Bc6",
+  "email": "lin.wei@example.com",
+  "name": "林薇",
+  "phone": null,
+  "role": "member",
+  "status": "active",
+  "created_at": "2026-10-26T03:12:45Z",
+  "updated_at": "2026-10-26T03:12:45Z"
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 查询用户 -->
+    <section id="get-user">
+      <h2>查询用户</h2>
+      <div class="endpoint">
+        <span class="method get">GET</span>
+        <span>/users/{id}</span>
+        <span class="scope">需要 users:read</span>
+      </div>
+      <p class="measure-prose">按 ID 获取单个用户的完整信息。已删除的用户返回 <code>404</code>。</p>
+
+      <h3>路径参数</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>参数</th><th>类型</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>id</code></td><td>string</td><td>用户 ID，以 <code>usr_</code> 开头</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>请求示例 · curl</span><button class="copy" type="button">复制</button></div>
+<pre><code>curl https://api.example.com/v1/users/usr_9Kx2Lm7Qp4Rt8Vw1Yz3Bc6 \
+  -H "Authorization: Bearer $TOKEN"</code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>响应 · 200 OK</span><button class="copy" type="button">复制</button></div>
+<pre><code>{
+  "id": "usr_9Kx2Lm7Qp4Rt8Vw1Yz3Bc6",
+  "email": "lin.wei@example.com",
+  "name": "林薇",
+  "phone": null,
+  "role": "member",
+  "status": "active",
+  "created_at": "2026-10-26T03:12:45Z",
+  "updated_at": "2026-10-26T03:12:45Z"
+}</code></pre>
+      </div>
+
+      <h3>响应字段</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>字段</th><th>类型</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>id</code></td><td>string</td><td>用户 ID</td></tr>
+            <tr><td><code>email</code></td><td>string</td><td>登录邮箱</td></tr>
+            <tr><td><code>name</code></td><td>string</td><td>显示名称</td></tr>
+            <tr><td><code>phone</code></td><td>string | null</td><td>手机号，没有填写时为 <code>null</code></td></tr>
+            <tr><td><code>role</code></td><td>string</td><td><code>member</code> 或 <code>admin</code></td></tr>
+            <tr><td><code>status</code></td><td>string</td><td><code>active</code>（正常）或 <code>suspended</code>（已停用）</td></tr>
+            <tr><td><code>created_at</code></td><td>string</td><td>创建时间</td></tr>
+            <tr><td><code>updated_at</code></td><td>string</td><td>最后修改时间</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 更新用户 -->
+    <section id="update-user">
+      <h2>更新用户</h2>
+      <div class="endpoint">
+        <span class="method patch">PATCH</span>
+        <span>/users/{id}</span>
+        <span class="scope">需要 users:write</span>
+      </div>
+      <p class="measure-prose">只修改请求正文里出现的字段，没有出现的字段保持不变。把 <code>phone</code> 设为 <code>null</code> 可以清空手机号。</p>
+
+      <h3>请求正文</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>字段</th><th>类型</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>email</code></td><td>string</td><td>新的登录邮箱，不能与其他用户重复</td></tr>
+            <tr><td><code>name</code></td><td>string</td><td>新的显示名称</td></tr>
+            <tr><td><code>phone</code></td><td>string | null</td><td>新的手机号，传 <code>null</code> 表示清空</td></tr>
+            <tr><td><code>role</code></td><td>string</td><td><code>member</code> 或 <code>admin</code></td></tr>
+            <tr><td><code>status</code></td><td>string</td><td>设为 <code>suspended</code> 可停用账号，停用后无法登录</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>请求示例 · curl</span><button class="copy" type="button">复制</button></div>
+<pre><code>curl -X PATCH https://api.example.com/v1/users/usr_9Kx2Lm7Qp4Rt8Vw1Yz3Bc6 \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "林薇（产品部）",
+    "phone": "+8613800138000"
+  }'</code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>响应 · 200 OK</span><button class="copy" type="button">复制</button></div>
+<pre><code>{
+  "id": "usr_9Kx2Lm7Qp4Rt8Vw1Yz3Bc6",
+  "email": "lin.wei@example.com",
+  "name": "林薇（产品部）",
+  "phone": "+8613800138000",
+  "role": "member",
+  "status": "active",
+  "created_at": "2026-10-26T03:12:45Z",
+  "updated_at": "2026-10-26T08:40:02Z"
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- 删除用户 -->
+    <section id="delete-user">
+      <h2>删除用户</h2>
+      <div class="endpoint">
+        <span class="method delete">DELETE</span>
+        <span>/users/{id}</span>
+        <span class="scope">需要 users:delete</span>
+      </div>
+      <p class="measure-prose">删除后用户立即无法登录，查询会返回 <code>404</code>。数据保留 30 天，期间可以联系技术支持恢复；30 天后永久清除。只想暂时禁止登录的话，请用更新接口把 <code>status</code> 设为 <code>suspended</code>。</p>
+
+      <div class="code">
+        <div class="code-head"><span>请求示例 · curl</span><button class="copy" type="button">复制</button></div>
+<pre><code>curl -X DELETE https://api.example.com/v1/users/usr_9Kx2Lm7Qp4Rt8Vw1Yz3Bc6 \
+  -H "Authorization: Bearer $TOKEN"</code></pre>
+      </div>
+
+      <div class="code">
+        <div class="code-head"><span>响应 · 204 No Content</span></div>
+<pre><code><span class="c"># 成功时没有响应正文</span></code></pre>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var code = btn.closest('.code').querySelector('pre');
+      var text = code.innerText;
+      var done = function (label) {
+        btn.textContent = label;
+        setTimeout(function () { btn.textContent = '复制'; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { done('已复制'); }, function () { selectText(code); done('请手动复制'); });
+      } else {
+        selectText(code);
+        done('请手动复制');
+      }
+    });
+  });
+
+  function selectText(el) {
+    var range = document.createRange();
+    range.selectNodeContents(el);
+    var sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+</script>
+</body>
+</html>

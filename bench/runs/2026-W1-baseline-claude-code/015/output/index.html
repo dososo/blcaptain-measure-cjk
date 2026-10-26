@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>按量计费价格</title>
+  <meta name="description" content="API 服务按量计费：每千次调用价格、每月免费额度与费用估算。">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="#"><span class="seal" aria-hidden="true">笺</span>云笺 API</a>
+      <nav>
+        <a href="#">文档</a>
+        <a href="#" aria-current="page">价格</a>
+        <a href="#">控制台</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <p class="eyebrow">按量计费</p>
+      <h1>用多少，付多少</h1>
+      <p class="lead">无月费、无预付。每个接口每月都有免费额度，超出部分按每千次调用计价，调用量越大单价越低。</p>
+    </section>
+
+    <div class="facts">
+      <div class="fact"><span class="num">¥0</span><span class="label">起步费用，注册即用</span></div>
+      <div class="fact"><span class="num">每月</span><span class="label">免费额度 1 日自动重置</span></div>
+      <div class="fact"><span class="num">三档</span><span class="label">阶梯单价，累进计算</span></div>
+    </div>
+
+    <section class="block" aria-labelledby="t-price">
+      <div class="block-head">
+        <h2 id="t-price">接口价格</h2>
+        <span class="note">单位：人民币 / 每千次调用，含税</span>
+      </div>
+      <div class="table-scroll">
+        <table class="price">
+          <thead>
+            <tr>
+              <th scope="col">接口</th>
+              <th scope="col">每月免费额度</th>
+              <th scope="col">第一档<small>0 – 100 万次</small></th>
+              <th scope="col">第二档<small>100 万 – 1,000 万次</small></th>
+              <th scope="col">第三档<small>1,000 万次以上</small></th>
+            </tr>
+          </thead>
+          <tbody id="price-rows"></tbody>
+        </table>
+      </div>
+      <noscript><p>价格表需要启用 JavaScript 才能显示。</p></noscript>
+    </section>
+
+    <section class="block" aria-labelledby="t-calc">
+      <div class="block-head">
+        <h2 id="t-calc">费用估算</h2>
+        <span class="note">按单个接口、单个自然月估算</span>
+      </div>
+      <div class="calc">
+        <div>
+          <label for="calc-api">选择接口</label>
+          <select id="calc-api"></select>
+          <label for="calc-calls">本月预计调用次数</label>
+          <input id="calc-calls" type="number" inputmode="numeric" min="0" step="1000" value="250000">
+        </div>
+        <div aria-live="polite">
+          <p class="total-label">预计本月费用</p>
+          <p class="total" id="calc-total">¥0.00</p>
+          <ul class="breakdown" id="calc-breakdown"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" aria-labelledby="t-rules">
+      <div class="block-head">
+        <h2 id="t-rules">计费规则</h2>
+      </div>
+      <dl class="rules">
+        <div>
+          <dt>先扣免费额度</dt>
+          <dd>每个接口的免费额度独立计算，每月 1 日 00:00（UTC+8）重置，当月未用完不结转。</dd>
+        </div>
+        <div>
+          <dt>阶梯累进</dt>
+          <dd>扣除免费额度后的调用量按档累进计价：前 100 万次按第一档，100 万至 1,000 万次部分按第二档，其余按第三档。</dd>
+        </div>
+        <div>
+          <dt>什么算一次调用</dt>
+          <dd>返回 HTTP 2xx 的请求计一次；4xx 参数错误与 5xx 服务端错误不计费。语音转写单次音频不超过 60 秒，超出按每 60 秒折算一次。</dd>
+        </div>
+        <div>
+          <dt>结算方式</dt>
+          <dd>按小时汇总用量，次月 3 日前出账。账单金额精确到分，不足一分按一分计。</dd>
+        </div>
+      </dl>
+    </section>
+  </main>
+
+  <footer class="site-foot">
+    <div class="wrap">
+      页面中的服务名与价格均为示例数据。需要更高用量或私有部署，请<a href="#">联系销售</a>。
+    </div>
+  </footer>
+
+  <script>
+    // 价格数据：单位为元 / 千次调用
+    var TIER_LIMITS = [1000000, 10000000, Infinity];
+    var APIS = [
+      { name: "文本识别", path: "/v1/ocr",        free: 1000,  prices: [1.50, 1.20, 0.90] },
+      { name: "机器翻译", path: "/v1/translate",  free: 5000,  prices: [0.60, 0.48, 0.36] },
+      { name: "地理编码", path: "/v1/geocode",    free: 10000, prices: [0.30, 0.24, 0.18] },
+      { name: "内容审核", path: "/v1/moderation", free: 2000,  prices: [0.80, 0.64, 0.48] },
+      { name: "语音转写", path: "/v1/asr",        free: 500,   prices: [3.00, 2.40, 1.80] }
+    ];
+
+    var nf = new Intl.NumberFormat("zh-CN");
+    function yuan(n) { return "¥" + n.toFixed(2); }
+    function el(tag, cls, text) {
+      var e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text != null) e.textContent = text;
+      return e;
+    }
+
+    // 渲染价格表
+    var tbody = document.getElementById("price-rows");
+    APIS.forEach(function (api) {
+      var tr = document.createElement("tr");
+      var name = el("td");
+      name.appendChild(el("span", "api-name", api.name));
+      name.appendChild(el("span", "api-path", api.path));
+      tr.appendChild(name);
+      tr.appendChild(el("td", "free", nf.format(api.free) + " 次"));
+      api.prices.forEach(function (p) {
+        var td = el("td", null, yuan(p));
+        td.appendChild(el("span", "unit", "/千次"));
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+
+    // 费用估算
+    var sel = document.getElementById("calc-api");
+    var input = document.getElementById("calc-calls");
+    var totalEl = document.getElementById("calc-total");
+    var listEl = document.getElementById("calc-breakdown");
+
+    APIS.forEach(function (api, i) {
+      var o = el("option", null, api.name + "  " + api.path);
+      o.value = i;
+      sel.appendChild(o);
+    });
+
+    function row(label, value) {
+      var li = el("li");
+      li.appendChild(el("span", null, label));
+      li.appendChild(el("span", null, value));
+      return li;
+    }
+
+    function update() {
+      var api = APIS[sel.value];
+      var calls = Math.max(0, Math.floor(Number(input.value) || 0));
+      var billable = Math.max(0, calls - api.free);
+      var rest = billable, prev = 0, total = 0;
+      listEl.replaceChildren(row("免费额度抵扣", nf.format(Math.min(calls, api.free)) + " 次"));
+
+      TIER_LIMITS.forEach(function (limit, i) {
+        var n = Math.min(rest, limit - prev);
+        prev = limit;
+        if (n <= 0) return;
+        rest -= n;
+        var cost = n / 1000 * api.prices[i];
+        total += cost;
+        listEl.appendChild(row(
+          "第" + "一二三"[i] + "档 " + nf.format(n) + " 次 × " + yuan(api.prices[i]) + "/千次",
+          yuan(cost)
+        ));
+      });
+
+      // 不足一分按一分计
+      totalEl.textContent = yuan(Math.ceil(Math.round(total * 1e6) / 1e4) / 100);
+    }
+
+    sel.addEventListener("change", update);
+    input.addEventListener("input", update);
+    update();
+  </script>
+</body>
+</html>

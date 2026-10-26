@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "smoke-northstar-claude-code-control",
+  "agent": "claude-code",
+  "generated_at": "2026-10-26T03:17:28.246Z",
+  "prompts": 1,
+  "produced": 1,
+  "zero_error_pages": 0,
+  "zero_error_rate_over_produced": 0,
+  "zero_error_pages_excluding_T02_T04": 0,
+  "rule_hit_pages": {
+    "T02": 1,
+    "T03": 1,
+    "T04": 1
+  },
+  "mode": "static",
+  "baseline_kind": "隔离环境基线（--safe-mode + --disable-slash-commands：不加载 CLAUDE.md、用户 skill、内置 skill、插件、hooks、MCP；--no-session-persistence）",
+  "environment_observed": {
+    "models": {
+      "claude-opus-5-5": 1
+    },
+    "skills_loaded_runs": "claude -p 只输出最终回答，无法逐次统计；隔离模式用了 --safe-mode 和 --disable-slash-commands，实测可用 skill 为「无」",
+    "global_instructions": "见 environment.log"
+  },
+  "relinted_with": "生成时的构建",
+  "arm": "control",
+  "northstar": {
+    "zero_error_pages_render": 0,
+    "render_incomplete_pages": 0,
+    "skill_loaded_runs": 0,
+    "used_measure_cli_runs": 0,
+    "leak_runs": [],
+    "text_autospace_pages": [],
+    "home_path_in_log_runs": []
+  },
+  "rows": [
+    {
+      "id": "001",
+      "agent_exit": 0,
+      "seconds": 83,
+      "produced": true,
+      "errors": 3,
+      "warns": 5,
+      "status": "fail",
+      "error_rules": [
+        "T02",
+        "T03",
+        "T04"
+      ],
+      "render_errors": 3,
+      "render_status": "fail",
+      "render_error_rules": [
+        "T02",
+        "T03",
+        "T04"
+      ],
+      "skill_loaded": false,
+      "used_measure_cli": false,
+      "leak_markers": [],
+      "text_autospace_in_output": false,
+      "home_path_in_log": false
+    }
+  ]
+}

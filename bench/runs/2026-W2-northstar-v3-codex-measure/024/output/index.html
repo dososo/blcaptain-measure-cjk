@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#263d32">
+  <title>松间 · 预订一席好时光</title>
+  <link rel="stylesheet" href="measure.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="松间首页">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="24" cy="24" r="22" stroke="currentColor"/><path d="M24 37V11M24 15l-8 9h16l-8-9Zm0 8L12 33h24L24 23Z" stroke="currentColor" stroke-width="1.3"/></svg>
+      <span class="brand-name">松间<span class="brand-en" lang="en">SONG JIAN</span></span>
+      <span class="brand-caption">时令料理 · 自然餐桌</span>
+    </a>
+    <button class="text-button" id="open-info" type="button">订座须知 <span aria-hidden="true">↗</span></button>
+  </header>
+
+  <main>
+    <section class="story" aria-label="欢迎来到松间">
+      <div class="story-photo"></div>
+      <div class="story-content">
+        <div class="eyebrow" lang="en"><span></span> A SEAT, A SEASON, A MOMENT</div>
+        <h1>一席之间，<br>好好相聚。</h1>
+        <p class="story-intro">把日子放慢，把心意入席。<br>我们备好时令与烟火，等你来坐坐。</p>
+        <div class="story-bottom">
+          <span class="season-label"><span class="little-star" aria-hidden="true">✳</span> 应时而食，循季而聚</span>
+          <div class="story-rule"></div>
+          <div class="hours"><div><span class="muted-label">午间时光</span><span>11:30 — 14:00</span></div><div><span class="muted-label">晚间时光</span><span>17:30 — 21:00</span></div></div>
+          <p class="story-foot">一餐一味，自有欢喜。<span lang="en">EST. 2024</span></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="booking" aria-labelledby="booking-title">
+      <div class="booking-heading"><span class="eyebrow" lang="en">MAKE A RESERVATION</span><span class="welcome"><i></i> 期待你的到来</span></div>
+      <h2 id="booking-title">预订一席好时光</h2>
+      <p class="intro">无论日常小聚，还是特别的一天，都值得好好吃饭。</p>
+
+      <form id="booking-form">
+        <fieldset class="date-field">
+          <legend><span class="step">01</span> 选择日期</legend>
+          <div class="date-heading"><span id="month-label"></span><label class="date-picker">其他日期 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 3v5m8-5v5M4 11h16" stroke="currentColor" stroke-width="1.5"/></svg><input type="date" id="date-input" aria-label="选择其他订座日期" required></label></div>
+          <div class="date-options" id="date-options" role="group" aria-label="可选订座日期"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend><span class="step">02</span> 选择时间</legend>
+          <div class="service-switch" role="group" aria-label="用餐时段"><button type="button" class="service active" data-service="dinner" aria-pressed="true">晚餐 <span>17:30 — 21:00</span></button><button type="button" class="service" data-service="lunch" aria-pressed="false">午餐 <span>11:30 — 14:00</span></button></div>
+          <div class="time-options" id="time-options" role="group" aria-label="到店时间"></div>
+          <p class="empty-times" id="empty-times" hidden>今天的这个时段已结束，请选择其他日期或时段。</p>
+        </fieldset>
+
+        <fieldset class="guest-field">
+          <legend><span class="step">03</span> 用餐人数</legend>
+          <div class="guest-row"><span class="field-hint">相聚的人数，刚刚好</span><div class="stepper"><button type="button" id="minus" aria-label="减少一位">−</button><output id="guest-output" aria-live="polite">2 <span>位</span></output><button type="button" id="plus" aria-label="增加一位">＋</button></div></div>
+        </fieldset>
+
+        <div class="notes-field"><label for="notes"><span class="step">04</span> 特别备注 <span class="optional">选填</span></label><textarea id="notes" maxlength="200" rows="3" placeholder="食物过敏、饮食偏好，或想庆祝的小事……"></textarea><span class="counter" id="note-count">0 / 200</span></div>
+
+        <div class="reservation-summary" aria-live="polite"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 3v5m8-5v5M4 11h16m4 5 3 3 5-6" stroke="currentColor" stroke-width="1.5"/></svg><span id="summary"></span></div>
+        <button class="submit-button" type="submit"><span>确认订座信息</span><span aria-hidden="true">⟶</span></button>
+        <p class="form-foot">演示页面，仅供确认订座信息，不会向餐厅发送预约。</p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>松间 · 让每一次相聚都有滋有味</span><span lang="en">GOOD FOOD. GOOD COMPANY.</span><span>时令有序，相聚有时</span></footer>
+
+  <dialog id="info-dialog" aria-labelledby="info-title"><button class="close" type="button" aria-label="关闭">×</button><span class="eyebrow" lang="en">BEFORE YOUR VISIT</span><h2 id="info-title">入席前的小提醒</h2><p>可选择未来 90 天内的日期，每桌支持 1 至 12 位宾客。</p><p>如有食物过敏或特别安排，请在备注中告诉我们；具体安排需由餐厅确认。</p><p>本页面为订座演示，不查询实际余位，也不会完成真实预约。</p><button class="dialog-button close-action" type="button">知道了</button></dialog>
+  <dialog id="confirm-dialog" aria-labelledby="confirm-title"><button class="close" type="button" aria-label="关闭">×</button><span class="confirmation-icon" aria-hidden="true">✓</span><span class="eyebrow" lang="en">YOUR GATHERING</span><h2 id="confirm-title">一席好时光，已整理</h2><p>请核对以下订座信息。</p><dl id="confirmation-details"></dl><p class="demo-note">这是本地演示，预约尚未发送至餐厅。</p><button class="dialog-button close-action" type="button">返回修改</button></dialog>
+
+  <script>
+    const $ = (selector) => document.querySelector(selector);
+    const today = new Date(); today.setHours(0, 0, 0, 0);
+    const lastDate = new Date(today); lastDate.setDate(lastDate.getDate() + 90);
+    const dateKey = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+    const dateFromKey = (value) => new Date(value + 'T00:00:00');
+    const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+    const state = { date: dateKey(today), service: 'dinner', time: '', guests: 2 };
+    const schedule = { lunch: ['11:30', '12:00', '12:30', '13:00', '13:30'], dinner: ['17:30', '18:00', '18:30', '19:00', '19:30', '20:00'] };
+    const dateInput = $('#date-input');
+    dateInput.min = dateKey(today); dateInput.max = dateKey(lastDate); dateInput.value = state.date;
+    function renderDates() {
+      const selected = dateFromKey(state.date);
+      $('#month-label').textContent = `${selected.getFullYear()} 年 ${selected.getMonth() + 1} 月`;
+      const start = new Date(selected > new Date(today.getTime() + 6 * 86400000) ? selected : today);
+      $('#date-options').replaceChildren();
+      for (let i = 0; i < 7; i++) {
+        const day = new Date(start); day.setDate(day.getDate() + i);
+        if (day > lastDate) break;
+        const key = dateKey(day);
+        const button = document.createElement('button'); button.type = 'button';
+        button.className = 'date-option' + (key === state.date ? ' selected' : '');
+        button.setAttribute('aria-pressed', String(key === state.date));
+        button.setAttribute('aria-label', `${day.getMonth() + 1} 月 ${day.getDate()} 日 ${weekdays[day.getDay()]}`);
+        const label = document.createElement('span'); label.textContent = key === dateKey(today) ? '今天' : weekdays[day.getDay()];
+        const number = document.createElement('strong'); number.textContent = day.getDate();
+        button.append(label, number);
+        button.addEventListener('click', () => { state.date = key; dateInput.value = key; renderDates(); renderTimes(); });
+        $('#date-options').append(button);
+      }
+    }
+    function renderTimes() {
+      const now = new Date();
+      const available = schedule[state.service].filter(time => new Date(`${state.date}T${time}:00`) > now);
+      if (!available.includes(state.time)) state.time = available[0] || '';
+      $('#time-options').replaceChildren();
+      schedule[state.service].forEach(time => {
+        const button = document.createElement('button'); button.type = 'button'; button.textContent = time;
+        button.className = 'time-option' + (state.time === time ? ' selected' : '');
+        button.disabled = !available.includes(time); button.setAttribute('aria-pressed', String(state.time === time));
+        button.addEventListener('click', () => { state.time = time; renderTimes(); });
+        $('#time-options').append(button);
+      });
+      $('#empty-times').hidden = available.length > 0;
+      $('.submit-button').disabled = !state.time;
+      updateSummary();
+    }
+    function formattedDate() { const date = dateFromKey(state.date); return `${date.getMonth() + 1} 月 ${date.getDate()} 日（${weekdays[date.getDay()]}）`; }
+    function updateSummary() { $('#summary').textContent = `${formattedDate()} · ${state.time || '请选择时间'} · ${state.guests} 位`; }
+    dateInput.addEventListener('change', () => {
+      if (!dateInput.value || !dateInput.checkValidity()) { dateInput.reportValidity(); return; }
+      state.date = dateInput.value; renderDates(); renderTimes();
+    });
+    document.querySelectorAll('.service').forEach(button => button.addEventListener('click', () => {
+      state.service = button.dataset.service;
+      document.querySelectorAll('.service').forEach(item => { const active = item === button; item.classList.toggle('active', active); item.setAttribute('aria-pressed', String(active)); });
+      renderTimes();
+    }));
+    function changeGuests(delta) {
+      state.guests = Math.min(12, Math.max(1, state.guests + delta));
+      $('#guest-output').innerHTML = `${state.guests} <span>位</span>`;
+      $('#minus').disabled = state.guests === 1; $('#plus').disabled = state.guests === 12; updateSummary();
+    }
+    $('#minus').addEventListener('click', () => changeGuests(-1));
+    $('#plus').addEventListener('click', () => changeGuests(1));
+    $('#notes').addEventListener('input', () => { $('#note-count').textContent = `${$('#notes').value.length} / 200`; });
+    $('#open-info').addEventListener('click', () => $('#info-dialog').showModal());
+    document.querySelectorAll('dialog').forEach(dialog => {
+      dialog.querySelectorAll('.close, .close-action').forEach(button => button.addEventListener('click', () => dialog.close()));
+      dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+    });
+    $('#booking-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const selectedTime = state.time; renderTimes();
+      if (!state.time || selectedTime !== state.time) { $('#summary').textContent = '原时段已过，请重新选择到店时间。'; return; }
+      const details = $('#confirmation-details'); details.replaceChildren();
+      [['日期', formattedDate()], ['到店时间', state.time], ['用餐人数', `${state.guests} 位`], ['特别备注', $('#notes').value.trim() || '无']].forEach(([label, value]) => {
+        const dt = document.createElement('dt'); dt.textContent = label;
+        const dd = document.createElement('dd'); dd.textContent = value; details.append(dt, dd);
+      });
+      $('#confirm-dialog').showModal();
+    });
+    renderDates(); renderTimes();
+  </script>
+</body>
+</html>

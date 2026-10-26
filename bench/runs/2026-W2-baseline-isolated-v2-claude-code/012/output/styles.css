@@ -1,0 +1,310 @@
+:root {
+  --bg: #faf7f2;
+  --surface: #ffffff;
+  --fg: #2f2a25;
+  --muted: #7a7067;
+  --line: #e8e1d7;
+  --accent: #6b8f71;
+  --accent-strong: #557a5c;
+  --accent-soft: #e7efe6;
+  --tag: #c7895b;
+  --shadow: 0 10px 30px rgba(60, 45, 30, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b1a18;
+    --surface: #24221f;
+    --fg: #efe9e1;
+    --muted: #a69c91;
+    --line: #36322d;
+    --accent: #8fb495;
+    --accent-strong: #a6c9ab;
+    --accent-soft: #2b3a2d;
+    --tag: #d9a079;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1b1a18;
+  --surface: #24221f;
+  --fg: #efe9e1;
+  --muted: #a69c91;
+  --line: #36322d;
+  --accent: #8fb495;
+  --accent-strong: #a6c9ab;
+  --accent-soft: #2b3a2d;
+  --tag: #d9a079;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: 20px;
+}
+
+/* Header */
+.site-header {
+  border-bottom: 1px solid var(--line);
+}
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-block: 18px;
+  gap: 12px;
+}
+.brand {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  text-decoration: none;
+}
+.brand span { color: var(--accent); }
+.header-link {
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.header-link:hover { color: var(--accent); }
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding-block: 64px 40px;
+}
+.eyebrow {
+  display: inline-block;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 4px 14px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+.hero h1 {
+  font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+  margin: 16px 0 12px;
+  font-weight: 700;
+}
+.hero p {
+  color: var(--muted);
+  max-width: 34em;
+  margin: 0 auto;
+}
+
+/* Pricing grid */
+.plans {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+  padding-bottom: 64px;
+}
+@media (max-width: 960px) {
+  .plans { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .plans { grid-template-columns: minmax(0, 1fr); }
+}
+
+.plan {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease;
+}
+.plan:hover { transform: translateY(-4px); }
+
+.plan.featured {
+  border: 2px solid var(--accent);
+}
+.badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--surface);
+  font-size: 0.8rem;
+  padding: 3px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.plan h2 {
+  font-size: 1.2rem;
+  margin: 0 0 4px;
+}
+.plan .desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0 0 20px;
+  min-height: 2.9em;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+.price .currency { font-size: 1.1rem; font-weight: 600; }
+.price .amount { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+.price .unit { color: var(--muted); font-size: 0.9rem; }
+
+.per {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.per strong { color: var(--tag); font-weight: 600; }
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px;
+  flex: 1;
+}
+.features li {
+  position: relative;
+  padding-left: 24px;
+  margin-bottom: 10px;
+  font-size: 0.93rem;
+}
+.features li::before {
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 0.45em;
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid var(--accent);
+  border-bottom: 2px solid var(--accent);
+  transform: rotate(-45deg);
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  border: 1.5px solid var(--accent);
+  color: var(--accent-strong);
+  background: transparent;
+  transition: background 0.2s, color 0.2s;
+}
+.btn:hover { background: var(--accent-soft); }
+.plan.featured .btn,
+.btn.solid {
+  background: var(--accent);
+  color: var(--surface);
+}
+.plan.featured .btn:hover,
+.btn.solid:hover { background: var(--accent-strong); }
+
+/* Section */
+.section {
+  padding-block: 56px;
+  border-top: 1px solid var(--line);
+}
+.section h2.title {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: 0 0 28px;
+}
+
+/* Compare table */
+.table-scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  font-size: 0.93rem;
+}
+th, td {
+  padding: 14px 16px;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+th:first-child, td:first-child { text-align: left; color: var(--muted); }
+thead th { font-weight: 600; background: var(--accent-soft); }
+tbody tr:last-child td { border-bottom: none; }
+.yes { color: var(--accent); font-weight: 700; }
+.no { color: var(--muted); }
+
+/* FAQ */
+.faq {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.faq details {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+.faq summary {
+  cursor: pointer;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  color: var(--accent);
+  font-size: 1.2rem;
+  line-height: 1;
+}
+.faq details[open] summary::after { content: "−"; }
+.faq details p {
+  color: var(--muted);
+  margin: 10px 0 0;
+  font-size: 0.93rem;
+}
+
+/* CTA + footer */
+.cta {
+  text-align: center;
+}
+.cta p { color: var(--muted); margin: 0 0 20px; }
+.cta .btn { display: inline-block; padding-inline: 32px; }
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding-block: 28px;
+}

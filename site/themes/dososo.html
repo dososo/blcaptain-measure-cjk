@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分寸 Dososo · 分寸 Measure 主题示例</title>
+<style>
+/* 分寸 · Measure 基础样式。全部放在 measure 层里：页面上任何不分层的样式，
+   以及后声明的层（例如 Tailwind v4 的 utilities），都会覆盖它。
+   要让 measure 成为第一个声明的层，请在入口 CSS 的第一行写：@layer measure; */
+@layer measure {
+  :where(:lang(zh)) {
+    line-break: strict;                    /* 广泛可用；写在每个中文元素上，中英混排页面也生效 */
+    font-synthesis-style: none;            /* 中文不出假斜体；西文真斜体不受影响 */
+    text-emphasis-position: under right;   /* 中文着重号在字下方 */
+  }
+
+  :where(:lang(zh)) :where(p, li) {
+    line-height: 1.75;
+  }
+
+  :where(:lang(zh)) :where(h1, h2, h3) {
+    line-height: 1.3;
+  }
+
+  /* 行长约束只在显式标记的正文容器里生效，避免挤坏卡片和表格 */
+  .measure-prose {
+    max-width: 36em;
+  }
+
+  /* 实现里的初始值是 no-autospace，必须显式开启；spacing: text 模式下由 init 命令删掉这一段 */
+  @supports (text-autospace: normal) {
+    :where(:lang(zh)) { text-autospace: normal; }
+  }
+}
+
+</style>
+<style>
+/* 分寸 Dososo：配合 measure.css 使用 */
+:root {
+  --paper: #f4e9dc;
+  --paper-deep: #ebdccb;
+  --ink: #1f1b16;
+  --ink-soft: #5a5148;
+  --celadon: #7e8c6b;
+  --cinnabar: #9e4b3b;
+  --line: #d8c7b2;
+  --sans: "Noto Sans SC", "Source Han Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.8; }
+.page { max-width: 760px; margin: 0 auto; padding: 120px 32px 120px; }
+.kicker { font-size: 14px; color: var(--celadon); margin: 0 0 24px; }
+h1 { font-size: 44px; font-weight: 300; line-height: 1.35; margin: 0 0 32px; }
+.lead { font-size: 19px; line-height: 1.8; color: var(--ink-soft); margin: 0 0 24px; }
+.meta { font-size: 14px; color: var(--ink-soft); border-bottom: 1px solid var(--line); padding-bottom: 48px; margin: 0 0 56px; }
+h2 { font-size: 26px; font-weight: 300; line-height: 1.4; margin: 64px 0 20px; }
+p, li { max-width: 36em; line-height: 1.8; }
+p { margin: 0 0 1em; }
+ol { padding-left: 1.6em; margin: 0 0 1em; }
+blockquote { background: var(--paper-deep); border-left: 3px solid var(--celadon); margin: 40px 0; padding: 24px 28px; }
+blockquote p { margin: 0; }
+.note { font-size: 14px; line-height: 1.75; color: var(--ink-soft); border-top: 1px solid var(--line); padding-top: 16px; margin-top: 56px; }
+em { font-style: normal; color: var(--cinnabar); }
+a { color: var(--cinnabar); }
+@media (max-width: 760px) {
+  .page { padding: 72px 20px 96px; }
+  h1 { font-size: 32px; }
+  h2 { font-size: 22px; }
+}
+</style>
+</head>
+<body>
+<main class="page">
+<p class="kicker">分寸 · 第 12 期</p>
+<h1>行长、行高和字距，决定一页中文读起来累不累</h1>
+<p class="lead">AI 写出来的中文页面，大面上已经不差，差在细节：小字太小、字距太紧、中英文挤在一起、标点跑到行首。这些问题不显眼，读久了却很累。</p>
+<p class="meta">文：分寸编辑部　2026 年 10 月 26 日　编号 MZ-2026-012</p>
+<section class="body">
+<h2>1　行长</h2>
+<p>中文正文每行 28 到 40 个字最舒服。宽屏上的正文不限宽，一行就会拉到五六十个字，读到行尾再回到下一行行首，眼睛要扫过大半个屏幕，很容易串行。</p>
+<h2>2　行高</h2>
+<p>汉字是方块字，字面几乎撑满整个字身，行与行之间需要比西文更多的留白。正文行高 1.6 到 1.9 之间比较合适，标题可以收紧到 1.3 左右。</p>
+<blockquote><p>好的排版不会让你注意到它的存在，你只是觉得这篇文章读起来很顺。</p></blockquote>
+<h2>3　字距和标点</h2>
+<ol>
+<li>中文不要用负字距，<em>笔画会碰在一起</em>。</li>
+<li>中英文、数字之间留出约四分之一个字的空隙，用 CSS 的 text-autospace 自动处理。</li>
+<li>中文句子用全角标点，引号用 “”。</li>
+</ol>
+<p class="note">注：本页按 measure 的规则排版，可以用 measure-cjk lint --render 检查。</p>
+</section>
+</main>
+</body>
+</html>

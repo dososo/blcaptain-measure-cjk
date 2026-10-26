@@ -1,0 +1,76 @@
+$ node --test test/cli.test.js
+# 退出码：0
+TAP version 13
+# Subtest: results.json 符合 PRD §7.3 的结构，并且原子写入（不留 .tmp）
+ok 1 - results.json 符合 PRD §7.3 的结构，并且原子写入（不留 .tmp）
+  ---
+  duration_ms: 9.88425
+  type: 'test'
+  ...
+# Subtest: 有 error 时退出码 1；没有中文内容时 status=skipped、退出码 0
+ok 2 - 有 error 时退出码 1；没有中文内容时 status=skipped、退出码 0
+  ---
+  duration_ms: 4.379791
+  type: 'test'
+  ...
+# Subtest: 关闭规则时理由为空 → 退出码 2；写了理由 → 该规则的结果被移除，并记录在 disabled_rules
+ok 3 - 关闭规则时理由为空 → 退出码 2；写了理由 → 该规则的结果被移除，并记录在 disabled_rules
+  ---
+  duration_ms: 1.991416
+  type: 'test'
+  ...
+# Subtest: 不存在 --force：传入时按未知参数处理，退出码 2；源码里也没有 force 开关
+ok 4 - 不存在 --force：传入时按未知参数处理，退出码 2；源码里也没有 force 开关
+  ---
+  duration_ms: 0.551417
+  type: 'test'
+  ...
+# Subtest: --render 返回退出码 2，提示完整档在 W2 实现，不静默降级
+ok 5 - --render 返回退出码 2，提示完整档在 W2 实现，不静默降级
+  ---
+  duration_ms: 0.126166
+  type: 'test'
+  ...
+# Subtest: fonts 命令：🔴 / 🔵 / 🟢 / 未知
+ok 6 - fonts 命令：🔴 / 🔵 / 🟢 / 未知
+  ---
+  duration_ms: 0.271792
+  type: 'test'
+  ...
+# Subtest: init：生成配置和 measure.css，已存在时不覆盖；--spacing text 去掉 text-autospace 段
+ok 7 - init：生成配置和 measure.css，已存在时不覆盖；--spacing text 去掉 text-autospace 段
+  ---
+  duration_ms: 1.097917
+  type: 'test'
+  ...
+# Subtest: rules 命令：W1 已实现 13 条（T01–T09、T11、T13、F03、F04）
+ok 8 - rules 命令：W1 已实现 13 条（T01–T09、T11、T13、F03、F04）
+  ---
+  duration_ms: 0.128209
+  type: 'test'
+  ...
+# Subtest: 未知命令和缺少参数都返回 2
+ok 9 - 未知命令和缺少参数都返回 2
+  ---
+  duration_ms: 0.292291
+  type: 'test'
+  ...
+# Subtest: 样式解析失败、选择器不支持时，结果里如实记录，不静默吞掉
+ok 10 - 样式解析失败、选择器不支持时，结果里如实记录，不静默吞掉
+  ---
+  duration_ms: 1.943125
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 87.753208
+
+
+# 判定：PASS
+# 时间：2026-10-25T11:50:03.682Z

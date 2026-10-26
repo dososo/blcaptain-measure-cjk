@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>snip 快速上手</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#"><span>&gt;_</span> snip</a>
+    <span class="version">v2.4.0</span>
+    <nav>
+      <a href="#install">安装</a>
+      <a href="#config">配置</a>
+      <a href="#commands">常用命令</a>
+      <a href="#next">下一步</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="toc">
+    <h2>本页目录</h2>
+    <ol>
+      <li><a href="#install">1. 安装</a></li>
+      <li><a href="#config">2. 配置</a></li>
+      <li><a href="#commands">3. 常用命令</a>
+        <ol>
+          <li><a href="#cmd-add">snip add</a></li>
+          <li><a href="#cmd-find">snip find</a></li>
+          <li><a href="#cmd-sync">snip sync</a></li>
+        </ol>
+      </li>
+      <li><a href="#next">4. 下一步</a></li>
+    </ol>
+  </aside>
+
+  <main>
+    <div class="hero">
+      <h1>5 分钟上手 snip</h1>
+      <p class="lead">snip 是一个开源的命令行代码片段管理器：在终端里保存、搜索并在多台设备间同步常用的命令与代码片段。</p>
+      <div class="badges">
+        <span class="badge">MIT 许可证</span>
+        <span class="badge">macOS / Linux / Windows</span>
+        <span class="badge">单个二进制，无运行时依赖</span>
+      </div>
+    </div>
+
+    <!-- 安装 -->
+    <section id="install">
+      <h2><span class="step-num">1</span>安装</h2>
+      <p>选择适合你系统的安装方式。所有方式安装的都是同一个二进制文件 <code>snip</code>。</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" aria-selected="true" data-tab="brew">Homebrew</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="script">安装脚本</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="cargo">Cargo</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="source">从源码构建</button>
+      </div>
+
+      <div class="tab-panel" data-panel="brew">
+        <p>适用于 macOS 和 Linux：</p>
+        <div class="code">
+          <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="prompt">$ </span>brew install snip-cli/tap/snip</code></pre>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="script" hidden>
+        <p>脚本会自动识别系统与架构，并把 <code>snip</code> 安装到 <code>~/.local/bin</code>：</p>
+        <div class="code">
+          <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="prompt">$ </span>curl -fsSL https://snip.dev/install.sh | sh</code></pre>
+        </div>
+        <p>Windows（PowerShell）：</p>
+        <div class="code">
+          <div class="code-head"><span>powershell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="prompt">PS&gt; </span>irm https://snip.dev/install.ps1 | iex</code></pre>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="cargo" hidden>
+        <p>如果你已经装好 Rust 工具链（1.75 及以上）：</p>
+        <div class="code">
+          <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="prompt">$ </span>cargo install snip-cli</code></pre>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="source" hidden>
+        <div class="code">
+          <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="prompt">$ </span>git clone https://github.com/snip-cli/snip.git
+<span class="prompt">$ </span>cd snip
+<span class="prompt">$ </span>cargo build --release
+<span class="prompt">$ </span>cp target/release/snip ~/.local/bin/</code></pre>
+        </div>
+      </div>
+
+      <h3>验证安装</h3>
+      <div class="code">
+        <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+        <pre><code><span class="prompt">$ </span>snip --version
+<span class="out">snip 2.4.0</span></code></pre>
+      </div>
+
+      <div class="note warn">
+        <strong>提示：找不到命令？</strong>
+        确认安装目录已加入 <code>PATH</code>，例如在 <code>~/.zshrc</code> 中加入 <code>export PATH="$HOME/.local/bin:$PATH"</code>，然后重新打开终端。
+      </div>
+    </section>
+
+    <!-- 配置 -->
+    <section id="config">
+      <h2><span class="step-num">2</span>配置</h2>
+      <p>首次使用时运行初始化命令，snip 会生成默认配置文件并创建本地片段库：</p>
+      <div class="code">
+        <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+        <pre><code><span class="prompt">$ </span>snip init
+<span class="out">✔ 已创建配置文件 ~/.config/snip/config.toml
+✔ 已创建片段库   ~/.local/share/snip/library.db</span></code></pre>
+      </div>
+
+      <p>配置文件使用 TOML 格式，常用项如下：</p>
+      <div class="code">
+        <div class="code-head"><span>~/.config/snip/config.toml</span><button class="copy-btn">复制</button></div>
+        <pre><code><span class="cm"># 编辑片段时使用的编辑器，留空则读取 $EDITOR</span>
+<span class="kw">editor</span> = <span class="str">"vim"</span>
+
+<span class="cm"># 未指定语言时的默认值</span>
+<span class="kw">default_lang</span> = <span class="str">"bash"</span>
+
+<span class="kw">[search]</span>
+<span class="cm"># 模糊匹配；设为 false 则使用精确匹配</span>
+<span class="kw">fuzzy</span> = <span class="kw">true</span>
+<span class="kw">max_results</span> = <span class="str">20</span>
+
+<span class="kw">[sync]</span>
+<span class="cm"># 用于同步的 Git 仓库地址（可选）</span>
+<span class="kw">remote</span> = <span class="str">"git@github.com:yourname/snippets.git"</span>
+<span class="kw">auto</span> = <span class="kw">false</span></code></pre>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>配置项</th><th>默认值</th><th>说明</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>editor</code></td><td><code>$EDITOR</code></td><td>新建或编辑片段时打开的编辑器</td></tr>
+            <tr><td><code>default_lang</code></td><td><code>"text"</code></td><td>片段的默认语言标签，影响高亮显示</td></tr>
+            <tr><td><code>search.fuzzy</code></td><td><code>true</code></td><td>是否启用模糊搜索</td></tr>
+            <tr><td><code>search.max_results</code></td><td><code>20</code></td><td>单次搜索最多返回的结果数</td></tr>
+            <tr><td><code>sync.remote</code></td><td>无</td><td>同步用的 Git 远程仓库；不设置则只保存在本地</td></tr>
+            <tr><td><code>sync.auto</code></td><td><code>false</code></td><td>每次添加或修改片段后自动同步</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p>也可以直接在命令行修改单个配置项，而不必手动编辑文件：</p>
+      <div class="code">
+        <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+        <pre><code><span class="prompt">$ </span>snip config set editor code
+<span class="prompt">$ </span>snip config get editor
+<span class="out">code</span></code></pre>
+      </div>
+
+      <div class="note">
+        <strong>环境变量优先</strong>
+        每个配置项都可以用 <code>SNIP_</code> 前缀的环境变量覆盖，例如 <code>SNIP_SEARCH_FUZZY=false</code>。配置文件位置可通过 <code>SNIP_CONFIG</code> 指定。
+      </div>
+    </section>
+
+    <!-- 常用命令 -->
+    <section id="commands">
+      <h2><span class="step-num">3</span>三个常用命令</h2>
+      <p>掌握下面三个命令，就能覆盖日常 90% 的使用场景。任何命令都可以加 <code>--help</code> 查看完整参数。</p>
+
+      <div class="cmd-card" id="cmd-add">
+        <h3>snip add</h3>
+        <p class="desc">保存一个新片段。可以从参数、标准输入或编辑器中读取内容。</p>
+        <div class="code">
+          <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="cm"># 直接保存一条命令，并打上标签</span>
+<span class="prompt">$ </span>snip add "docker system prune -af" --name docker-clean --tag docker
+
+<span class="cm"># 从管道读取文件内容</span>
+<span class="prompt">$ </span>cat deploy.sh | snip add --name deploy --lang bash
+
+<span class="cm"># 不带内容时会打开编辑器</span>
+<span class="prompt">$ </span>snip add --name nginx-conf</code></pre>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>参数</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td><code>-n, --name</code></td><td>片段名称，需唯一；省略时自动生成</td></tr>
+              <tr><td><code>-t, --tag</code></td><td>标签，可重复使用以添加多个</td></tr>
+              <tr><td><code>-l, --lang</code></td><td>语言，用于语法高亮</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cmd-card" id="cmd-find">
+        <h3>snip find</h3>
+        <p class="desc">按关键词、标签或语言搜索片段，并可直接复制或执行。</p>
+        <div class="code">
+          <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="prompt">$ </span>snip find docker
+<span class="out">  1  docker-clean   [docker]   docker system prune -af
+  2  docker-logs    [docker]   docker logs -f --tail 100 &lt;container&gt;</span>
+
+<span class="cm"># 只看某个标签下的片段</span>
+<span class="prompt">$ </span>snip find --tag k8s
+
+<span class="cm"># 把第一个匹配结果复制到剪贴板</span>
+<span class="prompt">$ </span>snip find docker-clean --copy</code></pre>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>参数</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td><code>-t, --tag</code></td><td>按标签过滤</td></tr>
+              <tr><td><code>-c, --copy</code></td><td>复制第一个结果到剪贴板</td></tr>
+              <tr><td><code>-i, --interactive</code></td><td>进入交互式选择界面（方向键选择、回车确认）</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="cmd-card" id="cmd-sync">
+        <h3>snip sync</h3>
+        <p class="desc">把本地片段库与配置中的 Git 远程仓库双向同步，在多台机器上共享片段。</p>
+        <div class="code">
+          <div class="code-head"><span>shell</span><button class="copy-btn">复制</button></div>
+          <pre><code><span class="prompt">$ </span>snip sync
+<span class="out">↓ 拉取 3 个新片段
+↑ 推送 1 个修改
+✔ 同步完成</span>
+
+<span class="cm"># 只预览变化，不实际执行</span>
+<span class="prompt">$ </span>snip sync --dry-run</code></pre>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>参数</th><th>说明</th></tr></thead>
+            <tbody>
+              <tr><td><code>--dry-run</code></td><td>只显示将要发生的变化</td></tr>
+              <tr><td><code>--pull-only</code></td><td>只拉取远程更新，不推送本地修改</td></tr>
+              <tr><td><code>--force</code></td><td>冲突时以本地版本为准（谨慎使用）</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="note warn">
+          <strong>使用前提</strong>
+          需先在配置中设置 <code>sync.remote</code>，并确保本机可以通过 SSH 或 HTTPS 访问该仓库。
+        </div>
+      </div>
+    </section>
+
+    <!-- 下一步 -->
+    <section id="next">
+      <h2><span class="step-num">4</span>下一步</h2>
+      <div class="next-grid">
+        <a href="https://github.com/snip-cli/snip#readme"><strong>完整命令参考 →</strong><span>查看所有子命令与参数</span></a>
+        <a href="https://github.com/snip-cli/snip/issues"><strong>反馈问题 →</strong><span>报告 Bug 或提出新功能建议</span></a>
+        <a href="https://github.com/snip-cli/snip/blob/main/CONTRIBUTING.md"><strong>参与贡献 →</strong><span>阅读贡献指南，提交你的第一个 PR</span></a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>snip 是基于 MIT 许可证发布的开源项目 · 文档对应版本 v2.4.0</footer>
+
+<script>
+  // 安装方式选项卡
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.tab-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.setAttribute('aria-selected', t === tab ? 'true' : 'false'));
+      panels.forEach(p => { p.hidden = p.dataset.panel !== tab.dataset.tab; });
+    });
+  });
+
+  // 复制按钮：去掉提示符与输出行，只复制可执行内容
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const source = btn.closest('.code').querySelector('code');
+      const code = source.cloneNode(true);
+      code.querySelectorAll('.prompt, .out').forEach(el => el.remove());
+      const text = code.textContent.replace(/\n{3,}/g, '\n\n').trim();
+      const done = () => {
+        btn.textContent = '已复制';
+        setTimeout(() => { btn.textContent = '复制'; }, 1500);
+      };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(done).catch(() => selectText(source));
+      } else {
+        selectText(source);
+      }
+    });
+  });
+
+  function selectText(node) {
+    const range = document.createRange();
+    range.selectNodeContents(node);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+# 北极星实验的隔离核对（NORTH_STAR_PLAN §4 第 3 条）
+# 正式运行开始：2026-10-26T03:20:03Z 11:20  up  4:10, 1 user, load averages: 3.39 4.43 4.75
+
+## codex 凭证文件的修改时间（实验期间不能变）
+2026-10-25T16:15:28+0800 ~/.codex/auth.json
+
+## 正式运行开始之后，~/.claude/projects 下新增或改动的目录（应为空）
+（列表到此结束）
+
+## 各组日志里出现用户目录路径的次数（summary.json 的 home_path_in_log_runs）
+2026-W2-northstar-v3-claude-code-control []
+2026-W2-northstar-v3-claude-code-measure ['001', '005', '012', '019', '024', '027']
+2026-W2-northstar-v3-codex-control ['030']
+2026-W2-northstar-v3-codex-measure ['011', '015', '020', '026', '028']
+
+## 日志里出现用户目录路径的原因（逐处核对）
+- 11 处 ~/.local/bin、3 处 ~/.nvm：agent 运行 which node，或者 cat 了转发 measure-cjk 的 shim（shim 里写着 node 和仓库命令行的绝对路径）。
+- 7 处 ~/Documents/Codex/...：同上，shim 里的仓库路径；codex 实验组 028 还用 rg 列了一遍仓库里的文件。
+- 1 处 ~/Library/Fonts：codex 实验组 028 运行了 `ls ~/Library/Fonts`，在找可用的字体。
+- 结论：codex 的 workspace-write 沙箱只限制写、不限制读，临时 HOME 挡不住绝对路径，隔离不完全。
+- 影响：120 份产物（HTML、CSS）里没有一份引用用户目录或仓库路径（grep 结果为 0 个），028 号产物的字体栈只写了 "Noto Sans SC", sans-serif。

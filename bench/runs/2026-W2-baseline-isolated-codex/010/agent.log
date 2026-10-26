@@ -1,0 +1,384 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-010-c1PiIW -m gpt-6-astra -c model_reasoning_effort="high" <提示词>
+工作目录：<tmp>/measure-baseline-codex-010-c1PiIW
+退出码：0 信号：无 用时：204s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-010-c1PiIW
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17322-1296-7940-9114-d22603dea3c8
+--------
+user
+做一个公司内部公告页面，通知下个月起实行弹性工作制，附常见问题。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会做一个可直接打开的中文公告页面，包含弹性工作制说明、实施安排和常见问题，并将待公司确认的细则明确标注。
+
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-010-c1PiIW
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-010-c1PiIW
+
+apply patch
+patch: completed
+<tmp>/measure-baseline-codex-010-c1PiIW/index.html
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..3fea12129bd1e6584db8ba286511400c6376c868
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,72 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#173a36">
++  <title>关于实行弹性工作制的通知 · 内部公告</title>
++  <style>
++    :root{--ink:#203c38;--muted:#77817b;--green:#285e4e;--line:#e4e8df;--paper:#f6f7f2;--mint:#d7e6b8}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #86a958;outline-offset:5px}svg{display:block}header{height:80px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 45px;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:750;letter-spacing:-.5px}.brand-mark{height:32px;width:32px;background:var(--ink);border-radius:9px;display:grid;place-items:center}.brand-mark svg{width:21px;stroke:#dfebc6}.brand small{font-size:11px;letter-spacing:2px;color:var(--muted);font-weight:500;border-left:1px solid var(--line);padding-left:16px;margin-left:6px}.top-right{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:12px}.internal{display:flex;align-items:center;gap:7px}.dot{width:6px;height:6px;border-radius:50%;background:#6c9164}.avatar{width:32px;height:32px;border-radius:50%;background:#eef1e8;display:grid;place-items:center;font-size:11px;color:var(--ink);font-weight:700}.layout{max-width:1512px;margin:auto;display:grid;grid-template-columns:232px minmax(0,1fr)}aside{padding:39px 23px;border-right:1px solid var(--line);min-height:calc(100vh - 80px)}.aside-label{font-size:10px;letter-spacing:2px;color:#929a90;margin:0 17px 20px}.nav-link{padding:14px 16px;display:flex;align-items:center;gap:12px;border-radius:6px;margin-bottom:6px;color:#788078;font-size:13px}.nav-link svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5}.nav-link.active{background:#e7eddf;color:var(--green);font-weight:600}.nav-link:hover{background:#edf0e7}.nav-count{margin-left:auto;font-size:10px;background:#fff;padding:2px 6px;border-radius:4px}.aside-bottom{border-top:1px solid var(--line);margin:52px 16px 0;padding-top:22px}.aside-bottom p{font-size:12px;line-height:1.9;color:#879083;margin:9px 0}.aside-bottom b{font-size:12px;font-weight:500;color:#63735f}main{padding:36px 48px 28px;min-width:0}.breadcrumb{font-size:11px;color:#92998f;display:flex;gap:12px;align-items:center;margin-bottom:28px}.breadcrumb span:last-child{color:#5d6f63}.page-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}.page-heading h1{margin:0;font-size:25px;font-weight:650;letter-spacing:-.8px}.outline-button{border:1px solid #dce1d6;background:transparent;border-radius:5px;padding:9px 13px;display:flex;align-items:center;gap:7px;color:#647260;font-size:11px;cursor:pointer}.outline-button:hover{background:#e9ede3}.outline-button svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}.hero{background:#193c36;border-radius:10px;padding:35px 38px 0;overflow:hidden;position:relative;color:#f7f9ed}.hero-top{position:relative;z-index:1;display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:1px;color:#bcccbc}.tag{border:1px solid #61786a;border-radius:4px;padding:4px 8px;color:#e0ebcd}.hero h2{position:relative;z-index:1;font-size:clamp(26px,3vw,40px);line-height:1.55;font-weight:550;letter-spacing:1px;margin:24px 0 13px}.hero h2 span{color:#d4e6ad}.hero-copy{position:relative;z-index:1;font-size:12px;line-height:2;color:#bacbbd;margin:0 0 29px;max-width:520px}.hero-meta{position:relative;z-index:1;border-top:1px solid #496157;padding:18px 0;display:flex;align-items:center;gap:24px;font-size:10px;color:#b0c3b4}.hero-meta strong{font-weight:500;color:#e1e9d8}.hero-art{position:absolute;right:17px;top:21px;width:255px;height:255px;opacity:.9}.hero-art .orbit{fill:none;stroke:#718b6a;stroke-width:.6}.hero-art .arrow{fill:none;stroke:#d4e6ad;stroke-width:16;stroke-linecap:square;stroke-linejoin:miter}.intro{margin:25px 0 24px;font-size:12px;line-height:2.1;color:#697467}.intro strong{color:var(--ink);font-weight:600}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:37px}.fact{border:1px solid var(--line);background:#fff;border-radius:7px;padding:20px 22px}.fact-label{color:#84907e;font-size:11px;display:flex;align-items:center;gap:8px}.fact-label svg{width:15px;height:15px;fill:none;stroke:#71816a;stroke-width:1.5}.fact-value{font-size:23px;font-weight:600;letter-spacing:-.6px;margin:13px 0 6px}.fact-value small{font-size:12px;font-weight:400;letter-spacing:0}.fact-caption{font-size:10px;color:#8c9485}.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:27px}.section-heading{display:flex;align-items:center;gap:10px;margin:0 0 19px;font-size:17px;font-weight:600}.section-number{font-family:monospace;font-size:11px;font-weight:400;color:#899880}.schedule{background:white;border:1px solid var(--line);border-radius:8px;padding:24px 23px}.section-description{font-size:11px;color:#7e8877;line-height:1.8;margin:0 0 25px}.axis{display:flex;justify-content:space-between;margin:0 0 10px;font-size:10px;color:#91988b;font-variant-numeric:tabular-nums}.time-bar{display:grid;grid-template-columns:2fr 6fr 3fr;height:54px;border-radius:5px;overflow:hidden;font-size:11px;text-align:center;gap:3px}.time-bar div{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:#e6edd9;color:#5e7551}.time-bar .core{background:#305c48;color:#f1f4e9}.time-bar small{font-size:9px;opacity:.75}.legend{display:flex;gap:15px;font-size:9px;color:#939987;margin:13px 0 23px}.legend span{display:flex;align-items:center;gap:5px}.legend i{height:6px;width:6px;border-radius:2px;background:#dce5ca}.legend span:nth-child(2) i{background:#305c48}.example{display:flex;align-items:center;gap:12px;font-size:10px;line-height:1.8;color:#73806a;border-top:1px solid #eef0e8;padding-top:16px}.example b{white-space:nowrap;font-size:9px;background:#f0f3e8;color:#788369;padding:3px 6px;font-weight:500}.note-card{background:#edf0e4;border:1px solid #e0e6d5;border-radius:8px;padding:22px}.note-card h3{font-size:14px;margin:0 0 18px;display:flex;align-items:center;gap:8px}.note-card h3 svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}.step{display:grid;grid-template-columns:18px 1fr;gap:8px;margin-bottom:19px}.step:last-child{margin-bottom:0}.step-index{font-size:9px;display:grid;place-items:center;border:1px solid #c9d2b8;border-radius:50%;width:17px;height:17px;color:#798b65;margin-top:2px}.step b{font-size:11px;font-weight:600}.step p{font-size:10px;line-height:1.9;color:#849075;margin:5px 0 0}.faq-section{margin-top:32px}.faq-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.faq-header .section-heading{margin-bottom:10px}.faq-header>span{font-size:10px;color:#8c9783}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;font-size:12px;padding:19px 0;line-height:1.6}summary::-webkit-details-marker{display:none}.question-mark{font-family:monospace;color:#96a08a;font-size:10px}summary::after{content:'+';font-size:19px;font-weight:300;color:#839473;margin-left:auto;padding-left:12px}details[open] summary::after{content:'−'}details p{font-size:11px;line-height:2;color:#78836e;margin:0 28px 19px}.contact{display:flex;gap:12px;align-items:center;margin-top:27px;border:1px solid var(--line);border-radius:7px;padding:17px 20px}.contact-icon{border-radius:50%;background:#e6ebdc;width:30px;height:30px;display:grid;place-items:center;flex-shrink:0}.contact-icon svg{width:16px;height:16px;fill:none;stroke:#627b52;stroke-width:1.5}.contact b{font-size:11px;font-weight:600}.contact p{font-size:10px;color:#8b9480;margin:5px 0 0}.contact>span{margin-left:auto;font-size:10px;color:#7c896e;white-space:nowrap}footer{display:flex;justify-content:space-between;gap:20px;color:#98a08d;font-size:9px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);line-height:1.8}.draft-note{max-width:670px}
++    @media(min-width:1450px){main{padding-left:64px;padding-right:64px}.hero-art{right:55px}}@media(max-width:1100px){.layout{grid-template-columns:185px 1fr}aside{padding-left:12px;padding-right:12px}main{padding:30px}.content-grid{grid-template-columns:minmax(0,1fr) 220px;gap:18px}.hero-art{right:-70px;opacity:.35}.hero-copy{max-width:440px}.fact{padding:18px 15px}.fact-value{font-size:20px}}@media(max-width:800px){header{padding:0 22px;height:68px}.brand small{display:none}.top-right{gap:14px}.layout{display:block}aside{display:none}main{padding:25px 22px}.content-grid{grid-template-columns:1fr}.note-card{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.note-card h3{grid-column:1/-1;margin-bottom:0}.step{margin-bottom:0}.hero{padding:27px 27px 0}.hero-art{right:0;opacity:.2}.hero h2{font-size:32px}}@media(max-width:480px){.internal{display:none}.brand{font-size:18px}.page-heading h1{font-size:21px}.breadcrumb{font-size:10px;margin-bottom:22px}.hero{padding:24px 21px 0}.hero h2{font-size:27px;letter-spacing:0}.hero-copy{font-size:11px}.hero-meta{gap:12px;flex-wrap:wrap;line-height:1.6;font-size:9px}.facts{grid-template-columns:1fr;gap:9px;margin-bottom:28px}.fact{padding:15px 17px;display:grid;grid-template-columns:1fr 1fr;gap:7px}.fact-value{margin:0;text-align:right;font-size:20px}.fact-caption{grid-column:1/-1}.note-card{display:block}.note-card h3{margin-bottom:20px}.step{margin-bottom:18px}.schedule{padding:20px 16px}.example{align-items:flex-start}.contact>span{display:none}footer{flex-direction:column;gap:8px}.faq-header>span{font-size:9px}.top-right>span{display:none}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{background:#fff}header,aside,.outline-button,.breadcrumb{display:none}.layout{display:block}main{padding:0}.hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}.hero-art{display:none}.facts{margin-bottom:20px}.content-grid{display:block}.note-card{margin-top:20px}.faq-section{margin-top:22px}details{break-inside:avoid}.contact,footer{break-inside:avoid}}
++  </style>
++</head>
++<body>
++  <header>
++    <a class="brand" href="#top" aria-label="同频内部工作台首页"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true"><path d="M5 17V8m7 11V5m7 11V8"/></svg></span>同频<span style="font-weight:400"> / </span><small>TEAM WORKSPACE</small></a>
++    <div class="top-right"><span>把每一份协作，连接起来</span><div class="internal"><i class="dot"></i>内部工作台</div><div class="avatar" aria-label="人力资源部">HR</div></div>
++  </header>
++  <div class="layout" id="top">
++    <aside aria-label="页面导航">
++      <p class="aside-label">WORKSPACE</p>
++      <nav>
++        <a class="nav-link active" href="#announcement" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 13-5v14L4 14zM17 9h3v6h-3M6 15l2 5h3l-2-4"/></svg>公司公告<span class="nav-count">01</span></a>
++        <a class="nav-link" href="#schedule"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M4 11h16m-12 4h3m2 0h3"/></svg>工作时间</a>
++        <a class="nav-link" href="#preparation"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v4H9zM9 12h6m-6 4h6"/></svg>实施准备</a>
++        <a class="nav-link" href="#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 2v1"/></svg>常见问题</a>
++      </nav>
++      <div class="aside-bottom"><b>更好的工作，从容发生。</b><p>彼此信任，高效协作。<br>一起找到适合自己的节奏。</p></div>
++    </aside>
++    <main id="announcement">
++      <div class="breadcrumb"><a href="#top">内部工作台</a><span>/</span><span>公司公告</span><span>/</span><span>工作制度更新</span></div>
++      <div class="page-heading"><h1>关于实行弹性工作制的通知</h1><button class="outline-button" type="button" id="print-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z"/></svg>打印公告</button></div>
++      <article>
++        <section class="hero" aria-label="弹性工作制公告概要">
++          <div class="hero-top"><span class="tag">工作制度更新</span><span>PEOPLE & CULTURE</span></div>
++          <h2>让工作更有弹性，<br><span>让协作依然有序。</span></h2>
++          <p class="hero-copy">自 2026 年 11 月 1 日起，我们将实行弹性工作制。<br>在共同的协作时间里保持连接，也为每个人留出自主安排的空间。</p>
++          <svg class="hero-art" viewBox="0 0 280 280" aria-hidden="true"><circle class="orbit" cx="140" cy="140" r="125"/><circle class="orbit" cx="140" cy="140" r="96"/><path class="orbit" d="M0 140h280M140 0v280M40 40l200 200M40 240 240 40"/><path class="arrow" d="M83 157V95h62m-60 1 61 61M197 123v62h-62m60-1-61-61"/><circle cx="140" cy="15" r="4" fill="#d4e6ad"/><circle cx="265" cy="140" r="3" fill="#d4e6ad"/></svg>
++          <div class="hero-meta"><span>发布部门 <strong>人力资源部</strong></span><span>发布日期 <strong>2026.10.25</strong></span><span>适用范围 <strong>符合条件的办公岗位</strong></span></div>
++        </section>
++        <p class="intro">各位同事：<br>为支持更灵活的工作安排，兼顾个人节奏与团队协作，公司将从下个月起推行弹性工作制。<strong>在完成每日工作时长、保障业务正常开展的前提下，可在规定范围内自主选择上下班时间。</strong>具体安排如下。</p>
++        <div class="facts">
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4m8-4v4M4 11h16"/></svg>正式实施</div><div class="fact-value">11 月 1 日 <small>起</small></div><div class="fact-caption">2026 年 · 按个人排班开始执行</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>弹性到岗</div><div class="fact-value">08:00–10:00</div><div class="fact-caption">根据到岗时间，相应调整下班时间</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16M4 15h16M8 4v16m8-16v16"/></svg>每日工作</div><div class="fact-value">8 <small>小时 / 工作日</small></div><div class="fact-caption">午休 12:00–13:00，不计入工作时长</div></div>
++        </div>
++        <div class="content-grid">
++          <section id="schedule"><h2 class="section-heading"><span class="section-number">01</span>如何安排你的一天</h2><div class="schedule"><p class="section-description">上下班可灵活选择，核心时段保持在岗协作（午休除外）。</p><div class="axis"><span>08:00</span><span>10:00</span><span>16:00</span><span>19:00</span></div><div class="time-bar"><div>弹性到岗<small>08:00–10:00</small></div><div class="core">核心协作时段<small>10:00–16:00 · 午休除外</small></div><div>弹性离岗<small>17:00–19:00</small></div></div><div class="legend"><span><i></i>自主安排</span><span><i></i>共同协作</span><span>示意图，非等比例</span></div><div class="example"><b>举个例子</b><span>08:00 到岗 → 17:00 下班<br>09:00 到岗 → 18:00 下班；10:00 到岗 → 19:00 下班。<br>以上均包含 1 小时午休。</span></div></div></section>
++          <section id="preparation"><h2 class="section-heading"><span class="section-number">02</span>开始前，做好这些</h2><div class="note-card"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>你的实施小清单</h3><div class="step"><span class="step-index">1</span><div><b>与直属负责人沟通</b><p>确认岗位适用情况与团队协作安排。</p></div></div><div class="step"><span class="step-index">2</span><div><b>同步你的工作时间</b><p>提前在团队日历中标注，便于安排会议。</p></div></div><div class="step"><span class="step-index">3</span><div><b>保持考勤与交付习惯</b><p>正常记录考勤，按计划完成工作与交接。</p></div></div></div></section>
++        </div>
++        <section class="faq-section" id="faq"><div class="faq-header"><h2 class="section-heading"><span class="section-number">03</span>你可能想了解</h2><span>常见问题 · FAQ</span></div>
++          <details open><summary><span class="question-mark">Q1</span>弹性工作制是否适用于所有岗位？</summary><p>本方案适用于经部门确认、可灵活安排到岗时间的办公岗位。轮班、客户服务、现场值守等需要固定时间覆盖的岗位，继续按照部门排班执行；具体适用情况请向直属负责人确认。</p></details>
++          <details><summary><span class="question-mark">Q2</span>每天都可以选择不同的到岗时间吗？</summary><p>可以在 08:00–10:00 范围内灵活安排，但需提前向团队同步。已安排的会议、客户沟通及工作交接应优先保障；如需临时调整，请及时与直属负责人沟通。</p></details>
++          <details><summary><span class="question-mark">Q3</span>弹性工作是否意味着可以居家办公？</summary><p>本次调整针对上下班时间，工作地点仍按公司现行安排执行。如需居家或异地办公，请按既有流程单独申请。</p></details>
++          <details><summary><span class="question-mark">Q4</span>考勤、请假和加班应该如何处理？</summary><p>仍需正常记录考勤，每日工作 8 小时，午休不计入。核心协作时段因私外出或无法到岗时，应按现行流程请假。较晚到岗后相应顺延的下班时间不自动计为加班；额外工作按公司现行加班申请及审批流程处理。</p></details>
++          <details><summary><span class="question-mark">Q5</span>如果团队会议与个人时间安排冲突怎么办？</summary><p>建议将跨团队会议优先安排在核心协作时段，并避开午休。遇到客户需求或其他特殊安排，由负责人提前协调；如与你的安排冲突，请尽早沟通，确认替代时间或交接方式。</p></details>
++        </section>
++        <div class="contact"><div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 1-8 8H5l-3 2v-9a9 9 0 0 1 18-1Z"/><path d="M7 11h1m3 0h1m3 0h1"/></svg></div><div><b>还有其他问题？我们一起解答。</b><p>请通过公司内部通讯录联系人力资源部，或与你的直属负责人沟通。</p></div><span>人力资源部 · HR</span></div>
++      </article>
++      <footer><span class="draft-note">公告草案 · 本页工时、适用岗位与流程为示例细则，正式发布前请由公司确认。</span><span>同频 WORKSPACE · 仅供内部使用</span></footer>
++    </main>
++  </div>
++  <script>
++    const questions = [...document.querySelectorAll('details')];
++    let previousState;
++    window.addEventListener('beforeprint', () => { previousState = questions.map(item => item.open); questions.forEach(item => item.open = true); });
++    window.addEventListener('afterprint', () => { if (previousState) questions.forEach((item, i) => item.open = previousState[i]); });
++    document.getElementById('print-button').addEventListener('click', () => window.print());
++  </script>
++</body>
++</html>
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..3fea12129bd1e6584db8ba286511400c6376c868
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,72 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#173a36">
++  <title>关于实行弹性工作制的通知 · 内部公告</title>
++  <style>
++    :root{--ink:#203c38;--muted:#77817b;--green:#285e4e;--line:#e4e8df;--paper:#f6f7f2;--mint:#d7e6b8}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #86a958;outline-offset:5px}svg{display:block}header{height:80px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 45px;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:750;letter-spacing:-.5px}.brand-mark{height:32px;width:32px;background:var(--ink);border-radius:9px;display:grid;place-items:center}.brand-mark svg{width:21px;stroke:#dfebc6}.brand small{font-size:11px;letter-spacing:2px;color:var(--muted);font-weight:500;border-left:1px solid var(--line);padding-left:16px;margin-left:6px}.top-right{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:12px}.internal{display:flex;align-items:center;gap:7px}.dot{width:6px;height:6px;border-radius:50%;background:#6c9164}.avatar{width:32px;height:32px;border-radius:50%;background:#eef1e8;display:grid;place-items:center;font-size:11px;color:var(--ink);font-weight:700}.layout{max-width:1512px;margin:auto;display:grid;grid-template-columns:232px minmax(0,1fr)}aside{padding:39px 23px;border-right:1px solid var(--line);min-height:calc(100vh - 80px)}.aside-label{font-size:10px;letter-spacing:2px;color:#929a90;margin:0 17px 20px}.nav-link{padding:14px 16px;display:flex;align-items:center;gap:12px;border-radius:6px;margin-bottom:6px;color:#788078;font-size:13px}.nav-link svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5}.nav-link.active{background:#e7eddf;color:var(--green);font-weight:600}.nav-link:hover{background:#edf0e7}.nav-count{margin-left:auto;font-size:10px;background:#fff;padding:2px 6px;border-radius:4px}.aside-bottom{border-top:1px solid var(--line);margin:52px 16px 0;padding-top:22px}.aside-bottom p{font-size:12px;line-height:1.9;color:#879083;margin:9px 0}.aside-bottom b{font-size:12px;font-weight:500;color:#63735f}main{padding:36px 48px 28px;min-width:0}.breadcrumb{font-size:11px;color:#92998f;display:flex;gap:12px;align-items:center;margin-bottom:28px}.breadcrumb span:last-child{color:#5d6f63}.page-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}.page-heading h1{margin:0;font-size:25px;font-weight:650;letter-spacing:-.8px}.outline-button{border:1px solid #dce1d6;background:transparent;border-radius:5px;padding:9px 13px;display:flex;align-items:center;gap:7px;color:#647260;font-size:11px;cursor:pointer}.outline-button:hover{background:#e9ede3}.outline-button svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}.hero{background:#193c36;border-radius:10px;padding:35px 38px 0;overflow:hidden;position:relative;color:#f7f9ed}.hero-top{position:relative;z-index:1;display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:1px;color:#bcccbc}.tag{border:1px solid #61786a;border-radius:4px;padding:4px 8px;color:#e0ebcd}.hero h2{position:relative;z-index:1;font-size:clamp(26px,3vw,40px);line-height:1.55;font-weight:550;letter-spacing:1px;margin:24px 0 13px}.hero h2 span{color:#d4e6ad}.hero-copy{position:relative;z-index:1;font-size:12px;line-height:2;color:#bacbbd;margin:0 0 29px;max-width:520px}.hero-meta{position:relative;z-index:1;border-top:1px solid #496157;padding:18px 0;display:flex;align-items:center;gap:24px;font-size:10px;color:#b0c3b4}.hero-meta strong{font-weight:500;color:#e1e9d8}.hero-art{position:absolute;right:17px;top:21px;width:255px;height:255px;opacity:.9}.hero-art .orbit{fill:none;stroke:#718b6a;stroke-width:.6}.hero-art .arrow{fill:none;stroke:#d4e6ad;stroke-width:16;stroke-linecap:square;stroke-linejoin:miter}.intro{margin:25px 0 24px;font-size:12px;line-height:2.1;color:#697467}.intro strong{color:var(--ink);font-weight:600}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:37px}.fact{border:1px solid var(--line);background:#fff;border-radius:7px;padding:20px 22px}.fact-label{color:#84907e;font-size:11px;display:flex;align-items:center;gap:8px}.fact-label svg{width:15px;height:15px;fill:none;stroke:#71816a;stroke-width:1.5}.fact-value{font-size:23px;font-weight:600;letter-spacing:-.6px;margin:13px 0 6px}.fact-value small{font-size:12px;font-weight:400;letter-spacing:0}.fact-caption{font-size:10px;color:#8c9485}.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:27px}.section-heading{display:flex;align-items:center;gap:10px;margin:0 0 19px;font-size:17px;font-weight:600}.section-number{font-family:monospace;font-size:11px;font-weight:400;color:#899880}.schedule{background:white;border:1px solid var(--line);border-radius:8px;padding:24px 23px}.section-description{font-size:11px;color:#7e8877;line-height:1.8;margin:0 0 25px}.axis{display:flex;justify-content:space-between;margin:0 0 10px;font-size:10px;color:#91988b;font-variant-numeric:tabular-nums}.time-bar{display:grid;grid-template-columns:2fr 6fr 3fr;height:54px;border-radius:5px;overflow:hidden;font-size:11px;text-align:center;gap:3px}.time-bar div{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:#e6edd9;color:#5e7551}.time-bar .core{background:#305c48;color:#f1f4e9}.time-bar small{font-size:9px;opacity:.75}.legend{display:flex;gap:15px;font-size:9px;color:#939987;margin:13px 0 23px}.legend span{display:flex;align-items:center;gap:5px}.legend i{height:6px;width:6px;border-radius:2px;background:#dce5ca}.legend span:nth-child(2) i{background:#305c48}.example{display:flex;align-items:center;gap:12px;font-size:10px;line-height:1.8;color:#73806a;border-top:1px solid #eef0e8;padding-top:16px}.example b{white-space:nowrap;font-size:9px;background:#f0f3e8;color:#788369;padding:3px 6px;font-weight:500}.note-card{background:#edf0e4;border:1px solid #e0e6d5;border-radius:8px;padding:22px}.note-card h3{font-size:14px;margin:0 0 18px;display:flex;align-items:center;gap:8px}.note-card h3 svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}.step{display:grid;grid-template-columns:18px 1fr;gap:8px;margin-bottom:19px}.step:last-child{margin-bottom:0}.step-index{font-size:9px;display:grid;place-items:center;border:1px solid #c9d2b8;border-radius:50%;width:17px;height:17px;color:#798b65;margin-top:2px}.step b{font-size:11px;font-weight:600}.step p{font-size:10px;line-height:1.9;color:#849075;margin:5px 0 0}.faq-section{margin-top:32px}.faq-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.faq-header .section-heading{margin-bottom:10px}.faq-header>span{font-size:10px;color:#8c9783}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;font-size:12px;padding:19px 0;line-height:1.6}summary::-webkit-details-marker{display:none}.question-mark{font-family:monospace;color:#96a08a;font-size:10px}summary::after{content:'+';font-size:19px;font-weight:300;color:#839473;margin-left:auto;padding-left:12px}details[open] summary::after{content:'−'}details p{font-size:11px;line-height:2;color:#78836e;margin:0 28px 19px}.contact{display:flex;gap:12px;align-items:center;margin-top:27px;border:1px solid var(--line);border-radius:7px;padding:17px 20px}.contact-icon{border-radius:50%;background:#e6ebdc;width:30px;height:30px;display:grid;place-items:center;flex-shrink:0}.contact-icon svg{width:16px;height:16px;fill:none;stroke:#627b52;stroke-width:1.5}.contact b{font-size:11px;font-weight:600}.contact p{font-size:10px;color:#8b9480;margin:5px 0 0}.contact>span{margin-left:auto;font-size:10px;color:#7c896e;white-space:nowrap}footer{display:flex;justify-content:space-between;gap:20px;color:#98a08d;font-size:9px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);line-height:1.8}.draft-note{max-width:670px}
++    @media(min-width:1450px){main{padding-left:64px;padding-right:64px}.hero-art{right:55px}}@media(max-width:1100px){.layout{grid-template-columns:185px 1fr}aside{padding-left:12px;padding-right:12px}main{padding:30px}.content-grid{grid-template-columns:minmax(0,1fr) 220px;gap:18px}.hero-art{right:-70px;opacity:.35}.hero-copy{max-width:440px}.fact{padding:18px 15px}.fact-value{font-size:20px}}@media(max-width:800px){header{padding:0 22px;height:68px}.brand small{display:none}.top-right{gap:14px}.layout{display:block}aside{display:none}main{padding:25px 22px}.content-grid{grid-template-columns:1fr}.note-card{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.note-card h3{grid-column:1/-1;margin-bottom:0}.step{margin-bottom:0}.hero{padding:27px 27px 0}.hero-art{right:0;opacity:.2}.hero h2{font-size:32px}}@media(max-width:480px){.internal{display:none}.brand{font-size:18px}.page-heading h1{font-size:21px}.breadcrumb{font-size:10px;margin-bottom:22px}.hero{padding:24px 21px 0}.hero h2{font-size:27px;letter-spacing:0}.hero-copy{font-size:11px}.hero-meta{gap:12px;flex-wrap:wrap;line-height:1.6;font-size:9px}.facts{grid-template-columns:1fr;gap:9px;margin-bottom:28px}.fact{padding:15px 17px;display:grid;grid-template-columns:1fr 1fr;gap:7px}.fact-value{margin:0;text-align:right;font-size:20px}.fact-caption{grid-column:1/-1}.note-card{display:block}.note-card h3{margin-bottom:20px}.step{margin-bottom:18px}.schedule{padding:20px 16px}.example{align-items:flex-start}.contact>span{display:none}footer{flex-direction:column;gap:8px}.faq-header>span{font-size:9px}.top-right>span{display:none}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{background:#fff}header,aside,.outline-button,.breadcrumb{display:none}.layout{display:block}main{padding:0}.hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}.hero-art{display:none}.facts{margin-bottom:20px}.content-grid{display:block}.note-card{margin-top:20px}.faq-section{margin-top:22px}details{break-inside:avoid}.contact,footer{break-inside:avoid}}
++  </style>
++</head>
++<body>
++  <header>
++    <a class="brand" href="#top" aria-label="同频内部工作台首页"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true"><path d="M5 17V8m7 11V5m7 11V8"/></svg></span>同频<span style="font-weight:400"> / </span><small>TEAM WORKSPACE</small></a>
++    <div class="top-right"><span>把每一份协作，连接起来</span><div class="internal"><i class="dot"></i>内部工作台</div><div class="avatar" aria-label="人力资源部">HR</div></div>
++  </header>
++  <div class="layout" id="top">
++    <aside aria-label="页面导航">
++      <p class="aside-label">WORKSPACE</p>
++      <nav>
++        <a class="nav-link active" href="#announcement" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 13-5v14L4 14zM17 9h3v6h-3M6 15l2 5h3l-2-4"/></svg>公司公告<span class="nav-count">01</span></a>
++        <a class="nav-link" href="#schedule"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M4 11h16m-12 4h3m2 0h3"/></svg>工作时间</a>
++        <a class="nav-link" href="#preparation"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v4H9zM9 12h6m-6 4h6"/></svg>实施准备</a>
++        <a class="nav-link" href="#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 2v1"/></svg>常见问题</a>
++      </nav>
++      <div class="aside-bottom"><b>更好的工作，从容发生。</b><p>彼此信任，高效协作。<br>一起找到适合自己的节奏。</p></div>
++    </aside>
++    <main id="announcement">
++      <div class="breadcrumb"><a href="#top">内部工作台</a><span>/</span><span>公司公告</span><span>/</span><span>工作制度更新</span></div>
++      <div class="page-heading"><h1>关于实行弹性工作制的通知</h1><button class="outline-button" type="button" id="print-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z"/></svg>打印公告</button></div>
++      <article>
++        <section class="hero" aria-label="弹性工作制公告概要">
++          <div class="hero-top"><span class="tag">工作制度更新</span><span>PEOPLE & CULTURE</span></div>
++          <h2>让工作更有弹性，<br><span>让协作依然有序。</span></h2>
++          <p class="hero-copy">自 2026 年 11 月 1 日起，我们将实行弹性工作制。<br>在共同的协作时间里保持连接，也为每个人留出自主安排的空间。</p>
++          <svg class="hero-art" viewBox="0 0 280 280" aria-hidden="true"><circle class="orbit" cx="140" cy="140" r="125"/><circle class="orbit" cx="140" cy="140" r="96"/><path class="orbit" d="M0 140h280M140 0v280M40 40l200 200M40 240 240 40"/><path class="arrow" d="M83 157V95h62m-60 1 61 61M197 123v62h-62m60-1-61-61"/><circle cx="140" cy="15" r="4" fill="#d4e6ad"/><circle cx="265" cy="140" r="3" fill="#d4e6ad"/></svg>
++          <div class="hero-meta"><span>发布部门 <strong>人力资源部</strong></span><span>发布日期 <strong>2026.10.25</strong></span><span>适用范围 <strong>符合条件的办公岗位</strong></span></div>
++        </section>
++        <p class="intro">各位同事：<br>为支持更灵活的工作安排，兼顾个人节奏与团队协作，公司将从下个月起推行弹性工作制。<strong>在完成每日工作时长、保障业务正常开展的前提下，可在规定范围内自主选择上下班时间。</strong>具体安排如下。</p>
++        <div class="facts">
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4m8-4v4M4 11h16"/></svg>正式实施</div><div class="fact-value">11 月 1 日 <small>起</small></div><div class="fact-caption">2026 年 · 按个人排班开始执行</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>弹性到岗</div><div class="fact-value">08:00–10:00</div><div class="fact-caption">根据到岗时间，相应调整下班时间</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16M4 15h16M8 4v16m8-16v16"/></svg>每日工作</div><div class="fact-value">8 <small>小时 / 工作日</small></div><div class="fact-caption">午休 12:00–13:00，不计入工作时长</div></div>
++        </div>
++        <div class="content-grid">
++          <section id="schedule"><h2 class="section-heading"><span class="section-number">01</span>如何安排你的一天</h2><div class="schedule"><p class="section-description">上下班可灵活选择，核心时段保持在岗协作（午休除外）。</p><div class="axis"><span>08:00</span><span>10:00</span><span>16:00</span><span>19:00</span></div><div class="time-bar"><div>弹性到岗<small>08:00–10:00</small></div><div class="core">核心协作时段<small>10:00–16:00 · 午休除外</small></div><div>弹性离岗<small>17:00–19:00</small></div></div><div class="legend"><span><i></i>自主安排</span><span><i></i>共同协作</span><span>示意图，非等比例</span></div><div class="example"><b>举个例子</b><span>08:00 到岗 → 17:00 下班<br>09:00 到岗 → 18:00 下班；10:00 到岗 → 19:00 下班。<br>以上均包含 1 小时午休。</span></div></div></section>
++          <section id="preparation"><h2 class="section-heading"><span class="section-number">02</span>开始前，做好这些</h2><div class="note-card"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>你的实施小清单</h3><div class="step"><span class="step-index">1</span><div><b>与直属负责人沟通</b><p>确认岗位适用情况与团队协作安排。</p></div></div><div class="step"><span class="step-index">2</span><div><b>同步你的工作时间</b><p>提前在团队日历中标注，便于安排会议。</p></div></div><div class="step"><span class="step-index">3</span><div><b>保持考勤与交付习惯</b><p>正常记录考勤，按计划完成工作与交接。</p></div></div></div></section>
++        </div>
++        <section class="faq-section" id="faq"><div class="faq-header"><h2 class="section-heading"><span class="section-number">03</span>你可能想了解</h2><span>常见问题 · FAQ</span></div>
++          <details open><summary><span class="question-mark">Q1</span>弹性工作制是否适用于所有岗位？</summary><p>本方案适用于经部门确认、可灵活安排到岗时间的办公岗位。轮班、客户服务、现场值守等需要固定时间覆盖的岗位，继续按照部门排班执行；具体适用情况请向直属负责人确认。</p></details>
++          <details><summary><span class="question-mark">Q2</span>每天都可以选择不同的到岗时间吗？</summary><p>可以在 08:00–10:00 范围内灵活安排，但需提前向团队同步。已安排的会议、客户沟通及工作交接应优先保障；如需临时调整，请及时与直属负责人沟通。</p></details>
++          <details><summary><span class="question-mark">Q3</span>弹性工作是否意味着可以居家办公？</summary><p>本次调整针对上下班时间，工作地点仍按公司现行安排执行。如需居家或异地办公，请按既有流程单独申请。</p></details>
++          <details><summary><span class="question-mark">Q4</span>考勤、请假和加班应该如何处理？</summary><p>仍需正常记录考勤，每日工作 8 小时，午休不计入。核心协作时段因私外出或无法到岗时，应按现行流程请假。较晚到岗后相应顺延的下班时间不自动计为加班；额外工作按公司现行加班申请及审批流程处理。</p></details>
++          <details><summary><span class="question-mark">Q5</span>如果团队会议与个人时间安排冲突怎么办？</summary><p>建议将跨团队会议优先安排在核心协作时段，并避开午休。遇到客户需求或其他特殊安排，由负责人提前协调；如与你的安排冲突，请尽早沟通，确认替代时间或交接方式。</p></details>
++        </section>
++        <div class="contact"><div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 1-8 8H5l-3 2v-9a9 9 0 0 1 18-1Z"/><path d="M7 11h1m3 0h1m3 0h1"/></svg></div><div><b>还有其他问题？我们一起解答。</b><p>请通过公司内部通讯录联系人力资源部，或与你的直属负责人沟通。</p></div><span>人力资源部 · HR</span></div>
++      </article>
++      <footer><span class="draft-note">公告草案 · 本页工时、适用岗位与流程为示例细则，正式发布前请由公司确认。</span><span>同频 WORKSPACE · 仅供内部使用</span></footer>
++    </main>
++  </div>
++  <script>
++    const questions = [...document.querySelectorAll('details')];
++    let previousState;
++    window.addEventListener('beforeprint', () => { previousState = questions.map(item => item.open); questions.forEach(item => item.open = true); });
++    window.addEventListener('afterprint', () => { if (previousState) questions.forEach((item, i) => item.open = previousState[i]); });
++    document.getElementById('print-button').addEventListener('click', () => window.print());
++  </script>
++</body>
++</html>
+
+codex
+页面已生成，包含工作时间示意、实施清单和可展开的常见问题，并支持打印。实施日期已设为下个月的 2026 年 11 月 1 日，未提供的制度细则已标为待确认的示例。
+
+exec
+/bin/zsh -lc "python3 - <<'PY'
+from html.parser import HTMLParser
+from pathlib import Path
+class Check(HTMLParser):
+    def __init__(self):
+        super().__init__()
+        self.ids = []
+        self.links = []
+        self.faq = 0
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if 'id' in attrs: self.ids.append(attrs['id'])
+        if tag == 'a' and attrs.get('href', '').startswith('#'): self.links.append(attrs['href'][1:])
+        if tag == 'details': self.faq += 1
+p = Path('index.html')
+s = p.read_text()
+c = Check()
+c.feed(s)
+assert len(c.ids) == len(set(c.ids)), 'Duplicate IDs'
+assert set(c.links) <= set(c.ids), 'Broken anchor links'
+assert c.faq == 5
+assert '2026 年 11 月 1 日' in s
+assert 'https://' not in s and 'http://' not in s
+print(f'Checked {p}: {p.stat().st_size} bytes, 5 FAQ items, valid anchor targets, no external dependencies.')
+PY" in <tmp>/measure-baseline-codex-010-c1PiIW
+ succeeded in 0ms:
+Checked index.html: 19998 bytes, 5 FAQ items, valid anchor targets, no external dependencies.
+
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..3fea12129bd1e6584db8ba286511400c6376c868
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,72 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#173a36">
++  <title>关于实行弹性工作制的通知 · 内部公告</title>
++  <style>
++    :root{--ink:#203c38;--muted:#77817b;--green:#285e4e;--line:#e4e8df;--paper:#f6f7f2;--mint:#d7e6b8}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #86a958;outline-offset:5px}svg{display:block}header{height:80px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 45px;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:750;letter-spacing:-.5px}.brand-mark{height:32px;width:32px;background:var(--ink);border-radius:9px;display:grid;place-items:center}.brand-mark svg{width:21px;stroke:#dfebc6}.brand small{font-size:11px;letter-spacing:2px;color:var(--muted);font-weight:500;border-left:1px solid var(--line);padding-left:16px;margin-left:6px}.top-right{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:12px}.internal{display:flex;align-items:center;gap:7px}.dot{width:6px;height:6px;border-radius:50%;background:#6c9164}.avatar{width:32px;height:32px;border-radius:50%;background:#eef1e8;display:grid;place-items:center;font-size:11px;color:var(--ink);font-weight:700}.layout{max-width:1512px;margin:auto;display:grid;grid-template-columns:232px minmax(0,1fr)}aside{padding:39px 23px;border-right:1px solid var(--line);min-height:calc(100vh - 80px)}.aside-label{font-size:10px;letter-spacing:2px;color:#929a90;margin:0 17px 20px}.nav-link{padding:14px 16px;display:flex;align-items:center;gap:12px;border-radius:6px;margin-bottom:6px;color:#788078;font-size:13px}.nav-link svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5}.nav-link.active{background:#e7eddf;color:var(--green);font-weight:600}.nav-link:hover{background:#edf0e7}.nav-count{margin-left:auto;font-size:10px;background:#fff;padding:2px 6px;border-radius:4px}.aside-bottom{border-top:1px solid var(--line);margin:52px 16px 0;padding-top:22px}.aside-bottom p{font-size:12px;line-height:1.9;color:#879083;margin:9px 0}.aside-bottom b{font-size:12px;font-weight:500;color:#63735f}main{padding:36px 48px 28px;min-width:0}.breadcrumb{font-size:11px;color:#92998f;display:flex;gap:12px;align-items:center;margin-bottom:28px}.breadcrumb span:last-child{color:#5d6f63}.page-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}.page-heading h1{margin:0;font-size:25px;font-weight:650;letter-spacing:-.8px}.outline-button{border:1px solid #dce1d6;background:transparent;border-radius:5px;padding:9px 13px;display:flex;align-items:center;gap:7px;color:#647260;font-size:11px;cursor:pointer}.outline-button:hover{background:#e9ede3}.outline-button svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}.hero{background:#193c36;border-radius:10px;padding:35px 38px 0;overflow:hidden;position:relative;color:#f7f9ed}.hero-top{position:relative;z-index:1;display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:1px;color:#bcccbc}.tag{border:1px solid #61786a;border-radius:4px;padding:4px 8px;color:#e0ebcd}.hero h2{position:relative;z-index:1;font-size:clamp(26px,3vw,40px);line-height:1.55;font-weight:550;letter-spacing:1px;margin:24px 0 13px}.hero h2 span{color:#d4e6ad}.hero-copy{position:relative;z-index:1;font-size:12px;line-height:2;color:#bacbbd;margin:0 0 29px;max-width:520px}.hero-meta{position:relative;z-index:1;border-top:1px solid #496157;padding:18px 0;display:flex;align-items:center;gap:24px;font-size:10px;color:#b0c3b4}.hero-meta strong{font-weight:500;color:#e1e9d8}.hero-art{position:absolute;right:17px;top:21px;width:255px;height:255px;opacity:.9}.hero-art .orbit{fill:none;stroke:#718b6a;stroke-width:.6}.hero-art .arrow{fill:none;stroke:#d4e6ad;stroke-width:16;stroke-linecap:square;stroke-linejoin:miter}.intro{margin:25px 0 24px;font-size:12px;line-height:2.1;color:#697467}.intro strong{color:var(--ink);font-weight:600}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:37px}.fact{border:1px solid var(--line);background:#fff;border-radius:7px;padding:20px 22px}.fact-label{color:#84907e;font-size:11px;display:flex;align-items:center;gap:8px}.fact-label svg{width:15px;height:15px;fill:none;stroke:#71816a;stroke-width:1.5}.fact-value{font-size:23px;font-weight:600;letter-spacing:-.6px;margin:13px 0 6px}.fact-value small{font-size:12px;font-weight:400;letter-spacing:0}.fact-caption{font-size:10px;color:#8c9485}.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:27px}.section-heading{display:flex;align-items:center;gap:10px;margin:0 0 19px;font-size:17px;font-weight:600}.section-number{font-family:monospace;font-size:11px;font-weight:400;color:#899880}.schedule{background:white;border:1px solid var(--line);border-radius:8px;padding:24px 23px}.section-description{font-size:11px;color:#7e8877;line-height:1.8;margin:0 0 25px}.axis{display:flex;justify-content:space-between;margin:0 0 10px;font-size:10px;color:#91988b;font-variant-numeric:tabular-nums}.time-bar{display:grid;grid-template-columns:2fr 6fr 3fr;height:54px;border-radius:5px;overflow:hidden;font-size:11px;text-align:center;gap:3px}.time-bar div{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:#e6edd9;color:#5e7551}.time-bar .core{background:#305c48;color:#f1f4e9}.time-bar small{font-size:9px;opacity:.75}.legend{display:flex;gap:15px;font-size:9px;color:#939987;margin:13px 0 23px}.legend span{display:flex;align-items:center;gap:5px}.legend i{height:6px;width:6px;border-radius:2px;background:#dce5ca}.legend span:nth-child(2) i{background:#305c48}.example{display:flex;align-items:center;gap:12px;font-size:10px;line-height:1.8;color:#73806a;border-top:1px solid #eef0e8;padding-top:16px}.example b{white-space:nowrap;font-size:9px;background:#f0f3e8;color:#788369;padding:3px 6px;font-weight:500}.note-card{background:#edf0e4;border:1px solid #e0e6d5;border-radius:8px;padding:22px}.note-card h3{font-size:14px;margin:0 0 18px;display:flex;align-items:center;gap:8px}.note-card h3 svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}.step{display:grid;grid-template-columns:18px 1fr;gap:8px;margin-bottom:19px}.step:last-child{margin-bottom:0}.step-index{font-size:9px;display:grid;place-items:center;border:1px solid #c9d2b8;border-radius:50%;width:17px;height:17px;color:#798b65;margin-top:2px}.step b{font-size:11px;font-weight:600}.step p{font-size:10px;line-height:1.9;color:#849075;margin:5px 0 0}.faq-section{margin-top:32px}.faq-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.faq-header .section-heading{margin-bottom:10px}.faq-header>span{font-size:10px;color:#8c9783}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;font-size:12px;padding:19px 0;line-height:1.6}summary::-webkit-details-marker{display:none}.question-mark{font-family:monospace;color:#96a08a;font-size:10px}summary::after{content:'+';font-size:19px;font-weight:300;color:#839473;margin-left:auto;padding-left:12px}details[open] summary::after{content:'−'}details p{font-size:11px;line-height:2;color:#78836e;margin:0 28px 19px}.contact{display:flex;gap:12px;align-items:center;margin-top:27px;border:1px solid var(--line);border-radius:7px;padding:17px 20px}.contact-icon{border-radius:50%;background:#e6ebdc;width:30px;height:30px;display:grid;place-items:center;flex-shrink:0}.contact-icon svg{width:16px;height:16px;fill:none;stroke:#627b52;stroke-width:1.5}.contact b{font-size:11px;font-weight:600}.contact p{font-size:10px;color:#8b9480;margin:5px 0 0}.contact>span{margin-left:auto;font-size:10px;color:#7c896e;white-space:nowrap}footer{display:flex;justify-content:space-between;gap:20px;color:#98a08d;font-size:9px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);line-height:1.8}.draft-note{max-width:670px}
++    @media(min-width:1450px){main{padding-left:64px;padding-right:64px}.hero-art{right:55px}}@media(max-width:1100px){.layout{grid-template-columns:185px 1fr}aside{padding-left:12px;padding-right:12px}main{padding:30px}.content-grid{grid-template-columns:minmax(0,1fr) 220px;gap:18px}.hero-art{right:-70px;opacity:.35}.hero-copy{max-width:440px}.fact{padding:18px 15px}.fact-value{font-size:20px}}@media(max-width:800px){header{padding:0 22px;height:68px}.brand small{display:none}.top-right{gap:14px}.layout{display:block}aside{display:none}main{padding:25px 22px}.content-grid{grid-template-columns:1fr}.note-card{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.note-card h3{grid-column:1/-1;margin-bottom:0}.step{margin-bottom:0}.hero{padding:27px 27px 0}.hero-art{right:0;opacity:.2}.hero h2{font-size:32px}}@media(max-width:480px){.internal{display:none}.brand{font-size:18px}.page-heading h1{font-size:21px}.breadcrumb{font-size:10px;margin-bottom:22px}.hero{padding:24px 21px 0}.hero h2{font-size:27px;letter-spacing:0}.hero-copy{font-size:11px}.hero-meta{gap:12px;flex-wrap:wrap;line-height:1.6;font-size:9px}.facts{grid-template-columns:1fr;gap:9px;margin-bottom:28px}.fact{padding:15px 17px;display:grid;grid-template-columns:1fr 1fr;gap:7px}.fact-value{margin:0;text-align:right;font-size:20px}.fact-caption{grid-column:1/-1}.note-card{display:block}.note-card h3{margin-bottom:20px}.step{margin-bottom:18px}.schedule{padding:20px 16px}.example{align-items:flex-start}.contact>span{display:none}footer{flex-direction:column;gap:8px}.faq-header>span{font-size:9px}.top-right>span{display:none}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{background:#fff}header,aside,.outline-button,.breadcrumb{display:none}.layout{display:block}main{padding:0}.hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}.hero-art{display:none}.facts{margin-bottom:20px}.content-grid{display:block}.note-card{margin-top:20px}.faq-section{margin-top:22px}details{break-inside:avoid}.contact,footer{break-inside:avoid}}
++  </style>
++</head>
++<body>
++  <header>
++    <a class="brand" href="#top" aria-label="同频内部工作台首页"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true"><path d="M5 17V8m7 11V5m7 11V8"/></svg></span>同频<span style="font-weight:400"> / </span><small>TEAM WORKSPACE</small></a>
++    <div class="top-right"><span>把每一份协作，连接起来</span><div class="internal"><i class="dot"></i>内部工作台</div><div class="avatar" aria-label="人力资源部">HR</div></div>
++  </header>
++  <div class="layout" id="top">
++    <aside aria-label="页面导航">
++      <p class="aside-label">WORKSPACE</p>
++      <nav>
++        <a class="nav-link active" href="#announcement" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 13-5v14L4 14zM17 9h3v6h-3M6 15l2 5h3l-2-4"/></svg>公司公告<span class="nav-count">01</span></a>
++        <a class="nav-link" href="#schedule"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M4 11h16m-12 4h3m2 0h3"/></svg>工作时间</a>
++        <a class="nav-link" href="#preparation"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v4H9zM9 12h6m-6 4h6"/></svg>实施准备</a>
++        <a class="nav-link" href="#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 2v1"/></svg>常见问题</a>
++      </nav>
++      <div class="aside-bottom"><b>更好的工作，从容发生。</b><p>彼此信任，高效协作。<br>一起找到适合自己的节奏。</p></div>
++    </aside>
++    <main id="announcement">
++      <div class="breadcrumb"><a href="#top">内部工作台</a><span>/</span><span>公司公告</span><span>/</span><span>工作制度更新</span></div>
++      <div class="page-heading"><h1>关于实行弹性工作制的通知</h1><button class="outline-button" type="button" id="print-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z"/></svg>打印公告</button></div>
++      <article>
++        <section class="hero" aria-label="弹性工作制公告概要">
++          <div class="hero-top"><span class="tag">工作制度更新</span><span>PEOPLE & CULTURE</span></div>
++          <h2>让工作更有弹性，<br><span>让协作依然有序。</span></h2>
++          <p class="hero-copy">自 2026 年 11 月 1 日起，我们将实行弹性工作制。<br>在共同的协作时间里保持连接，也为每个人留出自主安排的空间。</p>
++          <svg class="hero-art" viewBox="0 0 280 280" aria-hidden="true"><circle class="orbit" cx="140" cy="140" r="125"/><circle class="orbit" cx="140" cy="140" r="96"/><path class="orbit" d="M0 140h280M140 0v280M40 40l200 200M40 240 240 40"/><path class="arrow" d="M83 157V95h62m-60 1 61 61M197 123v62h-62m60-1-61-61"/><circle cx="140" cy="15" r="4" fill="#d4e6ad"/><circle cx="265" cy="140" r="3" fill="#d4e6ad"/></svg>
++          <div class="hero-meta"><span>发布部门 <strong>人力资源部</strong></span><span>发布日期 <strong>2026.10.25</strong></span><span>适用范围 <strong>符合条件的办公岗位</strong></span></div>
++        </section>
++        <p class="intro">各位同事：<br>为支持更灵活的工作安排，兼顾个人节奏与团队协作，公司将从下个月起推行弹性工作制。<strong>在完成每日工作时长、保障业务正常开展的前提下，可在规定范围内自主选择上下班时间。</strong>具体安排如下。</p>
++        <div class="facts">
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4m8-4v4M4 11h16"/></svg>正式实施</div><div class="fact-value">11 月 1 日 <small>起</small></div><div class="fact-caption">2026 年 · 按个人排班开始执行</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>弹性到岗</div><div class="fact-value">08:00–10:00</div><div class="fact-caption">根据到岗时间，相应调整下班时间</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16M4 15h16M8 4v16m8-16v16"/></svg>每日工作</div><div class="fact-value">8 <small>小时 / 工作日</small></div><div class="fact-caption">午休 12:00–13:00，不计入工作时长</div></div>
++        </div>
++        <div class="content-grid">
++          <section id="schedule"><h2 class="section-heading"><span class="section-number">01</span>如何安排你的一天</h2><div class="schedule"><p class="section-description">上下班可灵活选择，核心时段保持在岗协作（午休除外）。</p><div class="axis"><span>08:00</span><span>10:00</span><span>16:00</span><span>19:00</span></div><div class="time-bar"><div>弹性到岗<small>08:00–10:00</small></div><div class="core">核心协作时段<small>10:00–16:00 · 午休除外</small></div><div>弹性离岗<small>17:00–19:00</small></div></div><div class="legend"><span><i></i>自主安排</span><span><i></i>共同协作</span><span>示意图，非等比例</span></div><div class="example"><b>举个例子</b><span>08:00 到岗 → 17:00 下班<br>09:00 到岗 → 18:00 下班；10:00 到岗 → 19:00 下班。<br>以上均包含 1 小时午休。</span></div></div></section>
++          <section id="preparation"><h2 class="section-heading"><span class="section-number">02</span>开始前，做好这些</h2><div class="note-card"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>你的实施小清单</h3><div class="step"><span class="step-index">1</span><div><b>与直属负责人沟通</b><p>确认岗位适用情况与团队协作安排。</p></div></div><div class="step"><span class="step-index">2</span><div><b>同步你的工作时间</b><p>提前在团队日历中标注，便于安排会议。</p></div></div><div class="step"><span class="step-index">3</span><div><b>保持考勤与交付习惯</b><p>正常记录考勤，按计划完成工作与交接。</p></div></div></div></section>
++        </div>
++        <section class="faq-section" id="faq"><div class="faq-header"><h2 class="section-heading"><span class="section-number">03</span>你可能想了解</h2><span>常见问题 · FAQ</span></div>
++          <details open><summary><span class="question-mark">Q1</span>弹性工作制是否适用于所有岗位？</summary><p>本方案适用于经部门确认、可灵活安排到岗时间的办公岗位。轮班、客户服务、现场值守等需要固定时间覆盖的岗位，继续按照部门排班执行；具体适用情况请向直属负责人确认。</p></details>
++          <details><summary><span class="question-mark">Q2</span>每天都可以选择不同的到岗时间吗？</summary><p>可以在 08:00–10:00 范围内灵活安排，但需提前向团队同步。已安排的会议、客户沟通及工作交接应优先保障；如需临时调整，请及时与直属负责人沟通。</p></details>
++          <details><summary><span class="question-mark">Q3</span>弹性工作是否意味着可以居家办公？</summary><p>本次调整针对上下班时间，工作地点仍按公司现行安排执行。如需居家或异地办公，请按既有流程单独申请。</p></details>
++          <details><summary><span class="question-mark">Q4</span>考勤、请假和加班应该如何处理？</summary><p>仍需正常记录考勤，每日工作 8 小时，午休不计入。核心协作时段因私外出或无法到岗时，应按现行流程请假。较晚到岗后相应顺延的下班时间不自动计为加班；额外工作按公司现行加班申请及审批流程处理。</p></details>
++          <details><summary><span class="question-mark">Q5</span>如果团队会议与个人时间安排冲突怎么办？</summary><p>建议将跨团队会议优先安排在核心协作时段，并避开午休。遇到客户需求或其他特殊安排，由负责人提前协调；如与你的安排冲突，请尽早沟通，确认替代时间或交接方式。</p></details>
++        </section>
++        <div class="contact"><div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 1-8 8H5l-3 2v-9a9 9 0 0 1 18-1Z"/><path d="M7 11h1m3 0h1m3 0h1"/></svg></div><div><b>还有其他问题？我们一起解答。</b><p>请通过公司内部通讯录联系人力资源部，或与你的直属负责人沟通。</p></div><span>人力资源部 · HR</span></div>
++      </article>
++      <footer><span class="draft-note">公告草案 · 本页工时、适用岗位与流程为示例细则，正式发布前请由公司确认。</span><span>同频 WORKSPACE · 仅供内部使用</span></footer>
++    </main>
++  </div>
++  <script>
++    const questions = [...document.querySelectorAll('details')];
++    let previousState;
++    window.addEventListener('beforeprint', () => { previousState = questions.map(item => item.open); questions.forEach(item => item.open = true); });
++    window.addEventListener('afterprint', () => { if (previousState) questions.forEach((item, i) => item.open = previousState[i]); });
++    document.getElementById('print-button').addEventListener('click', () => window.print());
++  </script>
++</body>
++</html>
+
+codex
+已生成 [index.html](index.html)，包含弹性工作制公告、工作时间示意、实施清单和 5 项可展开的常见问题，支持手机浏览及打印。样式已内嵌，无需依赖；示例制度细则已标注待公司确认。
+diff --git a/index.html b/index.html
+new file mode 100644
+index 0000000000000000000000000000000000000000..3fea12129bd1e6584db8ba286511400c6376c868
+--- /dev/null
++++ b/index.html
+@@ -0,0 +1,72 @@
++<!DOCTYPE html>
++<html lang="zh-CN">
++<head>
++  <meta charset="UTF-8">
++  <meta name="viewport" content="width=device-width, initial-scale=1.0">
++  <meta name="theme-color" content="#173a36">
++  <title>关于实行弹性工作制的通知 · 内部公告</title>
++  <style>
++    :root{--ink:#203c38;--muted:#77817b;--green:#285e4e;--line:#e4e8df;--paper:#f6f7f2;--mint:#d7e6b8}
++    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif;font-size:14px;-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}button{font:inherit}a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #86a958;outline-offset:5px}svg{display:block}header{height:80px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 45px;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-size:20px;font-weight:750;letter-spacing:-.5px}.brand-mark{height:32px;width:32px;background:var(--ink);border-radius:9px;display:grid;place-items:center}.brand-mark svg{width:21px;stroke:#dfebc6}.brand small{font-size:11px;letter-spacing:2px;color:var(--muted);font-weight:500;border-left:1px solid var(--line);padding-left:16px;margin-left:6px}.top-right{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:12px}.internal{display:flex;align-items:center;gap:7px}.dot{width:6px;height:6px;border-radius:50%;background:#6c9164}.avatar{width:32px;height:32px;border-radius:50%;background:#eef1e8;display:grid;place-items:center;font-size:11px;color:var(--ink);font-weight:700}.layout{max-width:1512px;margin:auto;display:grid;grid-template-columns:232px minmax(0,1fr)}aside{padding:39px 23px;border-right:1px solid var(--line);min-height:calc(100vh - 80px)}.aside-label{font-size:10px;letter-spacing:2px;color:#929a90;margin:0 17px 20px}.nav-link{padding:14px 16px;display:flex;align-items:center;gap:12px;border-radius:6px;margin-bottom:6px;color:#788078;font-size:13px}.nav-link svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5}.nav-link.active{background:#e7eddf;color:var(--green);font-weight:600}.nav-link:hover{background:#edf0e7}.nav-count{margin-left:auto;font-size:10px;background:#fff;padding:2px 6px;border-radius:4px}.aside-bottom{border-top:1px solid var(--line);margin:52px 16px 0;padding-top:22px}.aside-bottom p{font-size:12px;line-height:1.9;color:#879083;margin:9px 0}.aside-bottom b{font-size:12px;font-weight:500;color:#63735f}main{padding:36px 48px 28px;min-width:0}.breadcrumb{font-size:11px;color:#92998f;display:flex;gap:12px;align-items:center;margin-bottom:28px}.breadcrumb span:last-child{color:#5d6f63}.page-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:23px}.page-heading h1{margin:0;font-size:25px;font-weight:650;letter-spacing:-.8px}.outline-button{border:1px solid #dce1d6;background:transparent;border-radius:5px;padding:9px 13px;display:flex;align-items:center;gap:7px;color:#647260;font-size:11px;cursor:pointer}.outline-button:hover{background:#e9ede3}.outline-button svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.6}.hero{background:#193c36;border-radius:10px;padding:35px 38px 0;overflow:hidden;position:relative;color:#f7f9ed}.hero-top{position:relative;z-index:1;display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:1px;color:#bcccbc}.tag{border:1px solid #61786a;border-radius:4px;padding:4px 8px;color:#e0ebcd}.hero h2{position:relative;z-index:1;font-size:clamp(26px,3vw,40px);line-height:1.55;font-weight:550;letter-spacing:1px;margin:24px 0 13px}.hero h2 span{color:#d4e6ad}.hero-copy{position:relative;z-index:1;font-size:12px;line-height:2;color:#bacbbd;margin:0 0 29px;max-width:520px}.hero-meta{position:relative;z-index:1;border-top:1px solid #496157;padding:18px 0;display:flex;align-items:center;gap:24px;font-size:10px;color:#b0c3b4}.hero-meta strong{font-weight:500;color:#e1e9d8}.hero-art{position:absolute;right:17px;top:21px;width:255px;height:255px;opacity:.9}.hero-art .orbit{fill:none;stroke:#718b6a;stroke-width:.6}.hero-art .arrow{fill:none;stroke:#d4e6ad;stroke-width:16;stroke-linecap:square;stroke-linejoin:miter}.intro{margin:25px 0 24px;font-size:12px;line-height:2.1;color:#697467}.intro strong{color:var(--ink);font-weight:600}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:37px}.fact{border:1px solid var(--line);background:#fff;border-radius:7px;padding:20px 22px}.fact-label{color:#84907e;font-size:11px;display:flex;align-items:center;gap:8px}.fact-label svg{width:15px;height:15px;fill:none;stroke:#71816a;stroke-width:1.5}.fact-value{font-size:23px;font-weight:600;letter-spacing:-.6px;margin:13px 0 6px}.fact-value small{font-size:12px;font-weight:400;letter-spacing:0}.fact-caption{font-size:10px;color:#8c9485}.content-grid{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:27px}.section-heading{display:flex;align-items:center;gap:10px;margin:0 0 19px;font-size:17px;font-weight:600}.section-number{font-family:monospace;font-size:11px;font-weight:400;color:#899880}.schedule{background:white;border:1px solid var(--line);border-radius:8px;padding:24px 23px}.section-description{font-size:11px;color:#7e8877;line-height:1.8;margin:0 0 25px}.axis{display:flex;justify-content:space-between;margin:0 0 10px;font-size:10px;color:#91988b;font-variant-numeric:tabular-nums}.time-bar{display:grid;grid-template-columns:2fr 6fr 3fr;height:54px;border-radius:5px;overflow:hidden;font-size:11px;text-align:center;gap:3px}.time-bar div{display:flex;align-items:center;justify-content:center;flex-direction:column;gap:5px;background:#e6edd9;color:#5e7551}.time-bar .core{background:#305c48;color:#f1f4e9}.time-bar small{font-size:9px;opacity:.75}.legend{display:flex;gap:15px;font-size:9px;color:#939987;margin:13px 0 23px}.legend span{display:flex;align-items:center;gap:5px}.legend i{height:6px;width:6px;border-radius:2px;background:#dce5ca}.legend span:nth-child(2) i{background:#305c48}.example{display:flex;align-items:center;gap:12px;font-size:10px;line-height:1.8;color:#73806a;border-top:1px solid #eef0e8;padding-top:16px}.example b{white-space:nowrap;font-size:9px;background:#f0f3e8;color:#788369;padding:3px 6px;font-weight:500}.note-card{background:#edf0e4;border:1px solid #e0e6d5;border-radius:8px;padding:22px}.note-card h3{font-size:14px;margin:0 0 18px;display:flex;align-items:center;gap:8px}.note-card h3 svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}.step{display:grid;grid-template-columns:18px 1fr;gap:8px;margin-bottom:19px}.step:last-child{margin-bottom:0}.step-index{font-size:9px;display:grid;place-items:center;border:1px solid #c9d2b8;border-radius:50%;width:17px;height:17px;color:#798b65;margin-top:2px}.step b{font-size:11px;font-weight:600}.step p{font-size:10px;line-height:1.9;color:#849075;margin:5px 0 0}.faq-section{margin-top:32px}.faq-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.faq-header .section-heading{margin-bottom:10px}.faq-header>span{font-size:10px;color:#8c9783}details{border-bottom:1px solid var(--line)}summary{cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;font-size:12px;padding:19px 0;line-height:1.6}summary::-webkit-details-marker{display:none}.question-mark{font-family:monospace;color:#96a08a;font-size:10px}summary::after{content:'+';font-size:19px;font-weight:300;color:#839473;margin-left:auto;padding-left:12px}details[open] summary::after{content:'−'}details p{font-size:11px;line-height:2;color:#78836e;margin:0 28px 19px}.contact{display:flex;gap:12px;align-items:center;margin-top:27px;border:1px solid var(--line);border-radius:7px;padding:17px 20px}.contact-icon{border-radius:50%;background:#e6ebdc;width:30px;height:30px;display:grid;place-items:center;flex-shrink:0}.contact-icon svg{width:16px;height:16px;fill:none;stroke:#627b52;stroke-width:1.5}.contact b{font-size:11px;font-weight:600}.contact p{font-size:10px;color:#8b9480;margin:5px 0 0}.contact>span{margin-left:auto;font-size:10px;color:#7c896e;white-space:nowrap}footer{display:flex;justify-content:space-between;gap:20px;color:#98a08d;font-size:9px;margin-top:30px;padding-top:18px;border-top:1px solid var(--line);line-height:1.8}.draft-note{max-width:670px}
++    @media(min-width:1450px){main{padding-left:64px;padding-right:64px}.hero-art{right:55px}}@media(max-width:1100px){.layout{grid-template-columns:185px 1fr}aside{padding-left:12px;padding-right:12px}main{padding:30px}.content-grid{grid-template-columns:minmax(0,1fr) 220px;gap:18px}.hero-art{right:-70px;opacity:.35}.hero-copy{max-width:440px}.fact{padding:18px 15px}.fact-value{font-size:20px}}@media(max-width:800px){header{padding:0 22px;height:68px}.brand small{display:none}.top-right{gap:14px}.layout{display:block}aside{display:none}main{padding:25px 22px}.content-grid{grid-template-columns:1fr}.note-card{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.note-card h3{grid-column:1/-1;margin-bottom:0}.step{margin-bottom:0}.hero{padding:27px 27px 0}.hero-art{right:0;opacity:.2}.hero h2{font-size:32px}}@media(max-width:480px){.internal{display:none}.brand{font-size:18px}.page-heading h1{font-size:21px}.breadcrumb{font-size:10px;margin-bottom:22px}.hero{padding:24px 21px 0}.hero h2{font-size:27px;letter-spacing:0}.hero-copy{font-size:11px}.hero-meta{gap:12px;flex-wrap:wrap;line-height:1.6;font-size:9px}.facts{grid-template-columns:1fr;gap:9px;margin-bottom:28px}.fact{padding:15px 17px;display:grid;grid-template-columns:1fr 1fr;gap:7px}.fact-value{margin:0;text-align:right;font-size:20px}.fact-caption{grid-column:1/-1}.note-card{display:block}.note-card h3{margin-bottom:20px}.step{margin-bottom:18px}.schedule{padding:20px 16px}.example{align-items:flex-start}.contact>span{display:none}footer{flex-direction:column;gap:8px}.faq-header>span{font-size:9px}.top-right>span{display:none}}
++    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}@media print{body{background:#fff}header,aside,.outline-button,.breadcrumb{display:none}.layout{display:block}main{padding:0}.hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}.hero-art{display:none}.facts{margin-bottom:20px}.content-grid{display:block}.note-card{margin-top:20px}.faq-section{margin-top:22px}details{break-inside:avoid}.contact,footer{break-inside:avoid}}
++  </style>
++</head>
++<body>
++  <header>
++    <a class="brand" href="#top" aria-label="同频内部工作台首页"><span class="brand-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" aria-hidden="true"><path d="M5 17V8m7 11V5m7 11V8"/></svg></span>同频<span style="font-weight:400"> / </span><small>TEAM WORKSPACE</small></a>
++    <div class="top-right"><span>把每一份协作，连接起来</span><div class="internal"><i class="dot"></i>内部工作台</div><div class="avatar" aria-label="人力资源部">HR</div></div>
++  </header>
++  <div class="layout" id="top">
++    <aside aria-label="页面导航">
++      <p class="aside-label">WORKSPACE</p>
++      <nav>
++        <a class="nav-link active" href="#announcement" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m4 10 13-5v14L4 14zM17 9h3v6h-3M6 15l2 5h3l-2-4"/></svg>公司公告<span class="nav-count">01</span></a>
++        <a class="nav-link" href="#schedule"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M8 3v4m8-4v4M4 11h16m-12 4h3m2 0h3"/></svg>工作时间</a>
++        <a class="nav-link" href="#preparation"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v4H9zM9 12h6m-6 4h6"/></svg>实施准备</a>
++        <a class="nav-link" href="#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 2v1"/></svg>常见问题</a>
++      </nav>
++      <div class="aside-bottom"><b>更好的工作，从容发生。</b><p>彼此信任，高效协作。<br>一起找到适合自己的节奏。</p></div>
++    </aside>
++    <main id="announcement">
++      <div class="breadcrumb"><a href="#top">内部工作台</a><span>/</span><span>公司公告</span><span>/</span><span>工作制度更新</span></div>
++      <div class="page-heading"><h1>关于实行弹性工作制的通知</h1><button class="outline-button" type="button" id="print-button"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 8V3h10v5M7 17H4V9h16v8h-3M7 14h10v7H7z"/></svg>打印公告</button></div>
++      <article>
++        <section class="hero" aria-label="弹性工作制公告概要">
++          <div class="hero-top"><span class="tag">工作制度更新</span><span>PEOPLE & CULTURE</span></div>
++          <h2>让工作更有弹性，<br><span>让协作依然有序。</span></h2>
++          <p class="hero-copy">自 2026 年 11 月 1 日起，我们将实行弹性工作制。<br>在共同的协作时间里保持连接，也为每个人留出自主安排的空间。</p>
++          <svg class="hero-art" viewBox="0 0 280 280" aria-hidden="true"><circle class="orbit" cx="140" cy="140" r="125"/><circle class="orbit" cx="140" cy="140" r="96"/><path class="orbit" d="M0 140h280M140 0v280M40 40l200 200M40 240 240 40"/><path class="arrow" d="M83 157V95h62m-60 1 61 61M197 123v62h-62m60-1-61-61"/><circle cx="140" cy="15" r="4" fill="#d4e6ad"/><circle cx="265" cy="140" r="3" fill="#d4e6ad"/></svg>
++          <div class="hero-meta"><span>发布部门 <strong>人力资源部</strong></span><span>发布日期 <strong>2026.10.25</strong></span><span>适用范围 <strong>符合条件的办公岗位</strong></span></div>
++        </section>
++        <p class="intro">各位同事：<br>为支持更灵活的工作安排，兼顾个人节奏与团队协作，公司将从下个月起推行弹性工作制。<strong>在完成每日工作时长、保障业务正常开展的前提下，可在规定范围内自主选择上下班时间。</strong>具体安排如下。</p>
++        <div class="facts">
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M8 3v4m8-4v4M4 11h16"/></svg>正式实施</div><div class="fact-value">11 月 1 日 <small>起</small></div><div class="fact-caption">2026 年 · 按个人排班开始执行</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>弹性到岗</div><div class="fact-value">08:00–10:00</div><div class="fact-caption">根据到岗时间，相应调整下班时间</div></div>
++          <div class="fact"><div class="fact-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h16M4 15h16M8 4v16m8-16v16"/></svg>每日工作</div><div class="fact-value">8 <small>小时 / 工作日</small></div><div class="fact-caption">午休 12:00–13:00，不计入工作时长</div></div>
++        </div>
++        <div class="content-grid">
++          <section id="schedule"><h2 class="section-heading"><span class="section-number">01</span>如何安排你的一天</h2><div class="schedule"><p class="section-description">上下班可灵活选择，核心时段保持在岗协作（午休除外）。</p><div class="axis"><span>08:00</span><span>10:00</span><span>16:00</span><span>19:00</span></div><div class="time-bar"><div>弹性到岗<small>08:00–10:00</small></div><div class="core">核心协作时段<small>10:00–16:00 · 午休除外</small></div><div>弹性离岗<small>17:00–19:00</small></div></div><div class="legend"><span><i></i>自主安排</span><span><i></i>共同协作</span><span>示意图，非等比例</span></div><div class="example"><b>举个例子</b><span>08:00 到岗 → 17:00 下班<br>09:00 到岗 → 18:00 下班；10:00 到岗 → 19:00 下班。<br>以上均包含 1 小时午休。</span></div></div></section>
++          <section id="preparation"><h2 class="section-heading"><span class="section-number">02</span>开始前，做好这些</h2><div class="note-card"><h3><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>你的实施小清单</h3><div class="step"><span class="step-index">1</span><div><b>与直属负责人沟通</b><p>确认岗位适用情况与团队协作安排。</p></div></div><div class="step"><span class="step-index">2</span><div><b>同步你的工作时间</b><p>提前在团队日历中标注，便于安排会议。</p></div></div><div class="step"><span class="step-index">3</span><div><b>保持考勤与交付习惯</b><p>正常记录考勤，按计划完成工作与交接。</p></div></div></div></section>
++        </div>
++        <section class="faq-section" id="faq"><div class="faq-header"><h2 class="section-heading"><span class="section-number">03</span>你可能想了解</h2><span>常见问题 · FAQ</span></div>
++          <details open><summary><span class="question-mark">Q1</span>弹性工作制是否适用于所有岗位？</summary><p>本方案适用于经部门确认、可灵活安排到岗时间的办公岗位。轮班、客户服务、现场值守等需要固定时间覆盖的岗位，继续按照部门排班执行；具体适用情况请向直属负责人确认。</p></details>
++          <details><summary><span class="question-mark">Q2</span>每天都可以选择不同的到岗时间吗？</summary><p>可以在 08:00–10:00 范围内灵活安排，但需提前向团队同步。已安排的会议、客户沟通及工作交接应优先保障；如需临时调整，请及时与直属负责人沟通。</p></details>
++          <details><summary><span class="question-mark">Q3</span>弹性工作是否意味着可以居家办公？</summary><p>本次调整针对上下班时间，工作地点仍按公司现行安排执行。如需居家或异地办公，请按既有流程单独申请。</p></details>
++          <details><summary><span class="question-mark">Q4</span>考勤、请假和加班应该如何处理？</summary><p>仍需正常记录考勤，每日工作 8 小时，午休不计入。核心协作时段因私外出或无法到岗时，应按现行流程请假。较晚到岗后相应顺延的下班时间不自动计为加班；额外工作按公司现行加班申请及审批流程处理。</p></details>
++          <details><summary><span class="question-mark">Q5</span>如果团队会议与个人时间安排冲突怎么办？</summary><p>建议将跨团队会议优先安排在核心协作时段，并避开午休。遇到客户需求或其他特殊安排，由负责人提前协调；如与你的安排冲突，请尽早沟通，确认替代时间或交接方式。</p></details>
++        </section>
++        <div class="contact"><div class="contact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11a8 8 0 0 1-8 8H5l-3 2v-9a9 9 0 0 1 18-1Z"/><path d="M7 11h1m3 0h1m3 0h1"/></svg></div><div><b>还有其他问题？我们一起解答。</b><p>请通过公司内部通讯录联系人力资源部，或与你的直属负责人沟通。</p></div><span>人力资源部 · HR</span></div>
++      </article>
++      <footer><span class="draft-note">公告草案 · 本页工时、适用岗位与流程为示例细则，正式发布前请由公司确认。</span><span>同频 WORKSPACE · 仅供内部使用</span></footer>
++    </main>
++  </div>
++  <script>
++    const questions = [...document.querySelectorAll('details')];
++    let previousState;
++    window.addEventListener('beforeprint', () => { previousState = questions.map(item => item.open); questions.forEach(item => item.open = true); });
++    window.addEventListener('afterprint', () => { if (previousState) questions.forEach((item, i) => item.open = previousState[i]); });
++    document.getElementById('print-button').addEventListener('click', () => window.print());
++  </script>
++</body>
++</html>
+
+tokens used
+17,913
+已生成 [index.html](index.html)，包含弹性工作制公告、工作时间示意、实施清单和 5 项可展开的常见问题，支持手机浏览及打印。样式已内嵌，无需依赖；示例制度细则已标注待公司确认。

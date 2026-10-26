@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8fafc">
+  <title>用户 API · Orbit 开发者文档</title>
+  <style>
+    :root{--ink:#192435;--muted:#788394;--line:#e6eaf0;--blue:#4369e8;--nav:#f7f9fc;--mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;color:var(--ink);background:#fff;font:14px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}a{color:inherit;text-decoration:none}button,input{font:inherit}button,a,input,summary{outline-offset:4px}button{cursor:pointer}svg{vertical-align:middle;flex-shrink:0}code,pre{font-family:var(--mono)}
+    .topbar{height:72px;position:sticky;top:0;z-index:10;display:flex;align-items:center;border-bottom:1px solid var(--line);background:#ffffffed;backdrop-filter:blur(16px);padding:0 34px;gap:40px}.brand{display:flex;align-items:center;gap:10px;font-size:24px;font-weight:750;letter-spacing:-1px;width:204px}.brand-mark{width:30px;height:30px;border:7px solid var(--blue);border-radius:50%;transform:rotate(-35deg);position:relative}.brand-mark:after{content:"";position:absolute;background:white;width:11px;height:18px;top:-8px;left:9px}.divider{height:22px;width:1px;background:var(--line);margin-left:5px}.brand small{font-size:12px;letter-spacing:.2px;font-weight:500;color:var(--muted);white-space:nowrap}.topnav{display:flex;gap:29px;align-self:stretch;align-items:center;font-size:13px;color:#718094}.topnav a{height:100%;display:flex;align-items:center;position:relative}.topnav .active{color:var(--blue);font-weight:600}.topnav .active:after{content:"";height:2px;background:var(--blue);position:absolute;bottom:0;width:100%}.top-right{margin-left:auto;display:flex;gap:22px;align-items:center;font-size:12px}.version{background:#f2f5fa;padding:4px 10px;border:1px solid var(--line);border-radius:6px;color:#647188}.status{display:flex;align-items:center;gap:7px;color:#69768a}.dot{width:6px;height:6px;background:#36a77c;border-radius:50%}
+    .sidebar{position:fixed;top:72px;bottom:0;width:249px;background:var(--nav);border-right:1px solid var(--line);padding:30px 20px;display:flex;flex-direction:column;overflow:auto}.search{display:flex;align-items:center;gap:8px;background:white;border:1px solid #e0e5ed;border-radius:7px;padding:8px 10px;color:#97a1af;box-shadow:0 2px 3px #18244303}.search input{width:100%;min-width:0;border:0;outline:none;font-size:12px;color:var(--ink);background:none}.search kbd{border:1px solid var(--line);border-radius:3px;font:10px var(--mono);padding:2px 4px}.nav-label{font-size:10px;font-weight:650;letter-spacing:1.5px;color:#9aa3b1;margin:30px 13px 11px}.nav-link{display:flex;align-items:center;gap:11px;padding:9px 13px;color:#69758a;font-size:13px;border-radius:6px;margin:2px 0}.nav-link:hover{background:#edf1f7}.nav-link.current{color:var(--blue);background:#eaf0ff;font-weight:600}.nav-link.current:after{content:"";width:5px;height:5px;background:var(--blue);border-radius:50%;margin-left:auto}.endpoint-nav{padding:7px 12px 7px 20px;display:flex;align-items:center;gap:9px;color:#7a8496;font-size:12px}.tiny-method{font:600 9px var(--mono);width:35px;color:#438c75}.tiny-method.post{color:#4775cc}.tiny-method.patch{color:#b98934}.tiny-method.delete{color:#ce6874}.sidebar-bottom{margin-top:auto;padding:42px 12px 0}.sidebar-note{border-top:1px solid var(--line);padding-top:20px;font-size:11px;color:#929cac}.sidebar-note strong{display:block;color:#69758a;font-weight:500;margin-bottom:4px}.sidebar-note a{display:inline-block;color:var(--blue);margin-top:9px}
+    main{margin-left:249px;padding:35px 48px 0;max-width:1600px}.breadcrumb{font-size:11px;color:#96a0ae;display:flex;align-items:center;gap:12px;margin-bottom:31px}.breadcrumb span:last-child{color:#5c6a7e}.content-layout{display:grid;grid-template-columns:minmax(0,1fr) 158px;gap:55px;max-width:1110px;margin:auto}.content{min-width:0}.eyebrow{display:flex;align-items:center;gap:9px;color:var(--blue);font:600 10px var(--mono);letter-spacing:1.5px}.eyebrow:before{content:"";width:17px;height:2px;background:var(--blue)}h1{font-size:36px;letter-spacing:-1.1px;font-weight:650;line-height:1.4;margin:12px 0}h1 .title-en{font-size:30px;color:#c2c9d3;font-weight:400;margin-left:12px;letter-spacing:-.8px}.intro{color:#7b8595;margin:0;line-height:1.9;font-size:13px;max-width:570px}.hero-tags{display:flex;align-items:center;gap:16px;margin:21px 0 30px;font-size:10px;color:#8792a2}.hero-tags span{display:flex;align-items:center;gap:6px}.hero-tags span+span:before{content:"";height:11px;width:1px;background:var(--line);margin-right:10px}.base-url{display:flex;gap:17px;align-items:center;border:1px solid var(--line);border-radius:8px;background:#fafbfe;padding:14px 17px;margin-bottom:35px}.base-url span{font:600 9px var(--mono);letter-spacing:1px;color:#8894a5;white-space:nowrap}.base-url code{font-size:12px;color:#4b5e7c;overflow-wrap:anywhere}.copy-icon{border:0;background:transparent;color:#8e9aab;display:flex;align-items:center;justify-content:center;margin-left:auto;padding:4px;border-radius:4px}.copy-icon:hover{color:var(--blue);background:#e9eef8}.section-heading{display:flex;align-items:center;gap:11px;margin-bottom:12px}.section-heading h2{font-size:20px;font-weight:600;letter-spacing:-.4px;margin:0}.section-icon{display:flex;align-items:center;justify-content:center;width:29px;height:29px;background:#f2f5fb;color:#7385a5;border:1px solid #e9edf5;border-radius:7px}.section-anchor{color:#b8c1ce;font-size:15px;opacity:0}.section-heading:hover .section-anchor{opacity:1}.section-text{font-size:12px;color:#7d8797;margin:0 0 17px;line-height:1.9}.inline-code{font:11px var(--mono);padding:2px 5px;background:#f0f3f8;border:1px solid #e7ebf2;border-radius:4px;color:#5c6c84}.auth-box{border:1px solid var(--line);border-radius:8px;overflow:hidden}.auth-top{display:flex;align-items:center;justify-content:space-between;padding:11px 16px;background:#fafbfe;border-bottom:1px solid var(--line);font-size:11px;color:#67778e}.pill{font:10px var(--mono);color:#5571b4;background:#eef2fc;border-radius:4px;padding:2px 7px}.auth-code{margin:0;padding:20px;font-size:12px;color:#64758d;overflow:auto}.auth-code .key{color:#526ec5}.auth-code .token{color:#b07b42}.notice{display:flex;align-items:flex-start;gap:10px;background:#f2f6ff;border:1px solid #e5edff;border-radius:7px;padding:12px 14px;color:#6b7fa7;font-size:11px;line-height:1.9;margin:15px 0 33px}.notice svg{margin-top:3px}.notice strong{font-weight:550;color:#506997}.section-divider{border:0;border-top:1px solid var(--line);margin:31px 0}.heading-count{font:10px var(--mono);color:#8e99aa;background:#f3f5f9;border-radius:5px;padding:2px 7px;margin-left:1px}.list-labels{display:flex;justify-content:space-between;font-size:10px;color:#9ba5b3;letter-spacing:.6px;margin:23px 2px 9px}.endpoint{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden;scroll-margin-top:90px}.endpoint[open]{border-color:#d7e0f4;box-shadow:0 3px 12px #253b6804}.endpoint summary{list-style:none;display:flex;align-items:center;gap:14px;padding:16px 17px;cursor:pointer;background:#fff}.endpoint summary::-webkit-details-marker{display:none}.endpoint[open] summary{border-bottom:1px solid var(--line);background:#fbfcff}.method{font:600 10px var(--mono);border-radius:4px;padding:4px 0;text-align:center;min-width:52px;background:#eaf6ef;color:#388366;line-height:1.3}.method.post{background:#edf2ff;color:#567ac9}.method.patch{background:#fff5e3;color:#b28639}.method.delete{background:#fff0f0;color:#c96971}.route{font:600 12px var(--mono);color:#49576d}.endpoint-desc{font-size:11px;color:#909aab;margin-left:auto}.chevron{color:#98a3b3;transition:transform .2s}.endpoint[open] .chevron{transform:rotate(180deg)}.endpoint-body{padding:20px}.endpoint-body>p{font-size:12px;color:#7c8899;margin:0 0 20px}.subheading{display:flex;align-items:center;gap:9px;margin:19px 0 10px;font-size:11px;font-weight:600}.subheading small{font:9px var(--mono);font-weight:400;color:#9ba5b5}.param-table{width:100%;border-collapse:collapse;text-align:left;font-size:11px;margin-bottom:20px}.param-table th{font-size:10px;font-weight:400;color:#94a0b0;background:#f8fafd;padding:8px 10px;border-bottom:1px solid var(--line)}.param-table td{padding:11px 10px;border-bottom:1px solid #edf0f5;color:#7e899a}.param-table td:first-child{color:#55657c;font-family:var(--mono)}.param-table .required{color:#c37a72;font-size:9px;margin-left:6px;white-space:nowrap}.param-table td:nth-child(2){color:#9ba6b5;font-family:var(--mono);font-size:10px}.code-panel{border-radius:7px;background:#192333;overflow:hidden;margin:12px 0 16px;color:#cbd4e2}.code-toolbar{display:flex;align-items:center;gap:16px;height:39px;padding:0 14px;background:#1e293b;border-bottom:1px solid #ffffff08;color:#8f9cb0;font:10px var(--mono)}.code-tab{border:0;background:none;padding:11px 0;color:#8f9cb0;font:10px var(--mono);position:relative}.code-tab.active{color:#d6e1f6}.code-tab.active:after{content:"";position:absolute;bottom:0;left:0;right:0;height:2px;background:#7798f2}.code-panel .copy-icon{color:#93a3bc;font:9px var(--mono);gap:5px}.code-panel .copy-icon:hover{background:#2b3a52;color:#fff}pre.code{padding:18px;margin:0;overflow-x:auto;font-size:11px;line-height:1.9;tab-size:2}.code .green{color:#a7cfb0}.code .purple{color:#bdace3}.code .dim{color:#74839a}.response-top{display:flex;align-items:center;justify-content:space-between}.response-top .subheading{margin:4px 0}.response-status{font:9px var(--mono);color:#659682;display:flex;align-items:center;gap:5px}.response-status .dot{width:5px;height:5px}.response{background:#f8fafd;border:1px solid #e9edf4;border-radius:6px;color:#60718a;font-size:11px;padding:16px;line-height:1.8;overflow:auto;margin:10px 0 0}.response .str{color:#398375}.response .num{color:#8f74b7}.endpoint-foot{font-size:10px!important;color:#8d98a9!important;margin:12px 0 0!important}.empty{padding:24px;text-align:center;color:#8b96a7;border:1px dashed var(--line);border-radius:8px}.error-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:16px 0 25px}.error-card{border:1px solid var(--line);padding:13px;border-radius:7px;font-size:10px;color:#8b96a5}.error-card code{font-size:11px;color:#6b7890;display:block;margin-bottom:5px}.footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:12px;color:#9ba5b3;font-size:10px;padding:21px 0 28px;margin-top:29px}.footer a{color:#7488b2}.toc{padding-top:8px;position:sticky;top:103px;align-self:start;font-size:11px}.toc-title{font-size:10px;color:#9aa5b5;letter-spacing:1.1px;margin-bottom:17px}.toc a{display:block;padding:7px 13px;border-left:1px solid var(--line);color:#8b95a4}.toc a.selected{color:var(--blue);border-left:2px solid var(--blue);background:linear-gradient(90deg,#f3f6ff,transparent)}.toc a.child{font-size:10px;padding-left:24px}.toc-note{margin-top:28px;border-top:1px solid var(--line);padding-top:18px;font-size:10px;color:#a0a9b5;line-height:1.9}.toc-note span{display:block;color:#7f8da1;margin-bottom:5px}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#243248;color:white;padding:10px 20px;border-radius:7px;font-size:12px;box-shadow:0 6px 24px #15233b25;z-index:20}.menu-btn{display:none;border:1px solid var(--line);background:white;border-radius:5px;padding:6px;color:#6e7c91}[hidden]{display:none!important}
+    @media(min-width:1500px){main{padding-left:70px;padding-right:70px}.content-layout{gap:70px}}@media(max-width:1150px){.toc{display:none}.content-layout{display:block;max-width:790px}main{padding:30px 35px 0}.top-right .status{display:none}.topbar{gap:25px}.title-en{font-size:25px!important}}@media(max-width:800px){.sidebar{width:210px;padding:25px 13px}.brand{width:165px}.brand small,.brand .divider{display:none}main{margin-left:210px;padding:25px 24px 0}.topbar{padding:0 24px}.topnav{gap:20px}h1{font-size:31px}h1 .title-en{display:block;margin-left:0;font-size:21px!important}.endpoint-desc{display:none}.param-table td,.param-table th{padding:9px 6px}.endpoint-body{padding:15px}.error-grid{grid-template-columns:1fr}.base-url{gap:10px;flex-wrap:wrap}}@media(max-width:600px){.topbar{height:62px;padding:0 18px;gap:15px}.brand{width:auto;font-size:22px}.brand-mark{width:26px;height:26px;border-width:6px}.topnav{margin-left:auto;font-size:11px;gap:17px}.topnav a:last-child{display:none}.top-right{display:none}.menu-btn{display:block}.sidebar{display:none;top:62px;width:245px;z-index:15;box-shadow:10px 0 30px #18243c12}.sidebar.open{display:flex}main{margin-left:0;padding:23px 20px 0}.breadcrumb{margin-bottom:24px}.content-layout{display:block}h1 .title-en{display:inline;font-size:22px!important;margin-left:10px}.intro{font-size:12px}.hero-tags{gap:10px}.hero-tags span+span:before{margin-right:3px}.base-url{margin-bottom:28px;padding:12px}.base-url code{font-size:11px}.section-heading h2{font-size:19px}.endpoint summary{gap:10px;padding:14px}.route{font-size:11px}.chevron{margin-left:auto}.footer{font-size:9px}.param-table{font-size:10px}.param-table .required{display:block;margin-left:0}.auth-code{font-size:11px;padding:17px}}
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="copy" viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="13" rx="2"/><path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/></symbol><symbol id="chevron" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol><symbol id="lock" viewBox="0 0 24 24"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4m-4 4v3"/></symbol><symbol id="users" viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 4a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 5v2"/></symbol><symbol id="book" viewBox="0 0 24 24"><path d="M12 5v15M3 4c4-1 6 0 9 2 3-2 5-3 9-2v15c-4-1-6 0-9 2-3-2-5-3-9-2Z"/></symbol><symbol id="info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v1"/></symbol></svg>
+  <header class="topbar">
+    <a href="#overview" class="brand" aria-label="Orbit 开发者文档首页"><span class="brand-mark"></span>orbit<span class="divider"></span><small>开发者文档</small></a>
+    <nav class="topnav" aria-label="顶部导航"><a href="#authentication">快速开始</a><a class="active" href="#overview">API 参考</a><a href="#errors">错误处理</a></nav>
+    <div class="top-right"><span class="status"><i class="dot"></i>REST API</span><span class="version">v1.0</span></div>
+    <button class="menu-btn" aria-label="打开导航" aria-expanded="false" aria-controls="sidebar">☰</button>
+  </header>
+  <aside class="sidebar" id="sidebar">
+    <label class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10" cy="10" r="6.5"/><path d="m15 15 5 5"/></svg><input id="search" type="search" placeholder="搜索接口…" aria-label="搜索接口"><kbd>/</kbd></label>
+    <div class="nav-label">开始使用</div>
+    <a class="nav-link" href="#overview"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#book"/></svg>概览</a>
+    <a class="nav-link" href="#authentication"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#lock"/></svg>身份鉴权</a>
+    <div class="nav-label">API 参考</div>
+    <a class="nav-link current" href="#endpoints"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#users"/></svg>用户 Users</a>
+    <a class="endpoint-nav" href="#get-user"><span class="tiny-method">GET</span>获取用户</a>
+    <a class="endpoint-nav" href="#create-user"><span class="tiny-method post">POST</span>创建用户</a>
+    <a class="endpoint-nav" href="#update-user"><span class="tiny-method patch">PATCH</span>更新用户</a>
+    <a class="endpoint-nav" href="#delete-user"><span class="tiny-method delete">DELETE</span>删除用户</a>
+    <div class="nav-label">更多资源</div>
+    <a class="nav-link" href="#errors"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#info"/></svg>状态码与错误</a>
+    <div class="sidebar-bottom"><div class="sidebar-note"><strong>为每一次连接而构建</strong>清晰的接口，流畅的开发体验。<a href="#authentication">从身份鉴权开始 <span aria-hidden="true">↗</span></a></div></div>
+  </aside>
+  <main>
+    <div class="content-layout">
+      <article class="content">
+        <div class="breadcrumb"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3Z"/></svg><span>/</span><span>API 参考</span><span>/</span><span>用户</span></div>
+        <section id="overview">
+          <div class="eyebrow">API REFERENCE</div>
+          <h1>用户 <span class="title-en">Users</span></h1>
+          <p class="intro">在你的应用中轻松管理用户。通过简洁、一致的 REST 接口，<br class="desktop-break">获取用户信息、创建新用户，以及更新和删除已有用户。</p>
+          <div class="hero-tags"><span><i class="dot"></i> API v1</span><span>HTTPS</span><span>JSON 格式</span><span>UTF-8 编码</span></div>
+          <div class="base-url"><span>BASE URL</span><code>https://api.example.com/v1</code><button class="copy-icon" data-copy="https://api.example.com/v1" aria-label="复制基础地址"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg></button></div>
+        </section>
+        <section id="authentication">
+          <div class="section-heading"><span class="section-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#lock"/></svg></span><h2>身份鉴权</h2><a class="section-anchor" href="#authentication" aria-label="身份鉴权链接">#</a></div>
+          <p class="section-text">所有接口均使用 <span class="inline-code">Bearer Token</span> 进行身份验证。请在每次请求的<br> <span class="inline-code">Authorization</span> 请求头中携带有效的 API Token。</p>
+          <div class="auth-box"><div class="auth-top"><span>请求头</span><span class="pill">Bearer Token</span></div><pre class="auth-code"><span class="key">Authorization</span>: Bearer <span class="token">YOUR_API_TOKEN</span></pre></div>
+          <div class="notice"><svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#info"/></svg><div><strong>请妥善保管你的 Token</strong><br>仅在服务端保存和使用，避免暴露在前端代码或公开仓库中。Token 缺失、无效或过期时，接口将返回 <code>401 Unauthorized</code>。</div></div>
+        </section>
+        <section id="endpoints">
+          <div class="section-heading"><span class="section-icon"><svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#users"/></svg></span><h2>用户接口</h2><span class="heading-count">4 endpoints</span><a class="section-anchor" href="#endpoints" aria-label="用户接口链接">#</a></div>
+          <p class="section-text">围绕用户资源的四个基础操作。点击接口查看完整的请求和响应说明。</p>
+          <div class="list-labels"><span>METHOD / ENDPOINT</span><span>所有接口均需鉴权</span></div>
+          <details class="endpoint" id="get-user" open data-search="GET 获取用户 查询 读取 users id">
+            <summary><span class="method">GET</span><code class="route">/users/{id}</code><span class="endpoint-desc">获取用户信息</span><svg class="chevron" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#chevron"/></svg></summary>
+            <div class="endpoint-body"><p>根据用户的唯一 ID 获取其详细信息。</p><h3 class="subheading">路径参数 <small>PATH PARAMETERS</small></h3><table class="param-table"><thead><tr><th scope="col">参数</th><th scope="col">类型</th><th scope="col">说明</th></tr></thead><tbody><tr><td>id <span class="required">必填</span></td><td>string</td><td>用户唯一标识，例如 <code>usr_123</code></td></tr></tbody></table>
+              <h3 class="subheading">请求示例</h3><div class="code-panel" data-example="get"><div class="code-toolbar"><button class="code-tab active" data-language="curl" aria-pressed="true">cURL</button><button class="code-tab" data-language="js" aria-pressed="false">JavaScript</button><button class="copy-icon" aria-label="复制获取用户请求">复制 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg></button></div><pre class="code"><span class="purple">curl</span> --request GET <span class="green">'https://api.example.com/v1/users/usr_123'</span> \
+  --header <span class="green">'Authorization: Bearer YOUR_API_TOKEN'</span></pre></div>
+              <div class="response-top"><h3 class="subheading">响应示例</h3><span class="response-status"><i class="dot"></i>200 OK</span></div><pre class="response">{
+  "data": {
+    "id": <span class="str">"usr_123"</span>,
+    "name": <span class="str">"Alex Chen"</span>,
+    "email": <span class="str">"alex@example.com"</span>,
+    "created_at": <span class="str">"2026-01-15T08:30:00Z"</span>
+  }
+}</pre><p class="endpoint-foot">用户不存在时返回 <code>404 Not Found</code>。</p>
+            </div>
+          </details>
+          <details class="endpoint" id="create-user" data-search="POST 创建用户 新增 users name email">
+            <summary><span class="method post">POST</span><code class="route">/users</code><span class="endpoint-desc">创建新用户</span><svg class="chevron" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#chevron"/></svg></summary>
+            <div class="endpoint-body"><p>创建一个新用户。请求体使用 JSON 格式，并设置 <code>Content-Type: application/json</code>。</p><h3 class="subheading">请求体 <small>REQUEST BODY</small></h3><table class="param-table"><thead><tr><th scope="col">参数</th><th scope="col">类型</th><th scope="col">说明</th></tr></thead><tbody><tr><td>name <span class="required">必填</span></td><td>string</td><td>用户姓名，1–80 个字符</td></tr><tr><td>email <span class="required">必填</span></td><td>string</td><td>有效且唯一的邮箱地址，最多 254 个字符</td></tr></tbody></table><h3 class="subheading">请求示例</h3><div class="code-panel" data-example="post"><div class="code-toolbar"><button class="code-tab active" data-language="curl" aria-pressed="true">cURL</button><button class="code-tab" data-language="js" aria-pressed="false">JavaScript</button><button class="copy-icon" aria-label="复制创建用户请求">复制 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg></button></div><pre class="code">curl --request POST 'https://api.example.com/v1/users' \
+  --header 'Authorization: Bearer YOUR_API_TOKEN' \
+  --header 'Content-Type: application/json' \
+  --data '{"name":"Alex Chen","email":"alex@example.com"}'</pre></div><div class="response-top"><h3 class="subheading">响应示例</h3><span class="response-status"><i class="dot"></i>201 Created</span></div><pre class="response">{
+  "data": {
+    "id": "usr_123",
+    "name": "Alex Chen",
+    "email": "alex@example.com",
+    "created_at": "2026-01-15T08:30:00Z"
+  }
+}</pre><p class="endpoint-foot">邮箱已注册时返回 <code>409 Conflict</code>；参数不合法时返回 <code>400 Bad Request</code>。</p></div>
+          </details>
+          <details class="endpoint" id="update-user" data-search="PATCH 更新用户 修改 users id name email">
+            <summary><span class="method patch">PATCH</span><code class="route">/users/{id}</code><span class="endpoint-desc">更新用户信息</span><svg class="chevron" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#chevron"/></svg></summary>
+            <div class="endpoint-body"><p>部分更新用户信息。仅修改提交的字段，未提交的字段保持原值。至少提供一个字段，不接受 <code>null</code>。</p><h3 class="subheading">路径参数 <small>PATH PARAMETERS</small></h3><table class="param-table"><thead><tr><th scope="col">参数</th><th scope="col">类型</th><th scope="col">说明</th></tr></thead><tbody><tr><td>id <span class="required">必填</span></td><td>string</td><td>待更新的用户唯一标识</td></tr></tbody></table><h3 class="subheading">请求体 <small>REQUEST BODY</small></h3><table class="param-table"><thead><tr><th scope="col">参数</th><th scope="col">类型</th><th scope="col">说明</th></tr></thead><tbody><tr><td>name</td><td>string</td><td>可选，用户姓名，1–80 个字符</td></tr><tr><td>email</td><td>string</td><td>可选，有效且唯一的邮箱，最多 254 个字符</td></tr></tbody></table><h3 class="subheading">请求示例</h3><div class="code-panel" data-example="patch"><div class="code-toolbar"><button class="code-tab active" data-language="curl" aria-pressed="true">cURL</button><button class="code-tab" data-language="js" aria-pressed="false">JavaScript</button><button class="copy-icon" aria-label="复制更新用户请求">复制 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg></button></div><pre class="code">curl --request PATCH 'https://api.example.com/v1/users/usr_123' \
+  --header 'Authorization: Bearer YOUR_API_TOKEN' \
+  --header 'Content-Type: application/json' \
+  --data '{"name":"Alex Wang"}'</pre></div><div class="response-top"><h3 class="subheading">响应示例</h3><span class="response-status"><i class="dot"></i>200 OK</span></div><pre class="response">{
+  "data": {
+    "id": "usr_123",
+    "name": "Alex Wang",
+    "email": "alex@example.com",
+    "created_at": "2026-01-15T08:30:00Z"
+  }
+}</pre><p class="endpoint-foot">参数不合法返回 <code>400</code>，用户不存在返回 <code>404</code>，邮箱重复返回 <code>409</code>。</p></div>
+          </details>
+          <details class="endpoint" id="delete-user" data-search="DELETE 删除用户 移除 users id">
+            <summary><span class="method delete">DELETE</span><code class="route">/users/{id}</code><span class="endpoint-desc">删除用户</span><svg class="chevron" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.6"><use href="#chevron"/></svg></summary>
+            <div class="endpoint-body"><p>永久删除指定用户，此操作无法撤销。请求不需要携带请求体。</p><h3 class="subheading">路径参数 <small>PATH PARAMETERS</small></h3><table class="param-table"><thead><tr><th scope="col">参数</th><th scope="col">类型</th><th scope="col">说明</th></tr></thead><tbody><tr><td>id <span class="required">必填</span></td><td>string</td><td>待删除的用户唯一标识</td></tr></tbody></table><h3 class="subheading">请求示例</h3><div class="code-panel" data-example="delete"><div class="code-toolbar"><button class="code-tab active" data-language="curl" aria-pressed="true">cURL</button><button class="code-tab" data-language="js" aria-pressed="false">JavaScript</button><button class="copy-icon" aria-label="复制删除用户请求">复制 <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5"><use href="#copy"/></svg></button></div><pre class="code">curl --request DELETE 'https://api.example.com/v1/users/usr_123' \
+  --header 'Authorization: Bearer YOUR_API_TOKEN'</pre></div><div class="response-top"><h3 class="subheading">成功响应</h3><span class="response-status"><i class="dot"></i>204 No Content</span></div><pre class="response">HTTP/1.1 204 No Content</pre><p class="endpoint-foot">成功时不返回响应体。用户不存在或已删除时返回 <code>404 Not Found</code>。</p></div>
+          </details>
+          <div class="empty" id="empty" role="status" hidden>未找到匹配的接口，请尝试搜索方法名或“用户”。</div>
+        </section>
+        <hr class="section-divider">
+        <section id="errors"><div class="section-heading"><h2>状态码与错误</h2><a class="section-anchor" href="#errors" aria-label="状态码与错误链接">#</a></div><p class="section-text">使用标准 HTTP 状态码表示请求结果。错误响应包含稳定的错误标识和便于排查的说明。</p><div class="error-grid"><div class="error-card"><code>400 Bad Request</code>请求参数缺失或格式不正确</div><div class="error-card"><code>401 Unauthorized</code>Token 缺失、无效或已过期</div><div class="error-card"><code>403 Forbidden</code>当前 Token 无权操作该资源</div><div class="error-card"><code>404 Not Found</code>指定用户不存在</div><div class="error-card"><code>409 Conflict</code>邮箱地址已被其他用户使用</div><div class="error-card"><code>500 Internal Server Error</code>服务端异常，请稍后重试</div></div><pre class="response">{
+  "error": {
+    "code": "user_not_found",
+    "message": "未找到指定用户。"
+  }
+}</pre></section>
+        <footer class="footer"><span>Orbit 开发者文档 · 示例接口，地址与 Token 为占位值</span><a href="#overview">返回顶部 ↑</a></footer>
+      </article>
+      <aside class="toc" aria-label="本页目录"><div class="toc-title">本页内容</div><a class="selected" href="#overview">概览</a><a href="#authentication">身份鉴权</a><a href="#endpoints">用户接口</a><a class="child" href="#get-user">获取用户</a><a class="child" href="#create-user">创建用户</a><a class="child" href="#update-user">更新用户</a><a class="child" href="#delete-user">删除用户</a><a href="#errors">状态码与错误</a><div class="toc-note"><span>一致的接口，简单的集成</span>所有请求均通过 HTTPS 传输。<br>时间字段使用 ISO 8601 格式，<br>统一采用 UTC 时区。</div></aside>
+    </div>
+  </main>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script>
+    const search = document.querySelector('#search');
+    const endpoints = [...document.querySelectorAll('.endpoint')];
+    const sidebar = document.querySelector('.sidebar');
+    const menu = document.querySelector('.menu-btn');
+    const examples = {};
+    document.querySelectorAll('.code-panel').forEach(panel => {
+      const key = panel.dataset.example;
+      const method = key.toUpperCase();
+      const url = 'https://api.example.com/v1/users' + (key === 'post' ? '' : '/usr_123');
+      const body = key === 'post' ? {name:'Alex Chen',email:'alex@example.com'} : key === 'patch' ? {name:'Alex Wang'} : null;
+      examples[key] = {curl:panel.querySelector('pre').textContent};
+      examples[key].js = `// 在服务端运行；从环境变量读取 Token\nconst response = await fetch('${url}', {\n  method: '${method}',\n  headers: {\n    Authorization: \`Bearer \${process.env.API_TOKEN}\`${body ? ",\n    'Content-Type': 'application/json'" : ''}\n  }${body ? ',\n  body: JSON.stringify(' + JSON.stringify(body) + ')' : ''}\n});\n\nif (!response.ok) {\n  throw new Error(\`请求失败：\${response.status}\`);\n}\n${key === 'delete' ? '// 204 响应没有 JSON 响应体\nconsole.log("用户已删除");' : 'const data = await response.json();\nconsole.log(data);'}`;
+      panel.querySelectorAll('.code-tab').forEach(tab => tab.addEventListener('click', () => {
+        panel.querySelectorAll('.code-tab').forEach(t => {t.classList.toggle('active', t === tab);t.setAttribute('aria-pressed', String(t === tab));});
+        panel.querySelector('pre').textContent = examples[key][tab.dataset.language];
+      }));
+    });
+    let toastTimer;
+    function notify(message) { const toast = document.querySelector('#toast'); toast.textContent=message;toast.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.hidden=true,2500); }
+    async function copyText(text) {
+      try {
+        if (navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(text);
+        else {
+          const input=document.createElement('textarea');input.value=text;input.style.cssText='position:fixed;left:-9999px';document.body.appendChild(input);input.select();
+          const success=document.execCommand('copy');input.remove();if(!success) throw new Error('copy failed');
+        }
+        notify('已复制到剪贴板');
+      } catch { notify('无法访问剪贴板，请选中示例手动复制'); }
+    }
+    document.querySelectorAll('.copy-icon').forEach(button => button.addEventListener('click', () => copyText(button.dataset.copy || button.closest('.code-panel').querySelector('pre').textContent)));
+    function filterEndpoints() {
+      const query=search.value.trim().toLowerCase();let visible=0;
+      endpoints.forEach(endpoint=>{const match=endpoint.dataset.search.toLowerCase().includes(query);endpoint.hidden=!match;if(match)visible++;});
+      document.querySelector('#empty').hidden=visible>0;
+      document.querySelector('.heading-count').textContent=query ? `${visible} / 4 endpoints` : '4 endpoints';
+    }
+    search.addEventListener('input', filterEndpoints);
+    search.addEventListener('keydown', event => {if(event.key==='Enter'){document.querySelector('#endpoints').scrollIntoView();sidebar.classList.remove('open');menu.setAttribute('aria-expanded','false');}});
+    document.addEventListener('keydown', event=>{if(event.key==='/'&&!['INPUT','TEXTAREA'].includes(document.activeElement.tagName)){event.preventDefault();if(window.innerWidth<=600){sidebar.classList.add('open');menu.setAttribute('aria-expanded','true');}search.focus();}if(event.key==='Escape'){sidebar.classList.remove('open');menu.setAttribute('aria-expanded','false');search.blur();}});
+    menu.addEventListener('click',()=>{const open=sidebar.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'关闭导航':'打开导航');});
+    function revealTarget(hash) {const target=document.getElementById(hash.slice(1));if(target?.classList.contains('endpoint')){search.value='';filterEndpoints();target.open=true;}return target;}
+    document.querySelectorAll('a[href^="#"]').forEach(link=>link.addEventListener('click',()=>{revealTarget(link.hash);sidebar.classList.remove('open');menu.setAttribute('aria-expanded','false');}));
+    window.addEventListener('hashchange',()=>revealTarget(location.hash));
+    if(location.hash){const target=revealTarget(location.hash);if(target)requestAnimationFrame(()=>target.scrollIntoView());}
+    if('IntersectionObserver' in window){
+      const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){document.querySelectorAll('.toc a').forEach(link=>link.classList.toggle('selected',link.hash==='#'+entry.target.id));}});},{rootMargin:'-10% 0px -65% 0px',threshold:0});
+      document.querySelectorAll('section[id],details[id]').forEach(section=>observer.observe(section));
+    }
+  </script>
+</body>
+</html>

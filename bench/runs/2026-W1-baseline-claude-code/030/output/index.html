@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>租房检查清单</title>
+<style>
+  :root {
+    --paper: #F4E9DC;
+    --paper-deep: #EADCC9;
+    --ink: #2B2620;
+    --ink-soft: #6B6157;
+    --line: #D6C6B0;
+    --cinnabar: #9E4B3B;
+    --serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    background: #E2D5C3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    font-family: var(--serif);
+    color: var(--ink);
+  }
+
+  /* 3:4 竖版卡片,基准 1080×1440;内部尺寸用 cqw 等比缩放 */
+  .card {
+    width: min(100%, calc((100vh - 32px) * 0.75), 1080px);
+    aspect-ratio: 3 / 4;
+    container-type: inline-size;
+    background: var(--paper);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .inner {
+    position: absolute;
+    inset: 0;
+    padding: 8cqw 7.4cqw 6.6cqw;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 细框:仿线装书版框 */
+  .inner::before {
+    content: "";
+    position: absolute;
+    inset: 3.2cqw;
+    border: 0.12cqw solid var(--line);
+    pointer-events: none;
+  }
+
+  .kicker {
+    display: flex;
+    align-items: center;
+    gap: 1.6cqw;
+    font-size: 2.1cqw;
+    letter-spacing: 0.5em;
+    color: var(--ink-soft);
+  }
+  .kicker::after {
+    content: "";
+    flex: 1;
+    height: 0.12cqw;
+    background: var(--line);
+  }
+
+  h1 {
+    margin-top: 4.4cqw;
+    font-weight: 300;
+    font-size: 8.4cqw;
+    line-height: 1.22;
+    letter-spacing: 0.04em;
+  }
+  h1 .num {
+    color: var(--cinnabar);
+    font-weight: 400;
+  }
+
+  .sub {
+    margin-top: 2.6cqw;
+    font-size: 2.5cqw;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    letter-spacing: 0.08em;
+  }
+
+  .list {
+    margin-top: 6cqw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 6cqw;
+    row-gap: 4.6cqw;
+    list-style: none;
+  }
+
+  .item {
+    padding-top: 2.2cqw;
+    border-top: 0.12cqw solid var(--line);
+  }
+
+  .item-head {
+    display: flex;
+    align-items: baseline;
+    gap: 1.6cqw;
+  }
+
+  .idx {
+    font-size: 2.4cqw;
+    color: var(--cinnabar);
+    letter-spacing: 0.1em;
+  }
+
+  .item h2 {
+    font-size: 3.6cqw;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .item p {
+    margin-top: 1.4cqw;
+    font-size: 2.35cqw;
+    line-height: 1.7;
+    color: var(--ink-soft);
+  }
+
+  .foot {
+    margin-top: auto;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 4cqw;
+  }
+
+  .foot-text {
+    font-size: 2.3cqw;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
+  }
+  .foot-text strong {
+    display: block;
+    font-size: 2.9cqw;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* 朱印 */
+  .seal {
+    flex: none;
+    width: 9.6cqw;
+    height: 9.6cqw;
+    border: 0.4cqw solid var(--cinnabar);
+    border-radius: 0.6cqw;
+    color: var(--cinnabar);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    padding: 0.8cqw;
+    font-size: 3.4cqw;
+    font-weight: 600;
+    line-height: 1;
+    transform: rotate(-4deg);
+    opacity: 0.88;
+  }
+</style>
+</head>
+<body>
+  <main class="card" aria-label="租房前一定要检查的 6 个地方">
+    <div class="inner">
+      <div class="kicker">租房笔记 · 看房篇</div>
+
+      <h1>租房前<br>一定要检查的<br><span class="num">6</span> 个地方</h1>
+      <p class="sub">看房十分钟，住进去少踩一年坑。</p>
+
+      <ol class="list">
+        <li class="item">
+          <div class="item-head"><span class="idx">壹</span><h2>水压与排水</h2></div>
+          <p>冷热水全开，冲一次马桶，看地漏下水快不快、有没有返味。</p>
+        </li>
+        <li class="item">
+          <div class="item-head"><span class="idx">贰</span><h2>电路与插座</h2></div>
+          <p>带个充电器逐个试插座；问清空调、热水器是否走专线。</p>
+        </li>
+        <li class="item">
+          <div class="item-head"><span class="idx">叁</span><h2>门锁与门窗</h2></div>
+          <p>确认能换锁芯；窗户关严后不漏风,纱窗完好无破洞。</p>
+        </li>
+        <li class="item">
+          <div class="item-head"><span class="idx">肆</span><h2>墙角与天花</h2></div>
+          <p>重点看卫生间、窗边和柜子背后，有霉斑水渍要警惕。</p>
+        </li>
+        <li class="item">
+          <div class="item-head"><span class="idx">伍</span><h2>燃气与热水器</h2></div>
+          <p>看软管有没有老化、热水器用了几年，有无燃气报警器。</p>
+        </li>
+        <li class="item">
+          <div class="item-head"><span class="idx">陆</span><h2>水电燃气表底</h2></div>
+          <p>入住当天拍下三表读数，和房东一起确认，写进合同。</p>
+        </li>
+      </ol>
+
+      <div class="foot">
+        <p class="foot-text"><strong>签合同前，逐项拍照留证</strong>家具家电的现有损坏,也一并记下来。</p>
+        <div class="seal" aria-hidden="true"><span>验</span><span>房</span><span>留</span><span>证</span></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

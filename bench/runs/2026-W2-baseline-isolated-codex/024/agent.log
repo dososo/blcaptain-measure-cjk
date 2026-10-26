@@ -1,0 +1,126 @@
+命令：codex exec --skip-git-repo-check --ephemeral -s workspace-write -C <tmp>/measure-baseline-codex-024-K5YLsh -m gpt-6-astra -c model_reasoning_effort="high" <提示词>
+工作目录：<tmp>/measure-baseline-codex-024-K5YLsh
+退出码：0 信号：无 用时：296s
+
+Reading additional input from stdin...
+OpenAI Codex v0.154.0
+--------
+workdir: <tmp>/measure-baseline-codex-024-K5YLsh
+model: gpt-6-astra
+provider: openai
+approval: never
+sandbox: workspace-write [workdir, /tmp, $TMPDIR]
+reasoning effort: high
+reasoning summaries: none
+session id: 01a17333-d785-7982-8806-19e1b67f2e1a
+--------
+user
+做一个餐厅订座页面，选择日期、时间、人数，填写备注。
+
+输出要求：把结果写成当前目录下的 index.html（需要的话可以另外写 CSS 文件，放在当前目录）。不要启动服务器，不要安装任何依赖。完成后用一两句话说明生成了哪些文件。
+codex
+我会做一个可直接打开的餐厅订座页面，包含日期、时间、人数选择和备注填写，并加入表单校验与预约确认效果。
+exec
+/bin/zsh -lc "pwd && rg --files -g 'AGENTS.md' -g 'index.html' -g '*.css' -g 'package.json' -g '"'!node_modules'"' -g '"'!vendor'"'" in <tmp>/measure-baseline-codex-024-K5YLsh
+ exited 1 in 0ms:
+<tmp>/measure-baseline-codex-024-K5YLsh
+
+exec
+/bin/zsh -lc 'ls -la' in <tmp>/measure-baseline-codex-024-K5YLsh
+ succeeded in 0ms:
+total 0
+drwx------@    2 user  staff     64 Oct 25 21:15 .
+drwx------@ 1951 user  staff  62432 Oct 25 21:15 ..
+
+2026-10-25T13:18:46.269164Z ERROR codex_core::tools::router: error=patch rejected: writing outside of the project; rejected by user approval settings
+exec
+/bin/zsh -lc pwd in <tmp>/measure-baseline-codex-024-K5YLsh
+ succeeded in 0ms:
+<tmp>/measure-baseline-codex-024-K5YLsh
+
+codex
+页面采用暖白与陶土红配色，搭配餐厅大图和订座卡片；日期快捷选择、时段切换及预约信息汇总也会一起完成。
+exec
+/bin/zsh -lc "cat > index.html <<'EOF'
+<"'!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f5f0">
+<title>禾间 HÉJIĀN · 预订一席好时光</title>
+<style>
+:root{--paper:#f7f5f0;--ink:#292e28;--muted:#85867d;--line:#e6e5dd;--accent:#a64937;--pale:#f5eeea;--serif:Georgia,"Songti SC",SimSun,serif}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;font-size:14px}button,input,textarea,select{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible{outline:3px solid #b97b62;outline-offset:4px}svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}header{height:100px;max-width:1320px;margin:auto;padding:0 56px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:13px}.brand-mark{width:38px;height:43px;color:var(--accent);border:1px solid var(--accent);display:grid;place-items:center;font:26px var(--serif);border-radius:16px 16px 2px 2px}.brand-name{font:25px var(--serif);letter-spacing:4px}.brand-name small{display:block;font:9px Arial;letter-spacing:3px;margin-top:6px;color:#72776b}nav{display:flex;gap:37px;align-items:center;font-size:13px;color:#75776e}nav a{padding:11px 0}nav a.active{color:var(--accent);border-bottom:1px solid var(--accent)}.nav-right{display:flex;align-items:center;gap:9px;font-size:12px}.nav-right span{color:var(--muted);padding:0 9px}.main{max-width:1208px;margin:0 auto;padding:50px 0 44px}.intro{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px}.eyebrow{font-size:10px;letter-spacing:3px;color:var(--accent);margin:0 0 15px}.intro h1{font:38px var(--serif);letter-spacing:3px;margin:0 0 13px}.intro p:not(.eyebrow){color:#828477;letter-spacing:1px;font-size:13px;margin:0}.intro-aside{color:#93958b;font:italic 15px var(--serif);padding-bottom:5px}.layout{display:grid;grid-template-columns:1.04fr 1fr;gap:38px;align-items:start}.venue{min-width:0}.photo{height:361px;position:relative;overflow:hidden;border-radius:5px;background:linear-gradient(135deg,#7c7966,#323d30)}.photo img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.78);object-position:center 56%}.photo:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,rgba(16,24,14,.65))}.photo-top{position:absolute;top:22px;left:22px;display:flex;align-items:center;gap:7px;color:#fff;font-size:11px;letter-spacing:1px;background:#ffffff1c;border:1px solid #ffffff45;border-radius:30px;padding:8px 12px;backdrop-filter:blur(8px)}.dot{width:5px;height:5px;background:#d3e0bb;border-radius:50%}.photo-caption{position:absolute;bottom:28px;left:28px;z-index:1;color:white}.photo-caption small{font:10px Arial;letter-spacing:3px;color:#e3ded3}.photo-caption h2{font:29px var(--serif);letter-spacing:3px;margin:11px 0 0}.photo-number{position:absolute;bottom:30px;right:26px;z-index:1;color:#deded2;font:11px Georgia;letter-spacing:2px}.venue-description{padding:27px 0 23px;border-bottom:1px solid var(--line)}.venue-title{display:flex;align-items:center;justify-content:space-between}.venue-title h3{font:22px var(--serif);letter-spacing:2px;margin:0}.tags{display:flex;gap:6px}.tag{font-size:10px;color:#707366;border:1px solid #dcded2;border-radius:3px;padding:4px 7px}.venue-description p{font-size:12px;line-height:2;color:#83857a;margin:14px 0 0;letter-spacing:.3px}.details{display:grid;grid-template-columns:1fr 1fr;gap:23px 10px;padding:24px 0}.detail{display:flex;gap:11px;align-items:flex-start}.detail svg{color:#8a8e7a;width:17px;height:17px;margin-top:2px}.detail strong{font-size:12px;font-weight:500}.detail p{font-size:11px;color:#909185;line-height:1.8;margin:7px 0 0}.quote{border:1px solid #e4e4da;border-radius:4px;padding:17px 20px;display:flex;gap:13px;align-items:center;color:#858874;background:#f0f0e8}.quote svg{width:22px;height:22px}.quote p{margin:0;font-size:11px;line-height:1.9;letter-spacing:.4px}.booking{background:#fff;border:1px solid #e7e6e0;border-radius:7px;padding:29px 30px 25px;box-shadow:0 7px 25px #3a3b2503}.booking-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:27px}.booking-head h2{font:22px var(--serif);letter-spacing:1px;margin:0}.booking-head span{font-size:10px;color:#93958b}.field-label{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:500;margin-bottom:12px}.field-label svg{width:16px;height:16px;color:#7b806f}.optional{font-size:10px;color:#a1a299;font-weight:400}.date-heading{display:flex;align-items:center;justify-content:space-between}.date-heading input{width:123px;border:0;background:transparent;color:#777b6e;font-size:11px;padding:0;cursor:pointer;margin-bottom:12px}.dates{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-bottom:23px}.date-button{border:1px solid var(--line);border-radius:4px;background:#fff;padding:11px 0 9px;display:flex;align-items:center;flex-direction:column;gap:7px;color:#34382e;transition:background .2s}.date-button small{font-size:10px;color:#8c8f81}.date-button strong{font-size:18px;font-weight:400;font-family:Georgia}.date-button em{font-style:normal;font-size:8px;color:#8b8f7f;min-height:10px}.date-button.selected{background:var(--accent);border-color:var(--accent);color:#fff}.date-button.selected small,.date-button.selected em{color:#f4d9cc}.date-button:hover:not(.selected){background:var(--paper);border-color:#c7baae}.time-period{font-size:10px;color:#97998e;display:flex;align-items:center;gap:7px;margin:11px 0 9px}.time-period svg{width:12px;height:12px}.times{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.time-button{height:34px;border:1px solid var(--line);border-radius:4px;background:white;color:#686c5f;font-size:11px;letter-spacing:.3px}.time-button.selected{background:var(--pale);border-color:var(--accent);color:var(--accent)}.time-button:hover:not(:disabled){border-color:var(--accent)}.time-button:disabled{color:#c4c4bd;background:#f7f7f4;cursor:not-allowed;text-decoration:line-through}.people-row{margin:24px 0 22px}.select-wrap{position:relative}.select-wrap select{width:100%;height:40px;appearance:none;border:1px solid var(--line);background:white;border-radius:4px;padding:0 13px;color:#515747;font-size:12px;cursor:pointer}.select-wrap svg{position:absolute;right:12px;top:13px;width:14px;height:14px;pointer-events:none}.note-wrap{position:relative}.note-wrap textarea{width:100%;height:83px;resize:vertical;min-height:83px;max-height:180px;border:1px solid var(--line);border-radius:4px;padding:12px 13px 24px;line-height:1.6;font-size:11px;color:var(--ink);display:block}.note-wrap textarea::placeholder{color:#adaea4}.note-wrap textarea:focus,.select-wrap select:focus{outline:1px solid var(--accent);border-color:var(--accent)}.count{position:absolute;right:11px;bottom:8px;font-size:9px;color:#a1a394}.summary{border-top:1px dashed #e3e4db;margin-top:22px;padding-top:17px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#96998a}.summary strong{font-weight:500;color:#535b48;font-size:11px}.submit{width:100%;border:0;border-radius:4px;background:var(--accent);color:white;display:flex;align-items:center;justify-content:center;gap:12px;height:46px;margin-top:17px;font-size:13px;letter-spacing:2px;transition:background .2s,transform .2s}.submit:hover{background:#903c2c;transform:translateY(-1px)}.submit svg{width:16px;height:16px}.booking-foot{font-size:10px;color:#a0a294;display:flex;align-items:center;justify-content:center;gap:5px;margin:13px 0 0}.booking-foot svg{width:12px;height:12px}footer{max-width:1208px;margin:0 auto;border-top:1px solid var(--line);padding:24px 0 29px;display:flex;align-items:center;justify-content:space-between;color:#9b9d91;font-size:10px;letter-spacing:.5px}.footer-end{display:flex;align-items:center;gap:6px}.footer-end svg{width:13px;height:13px}dialog{border:1px solid var(--line);border-radius:10px;padding:35px;max-width:420px;width:calc(100% - 40px);color:var(--ink);box-shadow:0 20px 80px #24292030}dialog::backdrop{background:#1e281d66;backdrop-filter:blur(4px)}.success-icon{margin:auto;display:grid;place-items:center;width:50px;height:50px;border-radius:50%;color:var(--accent);background:var(--pale)}dialog h2{text-align:center;font:25px var(--serif)}dialog p{color:#85877a;font-size:12px;line-height:1.9;text-align:center}dialog dl{background:var(--paper);padding:15px;border-radius:5px;font-size:12px}dialog dl div{display:flex;justify-content:space-between;gap:18px;padding:8px 0}dialog dl div[hidden]{display:none}dialog dt{color:#85877a;flex-shrink:0}dialog dd{margin:0;overflow-wrap:anywhere;white-space:pre-wrap;text-align:right}dialog .submit{letter-spacing:1px}.error{color:var(--accent);font-size:11px;margin:10px 0 0;line-height:1.6}.error:empty{display:none}
+@media(min-width:1500px){.main{padding-top:63px}.photo{height:390px}.layout{gap:48px}.intro{margin-bottom:38px}}@media(max-width:1300px){.main,footer{margin-left:56px;margin-right:56px}.layout{gap:28px}.booking{padding:26px}}@media(max-width:1000px){header{padding:0 30px}.main,footer{margin-left:30px;margin-right:30px}.layout{gap:24px;grid-template-columns:.95fr 1.05fr}.booking{padding:22px 18px}.photo{height:340px}.dates{gap:4px}.venue-title{gap:15px;align-items:flex-start}.tags{flex-wrap:wrap;justify-content:flex-end}.details{grid-template-columns:1fr}.intro-aside{display:none}}@media(max-width:740px){header{height:81px;padding:0 23px}.brand-name{font-size:22px}.brand-mark{width:32px;height:37px;font-size:23px}nav{gap:21px;font-size:12px}nav a:first-child,.nav-right{display:none}.main{margin:0;padding:32px 22px}.intro{margin-bottom:25px}.intro h1{font-size:30px;letter-spacing:2px}.intro p:not(.eyebrow){font-size:11px;letter-spacing:.3px}.eyebrow{font-size:9px;margin-bottom:12px}.layout{grid-template-columns:1fr;gap:26px}.photo{height:275px}.venue-description{padding:22px 0 18px}.details{grid-template-columns:1fr 1fr;gap:16px}.quote{display:none}.booking{padding:25px 20px}.booking-head{margin-bottom:25px}.dates{gap:6px}.date-button{padding:12px 0}.time-button{height:38px}footer{margin:0 22px;gap:15px;line-height:1.7;font-size:9px}.footer-end{white-space:nowrap}.venue-description p br{display:none}}@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<svg aria-hidden="true" style="display:none"><defs>
+<symbol id="calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18M8 15h2m4 0h2M8 18h2"/></symbol>
+<symbol id="clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="people" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6m2 3a5 5 0 0 1 3 4v3"/></symbol>
+<symbol id="note" viewBox="0 0 24 24"><path d="M15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V9zM15 3v6h6M7 13h10M7 17h6"/></symbol>
+<symbol id="pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></symbol>
+<symbol id="phone" viewBox="0 0 24 24"><path d="m8 3 3 5-3 3a15 15 0 0 0 5 5l3-3 5 3c0 3-2 5-4 5C10 21 3 14 3 7c0-2 2-4 5-4Z"/></symbol>
+<symbol id="leaf" viewBox="0 0 24 24"><path d="M20 3C9 1 3 7 5 15s16 4 15-12ZM4 21 16 8M10 15v-5m0 5h5"/></symbol>
+<symbol id="arrow" viewBox="0 0 24 24"><path d="M4 12h15m-5-5 5 5-5 5"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="down" viewBox="0 0 24 24"><path d="m7 10 5 5 5-5"/></symbol>
+<symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1 1m12 12 1 1M5 19l1-1M18 6l1-1"/></symbol>
+<symbol id="moon" viewBox="0 0 24 24"><path d="M20 14A9 9 0 0 1 10 3a9 9 0 1 0 10 11Z"/></symbol>
+</defs></svg>
+<header><a class="brand" href="#" aria-label="禾间首页"><span class="brand-mark">禾</span><span class="brand-name">禾间<small>HÉJIĀN</small></span></a><nav aria-label="主导航"><a href="#restaurant">关于禾间</a><a href="#restaurant-details">到店指南</a><a class="active" href="#booking" aria-current="page">预订餐桌</a></nav><a href="tel:02162587716" class="nav-right"><svg><use href="#phone"/></svg>021–6258 7716<span> / </span>上海 · 静安</a></header>
+<main class="main">
+<div class="intro"><div><p class="eyebrow">A SEAT AT OUR TABLE</p><h1>留一席，给好时光。</h1><p>时令入馔，心意入席。让一顿好饭，成为相聚的理由。</p></div><div class="intro-aside">Good food. Warm company. Slow moments.</div></div>
+<div class="layout">
+<section class="venue" id="restaurant" aria-label="餐厅介绍">
+<div class="photo"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=85" alt="温暖灯光下的餐厅，摆放整齐的餐桌与酒杯" fetchpriority="high"><div class="photo-top"><span class="dot"></span>当季好味 · 自然相聚</div><div class="photo-caption"><small>SEASONAL DINING, SINCERELY.</small><h2>在城市里，慢下来。</h2></div><span class="photo-number">01 / HÉJIĀN</span></div>
+<div class="venue-description"><div class="venue-title"><h3>禾间 · 时令餐厅</h3><div class="tags"><span class="tag">时令创意菜</span><span class="tag">静谧庭院</span></div></div><p>跟随四季，寻找食材本来的味道。<br>在一方温暖的空间里，与在意的人，分享一餐用心的料理。</p></div>
+<div class="details" id="restaurant-details"><div class="detail"><svg><use href="#pin"/></svg><div><strong>寻味禾间</strong><p>上海市静安区愚园路 328 号<br>近地铁 2 / 7 号线静安寺站</p></div></div><div class="detail"><svg><use href="#clock"/></svg><div><strong>营业时间</strong><p>午餐 11:30 – 14:00<br>晚餐 17:30 – 21:30</p></div></div></div>
+<div class="quote"><svg><use href="#leaf"/></svg><p>每一份相聚，都值得用心准备。<br>如有特殊饮食需求，欢迎在备注中告诉我们。</p></div>
+</section>
+<section class="booking" id="booking" aria-labelledby="booking-title"><div class="booking-head"><h2 id="booking-title">预订您的餐桌</h2><span>为下一次相聚，留个位置</span></div>
+<form id="reservation-form">
+<div class="date-heading"><label class="field-label" for="date"><svg><use href="#calendar"/></svg>用餐日期</label><input id="date" type="date" required aria-label="选择用餐日期"></div>
+<div class="dates" id="dates" role="group" aria-label="快捷选择日期"></div>
+<div class="field-label"><svg><use href="#clock"/></svg>用餐时间</div><div class="time-period"><svg><use href="#sun"/></svg>午餐</div>
+<div class="times" role="group" aria-label="午餐时间"><button class="time-button" type="button" data-time="11:30" aria-pressed="false">11:30</button><button class="time-button" type="button" data-time="12:00" aria-pressed="false">12:00</button><button class="time-button" type="button" data-time="12:30" aria-pressed="false">12:30</button><button class="time-button" type="button" data-time="13:00" aria-pressed="false">13:00</button></div>
+<div class="time-period"><svg><use href="#moon"/></svg>晚餐</div><div class="times" role="group" aria-label="晚餐时间"><button class="time-button" type="button" data-time="17:30" aria-pressed="false">17:30</button><button class="time-button" type="button" data-time="18:00" aria-pressed="false">18:00</button><button class="time-button" type="button" data-time="18:30" aria-pressed="false">18:30</button><button class="time-button" type="button" data-time="19:00" aria-pressed="false">19:00</button></div>
+<div class="people-row"><label class="field-label" for="guests"><svg><use href="#people"/></svg>用餐人数</label><div class="select-wrap"><select id="guests" name="guests"><option value="1">1 位 · 独享好味</option><option value="2" selected>2 位 · 两人小聚</option><option value="3">3 位 · 好友相聚</option><option value="4">4 位 · 围桌共享</option><option value="5">5 位 · 欢聚一堂</option><option value="6">6 位 · 欢聚一堂</option><option value="7">7 位 · 欢聚一堂</option><option value="8">8 位 · 欢聚一堂</option></select><svg><use href="#down"/></svg></div></div>
+<label class="field-label" for="notes"><svg><use href="#note"/></svg>特别备注 <span class="optional">（选填）</span></label><div class="note-wrap"><textarea id="notes" name="notes" maxlength="200" placeholder="过敏食材、座位偏好，或是一个值得庆祝的日子…"></textarea><span class="count" id="count">0 / 200</span></div>
+<div class="summary"><span>您的用餐计划</span><strong id="summary" aria-live="polite"></strong></div><p id="error" class="error" role="alert"></p><button type="submit" class="submit">确认订座<svg><use href="#arrow"/></svg></button><p class="booking-foot"><svg><use href="#check"/></svg>无需预付 · 当前为订座体验页面</p>
+</form></section></div></main>
+<footer><span>© 2026 禾间 HÉJIĀN. 好好吃饭，好好相聚。</span><span class="footer-end"><svg><use href="#leaf"/></svg>应时而食，与自然同席</span></footer>
+<dialog id="confirmation" aria-labelledby="confirmation-title"><div class="success-icon"><svg><use href="#check"/></svg></div><h2 id="confirmation-title">一席好时光，已备好心意。</h2><p>您的订座信息已整理如下。<br>此页面为演示，尚未向餐厅发送实际预约。</p><dl><div><dt>用餐日期</dt><dd id="confirmed-date"></dd></div><div><dt>到店时间</dt><dd id="confirmed-time"></dd></div><div><dt>用餐人数</dt><dd id="confirmed-guests"></dd></div><div id="confirmed-note-row"><dt>特别备注</dt><dd id="confirmed-notes"></dd></div></dl><button class="submit" id="close-dialog" type="button">返回订座</button></dialog>
+<script>
+const dateInput=document.querySelector('"'#date'),dates=document.querySelector('#dates'),guests=document.querySelector('#guests'),notes=document.querySelector('#notes'),summary=document.querySelector('#summary'),error=document.querySelector('#error');
+const timeButtons=[...document.querySelectorAll('.time-button')];
+const weekdays=['周日','周一','周二','周三','周四','周五','周六'];
+const formatDate=d=>"'`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'"'0')}-"'${String(d.getDate()).padStart(2,'"'0')}"'`;
+const parseDate=value=>new Date(value+'"'T00:00:00');
+const today=new Date();today.setHours(0,0,0,0);
+const lastDate=new Date(today);lastDate.setDate(lastDate.getDate()+90);
+dateInput.min=formatDate(today);dateInput.max=formatDate(lastDate);
+const initialDate=new Date(today);initialDate.setDate(initialDate.getDate()+1);dateInput.value=formatDate(initialDate);
+let selectedTime='18:00';
+function updateSummary(){const d=parseDate(dateInput.value);summary.textContent=Number.isNaN(d.getTime())?'请选择用餐日期':"'`${d.getMonth()+1}月${d.getDate()}日 · ${selectedTime||'"'请选择时间'} · "'${guests.value} 位`;}
+function refreshTimes(){const now=new Date();timeButtons.forEach(button=>{const time=new Date(`${dateInput.value}T${button.dataset.time}:00`);button.disabled=time<=now;button.title=button.disabled?'"'该时间已过，请选择其他时段':'';if(button.disabled&&selectedTime===button.dataset.time)selectedTime='';});timeButtons.forEach(button=>{const active=button.dataset.time===selectedTime;button.classList.toggle('selected',active);button.setAttribute('aria-pressed',String(active));});updateSummary();}
+function renderDates(){dates.replaceChildren();let start=new Date(today);const chosen=parseDate(dateInput.value),diff=Math.round((chosen-today)/86400000);if(diff>6)start=new Date(chosen);if((lastDate-start)/86400000<6){start=new Date(lastDate);start.setDate(start.getDate()-6);}for(let i=0;i<7;i++){const d=new Date(start);d.setDate(start.getDate()+i);const value=formatDate(d),button=document.createElement('button'),active=value===dateInput.value;button.type='button';button.className='date-button'+(active?' selected':'');button.setAttribute('aria-pressed',String(active));button.setAttribute('aria-label',"'`${d.getMonth()+1}月${d.getDate()}日 ${weekdays[d.getDay()]}`);const dayDiff=Math.round((d-today)/86400000);button.innerHTML=`<small>${weekdays[d.getDay()]}</small><strong>${String(d.getDate()).padStart(2,'"'0')}</strong><em>"'${dayDiff===0?'"'今天':dayDiff===1?'明天':"'`${d.getMonth()+1}月`}</em>`;button.addEventListener('"'click',()=>{dateInput.value=value;error.textContent='';renderDates();refreshTimes();});dates.append(button);}}
+dateInput.addEventListener('change',()=>{if("'!dateInput.checkValidity()){error.textContent='"'请选择今天起 90 天内的用餐日期。';updateSummary();return;}error.textContent='';renderDates();refreshTimes();});
+timeButtons.forEach(button=>button.addEventListener('click',()=>{selectedTime=button.dataset.time;error.textContent='';refreshTimes();}));
+guests.addEventListener('change',updateSummary);
+notes.addEventListener('input',()=>document.querySelector('#count').textContent="'`${notes.value.length} / 200`);
+document.querySelector('"'#reservation-form').addEventListener('submit',event=>{event.preventDefault();dateInput.min=formatDate(new Date());if("'!dateInput.checkValidity()){dateInput.reportValidity();return;}refreshTimes();if(!selectedTime){error.textContent='"'请选择一个可用的用餐时间。';timeButtons.find(b=>"'!b.disabled)?.focus();return;}const d=parseDate(dateInput.value);document.querySelector('"'#confirmed-date').textContent="'`${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日 ${weekdays[d.getDay()]}`;document.querySelector('"'#confirmed-time').textContent=selectedTime;document.querySelector('#confirmed-guests').textContent="'`${guests.value} 位`;document.querySelector('"'#confirmed-notes').textContent=notes.value.trim();document.querySelector('#confirmed-note-row').hidden="'!notes.value.trim();document.querySelector('"'#confirmation').showModal();});
+document.querySelector('#close-dialog').addEventListener('click',()=>document.querySelector('#confirmation').close());
+renderDates();refreshTimes();
+</script>
+</body>
+</html>
+EOF
+node -e 'const fs=require(\"fs\");const html=fs.readFileSync(\"index.html\",\"utf8\");new Function(html.match(/<script>([\\s\\S]*?)<\\/script>/)[1]);console.log(\"JavaScript syntax OK; index.html: \"+Buffer.byteLength(html)+\" bytes\");'" in <tmp>/measure-baseline-codex-024-K5YLsh
+ succeeded in 0ms:
+JavaScript syntax OK; index.html: 22353 bytes
+
+codex
+已生成当前目录下的 `index.html`，包含响应式布局、日期与时间选择、人数选择、备注填写及订座确认弹窗。样式和交互均已内置，可直接打开，无需安装依赖或启动服务器。
+tokens used
+21,483
+已生成当前目录下的 `index.html`，包含响应式布局、日期与时间选择、人数选择、备注填写及订座确认弹窗。样式和交互均已内置，可直接打开，无需安装依赖或启动服务器。
