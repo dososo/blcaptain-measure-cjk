@@ -2,6 +2,11 @@
 
 **中文** · [English](README.en.md)
 
+<div align="center">
+  <a href="https://github.com/dososo/blcaptain-measure-cjk/releases/download/v0.1.0/measure-launch-v0.1.0.mp4"><img src="docs/assets/cover-16x9.jpg" width="100%" alt="分寸 · Measure：中文页面，也要排得有分寸。点击观看 40 秒发布片"></a>
+  <br><sub><b>▶ 点图观看 40 秒发布片</b>（MP4，约 11 MB，附在 <a href="https://github.com/dososo/blcaptain-measure-cjk/releases/tag/v0.1.0">v0.1.0 Release</a> 里）</sub>
+</div>
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) ![Agent Skill](https://img.shields.io/badge/Agent-Skill-9e4b3b.svg) [![npm](https://img.shields.io/badge/npm-measure--cjk-7e8c6b.svg)](https://www.npmjs.com/package/measure-cjk) ![Node](https://img.shields.io/badge/Node-%E2%89%A5%2020.19-2b2622.svg)
 
 > 让 Claude Code、Codex 写出来的中文页面**排得有分寸**：排版对、字体合法，而且能用校验器证明。

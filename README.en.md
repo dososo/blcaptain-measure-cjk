@@ -2,6 +2,11 @@
 
 [中文](README.md) · **English**
 
+<div align="center">
+  <a href="https://github.com/dososo/blcaptain-measure-cjk/releases/download/v0.1.0/measure-launch-v0.1.0.mp4"><img src="docs/assets/cover-16x9.jpg" width="100%" alt="Measure (分寸): Chinese pages deserve proper typography. Click to watch the 40-second launch film"></a>
+  <br><sub><b>▶ Click to watch the 40-second launch film</b> (MP4, about 11 MB, attached to the <a href="https://github.com/dososo/blcaptain-measure-cjk/releases/tag/v0.1.0">v0.1.0 release</a>)</sub>
+</div>
+
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE) ![Agent Skill](https://img.shields.io/badge/Agent-Skill-9e4b3b.svg) [![npm](https://img.shields.io/badge/npm-measure--cjk-7e8c6b.svg)](https://www.npmjs.com/package/measure-cjk)
 
 > A Chinese typography skill for coding agents (Claude Code, Codex, …), plus a linter, `measure-cjk`, that proves the result.
